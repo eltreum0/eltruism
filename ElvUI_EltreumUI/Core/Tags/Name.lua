@@ -3,6 +3,21 @@ local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local Translit = E.Libs.Translit
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitAffectingCombat = _G.UnitAffectingCombat
+local IsInInstance = _G.IsInInstance
+local GetCVarBool = _G.GetCVarBool
+local strlower = _G.strlower
+local strfind = _G.strfind
+local LEVEL = _G.LEVEL
+local UnitReaction = _G.UnitReaction
+local format = _G.format
+local UnitName = _G.UnitName
+local UnitIsUnit = _G.UnitIsUnit
+local UnitClass = _G.UnitClass
+local UnitPVPName = _G.UnitPVPName
+local GetGuildInfo = _G.GetGuildInfo
+local UnitExists = _G.UnitExists
 
 --from elvui, modified for gradient
 do
@@ -635,7 +650,7 @@ end)
 E:AddTagInfo("target:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the current target of the unit, accepts length args"])
 
 --target of target gradient name
-E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function(unit)
+E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function()
 	if not UnitExists("targettarget") then return end
 	local name = UnitName("targettarget")
 	if name then

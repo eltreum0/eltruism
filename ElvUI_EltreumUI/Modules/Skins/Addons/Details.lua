@@ -190,7 +190,7 @@ do
 			local checkembed = true
 			if IsAddOnLoaded("AddOnSkins") or IsAddOnLoaded("ElvUI_MerathilisUI") then
 				if IsAddOnLoaded("AddOnSkins") then
-					local AS = unpack(AddOnSkins)
+					local AS = unpack(_G.AddOnSkins)
 					if (AS.db["EmbedSystemDual"] or AS.db["EmbedSystem"]) then
 						checkembed = false
 					end
@@ -204,14 +204,14 @@ do
 
 			if checkembed then
 				if not _G["EltruismDetailsEmbedPanel"] then
-					embedpanel = CreateFrame("FRAME","EltruismDetailsEmbedPanel")
+					embedpanel = _G.CreateFrame("FRAME","EltruismDetailsEmbedPanel")
 				else
 					embedpanel = _G["EltruismDetailsEmbedPanel"]
 				end
 
 				if not InCombatLockdown() then
 					embedpanel:SetAllPoints(_G["RightChatPanel"])
-					embedpanel:SetParent(UIParent)
+					embedpanel:SetParent(_G.UIParent)
 					embedpanel:SetFrameStrata("BACKGROUND")
 
 					if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then

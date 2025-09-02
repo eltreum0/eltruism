@@ -1,7 +1,6 @@
 local E, _, _, P = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
-local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local C_ToyBox = _G.C_ToyBox
@@ -171,9 +170,9 @@ function ElvUI_EltreumUI:MiscOptions()
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
 			local spellData = GetSpellInfo(_G.tostring(value))
 			if spellData then
-				local value = spellData.spellID
-				if value then
-					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = value
+				local spellID = spellData.spellID
+				if spellID then
+					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = spellID
 				end
 			end
 		else

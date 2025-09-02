@@ -25,9 +25,7 @@ local powertypes ={
 
 --Apply Gradient Power Colors to Unit
 function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
-	local forced = false
 	if unit == "testunit" then
-		forced = true
 		unit = "player"
 	end
 

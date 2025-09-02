@@ -11,14 +11,12 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local C_ChatBubbles = _G.C_ChatBubbles
-local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 local EltruismBlizzShadows = CreateFrame("Frame")
 local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
-
 
 --simple function to set shadow color
 function ElvUI_EltreumUI:ShadowColor(shadow)
@@ -1543,7 +1541,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--class totems
-			for i = 1, MAX_TOTEMS do
+			for i = 1, _G.MAX_TOTEMS do
 				local classtotem = _G['ElvUI_TotemTrackerTotem'..i]
 				if classtotem and not classtotem.shadow then
 					classtotem:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -3991,7 +3989,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		if IsAddOnLoaded("Leatrix_Maps") then --leatrix map issues
-			if LeaMapsDB["NoMapBorder"] == "On" then
+			if _G.LeaMapsDB["NoMapBorder"] == "On" then
 				if _G.WorldMapFrame and _G.WorldMapFrame.shadow then
 					_G.WorldMapFrame.shadow:Hide()
 				end
@@ -4153,7 +4151,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 		if E.db.ElvUI_EltreumUI.borders.borders and (E.db.ElvUI_EltreumUI.borders.nameplateborders or E.db.ElvUI_EltreumUI.borders.nameplatecastborders) then
 			if E.db.ElvUI_EltreumUI.borders.nameplateborders and nameplate.Health then
 				if not nameplate.Health.EltruismNameplateBorder then
-					nameplate.Health.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Health, BackdropTemplateMixin and "BackdropTemplate")
+					nameplate.Health.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Health, _G.BackdropTemplateMixin and "BackdropTemplate")
 				end
 				if E.db.ElvUI_EltreumUI.borders.texture then
 					bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
@@ -4215,7 +4213,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 			end
 			if E.db.ElvUI_EltreumUI.borders.nameplatecastborders and nameplate.Castbar then
 				if not nameplate.Castbar.EltruismNameplateBorder then
-					nameplate.Castbar.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Castbar, BackdropTemplateMixin and "BackdropTemplate")
+					nameplate.Castbar.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Castbar, _G.BackdropTemplateMixin and "BackdropTemplate")
 				end
 				if E.db.ElvUI_EltreumUI.borders.texture then
 					bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)

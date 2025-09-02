@@ -8,14 +8,14 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 	if E.db.ElvUI_EltreumUI.skins.omnicd then
 
 		local nameBar = false
-		local currentprofile = OmniCDDB["profileKeys"][E.mynameRealm]
-		if OmniCDDB["profiles"][currentprofile] and
-			OmniCDDB["profiles"][currentprofile]["Party"] and
-			OmniCDDB["profiles"][currentprofile]["Party"]["party"] and
-			OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"] and
-			OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"]["raidBar1"] and
-			OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"]["raidBar1"]["nameBar"] then
-				nameBar = true
+		local currentprofile = _G.OmniCDDB["profileKeys"][E.mynameRealm]
+		if _G.OmniCDDB["profiles"][currentprofile] and
+			_G.OmniCDDB["profiles"][currentprofile]["Party"] and
+			_G.OmniCDDB["profiles"][currentprofile]["Party"]["party"] and
+			_G.OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"] and
+			_G.OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"]["raidBar1"] and
+			_G.OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"]["raidBar1"]["nameBar"] then
+			nameBar = true
 		end
 
 		--omnicd doesnt do normal ace new addon thing

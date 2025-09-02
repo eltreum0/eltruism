@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 				shamanbolt = 8
 				shamanlavaburst = 10
 			end
-			if IsPlayerSpell(378776) and InCombatLockdown() then --shaman inundate
+			if IsPlayerSpell(378776) and _G.InCombatLockdown() then --shaman inundate
 				shamanhex = 8
 			end
 		end
@@ -277,7 +277,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
 			end
 
-			local powernumber, powertype = UnitPowerType("player")
+			local _, powertype = UnitPowerType("player")
 
 			--set gradient if enabled
 			if powertype then

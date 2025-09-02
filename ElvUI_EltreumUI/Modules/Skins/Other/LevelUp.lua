@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				EventToastManagerFrame.StatusLine2:SetParent(EventToastManagerFrame)
 
-				hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
+				_G.hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
 					if toast.currentDisplayingToast then
 						EventToastManagerFrame.StatusLine:Show()
 						EventToastManagerFrame.StatusLine2:Show()
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 						end
 					end
 				end)
-				hooksecurefunc(_G.EventToastManagerFrame,"StopToasting", function()
+				_G.hooksecurefunc(_G.EventToastManagerFrame,"StopToasting", function()
 					EventToastManagerFrame.StatusLine:Hide()
 					EventToastManagerFrame.StatusLine2:Hide()
 				end)
@@ -152,7 +152,7 @@ if E.Classic then
 	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 16)
 	LevelUpFrame.Text:SetTextColor(1, 1, 1)
 	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	LevelUpFrame.Text:SetText(LEVEL_UP_YOU_REACHED)
+	LevelUpFrame.Text:SetText(_G.LEVEL_UP_YOU_REACHED)
 
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text2:SetSize(418, 72)
@@ -198,7 +198,7 @@ if E.Classic then
 			if E.db.ElvUI_EltreumUI.skins.levelbossinstance then
 				playerlevel = playerlevel + 1
 				--print(playerlevel)
-				LevelUpFrame.Text2:SetText(LEVEL.." "..playerlevel.."!")
+				LevelUpFrame.Text2:SetText(_G.LEVEL.." "..playerlevel.."!")
 				UIFrameFadeIn(LevelUpFrame, 1, 0, 1)
 				E:Delay(5, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0) end)
 			end

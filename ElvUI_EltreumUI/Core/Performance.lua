@@ -1,6 +1,7 @@
-local E, L = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local IsEncounterInProgress = _G.IsEncounterInProgress
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 --apply recommended ElvUI perforamnce optimizations
 function ElvUI_EltreumUI:PerformanceOptimization()
@@ -186,6 +187,19 @@ function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a bo
 		return IsEncounterInProgress()
 	else
 		return false
+	end
+end
+
+function ElvUI_EltreumUI:PerformanceCVars(login)
+	if login then --these get reset on logout/login
+		if E.Retail then
+			SetCVar('raidGraphicsSpellDensity', 1)
+			SetCVar('graphicsSpellDensity', 1)
+		end
+		SetCVar('SSAO', 0)
+		SetCVar('graphicsSSAO', 0)
+	--else
+		--put something else here
 	end
 end
 

@@ -22,7 +22,6 @@ local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local InCombatLockdown = _G.InCombatLockdown
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local TimeSinceLastUpdate = 0
-local nameplateShowOnlyNames
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
 local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
@@ -32,6 +31,7 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local GetNumRegions = _G.GetNumRegions
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local C_NamePlate = _G.C_NamePlate
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1

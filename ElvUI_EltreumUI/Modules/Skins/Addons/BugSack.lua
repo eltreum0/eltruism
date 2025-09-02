@@ -8,7 +8,7 @@ local hooksecurefunc = _G.hooksecurefunc
 function ElvUI_EltreumUI:EltruismBugSack()
 	if E.db.ElvUI_EltreumUI.skins.bugsack then
 		--frame doesnt get created at start, but with a function, hook to skin
-		hooksecurefunc(BugSack,"OpenSack",function()
+		hooksecurefunc(_G.BugSack,"OpenSack",function()
 			if not _G["BugSackFrame"].IsSkinned then
 				S:HandleFrame(_G["BugSackFrame"])
 
@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:EltruismBugSack()
 
 				--from addonskins
 				for _, v in pairs({_G["BugSackFrame"]:GetChildren()}) do
-					if (v:IsObjectType('Button') and v:GetScript('OnClick') == BugSack.CloseSack) then
+					if (v:IsObjectType('Button') and v:GetScript('OnClick') == _G.BugSack.CloseSack) then
 						S:HandleCloseButton(v)
 						break
 					end

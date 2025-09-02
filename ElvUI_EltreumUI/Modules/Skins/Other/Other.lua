@@ -1,6 +1,5 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
@@ -34,7 +33,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 			end
 		else
 			if not _G.MirrorTimerContainer.EltruismHook then
-				hooksecurefunc(_G.MirrorTimerContainer, 'SetupTimer', function(container, timer) --based on elvui
+				_G.hooksecurefunc(_G.MirrorTimerContainer, 'SetupTimer', function(container, timer) --based on elvui
 					_G.MirrorTimerContainer.EltruismHook = true
 					local bar = container:GetAvailableTimer(timer)
 					if not bar then return end
@@ -61,8 +60,8 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 
 						--mirror timer... time text
 						if not bar.StatusBar.EltruismTimerHook then
-							local spellInfo = C_Spell.GetSpellInfo(5384)
-							hooksecurefunc(bar, "UpdateStatusBarValue", function(bar1)
+							local spellInfo = _G.C_Spell.GetSpellInfo(5384)
+							_G.hooksecurefunc(bar, "UpdateStatusBarValue", function(bar1)
 								if bar1.Text then
 									local barvalue = math.floor(bar1.StatusBar:GetValue())
 									local minutes = math.floor(barvalue/60)
@@ -474,7 +473,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 							vellumbutton:SetEnabled(true)
 							--C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
 							if E.Retail then
-								C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
+								_G.C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
 							else
 								_G.TradeSkillCreateButton:Click()
 							end
@@ -643,10 +642,10 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 				if E.Retail then
 					local TalkingHeadFrame = _G.TalkingHeadFrame
 					if TalkingHeadFrame then
-						hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
+						_G.hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
 							TalkingHeadFrame:Hide()
 						end)
-						hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
+						_G.hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
 							TalkingHeadFrame:Hide()
 						end)
 						EltruismHideTalkingHead:UnregisterAllEvents()

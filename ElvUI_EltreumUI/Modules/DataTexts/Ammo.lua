@@ -7,6 +7,7 @@ local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemInfoInstant = _G.C_Item and _G.C_Item.GetItemInfoInstant or _G.GetItemInfoInstant
 local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local format = _G.format
+local C_Container = _G.C_Container
 local GetContainerItemID = C_Container.GetContainerItemID
 local GetInventoryItemCount = _G.GetInventoryItemCount
 local GetInventoryItemID = _G.GetInventoryItemID
@@ -48,14 +49,14 @@ if E.Classic then
 			--end
 			self.text:SetFormattedText(displayString, namewarlock or 'Soul Shard', count or 0) -- Does not need localized. It gets updated.
 		else
-			local RangeItemID = GetInventoryItemID('player', INVSLOT_RANGED)
+			local RangeItemID = GetInventoryItemID('player', _G.INVSLOT_RANGED)
 			if RangeItemID then
 				itemEquipLoc = select(4, GetItemInfoInstant(RangeItemID))
 			end
 			if itemEquipLoc == 'INVTYPE_THROWN' then
-				itemID, count = RangeItemID, GetInventoryItemCount('player', INVSLOT_RANGED)
+				itemID, count = RangeItemID, GetInventoryItemCount('player', _G.INVSLOT_RANGED)
 			else
-				itemID, count = GetInventoryItemID('player', INVSLOT_AMMO), GetInventoryItemCount('player', INVSLOT_AMMO)
+				itemID, count = GetInventoryItemID('player', _G.INVSLOT_AMMO), GetInventoryItemCount('player', _G.INVSLOT_AMMO)
 			end
 			if (itemID and itemID > 0) and (count > 0) then
 				if itemID then
@@ -70,9 +71,9 @@ if E.Classic then
 				if name and not itemName[itemID] then
 					itemName[itemID] = name
 				end
-				self.text:SetFormattedText(displayString, name or INVTYPE_AMMO, count or 0) -- Does not need localized. It gets updated.
+				self.text:SetFormattedText(displayString, name or _G.INVTYPE_AMMO, count or 0) -- Does not need localized. It gets updated.
 			else
-				self.text:SetFormattedText(displayString, INVTYPE_AMMO, 0)
+				self.text:SetFormattedText(displayString, _G.INVTYPE_AMMO, 0)
 			end
 		end
 		if not name then
@@ -85,8 +86,8 @@ if E.Classic then
 		DT.tooltip:ClearLines()
 		if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'WARRIOR' then
 			wipe(itemCount)
-			DT.tooltip:AddLine(INVTYPE_AMMO)
-			for i = 0, NUM_BAG_FRAMES do
+			DT.tooltip:AddLine(_G.INVTYPE_AMMO)
+			for i = 0, _G.NUM_BAG_FRAMES do
 				for j = 1, GetContainerNumSlots(i) do
 					local itemID = GetContainerItemID(i, j)
 					if itemID and not itemCount[itemID] then
@@ -102,8 +103,8 @@ if E.Classic then
 			DT.tooltip:AddLine(' ')
 		elseif E.myclass == "WARLOCK" then
 			wipe(itemCount)
-			DT.tooltip:AddLine(SOUL_SHARDS_POWER)
-			for i = 0, NUM_BAG_FRAMES do
+			DT.tooltip:AddLine(_G.SOUL_SHARDS_POWER)
+			for i = 0, _G.NUM_BAG_FRAMES do
 				for j = 1, GetContainerNumSlots(i) do
 					local itemID = GetContainerItemID(i, j)
 					if itemID and not itemCount[itemID] then
@@ -117,11 +118,11 @@ if E.Classic then
 				end
 			end
 		end
-		for i = 1, NUM_BAG_SLOTS do
+		for i = 1, _G.NUM_BAG_SLOTS do
 			local itemID = GetInventoryItemID('player', ContainerIDToInventoryID(i))
 			if itemID then
 				local name, _, quality, _, _, _, itemSubType, _, _, texture, itemClassID, itemSubClassID = GetItemInfo(itemID)
-				if itemSubClassID == LE_ITEM_CLASS_QUIVER or itemClassID == LE_ITEM_CLASS_CONTAINER and itemSubClassID == 1 then
+				if itemSubClassID == _G.LE_ITEM_CLASS_QUIVER or itemClassID == _G.LE_ITEM_CLASS_CONTAINER and itemSubClassID == 1 then
 					local free, total = GetContainerNumFreeSlots(i), GetContainerNumSlots(i)
 					local used = total - free
 					DT.tooltip:AddLine(itemSubType)
@@ -134,17 +135,17 @@ if E.Classic then
 	local function OnClick(_, btn)
 		if btn == 'LeftButton' then
 			if not E.private.bags.enable then
-				for i = 1, NUM_BAG_SLOTS do
+				for i = 1, _G.NUM_BAG_SLOTS do
 					local itemID = GetInventoryItemID('player', ContainerIDToInventoryID(i))
 					if itemID then
 						local itemClassID, itemSubClassID = select(11, GetItemInfo(itemID))
-						if itemSubClassID == LE_ITEM_CLASS_QUIVER or itemClassID == LE_ITEM_CLASS_CONTAINER and itemSubClassID == 1 then
-							ToggleBag(i)
+						if itemSubClassID == _G.LE_ITEM_CLASS_QUIVER or itemClassID == _G.LE_ITEM_CLASS_CONTAINER and itemSubClassID == 1 then
+							_G.ToggleBag(i)
 						end
 					end
 				end
 			else
-				ToggleAllBags()
+				_G.ToggleAllBags()
 			end
 		end
 	end

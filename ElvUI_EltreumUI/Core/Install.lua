@@ -246,7 +246,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 					layoutstable.layouts[i] = taintpreventlayout
 					layoutstable.activeLayout = i + 2
 					C_EditMode.SetActiveLayout(layoutstable.activeLayout)
-					ElvUI_EltreumUI:Print(string.format(HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
+					ElvUI_EltreumUI:Print(string.format(_G.HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
 				end
 			end
 			if not alreadyimported then

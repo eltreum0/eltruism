@@ -50,7 +50,7 @@ end
 --hide popups during install
 function ElvUI_EltreumUI:HidePopups(delay)
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
-		W = unpack(WindTools)
+		W = unpack(_G.WindTools)
 		local function WindtoolsCompatHideWhileInstall()
 			_G["WTCompatibilityFrame"]:Kill()
 		end
@@ -94,7 +94,7 @@ function ElvUI_EltreumUI:HidePopups(delay)
 			_G["CappingFrame"]:Hide()
 		end
 		if IsAddOnLoaded("GladiusEx") then
-			GladiusEx:HideFrames()
+			_G.GladiusEx:HideFrames()
 		end
 		if IsAddOnLoaded("Gladius") then
 			if _G["GladiusButtonFramearena1"] then
@@ -197,10 +197,10 @@ end
 
 --copy of elvui abbrev
 function ElvUI_EltreumUI:Abbrev(name)
-	local letters, lastWord = '', strmatch(name, '.+%s(.+)$')
+	local letters, lastWord = '', _G.strmatch(name, '.+%s(.+)$')
 	if lastWord then
-		for word in gmatch(name, '.-%s') do
-			local firstLetter = string.utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
+		for word in _G.gmatch(name, '.-%s') do
+			local firstLetter = string.utf8sub(_G.gsub(word, '^[%s%p]*', ''), 1, 1)
 			if firstLetter ~= string.utf8lower(firstLetter) then
 				letters = format('%s%s. ', letters, firstLetter)
 			end
@@ -407,20 +407,20 @@ function ElvUI_EltreumUI:DevTools()
 
 		local function LogEvent(frame, event, ...)
 			if event == "COMBAT_LOG_EVENT_UNFILTERED" or event == "COMBAT_LOG_EVENT" then
-				frame:LogEvent_Original(event, CombatLogGetCurrentEventInfo())
+				frame:LogEvent_Original(event, _G.CombatLogGetCurrentEventInfo())
 			elseif event == "COMBAT_TEXT_UPDATE" then
-				frame:LogEvent_Original(event, (...), GetCurrentCombatTextEventInfo())
+				frame:LogEvent_Original(event, (...), _G.GetCurrentCombatTextEventInfo())
 			else
 				frame:LogEvent_Original(event, ...)
 			end
 		end
 
 		local function OnEventTraceLoaded()
-			EventTrace.LogEvent_Original = EventTrace.LogEvent
-			EventTrace.LogEvent = LogEvent
+			_G.EventTrace.LogEvent_Original = _G.EventTrace.LogEvent
+			_G.EventTrace.LogEvent = LogEvent
 		end
 
-		if EventTrace then
+		if _G.EventTrace then
 			OnEventTraceLoaded()
 		else
 			local frame = CreateFrame("Frame")
@@ -434,9 +434,9 @@ function ElvUI_EltreumUI:DevTools()
 					if not IsAddOnLoaded("Blizzard_DebugTools") then
 						UIParentLoadAddOn("Blizzard_DebugTools")
 					end
-					TableAttributeDisplay:SetWidth(800)
-					TableAttributeDisplay.LinesScrollFrame:SetWidth(700)
-					TableAttributeDisplay.TitleButton.Text:SetWidth(600)
+					_G.TableAttributeDisplay:SetWidth(800)
+					_G.TableAttributeDisplay.LinesScrollFrame:SetWidth(700)
+					_G.TableAttributeDisplay.TitleButton.Text:SetWidth(600)
 					frame:UnregisterAllEvents()
 				end
 			end)

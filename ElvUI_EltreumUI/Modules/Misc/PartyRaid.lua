@@ -20,6 +20,9 @@ local bit = _G.bit
 --local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
 local math = _G.math
 local GetTime = _G.GetTime
+local COMBATLOG_OBJECT_TYPE_PLAYER = _G.COMBATLOG_OBJECT_TYPE_PLAYER
+local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
+local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 
 --PlaySound(61850)
 --PlaySound(61851)
@@ -85,7 +88,7 @@ spellcd:SetParent(bresframe)
 spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
 spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 spellcd:SetTextColor(1, 1, 1)
-spellcd:SetText(READY)
+spellcd:SetText(_G.READY)
 bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
 if E.Retail then
 	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
@@ -117,13 +120,14 @@ local workingIDs = {
 	[175] = true, --10man (classic)
 	[176] = true, --25man (classic)
 }
-
+local difficultyok = false
+local instanceok = false
 function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		local _, instanceType = IsInInstance()
 		local DifficultyID = select(3, GetInstanceInfo())
-		local difficultyok = false
-		local instanceok = false
+
+
 
 		if workingIDs[DifficultyID] then
 			difficultyok = true
@@ -170,7 +174,7 @@ function ElvUI_EltreumUI:BattleRes()
 						bresframe:SetAlpha(1)
 						local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
 						if cooldown <= 0 then
-							spellcd:SetText(READY)
+							spellcd:SetText(_G.READY)
 						else
 							if cooldown > 60 then
 								--from https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFGList.lua#L2551, https://www.wowinterface.com/forums/showthread.php?t=36884

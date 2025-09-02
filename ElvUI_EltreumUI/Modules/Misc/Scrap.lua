@@ -4,6 +4,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local GetContainerItemID = _G.C_Container and _G.C_Container.GetContainerItemID or _G.GetContainerItemID
+local hooksecurefunc = _G.hooksecurefunc
 
 --based on Scrap_ElvUI by RainForDays, which was removed and not updated, and is also no longer available
 function ElvUI_EltreumUI:ScrapFix()
@@ -41,7 +42,7 @@ function ElvUI_EltreumUI:ScrapFix()
 
 	-- Update bags
 	local function UpdateAll()
-		for i = 0, NUM_BAG_SLOTS do
+		for i = 0, _G.NUM_BAG_SLOTS do
 			UpdateContainerElvUI(i)
 		end
 	end
@@ -52,7 +53,7 @@ function ElvUI_EltreumUI:ScrapFix()
 		if not frame.Bags[bagID] or not frame.Bags[bagID][slotID] then return end
 
 		local button = frame.Bags[bagID][slotID]
-		local id = C_Container.GetContainerItemID(bagID, slotID)
+		local id = _G.C_Container.GetContainerItemID(bagID, slotID)
 
 		local isJunk = id and Scrap:IsJunk(id, bagID, slotID)
 		local icon = button.ScrapAddonIcon or NewIcon(button)

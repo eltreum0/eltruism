@@ -1,9 +1,8 @@
-local E, _, _, P = unpack(ElvUI)
+local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local tinsert = _G.table.insert
 local tconcat = _G.table.concat
-local unpack = _G.unpack
 local sort = _G.sort
 local pairs = _G.pairs
 local format = _G.format
@@ -209,7 +208,7 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 ]], 10, "small", nil, nil, nil, nil, "full")
 
 	--support
-	ElvUI_EltreumUI.Options.args.support = E.Libs.ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
+	ElvUI_EltreumUI.Options.args.support = E.Libs.ACH:Group(E:TextGradient(_G.GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
 	ElvUI_EltreumUI.Options.args.support.args.debug = E.Libs.ACH:Execute(L["Debug"], nil, 1, function()
 		if next(ElvDB.EltruismDisabledAddOns) then

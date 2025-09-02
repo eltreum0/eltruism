@@ -3,6 +3,11 @@ local _G = _G
 local CH = E:GetModule("Chat")
 local hooksecurefunc = _G.hooksecurefunc
 local format = _G.string.format
+local strsub = _G.strsub
+local Ambiguate = _G.Ambiguate
+local C_ChatInfo = _G.C_ChatInfo
+local Enum = _G.Enum
+local gsub = _G.gsub
 local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
 local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
 
@@ -261,7 +266,7 @@ local IsTimerunningPlayer = C_ChatInfo.IsTimerunningPlayer
 local GetChannelRulesetForChannelID = C_ChatInfo.GetChannelRulesetForChannelID
 local PLAYERMENTORSHIPSTATUS_NEWCOMER = Enum.PlayerMentorshipStatus and Enum.PlayerMentorshipStatus.Newcomer
 local CHATCHANNELRULESET_MENTOR = Enum.ChatChannelRuleset and Enum.ChatChannelRuleset.Mentor
-local NPEV2_CHAT_USER_TAG_GUIDE = gsub(NPEV2_CHAT_USER_TAG_GUIDE or '', '(|A.-|a).+', '%1') -- we only want the icon
+local NPEV2_CHAT_USER_TAG_GUIDE = gsub(_G.NPEV2_CHAT_USER_TAG_GUIDE or '', '(|A.-|a).+', '%1') -- we only want the icon
 
 function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	local flag = ''

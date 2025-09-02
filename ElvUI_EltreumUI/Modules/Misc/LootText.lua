@@ -1,10 +1,43 @@
-local E, L = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
 local CreateFrame = _G.CreateFrame
 local pairs = _G.pairs
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local CombatText_AddMessage = _G.CombatText_AddMessage
+local CombatText_StandardScroll = _G.CombatText_StandardScroll
+local COMBAT = _G.COMBAT
+local CombatText_GetAvailableString = _G.CombatText_GetAvailableString
+local COMBAT_TEXT_LOCATIONS = _G.COMBAT_TEXT_LOCATIONS
+local COMBAT_TEXT_TO_ANIMATE = _G.COMBAT_TEXT_TO_ANIMATE
+local COMBAT_TEXT_SPACING = _G.COMBAT_TEXT_SPACING
+local COMBAT_TEXT_MAX_OFFSET = _G.COMBAT_TEXT_MAX_OFFSET
+local COMBAT_TEXT_X_ADJUSTMENT = _G.COMBAT_TEXT_X_ADJUSTMENT
+local COMBAT_TEXT_STAGGER_RANGE = _G.COMBAT_TEXT_STAGGER_RANGE
+local CombatText = _G.CombatText
+local WorldFrame = _G.WorldFrame
+local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
+local tinsert = _G.tinsert
+local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
+local LOOT_ITEM_SELF = _G.LOOT_ITEM_SELF
+local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
+local LOOT_ITEM_CREATED_SELF_MULTIPLE = _G.LOOT_ITEM_CREATED_SELF_MULTIPLE
+local LOOT_ITEM_CREATED_SELF = _G.LOOT_ITEM_CREATED_SELF
+local TRADESKILL_LOG_FIRSTPERSON = _G.TRADESKILL_LOG_FIRSTPERSON
+local ERR_INV_FULL = _G.ERR_INV_FULL
+local INVENTORY_FULL = _G.INVENTORY_FULL
+local LOOT_MONEY_SPLIT = _G.LOOT_MONEY_SPLIT
+local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
+local LOOT_CURRENCY_REFUND = _G.LOOT_CURRENCY_REFUND
+local LOOT_MONEY_REFUND = _G.LOOT_MONEY_REFUND
+local SILVER_AMOUNT = _G.SILVER_AMOUNT
+local GOLD_AMOUNT = _G.GOLD_AMOUNT
+local COPPER_AMOUNT = _G.COPPER_AMOUNT
+local CURRENCY_GAINED_MULTIPLE_BONUS = _G.CURRENCY_GAINED_MULTIPLE_BONUS
+local CURRENCY_GAINED_MULTIPLE = _G.CURRENCY_GAINED_MULTIPLE
+local CURRENCY_GAINED = _G.CURRENCY_GAINED
+local C_CurrencyInfo = _G.C_CurrencyInfo
 
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
 -- SLoTE uses GNU GPLv3 and as such this module of Eltruism also uses GNU GPLv3
@@ -154,7 +187,7 @@ function ElvUI_EltreumUI:LootText()
 			-- Stagger the text if flagged
 			local staggerAmount = 0
 			if ( isStaggered ) then
-				staggerAmount = fastrandom(0, COMBAT_TEXT_STAGGER_RANGE) - COMBAT_TEXT_STAGGER_RANGE/2
+				staggerAmount = _G.fastrandom(0, COMBAT_TEXT_STAGGER_RANGE) - COMBAT_TEXT_STAGGER_RANGE/2
 			end
 
 			-- Alternate x direction

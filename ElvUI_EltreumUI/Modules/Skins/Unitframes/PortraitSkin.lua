@@ -21,7 +21,7 @@ local notexcoord = {
 
 --create and update the portraits
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
-local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,f)
+local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	if not frame then return end
 	if not frame.USE_PORTRAIT then return end
 	if not frame.unit then return end

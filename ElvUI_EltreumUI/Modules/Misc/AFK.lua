@@ -195,9 +195,9 @@ function ElvUI_EltreumUI:AFKLogo()
 		_G.ElvUIAFKFrame.bottom.name:Point('TOPLEFT', EltruismAFKClassTexture, 'TOPRIGHT', 10, -2)
 
 		--remove the rank from guild text
-		if IsInGuild() then
+		if _G.IsInGuild() then
 			E:Delay(0, function()
-				local guildName = GetGuildInfo('player')
+				local guildName = _G.GetGuildInfo('player')
 				_G.ElvUIAFKFrame.bottom.guild:SetText(guildName)
 			end)
 		end

@@ -470,7 +470,7 @@ function ElvUI_EltreumUI:SkillGlow()
 						procFrame:RegisterEvent('SPELL_UPDATE_USABLE')
 						procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
 						procFrame:SetScript('OnEvent', function()
-							for i=1, NUM_ACTIONBAR_BUTTONS do
+							for i=1, _G.NUM_ACTIONBAR_BUTTONS do
 								local button = bar.buttons[i]
 								local buttonname = button:GetName()
 								local proc = _G[buttonname].abilityID
@@ -668,7 +668,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		local r,g,b = skillglowcolorpet[1],skillglowcolorpet[2],skillglowcolorpet[3]
 
 		local procpet = {}
-		for i = 1, NUM_PET_ACTION_SLOTS, 1 do
+		for i = 1, _G.NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
 			if E.Retail then

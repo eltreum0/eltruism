@@ -1,6 +1,5 @@
-local E, _, _, P = unpack(ElvUI)
+local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
-local _G = _G
 
 -- Eltruism combat music options
 function ElvUI_EltreumUI:CombatMusicOptions()

@@ -1,7 +1,7 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
-local GetNumRegions = _G.GetNumRegions
+local hooksecurefunc = _G.hooksecurefunc
 
 local function handlechildtab(frame)
 	for _, v in pairs{frame:GetChildren()} do
@@ -601,11 +601,11 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 					skinbaseframe()
 				end)
 
-				hooksecurefunc(AuctionHouseFrame, "SetDisplayMode", function()
+				hooksecurefunc(_G.AuctionHouseFrame, "SetDisplayMode", function()
 					skinbaseframe()
 				end)
 
-				if not InCombatLockdown and not _G.AuctionHouseFrame:HasScript("OnDragStart") then
+				if not _G.InCombatLockdown and not _G.AuctionHouseFrame:HasScript("OnDragStart") then
 					_G.AuctionHouseFrame:SetMovable(true)
 					_G.AuctionHouseFrame:EnableMouse(true)
 					_G.AuctionHouseFrame:RegisterForDrag("LeftButton")
@@ -631,7 +631,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 						end)
 					end
 				end)
-				if not InCombatLockdown and not _G.AuctionFrame:HasScript("OnDragStart") then
+				if not _G.InCombatLockdown and not _G.AuctionFrame:HasScript("OnDragStart") then
 					_G.AuctionFrame:SetMovable(true)
 					_G.AuctionFrame:EnableMouse(true)
 					_G.AuctionFrame:RegisterForDrag("LeftButton")

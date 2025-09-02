@@ -6,10 +6,10 @@ local _G = _G
 function ElvUI_EltreumUI:DBMSkin()
 	if E.db.ElvUI_EltreumUI.skins.dbm then
 		if not _G.DBT then return end
-		hooksecurefunc(_G.DBT, 'CreateBar', function(bars) --line 248
+		_G.hooksecurefunc(_G.DBT, 'CreateBar', function(bars) --line 248
 			for bar in bars:GetBarIterator() do --line 560, returns pairs(self.bars)
 				if not bar.EltruismSkin then
-					hooksecurefunc(bar, "ApplyStyle", function() --line 927
+					_G.hooksecurefunc(bar, "ApplyStyle", function() --line 927
 						local statusbar = _G[bar.frame:GetName()..'Bar']
 						local icon = _G[bar.frame:GetName()..'BarIcon1']
 						local spark = _G[bar.frame:GetName().."BarSpark"]
@@ -93,7 +93,7 @@ end
 function ElvUI_EltreumUI:DBMGUISkin()
 	if E.db.ElvUI_EltreumUI.skins.dbm then
 		if not _G.DBM_GUI then return end
-		hooksecurefunc(_G.DBM_GUI, "ShowHide", function()
+		_G.hooksecurefunc(_G.DBM_GUI, "ShowHide", function()
 			if _G["DBM_GUI_OptionsFrame"]:IsShown() then
 				SkinGUI()
 				if _G["DBM_GUI_OptionsFrame"] and not _G["DBM_GUI_OptionsFrame"].EltruismSkin then
@@ -140,7 +140,7 @@ function ElvUI_EltreumUI:DBMGUISkin()
 				end
 			end
 		end)
-		hooksecurefunc(_G.DBM_GUI, "UpdateModList", function()
+		_G.hooksecurefunc(_G.DBM_GUI, "UpdateModList", function()
 			E:Delay(1, function()
 				SkinGUI()
 			end)

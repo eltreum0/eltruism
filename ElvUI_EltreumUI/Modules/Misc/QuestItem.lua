@@ -35,9 +35,8 @@ EltruismQuestItemFrame.items = {}
 EltruismQuestItemFrame.debug = false
 
 -- Constants
-local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
 local ITEMID_PATTERN = "item:(%d+)"
-local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM or 12) or LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
+local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(_G.LE_ITEM_CLASS_QUESTITEM or 12) or _G.LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
 
 local slots = {
 	"HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot", "WristSlot",
@@ -599,7 +598,7 @@ function ElvUI_EltreumUI:QuestItem()
 				local index = 1
 
 				-- Inventory
-				for bag = 0, NUM_BAG_SLOTS do
+				for bag = 0, _G.NUM_BAG_SLOTS do
 					for slot = 1, GetContainerNumSlots(bag) do
 						local link = GetContainerItemLink(bag,slot)
 						local itemID = link and tonumber(link:match(ITEMID_PATTERN))

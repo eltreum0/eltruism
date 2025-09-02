@@ -197,46 +197,46 @@ function ElvUI_EltreumUI:CastCursor()
 		--throttling here makes the frame not sync up, idk if i can make it sync with a throttle
 		rootFrame:SetSize(8,8)
 		if rootFrame:IsShown() then
-			rootFrame:SetScript("OnUpdate", function(self)
+			rootFrame:SetScript("OnUpdate", function(frame)
 				--print("cursor spam "..math.random(1,99))
 				local x, y = GetCursorPosition()
 				local scaleDivisor = UIParent:GetEffectiveScale()
-				self:ClearAllPoints()
-				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+				frame:ClearAllPoints()
+				frame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 			end )
 		end
 
 		local ringsVisible = {}
-		local function RingSetShown(self, visible)
+		local function RingSetShown(ring, visible)
 			if visible then
 				if not next(ringsVisible) then
 					rootFrame:Show()
-					rootFrame:SetScript("OnUpdate", function(self)
+					rootFrame:SetScript("OnUpdate", function(ringframe)
 						--print("cursor spam "..math.random(1,99))
 						local x, y = GetCursorPosition()
 						local scaleDivisor = UIParent:GetEffectiveScale()
-						self:ClearAllPoints()
-						self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+						ringframe:ClearAllPoints()
+						ringframe:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 					end )
 				end
-				ringsVisible[self] = true
-				self:Show()
+				ringsVisible[ring] = true
+				ring:Show()
 			else
-				ringsVisible[self] = nil
+				ringsVisible[ring] = nil
 				if not next(ringsVisible) then
 					rootFrame:Hide()
 					rootFrame:SetScript("OnUpdate", nil)
 				end
-				self:Hide()
+				ring:Hide()
 			end
 		end
 		-- Shared functions
-		local function OnEvent(self,event,...)
-			self[event](self,event,...)
+		local function OnEvent(oneventtable,event,...)
+			oneventtable[event](self,event,...)
 		end
-		local function Start(self, d, m)
-			local textures = self.textures
-			local quad = min( floor( 4 * (self.reverse and m - d or d) / m ) + 1, 4)
+		local function Start(start, d, m)
+			local textures = start.textures
+			local quad = min( floor( 4 * (start.reverse and m - d or d) / m ) + 1, 4)
 			for i=1,4 do
 				local tex = textures[i]
 				if i>quad then
@@ -244,43 +244,43 @@ function ElvUI_EltreumUI:CastCursor()
 					tex:Hide()
 				else
 					tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
-					tex:SetSize(self.radius, self.radius)
+					tex:SetSize(start.radius, start.radius)
 					tex:Show()
 				end
 			end
-			self.quad = quad
-			self.dur = max(d,0)
-			self.max = m
-			RingSetShown(self, true)
+			start.quad = quad
+			start.dur = max(d,0)
+			start.max = m
+			RingSetShown(start, true)
 		end
-		local function Update(self, elapsed)
+		local function Update(udpateframe, elapsed)
 			local dur
-			if self.dur == nil then
-				self.dur = 0
+			if udpateframe.dur == nil then
+				udpateframe.dur = 0
 			end
-			dur = self.dur + elapsed
+			dur = udpateframe.dur + elapsed
 			if dur == nil then
 				dur = 0
 			end
-			if self.max == nil then
-				self.max = 0
+			if udpateframe.max == nil then
+				udpateframe.max = 0
 			end
-			if dur >= self.max then
-				RingSetShown(self,false)
+			if dur >= udpateframe.max then
+				RingSetShown(udpateframe,false)
 				return
 			end
-			self.dur = dur
-			local rev = self.reverse
-			local maxdur = self.max
-			local radius = self.radius
+			udpateframe.dur = dur
+			local rev = udpateframe.reverse
+			local maxdur = udpateframe.max
+			local radius = udpateframe.radius
 			local angle = 360 * ( rev and maxdur-dur or dur ) / maxdur
 			local qangle = angle % 90
 			local quad = floor(angle / 90) + 1
-			local tex = self.textures[quad]
-			local pquad = self.quad
+			local tex = udpateframe.textures[quad]
+			local pquad = udpateframe.quad
 			if quad~=pquad then
 				if pquad>0 and pquad<5 then
-					local ptex = self.textures[pquad]
+					local ptex = udpateframe.textures[pquad]
 					if rev then
 						ptex:Hide()
 					else
@@ -289,11 +289,11 @@ function ElvUI_EltreumUI:CastCursor()
 					end
 				end
 				tex:Show()
-				self.quad = quad
+				udpateframe.quad = quad
 			end
 
 			if qangle > 0 then
-				local f = qangle <= 45 and self.factor or 1
+				local f = qangle <= 45 and udpateframe.factor or 1
 				QUAD_COORD_FUNC[quad]( tex, radius, 0, sin(qangle)*f, cos(qangle)*f, 1 )
 			end
 		end
@@ -369,11 +369,11 @@ function ElvUI_EltreumUI:CastCursor()
 				if cfg.combat then
 					frame:RegisterEvent('PLAYER_REGEN_ENABLED')
 					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
-					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED') end)
+					frame:SetScript("OnEvent", function(ring1, event) RingSetShown(ring1,event=='PLAYER_REGEN_DISABLED') end)
 					RingSetShown( frame, InCombatLockdown() )
 				else
 					frame:RegisterEvent('PLAYER_ENTERING_WORLD')
-					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_ENTERING_WORLD') end)
+					frame:SetScript("OnEvent", function(ring2, event) RingSetShown(ring2,event=='PLAYER_ENTERING_WORLD') end)
 					RingSetShown( frame, true )
 				end
 			else
@@ -494,11 +494,11 @@ function ElvUI_EltreumUI:CastCursor()
 		cursorframe:RegisterEvent("FIRST_FRAME_RENDERED")
 		cursorframe:RegisterEvent("PLAYER_LOGIN")
 		cursorframe:SetScript("OnEvent", function()
-			if InCombatLockdown() then UIErrorsFrame:AddMessage(ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0) end
+			if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0) end
 			if not InCombatLockdown() then
 				--print('cursorframe loaded')
 				collectgarbage()
-				ResetCPUUsage()
+				_G.ResetCPUUsage()
 				cursorframe:UnregisterAllEvents()
 				cursorframe:SetScript("OnEvent", nil)
 				Cursor.db = Defaults.cursor

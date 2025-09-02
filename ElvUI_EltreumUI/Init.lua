@@ -148,6 +148,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
 	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
 	ElvUI_EltreumUI:BordersTargetChanged() --fix borders for focus
+	ElvUI_EltreumUI:PerformanceCVars(true) --set some cvars that reset on login
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -207,7 +208,7 @@ function ElvUI_EltreumUI:Initialize()
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	local _, eventType, _, _, _, _, _, _, _, destFlags = CombatLogGetCurrentEventInfo()
+	local _, eventType, _, _, _, _, _, _, _, destFlags = _G.CombatLogGetCurrentEventInfo()
 	if eventType == "UNIT_DIED" and E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		ElvUI_EltreumUI:RaidDeath(destFlags)
 	end
@@ -228,7 +229,7 @@ end
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
-	if IsInRaid() then
+	if _G.IsInRaid() then
 		ElvUI_EltreumUI:RaidShadows()
 	end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
@@ -250,7 +251,7 @@ function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED(_,unit)
 	if unit == "player" then
 		ElvUI_EltreumUI:NameplateRestedOverlaps()
 		ElvUI_EltreumUI:AFKmusic()
-		if UnitIsAFK("player") then
+		if _G.UnitIsAFK("player") then
 			if E.db.general.afk then
 				ElvUI_EltreumUI:AFKLogo()
 			end
@@ -323,7 +324,7 @@ local currenttalentretail = E.Retail and GetSpecialization()
 local currenttalentmists = E.Mists and GetSpecialization()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local cnewtalentmists = E.ClassicSOD and GetActiveTalentGroup() or E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
+	local cnewtalentmists = E.ClassicSOD and _G.GetActiveTalentGroup() or E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Mists then

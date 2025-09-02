@@ -10,10 +10,10 @@ function ElvUI_EltreumUI:ExpandedStable()
 	if E.db.ElvUI_EltreumUI.skins.expandedstable and not self.StableSkinned then
 		self.StableSkinned = true
 
-		local maxSlots = NUM_PET_STABLE_PAGES * NUM_PET_STABLE_SLOTS
+		local maxSlots = _G.NUM_PET_STABLE_PAGES * _G.NUM_PET_STABLE_SLOTS
 		local NUM_PER_ROW = 10
 
-		for i = NUM_PET_STABLE_SLOTS + 1, maxSlots do
+		for i = _G.NUM_PET_STABLE_SLOTS + 1, maxSlots do
 			if not _G["PetStableStabledPet"..i] then
 				CreateFrame("Button", "PetStableStabledPet"..i, _G["PetStableFrame"], "PetStableSlotTemplate", i)
 				S:HandleItemButton(_G["PetStableStabledPet"..i], true)
@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 			end
 
 			for i = 1, maxSlots do
-				local icon, name, _, family, talent = GetStablePetInfo(NUM_PET_ACTIVE_SLOTS + i)
+				local icon, name, _, family, talent = _G.GetStablePetInfo(_G.NUM_PET_ACTIVE_SLOTS + i)
 				--local icon, name, level, family, talent = GetStablePetInfo(NUM_PET_ACTIVE_SLOTS + i)
 				local button = _G["PetStableStabledPet"..i]
 
@@ -127,10 +127,10 @@ function ElvUI_EltreumUI:ExpandedStable()
 		searchInput:SetPoint("RIGHT", -3, 0)
 		searchInput:SetHeight(20)
 		searchInput:HookScript("OnTextChanged", ExpandedStable_Update)
-		searchInput.Instructions:SetText(SEARCH .. " (" .. NAME .. ", " .. PET_FAMILIES .. ", " .. PET_TALENTS .. ")")
-		hooksecurefunc("PetStable_Update", ExpandedStable_Update)
-		NUM_PET_STABLE_SLOTS = maxSlots
-		NUM_PET_STABLE_PAGES = 1
+		searchInput.Instructions:SetText(_G.SEARCH .. " (" .. _G.NAME .. ", " .. _G.PET_FAMILIES .. ", " .. _G.PET_TALENTS .. ")")
+		_G.hooksecurefunc("PetStable_Update", ExpandedStable_Update)
+		_G.NUM_PET_STABLE_SLOTS = maxSlots
+		_G.NUM_PET_STABLE_PAGES = 1
 		_G["PetStableFrame"].page = 1
 	end
 end

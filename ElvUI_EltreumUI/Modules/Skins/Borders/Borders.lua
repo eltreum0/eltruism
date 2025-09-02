@@ -2081,8 +2081,8 @@ function ElvUI_EltreumUI:TooltipBorder()
 	--tooltipborder:SetSize(100, 100)
 
 	if not tooltipborder.Hooks then
-	 	local function FixSize()
-	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
+		local function FixSize()
+			if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
 				tthpy = _G.select(2,_G.GameTooltipStatusBar:GetSize())
 				ttx,tty = _G.GameTooltip:GetSize()
 				if E.db.tooltip.healthBar.statusPosition == "TOP" then
@@ -2096,10 +2096,10 @@ function ElvUI_EltreumUI:TooltipBorder()
 				tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, 0)
 				tooltipborder:SetSize(ttx+E.db.ElvUI_EltreumUI.borders.tooltipsizex, tty+E.db.ElvUI_EltreumUI.borders.tooltipsizey)
 			end
-	 	end
+		end
 
-	 	local function FixColor()
-	 		if _G.GameTooltip:GetUnit() and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
+		local function FixColor()
+			if _G.GameTooltip:GetUnit() and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
 				local _,unittp = _G.GameTooltip:GetUnit() --can error for target of target npc
 				if not unittp then
 					if UnitExists("targettarget") then
@@ -2114,7 +2114,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 					local valuecolors = E:ClassColor(classunit, true)
 					tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 				else
-					local reactionColor = ElvUF.colors.reaction[reaction]
+					local reactionColor = _G.ElvUF.colors.reaction[reaction]
 					if reactionColor then
 						tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 					end
@@ -2130,7 +2130,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 			else --is regular tooltip
 				tooltipborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			end
-	 	end
+		end
 
 		local function TooltipBorderFix()
 			if _G.GameTooltip.shadow then

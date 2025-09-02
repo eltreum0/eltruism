@@ -12,6 +12,7 @@ local IsShiftKeyDown = _G.IsShiftKeyDown
 local IsControlKeyDown = _G.IsControlKeyDown
 local IsAltKeyDown = _G.IsAltKeyDown
 local otherBossEncounter = false
+local UIParent = _G.UIParent
 
 --Hide Quests during events
 function ElvUI_EltreumUI:QuestCombat(event)
@@ -52,7 +53,7 @@ function ElvUI_EltreumUI:QuestCombat(event)
 			end
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then --entered combat
-		if E.db.ElvUI_EltreumUI.quests.combatenable or (E.db.ElvUI_EltreumUI.quests.enable and UnitExists("boss1")) then
+		if E.db.ElvUI_EltreumUI.quests.combatenable or (E.db.ElvUI_EltreumUI.quests.enable and _G.UnitExists("boss1")) then
 			if E.Retail then
 				--[[if _G.ObjectiveTrackerFrame:IsCollapsed() == false then
 					_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
@@ -123,7 +124,7 @@ function ElvUI_EltreumUI:QuestCombat(event)
 		end
 	elseif event == "ENCOUNTER_END" then --finished boss fight
 		if E.db.ElvUI_EltreumUI.quests.enable then
-			if InCombatLockdown() then
+			if _G.InCombatLockdown() then
 				E:Delay(3,ElvUI_EltreumUI.QuestEncounterEnd) --retry soon
 			else
 				local _, instanceType = IsInInstance()
@@ -252,7 +253,7 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 	if E.db.ElvUI_EltreumUI.quests.rogueopen then
 
 		--get guid
-		local guid = UnitGUID("target")
+		local guid = _G.UnitGUID("target")
 		if not guid then
 			return
 		end

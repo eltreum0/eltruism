@@ -9,100 +9,130 @@ local InCombatLockdown = _G.InCombatLockdown
 function ElvUI_EltreumUI:EltruismPallyPower()
 	if E.db.ElvUI_EltreumUI.skins.pallypower and E.Classic then
 		if InCombatLockdown() then return end
+		local PallyPower = _G.PallyPower
+		local PALLYPOWER_MAXCLASSES = _G.PALLYPOWER_MAXCLASSES
+		local PALLYPOWER_MAXPERCLASS = _G.PALLYPOWER_MAXPERCLASS
+		local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
+		local PallyPowerBlessingsFrameCloseButton = _G.PallyPowerBlessingsFrameCloseButton
+		local PallyPowerAnchor = _G.PallyPowerAnchor
+		local PallyPowerAura = _G.PallyPowerAura
+		local PallyPowerAuraIcon = _G.PallyPowerAuraIcon
+		local PallyPowerAuto = _G.PallyPowerAuto
+		local PallyPowerAutoIcon = _G.PallyPowerAutoIcon
+		local PallyPowerBlessingsFrameAutoAssign = _G.PallyPowerBlessingsFrameAutoAssign
+		local PallyPowerBlessingsFrameClear = _G.PallyPowerBlessingsFrameClear
+		local PallyPowerBlessingsFrameFreeAssign = _G.PallyPowerBlessingsFrameFreeAssign
+		local PallyPowerBlessingsFrameOptions = _G.PallyPowerBlessingsFrameOptions
+		local PallyPowerBlessingsFramePreset = _G.PallyPowerBlessingsFramePreset
+		local PallyPowerBlessingsFrameRefresh = _G.PallyPowerBlessingsFrameRefresh
+		local PallyPowerBlessingsFrameReport = _G.PallyPowerBlessingsFrameReport
+		local PallyPowerRF = _G.PallyPowerRF
+		local PallyPowerRFIcon = _G.PallyPowerRFIcon
+		local PallyPowerRFIconSeal = _G.PallyPowerRFIconSeal
+		local PallyPowerFrame = _G.PallyPowerFrame
+		local PallyPowerC1 = _G.PallyPowerC1
+		local PallyPowerC2 = _G.PallyPowerC2
+		local PallyPowerC3 = _G.PallyPowerC3
+		local PallyPowerC4 = _G.PallyPowerC4
+		local PallyPowerC5 = _G.PallyPowerC5
+		local PallyPowerC6 = _G.PallyPowerC6
+		local PallyPowerC7 = _G.PallyPowerC7
+		local PallyPowerC8 = _G.PallyPowerC8
+		local PallyPowerC9 = _G.PallyPowerC9
+		local PallyPowerC10 = _G.PallyPowerC10
 
 		--from old addonskins
-		local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
 		PallyPowerBlessingsFrame:StripTextures()
 		--PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
 		PallyPowerBlessingsFrame:SetTemplate("Transparent", E.media.normTex, true)
-		S:HandleCloseButton(_G.PallyPowerBlessingsFrameCloseButton)
-		S:HandleButton(_G.PallyPowerBlessingsFrameAutoAssign)
-		S:HandleButton(_G.PallyPowerBlessingsFrameClear)
-		S:HandleButton(_G.PallyPowerBlessingsFrameRefresh)
-		S:HandleButton(_G.PallyPowerBlessingsFrameOptions)
-		S:HandleButton(_G.PallyPowerBlessingsFrameReport)
-		S:HandleButton(_G.PallyPowerBlessingsFramePreset)
-		S:HandleCheckBox(_G.PallyPowerBlessingsFrameFreeAssign)
+		S:HandleCloseButton(PallyPowerBlessingsFrameCloseButton)
+		S:HandleButton(PallyPowerBlessingsFrameAutoAssign)
+		S:HandleButton(PallyPowerBlessingsFrameClear)
+		S:HandleButton(PallyPowerBlessingsFrameRefresh)
+		S:HandleButton(PallyPowerBlessingsFrameOptions)
+		S:HandleButton(PallyPowerBlessingsFrameReport)
+		S:HandleButton(PallyPowerBlessingsFramePreset)
+		S:HandleCheckBox(PallyPowerBlessingsFrameFreeAssign)
 
 		--[[_G.L_DropDownList1:StripTextures()
 		_G.L_DropDownList1:SetTemplate('Default')
 		_G.L_DropDownList2:StripTextures()
 		_G.L_DropDownList2:SetTemplate('Default')]]
 
-		--_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
-		_G.PallyPowerAura:SetTemplate("Transparent", E.media.normTex, true)
-		_G.PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerAura.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.PallyPowerAura:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if _G.PallyPowerAura.shadow then
-				_G.PallyPowerAura.shadow:ClearAllPoints()
-				_G.PallyPowerAura.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerAuraIcon,"BOTTOMLEFT", -3, -3)
-				_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuraIcon,"TOPLEFT", -3, 3)
-				_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAuraIcon,"BOTTOMRIGHT", 3, -3)
-				_G.PallyPowerAura.shadow:SetPoint("TOPRIGHT", _G.PallyPowerAuraIcon,"TOPRIGHT", 3, 3)
-				_G.PallyPowerAura.shadow:SetParent(_G.PallyPowerAura)
+		--PallyPowerAura:SetTemplate("Transparent", nil, true)
+		PallyPowerAura:SetTemplate("Transparent", E.media.normTex, true)
+		PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerAura.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
+			PallyPowerAura:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if PallyPowerAura.shadow then
+				PallyPowerAura.shadow:ClearAllPoints()
+				PallyPowerAura.shadow:SetPoint("BOTTOMLEFT", PallyPowerAuraIcon,"BOTTOMLEFT", -3, -3)
+				PallyPowerAura.shadow:SetPoint("TOPLEFT", PallyPowerAuraIcon,"TOPLEFT", -3, 3)
+				PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", PallyPowerAuraIcon,"BOTTOMRIGHT", 3, -3)
+				PallyPowerAura.shadow:SetPoint("TOPRIGHT", PallyPowerAuraIcon,"TOPRIGHT", 3, 3)
+				PallyPowerAura.shadow:SetParent(PallyPowerAura)
 			end
 			E:Delay(0, function()
-				if _G.PallyPowerAuraIcon:GetTexture() ~= nil then
-					_G.PallyPowerAura.shadow:Show()
+				if PallyPowerAuraIcon:GetTexture() ~= nil then
+					PallyPowerAura.shadow:Show()
 				else
-					_G.PallyPowerAura.shadow:Hide()
+					PallyPowerAura.shadow:Hide()
 				end
 			end)
-			ElvUI_EltreumUI:ShadowColor(_G.PallyPowerAura.shadow)
+			ElvUI_EltreumUI:ShadowColor(PallyPowerAura.shadow)
 		end
 
-		--_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
-		_G.PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerAuto.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.PallyPowerAuto:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if _G.PallyPowerAuto.shadow then
-				_G.PallyPowerAuto.shadow:ClearAllPoints()
-				_G.PallyPowerAuto.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerAutoIcon,"BOTTOMLEFT", -3, -3)
-				_G.PallyPowerAuto.shadow:SetPoint("TOPLEFT", _G.PallyPowerAutoIcon,"TOPLEFT", -3, 3)
-				_G.PallyPowerAuto.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAutoIcon,"BOTTOMRIGHT", 3, -3)
-				_G.PallyPowerAuto.shadow:SetPoint("TOPRIGHT", _G.PallyPowerAutoIcon,"TOPRIGHT", 3, 3)
-				_G.PallyPowerAuto.shadow:SetParent(_G.PallyPowerAuto)
-				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerAuto.shadow)
+		--PallyPowerAuto:SetTemplate("Transparent", nil, true)
+		PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerAuto.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
+			PallyPowerAuto:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if PallyPowerAuto.shadow then
+				PallyPowerAuto.shadow:ClearAllPoints()
+				PallyPowerAuto.shadow:SetPoint("BOTTOMLEFT", PallyPowerAutoIcon,"BOTTOMLEFT", -3, -3)
+				PallyPowerAuto.shadow:SetPoint("TOPLEFT", PallyPowerAutoIcon,"TOPLEFT", -3, 3)
+				PallyPowerAuto.shadow:SetPoint("BOTTOMRIGHT", PallyPowerAutoIcon,"BOTTOMRIGHT", 3, -3)
+				PallyPowerAuto.shadow:SetPoint("TOPRIGHT", PallyPowerAutoIcon,"TOPRIGHT", 3, 3)
+				PallyPowerAuto.shadow:SetParent(PallyPowerAuto)
+				ElvUI_EltreumUI:ShadowColor(PallyPowerAuto.shadow)
 			end
 		end
 
-		_G.PallyPowerRF:SetTemplate("Transparent", E.media.normTex, true)
-		_G.PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
-		_G.PallyPowerRFIcon:SetTexCoord(unpack(E.TexCoords))
-		_G.PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
+		PallyPowerRF:SetTemplate("Transparent", E.media.normTex, true)
+		PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
+		PallyPowerRFIcon:SetTexCoord(unpack(E.TexCoords))
+		PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
 
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerRF.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.PallyPowerRF:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if _G.PallyPowerRF.shadow then
-				_G.PallyPowerRF.shadow:ClearAllPoints()
-				_G.PallyPowerRF.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerRFIconSeal,"BOTTOMLEFT", -3, -3)
-				_G.PallyPowerRF.shadow:SetPoint("TOPLEFT", _G.PallyPowerRFIconSeal,"TOPLEFT", -3, 3)
-				_G.PallyPowerRF.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerRFIconSeal,"BOTTOMRIGHT", 3, -3)
-				_G.PallyPowerRF.shadow:SetPoint("TOPRIGHT", _G.PallyPowerRFIconSeal,"TOPRIGHT", 3, 3)
-				_G.PallyPowerRF.shadow:SetParent(_G.PallyPowerRF)
-				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerRF.shadow)
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerRF.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
+			PallyPowerRF:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if PallyPowerRF.shadow then
+				PallyPowerRF.shadow:ClearAllPoints()
+				PallyPowerRF.shadow:SetPoint("BOTTOMLEFT", PallyPowerRFIconSeal,"BOTTOMLEFT", -3, -3)
+				PallyPowerRF.shadow:SetPoint("TOPLEFT", PallyPowerRFIconSeal,"TOPLEFT", -3, 3)
+				PallyPowerRF.shadow:SetPoint("BOTTOMRIGHT", PallyPowerRFIconSeal,"BOTTOMRIGHT", 3, -3)
+				PallyPowerRF.shadow:SetPoint("TOPRIGHT", PallyPowerRFIconSeal,"TOPRIGHT", 3, 3)
+				PallyPowerRF.shadow:SetParent(PallyPowerRF)
+				ElvUI_EltreumUI:ShadowColor(PallyPowerRF.shadow)
 			end
 		end
 		--because we need 2 shadows
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerAnchor.shadow and _G.PallyPowerRFIcon:GetTexture() ~= nil and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.PallyPowerAnchor:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if _G.PallyPowerAnchor.shadow then
-				_G.PallyPowerAnchor.shadow:ClearAllPoints()
-				_G.PallyPowerAnchor.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerRFIcon,"BOTTOMLEFT", -3, -3)
-				_G.PallyPowerAnchor.shadow:SetPoint("TOPLEFT", _G.PallyPowerRFIcon,"TOPLEFT", -3, 3)
-				_G.PallyPowerAnchor.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerRFIcon,"BOTTOMRIGHT", 3, -3)
-				_G.PallyPowerAnchor.shadow:SetPoint("TOPRIGHT", _G.PallyPowerRFIcon,"TOPRIGHT", 3, 3)
-				_G.PallyPowerAnchor.shadow:SetParent(_G.PallyPowerRF)
-				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerAnchor.shadow)
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerAnchor.shadow and PallyPowerRFIcon:GetTexture() ~= nil and not E.db.ElvUI_EltreumUI.borders.universalborders then
+			PallyPowerAnchor:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if PallyPowerAnchor.shadow then
+				PallyPowerAnchor.shadow:ClearAllPoints()
+				PallyPowerAnchor.shadow:SetPoint("BOTTOMLEFT", PallyPowerRFIcon,"BOTTOMLEFT", -3, -3)
+				PallyPowerAnchor.shadow:SetPoint("TOPLEFT", PallyPowerRFIcon,"TOPLEFT", -3, 3)
+				PallyPowerAnchor.shadow:SetPoint("BOTTOMRIGHT", PallyPowerRFIcon,"BOTTOMRIGHT", 3, -3)
+				PallyPowerAnchor.shadow:SetPoint("TOPRIGHT", PallyPowerRFIcon,"TOPRIGHT", 3, 3)
+				PallyPowerAnchor.shadow:SetParent(PallyPowerRF)
+				ElvUI_EltreumUI:ShadowColor(PallyPowerAnchor.shadow)
 			end
 		end
 
 		--hide the double lines
 		if E.Mists then
-			_G.PallyPowerRF.TopEdge:Kill()
+			PallyPowerRF.TopEdge:Kill()
 		end
-		_G.PallyPowerRF.BottomEdge:Kill()
+		PallyPowerRF.BottomEdge:Kill()
 
 		--update for new pallypower
 		for i = 1, PALLYPOWER_MAXCLASSES do
@@ -209,13 +239,13 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 								if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 									if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
 										_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Show()
-										if _G.PallyPowerAura.shadow then
-											_G.PallyPowerAura.shadow:Show()
+										if PallyPowerAura.shadow then
+											PallyPowerAura.shadow:Show()
 										end
 									else
 										_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Hide()
-										if _G.PallyPowerAura.shadow then
-											_G.PallyPowerAura.shadow:Hide()
+										if PallyPowerAura.shadow then
+											PallyPowerAura.shadow:Hide()
 										end
 									end
 								end
@@ -233,196 +263,196 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		--better point
-		_G.PallyPowerAnchor:ClearAllPoints()
+		PallyPowerAnchor:ClearAllPoints()
 		E:Delay(0, function()
-			if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-				_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+			if PallyPowerAura and PallyPowerAura:IsShown() then
+				PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-10,10)
 			else
-				_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+				PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
 			end
 		end)
-		_G.PallyPowerAnchor:SetFrameLevel(10)
+		PallyPowerAnchor:SetFrameLevel(10)
 
 		--shadow update function
 		local function UpdateShadows()
 			if InCombatLockdown() then return end
-			if not _G.PallyPowerFrame.shadow then
-				_G.PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerRF)
+			if not PallyPowerFrame.shadow then
+				PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				PallyPowerFrame.shadow:SetParent(PallyPowerRF)
 			end
-			if _G.PallyPowerFrame.shadow then
-				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+			if PallyPowerFrame.shadow then
+				if PallyPowerC1 and PallyPowerC1:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC1, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC1, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC2 and _G.PallyPowerC2:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC2 and PallyPowerC2:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC2, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC2, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC3 and _G.PallyPowerC3:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC3 and PallyPowerC3:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC3, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC3, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC4 and _G.PallyPowerC4:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC4 and PallyPowerC4:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC4, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC4, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC5 and _G.PallyPowerC5:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC5 and PallyPowerC5:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC5, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC5, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC6 and _G.PallyPowerC6:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC6 and PallyPowerC6:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC6, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC6, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC7 and _G.PallyPowerC7:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC7 and PallyPowerC7:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC7, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC7, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC8 and _G.PallyPowerC8:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC8 and PallyPowerC8:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC8, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC8, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC9 and _G.PallyPowerC9:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC9 and PallyPowerC9:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC9, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC9, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC10 and _G.PallyPowerC10:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC10 and PallyPowerC10:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					else
-						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+						PallyPowerAnchor:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-10,10)
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerC1, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
-				if _G.PallyPowerC1 and not _G.PallyPowerC1:IsShown() then
-					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
-					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
-						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+				if PallyPowerC1 and not PallyPowerC1:IsShown() then
+					PallyPowerFrame.shadow:ClearAllPoints()
+					if PallyPowerAura and PallyPowerAura:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAura, "TOPLEFT",-3,3)
+					elseif PallyPowerRF and PallyPowerRF:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerRF, "TOPLEFT",-3,3)
+					elseif PallyPowerAuto and PallyPowerAuto:IsShown() then
+						PallyPowerFrame.shadow:SetPoint("TOPLEFT", PallyPowerAuto, "TOPLEFT",-3,3)
 					end
-					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAuto, "BOTTOMRIGHT",3,-3)
+					PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", PallyPowerAuto, "BOTTOMRIGHT",3,-3)
 				end
-				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerFrame.shadow)
+				ElvUI_EltreumUI:ShadowColor(PallyPowerFrame.shadow)
 			end
 		end
 
@@ -442,8 +472,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			end)
 		end
 
-		if _G.PallyPowerC10 and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.PallyPowerC10:HookScript("OnShow", function()
+		if PallyPowerC10 and not E.db.ElvUI_EltreumUI.borders.universalborders then
+			PallyPowerC10:HookScript("OnShow", function()
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					UpdateShadows()
 				end
@@ -476,15 +506,15 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
+			PallyPowerBlessingsFrame:HookScript("OnShow", function()
 				toggle()
 			end)
 
-			_G.PallyPowerBlessingsFrameClear:HookScript("OnClick", function()
+			PallyPowerBlessingsFrameClear:HookScript("OnClick", function()
 				toggle()
 			end)
 
-			_G.PallyPowerBlessingsFrameAutoAssign:HookScript("OnClick", function()
+			PallyPowerBlessingsFrameAutoAssign:HookScript("OnClick", function()
 				toggle()
 			end)
 		end
@@ -495,10 +525,10 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		--change toggle texture
-		_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
-		_G.PallyPowerAnchor:GetNormalTexture():SetVertexColor(0,1,0)
-		_G.PallyPowerAnchor:GetCheckedTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
-		_G.PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
+		PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+		PallyPowerAnchor:GetNormalTexture():SetVertexColor(0,1,0)
+		PallyPowerAnchor:GetCheckedTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+		PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
 
 		--use new icons
 		PallyPower.ClassIcons = PallyPower.isWrath and {
