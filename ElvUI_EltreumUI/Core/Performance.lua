@@ -190,16 +190,107 @@ function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a bo
 	end
 end
 
-function ElvUI_EltreumUI:PerformanceCVars(login)
+function ElvUI_EltreumUI:PerformanceCVars(command,login)
 	if login then --these get reset on logout/login
 		if E.Retail then
 			SetCVar('raidGraphicsSpellDensity', 1)
-			SetCVar('graphicsSpellDensity', 1)
+			SetCVar('graphicsSpellDensity', 1) --use the new
 		end
-		SetCVar('SSAO', 0)
-		SetCVar('graphicsSSAO', 0)
-	--else
-		--put something else here
+	elseif command then
+		--general graphics
+		SetCVar('cameraSmoothStyle', 0) --raw camera
+		SetCVar('vrsValar', 0) --vrs doesnt improve anything and decreases graphics on the corners of the screen, useful for fps but not wow
+		SetCVar('textureFilteringMode', 5) --AF x16 is not expensive and looks better
+		SetCVar('RenderScale', 1) --anything other than 1 has problems atm
+		SetCVar('useTargetFPS', 0) --disable target fps
+		SetCVar('maxLightDist', 0) --disable target fps
+		SetCVar('entityLodOffset',10) --USEDEFAULT (lowest) value
+		SetCVar('clusteredShading', 0) --disable forward lightining
+		SetCVar('RAIDclusteredShading', 0) --disable forward lightining
+		SetCVar('componentTextureLevel', 0) --reset character mip level to default (although thats full detail, NEEDSTESTING)
+		SetCVar('RAIDcomponentTextureLevel', 0) --USEDEFAULT reset character mip level to default (although thats full detail, NEEDSTESTING)
+		SetCVar('projectedTextures', 1) --make sure to use projected textures
+		SetCVar('RAIDprojectedTextures', 1) --make sure to use projected textures
+
+		--LOD things
+		SetCVar('entityLodDist',10) --USEDEFAULT (lowest) value
+		SetCVar('RAIDentityLodDist',10) --USEDEFAULT (lowest) value
+		SetCVar('lodObjectCullDist',30) --USEDEFAULT
+		SetCVar('RAIDlodObjectCullDist',30) --USEDEFAULT
+		SetCVar('lodObjectMinSize',20) --USEDEFAULT
+		SetCVar('RAIDlodObjectMinSize',20) --USEDEFAULT
+		SetCVar('TerrainLodDiv', 256) --default is 768, decrease to 1/3
+		SetCVar('RAIDTerrainLodDiv', 256) --default is 768, decrease to 1/3
+		SetCVar('doodadLodScale',100) --USEDEFAULT
+		SetCVar('RAIDdoodadLodScale',100) --USEDEFAULT
+		SetCVar('lodObjectFadeScale',100) --USEDEFAULT
+		SetCVar('RAIDlodObjectFadeScale',100) --USEDEFAULT
+		SetCVar('groundEffectFade',70) --USEDEFAULT
+		SetCVar('RAIDgroundEffectFade',70) --USEDEFAULT
+		SetCVar('groundEffectDensity',70) --USEDEFAULT
+		SetCVar('RAIDgroundEffectDensity',70) --USEDEFAULT
+		SetCVar('entityShadowFadeScale',10) --decrease to the raid default
+		SetCVar('RAIDentityShadowFadeScale',10) --USEDEFAULT
+		SetCVar('lodObjectCullSize', 20) --hides everything smaller than this
+		SetCVar('RAIDlodObjectCullSize', 20) --hides everything smaller than this
+		SetCVar('wmoLodDist', 300) --USEDEFAULT
+		SetCVar('RAIDwmoLodDist', 300) --USEDEFAULT
+		SetCVar('terrainLodDist', 400) --USEDEFAULT
+		SetCVar('RAIDterrainLodDist', 400) --USEDEFAULT
+		SetCVar('terrainMipLevel', 0) --USEDEFAULT reset terrain mip level to default
+		SetCVar('RAIDterrainMipLevel', 0) --USEDEFAULT reset terrain mip level to default
+		SetCVar('worldBaseMip', 0) --reset world detail
+		SetCVar('RAIDworldBaseMip', 0) --reset world detail
+
+		--shadows
+		SetCVar('graphicsSSAO', 0) --AO has two settings for some reason, disable both
+		SetCVar('raidGraphicsSSAO', 0)
+		SetCVar('shadowBlendCascades', 1) --enable blending between shadows, minor detail really
+		SetCVar('RAIDshadowBlendCascades', 1) --enable blending between shadows, minor detail really
+		SetCVar('shadowMode', 2) --shadow level
+		SetCVar('RAIDshadowMode', 2) --shadow level
+		SetCVar('shadowNumCascades', 2) --default is 1, but too few shadows then, more show up as you approach
+		SetCVar('RAIDshadowNumCascades', 2) --default is 1, but too few shadows then, more show up as you approach
+		SetCVar('shadowRt', 0) --disable ray tracing
+		SetCVar('RAIDshadowRt', 0) --disable ray tracing
+		SetCVar('shadowSoft', 0) --no soft shadows
+		SetCVar('RAIDshadowSoft', 0) --no soft shadows
+		SetCVar('shadowTextureSize', 1024) --USEDEFAULT shadow resolution
+		SetCVar('RAIDshadowTextureSize', 1024) --USEDEFAULT shadow resolution
+		SetCVar('SSAO', 0) --AO doesn't look good in wow and has a decent impact performance
+		SetCVar('RAIDSSAO', 0)
+
+		--draw distance
+		SetCVar('horizonClip', 1600) --USEDEFAULT
+		SetCVar('RAIDhorizonClip', 1600) --USEDEFAULT
+		SetCVar('horizonStart', 800) --USEDEFAULT
+		SetCVar('RAIDhorizonStart', 800) --USEDEFAULT
+		SetCVar('groundEffectDist', 70) --USEDEFAULT
+		SetCVar('RAIDgroundEffectDist', 70) --USEDEFAULT
+		SetCVar('farclip', 1000) --USEDEFAULT
+		SetCVar('RAIDfarclip', 1000) --USEDEFAULT
+
+		--depth things
+		SetCVar('DepthBasedOpacity', 0) --disable soft edge detect, can cause issues like memory leaks from my experience
+		SetCVar('RAIDDepthBasedOpacity', 0) --disable soft edge detect, can cause issues like memory leaks from my experience
+		SetCVar('graphicsComputeEffects', 0) --disable computational effects (volumetric fog)
+		SetCVar('raidGraphicsComputeEffects', 0) --disable computational effects (volumetric fog)
+		SetCVar('graphicsDepthEffects', 1) --disable depth particles or set to 1 to low
+		SetCVar('raidGraphicsDepthEffects', 0) --disable depth particles or set to 1 to low
+		SetCVar('graphicsParticleDensity', 3) --particle density in game options level
+		SetCVar('RAIDGraphicsParticleDensity', 3) --particle density in game options level
+		SetCVar('volumeFog', 0)--disable volumetric fog
+		SetCVar('RAIDVolumeFog', 0)--disable volumetric fog
+		SetCVar('volumeFogLevel', 0)--volumetric fog
+		SetCVar('RAIDVolumeFogLevel', 0)--volumetric fog
+		SetCVar('particleDensity', 80) --default is 100, decrease to 80
+		SetCVar('RAIDparticleDensity', 80) --default is 100, decrease to 80
+		SetCVar('particleMTDensity', 80) --default is 100, decrease to 80
+		SetCVar('RAIDparticleMTDensity', 80) --default is 100, decrease to 80
+		SetCVar('particulatesEnabled', 0) --disable particulates
+		SetCVar('RAIDParticulatesEnabled', 0) --disable particulates
+		SetCVar('spellClutter', 2) --spell detail, seems replaced by graphicsSpellDensity
+		SetCVar('RAIDspellClutter', 2) --spell detail, seems replaced by graphicsSpellDensity
 	end
 end
 
