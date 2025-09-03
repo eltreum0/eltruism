@@ -18,7 +18,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local nameplate, db = self.__owner, NP.db.threat
 	local sf = NP:StyleFilterChanges(nameplate)
-	if sf and status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not (sf.health and sf.health.colors) then
+	if sf and status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not (sf.applied and sf.applied.health and sf.applied.health.color) then
 		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
 
@@ -117,9 +117,8 @@ local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if unit and unit.Health then
 			local sf = NP:StyleFilterChanges(unit)
-			if (sf and sf.health and sf.health.colors) then
-				return
-				--unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.health.colors.color.r,g= sf.health.colors.color.g,b= sf.health.colors.color.b,a= 1}, {r=sf.health.colors.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.colors.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.colors.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.colors.color.a})
+			if (sf.applied and sf.applied.health and sf.applied.health.color) then
+				unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.applied.health.color.r,g= sf.applied.health.color.g,b= sf.applied.health.color.b,a= 1}, {r=sf.applied.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.applied.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.applied.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.applied.health.color.a})
 			else
 				local _, className = UnitClass(unit.unit)
 				local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
@@ -181,7 +180,6 @@ hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBar
 function ElvUI_EltreumUI:StyleFilterClearChanges(frame, changes)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	-- bar stuff
-	--print(changes,frame.Health)
 	if changes then
 		local h = frame.Health
 		if h.r and h.g and h.b then
@@ -194,16 +192,16 @@ end
 hooksecurefunc(NP, "StyleFilterClearChanges", ElvUI_EltreumUI.StyleFilterClearChanges)
 
 --to set slight gradient to style filter
-function ElvUI_EltreumUI:StyleFilterSetChanges(frame, _, actions, _, _, health)
+function ElvUI_EltreumUI:StyleFilterSetChanges(frame, _, filter)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not frame.StyleFilterChanges then return end
-	if health and actions.health.colors.enable then
-		local hc = (actions.health.colors.class and frame.classColor) or actions.health.colors.color
+	if filter.actions.health.colors.enable then
+		local hc = (filter.actions.health.colors.playerClass and E.myClassColor) or (filter.actions.health.colors.unitClass and frame.classColor) or filter.actions.health.colors.color
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 				frame.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=hc.r,g= hc.g,b= hc.b,a= hc.a or 1}, {r=hc.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= hc.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= hc.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= hc.a or 1})
 			else
-				frame.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=hc.r,g= hc.g,b= hc.b,a= hc.a or 1}, {r=hc.r-0.4,g= hc.g-0.4,b= hc.b-0.4,a= hc.a or 1})
+				frame.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=hc.r,g= hc.g,b= hc.b,a= hc.a or 1}, {r=1,g= 0,b= 0,a= hc.a or 1})
 			end
 		end
 	end
