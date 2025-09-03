@@ -191,8 +191,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--aura filtering
 	ElvUI_EltreumUI:SetupAllAuras("Minimal")
 	--[[
-		E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,nonPersonal"
-		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,NonPersonal"
+		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = "Blacklist,Personal,NonPersonal"
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,CCDebuffs,RaidDebuffs"
@@ -205,10 +205,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["assist"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
 		--E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,CCDebuffs,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
+		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,NonPersonal,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,NonPersonal"
 		E.db["unitframe"]["units"]["focustarget"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"

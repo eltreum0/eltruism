@@ -41,12 +41,12 @@ end
 --Eltruism/Default ElvUI filters
 
 --Unitframes
-local EltruismTargetBuffs = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
+local EltruismTargetBuffs = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,NonPersonal,RaidBuffsElvUI,TurtleBuffs"
 local EltruismTargetDebuffs = "Blacklist,Personal,CCDebuffs"
-local EltruismPlayerDebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
-local EltruismPlayerBuffs = "Blacklist,Personal,nonPersonal"
+local EltruismPlayerDebuffs = "Blacklist,blockNoDuration,Personal,NonPersonal"
+local EltruismPlayerBuffs = "Blacklist,Personal,NonPersonal"
 local EltruismBossBuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
-local EltruismBossDebuffs = "Blacklist,CCDebuffs,RaidDebuffs"
+local EltruismBossDebuffs = "Blacklist,CCDebuffs,RaidDebuffs" --noDuration??????????
 local EltruismFocusBuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 local EltruismFocusDebuffs = "Blacklist,Personal,CCDebuffs"
 local EltruismGroupBuffs = 'Blacklist,TurtleBuffs'
@@ -58,12 +58,12 @@ local minimalAura = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
 
 --nameplates
 local EltruismNameplateEnemyPlayerBuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
-local EltruismNameplateEnemyPlayerDebuffs = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+local EltruismNameplateEnemyPlayerDebuffs = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,NonPersonal"
 local EltruismNameplateEnemyNPCBuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
 local EltruismNameplateEnemyNPCDebuffs = "Blacklist,Personal,CCDebuffs,CastByNPC"
 
 --All filter mainly for cata/classic
-local EltruismEverything = "Blacklist,Personal,nonPersonal"
+local EltruismEverything = "Blacklist,Personal,NonPersonal"
 
 --based on luckyone
 local minimalBuffs = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
