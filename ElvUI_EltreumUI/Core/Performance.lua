@@ -214,6 +214,7 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('RAIDprojectedTextures', 1) --make sure to use projected textures
 		SetCVar('sunShafts',1) --enable sun shafts
 		SetCVar('RAIDsunShafts',1) --but disable in raid
+		SetCVar('ResampleAlwaysSharpen', 1) --might as well use FSR to make it look sharper
 
 		--LOD things
 		SetCVar('entityLodDist',10) --USEDEFAULT (lowest) value
