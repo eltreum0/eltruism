@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 		DynamicCamDB["profileKeys"][E.mynameRealm] = "Eltreum"
 		DynamicCamDB["profiles"]["Eltreum"] = {}
 		DynamicCamDB["profiles"]["Eltreum"] = {
-			["version"] = 3,
+			["version"] = 4,
 			["situations"] = {
 				["303"] = {
 					["enabled"] = true,
@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						},
 					},
 				},
-				["101"] = {
+				["160"] = {
 					["enabled"] = true,
 					["rotation"] = {
 						["enabled"] = true,
@@ -186,9 +186,17 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 					["enabled"] = true,
 					["situationSettings"] = {
 						["cvars"] = {
-							["test_cameraDynamicPitch"] = 0,
-							["test_cameraTargetFocusInteractEnable"] = 0,
+							["test_cameraDynamicPitch"] = 1,
+							["test_cameraTargetFocusInteractEnable"] = 1,
 							["test_cameraTargetFocusEnemyEnable"] = 0,
+							["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+							["test_cameraTargetFocusEnemyStrengthPitch"] = 0.4,
+							["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+							["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
+							["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
+							["test_cameraTargetFocusEnemyStrengthYaw"] = 0.5,
+							["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
+							["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
 						},
 					},
 					["viewZoom"] = {
@@ -207,6 +215,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 				["shoulderOffsetZoomUpperBound"] = 8,
 				["cvars"] = {
 					["cameraZoomSpeed"] = 50,
+					["cameraPitchMoveSpeed"] = 160,
 					["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
 					["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
 					["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
