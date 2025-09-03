@@ -215,6 +215,8 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('sunShafts',1) --enable sun shafts
 		SetCVar('RAIDsunShafts',1) --but disable in raid
 		SetCVar('ResampleAlwaysSharpen', 1) --might as well use FSR to make it look sharper
+		SetCVar('ResampleSharpness', 0.2) --0 is full sharpen, set it slighly below full strength
+		SetCVar('ResampleQuality', 3) --use FSR
 
 		--LOD things
 		SetCVar('entityLodDist',10) --USEDEFAULT (lowest) value
