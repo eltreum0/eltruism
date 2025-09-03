@@ -25,6 +25,53 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					S:HandleFrame(_G["AuctionatorPageStatusDialogFrame"])
 				end
 
+				--new auctionator dialog
+				--https://warcraft.wiki.gg/wiki/Hooking_functions not a secure function so gotta do it the other way
+				if _G.Auctionator and _G.Auctionator.Dialogs then
+					local AuctionatorDialogFunctions = {
+						"ShowEditBox",
+						"ShowConfirm",
+						"ShowConfirmAlt",
+						"ShowMoney",
+					}
+					for _, DialogFunction in pairs(AuctionatorDialogFunctions) do
+						if _G.Auctionator.Dialogs[DialogFunction] then
+							local FunctionHook = _G.Auctionator.Dialogs[DialogFunction] --backup the original
+							_G.Auctionator.Dialogs[DialogFunction] = function(...) --replace it to add the skin
+								---fire original function, so that it creates the frames, then get the results from to return them later properly
+								local ResultsFromBackup = FunctionHook(...)
+
+								--frames should exist now, skin them
+								for i = 1, 10 do
+									if _G["AuctionatorDialog"..tostring(i)] and not _G["AuctionatorDialog"..tostring(i)].EltruismSkin then
+										S:HandleFrame(_G["AuctionatorDialog"..i])
+										if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["AuctionatorDialog"..i].shadow then
+											_G["AuctionatorDialog"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(_G["AuctionatorDialog"..i].shadow)
+										end
+										if _G["AuctionatorDialog"..tostring(i)].acceptButton then
+											S:HandleButton(_G["AuctionatorDialog"..tostring(i)].acceptButton)
+										end
+										if _G["AuctionatorDialog"..tostring(i)].altButton then
+											S:HandleButton(_G["AuctionatorDialog"..tostring(i)].altButton)
+										end
+										if _G["AuctionatorDialog"..tostring(i)].cancelButton then
+											S:HandleButton(_G["AuctionatorDialog"..tostring(i)].cancelButton)
+											if _G["AuctionatorDialog"..tostring(i)].altButton then
+												_G["AuctionatorDialog"..tostring(i)].cancelButton:Point("LEFT", _G["AuctionatorDialog"..tostring(i)].altButton, "RIGHT", 10, 0)
+											end
+										end
+										_G["AuctionatorDialog"..tostring(i)].EltruismSkin = true
+									end
+								end
+
+								--return the results
+								return ResultsFromBackup
+							end
+						end
+					end
+				end
+
 				--shopping
 				S:HandleFrame(_G["AuctionatorShoppingFrame"])
 				S:HandleFrame(_G["AuctionatorShoppingFrame"].ShoppingResultsInset)
