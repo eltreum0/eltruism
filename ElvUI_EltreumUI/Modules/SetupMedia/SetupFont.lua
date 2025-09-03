@@ -536,7 +536,6 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["name"] = fontvalue
 		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["name"] = fontvalue
 		E.private["WT"]["skins"]["bigWigsSkin"]["queueTimer"]["countDown"]["name"] = fontvalue
-		E.private["WT"]["skins"]["rollResult"]["name"] = fontvalue
 	end
 
 	if IsAddOnLoaded("ElvUI_mMediaTag") then
