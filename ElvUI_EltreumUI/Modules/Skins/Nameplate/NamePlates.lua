@@ -840,7 +840,8 @@ end
 
 --Class color the target, plus use unit's target directly
 function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
-	self:CheckInterrupt(unit)
+	--self here is the nameplate castbar, like ElvNP_NamePlate1Castbar
+	--self:CheckInterrupt(unit) --dont need to do this since this is after elvui does it anyway
 	local plate = self.__owner
 	local db = NP:PlateDB(plate)
 	if db.castbar and db.castbar.enable and db.castbar.displayTarget then
