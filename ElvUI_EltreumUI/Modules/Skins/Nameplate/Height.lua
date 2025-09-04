@@ -30,11 +30,12 @@ tableupdate:SetScript("OnEvent",function()
 	}
 end)
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
-	if not unit or not unit.unit or not unit.Health or not unit.Health:IsShown() or not E.private.nameplates.enable then
+	if not unit or not unit.unit or not unit.Health or not unit.Health:IsShown() then
 		return
 	end
+	if not E.db.ElvUI_EltreumUI.nameplates then return end
 
-	if E.db.ElvUI_EltreumUI.nameplates.backdrop.BDmodifications then
+	if E.db.ElvUI_EltreumUI.nameplates.backdrop and E.db.ElvUI_EltreumUI.nameplates.backdrop.BDmodifications then
 		if unit.Health.backdrop then
 			unit.Health.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.backdrop.backdroptexture))
 			if E.db.ElvUI_EltreumUI.nameplates.backdrop.backdroptexturestaticsize then
@@ -82,10 +83,10 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
 						unit.Health:SetHeight(heighttable[unit.frameType])
 					else
-						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
 					end
 				else
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight or 4)
 				end
 			end
 		end

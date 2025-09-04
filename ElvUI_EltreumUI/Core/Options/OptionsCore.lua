@@ -90,6 +90,7 @@ local DONATORS = {
 	'Aphadon',
 	'shifty',
 	'Baleos',
+	'hunty',
 }
 
 local TRANSLATORS = {

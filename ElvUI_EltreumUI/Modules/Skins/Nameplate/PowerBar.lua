@@ -51,6 +51,8 @@ local shamanbolt = 6
 local shamanlavaburst = 8
 local huntersteadyshot = 10 --now baseline
 local maxpower = 0
+local mainCost = 0 --reset
+local incResource = 0 -- reset
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -142,8 +144,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[56641] = huntersteadyshot, --steady shot gives bonus focus with a talent
 		}
 
-		local mainCost = 0 --reset
-		local incResource = 0 -- reset
+		mainCost = 0 --reset
+		incResource = 0 -- reset
 
 		local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 		if startTime ~= endTime then
@@ -220,6 +222,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 				S:HandleStatusBar(EltreumPowerBar)
+				EltreumPowerPrediction:SetValue(0)
+				EltreumPowerPredictionIncoming:SetValue(0)
 
 				--hide double border if the other way didn't hide it
 				if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.powerbarborder and E.db.ElvUI_EltreumUI.borders.universalborders then

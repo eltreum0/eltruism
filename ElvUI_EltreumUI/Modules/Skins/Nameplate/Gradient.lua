@@ -18,7 +18,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local nameplate, db = self.__owner, NP.db.threat
 	local sf = NP:StyleFilterChanges(nameplate)
-	if sf and status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not ((sf.health and sf.health.colors) and sf.health.colors.enable) then
+	if sf and status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not (sf.applied and sf.applied.health and sf.applied.health.color) then
 		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
 
@@ -117,8 +117,8 @@ local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if unit and unit.Health then
 			local sf = NP:StyleFilterChanges(unit)
-			if (sf and sf.health and sf.health.colors) then
-				unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.actions.health.colors.color.r,g= sf.actions.health.colors.color.g,b= sf.actions.health.colors.color.b,a= 1}, {r=sf.actions.health.colors.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.actions.health.colors.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.actions.health.colors.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.actions.health.colors.color.a})
+			if (sf.applied and sf.applied.health and sf.applied.health.color) then
+				unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.applied.health.color.r,g= sf.applied.health.color.g,b= sf.applied.health.color.b,a= 1}, {r=sf.applied.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.applied.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.applied.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.applied.health.color.a})
 			else
 				local _, className = UnitClass(unit.unit)
 				local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
@@ -177,27 +177,24 @@ end
 hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
 
 --to fix stylefilter for gradient nameplates
-function ElvUI_EltreumUI:StyleFilterClearChanges(frame, changes)
+function ElvUI_EltreumUI:StyleFilterClearChanges(frame)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	-- bar stuff
-	--print(changes,frame.Health)
-	if changes then
-		local h = frame.Health
-		if h.r and h.g and h.b then
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-				GradientNameplates(frame)
-			end
+	local h = frame.Health
+	if h.r and h.g and h.b then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			GradientNameplates(frame)
 		end
 	end
 end
 hooksecurefunc(NP, "StyleFilterClearChanges", ElvUI_EltreumUI.StyleFilterClearChanges)
 
 --to set slight gradient to style filter
-function ElvUI_EltreumUI:StyleFilterSetChanges(frame, _, actions, _, _, health)
+function ElvUI_EltreumUI:StyleFilterSetChanges(frame, _, filter)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not frame.StyleFilterChanges then return end
-	if health and actions.health.colors.enable then
-		local hc = (actions.health.colors.class and frame.classColor) or actions.health.colors.color
+	if filter.actions.health.colors.enable then
+		local hc = (filter.actions.health.colors.playerClass and E.myClassColor) or (filter.actions.health.colors.unitClass and frame.classColor) or filter.actions.health.colors.color
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 				frame.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=hc.r,g= hc.g,b= hc.b,a= hc.a or 1}, {r=hc.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= hc.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= hc.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= hc.a or 1})

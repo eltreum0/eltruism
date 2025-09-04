@@ -229,7 +229,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
 		--E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs,CastByNPC"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,NonPersonal"
 
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["enable"] = false
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
@@ -359,7 +359,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["height"] = 18
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["keepSizeRatio"] = false
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 6
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,NonPersonal"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
@@ -575,7 +575,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["durationPosition"] = "TOP"
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numAuras"] = 6
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numRows"] = 2
-		--E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+		--E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,NonPersonal"
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["size"] = 25
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["spacing"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["yOffset"] = 2

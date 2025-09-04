@@ -6,7 +6,6 @@ local UnitPowerType = _G.UnitPowerType
 local UnitExists = _G.UnitExists
 local select = _G.select
 local IsInGroup = _G.IsInGroup
-local isHookedstagger = false
 
 --powers there are gradients for since retail has like 100+ power types
 local powertypes ={
@@ -370,20 +369,17 @@ hooksecurefunc(UF, "PostUpdatePowerColor", ElvUI_EltreumUI.GradientPower)
 --gradient stagger because its special
 function ElvUI_EltreumUI:GradientStagger()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		if not isHookedstagger then
-			local staggerframe = _G["ElvUF_Player_Stagger"]
-			if staggerframe then
-				hooksecurefunc(staggerframe, "SetStatusBarColor", function(stagger,r,g,b)
-					stagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= 1})
-				end)
-			end
-			local npstaggerframe = _G["ElvNP_TargetClassPowerStagger"]
-			if npstaggerframe then
-				hooksecurefunc(npstaggerframe, "SetStatusBarColor", function(npstagger,r,g,b)
-					npstagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= 1})
-				end)
-			end
-			isHookedstagger = true
+		if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].EltruismHook then
+			hooksecurefunc(_G["ElvUF_Player_Stagger"], "SetStatusBarColor", function(stagger,r,g,b)
+				stagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= 1})
+			end)
+			_G["ElvUF_Player_Stagger"].EltruismHook = true
+		end
+		if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].EltruismHook then
+			hooksecurefunc(_G["ElvNP_TargetClassPowerStagger"], "SetStatusBarColor", function(npstagger,r,g,b)
+				npstagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= 1})
+			end)
+			_G["ElvNP_TargetClassPowerStagger"].EltruismHook = true
 		end
 	end
 end
