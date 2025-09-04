@@ -194,7 +194,7 @@ function ElvUI_EltreumUI:StyleFilterSetChanges(frame, _, filter)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not frame.StyleFilterChanges then return end
 	if filter.actions.health.colors.enable then
-		local hc = filter.actions.health.color
+		local hc = (filter.actions.health.colors.playerClass and E.myClassColor) or (filter.actions.health.colors.unitClass and frame.classColor) or filter.actions.health.colors.color
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 				frame.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=hc.r,g= hc.g,b= hc.b,a= hc.a or 1}, {r=hc.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= hc.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= hc.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= hc.a or 1})
