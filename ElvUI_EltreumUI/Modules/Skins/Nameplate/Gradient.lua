@@ -192,7 +192,6 @@ hooksecurefunc(NP, "StyleFilterClearChanges", ElvUI_EltreumUI.StyleFilterClearCh
 --to set slight gradient to style filter
 function ElvUI_EltreumUI:StyleFilterSetChanges(frame)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	if not frame.StyleFilterChanges then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if frame.StyleFilterChanges.health and frame.StyleFilterChanges.health.colors then
 			local hc = frame.StyleFilterChanges.health.color
