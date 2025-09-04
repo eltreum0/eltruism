@@ -3,7 +3,6 @@ local _G = _G
 local UnitClass = _G.UnitClass
 local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
 local hooksecurefunc = _G.hooksecurefunc
-local Hooked = false
 
 --blizzard raid frames custom textures/gradient
 function ElvUI_EltreumUI:BlizzardTexturesGradient()
@@ -227,7 +226,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 				end
 			end
 		else
-			if not Hooked then
+			if not self.BlizzardRaidFramesHooked then
 				hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function()
 					ElvUI_EltreumUI:BlizzardTexturesGradient()
 				end)
@@ -240,7 +239,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 					ElvUI_EltreumUI:BlizzardTexturesGradient()
 				end)
 
-				Hooked = true
+				self.BlizzardRaidFramesHooked = true
 			end
 		end
 	end
