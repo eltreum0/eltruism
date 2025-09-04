@@ -177,15 +177,13 @@ end
 hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
 
 --to fix stylefilter for gradient nameplates
-function ElvUI_EltreumUI:StyleFilterClearChanges(frame, changes)
+function ElvUI_EltreumUI:StyleFilterClearChanges(frame)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	-- bar stuff
-	if changes then
-		local h = frame.Health
-		if h.r and h.g and h.b then
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-				GradientNameplates(frame)
-			end
+	local h = frame.Health
+	if h.r and h.g and h.b then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			GradientNameplates(frame)
 		end
 	end
 end
