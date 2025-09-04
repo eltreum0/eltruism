@@ -264,6 +264,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["displayTarget"] = true
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["nameLength"] = 25
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -4
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
@@ -413,6 +414,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["timeToHold"] = 0.6
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["displayTarget"] = true
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["nameLength"] = 25
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = true
 		--E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["anchorPoint"] = "TOP"
