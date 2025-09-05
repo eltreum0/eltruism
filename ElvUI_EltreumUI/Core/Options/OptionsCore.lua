@@ -323,6 +323,7 @@ Fixed an issue with the Leatrix Maps DB when not using Leatrix Maps
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
+	E.Libs.ACH:Header(name, order, get, set, hidden)
 	E.Libs.ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
 	E.Libs.ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
 
