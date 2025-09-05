@@ -406,8 +406,6 @@ function ElvUI_EltreumUI:CHALLENGE_MODE_START(event)
 	ElvUI_EltreumUI:QuestCombat(event)
 end
 
-
-
 function ElvUI_EltreumUI:CHALLENGE_MODE_RESET(event)
 	ElvUI_EltreumUI:QuestCombat(event)
 end
