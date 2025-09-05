@@ -115,6 +115,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	--Nameplates
 	E.db["nameplates"]["cooldown"]["fonts"]["font"] = fontvalue
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFont"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["sourceText"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = fontvalue
@@ -134,6 +135,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = fontvalue
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["targetFont"] = fontvalue
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = fontvalue
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["sourceText"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = fontvalue
@@ -153,6 +155,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = fontvalue
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["targetFont"] = fontvalue
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = fontvalue
 	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = fontvalue
