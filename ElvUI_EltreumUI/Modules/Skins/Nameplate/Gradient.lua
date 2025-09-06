@@ -114,9 +114,9 @@ hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator
 --gradient nameplates
 local function GradientNameplates(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	if not unit then return end
-	if not unit.unit then return end
-	if not unit.Health then return end
+	if not unit or not unit.unit or not unit.Health or not unit.Health:IsShown() then
+		return
+	end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		local sf = NP:StyleFilterChanges(unit)
 		if (sf and sf.health and sf.health.color) then
