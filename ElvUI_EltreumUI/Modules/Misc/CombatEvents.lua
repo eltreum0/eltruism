@@ -27,6 +27,17 @@ function ElvUI_EltreumUI:CombatMusic(event)
 			PlayMusic(soundfileboss)
 			dontstopboss = 1
 		end
+	elseif event == 'INSTANCE_ENCOUNTER_ENGAGE_UNIT' then --boss (delve) start
+		if UnitExists("boss1") then
+			if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+				local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
+				if dontstop == 1 then
+					StopMusic()
+				end
+				PlayMusic(soundfileboss)
+				otherBoss = true
+			end
+		end
 	elseif event == 'ENCOUNTER_END' then --boss ends
 		if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
 			if dontstopboss == 1 then
@@ -77,6 +88,7 @@ function ElvUI_EltreumUI:CombatMusic(event)
 				if dontstopboss == 0 then
 					StopMusic()
 					dontstop = 0
+					otherBoss = false
 				end
 			end
 		end

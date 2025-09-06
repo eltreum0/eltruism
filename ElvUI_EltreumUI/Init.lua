@@ -167,6 +167,7 @@ function ElvUI_EltreumUI:Initialize()
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('INSTANCE_ENCOUNTER_ENGAGE_UNIT') ----for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music
@@ -224,6 +225,11 @@ function ElvUI_EltreumUI:ENCOUNTER_END(event)
 	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BattleRes()
+end
+
+function ElvUI_EltreumUI:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+	ElvUI_EltreumUI:CombatMusic(event)
+	ElvUI_EltreumUI:QuestCombat(event)
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
