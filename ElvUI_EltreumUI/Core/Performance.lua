@@ -255,9 +255,9 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('RAIDshadowBlendCascades', 1) --enable blending between shadows, minor detail really
 		SetCVar('shadowMode', 2) --shadow level
 		SetCVar('RAIDshadowMode', 2) --shadow level
-		SetCVar('shadowNumCascades', 2) --default is 1, but too few shadows then, more show up as you approach
+		SetCVar('shadowNumCascades', 3) --default is 1, but too few shadows then, more show up as you approach
 		--performance impact not as huge as first assumed, visually there is a big difference though, 4 gives more shadows and is max setting
-		SetCVar('RAIDshadowNumCascades', 2) --default is 1, but too few shadows then, more show up as you approach
+		SetCVar('RAIDshadowNumCascades', 3) --default is 1, but too few shadows then, more show up as you approach
 		SetCVar('shadowRt', 0) --disable ray tracing
 		SetCVar('RAIDshadowRt', 0) --disable ray tracing
 		SetCVar('shadowSoft', 1) --soft shadows
