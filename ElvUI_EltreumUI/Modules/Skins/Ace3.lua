@@ -491,6 +491,10 @@ hooksecurefunc(S,"HandleTab",function(_,tab, noBackdrop)
 	if not tab then return end
 	if noBackdrop then return end
 	CreateFader(tab)
+
+	if tab.backdrop then --although noBackdrop is checked against you never know
+		tab.backdrop:SetTemplate("Transparent") --return tabs to being transparent, no longer will they be the only non transparent ones
+	end
 end)
 
 hooksecurefunc(S,"HandleButton",function(_,button, _, _, noStyle)
