@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 					["mmssThreshold"] = -1,
 					["fonts"] = {
 						["enable"] = false,
-						["font"] = 'PT Sans Narrow',
+						["font"] = 'Kimberley',
 						["fontOutline"] = 'OUTLINE',
 						["fontSize"] = 18,
 					},
