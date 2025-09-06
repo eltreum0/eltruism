@@ -1839,6 +1839,7 @@ local bossIDs = {
 	--priory-of-the-sacred-flame
 	["207939"] = true, --baron-braunpyke
 	["207946"] = true, --captain-dailcry
+	["211290"] = true, --elaena-emberlanz
 	["207940"] = true, --prioress-murrpray
 
 	--ara-kara-city-of-echoes
