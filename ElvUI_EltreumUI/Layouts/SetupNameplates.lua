@@ -634,7 +634,7 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private.nameplates.enable then
-		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems', 'EltreumDeadNP'}) do
+		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems', 'EltreumDeadNP', 'EltreumWorldCombatFriendly'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -692,6 +692,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["inCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["priority"] = 1
 		E.db["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
 		--E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["requireTarget"] = true
 
@@ -817,6 +818,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
+		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["priority"] = 15
 
 		--show enemy level
 		E.global["nameplates"]["filters"]["EltreumLevel"]["actions"]["tags"]["level"] = "[difficultycolor][smartlevel]"
@@ -825,6 +827,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTargetMe"] = false
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["playerCanAttack"] = true
+		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["priority"] = 10
 
 		--totem portrait filter
 		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["scale"] = 1.25
@@ -837,12 +840,19 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["priority"] = 14
 
 		--hide np of dead targets
-		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["hide"] = true
 		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["nameOnly"] = true
 		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["tags"]["name"] = "[name]"
 		E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["isDeadOrGhost"] = true
-		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enable"] = true
-		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
+		E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["priority"] = 15
+
+		--hide np of other players youc cant attack when in open world combat (for world bosses for example)
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["actions"]["hide"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["inCombat"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["enemyPlayer"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["friendlyPlayer"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["playerCanNotAttack"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["priority"] = 15
 
 		--E:StaggeredUpdateAll()
 		E:UpdateNamePlates()
