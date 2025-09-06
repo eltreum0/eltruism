@@ -154,7 +154,7 @@ local function GradientNameplates(unit)
 					else
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
 					end
-				else
+				elseif targettype then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
 					else
