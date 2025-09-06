@@ -250,6 +250,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
 	-- Nameplates
 	E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontOutline"] = fontStyle
@@ -260,6 +261,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontOutline"] = fontStyle
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["targetFontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["sourceText"]["fontOutline"] = fontStyle
@@ -288,6 +290,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["fontOutline"] = fontStyle
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["targetFontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["sourceText"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["fontOutline"] = fontStyle
