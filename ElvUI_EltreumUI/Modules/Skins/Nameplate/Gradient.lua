@@ -114,50 +114,51 @@ hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator
 --gradient nameplates
 local function GradientNameplates(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
+	if not unit then return end
+	if not unit.unit then return end
+	if not unit.Health then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		if unit and unit.Health then
-			local sf = NP:StyleFilterChanges(unit)
-			if (sf and sf.health and sf.health.color) then
-				unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
-			else
-				local _, className = UnitClass(unit.unit)
-				local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
-				local reaction = UnitReaction(unit.unit, "player")
-				local targettype
+		local sf = NP:StyleFilterChanges(unit)
+		if (sf and sf.health and sf.health.color) then
+			unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
+		else
+			local _, className = UnitClass(unit.unit)
+			local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
+			local reaction = UnitReaction(unit.unit, "player")
+			local targettype
 
-				if reaction and reaction >= 5 then
-					targettype = "NPCFRIENDLY"
-				elseif reaction and reaction == 4 then
-					targettype = "NPCNEUTRAL"
-				elseif reaction and reaction == 3 then
-					targettype = "NPCUNFRIENDLY"
-				elseif reaction and reaction <= 2 then
-					targettype = "NPCHOSTILE"
+			if reaction and reaction >= 5 then
+				targettype = "NPCFRIENDLY"
+			elseif reaction and reaction == 4 then
+				targettype = "NPCNEUTRAL"
+			elseif reaction and reaction == 3 then
+				targettype = "NPCUNFRIENDLY"
+			elseif reaction and reaction <= 2 then
+				targettype = "NPCHOSTILE"
+			end
+
+			if not InCombatLockdown() or UnitIsDead("player") then
+				unit.CurrentlyBeingTanked = nil
+			end
+
+			if className and isPlayer then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
+				else
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
 				end
-
-				if not InCombatLockdown() or UnitIsDead("player") then
-					unit.CurrentlyBeingTanked = nil
-				end
-
-				if className and isPlayer then
+			elseif reaction and (unit.CurrentlyBeingTanked ~= UnitGUID(unit.unit)) then
+				if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
 					else
-						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
 					end
-				elseif reaction and (unit.CurrentlyBeingTanked ~= UnitGUID(unit.unit)) then
-					if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-						else
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
-						end
+				else
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
 					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
-						else
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
-						end
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
 					end
 				end
 			end
