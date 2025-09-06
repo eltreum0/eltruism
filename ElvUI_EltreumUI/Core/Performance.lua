@@ -233,9 +233,9 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('RAIDlodObjectFadeScale',100) --USEDEFAULT
 		SetCVar('groundEffectFade',70) --USEDEFAULT
 		SetCVar('RAIDgroundEffectFade',70) --USEDEFAULT
-		SetCVar('groundEffectDensity',70) --USEDEFAULT
-		SetCVar('RAIDgroundEffectDensity',70) --USEDEFAULT
-		SetCVar('entityShadowFadeScale',10) --decrease to the raid default
+		SetCVar('groundEffectDensity',16) --USEDEFAULT
+		SetCVar('RAIDgroundEffectDensity',16) --USEDEFAULT
+		SetCVar('entityShadowFadeScale',50) --USEDEFAULT --how far shadows show up on characters
 		SetCVar('RAIDentityShadowFadeScale',10) --USEDEFAULT
 		SetCVar('lodObjectCullSize', 20) --hides everything smaller than this
 		SetCVar('RAIDlodObjectCullSize', 20) --hides everything smaller than this
