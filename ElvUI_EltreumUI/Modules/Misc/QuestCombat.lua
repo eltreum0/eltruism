@@ -89,6 +89,40 @@ function ElvUI_EltreumUI:QuestCombat(event)
 				otherBossEncounter = false
 			end
 		end
+	elseif event == "INSTANCE_ENCOUNTER_ENGAGE_UNIT" then --started boss fight
+		if E.db.ElvUI_EltreumUI.quests.enable and _G.UnitExists("boss1") then
+			local _, instanceType = IsInInstance()
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+				if E.Retail then
+					--ObjectiveTracker_Collapse()
+					--ObjectiveTrackerFrame:Hide()
+					ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
+					--ObjectiveTrackerFrame:SetAlpha(0)
+					--_G.ObjectiveTrackerFrame:SetCollapsed(true)
+				elseif E.Classic then
+					if IsAddOnLoaded("Questie") then
+						if _G["Questie_BaseFrame"] then
+							_G["Questie_BaseFrame"]:Hide()
+						else
+							_G.QuestWatchFrame:Hide()
+						end
+					else
+						_G.QuestWatchFrame:Hide()
+					end
+				elseif E.Mists then
+					if IsAddOnLoaded("Questie") then
+						if _G["Questie_BaseFrame"] then
+							_G["Questie_BaseFrame"]:Hide()
+						else
+							_G.WatchFrame:Hide()
+						end
+					else
+						_G.WatchFrame:Hide()
+					end
+				end
+				otherBossEncounter = true
+			end
+		end
 	elseif event == "ENCOUNTER_START" then --started boss fight
 		if E.db.ElvUI_EltreumUI.quests.enable then
 			local _, instanceType = IsInInstance()

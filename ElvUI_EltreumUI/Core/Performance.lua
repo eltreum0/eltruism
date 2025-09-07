@@ -233,9 +233,9 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('RAIDlodObjectFadeScale',100) --USEDEFAULT
 		SetCVar('groundEffectFade',70) --USEDEFAULT
 		SetCVar('RAIDgroundEffectFade',70) --USEDEFAULT
-		SetCVar('groundEffectDensity',70) --USEDEFAULT
-		SetCVar('RAIDgroundEffectDensity',70) --USEDEFAULT
-		SetCVar('entityShadowFadeScale',10) --decrease to the raid default
+		SetCVar('groundEffectDensity',16) --USEDEFAULT
+		SetCVar('RAIDgroundEffectDensity',16) --USEDEFAULT
+		SetCVar('entityShadowFadeScale',50) --USEDEFAULT --how far shadows show up on characters
 		SetCVar('RAIDentityShadowFadeScale',10) --USEDEFAULT
 		SetCVar('lodObjectCullSize', 20) --hides everything smaller than this
 		SetCVar('RAIDlodObjectCullSize', 20) --hides everything smaller than this
@@ -255,7 +255,7 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('RAIDshadowBlendCascades', 1) --enable blending between shadows, minor detail really
 		SetCVar('shadowMode', 2) --shadow level
 		SetCVar('RAIDshadowMode', 2) --shadow level
-		SetCVar('shadowNumCascades', 2) --default is 1, but too few shadows then, more show up as you approach
+		SetCVar('shadowNumCascades', 3) --default is 1, but too few shadows then, more show up as you approach
 		--performance impact not as huge as first assumed, visually there is a big difference though, 4 gives more shadows and is max setting
 		SetCVar('RAIDshadowNumCascades', 2) --default is 1, but too few shadows then, more show up as you approach
 		SetCVar('shadowRt', 0) --disable ray tracing
