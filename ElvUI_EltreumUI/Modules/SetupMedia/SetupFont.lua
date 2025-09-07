@@ -636,7 +636,6 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = fontvalue
 		E.private["WT"]["skins"]["ime"]["candidate"]["name"] = fontvalue
-		E.private["WT"]["skins"]["rollResult"]["name"] = fontvalue
 		E.private["WT"]["skins"]["widgets"]["button"]["text"]["font"]["name"] = fontvalue
 		E.private["WT"]["skins"]["widgets"]["tab"]["text"]["font"]["name"] = fontvalue
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["text"]["font"]["name"] = fontvalue
