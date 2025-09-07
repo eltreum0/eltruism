@@ -1,9 +1,5 @@
 local _G = _G
 
---update bigwigs profile, update ALL PROFILES!
---check elvui nameplate changes
---chck elvui custom aura uf
-
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
 	if not _G.BigWigsAPI then return end
