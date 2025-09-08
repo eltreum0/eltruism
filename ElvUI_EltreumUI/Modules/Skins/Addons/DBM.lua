@@ -62,44 +62,69 @@ function ElvUI_EltreumUI:DBMSkin()
 end
 S:AddCallbackForAddon('DBM-StatusBarTimers', "EltruismDBM", ElvUI_EltreumUI.DBMSkin)
 
-local function SkinGUI()
-	--this is likely not a good idea...
-	for i=1, #_G.DBM_GUI.panels do
-		if _G["DBM_GUI_Option_"..i] and not _G["DBM_GUI_Option_"..i].EltruismSkin then
-			if _G["DBM_GUI_Option_"..i]:GetObjectType() == "Button" then
-				S:HandleButton(_G["DBM_GUI_Option_"..i])
-			elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "EditBox" then
-				S:HandleEditBox(_G["DBM_GUI_Option_"..i])
-			elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "Slider" then
-				S:HandleSliderFrame(_G["DBM_GUI_Option_"..i])
-			elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "CheckButton" then
-				S:HandleCheckBox(_G["DBM_GUI_Option_"..i])
+local function SkinSubframe(frame)
+	if frame:GetChildren() then
+		for i = 1, frame:GetNumChildren() do
+			local v = select(i, frame:GetChildren())
+			if v and not v.EltruismSkin then
+				if v:GetObjectType() == "Button" then
+					if v:GetDebugName():match("DropDown") then
+						local width = v:GetWidth()
+						S:HandleDropDownBox(v, width, true)
+						if v.Text then
+							v.Text:ClearAllPoints()
+							v.Text:SetPoint("CENTER", v.backdrop, "CENTER", 0,0)
+						end
+					elseif v:GetDebugName():match("Close") then
+						S:HandleCloseButton(v)
+					elseif v:GetDebugName():match("Toggle") then
+						v.EltruismSkin = true
+					else
+						S:HandleButton(v)
+					end
+				elseif v:GetObjectType() == "EditBox" then
+					S:HandleEditBox(v)
+				elseif v:GetObjectType() == "Slider" then
+					S:HandleSliderFrame(v)
+				elseif v:GetObjectType() == "CheckButton" then
+					S:HandleCheckBox(v)
+				end
+				v.EltruismSkin = true
+				SkinSubframe(v) --keep going until there arent any subframes
 			end
-			_G["DBM_GUI_Option_"..i].EltruismSkin = true
-		end
-		if _G["DBM_GUI_DropDown"..i] and not _G["DBM_GUI_DropDown"..i].EltruismSkin then
-			local width = _G["DBM_GUI_DropDown"..i]:GetWidth()
-			S:HandleDropDownBox(_G["DBM_GUI_DropDown"..i], width, true)
-			if _G["DBM_GUI_DropDown"..i.."Text"] then
-				_G["DBM_GUI_DropDown"..i.."Text"]:ClearAllPoints()
-				_G["DBM_GUI_DropDown"..i.."Text"]:SetPoint("CENTER", _G["DBM_GUI_DropDown"..i].backdrop, "CENTER", 0,0)
-			end
-			_G["DBM_GUI_DropDown"..i].EltruismSkin = true
 		end
 	end
-	for i = 1, _G["DBM_GUI_OptionsFrame"]:GetNumChildren() do
-		local v = select(i, _G["DBM_GUI_OptionsFrame"]:GetChildren())
-		if v and not v.EltruismSkin then
-			if v:GetObjectType() == "EditBox" then
-				S:HandleEditBox(v)
-			elseif v:GetObjectType() == "Slider" then
-				S:HandleSliderFrame(v)
-			elseif v:GetObjectType() == "CheckButton" then
-				S:HandleCheckBox(v)
+end
+
+local function SkinGUI()
+	--this is likely not a good idea...
+	for _, v in next, _G.DBM_GUI.panels do
+		if v and v.frame and not v.frame.EltruismSkin then
+			if v.frame:GetObjectType() == "Button" then
+				if v:GetDebugName():match("DropDown") then
+					local width = v:GetWidth()
+					S:HandleDropDownBox(v, width, true)
+					if v.Text then
+						v.Text:ClearAllPoints()
+						v.Text:SetPoint("CENTER", v.backdrop, "CENTER", 0,0)
+					end
+				elseif v:GetDebugName():match("Toggle") then
+					v.EltruismSkin = true
+				else
+					S:HandleButton(v)
+				end
+			elseif v.frame:GetObjectType() == "EditBox" then
+				S:HandleEditBox(v.frame)
+			elseif v.frame:GetObjectType() == "Slider" then
+				S:HandleSliderFrame(v.frame)
+			elseif v.frame:GetObjectType() == "CheckButton" then
+				S:HandleCheckBox(v.frame)
 			end
+			SkinSubframe(v.frame) --check for subframes
 			v.EltruismSkin = true
 		end
 	end
+	SkinSubframe(_G["DBM_GUI_OptionsFrame"])
 end
 
 --dbm gui
@@ -152,9 +177,13 @@ function ElvUI_EltreumUI:DBMGUISkin()
 			end
 		end)
 		_G.hooksecurefunc(_G.DBM_GUI, "UpdateModList", function()
-			E:Delay(1, function()
-				SkinGUI()
-			end)
+			SkinGUI()
+		end)
+		_G.hooksecurefunc(_G.DBM_GUI, "CreateBossModPanel", function()
+			SkinGUI()
+		end)
+		_G.hooksecurefunc(_G.DBM_GUI, 'CreateBossModTab', function()
+			SkinGUI()
 		end)
 	end
 end
