@@ -489,7 +489,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
 	elseif E.Retail then
-		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 	end
 
 	--its actually alt power on some fights like vigilant guardian

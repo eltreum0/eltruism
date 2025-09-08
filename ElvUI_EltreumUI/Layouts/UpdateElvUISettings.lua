@@ -63,6 +63,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["bags"]["useBlizzardJunk"] = false
 			E.db["bags"]["warbandSize"] = 35
 
+			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
+
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end
 	else

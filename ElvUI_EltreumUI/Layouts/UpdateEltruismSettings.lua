@@ -220,6 +220,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
 		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
 		E.db.ElvUI_EltreumUI.quests.autoaccept = true
+		E.db.ElvUI_EltreumUI.quests.anchor = true
 
 		-- Loot
 		E.db.ElvUI_EltreumUI.loot.loottext.enable = true

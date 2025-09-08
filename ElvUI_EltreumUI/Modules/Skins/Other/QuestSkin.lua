@@ -1783,6 +1783,9 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		else
 			ObjectiveTrackerFrame:BreakFromFrameManager()
 			ObjectiveTrackerFrame.Selection:Kill()
+			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+			_G.ObjectiveTrackerFrame:SetMovable(true)
+			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
 			_G.ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
 			_G.ObjectiveTrackerFrame:SetPoint("BOTTOM", _G["ObjectiveFrameHolder"], "BOTTOM")
