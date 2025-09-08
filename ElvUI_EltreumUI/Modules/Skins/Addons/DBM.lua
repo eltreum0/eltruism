@@ -110,21 +110,15 @@ function ElvUI_EltreumUI:DBMGUISkin()
 					S:HandleScrollBar(_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"])
 					_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin = true
 				end
-				if _G["DBM_GUI_OptionsFrameTab1"] and not _G["DBM_GUI_OptionsFrameTab1"].EltruismSkin then
-					S:HandleTab(_G["DBM_GUI_OptionsFrameTab1"])
-					if _G["DBM_GUI_OptionsFrameTab1"].Text then
-						_G["DBM_GUI_OptionsFrameTab1"].Text:ClearAllPoints()
-						_G["DBM_GUI_OptionsFrameTab1"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab1"])
+				for i = 1, 6 do
+					if _G["DBM_GUI_OptionsFrameTab"..i] and not _G["DBM_GUI_OptionsFrameTab"..i].EltruismSkin then
+						S:HandleTab(_G["DBM_GUI_OptionsFrameTab"..i])
+						if _G["DBM_GUI_OptionsFrameTab"..i].Text then
+							_G["DBM_GUI_OptionsFrameTab"..i].Text:ClearAllPoints()
+							_G["DBM_GUI_OptionsFrameTab"..i].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab"..i])
+						end
+						_G["DBM_GUI_OptionsFrameTab"..i].EltruismSkin = true
 					end
-					_G["DBM_GUI_OptionsFrameTab1"].EltruismSkin = true
-				end
-				if _G["DBM_GUI_OptionsFrameTab2"] and not _G["DBM_GUI_OptionsFrameTab2"].EltruismSkin then
-					S:HandleTab(_G["DBM_GUI_OptionsFrameTab2"])
-					if _G["DBM_GUI_OptionsFrameTab2"].Text then
-						_G["DBM_GUI_OptionsFrameTab2"].Text:ClearAllPoints()
-						_G["DBM_GUI_OptionsFrameTab2"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab2"])
-					end
-					_G["DBM_GUI_OptionsFrameTab2"].EltruismSkin = true
 				end
 				if _G["DBM_GUI_OptionsFrameWebsiteButton"] and not _G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin then
 					S:HandleButton(_G["DBM_GUI_OptionsFrameWebsiteButton"])
@@ -137,6 +131,10 @@ function ElvUI_EltreumUI:DBMGUISkin()
 				if _G["DBM_GUI_DropDown"] and not _G["DBM_GUI_DropDown"].EltruismSkin then
 					S:HandleFrame(_G["DBM_GUI_DropDown"])
 					_G["DBM_GUI_DropDown"].EltruismSkin = true
+				end
+				if _G["DBM_GUI_OptionsFrameClosePanelButton"] and not _G["DBM_GUI_OptionsFrameClosePanelButton"].EltruismSkin then
+					S:HandleCloseButton(_G["DBM_GUI_OptionsFrameClosePanelButton"])
+					_G["DBM_GUI_OptionsFrameClosePanelButton"].EltruismSkin = true
 				end
 			end
 		end)
