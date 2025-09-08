@@ -152,7 +152,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			local costTable = GetSpellPowerCost(spellID)
 			if costTable then --if nil then cost = 0
 				for _, v in next, costTable do
-					--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID, costPercent, costPerSec
+					--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID
 					if tostring(v.type) == tostring(UnitPowerType("player")) then --sanity check for being the same type
 						mainCost = v.cost
 					else
