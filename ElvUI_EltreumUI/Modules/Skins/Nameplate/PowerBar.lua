@@ -153,7 +153,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			if costTable then --if nil then cost = 0
 				for _, v in next, costTable do
 					--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID, costPercent, costPerSec
-					if v.type == UnitPowerType("player") then
+					if tostring(v.type) == tostring(UnitPowerType("player")) then --sanity check for being the same type
 						mainCost = v.cost
 					else
 						mainCost = 0
@@ -178,6 +178,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 			if UnitPower("player") == 0 then
 				EltreumPowerPrediction:SetValue(0)
+				EltreumPowerPredictionIncoming:SetValue(0)
 			elseif UnitPower("player") ~= 0 then
 				if mainCost >= UnitPowerMax("player") or mainCost >= UnitPower("player") then
 					if E.db.ElvUI_EltreumUI.dev then
