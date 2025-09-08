@@ -4,6 +4,8 @@ local CreateFrame = _G.CreateFrame
 local UnitIsDead = _G.UnitIsDead
 local hooksecurefunc = _G.hooksecurefunc
 local UnitIsGhost = _G.UnitIsGhost
+local UnitIsFeignDeath = _G.UnitIsFeignDeath
+local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
 local UF = E:GetModule('UnitFrames')
 
 local druidshamanfix = {
@@ -525,7 +527,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 
 			--pause if dead or ghost
 			if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
-				if UnitIsDead(unit) or UnitIsGhost(unit) then
+				if UnitIsDeadOrGhost(unit) and not UnitIsFeignDeath(unit) then
 					self:SetPaused(true)
 					self:SetDesaturation(1)
 				else
