@@ -1146,9 +1146,21 @@ function ElvUI_EltreumUI:Shadows()
 				_G.GuildInviteFrame,
 				_G.CurrencyTransferMenu,
 				_G.CurrencyTransferLog,
+				_G.PlayerSpellsFrame, --can be loaded before the addon too
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then
+					if frame == _G.PlayerSpellsFrame then
+						if _G.PlayerSpellsFrame.TabSystem then
+							for i = 1, _G.PlayerSpellsFrame.TabSystem:GetNumChildren() do
+								local tab = select(i, _G.PlayerSpellsFrame.TabSystem:GetChildren())
+								if tab and tab.backdrop and not tab.backdrop.shadow then
+									tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+								end
+							end
+						end
+					end
 					if frame.backdrop then
 						if not frame.backdrop.shadow then
 							frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
