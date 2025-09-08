@@ -107,7 +107,8 @@ if E.Retail then
 					return true
 				end)
 
-				function SuperTrackedFrame:GetTargetAlphaBaseValue()
+				--swap to hook instead of global replace
+				hooksecurefunc(SuperTrackedFrame, "GetTargetAlphaBaseValue", function()
 					local d = C_Navigation.GetDistance()
 					if (d >= 10 ) then
 						if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then
@@ -123,7 +124,8 @@ if E.Retail then
 						C_Map.ClearUserWaypoint()
 						return 0
 					end
-				end
+				end)
+
 				SuperTrackedFrame.EltruismHook = true
 			end
 

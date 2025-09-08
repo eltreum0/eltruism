@@ -31,11 +31,11 @@ ElvUI_EltreumUI.Config = {}
 ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)
 ElvUI_EltreumUI.Spec = 0
 
-function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
+function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
-	if initLogin or not ElvDB.EltruismDisabledAddOns then
+	if not ElvDB.EltruismDisabledAddOns then
 		ElvDB.EltruismDisabledAddOns = {}
 	end
 	if E.db.ElvUI_EltreumUI.deepLwarning then

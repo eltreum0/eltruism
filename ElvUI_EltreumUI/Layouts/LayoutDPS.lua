@@ -434,19 +434,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
 	E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,515,-79"
 	--E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,23" --moved since it was overlapping with datatext
-	E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
-	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
-	if not E.Retail then
-		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
-	end
-	E.db["movers"]["ObjectiveFrameMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-5,249"
-	if E.Classic then
-		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
-		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
-	elseif E.Mists then
-		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
-		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-110,-319"
-	end
 	E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,129"
 	E.db["movers"]["PetBattleABMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
 	E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"

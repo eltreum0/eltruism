@@ -17,6 +17,7 @@ local UnitIsGroupLeader = _G.UnitIsGroupLeader
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitClassification = _G.UnitClassification
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitIsFeignDeath = _G.UnitIsFeignDeath
 
 --show class icons on all targets
 E:AddTag("eltruism:class:all", "UNIT_NAME_UPDATE", function(unit)
@@ -359,7 +360,7 @@ E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name.." "..L["Icons
 
 --Tag for dead based on elvui tag for health with user input
 E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit)
-	if UnitIsDead(unit) and UnitIsPlayer(unit) then
+	if UnitIsDead(unit) and UnitIsPlayer(unit) and not UnitIsFeignDeath(unit) then
 		if E.db.ElvUI_EltreumUI.otherstuff.deadtagicon ~= "NONE" then
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.deadtagicon)..".tga:0:0:0:0|t"
 		else

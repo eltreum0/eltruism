@@ -469,6 +469,20 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
 	E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-8,-5"
+	E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
+	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
+	if not E.Retail then
+		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
+	end
+	if E.Classic then
+		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
+		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
+	elseif E.Mists then
+		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
+	elseif E.Retail then
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
+	end
 
 	--its actually alt power on some fights like vigilant guardian
 	E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
