@@ -64,7 +64,7 @@ S:AddCallbackForAddon('DBM-StatusBarTimers', "EltruismDBM", ElvUI_EltreumUI.DBMS
 
 local function SkinGUI()
 	--this is likely not a good idea...
-	for i=1,2000 do
+	for i=1, #_G.DBM_GUI.panels do
 		if _G["DBM_GUI_Option_"..i] and not _G["DBM_GUI_Option_"..i].EltruismSkin then
 			if _G["DBM_GUI_Option_"..i]:GetObjectType() == "Button" then
 				S:HandleButton(_G["DBM_GUI_Option_"..i])
@@ -87,6 +87,19 @@ local function SkinGUI()
 			_G["DBM_GUI_DropDown"..i].EltruismSkin = true
 		end
 	end
+	for i = 1, _G["DBM_GUI_OptionsFrame"]:GetNumChildren() do
+		local v = select(i, _G["DBM_GUI_OptionsFrame"]:GetChildren())
+		if v and not v.EltruismSkin then
+			if v:GetObjectType() == "EditBox" then
+				S:HandleEditBox(v)
+			elseif v:GetObjectType() == "Slider" then
+				S:HandleSliderFrame(v)
+			elseif v:GetObjectType() == "CheckButton" then
+				S:HandleCheckBox(v)
+			end
+			v.EltruismSkin = true
+		end
+	end
 end
 
 --dbm gui
@@ -95,7 +108,6 @@ function ElvUI_EltreumUI:DBMGUISkin()
 		if not _G.DBM_GUI then return end
 		_G.hooksecurefunc(_G.DBM_GUI, "ShowHide", function()
 			if _G["DBM_GUI_OptionsFrame"]:IsShown() then
-				SkinGUI()
 				if _G["DBM_GUI_OptionsFrame"] and not _G["DBM_GUI_OptionsFrame"].EltruismSkin then
 					S:HandleFrame(_G["DBM_GUI_OptionsFrame"])
 					if E.db.ElvUI_EltreumUI.skins.shadow then
@@ -136,6 +148,7 @@ function ElvUI_EltreumUI:DBMGUISkin()
 					S:HandleCloseButton(_G["DBM_GUI_OptionsFrameClosePanelButton"])
 					_G["DBM_GUI_OptionsFrameClosePanelButton"].EltruismSkin = true
 				end
+				SkinGUI()
 			end
 		end)
 		_G.hooksecurefunc(_G.DBM_GUI, "UpdateModList", function()
