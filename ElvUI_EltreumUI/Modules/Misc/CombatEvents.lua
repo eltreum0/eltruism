@@ -12,7 +12,6 @@ local strsplit = _G.strsplit
 local UnitExists = _G.UnitExists
 local dontstop = 0
 local dontstopboss = 0
-local otherBoss = false
 local list = {}
 
 --play music during combat
@@ -21,21 +20,21 @@ function ElvUI_EltreumUI:CombatMusic(event)
 	if event == 'ENCOUNTER_START' then --boss start
 		if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
 			local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
-			if dontstop == 1 then
+			if dontstopboss == 0 then
 				StopMusic()
+				PlayMusic(soundfileboss)
+				dontstopboss = 1
 			end
-			PlayMusic(soundfileboss)
-			dontstopboss = 1
 		end
 	elseif event == 'INSTANCE_ENCOUNTER_ENGAGE_UNIT' then --boss (delve) start
 		if UnitExists("boss1") then
 			if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
 				local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
-				if dontstop == 1 then
+				if dontstopboss == 0 then
 					StopMusic()
+					PlayMusic(soundfileboss)
+					dontstopboss = 1
 				end
-				PlayMusic(soundfileboss)
-				otherBoss = true
 			end
 		end
 	elseif event == 'ENCOUNTER_END' then --boss ends
@@ -46,51 +45,35 @@ function ElvUI_EltreumUI:CombatMusic(event)
 			end
 		end
 	elseif event == 'PLAYER_REGEN_DISABLED' then --combat starts
-		if UnitExists("boss1") then --there is a boss but its not triggering ENCOUNTER_START
-			if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
-				local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
-				if dontstop == 1 then
-					StopMusic()
-				end
-				PlayMusic(soundfileboss)
-				otherBoss = true
-				dontstopboss = 0
+		if E.private.ElvUI_EltreumUI.combatmusic.enable then
+			local _, instanceType = IsInInstance()
+			local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
+			if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
+				wipe(list)
+				list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
+				soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
 			end
-		else
-			if E.private.ElvUI_EltreumUI.combatmusic.enable then
-				local _, instanceType = IsInInstance()
-				local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
-				if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
-					wipe(list)
-					list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
-					soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
+			if not E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
+				if dontstop == 0 then
+					PlayMusic(soundfile)
+					dontstop = 1
 				end
-				if not E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
-					if dontstopboss == 0 then
+			elseif E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
+				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "pvp" or instanceType == "arena" then
+					return
+				elseif instanceType == "none" then
+					if dontstop == 0 then
 						PlayMusic(soundfile)
 						dontstop = 1
-					end
-				elseif E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
-					if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "pvp" or instanceType == "arena" then
-						return
-					elseif instanceType == "none" then
-						if dontstopboss == 0 then
-							PlayMusic(soundfile)
-							dontstop = 1
-						end
 					end
 				end
 			end
 		end
 	elseif event == 'PLAYER_REGEN_ENABLED' then --combat ends
-		if E.private.ElvUI_EltreumUI.combatmusic.enable then
-			if dontstop == 1 or otherBoss then
-				if dontstopboss == 0 then
-					StopMusic()
-					dontstop = 0
-					otherBoss = false
-				end
-			end
+		if E.private.ElvUI_EltreumUI.combatmusic.enable or E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+			StopMusic()
+			dontstopboss = 0
+			dontstop = 0
 		end
 	end
 end
