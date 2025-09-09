@@ -1191,7 +1191,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 			--add a minimize button
 			if not _G["EltruismMinimizeQuests"] then
-				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", _G.ElvUIParent, "MaximizeMinimizeButtonFrameTemplate")
+				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", E.UIParent, "MaximizeMinimizeButtonFrameTemplate")
 				S:HandleMaxMinFrame(_G["EltruismMinimizeQuests"])
 				_G["EltruismMinimizeQuests"]:SetTemplate("Backdrop")
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G.QuestWatchFrame.Minimize.shadow and E.private.general.pixelPerfect then

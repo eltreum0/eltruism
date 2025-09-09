@@ -4,7 +4,6 @@ local S = E:GetModule('Skins')
 local valuecolors = E.myClassColor
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local Minimap = _G.Minimap
@@ -33,7 +32,7 @@ if E.Retail then
 	local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
 	local EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
 	EltruismTimeToArriveParent:RegisterEvent("PLAYER_ENTERING_WORLD")
-	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
+	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", E.UIParent)
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
 	EltruismTimeToArrive.TimeText:SetSize(0, 26)

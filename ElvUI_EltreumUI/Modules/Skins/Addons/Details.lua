@@ -211,7 +211,7 @@ do
 
 				if not InCombatLockdown() then
 					embedpanel:SetAllPoints(_G["RightChatPanel"])
-					embedpanel:SetParent(_G.UIParent)
+					embedpanel:SetParent(E.UIParent)
 					embedpanel:SetFrameStrata("BACKGROUND")
 
 					if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then

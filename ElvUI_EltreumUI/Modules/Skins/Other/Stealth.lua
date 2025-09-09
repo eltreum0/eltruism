@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
-local UIParent = _G.UIParent
 local IsStealthed = _G.IsStealthed
 local CreateFrame = _G.CreateFrame
 
@@ -14,7 +13,7 @@ StealthOptionsFrame:SetFrameLevel(0)
 StealthOptionsFrame:SetFrameStrata("BACKGROUND")
 StealthOptionsFrame.tex = StealthOptionsFrame:CreateTexture()
 StealthOptionsFrame.tex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
-StealthOptionsFrame.tex:SetAllPoints(UIParent)
+StealthOptionsFrame.tex:SetAllPoints(E.UIParent)
 StealthOptionsFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH")
 StealthOptionsFrame:Hide()

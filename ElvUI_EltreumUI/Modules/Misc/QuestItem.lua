@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local AB = E:GetModule('ActionBars')
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local IsInInstance = _G.IsInInstance
 local GetItemClassInfo = _G.C_Item and _G.C_Item.GetItemClassInfo or _G.GetItemClassInfo
@@ -26,11 +25,11 @@ local GetItemSpell = _G.C_Item and _G.C_Item.GetItemSpell or _G.GetItemSpell
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3
-local EltruismQuestItemFrame = CreateFrame("Frame", "EltruismQuestItem", UIParent, BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
+local EltruismQuestItemFrame = CreateFrame("Frame", "EltruismQuestItem", E.UIParent, BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
 EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests,item')
 EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate")
-EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
+EltruismQuestItemFrame.tip:SetOwner(E.UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.items = {}
 EltruismQuestItemFrame.debug = false
 
@@ -386,7 +385,7 @@ function ElvUI_EltreumUI:QuestItem()
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 				b:RegisterForClicks("AnyDown","AnyUp")
 				b:SetScript("OnEnter", function (button)
-					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+					GameTooltip:SetOwner(E.UIParent, "ANCHOR_CURSOR")
 					local bag, slot = button:GetAttribute("bag"), button:GetAttribute("slot")
 					if (bag) then
 						GameTooltip:SetBagItem(bag,slot)

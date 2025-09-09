@@ -2,7 +2,6 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local GetTime = _G.GetTime
 local GetCursorPosition = _G.GetCursorPosition
 local math = _G.math
@@ -56,7 +55,7 @@ local db = {
 local textsize = 15
 local cooldownsize = 28
 
-local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
+local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", E.UIParent)
 local EltruismCooldownText = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
 local EltruismCooldownIcon = EltruismCooldownFrame:CreateTexture("EltruismCooldownIcon", "OVERLAY")
 local EltruismCooldownMask = EltruismCooldownFrame:CreateMaskTexture()
@@ -175,9 +174,9 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 			EltruismCooldownFrame:SetScript("OnUpdate", function(_, elapsed) --if frame is removed, then pet cooldowns can have issues
 				updateDelay = NormalUpdateDelay
 				x, y = GetCursorPosition()
-				scaleDivisor = UIParent:GetEffectiveScale()
+				scaleDivisor = E.UIParent:GetEffectiveScale()
 				EltruismCooldownFrame:ClearAllPoints()
-				EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx, (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+				EltruismCooldownFrame:SetPoint( "CENTER", E.UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx, (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 				lastUpdate = lastUpdate + elapsed
 				if lastUpdate < updateDelay then
 					return
