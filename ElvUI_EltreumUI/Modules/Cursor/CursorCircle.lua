@@ -3,7 +3,6 @@ local _G = _G
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local next = _G.next
 local min = _G.min
@@ -27,7 +26,7 @@ function ElvUI_EltreumUI:CursorInit()
 end
 
 local cursorframe = CreateFrame("Frame", "EltruismCursorSetup")
-local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", UIParent)
+local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", E.UIParent)
 local Cast = CreateFrame("Frame", "EltruismCursorCast", rootFrame)
 local GCD = CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
 local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
@@ -200,9 +199,9 @@ function ElvUI_EltreumUI:CastCursor()
 			rootFrame:SetScript("OnUpdate", function(self)
 				--print("cursor spam "..math.random(1,99))
 				local x, y = GetCursorPosition()
-				local scaleDivisor = UIParent:GetEffectiveScale()
+				local scaleDivisor = E.UIParent:GetEffectiveScale()
 				self:ClearAllPoints()
-				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+				self:SetPoint( "CENTER", E.UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 			end )
 		end
 
@@ -214,9 +213,9 @@ function ElvUI_EltreumUI:CastCursor()
 					rootFrame:SetScript("OnUpdate", function(self)
 						--print("cursor spam "..math.random(1,99))
 						local x, y = GetCursorPosition()
-						local scaleDivisor = UIParent:GetEffectiveScale()
+						local scaleDivisor = E.UIParent:GetEffectiveScale()
 						self:ClearAllPoints()
-						self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+						self:SetPoint( "CENTER", E.UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 					end )
 				end
 				ringsVisible[self] = true

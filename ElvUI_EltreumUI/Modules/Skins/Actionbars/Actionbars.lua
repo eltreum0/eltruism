@@ -6,7 +6,6 @@ local classcolor = E.myClassColor
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local IsUsableSpell = _G.C_Spell and _G.C_Spell.IsSpellUsable or _G.IsUsableSpell
 local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
@@ -749,7 +748,7 @@ end)
 local EltruismGlowPreview = CreateFrame("Frame", "EltruismGlowPreview")
 EltruismGlowPreview:SetSize(40, 40)
 EltruismGlowPreview:ClearAllPoints()
-EltruismGlowPreview:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 50)
+EltruismGlowPreview:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 50)
 EltruismGlowPreview:SetFrameStrata("DIALOG")
 local EltruismGlowTexture = EltruismGlowPreview:CreateTexture()
 EltruismGlowPreview:Hide()

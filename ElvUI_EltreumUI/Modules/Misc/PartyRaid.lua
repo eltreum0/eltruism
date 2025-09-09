@@ -3,7 +3,6 @@ local S = E:GetModule('Skins')
 local _G = _G
 local select = _G.select
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local IsInGroup = _G.IsInGroup
 local PlaySoundFile = _G.PlaySoundFile
@@ -89,11 +88,11 @@ spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
 spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 spellcd:SetTextColor(1, 1, 1)
 spellcd:SetText(_G.READY)
-bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
+bresframe:SetPoint("TOPLEFT", E.UIParent, "TOPLEFT", 342, -28)
 if E.Retail then
 	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
 end
-bresframe:SetParent(UIParent)
+bresframe:SetParent(E.UIParent)
 bresframe:SetAlpha(0)
 --bresframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 bresframe:SetSize(97, 30)

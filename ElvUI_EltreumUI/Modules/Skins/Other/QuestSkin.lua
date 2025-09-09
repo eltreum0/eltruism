@@ -1191,7 +1191,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 			--add a minimize button
 			if not _G["EltruismMinimizeQuests"] then
-				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", _G.ElvUIParent, "MaximizeMinimizeButtonFrameTemplate")
+				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", E.UIParent, "MaximizeMinimizeButtonFrameTemplate")
 				S:HandleMaxMinFrame(_G["EltruismMinimizeQuests"])
 				_G["EltruismMinimizeQuests"]:SetTemplate("Backdrop")
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G.QuestWatchFrame.Minimize.shadow and E.private.general.pixelPerfect then
@@ -1783,6 +1783,9 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		else
 			ObjectiveTrackerFrame:BreakFromFrameManager()
 			ObjectiveTrackerFrame.Selection:Kill()
+			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+			_G.ObjectiveTrackerFrame:SetMovable(true)
+			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
 			_G.ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
 			_G.ObjectiveTrackerFrame:SetPoint("BOTTOM", _G["ObjectiveFrameHolder"], "BOTTOM")

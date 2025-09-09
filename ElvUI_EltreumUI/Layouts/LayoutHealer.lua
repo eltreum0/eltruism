@@ -297,14 +297,14 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["raid3"]["growthDirection"] = "DOWN_RIGHT"
 
 	-- Movers Healing
-	E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-65,-292"
+	E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-292"
 	E.db["movers"]["AzeriteBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-421,0"
 	E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-259"
 	E.db["movers"]["BelowMinimapContainerMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,79,-155"
 	E.db["movers"]["BigButtonsFarmBar"] = "TOPLEFT,ElvUIParent,TOPLEFT,433,-134"
 	E.db["movers"]["BigButtonsSeedBarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,281,-186"
 	E.db["movers"]["BossButton"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,126"
-	E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-334"
+	E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-334"
 	E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
 	E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
 	E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,481,366"
@@ -344,9 +344,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	if not E.Retail then
 		E.db["movers"]["ElvUF_Raid1Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,108"
 		E.db["movers"]["ElvUF_Raid2Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,25"
-		E.db["movers"]["ElvUF_Raid3Mover"] = "BOTTOM,UIParent,BOTTOM,0,26"
+		E.db["movers"]["ElvUF_Raid3Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,26"
 	end
-	E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,217" --new
+	E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,217" --new
 	E.db["movers"]["ElvUF_TankMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,500"
 	E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
@@ -379,12 +379,12 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 	E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-77"
 	E.db["movers"]["ThreatBarMover"] = "TOP,ElvUIParent,TOP,0,-42"
-	E.db["movers"]["AlertFrameMover"] = "TOP,UIParent,TOP,0,-67"
+	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-67"
 	E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
-	E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,308,306" --shaman totem
+	E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,308,306" --shaman totem
 	E.db["movers"]["TotemTrackerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-399,260" --class totems thing like consecration
-	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,341" --move it below the castbar for monk/druid in mop
+	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,341" --move it below the castbar for monk/druid in mop
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["spacing"] = 5
@@ -397,12 +397,12 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 		E.db["actionbar"]["totemBar"]["spacing"] = 5
 		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	end]]
-	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"
+	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,445"
 	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"
 	if E.Retail then
 		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
 	else
-		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-176,-145"
+		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-145"
 	end
 	E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
 	if IsAddOnLoaded("ElvUI_WindTools") then
@@ -416,7 +416,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 		E.db["movers"]["WTParagonReputationToastFrameMover"] = "TOP,ElvUIParent,TOP,0,-222"
 	end
 	E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
-	E.db["movers"]["MoverEltruismWA"] = "BOTTOM,UIParent,BOTTOM,0,264"
+	E.db["movers"]["MoverEltruismWA"] = "BOTTOM,ElvUIParent,BOTTOM,0,264"
 	E.db["movers"]["MoverEltruismWA2"] = "BOTTOM,ElvUIParent,BOTTOM,0,387"
 	E.db["movers"]["MoverEltruismWAConsumables"] = "BOTTOM,ElvUIParent,BOTTOM,-280,357"
 

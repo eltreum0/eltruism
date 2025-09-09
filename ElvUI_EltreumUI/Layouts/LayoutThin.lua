@@ -44,9 +44,9 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,265"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,265"
 	E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
-	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,UIParent,BOTTOM,0,301"
-	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260" --due to new monk/druid in mop
-	E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-372"
+	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,301"
+	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260" --due to new monk/druid in mop
+	E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-372"
 	E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,-5"
 	E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
 	E.db["movers"]["ThreatBarMover"] = "TOP,ElvUIParent,TOP,0,-43"

@@ -54,7 +54,6 @@ local EltruismGroupDebuffs = 'Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,W
 
 local EltruismAuraTarget = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs'
 local EltruismAuraPlayer = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs'
-local minimalAura = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
 
 --nameplates
 local EltruismNameplateEnemyPlayerBuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
@@ -68,6 +67,7 @@ local EltruismEverything = "Blacklist,Personal,NonPersonal"
 --based on luckyone
 local minimalBuffs = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 local minimalDebuffs = 'Blacklist,Whitelist,Personal,CCDebuffs'
+local minimalAura = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)

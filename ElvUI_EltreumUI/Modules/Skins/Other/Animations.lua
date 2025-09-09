@@ -64,16 +64,16 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 						end
 					end)
 
-					local x, y = UIParent:GetSize()
+					local x, y = E.UIParent:GetSize()
 					darksouls:SetSize(x,y)
 					darksoulstex:SetTexture(186185)
 					darksoulstex:SetVertexColor(0, 0, 0)
 					darksoulstex:SetAlpha(0.60)
 					darksoulstex:SetAllPoints(darksouls)
-					darksouls:SetPoint("Center", UIParent)
+					darksouls:SetPoint("Center", E.UIParent)
 					darksouls.Text:SetJustifyH("CENTER")
 					darksouls.Text:SetJustifyV("MIDDLE")
-					darksouls.Text:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+					darksouls.Text:SetPoint("CENTER", E.UIParent, "CENTER", 0, 0)
 					darksouls.Text:SetTextColor(1, 0.1803921568627451, 0.196078431372549, 0.5)
 					local fontsize = 240
 					if E.db.ElvUI_EltreumUI.skins.playerdeathcustom then
@@ -167,9 +167,9 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 						end
 					end)
 
-					local x, y = UIParent:GetSize()
+					local x, y = E.UIParent:GetSize()
 					gta:SetSize(x,y)
-					gta:SetPoint("Center", UIParent)
+					gta:SetPoint("Center", E.UIParent)
 
 					gtatex:SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\White8x8.tga")
 					gtatex:SetVertexColor(0.03, 0.03, 0)

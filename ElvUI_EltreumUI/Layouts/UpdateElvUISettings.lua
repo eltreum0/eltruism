@@ -9,15 +9,15 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 			--[[if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 				E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,276" --adjusted for the additional power in druid/monk in mop
-				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260"
+				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
 			end
 
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,341" --move it below the castbar for monk/druid in mop
+				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,341" --move it below the castbar for monk/druid in mop
 			end
 
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Thin") then
-				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260" --due to new monk/druid in mop
+				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260" --due to new monk/druid in mop
 			end]]
 
 			--[[if E.Retail then
@@ -62,6 +62,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["bags"]["split"]["warband16"] = true
 			E.db["bags"]["useBlizzardJunk"] = false
 			E.db["bags"]["warbandSize"] = 35
+
+			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end

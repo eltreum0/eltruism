@@ -190,35 +190,43 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	--aura filtering
 	ElvUI_EltreumUI:SetupAllAuras("Minimal")
-	--[[
-		E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,NonPersonal"
-		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = "Blacklist,Personal,NonPersonal"
-		E.db["unitframe"]["units"]["arena"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
-		E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,CCDebuffs,RaidDebuffs"
-		E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
-		E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
-		E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
-		E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
-		E.db["unitframe"]["units"]["tank"]["debuffs"]["priority"] = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
-		E.db["unitframe"]["units"]["tank"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
-		E.db["unitframe"]["units"]["assist"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
-		--E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,CCDebuffs,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,NonPersonal,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
-		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,NonPersonal"
-		E.db["unitframe"]["units"]["focustarget"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
-		E.db["unitframe"]["units"]["arena"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
-	]]
 
+	-- aura sorting
+	E.db["auras"]["buffs"]["sortMethod"] = "INDEX"
+	E.db["auras"]["debuffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["party"]["debuffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["player"]["buffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["player"]["debuffs"]["sortMethod"] = "INDEX"
+	E.db["unitframe"]["units"]["target"]["buffs"]["sortMethod"] = "INDEX"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
+
+	--new fonts
+	E.db["unitframe"]["units"]["raid1"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["auras"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid1"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["auras"]["sourceText"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["auras"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["auras"]["sourceText"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid3"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["auras"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid3"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["auras"]["sourceText"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["countFontOutline"] = "OUTLINE"
 
 	--fix possible issue
 	E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
@@ -465,10 +473,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["powerPrediction"]["enable"] = true
 
 	--movers
-	E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
-	E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
+	E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-146,-21"
+	E.db["movers"]["MoverRaidWarningFrame"] = "TOP,ElvUIParent,TOP,0,-182"
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
-	E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-8,-5"
+	E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-8,-5"
 	E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 	if not E.Retail then
@@ -478,10 +486,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
 	elseif E.Mists then
-		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
+		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
 	elseif E.Retail then
-		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,319"
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 	end
 
 	--its actually alt power on some fights like vigilant guardian
@@ -1882,8 +1890,8 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
-		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,UIParent,TOPLEFT,4,-432"
-		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,UIParent,TOPLEFT,104,-328"
+		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-432"
+		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,104,-328"
 		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,7,-321"
 		E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
 		E.db["unitframe"]["units"]["raid1"]["height"] = 30

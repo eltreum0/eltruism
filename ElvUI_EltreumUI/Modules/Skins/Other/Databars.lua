@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 				EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade3.tga")
 			end
 		else
-			EltruismDataTextTexture:SetPoint("BOTTOM", _G.UIParent)
+			EltruismDataTextTexture:SetPoint("BOTTOM", E.UIParent)
 		end
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom then
 			EltruismDataTextTexture.texture:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)

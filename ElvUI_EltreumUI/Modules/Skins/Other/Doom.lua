@@ -1,7 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local strsplit = _G.strsplit
 local ipairs = _G.ipairs
 local tonumber = _G.tonumber
@@ -34,7 +33,7 @@ local C_VoiceChat = _G.C_VoiceChat
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
-DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 350)
+DCP:SetPoint("CENTER",E.UIParent,"CENTER", 0, 350)
 DCP:SetSize(80,80)
 DCP:SetAlpha(0)
 

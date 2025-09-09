@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local classcolor = E.myClassColor
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local ERR_INV_FULL = _G.ERR_INV_FULL
 local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotLink = _G.GetLootSlotLink
@@ -25,8 +24,8 @@ local ConfirmLootSlot = _G.ConfirmLootSlot
 local lootsoundthrottle = 0
 
 --wishlist popup
-local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)
-WishlistItemFrame:SetPoint("TOP", UIParent, 0, -100)
+local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", E.UIParent)
+WishlistItemFrame:SetPoint("TOP", E.UIParent, 0, -100)
 WishlistItemFrame:SetSize(418, 72)
 E:CreateMover(WishlistItemFrame, "MoverEltruismWishlist", "EltruismWishlist", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,loottext,fastloot')
 

@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local classcolor = E.myClassColor
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
@@ -143,8 +142,8 @@ end
 
 --add one for classic/tbc as well, but for some reason doesnt really work inside a function, maybe because of the timer?
 if E.Classic then
-	local LevelUpFrame = CreateFrame("Frame", "EltruismLevelUp", UIParent)
-	LevelUpFrame:SetPoint("TOP", UIParent, 0, -100)
+	local LevelUpFrame = CreateFrame("Frame", "EltruismLevelUp", E.UIParent)
+	LevelUpFrame:SetPoint("TOP", E.UIParent, 0, -100)
 	LevelUpFrame:SetSize(418, 72)
 
 	LevelUpFrame.Text = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")

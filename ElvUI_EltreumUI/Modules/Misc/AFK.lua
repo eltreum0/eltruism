@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local UnitIsAFK = _G.UnitIsAFK
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local PlayMusic = _G.PlayMusic
@@ -85,7 +84,7 @@ end
 
 --add Eltruism logo to elvui afk screen
 local EltruismAFKLogoTexture = _G.ElvUIAFKFrame:CreateTexture()
-local EltruismAFKVignette = CreateFrame("Frame", "EltruismAFKVignette", UIParent)
+local EltruismAFKVignette = CreateFrame("Frame", "EltruismAFKVignette", E.UIParent)
 local EltruismAFKVignetteTexture = EltruismAFKVignette:CreateTexture()
 local EltruismAFKClassTexture = _G.ElvUIAFKFrame.bottom:CreateTexture()
 local ClassCrestFrameTexture = _G.ElvUIAFKFrame:CreateTexture("EltruismClassCrestAFK")

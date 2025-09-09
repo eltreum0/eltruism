@@ -2,7 +2,6 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local print = _G.print
 local unpack = _G.unpack
 local hooksecurefunc = _G.hooksecurefunc
@@ -260,16 +259,16 @@ function ElvUI_EltreumUI:eltruismdif(value)
 end
 
 -- Ghost frame for Automatic Weakauras Positioning
-local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", UIParent)
-EltreumWAAnchor:SetPoint("CENTER", UIParent, "CENTER", 0, -380)
-local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", UIParent)
-EltreumWAAnchor2:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 320)
-local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", UIParent)
+local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
+EltreumWAAnchor:SetPoint("CENTER", E.UIParent, "CENTER", 0, -380)
+local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", E.UIParent)
+EltreumWAAnchor2:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
+local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", E.UIParent)
 --postion the anchor right below the player unitframe
 EltruismWAConsumablesAnchor:SetPoint("LEFT", _G["ElvUF_Player"], 0, -75)
 --archeology mover
-local EltreumArcheologyAnchor = CreateFrame("Frame", "EltruismArcheology", UIParent)
-EltreumArcheologyAnchor:SetPoint("TOP", UIParent, "TOP", 0, -230)
+local EltreumArcheologyAnchor = CreateFrame("Frame", "EltruismArcheology", E.UIParent)
+EltreumArcheologyAnchor:SetPoint("TOP", E.UIParent, "TOP", 0, -230)
 EltreumArcheologyAnchor:SetSize(200, 50)
 
 function ElvUI_EltreumUI:Anchors()
@@ -1002,30 +1001,3 @@ else
 	bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerWheel, "BOTTOMLEFT", -2, -2)
 	_G.ColorPickerWheel:AddMaskTexture(bettermask)
 end
---for fps testing
---[[
-local framerate = CreateFrame("Frame", nil, UIParent)
-framerate.TimeText = framerate:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
-framerate.TimeText:SetJustifyV("TOP")
-framerate.TimeText:SetSize(0, 26)
-framerate.TimeText:SetPoint("CENTER", UIParent, "CENTER",0, 400)
-framerate.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), 36, E.db.general.fontStyle)
-framerate.TimeText:SetTextColor(1,1,1)
-UIParent.ClearAllPoints(FramerateText)
-_G.FramerateText:SetPoint("RIGHT",UIParent,"CENTER",0, 2035)
-_G.FramerateLabel:SetText("")
-ToggleFramerate()
-
-framerate:SetScript("OnUpdate", function()
-	_G.FRAMERATE_FREQUENCY = 0.1
-	if _G.FramerateText:GetText() ~= nil then
-		if tonumber(_G.FramerateText:GetText()) < 60 then
-			framerate.TimeText:SetTextColor(1,0,0)
-			framerate.TimeText:SetText(_G.FramerateText:GetText())
-		elseif tonumber(_G.FramerateText:GetText()) > 60 then
-			framerate.TimeText:SetTextColor(1,1,1)
-			framerate.TimeText:SetText(_G.FramerateText:GetText())
-		end
-	end
-end)
-]]

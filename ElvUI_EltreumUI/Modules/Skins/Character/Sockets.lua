@@ -1856,7 +1856,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				texture:SetTexture(nil)
 			end
 		end
-		InvisibleTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
+		InvisibleTooltip:SetOwner(E.UIParent, "ANCHOR_NONE")
 		InvisibleTooltip:SetHyperlink(link)
 		for i = 1, n do
 			local texture = _G[InvisibleTooltip:GetName().."Texture"..i]
@@ -1913,7 +1913,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.upgrades = { nil, nil }
 			local link = self:getLink()
 			if link then
-				InvisibleTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
+				InvisibleTooltip:SetOwner(E.UIParent, "ANCHOR_NONE")
 				InvisibleTooltip:SetHyperlink(self:getLink())
 				for i = 1, 5 do
 					local text = _G[InvisibleTooltip:GetName() .. "TextLeft" .. i]
