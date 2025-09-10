@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 						if unitframe.Health.bg then
 							unitframe.Health.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 						end
-						if unitframe.Health.backdropTex then
+						if unitframe.Health.backdropTex and not unitframe.EltruismDebuffExists then
 							unitframe.Health.backdropTex:SetVertexColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 						end
 					end
@@ -202,7 +202,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 				if button.Health.bg then
 					button.Health.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
-				if button.Health.backdropTex then
+				if button.Health.backdropTex and not button.EltruismDebuffExists then
 					button.Health.backdropTex:SetVertexColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 			end
