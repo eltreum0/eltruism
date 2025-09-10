@@ -17,8 +17,23 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 			-- the minus button
 			if rarescannerbutton.FilterEntityButton then
 				S:HandleButton(rarescannerbutton.FilterEntityButton)
-				rarescannerbutton.FilterEntityButton:SetNormalTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
-				rarescannerbutton.FilterEntityButton:SetPushedTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
+				rarescannerbutton.EltruismFilterEntityButtonTexture = rarescannerbutton:CreateTexture()
+				rarescannerbutton.EltruismFilterEntityButtonTexture:SetSize(16, 16)
+				rarescannerbutton.EltruismFilterEntityButtonTexture:SetPoint("CENTER",rarescannerbutton.FilterEntityButton, "CENTER")
+				rarescannerbutton.EltruismFilterEntityButtonTexture:SetParent(rarescannerbutton.FilterEntityButton)
+				rarescannerbutton.EltruismFilterEntityButtonTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
+				rarescannerbutton.EltruismFilterEntityButtonTexture:Show()
+			end
+
+			--the plus button
+			if rarescannerbutton.UnFilterEntityButton then
+				S:HandleButton(rarescannerbutton.UnFilterEntityButton)
+				rarescannerbutton.EltruismUnFilterEntityButtonTexture = rarescannerbutton:CreateTexture()
+				rarescannerbutton.EltruismUnFilterEntityButtonTexture:SetSize(16, 16)
+				rarescannerbutton.EltruismUnFilterEntityButtonTexture:SetPoint("CENTER",rarescannerbutton.UnFilterEntityButton, "CENTER")
+				rarescannerbutton.EltruismUnFilterEntityButtonTexture:SetParent(rarescannerbutton.UnFilterEntityButton)
+				rarescannerbutton.EltruismUnFilterEntityButtonTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\plus")
+				rarescannerbutton.EltruismUnFilterEntityButtonTexture:Show()
 			end
 
 			--the skull
