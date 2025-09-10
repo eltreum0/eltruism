@@ -66,21 +66,21 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 	end
 
 	--mark frame so that the gradient backdrop doesnt overwrite it
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-		if debuffType then
-			if not wasFiltered then
+	if debuffType then
+		if not wasFiltered then
+			object.EltruismDebuffExists = true
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 				local color = UF.db.colors.debuffHighlight[debuffType]
-				object.EltruismDebuffExists = true
 				object.EltruismDebuffr = color.r
 				object.EltruismDebuffg = color.g
 				object.EltruismDebuffb = color.b
 				object.EltruismDebuffa = color.a
-			else
-				object.EltruismDebuffExists = false
 			end
 		else
 			object.EltruismDebuffExists = false
 		end
+	else
+		object.EltruismDebuffExists = false
 	end
 end
 hooksecurefunc(UF, "PostUpdate_AuraHighlight", ElvUI_EltreumUI.UFGlow)
