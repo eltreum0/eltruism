@@ -208,9 +208,9 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
-		if E.db["nameplates"]["filters"]["Below 20"] then
-			E.db["nameplates"]["filters"]["Below 20"]["triggers"]["enable"] = false
-			E.db["nameplates"]["filters"]["Below 20 (Players)"]["triggers"]["enable"] = false
+		if E.db["nameplates"]["filters"]["ElvUI_Below20"] then
+			E.db["nameplates"]["filters"]["ElvUI_Below20"]["triggers"]["enable"] = false
+			E.db["nameplates"]["filters"]["ElvUI_Below20_Players"]["triggers"]["enable"] = false
 		end
 
 		E.db["nameplates"]["highlight"] = false

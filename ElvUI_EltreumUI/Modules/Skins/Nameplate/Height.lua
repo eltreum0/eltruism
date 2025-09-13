@@ -55,6 +55,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		end
 	end
 
+	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.unit:match("nameplate") then --unit is always nameplate
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.disableCombatConditions then
 			if UnitIsUnit(unit.unit, "target") then

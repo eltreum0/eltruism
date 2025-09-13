@@ -1147,6 +1147,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CurrencyTransferMenu,
 				_G.CurrencyTransferLog,
 				_G.PlayerSpellsFrame, --can be loaded before the addon too
+				_G.QuestTimerFrame, --era timed quests
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then
