@@ -1450,11 +1450,17 @@ local bossIDs = {
 	["150222"] = true, --gunker
 	["144248"] = true, --head-machinist-sparkflux
 	["155157"] = true, --hk-8-aerial-oppression-unit
+	["150190"] = true, --hk-8-aerial-oppression-unit
 	["144246"] = true, --k-u-j-0
 	["150159"] = true, --king-gobbamak
 	["152619"] = true, --king-mechagon
 	["144244"] = true, --the-platinum-pummeler
+	["145185"] = true, --gnomercy-4-u
 	["155407"] = true, --trixie-tazer
+	["150712"] = true, --trixie-tazer
+	["153755"] = true, --naeno-megacrash
+	["150396"] = true, --aerial-unit-r-21-x
+	["144249"] = true, --omega-buster
 
 	--shrine-of-the-storm
 	["134056"] = true, --aqusirr
@@ -1573,6 +1579,14 @@ local bossIDs = {
 	["175546"] = true, --timecapn-hooktail
 	["176564"] = true, --zogron
 	["175616"] = true, --zophex
+	["176705"] = true, --venza-goldfuse
+	["179334"] = true, --portalmancer-zohonn
+	["180486"] = true, --dirtwhistle
+	["180399"] = true, --evaile
+	["180485"] = true, --hips
+	["180470"] = true, --verethian
+	["180484"] = true, --vilt
+	["176555"] = true, --achillite
 
 	--halls-of-atonement
 	["156827"] = true, --echelon
