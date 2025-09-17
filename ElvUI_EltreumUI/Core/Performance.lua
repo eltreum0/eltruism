@@ -328,3 +328,27 @@ framerate:SetScript("OnUpdate", function()
 	end
 end)
 ]]
+
+--dressupmodel/playermodel usage test
+--[[
+local function TEST()
+	for i =1, 20 do
+		local m = CreateFrame("DressUpModel", "TESTMODEL1", _G.ElvUIParent)
+		m:SetPoint("CENTER", _G.ElvUIParent, "CENTER", i, 0)
+		m:SetSize(128, 128)
+		m:SetCamDistanceScale(4.5)
+		m:SetFacing(6)
+		m:SetUnit("player")
+		m:SetAnimation(1330)
+		m:SetSheathed(true)
+		m:SetPosition(0,0,0)
+		m:Show()
+		m:Hide()
+		m:Show()
+	end
+end
+
+local f = CreateFrame("frame")
+f:RegisterEvent("PLAYER_STARTED_MOVING")
+f:SetScript("OnEvent", TEST)
+]]
