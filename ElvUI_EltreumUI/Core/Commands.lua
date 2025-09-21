@@ -198,6 +198,29 @@ function ElvUI_EltreumUI:RunCommands(message)
 			E.PopupDialogs["ELTRUISMBORDERTEST"].text = "Disabling test mode universal borders."
 		end
 		E:StaticPopup_Show('ELTRUISMBORDERTEST')
+	elseif message == 'universalshadows' then
+		E.PopupDialogs["ELTRUISMSHADOWTEST"] = {
+			text = "Placeholder",
+			OnAccept = function()
+				if not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
+					E.db.ElvUI_EltreumUI.skins.shadow.universalshadows = true
+				else
+					E.db.ElvUI_EltreumUI.skins.shadow.universalshadows = false
+				end
+				ReloadUI()
+			end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		if not E.db.ElvUI_EltreumUI.borders.universalborders then
+			E.PopupDialogs["ELTRUISMSHADOWTEST"].text = "Test mode to enable shadows everywhere."
+		else
+			E.PopupDialogs["ELTRUISMSHADOWTEST"].text = "Disabling test mode universal shadows."
+		end
+		E:StaticPopup_Show('ELTRUISMSHADOWTEST')
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground then
 			ElvUI_EltreumUI:BlackBg()

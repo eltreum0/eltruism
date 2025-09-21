@@ -223,6 +223,7 @@ P.ElvUI_EltreumUI = {
 			blizzard = true,
 			tooltip = true,
 			datatexts = true,
+			universalshadows = false,
 		},
 
 		meetinghorn = false,
