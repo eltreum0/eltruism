@@ -18,4 +18,5 @@
 	<Script file='CombatMusic.lua'/>
 	<Script file='Cooldown.lua'/>
 	<Script file='Quests.lua'/>
+	<Script file='Changelog.lua'/>
 </Ui>
