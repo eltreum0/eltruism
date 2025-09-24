@@ -48,11 +48,11 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			--other
 			["Player-100-0DED4208"] = EltreumIcon,
 
-			--Cata
-			["Player-4408-03A87F8F"] = EltreumIcon,
-			["Player-4408-03E923CC"] = EltreumIcon,
-			["Player-4408-03F14DE7"] = EltreumIcon,
-			["Player-4408-04531453"] = EltreumIcon,
+			--MOP
+			["Player-4385-05E59530"] = EltreumIcon,
+			["Player-4385-05E598E3"] = EltreumIcon,
+			["Player-4385-05E59B67"] = EltreumIcon,
+			["Player-4385-05E6F7FE"] = EltreumIcon,
 
 			--Era Hardcore
 			["Eltreum-DefiasPillager"] = EltreumIcon,
