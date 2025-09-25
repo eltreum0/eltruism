@@ -1,21 +1,32 @@
-### 4.3.8.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.3.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an experimental instant DPS tag [eltruism:unitdps]  
-Added more models to the Portrait Fix  
-Added shadows to Fly outs  
-Updated Portrait function to enable overlay and toggle the 3D models alongside the setting  
-Updated Combat Music to better handle Boss units that don't trigger Encounter Start events  
-Updated some tags and other functions to allow AI party members to use class colors  
-Updated Sockets in Classic Era to better show tooltips for the Enchants  
-Updated Quest Item Bar to allow item usage in combat  
-Updated Bag Profession Icons to add missing IDs  
-Updated the maximum size shadows can be set to  
-Updated Immersion skin to better handle fonts  
-Updated music for Earthen and Dracthyr  
-Fixed an issue with the Bag Profession missing Icons in Mists of Pandaria Classic and Classic Era  
-Fixed an issue when disabling ElvUI's spellbook skin would still have the shadows  
-Fixed an issue when using Leatrix Maps and having ElvUI world map disabled  
-Fixed shadows on unitframes when the infopanel was enabled but not shown  
-Fixed an error with the Item Delete due to a change on Blizzard's API  
-Fixed an error in Classic Era when inspecting units  
-Fixed an issue with the Leatrix Maps DB when not using Leatrix Maps
+Added EltreumWorldCombatFriendly nameplate stylefilter, which will hide friendly units while in combat in the open world  
+Added the command /eltruism performancecvars, which will change several graphical settings to improve performance  
+Added the command /eltruism universalborders, which is an update to add borders to all ElvUI frames  
+Added 2 new borders that are new versions that use the same default border dimensions  
+Added the command /eltruism universalshadows, which adds shadows to all ElvUI Frames  
+Added several fonts to the Font Outline and Custom Font functions  
+Added borders to nameplate castbars  
+Added a skin for SimpleAddonManager  
+Updated how some events are handled to improve how Delve bosses are detected for Quests and Combat Music  
+Updated Ace3 skin to use some ElvUI values and run without needing Eltruism's ElvUI Skin  
+Updated Ace3 skin to make ElvUI Tabs transparent like they used to be  
+Updated ElvUI profiles to use the new Bank settings  
+Updated NPC ID list to filter more bosses  
+Updated ElvUI nameplate Style Filters  
+Updated Quest hiding while in combat  
+Updated German locale by Dlarge  
+Updated ElvUI profiles movers  
+Updated DeadlyBossMods skin  
+Updated DynamicCam profile  
+Updated WindTools profile  
+Updated RareScanner skin  
+Updated Auctionator Skin  
+Updated BigWigs profile  
+Updated Hekili skin  
+Updated SimC skin  
+Fixed some coloring and text on the Objective Tracker Skin for Retail  
+Fixed an issue with the Objective Max Height in Retail  
+Fixed an issue with the Objective Mover in Retail  
+Fixed a compatibility issue with Reforged Armory  
+Fixed an issue with the Cursor
