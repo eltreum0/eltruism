@@ -215,7 +215,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			whileDead = 1,
 			hideOnEscape = false,
 		}
-		if not E.db.ElvUI_EltreumUI.borders.universalborders then
+		if not E.db.ElvUI_EltreumUI.borders.universalshadows then
 			E.PopupDialogs["ELTRUISMSHADOWTEST"].text = "Test mode to enable shadows everywhere."
 		else
 			E.PopupDialogs["ELTRUISMSHADOWTEST"].text = "Disabling test mode universal shadows."
