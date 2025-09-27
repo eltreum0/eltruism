@@ -646,6 +646,7 @@ local function SkinFrame(object)
 						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
 						frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+						--check maldraxus pool for errors, maybe it has a different statusbar
 						frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
 						if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
 							hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
