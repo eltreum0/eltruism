@@ -169,11 +169,11 @@ function ElvUI_EltreumUI:AFKLogo()
 		end
 
 		--model, delay because it gets set again
-		E:Delay(0,function()
+		--[[E:Delay(0,function()
 			_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
 			_G.ElvUIAFKFrame.bottom.modelHolder:SetPoint("BOTTOMRIGHT", _G.ElvUIAFKFrame.bottom, "BOTTOMRIGHT", 50, 220)
 			_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
-		end)
+		end)]]
 
 		--time
 		_G.ElvUIAFKFrame.bottom.time:ClearAllPoints()
