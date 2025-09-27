@@ -34,7 +34,9 @@ WishlistItemFrame.Text:SetSize(800, 72)
 WishlistItemFrame.Text:SetPoint("CENTER", "EltruismWishlistItem", "CENTER", 0, 16)
 WishlistItemFrame.Text:SetTextColor(1, 1, 1)
 WishlistItemFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-WishlistItemFrame.Text:SetText("You have looted")--LOOT_ITEM_SELF You receive loot: %s
+--LOOT_ITEM_SELF You receive loot: %s
+local lootstring = _G.LOOT_ITEM_SELF:gsub("%%s", "") or "You receive loot:"
+WishlistItemFrame.Text:SetText(lootstring)
 
 WishlistItemFrame.Text2 = WishlistItemFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WishlistItemFrame.Text2:SetSize(418, 72)
