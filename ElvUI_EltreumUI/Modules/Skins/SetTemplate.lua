@@ -647,12 +647,10 @@ local function SkinFrame(object)
 						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
 						--frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-						if not widgetAtlas[atlas] then --fallback for other atlas
-							frame:GetParent():GetParent().Bar:SetStatusBarColor(255,255,255,1) --default to a white color
-							if E.db.ElvUI_EltreumUI.dev then
-								print("new atlas:",atlas)
-							end
-						else
+						if E.db.ElvUI_EltreumUI.dev then
+							print("atlas:",atlas)
+						end
+						if widgetAtlas[atlas] then
 							frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
 						end
 						if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
