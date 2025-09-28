@@ -195,6 +195,7 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		if E.Retail then
 			SetCVar('raidGraphicsSpellDensity', 1)
 			SetCVar('graphicsSpellDensity', 1) --use the new
+			SetCVar('spellVisualDensityFilterSetting', 1) --same here
 		end
 	elseif command then
 
