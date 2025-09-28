@@ -19,6 +19,7 @@ local widgetAtlas = {
 	["widgetstatusbar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 	["widgetstatusbar-fill-yellow"] = { r = 255, g = 255, b = 0, a = 1},
 	["cosmic-bar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
+	["mixingpool-frame-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 }
 
 local function togglebackdrop(frame,show)
@@ -646,8 +647,14 @@ local function SkinFrame(object)
 						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
 						frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-						--check maldraxus pool for errors, maybe it has a different statusbar
-						frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						if not widgetAtlas[atlas] then --fallback for other atlas
+							frame:GetParent():GetParent().Bar:SetStatusBarColor(255,255,255,1) --default to a white color
+							if E.db.ElvUI_EltreumUI.dev then
+								print("new atlas:",atlas)
+							end
+						else
+							frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						end
 						if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
 							hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
 								local _, maxValue = widget:GetMinMaxValues()
