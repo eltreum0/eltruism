@@ -174,6 +174,17 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		}
 	end
 
+	--fix the style filter
+	if E.global.nameplates.filters.EltreumWorldCombatFriendly then
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["actions"]["hide"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["inCombat"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["enemyPlayer"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["friendlyPlayer"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["playerCanNotAttack"] = true
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["priority"] = 15
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["instanceType"]["none"] = true
+	end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()

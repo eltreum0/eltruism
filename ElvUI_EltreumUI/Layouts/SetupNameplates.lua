@@ -884,6 +884,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["friendlyPlayer"] = true
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["playerCanNotAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["priority"] = 15
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["instanceType"]["none"] = true
 
 		--E:StaggeredUpdateAll()
 		E:UpdateNamePlates()
