@@ -645,7 +645,7 @@ local function SkinFrame(object)
 					end
 					if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
 						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
-						frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
+						--frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 						if not widgetAtlas[atlas] then --fallback for other atlas
 							frame:GetParent():GetParent().Bar:SetStatusBarColor(255,255,255,1) --default to a white color
