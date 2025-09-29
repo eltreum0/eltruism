@@ -4207,9 +4207,9 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 					edgeSize = E.db.ElvUI_EltreumUI.borders.nameplatecastsize,
 				})
 				if E.db.ElvUI_EltreumUI.borders.classcolor then
-					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
+					nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
 				else
-					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
+					nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
 				end
 
 				if E.db.ElvUI_EltreumUI.borders.universalborders then
