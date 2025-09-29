@@ -333,9 +333,9 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 				frame:Hide()
 			end
 		end
-		if (frame.SelectedTexture or frame.glossTex) then --fix some more buttons
+		--[[if (frame.SelectedTexture or frame.glossTex) then --fix some more buttons
 			frame.eltruismbgtexture:Hide()
-		end
+		end]]
 		if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
 			frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
 			frame.eltruismbgtexture:SetParent(frame:GetParent())
