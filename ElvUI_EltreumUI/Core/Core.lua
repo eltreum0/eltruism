@@ -545,7 +545,7 @@ do
 			_G.StaticPopup1Text:SetText(deletetext)
 		end
 
-		if E.Retail then
+		if not E.Classic then
 			_G.StaticPopup1.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
 		else
 			_G.StaticPopup1.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
