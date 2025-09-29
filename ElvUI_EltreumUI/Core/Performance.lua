@@ -191,11 +191,9 @@ function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a bo
 end
 
 function ElvUI_EltreumUI:PerformanceCVars(command,login)
-	if login then --these get reset on logout/login
+	if login then --these get reset on logout/login, TODO confirm they still do
 		if E.Retail then
-			SetCVar('raidGraphicsSpellDensity', 1)
-			SetCVar('graphicsSpellDensity', 1) --use the new
-			SetCVar('spellVisualDensityFilterSetting', 1) --same here
+			SetCVar('spellVisualDensityFilterSetting', 1)
 		end
 	elseif command then
 
@@ -218,6 +216,8 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('ResampleAlwaysSharpen', 1) --might as well use FSR to make it look sharper
 		SetCVar('ResampleSharpness', 0.2) --0 is full sharpen, set it slighly below full strength
 		SetCVar('ResampleQuality', 3) --use FSR
+		SetCVar('raidGraphicsSpellDensity', 1) --use the new
+		SetCVar('graphicsSpellDensity', 1) --use the new
 
 		--LOD things
 		SetCVar('entityLodDist',10) --USEDEFAULT (lowest) value
