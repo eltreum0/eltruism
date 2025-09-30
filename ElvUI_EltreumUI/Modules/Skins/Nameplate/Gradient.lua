@@ -300,3 +300,11 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 	end
 end
 hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
+
+--interrupted
+function ElvUI_EltreumUI:Castbar_PostCastFail()
+	if self.EltruismNameplateBorder then
+		self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castInterruptedColor.r, E.db.nameplates.colors.castInterruptedColor.g, E.db.nameplates.colors.castInterruptedColor.b, 1)
+	end
+end
+hooksecurefunc(NP, "Castbar_PostCastFail", ElvUI_EltreumUI.Castbar_PostCastFail)
