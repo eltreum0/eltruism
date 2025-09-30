@@ -843,36 +843,6 @@ function ElvUI_EltreumUI:Shadows()
 							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetScale(0.7)
 							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetPoint("CENTER", _G.EncounterJournalNavBarOverflowButton, "CENTER", 0, 0)
 						end
-
-						--seems to not detect backdrop correctly and still set shadows to the frame, leaving gaps
-						--[[
-							local encountershadows = {
-								_G.EncounterJournalSuggestTab,
-								_G.EncounterJournalDungeonTab,
-								_G.EncounterJournalRaidTab,
-								_G.EncounterJournalLootJournalTab,
-								_G.EncounterJournalEncounterFrameInfoOverviewTab,
-								_G.EncounterJournalEncounterFrameInfoLootTab,
-								_G.EncounterJournalEncounterFrameInfoBossTab,
-								_G.EncounterJournalEncounterFrameInfoModelTab,
-								_G.EncounterJournalMonthlyActivitiesTab,
-							}
-							for _, frame in pairs(encountershadows) do
-								if frame then
-									if frame.backdrop then
-										if not frame.backdrop.shadow then
-											frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
-										end
-									elseif not frame.backdrop then
-										if not frame.shadow then
-											frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(frame.shadow)
-										end
-									end
-								end
-							end
-						]]
 						if not _G.EncounterJournal.shadow then
 							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournal.shadow)
@@ -4156,12 +4126,34 @@ function ElvUI_EltreumUI:RaidShadows()
 end
 
 --benik's version
-local classcolor = E.myClassColor
+local bordercolor = E.myClassColor
 function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 	if not nameplate then return end
 	local bordertexture
 	if E.private.nameplates.enable then
 		if E.db.ElvUI_EltreumUI.borders.borders and (E.db.ElvUI_EltreumUI.borders.nameplateborders or E.db.ElvUI_EltreumUI.borders.nameplatecastborders) then
+			if E.db.ElvUI_EltreumUI.borders.classcolor and nameplate.unit then
+				local _, className = _G.UnitClass(nameplate.unit)
+				local isPlayer = _G.UnitIsPlayer(nameplate.unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.unit))
+
+				if isPlayer then
+					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
+				else
+					local reaction = _G.UnitReaction(nameplate.unit, "player")
+					local targettype
+					if reaction and reaction >= 5 then
+						targettype = "NPCFRIENDLY"
+					elseif reaction and reaction == 4 then
+						targettype = "NPCNEUTRAL"
+					elseif reaction and reaction == 3 then
+						targettype = "NPCUNFRIENDLY"
+					elseif reaction and reaction <= 2 then
+						targettype = "NPCHOSTILE"
+					end
+					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
+				end
+			end
+
 			if E.db.ElvUI_EltreumUI.borders.nameplateborders and nameplate.Health then
 				if not nameplate.Health.EltruismNameplateBorder then
 					nameplate.Health.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Health, _G.BackdropTemplateMixin and "BackdropTemplate")
@@ -4177,15 +4169,11 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 					edgeFile = bordertexture,
 					edgeSize = E.db.ElvUI_EltreumUI.borders.nameplatesize,
 				})
-
-				if not E.db.ElvUI_EltreumUI.borders.classcolor then
-					classcolor = {
-						r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-						g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-						b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-					}
+				if E.db.ElvUI_EltreumUI.borders.classcolor then
+					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
+				else
+					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
 				end
-				nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				if E.db.ElvUI_EltreumUI.borders.universalborders then
 					if nameplate.backdrop and nameplate.backdrop.eltruismuniversalborders then
@@ -4198,27 +4186,6 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 					end
 				end
 
-				--will need more work since nameplates can change, same issue with gradient nameplates, likely needs to be moved over there
-				--[[local player = UnitIsPlayer(nameplate.unit) or (E.Retail and UnitInPartyIsAI(nameplate.unit))
-				if player then
-					local _, className = UnitClass(nameplate.unit)
-					local colortableplayer = ElvUI_EltreumUI:GetClassColorsRGB(className)
-					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(colortableplayer.r,colortableplayer.g,colortableplayer.b, 1)
-				else
-					local reaction = UnitReaction(nameplate.unit, "player")
-					local targettype
-					if reaction and reaction >= 5 then
-						targettype = "NPCFRIENDLY"
-					elseif reaction and reaction == 4 then
-						targettype = "NPCNEUTRAL"
-					elseif reaction and reaction == 3 then
-						targettype = "NPCUNFRIENDLY"
-					elseif reaction and reaction <= 2 then
-						targettype = "NPCHOSTILE"
-					end
-					local colortablenpc = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
-					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(colortablenpc.r,colortablenpc.g,colortablenpc.b, 1)
-				end]]
 				nameplate.Health.EltruismNameplateBorder:SetFrameLevel(nameplate.Health:GetFrameLevel()+1)
 				nameplate.Health.EltruismNameplateBorder:SetFrameStrata(nameplate.Health:GetFrameStrata())
 				nameplate.Health.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Health, "CENTER", 0, 0)
@@ -4239,15 +4206,11 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 					edgeFile = bordertexture,
 					edgeSize = E.db.ElvUI_EltreumUI.borders.nameplatecastsize,
 				})
-
-				if not E.db.ElvUI_EltreumUI.borders.classcolor then
-					classcolor = {
-						r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-						g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-						b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-					}
+				if E.db.ElvUI_EltreumUI.borders.classcolor then
+					nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
+				else
+					nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
 				end
-				nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				if E.db.ElvUI_EltreumUI.borders.universalborders then
 					if nameplate.Castbar.backdrop and nameplate.Castbar.backdrop.eltruismuniversalborders then

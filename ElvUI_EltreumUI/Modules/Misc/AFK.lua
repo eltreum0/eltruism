@@ -168,15 +168,12 @@ function ElvUI_EltreumUI:AFKLogo()
 			EltruismAFKLogoTexture:Point('LEFT', _G.ElvUIAFKFrame.bottom,'CENTER', 10, 0)
 		end
 
-		--model
-		if not _G.ElvUIAFKFrame.bottom.modelHolder.EltruismAdjust then
-			local point, relativeTo, relativePoint, _, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
+		--model, delay because it gets set again
+		--[[E:Delay(0,function()
 			_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
-			_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
+			_G.ElvUIAFKFrame.bottom.modelHolder:SetPoint("BOTTOMRIGHT", _G.ElvUIAFKFrame.bottom, "BOTTOMRIGHT", 50, 220)
 			_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
-
-			_G.ElvUIAFKFrame.bottom.modelHolder.EltruismAdjust = true
-		end
+		end)]]
 
 		--time
 		_G.ElvUIAFKFrame.bottom.time:ClearAllPoints()

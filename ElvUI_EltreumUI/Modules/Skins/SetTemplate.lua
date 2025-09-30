@@ -19,6 +19,7 @@ local widgetAtlas = {
 	["widgetstatusbar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 	["widgetstatusbar-fill-yellow"] = { r = 255, g = 255, b = 0, a = 1},
 	["cosmic-bar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
+	["mixingpool-frame-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 }
 
 local function togglebackdrop(frame,show)
@@ -332,9 +333,9 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 				frame:Hide()
 			end
 		end
-		if (frame.SelectedTexture or frame.glossTex) then --fix some more buttons
+		--[[if (frame.SelectedTexture or frame.glossTex) then --fix some more buttons
 			frame.eltruismbgtexture:Hide()
-		end
+		end]]
 		if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
 			frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
 			frame.eltruismbgtexture:SetParent(frame:GetParent())
@@ -644,9 +645,14 @@ local function SkinFrame(object)
 					end
 					if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
 						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
-						frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
+						--frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-						frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						if E.db.ElvUI_EltreumUI.dev then
+							print("atlas:",atlas)
+						end
+						if widgetAtlas[atlas] then
+							frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						end
 						if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
 							hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
 								local _, maxValue = widget:GetMinMaxValues()

@@ -33,6 +33,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		ElvUI_EltreumUI:SetupStyleFilters()
 
 		--Nameplates
+		E.db["nameplates"]["fadeIn"] = false --disable fading animation
 		E.db["nameplates"]["clampToScreen"] = true
 		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.86666476726532
 		E.db["nameplates"]["colors"]["glowColor"]["g"] = 0.4392147064209
@@ -883,6 +884,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["nameplateType"]["friendlyPlayer"] = true
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["playerCanNotAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["priority"] = 15
+		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["instanceType"]["none"] = true
 
 		--E:StaggeredUpdateAll()
 		E:UpdateNamePlates()

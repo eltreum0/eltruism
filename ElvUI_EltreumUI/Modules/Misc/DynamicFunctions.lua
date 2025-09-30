@@ -480,7 +480,6 @@ function ElvUI_EltreumUI:EmptyDetailsTable()
 		_G._detalhes.spell_school_cache = {}
 		_G._detalhes.boss_mods_timers = {}
 		_G._detalhes.trinket_data = {}
-		_G._detalhes.savedCustomSpells = {}
 		_G._detalhes.keystone_cache = {}
 		_G._detalhes.raid_data = {}
 
