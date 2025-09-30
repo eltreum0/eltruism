@@ -235,7 +235,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				if _G.ObjectiveFrameMover then
 					questside = _G.ObjectiveFrameMover:GetPoint()
 				else
-					questside = "RIGHT"
+					questside = _G.ObjectiveTrackerFrame:GetPoint()
 				end
 
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
