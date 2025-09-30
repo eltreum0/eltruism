@@ -25,10 +25,14 @@ Added a skin for SimpleAddonManager
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
 Updated how some events are handled to improve how Delve bosses are detected for Quests and Combat Music
+Updated Nameplate Health and Castbar Border colors to use unit colors and interrupt status
 Updated Ace3 skin to use some ElvUI values and run without needing Eltruism's ElvUI Skin
+Updated text on Item Wishlist to use a global string instead of pure English
+Updated profile to disable nameplate fade-in animation in ElvUI nameplates
 Updated Ace3 skin to make ElvUI Tabs transparent like they used to be
 Updated ElvUI profiles to use the new Bank settings
 Updated NPC ID list to filter more bosses
+Updated Details table cleanup function
 Updated ElvUI nameplate Style Filters
 Updated Quest hiding while in combat
 Updated German locale by Dlarge
@@ -45,8 +49,13 @@ Updated SimC skin
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
+Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disapper inside instances
+Fixed an issue where Item Deletion stopped working in Mists of Pandaria due to a Blizzard change
+Fixed an issue where ElvUI Skin was missing on some buttons such as Actionbars and Bags
+Fixed an issue with a missing Atlas for the Pool of Mixed Monstrosities
 Fixed some coloring and text on the Objective Tracker Skin for Retail
 Fixed an issue with the Objective Max Height in Retail
+Fixed an issue while using ElvUI AFK and Eltruism AFK
 Fixed an issue with the Objective Mover in Retail
 Fixed a compatibility issue with Reforged Armory
 Fixed an issue with the Cursor
