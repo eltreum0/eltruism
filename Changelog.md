@@ -6,7 +6,7 @@ Updated Nameplate Health and Castbar Border colors to use unit colors and interr
 Updated text on Item Wishlist to use a global string instead of pure English  
 Updated profile to disable nameplate fade-in animation in ElvUI nameplates  
 Updated Details table cleanup function  
-Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disapper inside instances  
+Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disappear inside instances  
 Fixed an issue where Item Deletion stopped working in Mists of Pandaria due to a Blizzard change  
 Fixed an issue where ElvUI Skin was missing on some buttons such as Actionbars and Bags  
 Fixed an issue with a missing Atlas for the Pool of Mixed Monstrosities  

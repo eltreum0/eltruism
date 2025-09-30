@@ -29,7 +29,7 @@ Updated Auctionator Skin
 Updated BigWigs profile  
 Updated Hekili skin  
 Updated SimC skin  
-Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disapper inside instances  
+Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disappear inside instances  
 Fixed an issue where Item Deletion stopped working in Mists of Pandaria due to a Blizzard change  
 Fixed an issue where ElvUI Skin was missing on some buttons such as Actionbars and Bags  
 Fixed an issue with a missing Atlas for the Pool of Mixed Monstrosities  
