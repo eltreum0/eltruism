@@ -231,11 +231,10 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBonusBannerFrame.FiligreeGlow:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
 				end
 
-
 				if _G.ObjectiveFrameMover then
 					questside = _G.ObjectiveFrameMover:GetPoint()
 				else
-					questside = "RIGHT"
+					questside = _G.ObjectiveTrackerFrame:GetPoint()
 				end
 
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed

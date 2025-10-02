@@ -79,7 +79,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:RaidDeathGroupCheck() -- attempt at prevent CLEU tracking
 	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
 	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
-	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
 	ElvUI_EltreumUI:PlayerDeathAnimation() -- death animation
@@ -122,6 +121,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.Classic then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	end
+	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
