@@ -90,14 +90,13 @@ function ElvUI_EltreumUI:ScrapFix()
 				end
 			end
 		end)
-	end
-
-	if _G.MerchantBuyBackItem and not _G.MerchantBuyBackItem.EltruismSkin then
-		for i = 1, _G.MerchantBuyBackItem:GetNumChildren() do
-			local v = select(i, _G.MerchantBuyBackItem:GetChildren())
-			if v.Tag and v.Tag:match("Scrap") and not _G.MerchantBuyBackItem.EltruismSkin then
-				S:HandleButton(v)
-				_G.MerchantBuyBackItem.EltruismSkin = true
+		if _G.MerchantBuyBackItem and not _G.MerchantBuyBackItem.EltruismSkin then
+			for i = 1, _G.MerchantBuyBackItem:GetNumChildren() do
+				local v = select(i, _G.MerchantBuyBackItem:GetChildren())
+				if v.Tag and v.Tag:match("Scrap") and not _G.MerchantBuyBackItem.EltruismSkin then
+					S:HandleButton(v)
+					_G.MerchantBuyBackItem.EltruismSkin = true
+				end
 			end
 		end
 	end
