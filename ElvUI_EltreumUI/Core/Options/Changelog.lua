@@ -18,6 +18,7 @@ Added the command /eltruism universalborders, which is an update to add borders 
 Added 2 new borders that are new versions that use the same default border dimensions
 Added the command /eltruism universalshadows, which adds shadows to all ElvUI Frames
 Added several fonts to the Font Outline and Custom Font functions
+Added shadows to the Blizzard Cooldown Viewer
 Added borders to nameplate castbars
 Added a skin for SimpleAddonManager
 ]], 3, "small", nil, nil, nil, nil, "full")
@@ -35,6 +36,7 @@ Updated NPC ID list to filter more bosses
 Updated Details table cleanup function
 Updated ElvUI nameplate Style Filters
 Updated Quest hiding while in combat
+Updated Russian locale by ZamestoTV
 Updated German locale by Dlarge
 Updated ElvUI profiles movers
 Updated DeadlyBossMods skin
@@ -52,6 +54,7 @@ Updated SimC skin
 Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disappear inside instances
 Fixed an issue where Item Deletion stopped working in Mists of Pandaria due to a Blizzard change
 Fixed an issue where ElvUI Skin was missing on some buttons such as Actionbars and Bags
+Fixed an issue where the Quest Icon button wouldnt follow the side of the quest
 Fixed an issue with a missing Atlas for the Pool of Mixed Monstrosities
 Fixed some coloring and text on the Objective Tracker Skin for Retail
 Fixed an issue with the Objective Max Height in Retail

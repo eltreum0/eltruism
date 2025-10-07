@@ -1,4 +1,4 @@
-### 4.3.9.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.4.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added EltreumWorldCombatFriendly nameplate stylefilter, which will hide friendly units while in combat in the open world  
 Added the command /eltruism performancecvars, which will change several graphical settings to improve performance  
@@ -19,6 +19,7 @@ Updated NPC ID list to filter more bosses
 Updated Details table cleanup function  
 Updated ElvUI nameplate Style Filters  
 Updated Quest hiding while in combat  
+Updated Russian locale by ZamestoTV  
 Updated German locale by Dlarge  
 Updated ElvUI profiles movers  
 Updated DeadlyBossMods skin  
@@ -32,6 +33,7 @@ Updated SimC skin
 Fixed an issue with the EltreumWorldCombatFriendly Nameplate Style Filter where some nameplates could disappear inside instances  
 Fixed an issue where Item Deletion stopped working in Mists of Pandaria due to a Blizzard change  
 Fixed an issue where ElvUI Skin was missing on some buttons such as Actionbars and Bags  
+Fixed an issue where the Quest Icon button wouldnt follow the side of the quest  
 Fixed an issue with a missing Atlas for the Pool of Mixed Monstrosities  
 Fixed some coloring and text on the Objective Tracker Skin for Retail  
 Fixed an issue with the Objective Max Height in Retail  
