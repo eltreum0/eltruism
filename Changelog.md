@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.4.0.1
+Fixed version check in Retail  
+---
 ### 4.4.0
 Added shadows to the Blizzard Cooldown Viewer  
 Updated Russian locale by ZamestoTV  

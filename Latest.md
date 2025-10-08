@@ -1,4 +1,4 @@
-### 4.4.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.4.0.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added EltreumWorldCombatFriendly nameplate stylefilter, which will hide friendly units while in combat in the open world  
 Added the command /eltruism performancecvars, which will change several graphical settings to improve performance  
