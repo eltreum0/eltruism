@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.4.0
+Added shadows to the Blizzard Cooldown Viewer  
+Updated Russian locale by ZamestoTV  
+Fixed an issue where the Quest Icon button wouldnt follow the side of the quest  
+---
 ### 4.3.9.1
 Updated Nameplate Health and Castbar Border colors to use unit colors and interrupt status  
 Updated text on Item Wishlist to use a global string instead of pure English  
