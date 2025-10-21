@@ -187,14 +187,10 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 					else
 						if needUpdate then
 							needUpdate = false
-							if E.Retail or E.Mists then
-								local cooldownData = currGetCooldown(currArg)
-								if type(cooldownData) =="table" then
-									startstamp, durationstamp = cooldownData.startTime, cooldownData.duration
-								else --likely item due to 11.0
-									startstamp, durationstamp = currGetCooldown(currArg)
-								end
-							else
+							local cooldownData = currGetCooldown(currArg)
+							if type(cooldownData) =="table" then
+								startstamp, durationstamp = cooldownData.startTime, cooldownData.duration
+							else --likely item due to 11.0
 								startstamp, durationstamp = currGetCooldown(currArg)
 							end
 							if currStart ~= startstamp or currDuration ~= durationstamp then
@@ -258,14 +254,10 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 end
 
 function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown)
-	if E.Retail or E.Mists then
-		local cooldownData = getCooldownFunc(arg)
-		if type(cooldownData) =="table" then
-			start, duration, enabled = cooldownData.startTime, cooldownData.duration, cooldownData.isEnabled
-		else --likely item due to 11.0
-			start, duration, enabled = getCooldownFunc(arg)
-		end
-	else
+	local cooldownData = getCooldownFunc(arg)
+	if type(cooldownData) =="table" then
+		start, duration, enabled = cooldownData.startTime, cooldownData.duration, cooldownData.isEnabled
+	else --likely item due to 11.0
 		start, duration, enabled = getCooldownFunc(arg)
 	end
 	if enabled == true then --11 sometimes is true, because there is C_Container.GetItemCooldown and C_Item.GetItemCooldown
@@ -325,35 +317,22 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	end
 
 	local baseCooldown = GetSpellBaseCooldown(spell)
-	if E.Retail or E.Mists then
-		if baseCooldown == 0 then
-			local spellChargeData = GetSpellCharges(spell)
-			if spellChargeData then
-				baseCooldown = spellChargeData.cooldownDuration
-			else
-				local spellCDData = GetSpellCooldown(spell)
-				baseCooldown = spellCDData.duration
-			end
+	if baseCooldown == 0 then
+		local spellChargeData = GetSpellCharges(spell)
+		if spellChargeData then
+			baseCooldown = spellChargeData.cooldownDuration
+		else
+			local spellCDData = GetSpellCooldown(spell)
+			baseCooldown = spellCDData.duration
 		end
-		if baseCooldown then
-			if baseCooldown < 2200 then
-				if baseCooldown > 0 then
-					ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown))
-				end
-			else
-				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+	end
+	if baseCooldown then
+		if baseCooldown < 2200 then
+			if baseCooldown > 0 then
+				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown))
 			end
-		end
-	else
-		if baseCooldown then
-			if baseCooldown < 2200 then
-				local _, _, _, cooldownDuration = GetSpellCharges(spell)
-				if cooldownDuration and cooldownDuration > 0 then
-					ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (cooldownDuration))
-				end
-			else
-				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
-			end
+		else
+			ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
 		end
 	end
 end
@@ -365,11 +344,7 @@ end
 
 function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
 	local itemLinkcontainer
-	if E.Retail or E.Mists then
-		itemLinkcontainer = C_Container.GetContainerItemLink(bagId, bagSlot)
-	else
-		itemLinkcontainer = GetContainerItemLink(bagId, bagSlot)
-	end
+	itemLinkcontainer = GetContainerItemLink(bagId, bagSlot)
 	ElvUI_EltreumUI:checkItemCooldown(itemLinkcontainer)
 end
 

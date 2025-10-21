@@ -378,16 +378,11 @@ local hearthstones = {
 }
 
 local function SpellCooldown(spellID)
-	if E.Retail or E.Mists then
-		local cooldownData = GetSpellCooldown(spellID)
-		if cooldownData then
-			return cooldownData.startTime, cooldownData.duration
-		else
-			return 187874, 10
-		end
+	local cooldownData = GetSpellCooldown(spellID)
+	if cooldownData then
+		return cooldownData.startTime, cooldownData.duration
 	else
-		local start,duration = GetSpellCooldown(spellID)
-		return start,duration
+		return 187874, 10
 	end
 end
 
