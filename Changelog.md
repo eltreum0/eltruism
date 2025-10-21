@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.4.1
+Updated for Classic Era 1.15.8  
+---
 ### 4.4.0.1
 Fixed version check in Retail  
 ---
