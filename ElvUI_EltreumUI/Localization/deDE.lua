@@ -1632,5 +1632,5 @@ L["updated to "] = "aktualisiert auf "
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Private Server werden nicht unterstützt!"
 L["Nameplate Castbar Border"] = "Namenspaketten Zauberleistenrahmen"
 L["Nameplate Castbar Thickness"] = "Namensplaketten Zauberleistendicke"
-L["How do I disable the class color texture at the bottom of the screen?"] = true
-L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"] = true
+L["How do I disable the class color texture at the bottom of the screen?"] = "Wie deaktiviere ich die Klassenfarbtextur am unteren Bildschirmrand?"
+L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"] = "Dies ist die Textur, die mit dem Eltruism-Datentext geliefert wird. Um sie zu deaktivieren, gehe zu:\an\ElvUI > Eltruism > Verschiedenes > Datentexte > Deaktiviere die Klassenfarbtextur mit Eltruism-Datentext"
