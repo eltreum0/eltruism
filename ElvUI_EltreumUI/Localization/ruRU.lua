@@ -1632,3 +1632,5 @@ L["Nameplates Debuff Aura Border X offset"] = "Смещение рамки де�
 L["Nameplates Debuff Aura Border Y offset"] = "Смещение рамки дебаффа неймплейтов по Y"
 L["Nameplate Castbar Border"] = "Рамка полосы каста неймплейта"
 L["Nameplate Castbar Thickness"] = "Толщина полосы каста неймплейта"
+L["How do I disable the class color texture at the bottom of the screen?"] = true
+L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"] = true

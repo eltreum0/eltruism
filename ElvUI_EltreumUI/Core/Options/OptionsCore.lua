@@ -284,7 +284,9 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13 = E.Libs.ACH:Group(E:TextGradient(L["How do I remove the lines/skin on all the frames?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13.args.answer = E.Libs.ACH:Description(L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go into\n\nEltruism > Skins > Addons > ElvUI\n\nWhere you can disable it or change its color, transparency and texture.\nYou can also type /eltruism elvuiskin to disable it "])
-
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the class color texture at the bottom of the screen?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14.args.answer = E.Libs.ACH:Description(L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"])
 
 	--[[
 	E.Libs.ACH:Header(name, order, get, set, hidden)

@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["blizzard"]["mirrorTimers"] = false
 		E.private["WT"]["skins"]["blizzard"]["misc"] = false
 		E.private["WT"]["skins"]["blizzard"]["objectiveTracker"] = false
-		E.private["WT"]["skins"]["blizzard"]["orderHall"] = false
+		--E.private["WT"]["skins"]["blizzard"]["orderHall"] = false
 		E.private["WT"]["skins"]["blizzard"]["petBattle"] = false
 		E.private["WT"]["skins"]["blizzard"]["playerChoice"] = false
 		E.private["WT"]["skins"]["blizzard"]["quest"] = false

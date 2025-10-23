@@ -75,6 +75,7 @@ local function InstantLoot(_, event,_, arg2)
 				ConfirmLootSlot(i)
 			end
 		else
+			EltruismInstantLoot:UnregisterEvent("LOOT_BIND_CONFIRM")
 			return
 		end
 	elseif event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then

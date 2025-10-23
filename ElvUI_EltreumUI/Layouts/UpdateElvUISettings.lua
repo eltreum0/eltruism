@@ -24,8 +24,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
 			end]]
 
-			--rerun elvui style filters due to elvui np changes
-			ElvUI_EltreumUI:SetupStyleFilters()
+			--rerun elvui style filters due to elvui np changes (but only if it was an old version)
+			if E.private.ElvUI_EltreumUI.install_version < "4.3.9" then
+				ElvUI_EltreumUI:SetupStyleFilters()
+			end
 
 			--disable the custom auras on target and enemy npc
 			E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
