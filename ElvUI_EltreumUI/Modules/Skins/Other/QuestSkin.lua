@@ -722,6 +722,12 @@ function ElvUI_EltreumUI:SkinQuests()
 						if itemButton.HotKey then
 							itemButton.HotKey:Kill()
 						end
+
+						if _G.ObjectiveFrameMover then
+							questside = _G.ObjectiveFrameMover:GetPoint()
+						else
+							questside = _G.ObjectiveTrackerFrame:GetPoint()
+						end
 						if questside:match("RIGHT") then
 							itemButton:ClearAllPoints()
 							itemButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
