@@ -2,6 +2,8 @@
 The future is uncertain
 ---
 ### 4.4.1
+Added a check to prevent possible nameplate filter changes on login  
+Updated German locale by Dlarge  
 Updated for Classic Era 1.15.8  
 ---
 ### 4.4.0.1
