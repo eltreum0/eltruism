@@ -647,13 +647,15 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.private["WT"]["quest"]["objectiveTracker"]["info"]["name"] = fontvalue
 		E.private["WT"]["quest"]["objectiveTracker"]["menuTitle"]["font"]["name"] = fontvalue
 		E.private["WT"]["quest"]["objectiveTracker"]["title"]["name"] = fontvalue
-
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["name"] = fontvalue
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["name"] = fontvalue
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = fontvalue
-		E.db["WT"]["item"]["inspect"]["equipText"]["name"] = fontvalue
+		--E.db["WT"]["item"]["inspect"]["equipText"]["name"] = fontvalue
 		E.db["WT"]["item"]["inspect"]["slotText"]["name"] = fontvalue
-		E.db["WT"]["item"]["inspect"]["statsText"]["name"] = fontvalue
+		E.db["WT"]["item"]["inspect"]["enchantIcon"]["craftingTier"]["name"] = fontvalue
+		E.db["WT"]["item"]["inspect"]["gemIcon"]["craftingTier"]["name"] = fontvalue
+		E.db["WT"]["item"]["inspect"]["itemNameText"]["name"] = fontvalue
+		E.db["WT"]["item"]["inspect"]["statistics"]["text"]["name"] = fontvalue
 		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["name"] = fontvalue
 		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["name"] = fontvalue
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = fontvalue

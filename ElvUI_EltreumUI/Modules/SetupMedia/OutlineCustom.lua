@@ -540,9 +540,12 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = fontStyle
 		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["style"] = fontStyle
 		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["style"] = fontStyle
-		E.db["WT"]["item"]["inspect"]["equipText"]["style"] = fontStyle
+		E.db["WT"]["item"]["inspect"]["levelText"]["style"] = fontStyle
+		E.db["WT"]["item"]["inspect"]["enchantIcon"]["craftingTier"]["style"] = fontStyle
+		E.db["WT"]["item"]["inspect"]["gemIcon"]["craftingTier"]["style"] = fontStyle
+		E.db["WT"]["item"]["inspect"]["itemNameText"]["style"] = fontStyle
 		E.db["WT"]["item"]["inspect"]["slotText"]["style"] = fontStyle
-		E.db["WT"]["item"]["inspect"]["statsText"]["style"] = fontStyle
+		E.db["WT"]["item"]["inspect"]["statistics"]["text"]["style"] = fontStyle
 		E.db["WT"]["maps"]["eventTracker"]["font"]["outline"] = fontStyle
 		E.db["WT"]["maps"]["whoClicked"]["font"]["style"] = fontStyle
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = fontStyle
