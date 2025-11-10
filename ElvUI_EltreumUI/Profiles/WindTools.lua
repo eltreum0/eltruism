@@ -290,11 +290,20 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["item"]["fastLoot"]["enable"] = false
 		E.db["WT"]["item"]["fastLoot"]["limit"] = 0.05
 		E.db["WT"]["item"]["delete"]["enable"] = false
-		E.db["WT"]["item"]["inspect"]["equipText"]["size"] = 12
-		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = E.db.general.font
-		E.db["WT"]["item"]["inspect"]["levelText"]["size"] = 12
 		E.db["WT"]["item"]["inspect"]["player"] = false
-		E.db["WT"]["item"]["inspect"]["statsText"]["size"] = 12
+		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = E.db.general.font
+		E.db["WT"]["item"]["inspect"]["levelText"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
+		E.db["WT"]["item"]["inspect"]["levelText"]["size"] = 12
+		E.db["WT"]["item"]["inspect"]["enchantIcon"]["craftingTier"]["name"] = E.db.general.font
+		E.db["WT"]["item"]["inspect"]["enchantIcon"]["craftingTier"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
+		E.db["WT"]["item"]["inspect"]["gemIcon"]["craftingTier"]["name"] = E.db.general.font
+		E.db["WT"]["item"]["inspect"]["gemIcon"]["craftingTier"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
+		E.db["WT"]["item"]["inspect"]["itemNameText"]["name"] = E.db.general.font
+		E.db["WT"]["item"]["inspect"]["itemNameText"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
+		E.db["WT"]["item"]["inspect"]["slotText"]["name"] = E.db.general.font
+		E.db["WT"]["item"]["inspect"]["slotText"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
+		E.db["WT"]["item"]["inspect"]["statistics"]["text"]["name"] = E.db.general.font
+		E.db["WT"]["item"]["inspect"]["statistics"]["text"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["name"] = E.db.general.font
 		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["name"] = E.db.general.font
 
