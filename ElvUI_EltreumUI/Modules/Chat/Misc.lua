@@ -200,9 +200,9 @@ local function RoleIconMsg()
 		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "CUSTOM" then
 			if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps then
 				CH.RoleIcons = {
-					TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
-					HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
-					DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
+					TANK = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
+					HEALER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
+					DAMAGER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
 				}
 			end
 		else
@@ -236,7 +236,7 @@ if not E.db.ElvUI_EltreumUI then return end
 if not E.db.ElvUI_EltreumUI.otherstuff then return end
 if not E.private.chat.enable then return end
 
-local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
+local sizeString = ":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"]
 if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 
 	if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
@@ -248,9 +248,9 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "CUSTOM" then
 		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps then
 			CH.RoleIcons = {
-				TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
-				HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
-				DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
+				TANK = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
+				HEALER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
+				DAMAGER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
 			}
 		end
 	else
@@ -275,9 +275,9 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "CUSTOM" then
 			if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps then
 				CH.RoleIcons = {
-					TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
-					HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
-					DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
+					TANK = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
+					HEALER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
+					DAMAGER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
 				}
 			end
 		else
@@ -301,9 +301,9 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 			elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "CUSTOM" then
 				if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer and E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps then
 					CH.RoleIcons = {
-						TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
-						HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
-						DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
+						TANK = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
+						HEALER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
+						DAMAGER = E:TextureString('Interface\\addons\\'..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
 					}
 				end
 			else
