@@ -1,7 +1,10 @@
 local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local _G = _G
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel or _G.ChatFrameMixin.RemoveChannel
+local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups or _G.ChatFrameMixin.RemoveAllMessageGroups
+local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
 
 -- Eltruism installer options
 function ElvUI_EltreumUI:InstallerOptions()
@@ -37,11 +40,11 @@ function ElvUI_EltreumUI:InstallerOptions()
 		end
 		if not E.Retail then --remove lfg spam from general and creat tab for it
 			if lfg then
-				_G.ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+				ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
 				_G.FCF_OpenNewWindow()
-				_G.ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+				ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 				_G.FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-				_G.ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+				ChatFrame_AddChannel(_G.ChatFrame5, lfg)
 				_G.FCFTab_UpdateColors(_G.ChatFrame5Tab)
 				_G.FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 			end
