@@ -10,6 +10,7 @@ local Enum = _G.Enum
 local gsub = _G.gsub
 local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
 local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
+local Chat_ShouldColorChatByClass = _G.Chat_ShouldColorChatByClass or _G.ChatFrameUtil.ShouldColorChatByClass
 
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
@@ -242,7 +243,7 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 	local name = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
 
 	local info = name and arg12 and _G.ChatTypeInfo[chatType]
-	if info and _G.Chat_ShouldColorChatByClass(info) then
+	if info and Chat_ShouldColorChatByClass(info) then
 		local data = CH:GetPlayerInfoByGUID(arg12)
 		local classColor = data and data.classColor
 		if classColor and data.englishClass then
