@@ -181,7 +181,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.petactionxborder = 49
 					E.db.ElvUI_EltreumUI.borders.petactionyborder = 44
 
-					--[[if E.Mists then
+					--[[if E.Mists or E.TBC or E.Wrath then
 						E.db["actionbar"]["totemBar"]["spacing"] = 5
 						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,94"
 					end]]
@@ -247,7 +247,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.petactionyborder = 37
 					E.db.ElvUI_EltreumUI.borders.stancexborder = 45
 
-					--[[if E.Mists then
+					--[[if E.Mists or E.TBC or E.Wrath then
 						E.db["actionbar"]["totemBar"]["spacing"] = 5
 					end]]
 				end
@@ -299,7 +299,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["unitframe"]["units"]["raid3"]["groupsPerRowCol"] = 4
 						E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 					end
-					if E.Mists then
+					if E.Mists or E.TBC or E.Wrath then
 						--E.db["actionbar"]["totemBar"]["spacing"] = 3
 						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,100"
 					end
@@ -317,7 +317,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,308"
 					end
-					--[[if E.Mists then
+					--[[if E.Mists or E.TBC or E.Wrath then
 						E.db["actionbar"]["totemBar"]["spacing"] = 3
 					end]]
 				end
@@ -328,9 +328,9 @@ function ElvUI_EltreumUI:BorderAdjust()
 			end
 
 			--cata shaman compatibility
-			if not (E.Mists) then
+			if not (E.Mists or E.TBC or E.Wrath) then
 				E:UpdateMoverPositions()
-			elseif (E.Mists) then
+			elseif (E.Mists or E.TBC or E.Wrath) then
 				if E.myclass ~= 'SHAMAN' then
 					E:UpdateMoverPositions()
 				elseif E.myclass == 'SHAMAN' then

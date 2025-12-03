@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		end
 		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
 	end
-	if E.Mists then
+	if E.Mists or E.TBC or E.Wrath then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
 	if not E.Classic then
@@ -186,7 +186,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
-	if E.Mists then
+	if E.Mists or E.TBC or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
@@ -327,21 +327,21 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()
-local currenttalentmists = E.Mists and GetSpecialization()
+local currenttalentmists = (E.Mists or E.TBC or E.Wrath) and GetSpecialization()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local cnewtalentmists = E.ClassicSOD and _G.GetActiveTalentGroup() or E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
+	local cnewtalentmists = (E.ClassicSOD and _G.GetActiveTalentGroup()) or (E.Mists or E.TBC or E.Wrath) and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
-	elseif E.Mists then
+	elseif E.Mists or E.TBC or E.Wrath then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.ClassicSOD or E.Mists) and currenttalentmists ~= cnewtalentmists) then
+	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.ClassicSOD or E.Mists or E.TBC or E.Wrath) and currenttalentmists ~= cnewtalentmists) then
 		currenttalentretail = newtalentretail
 		currenttalentmists = cnewtalentmists
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail or (E.ClassicSOD or E.Mists) then
+		if E.Retail or (E.ClassicSOD or E.Mists or E.TBC or E.Wrath) then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
 			if E.private.nameplates.enable then

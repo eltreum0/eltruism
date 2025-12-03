@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:DBMSkin()
 						--[[if not statusbar.EltruismHook then
 							hooksecurefunc(statusbar,"SetStatusBarColor",function(_,r,g,b)
 								if not (r or g or b) then return end
-								if E.Retail or E.Mists then
+								if E.Retail or E.Mists or E.TBC or E.Wrath then
 									statusbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
 								else
 									statusbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)

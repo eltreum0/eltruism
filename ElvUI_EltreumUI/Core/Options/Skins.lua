@@ -69,13 +69,13 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.skinlevelbossinstance = E.Libs.ACH:Toggle(L["Enable"], L["Enable the Skins"], 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end, function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description5 = E.Libs.ACH:Description(L["Remove Blizzard's Boss Emote Frame"], 16, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.bossemotehide = E.Libs.ACH:Toggle(L["Enable"], L["Enable removing the Alert Frame that can show up in the middle of the screen"], 17, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.bossemote end, function(_, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description6 = E.Libs.ACH:Description(L["Expand Transmog Window to better show your character"], 18, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not (E.Retail or E.Mists))
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.widetransmog = E.Libs.ACH:Toggle(L["Enable"], L["Enable the Wider Transmog Window"], 19, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.widertransmog end, function(_, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end, nil, not (E.Retail or E.Mists))
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description6 = E.Libs.ACH:Description(L["Expand Transmog Window to better show your character"], 18, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not (E.Retail or E.Mists or E.TBC or E.Wrath))
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.widetransmog = E.Libs.ACH:Toggle(L["Enable"], L["Enable the Wider Transmog Window"], 19, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.widertransmog end, function(_, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end, nil, not (E.Retail or E.Mists or E.TBC or E.Wrath))
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description7 = E.Libs.ACH:Description(L["Skin Profession Frame"], 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.professionskin = E.Libs.ACH:Toggle(L["Skin the Profession/Tradeskill Frame"], nil, 21, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.professions end, function(_, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.professionscale = E.Libs.ACH:Range(L["Scale"], nil, 22, { min = 0.2, max = 1.3, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.professionscale end, function(_, value) E.db.ElvUI_EltreumUI.skins.professionscale = value if _G.ProfessionsFrame then _G.ProfessionsFrame:SetScale(value) end end, function() return not E.db.ElvUI_EltreumUI.skins.professions end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description8 = E.Libs.ACH:Description(L["Expand the Talents to show the entire tree"], 23, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail or E.Mists)
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.classictalentenable = E.Libs.ACH:Toggle(L["Expanded Talents"], L["Expand Talents to cover the full tree"], 24, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.tbctalents end, function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail or E.Mists)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description8 = E.Libs.ACH:Description(L["Expand the Talents to show the entire tree"], 23, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail or E.Mists or E.TBC or E.Wrath)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.classictalentenable = E.Libs.ACH:Toggle(L["Expanded Talents"], L["Expand Talents to cover the full tree"], 24, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.tbctalents end, function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail or E.Mists or E.TBC or E.Wrath)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.classictalentscale = E.Libs.ACH:Range(L["Scale"], nil, 25, { min = 0.1, max = 2, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end, function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end, E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description9 = E.Libs.ACH:Description(L["TALENTS"], 26, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.retailtalentscale = E.Libs.ACH:Range(L["Scale"], nil, 27, { min = 0.1, max = 1.3, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value if _G.PlayerSpellsFrame then _G.PlayerSpellsFrame:SetScale(value) end end, nil, not E.Retail)
@@ -92,8 +92,8 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc = E.Libs.ACH:Group(L["Misc"], nil, 3, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description1 = E.Libs.ACH:Description(L["Add a Level Up toast"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.levelup = E.Libs.ACH:Toggle(L["Enable"], L["Enable a toast showing up when you level up"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end, function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail)
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description2 = E.Libs.ACH:Description(L["Expand Hunter Stables to show all pets and improve search"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Mists)
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.expandedstable = E.Libs.ACH:Toggle(L["Enable"], L["Enable the Expanded Stable"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandedstable end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Mists)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description2 = E.Libs.ACH:Description(L["Expand Hunter Stables to show all pets and improve search"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Mists or E.TBC or E.Wrath)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.expandedstable = E.Libs.ACH:Toggle(L["Enable"], L["Enable the Expanded Stable"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandedstable end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Mists or E.TBC or E.Wrath)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description3 = E.Libs.ACH:Description(L["Hide Actionbar Button Press"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.hidekeypress = E.Libs.ACH:Toggle(L["Enable"], nil, 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.hideABkeypress end, function(_, value) E.db.ElvUI_EltreumUI.skins.hideABkeypress = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description4 = E.Libs.ACH:Description(L["Color Modifier Keys"], 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -194,7 +194,7 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.expandart = E.Libs.ACH:Toggle(L["Expand Character Art"], L["Enable this option"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.classicarmory = E.Libs.ACH:Toggle(L["Expand Character Panel"], L["Enable this option"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.classicarmory end, function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.classicarmoryeltruismstats = E.Libs.ACH:Toggle(L["Add Other Stats"], L["Display stats such as Speed and Mana Regen"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats end, function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end)
-	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.adjustitemlevelpoint = E.Libs.ACH:Toggle(L["Adjust Position of Item Level Text"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint end, function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end, not E.Mists)
+	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.adjustitemlevelpoint = E.Libs.ACH:Toggle(L["Adjust Position of Item Level Text"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint end, function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end, not E.Mists or E.TBC or E.Wrath)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.addcrest = E.Libs.ACH:Toggle(L["Add Crest to Character Panel"], L["Enable this option"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.addcrestversion = E.Libs.ACH:Select("", nil, 5, {
 		[1] = L["Version 1"],
@@ -227,8 +227,8 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.characterpanelnamefontsize = E.Libs.ACH:Range(L["Character Name Font Size"], nil, 19, { min = 8, max = 40, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.skins.armorynamefontsize end, function(_, value) E.db.ElvUI_EltreumUI.skins.armorynamefontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() PaperDollFrame_SetLevel() end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model = E.Libs.ACH:Group(L["Model"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.description1 = E.Libs.ACH:Description(L["Character Model"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamzoom = E.Libs.ACH:Range(L["Character Model Zoom"], nil, 2, { min = -2, max = 2, step = 0.01 }, "full", function() if E.Retail or E.Mists then return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail else return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic end end, function(_, value) if E.Retail or E.Mists then E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value else E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value end
-		if E.Retail or E.Mists then
+	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamzoom = E.Libs.ACH:Range(L["Character Model Zoom"], nil, 2, { min = -2, max = 2, step = 0.01 }, "full", function() if E.Retail or E.Mists or E.TBC or E.Wrath then return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail else return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic end end, function(_, value) if E.Retail or E.Mists or E.TBC or E.Wrath then E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value else E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value end
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			if _G.CharacterModelScene then
 				local actor = _G.CharacterModelScene:GetPlayerActor()
 				if actor then
@@ -243,19 +243,19 @@ function ElvUI_EltreumUI:SkinsOptions()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamx = E.Libs.ACH:Range(L["Character Model X Offset"], nil, 3, { min = -2, max = 2, step = 0.01 }, "full", function()
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
 		else
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
 		end
 	end, function(_, value)
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value
 		else
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value
 		end
 
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			if _G.CharacterModelScene then
 				local actor = _G.CharacterModelScene:GetPlayerActor()
 				if actor then
@@ -270,19 +270,19 @@ function ElvUI_EltreumUI:SkinsOptions()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamy = E.Libs.ACH:Range(L["Character Model Y Offset"], nil, 3, { min = -2, max = 2, step = 0.01 }, "full", function()
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
 		else
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
 		end
 	end, function(_, value)
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value
 		else
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value
 		end
 
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			if _G.CharacterModelScene then
 				local actor = _G.CharacterModelScene:GetPlayerActor()
 				if actor then

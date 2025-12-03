@@ -137,7 +137,7 @@ local function EltruismStatsDatatextOnEnter()
 
 		local spellpower = math.max(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 		local spellcrit = math.max(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
-		if E.Mists then
+		if E.Mists or E.TBC or E.Wrath then
 			spellcrit = GetCritChance()
 		end
 
@@ -245,7 +245,7 @@ local function EltruismStatsDatatextOnEnter()
 			end
 		end
 		if not E.Classic then
-			if E.Mists then
+			if E.Mists or E.TBC or E.Wrath then
 				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor.._G.GetModResilienceDamageReduction().."%|r", 1, 1, 1)
 			else
 				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(_G.COMBAT_RATING_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
@@ -268,7 +268,7 @@ local function EltruismStatsDatatext1(dt)
 		local haste
 		local crit
 		local spellcrit = math.max(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
-		if E.Mists then
+		if E.Mists or E.TBC or E.Wrath then
 			spellcrit = GetCritChance()
 		end
 
@@ -346,13 +346,13 @@ local function EltruismStatsDatatext2(dt)
 			tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", (GetSpellHitModifier())).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
 			tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHitModifier()).."|r" --GetCombatRatingBonus(CR_HIT_MELEE)
 			trangedhit = tmeleehit
-		elseif E.Mists then
+		elseif E.Mists or E.TBC or E.Wrath then
 			tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", (math.max(GetSpellHitModifier(),GetCombatRatingBonus(8),GetCombatRatingBonus(6)))).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
 		end
 
 		--mastery
 		local mastery
-		if E.Mists then
+		if E.Mists or E.TBC or E.Wrath then
 			mastery = STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMasteryEffect()).."|r"
 		end
 

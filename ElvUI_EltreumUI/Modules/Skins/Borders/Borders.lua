@@ -1510,7 +1510,7 @@ local function BordersPart2()
 	end
 
 	--wotlk shaman totem bar
-	--[[if E.Mists and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.borders.totembar then
+	--[[if E.Mists or E.TBC or E.Wrath and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.borders.totembar then
 		local borderstotemaction = {}
 		local borderstotemfly = {}
 		for i = 1,4 do

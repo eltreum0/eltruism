@@ -135,13 +135,13 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 		if UnitIsEnemy("player", unit) then
 			if classification ~= "worldboss" then
-				if E.Mists or E.Classic then
+				if E.Mists or E.TBC or E.Wrath or E.Classic then
 					return (ElvUI_EltreumUI:eltruismdif(printdifference))
 				else
 					return
 				end
 			elseif classification == "worldboss" then
-				if E.Mists or E.Classic then
+				if E.Mists or E.TBC or E.Wrath or E.Classic then
 					return ("|cFFFF0000")
 				else
 					return
@@ -303,7 +303,7 @@ E:AddTag("eltruism:stance", 1, function()
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance of the player"])
 
-if E.Mists then
+if E.Mists or E.Wrath then
 	E:AddTag("eltruism:presencecolor", 1, function()
 		local stance = GetShapeshiftForm()
 		if stance == 1 then
@@ -368,7 +368,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 			if currentSpec ~= nil then
 				role = GetSpecializationRole(currentSpec)
 			end
-		elseif E.Mists then
+		elseif E.Mists or E.TBC or E.Wrath then
 			role = UnitGroupRolesAssigned("player")
 		end
 		if role == 'HEALER' or E.Classic then

@@ -129,7 +129,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		--hide the double lines
-		if E.Mists then
+		if E.Mists or E.TBC or E.Wrath then
 			PallyPowerRF.TopEdge:Kill()
 		end
 		PallyPowerRF.BottomEdge:Kill()
