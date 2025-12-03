@@ -586,7 +586,7 @@ local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
-		if E.Retail then
+		if E.Retail or E.TBC then
 			local EM = E:GetModule('EditorMode')
 			local Menubutton
 			if not _G["EltruismGameMenu"] then
