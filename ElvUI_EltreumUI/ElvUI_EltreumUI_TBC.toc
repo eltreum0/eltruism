@@ -1,0 +1,25 @@
+## Interface: 20505
+## Author: Eltreum
+## Version: 4.4.1
+## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff5879ADl|r|cff5878AEt|r|cff5877AEr|r|cff5776AEu|r|cff5775AFi|r|cff5774AFs|r|cff5773AFm|r |cff5771B0T|r|cff5770B0h|r|cff566FB1e|r |cff566DB1B|r|cff566BB2u|r|cff566AB2r|r|cff5669B2n|r|cff5568B3i|r|cff5567B3n|r|cff5566B3g|r |cff5564B4C|r|cff5563B4r|r|cff5562B5u|r|cff5461B5s|r|cff5460B5a|r|cff545FB6d|r|cff545EB6e|r
+## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
+## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
+## Dependencies: ElvUI
+## RequiredDeps: Blizzard_CombatText
+## OptionalDeps: ProjectAzilroka, AddOnSkins
+## DefaultState: enabled
+## X-Interface: 50502
+## X-ElvUI: 14.03
+## X-Tukui-ProjectID: 10
+## X-Curse-Project-ID: 459494
+## X-Wago-ID: vEGPqEN1
+
+Init.lua
+Settings\load_settings.xml
+Localization\Load_localization.xml
+Core\load_core.xml
+Libs\Load_Libs.xml
+Media\load_media.xml
+Modules\load_modules_Classic.xml
+Profiles\load_profiles.xml
+Layouts\load_layouts.xml
