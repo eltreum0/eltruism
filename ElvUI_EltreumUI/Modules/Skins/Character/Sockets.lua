@@ -2007,15 +2007,15 @@ function ElvUI_EltreumUI:ClassicSockets()
 					Tooltips[i]:SetOwner(Tooltips[i - 1], "ANCHOR_NONE")
 					Tooltips[i]:SetPoint("TOPLEFT", Tooltips[i - 1], "TOPRIGHT")
 				end
-				if E.Mists then
+				if E.Classic then
+					Tooltips[i]:SetText(item[FIELD_CONTENT])
+				else
 					if item[FIELD_TYPE] == TYPE_HYPERLINK then
 						Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
 						self.link = item[FIELD_CONTENT]
 					elseif item[FIELD_TYPE] == TYPE_TEXT then
 						Tooltips[i]:SetText(item[FIELD_CONTENT])
 					end
-				elseif E.Classic then
-					Tooltips[i]:SetText(item[FIELD_CONTENT])
 				end
 				maxSize = max(Tooltips[i]:GetHeight(), maxSize)
 			end
