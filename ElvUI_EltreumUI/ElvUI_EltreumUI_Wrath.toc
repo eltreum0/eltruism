@@ -1,14 +1,14 @@
 ## Interface: 38000
 ## Author: Eltreum
 ## Version: 4.4.1
-## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff5879ADl|r|cff5878AEt|r|cff5877AEr|r|cff5776AEu|r|cff5775AFi|r|cff5774AFs|r|cff5773AFm|r |cff5772B0W|r|cff5771B0r|r|cff5770B0a|r|cff566FB1t|r|cff566EB1h|r |cff566CB2o|r|cff566BB2f|r |cff5669B2t|r|cff5568B3h|r|cff5567B3e|r |cff5565B4L|r|cff5565B4i|r|cff5564B4c|r|cff5563B5h|r |cff5461B5K|r|cff5460B5i|r|cff545FB6n|r|cff545EB6g|r
+## Title: |cff1784d1ElvUI|r |cff82B4FFE|r|cff83B6FFl|r|cff84B7FEt|r|cff85B9FEr|r|cff86BAFEu|r|cff87BCFDi|r|cff88BDFDs|r|cff89BFFCm|r |cff8BC2FCW|r|cff8CC4FBr|r|cff8DC5FBa|r|cff8EC7FBt|r|cff8FC8FAh|r |cff91CCFAo|r|cff91CDF9f|r |cff93D0F8t|r|cff94D2F8h|r|cff95D3F8e|r |cff97D6F7L|r|cff98D8F7i|r|cff99DAF6c|r|cff9ADBF6h|r |cff9CDEF5K|r|cff9DE0F5i|r|cff9EE1F4n|r|cff9FE3F4g|r
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
-## X-Interface: 50502
+## X-Interface: 38000
 ## X-ElvUI: 14.03
 ## X-Tukui-ProjectID: 10
 ## X-Curse-Project-ID: 459494
