@@ -1973,6 +1973,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CompanionModelFrame:SetPoint("CENTER", _G.PetPaperDollFrame, "CENTER", 0, 90)
 		end
 
+		--fix the backdrop box on the character model
+		if _G.CharacterModelFrame and _G.CharacterModelFrame.backdrop then
+			_G.CharacterModelFrame.backdrop:Kill()
+		end
+
 		--add background from artifact weapon
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 			--add bg texture
@@ -2010,7 +2015,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",1)
 			CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",-5)
 		end
-
 
 		--set the tabs
 		if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats and E.Classic then

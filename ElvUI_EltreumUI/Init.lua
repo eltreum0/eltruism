@@ -118,7 +118,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.Mists or E.TBC or E.Wrath then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
-	if not E.Classic then
+	if not (E.Classic or E.TBC) then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	end
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored

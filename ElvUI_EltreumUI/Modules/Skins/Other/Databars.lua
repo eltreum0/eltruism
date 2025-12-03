@@ -4,6 +4,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local classcolor = E.myClassColor
+local GetWatchedFactionInfo = _G.C_Reputation and _G.C_Reputation.GetWatchedFactionInfo or _G.GetWatchedFactionInfo
 
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()
@@ -35,7 +36,7 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 				end
 			end
 		else
-			_, reaction = _G.GetWatchedFactionInfo()
+			_, reaction = GetWatchedFactionInfo()
 		end
 		if reaction then
 			local customReaction = reaction == 9 or reaction == 10 -- 9 is paragon, 10 is renown
