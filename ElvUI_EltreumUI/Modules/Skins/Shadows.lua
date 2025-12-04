@@ -54,6 +54,33 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_HousingBulletinBoard") or IsAddOnLoaded("Blizzard_HousingBulletinBoard") then
+						if _G.HousingBulletinBoardFrame then
+							if not _G.HousingBulletinBoardFrame.shadow then
+								_G.HousingBulletinBoardFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingBulletinBoardFrame.shadow)
+								--the actual backdrop is the Background and its a texture so i need to do this instead
+								_G.HousingBulletinBoardFrame.shadow:SetPoint("TOPLEFT", _G.HousingBulletinBoardFrame.Background,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G.HousingBulletinBoardFrame.shadow:SetPoint("BOTTOMRIGHT", _G.HousingBulletinBoardFrame.Background,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingCornerstone") or IsAddOnLoaded("Blizzard_HousingCornerstone") then
+						if _G.HousingCornerstoneVisitorFrame then
+							if not _G.HousingCornerstoneVisitorFrame.shadow then
+								_G.HousingCornerstoneVisitorFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingCornerstoneVisitorFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingHouseFinder") or IsAddOnLoaded("Blizzard_HousingHouseFinder") then
+						if _G.HouseFinderFrame then
+							if not _G.HouseFinderFrame.shadow then
+								_G.HouseFinderFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HouseFinderFrame.shadow)
+							end
+						end
+					end
 					if (arg == "Blizzard_DelvesDifficultyPicker") or IsAddOnLoaded("Blizzard_DelvesDifficultyPicker") then
 						if _G.DelvesDifficultyPickerFrame then
 							if not _G.DelvesDifficultyPickerFrame.shadow then
