@@ -663,10 +663,10 @@ E:AddTag("eltruism:shortmaxlostpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE
 		end
 	end
 end)
-E:AddTagInfo("eltruism:hpmaxlostpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays short value at max health, percentage at health lost"])
+E:AddTagInfo("eltruism:shortmaxlostpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays short value at max health, percentage at health lost"])
 
 --full value at max health, percent when lost
-E:AddTag("eltruism:shortmaxlostpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+E:AddTag("eltruism:hpmaxlostpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 	local deficit = maxhp - cur
 	if cur > 0 then
