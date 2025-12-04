@@ -391,7 +391,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('DynamicRenderScaleMin', E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin)
 	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif E.Classic or E.Mists then
+	elseif E.Classic or E.Mists or E.TBC or E.Wrath then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end
@@ -586,7 +586,7 @@ local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
-		if E.Retail then
+		if E.Retail or E.TBC then
 			local EM = E:GetModule('EditorMode')
 			local Menubutton
 			if not _G["EltruismGameMenu"] then
@@ -801,7 +801,7 @@ end
 
 --reforged armory compatibility check
 function ElvUI_EltreumUI:ReforgedCheck(setting)
-	if not IsAddOnLoaded("ReforgedArmory") or not setting or not E.Mists then return false end
+	if not IsAddOnLoaded("ReforgedArmory") or not setting or not (E.Mists or E.TBC or E.Wrath) then return false end
 	if setting == 'avgItemLevel' and E.db.cataarmory.character.avgItemLevel.enable then
 		return true
 	end

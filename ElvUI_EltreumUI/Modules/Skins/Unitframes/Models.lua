@@ -69,7 +69,7 @@ if E.Mists then
 		--["PALADIN"] = "spells/arcanebreath.m2",
 		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
 	}
-elseif E.Classic then
+elseif E.Classic or E.TBC or E.Wrath then
 	classModels = {
 		["PRIEST"] = "spells/snowballpowdery_impact_base.m2",--"spells/snowball_impact_chest.m2", --"spells/christmassnowrain.m2" was strangely removed
 		["WARRIOR"] = "spells/disarm_impact_chest.m2",
@@ -489,7 +489,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		end
 	end
 end
-if E.Retail or E.Mists then
+if E.Retail or E.Mists or E.TBC or E.Wrath then
 	hooksecurefunc(UF, "Construct_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 	hooksecurefunc(UF, "Update_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 end

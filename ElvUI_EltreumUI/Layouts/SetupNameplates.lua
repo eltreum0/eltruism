@@ -187,7 +187,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 
 		--spellsteal style filter
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 		elseif E.Classic then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--level style filter
 		if E.Retail then
 			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-		elseif E.Classic or E.Mists then
+		elseif E.Classic or E.Mists or E.TBC or E.Wrath then
 			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 		end
 		--enable general style filters on all versions

@@ -361,7 +361,7 @@ if not E.Retail then
 		end
 	end)
 
-	if E.Mists then
+	if E.Mists or E.TBC or E.Wrath then
 		local mistsdualspec = CreateFrame("FRAME")
 		mistsdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		mistsdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
@@ -1334,7 +1334,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 		end)
-	elseif E.Mists then
+	elseif E.Mists or E.TBC or E.Wrath then
 
 		local function HandleCharacterPanelSize()
 			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
@@ -1973,6 +1973,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CompanionModelFrame:SetPoint("CENTER", _G.PetPaperDollFrame, "CENTER", 0, 90)
 		end
 
+		--fix the backdrop box on the character model
+		if _G.CharacterModelFrame and _G.CharacterModelFrame.backdrop then
+			_G.CharacterModelFrame.backdrop:Kill()
+		end
+
 		--add background from artifact weapon
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 			--add bg texture
@@ -2010,7 +2015,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",1)
 			CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",-5)
 		end
-
 
 		--set the tabs
 		if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats and E.Classic then
@@ -2494,7 +2498,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
 
-				if E.Retail or E.Mists then
+				if E.Retail or E.Mists or E.TBC or E.Wrath then
 					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
 						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
@@ -2690,7 +2694,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							else
 								_G.InspectNameText:ClearAllPoints()
 								_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -20)
-								if E.Mists then
+								if E.Mists or E.TBC or E.Wrath then
 									_G.InspectHandsSlot:ClearAllPoints()
 									_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -13, -74)
 									_G.InspectModelFrame:ClearAllPoints()
@@ -2727,7 +2731,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									end
 								end
 
-								--[[if E.Mists then
+								--[[if E.Mists or E.TBC or E.Wrath then
 									if not self.EltruismInspectHookMists then
 										_G.InspectTalentFrame:HookScript("OnShow", function()
 											if InCombatLockdown() then
@@ -2764,7 +2768,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												end
 												--increase the size of the background
 												if _G.InspectTalentFrameBackgroundTopLeft then
-													if E.Mists then
+													if E.Mists or E.TBC or E.Wrath then
 														if _G.InspectTalentFrameScrollFrame.backdrop then
 															_G.InspectTalentFrameScrollFrame.backdrop:Kill()
 														end

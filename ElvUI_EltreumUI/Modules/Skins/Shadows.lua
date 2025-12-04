@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-						if E.Retail or E.Mists then
+						if E.Retail or E.Mists or E.TBC or E.Wrath then
 							if not _G.MacroFrame.shadow then
 								_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
@@ -316,7 +316,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
-						if E.Retail or E.Mists then
+						if E.Retail or E.Mists or E.TBC or E.Wrath then
 							if E.Retail then
 								if not _G.GuildBankFrame.shadow then
 									_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -624,7 +624,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
-						if E.Retail or E.Mists then
+						if E.Retail or E.Mists or E.Wrath then
 							if _G.AchievementFrame then
 								if _G.AchievementFrame.backdrop then
 									if not _G.AchievementFrame.backdrop.shadow then
@@ -1162,7 +1162,7 @@ function ElvUI_EltreumUI:Shadows()
 			end)
 
 			--mirror timer shadow
-			if E.Mists then
+			if E.Mists or E.TBC or E.Wrath then
 				hooksecurefunc('TimerTracker_StartTimerOfType', function() --from elvui
 					for _, frame in pairs(_G.TimerTracker.timerList) do
 						if frame and frame.bar and not frame.bar.shadow then
@@ -1294,7 +1294,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 
 				--loss of control frame icon
@@ -1306,7 +1306,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--main minimize button easier here
-				if E.Mists then
+				if E.Mists or E.TBC or E.Wrath then
 					if _G.ObjectiveTrackerFrame then
 						if _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 							_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
@@ -1563,7 +1563,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--Shaman Totem things
-			--[[if E.Mists then
+			--[[if E.Mists or E.TBC or E.Wrath then
 				if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
 					local totemframes = {
 						_G.MultiCastSummonSpellButton,

@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 		ElvUI_EltreumUI:ApplyUnitCustomTexture("pet", "Pet","pet")
 
-		if E.Retail or E.Mists then
+		if E.Retail or E.Mists or E.TBC or E.Wrath then
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss1", "Boss1", "boss",true)
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss2", "Boss2", "boss",true)
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss3", "Boss3", "boss",true)
@@ -306,7 +306,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 
 		if forced then
-			if E.Retail or E.Mists then
+			if E.Retail or E.Mists or E.TBC or E.Wrath then
 				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss1", "boss",true)
 				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss2", "boss",true)
 				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss3", "boss",true)

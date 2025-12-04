@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 	if E.Retail then
 		E.db["actionbar"]["stanceBar"]["mouseover"] = true
-	elseif E.Mists or E.Classic then
+	elseif E.Mists or E.TBC or E.Wrath or E.Classic then
 		E.db["actionbar"]["stanceBar"]["mouseover"] = false
 	end
 	E.db["actionbar"]["stanceBar"]["style"] = "classic"
@@ -748,7 +748,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["enable"] = false
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 75
-	if E.Retail or E.Mists then
+	if E.Retail or E.Mists or E.TBC or E.Wrath then
 		E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name]"
 	else
 		E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name][happiness:discord]"

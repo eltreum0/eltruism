@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["bags"]["spinner"]["color"]["b"] = valuecolors.b
 
 	--paging
-	if E.Retail or E.Mists then
+	if E.Retail or E.Mists or E.TBC or E.Wrath then
 		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -655,7 +655,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	if E.Classic then
 		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-111,-230"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-109,-337"
-	elseif E.Mists then
+	elseif E.Mists or E.TBC or E.Wrath then
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-319"
 	elseif E.Retail then
@@ -964,7 +964,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["databars"]["threat"]["width"] = 450
 	E.db["databars"]["threat"]["frameLevel"] = 3
 	E.db["databars"]["threat"]["frameStrata"] = "MEDIUM"
-	if E.Mists or E.Classic then
+	if E.Mists or E.TBC or E.Wrath or E.Classic then
 		E.db["databars"]["threat"]["enable"] = true
 	elseif E.Retail then
 		E.db["databars"]["threat"]["enable"] = false
@@ -1074,8 +1074,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		else
 			E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 		end
-	elseif E.Classic or E.Mists then
-		if E.Mists then
+	elseif E.Classic or E.Mists or E.TBC or E.Wrath then
+		if E.Mists or E.TBC or E.Wrath then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "DualSpecialization"
 		else
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
@@ -1250,7 +1250,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	-- Custom Text: Arena
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-	if E.Retail or E.Mists then
+	if E.Retail or E.Mists or E.TBC or E.Wrath then
 		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1659,7 +1659,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
-	elseif E.Mists or E.Classic then
+	elseif E.Mists or E.TBC or E.Wrath or E.Classic then
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -2024,7 +2024,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('occludedSilhouettePlayer', 1) --not sure why its black now instead of colored like it was in a previous ptr
 		SetCVar('cameraIndirectVisibility', 1) --occluded character visibility
 		SetCVar('cameraIndirectOffset', 15) --controls the distance to trigger the occludedSilhouettePlayer
-	elseif E.Mists or E.Classic then
+	elseif E.Mists or E.TBC or E.Wrath or E.Classic then
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
 	ElvUI_EltreumUI:Print(L["General CVars have been set."])

@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							if E.Mists then --cata on 29/10/2024 seems to not have fully migrated like classic era
+							if E.Mists or E.TBC or E.Wrath then --cata on 29/10/2024 seems to not have fully migrated like classic era
 								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
 									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 								end

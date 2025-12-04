@@ -1,7 +1,10 @@
 local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local _G = _G
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel or _G.ChatFrameMixin.RemoveChannel
+local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups or _G.ChatFrameMixin.RemoveAllMessageGroups
+local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
 
 -- Eltruism installer options
 function ElvUI_EltreumUI:InstallerOptions()
@@ -37,11 +40,11 @@ function ElvUI_EltreumUI:InstallerOptions()
 		end
 		if not E.Retail then --remove lfg spam from general and creat tab for it
 			if lfg then
-				_G.ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+				ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
 				_G.FCF_OpenNewWindow()
-				_G.ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+				ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 				_G.FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-				_G.ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+				ChatFrame_AddChannel(_G.ChatFrame5, lfg)
 				_G.FCFTab_UpdateColors(_G.ChatFrame5Tab)
 				_G.FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 			end
@@ -197,8 +200,8 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.BattleGroundEnemies = E.Libs.ACH:Execute('BattleGroundEnemies', L["Reset to Eltruism defaults."], 5, function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("BattleGroundEnemies") end)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.Capping = E.Libs.ACH:Execute('Capping', L["Reset to Eltruism defaults."], 5, function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("Capping") end)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.GladiusEx = E.Libs.ACH:Execute('Gladius Ex', L["Reset to Eltruism defaults."], 6, function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("GladiusEx") end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.Gladdy = E.Libs.ACH:Execute('Gladdy', L["Reset to Eltruism defaults."], 6, function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("Gladdy") end, not E.Mists)
-	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.Gladius = E.Libs.ACH:Execute('Gladius', L["Reset to Eltruism defaults."], 6, function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("Gladius") end, not E.Mists)
+	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.Gladdy = E.Libs.ACH:Execute('Gladdy', L["Reset to Eltruism defaults."], 6, function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("Gladdy") end, not (E.Mists or E.TBC or E.Wrath))
+	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.Gladius = E.Libs.ACH:Execute('Gladius', L["Reset to Eltruism defaults."], 6, function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("Gladius") end, not (E.Mists or E.TBC or E.Wrath))
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.description2 = E.Libs.ACH:Description(L["Combat Text Addons"], 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.NameplateSCT = E.Libs.ACH:Execute('NameplateSCT', L["Reset to Eltruism defaults."], 8, function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("NameplateSCT") end)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.otheraddons.args.ElvUI_FCT = E.Libs.ACH:Execute('ElvUI Floating Combat Text', L["Reset to Eltruism defaults."], 8, function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("ElvUI_FCT") end)

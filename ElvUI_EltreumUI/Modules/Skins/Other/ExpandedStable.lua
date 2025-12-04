@@ -3,7 +3,7 @@ local _G = _G
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame
 
-if not E.Mists then return end
+if not (E.Mists or E.TBC or E.Wrath) then return end
 
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
