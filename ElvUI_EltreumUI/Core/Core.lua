@@ -43,6 +43,7 @@ local select = _G.select
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	--print('|cff82B4ffEltruism|r: '..msg)
+	if not msg then return end
 	print(E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)..': '..msg)
 end
 
