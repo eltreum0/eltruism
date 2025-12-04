@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.4.2
+Added back support for TBC and Wrath  
+Updated for 11.2.7  
+Fixed an error due to a change on the Windtools database  
+---
 ### 4.4.1
 Added a check to prevent possible nameplate filter changes on login  
 Updated German locale by Dlarge  
