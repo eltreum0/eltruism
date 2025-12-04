@@ -158,7 +158,7 @@ if E.Retail then
 			EltruismTimeToArriveParent:SetScript("OnEvent", function()
 				local _, instanceType = IsInInstance()
 				--print(instanceType,event,"waypoint")
-				if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none") then
+				if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
 					--use throttled onupdate to udpate the text (once per second)
 					EltruismTimeToArrive:SetScript("OnUpdate", function(_, elapsed)
 						--print("onupdate spam"..math.random(1,99))
@@ -265,6 +265,14 @@ if E.Retail then
 					table.insert(coords, pattern)
 				end
 				local canSet = C_Map.CanSetUserWaypointOnMap(C_Map.GetBestMapForUnit("player"))
+
+
+				--neighborhoods dont let you set waypoints
+				local _, instanceType = IsInInstance()
+				if instanceType == "neighborhood" then
+					canSet = false
+				end
+
 				if not canSet then
 					ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
 					wipe(coords)
