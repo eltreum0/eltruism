@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 					ObjectiveTrackerFrame:SetParent(UIParent)
 				end
 				--ObjectiveTrackerFrame:SetAlpha(1)
-			elseif E.Classic then
+			elseif E.Classic or E.TBC or E.Wrath then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Show()
@@ -267,7 +267,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 				else
 					_G.QuestWatchFrame:Show()
 				end
-			elseif E.Mists or E.TBC or E.Wrath then
+			elseif E.Mists then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Show()

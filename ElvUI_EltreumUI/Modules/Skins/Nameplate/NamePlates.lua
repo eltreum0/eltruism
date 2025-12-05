@@ -611,7 +611,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							else
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
 							end
-						elseif E.myclass == 'MAGE' then
+						elseif E.myclass == 'MAGE' and E.Mists then --only cata onwards
 							if ElvUI_EltreumUI.Spec == 1 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
 							end
@@ -662,7 +662,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							else
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 							end
-						elseif E.myclass == 'MAGE' then
+						elseif E.myclass == 'MAGE' and E.Mists then --only cata onwards
 							if ElvUI_EltreumUI.Spec == 1 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 							end

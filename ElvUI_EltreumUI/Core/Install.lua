@@ -374,7 +374,11 @@ ElvUI_EltreumUI.InstallerData = {
 						FCF_OpenNewWindow()
 						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-						ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						if E.TBC then
+							_G.ChatFrame5:AddChannel(lfg)
+						else
+							ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						end
 						FCFTab_UpdateColors(_G.ChatFrame5Tab)
 						FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 					end
