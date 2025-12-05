@@ -2133,10 +2133,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 			end)
 
-			if E.Wrath then
-				_G.PlayerTitleDropDown:ClearAllPoints()
-				_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
-				_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
+			if E.Wrath or E.TBC then
+				_G.PlayerTitleDropdown:ClearAllPoints()
+				_G.PlayerTitleDropdown:SetParent(CharacterModelFrame)
+				_G.PlayerTitleDropdown:SetPoint('TOP', CharacterModelFrame, -6, 40)
 				_G.PVPFrameToggleButton:ClearAllPoints()
 				_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 90, 47)
 				_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
@@ -2187,6 +2187,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 						if _G.PlayerTitleDropDown then
 							_G.PlayerTitleDropDown:SetPoint('TOP', CharacterNameText, 0, -40)
+						elseif _G.PlayerTitleDropdown then
+							_G.PlayerTitleDropdown:SetPoint('TOP', CharacterNameText, 0, -40)
 						end
 						--better zoom
 						CharacterModelFrame:SetSize(220,350)
@@ -2233,6 +2235,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 						if _G.PlayerTitleDropDown then
 							_G.PlayerTitleDropDown:SetPoint('TOP', CharacterNameText, 0, -40)
+						elseif _G.PlayerTitleDropdown then
+							_G.PlayerTitleDropdown:SetPoint('TOP', CharacterNameText, 0, -40)
 						end
 
 						--better zoom
@@ -2287,6 +2291,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerTitleDropDown:SetAlpha(0)
 				_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
 				_G.PlayerTitleDropDown:SetScript('OnLeave', function() _G.PlayerTitleDropDown:SetAlpha(0) end)
+			elseif _G.PlayerTitleDropdown then
+				_G.PlayerTitleDropdown:SetAlpha(0)
+				_G.PlayerTitleDropdown:SetScript('OnEnter', function() _G.PlayerTitleDropdown:SetAlpha(1) end)
+				_G.PlayerTitleDropdown:SetScript('OnLeave', function() _G.PlayerTitleDropdown:SetAlpha(0) end)
 			end
 
 			CharacterNameText:ClearAllPoints()
@@ -2385,7 +2393,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.MagicResFrame1:ClearAllPoints()
 			if E.Wrath or E.TBC then
 				_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
-				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 13, 25)
+				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropdown, "TOPLEFT", 13, 25)
 			elseif E.Classic then
 				_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
 				_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
@@ -2407,151 +2415,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
 			_G.MagicResFrame5:SetParent(CharacterFrame.StatusLine4)
 
-			if E.Wrath then
-				--"left side" or in this case the top side
-				_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
-				_G.PlayerStatFrameLeftDropDown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -45)
-				_G.PlayerStatFrameLeftDropDown:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameLeft1:ClearAllPoints()
-				_G.PlayerStatFrameLeft1:SetPoint("BOTTOM", _G.PlayerStatFrameLeftDropDown, "BOTTOM", -22, -15)
-				_G.PlayerStatFrameLeft1:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameLeft2:ClearAllPoints()
-				_G.PlayerStatFrameLeft2:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft2:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft2.StatusLine:SetSize(170, 12)
-				_G.PlayerStatFrameLeft2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft2, "CENTER", 25, 0)
-				_G.PlayerStatFrameLeft2.StatusLine:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-				_G.PlayerStatFrameLeft2.StatusLine:SetFrameLevel(2)
-
-				_G.PlayerStatFrameLeft3:ClearAllPoints()
-				_G.PlayerStatFrameLeft3:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft3:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameLeft4:ClearAllPoints()
-				_G.PlayerStatFrameLeft4:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft4:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft4.StatusLine:SetSize(170, 12)
-				_G.PlayerStatFrameLeft4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft4, "CENTER", 25, 0)
-				_G.PlayerStatFrameLeft4.StatusLine:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-				_G.PlayerStatFrameLeft4.StatusLine:SetFrameLevel(2)
-
-				_G.PlayerStatFrameLeft5:ClearAllPoints()
-				_G.PlayerStatFrameLeft5:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft5:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameLeft6:ClearAllPoints()
-				_G.PlayerStatFrameLeft6:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft6:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft6.StatusLine:SetSize(170, 12)
-				_G.PlayerStatFrameLeft6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft6, "CENTER", 25, 0)
-				_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PlayerStatFrameLeft6"])
-				_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-				_G.PlayerStatFrameLeft6.StatusLine:SetFrameLevel(2)
-
-				_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
-				_G.PlayerStatFrameLeft1Stat:SetPoint("CENTER", _G.PlayerStatFrameLeft1, "CENTER", 95, 0)
-				_G.PlayerStatFrameLeft1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameLeft1Stat:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft2Stat:ClearAllPoints()
-				_G.PlayerStatFrameLeft2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameLeft2Stat:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft3Stat:ClearAllPoints()
-				_G.PlayerStatFrameLeft3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameLeft3Stat:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft4Stat:ClearAllPoints()
-				_G.PlayerStatFrameLeft4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameLeft4Stat:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft5Stat:ClearAllPoints()
-				_G.PlayerStatFrameLeft5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameLeft5Stat:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
-				_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameLeft6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameLeft6Stat:SetParent(CharacterFrame.StatusLine4)
-
-				--"right side", on this case its the bottom
-				_G.PlayerStatFrameRightDropDown:ClearAllPoints()
-				_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -115)
-				_G.PlayerStatFrameRightDropDown:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameRight1:ClearAllPoints()
-				_G.PlayerStatFrameRight1:SetPoint("BOTTOM", _G.PlayerStatFrameRightDropDown, "BOTTOM", -22, -15)
-				_G.PlayerStatFrameRight1:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameRight2:ClearAllPoints()
-				_G.PlayerStatFrameRight2:SetPoint("BOTTOM", _G.PlayerStatFrameRight1, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight2:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameRight2.StatusLine:SetSize(170, 12)
-				_G.PlayerStatFrameRight2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight2, "CENTER", 25, 0)
-				_G.PlayerStatFrameRight2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				_G.PlayerStatFrameRight2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-				_G.PlayerStatFrameRight2.StatusLine:SetFrameLevel(2)
-				_G.PlayerStatFrameRight2.StatusLine:SetParent(CharacterFrame.StatusLine4)
-
-				_G.PlayerStatFrameRight3:ClearAllPoints()
-				_G.PlayerStatFrameRight3:SetPoint("BOTTOM", _G.PlayerStatFrameRight2, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight3:SetParent(_G.PlayerStatFrameRight1)
-
-				_G.PlayerStatFrameRight4:ClearAllPoints()
-				_G.PlayerStatFrameRight4:SetPoint("BOTTOM", _G.PlayerStatFrameRight3, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight4:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight4.StatusLine:SetSize(170, 12)
-				_G.PlayerStatFrameRight4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight4, "CENTER", 25, 0)
-				_G.PlayerStatFrameRight4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				_G.PlayerStatFrameRight4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-				_G.PlayerStatFrameRight4.StatusLine:SetFrameLevel(2)
-				_G.PlayerStatFrameRight4.StatusLine:SetParent(_G.PlayerStatFrameRight1)
-
-				_G.PlayerStatFrameRight5:ClearAllPoints()
-				_G.PlayerStatFrameRight5:SetPoint("BOTTOM", _G.PlayerStatFrameRight4, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight5:SetParent(_G.PlayerStatFrameRight1)
-
-				_G.PlayerStatFrameRight6:ClearAllPoints()
-				_G.PlayerStatFrameRight6:SetPoint("BOTTOM", _G.PlayerStatFrameRight5, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight6:SetParent(CharacterFrame.StatusLine4)
-				_G.PlayerStatFrameRight6.StatusLine:SetSize(170, 12)
-				_G.PlayerStatFrameRight6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight6, "CENTER", 25, 0)
-				_G.PlayerStatFrameRight6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				_G.PlayerStatFrameRight6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-				_G.PlayerStatFrameRight6.StatusLine:SetParent(_G["PlayerStatFrameRight6"])
-				_G.PlayerStatFrameRight6.StatusLine:SetFrameLevel(2)
-
-				_G.PlayerStatFrameRight1Stat:ClearAllPoints()
-				_G.PlayerStatFrameRight1Stat:SetPoint("CENTER", _G.PlayerStatFrameRight1, "CENTER", 95, 0)
-				_G.PlayerStatFrameRight1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameRight1Stat:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight2Stat:ClearAllPoints()
-				_G.PlayerStatFrameRight2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight1Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameRight2Stat:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight3Stat:ClearAllPoints()
-				_G.PlayerStatFrameRight3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight2Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameRight3Stat:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight4Stat:ClearAllPoints()
-				_G.PlayerStatFrameRight4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight3Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameRight4Stat:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight5Stat:ClearAllPoints()
-				_G.PlayerStatFrameRight5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight4Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameRight5Stat:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight6Stat:ClearAllPoints()
-				_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
-				_G.PlayerStatFrameRight6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				_G.PlayerStatFrameRight6Stat:SetParent(_G["PlayerStatFrameRight6"])
-			elseif E.TBC then
+			if E.Wrath or E.TBC then
 				--"left side" or in this case the top side
 				_G.PlayerStatFrameLeftDropdown:ClearAllPoints()
 				_G.PlayerStatFrameLeftDropdown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -45)
