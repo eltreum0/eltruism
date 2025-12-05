@@ -42,10 +42,10 @@ end
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-			local min, max = UnitHealth(unit), UnitHealthMax(unit)
-			return E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
+			return E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -55,8 +55,7 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 		end
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			local min, max = UnitHealth(unit), UnitHealthMax(unit)
-			return E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
+			return E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -90,11 +89,11 @@ E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Dis
 E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-			local min, max = UnitHealth(unit), UnitHealthMax(unit)
-			local perc = min / max * 100
-			return format('%s | %.1f%%', E:ShortValue(min, 0), perc)
+			local perc = cur / maxhp * 100
+			return format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -104,9 +103,8 @@ E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION P
 		end
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			local min, max = UnitHealth(unit), UnitHealthMax(unit)
-			local perc = min / max * 100
-			return format('%s | %.1f%%', E:ShortValue(min, 0), perc)
+			local perc = cur / maxhp * 100
+			return format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -140,15 +138,15 @@ E:AddTagInfo("eltruism:hpstatus:line", ElvUI_EltreumUI.Name.." "..L["Health"], L
 E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-			local min1, max1 = UnitHealth(unit), UnitHealthMax(unit)
-			if max1 == 0 then max1 = 1 end
-			local perc = min1 / max1 * 100
-			if min1 == max1 then
-				return E:ShortValue(min1, nil)
+			if maxhp == 0 then maxhp = 1 end
+			local perc = cur / maxhp * 100
+			if cur == maxhp then
+				return E:ShortValue(cur, nil)
 			else
-				return format('%.1f%% - %s', perc, E:ShortValue(min1, nil))
+				return format('%.1f%% - %s', perc, E:ShortValue(cur, nil))
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
@@ -159,14 +157,13 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 		end
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			local min1, max1 = UnitHealth(unit), UnitHealthMax(unit)
-			if not max1 then max1 = 1 end
-			if max1 == 0 then max1 = 1 end
-			local perc = min1 / max1 * 100
-			if min1 == max1 then
-				return E:ShortValue(min1, nil)
+			if not maxhp then maxhp = 1 end
+			if maxhp == 0 then maxhp = 1 end
+			local perc = cur / maxhp * 100
+			if cur == maxhp then
+				return E:ShortValue(cur, nil)
 			else
-				return format('%.1f%% - %s', perc, E:ShortValue(min1, nil))
+				return format('%.1f%% - %s', perc, E:ShortValue(cur, nil))
 			end
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
@@ -249,7 +246,7 @@ E:AddTag("eltruism:hpdeficitpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", 
 	local deficit = maxhp - cur
 
 	if deficit > 0 and cur > 0 then
-		return ("-"..E:ShortValue(deficit).." | "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
+		return ("-"..E:ShortValue(deficit).." | "..E:GetFormattedText('PERCENT', cur, maxhp))
 	end
 end)
 E:AddTagInfo("eltruism:hpdeficitpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays health lost in shortvalue and current health percentage"])
@@ -260,7 +257,7 @@ E:AddTag("eltruism:pchpdeficit", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", 
 	local deficit = maxhp - cur
 
 	if deficit > 0 and cur > 0 then
-		return (E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." | ".."-"..E:ShortValue(deficit))
+		return (E:GetFormattedText('PERCENT', cur, maxhp).." | ".."-"..E:ShortValue(deficit))
 	end
 end)
 E:AddTagInfo("eltruism:pchpdeficit", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
@@ -559,7 +556,7 @@ E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 	local deficit = maxhp - cur
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
-	local value = "-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))
+	local value = "-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', cur, maxhp)
 	if deficit > 0 and cur > 0 then
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			local reaction = UnitReaction(unit, "player")
@@ -589,7 +586,7 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	local deficit = maxhp - cur
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 	if deficit > 0 and cur > 0 then
-		local value = E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))
+		local value = E:GetFormattedText('PERCENT', cur, maxhp)
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
@@ -611,7 +608,6 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	end
 end)
 E:AddTagInfo("eltruism:pchpdeficit:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
-
 
 --health:current-max-percent:shortvalue but gradient
 E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
@@ -654,3 +650,31 @@ E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAX
 	end
 end)
 E:AddTagInfo("eltruism:healthcurrentmaxpercentshort:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health, max health and percentage of health in shortvalue"])
+
+--shortvalue at max health, percent when lost
+E:AddTag("eltruism:shortmaxlostpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local deficit = maxhp - cur
+	if cur > 0 then
+		if deficit > 0 then
+			return E:GetFormattedText('PERCENT', cur, maxhp)
+		else
+			return E:ShortValue(cur)
+		end
+	end
+end)
+E:AddTagInfo("eltruism:shortmaxlostpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays short value at max health, percentage at health lost"])
+
+--full value at max health, percent when lost
+E:AddTag("eltruism:hpmaxlostpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local deficit = maxhp - cur
+	if cur > 0 then
+		if deficit > 0 then
+			return E:GetFormattedText('PERCENT', cur, maxhp)
+		else
+			return cur
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpmaxlostpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays full value at max health, percentage at health lost"])

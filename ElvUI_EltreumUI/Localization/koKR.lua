@@ -1634,3 +1634,5 @@ L["Nameplate Castbar Border"] = true
 L["Nameplate Castbar Thickness"] = true
 L["How do I disable the class color texture at the bottom of the screen?"] = true
 L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"] = true
+L["Displays short value at max health, percentage at health lost"] = true
+L["Displays full value at max health, percentage at health lost"] = true

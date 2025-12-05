@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetHeight(20)
 			wowheadbutton:SetParent(_G.WorldMapFrame)
 			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
-		elseif E.Classic then
+		elseif E.Classic or E.TBC or E.Wrath then
 			local x, y = _G.QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
 			end
-		elseif E.Mists or E.TBC or E.Wrath then
+		elseif E.Mists then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -1197,7 +1197,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end)
 				end)
 			end
-		elseif E.Classic then
+		elseif E.Classic or E.TBC or E.Wrath then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
 				return
 			end
@@ -1470,7 +1470,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Mists or E.TBC or E.Wrath then
+		elseif E.Mists then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			if _G.ObjectiveFrameMover then
