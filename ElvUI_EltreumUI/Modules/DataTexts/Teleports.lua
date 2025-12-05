@@ -144,7 +144,6 @@ local TeleportsItems = {
 	17909, --frostwolf-insignia-rank-6
 }
 local TeleportsSpells = {
-	1233637, --Teleport to Plot
 	556, --astral-recall
 	50977, --death-gate
 	126892, --zen-pilgrimage
@@ -199,6 +198,9 @@ local TeleportsSpells = {
 	432257, --path-of-the-bitter-legacy
 	432258, --path-of-the-scorching-dream
 }
+if E.Retail then
+	table.insert(TeleportsSpells, 1233637) --Teleport to Plot
+end
 local texturePaths = {
 	["6948"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga", --hearthstone
 	["22630"] = "Interface\\Icons\\inv_staff_medivh.blp", --atiesh-greatstaff-of-the-guardian
