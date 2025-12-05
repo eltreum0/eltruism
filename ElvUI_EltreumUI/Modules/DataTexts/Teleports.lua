@@ -199,7 +199,10 @@ local TeleportsSpells = {
 	432258, --path-of-the-scorching-dream
 }
 if E.Retail then
-	table.insert(TeleportsSpells, 1233637) --Teleport to Plot
+	local houseInfo = _G.C_Housing.GetCurrentHouseInfo()
+	if houseInfo and houseInfo.houseGUID then --only if they have a house
+		table.insert(TeleportsSpells, 1233637) --Teleport to Plot
+	end
 end
 local texturePaths = {
 	["6948"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga", --hearthstone
