@@ -2,6 +2,7 @@
 ## Author: Eltreum
 ## Version: 4.4.2
 ## Title: |cff1784d1ElvUI|r |cff82B4FFE|r|cff83B6FFl|r|cff84B7FEt|r|cff85B9FEr|r|cff86BBFDu|r|cff87BDFDi|r|cff88BEFDs|r|cff8AC0FCm|r |cff8CC4FBT|r|cff8DC5FBh|r|cff8EC7FBe|r |cff90CBFAB|r|cff91CCF9u|r|cff92CEF9r|r|cff93D0F8n|r|cff94D2F8i|r|cff95D3F8n|r|cff96D5F7g|r |cff99D9F6C|r|cff9ADAF6r|r|cff9BDCF6u|r|cff9CDEF5s|r|cff9DE0F5a|r|cff9EE1F4d|r|cff9FE3F4e|r
+## IconTexture: Interface\AddOns\ElvUI_EltreumUI\Media\Textures\tinylogodev
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI
