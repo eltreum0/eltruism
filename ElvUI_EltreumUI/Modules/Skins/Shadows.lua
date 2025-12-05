@@ -73,11 +73,50 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
+					if (arg == "Blizzard_HouseEditor") or IsAddOnLoaded("Blizzard_HouseEditor") then
+						if _G.HouseEditorFrame then
+							if not _G.HouseEditorFrame.shadow then
+								_G.HouseEditorFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HouseEditorFrame.shadow)
+							end
+							if _G.HouseEditorFrame.StoragePanel then
+								if not _G.HouseEditorFrame.StoragePanel.shadow then
+									_G.HouseEditorFrame.StoragePanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.HouseEditorFrame.StoragePanel.shadow)
+								end
+								if _G.HouseEditorFrame.StoragePanel.TabSystem then
+									for i = 1, _G.HouseEditorFrame.StoragePanel.TabSystem:GetNumChildren() do
+										local tab = select(i, _G.HouseEditorFrame.StoragePanel.TabSystem:GetChildren())
+										if tab and tab.backdrop and not tab.backdrop.shadow then
+											tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+										end
+									end
+								end
+							end
+						end
+					end
 					if (arg == "Blizzard_HousingHouseFinder") or IsAddOnLoaded("Blizzard_HousingHouseFinder") then
 						if _G.HouseFinderFrame then
 							if not _G.HouseFinderFrame.shadow then
 								_G.HouseFinderFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.HouseFinderFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingModelPreview") or IsAddOnLoaded("Blizzard_HousingModelPreview") then
+						if _G.HousingModelPreviewFrame then
+							if not _G.HousingModelPreviewFrame.shadow then
+								_G.HousingModelPreviewFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingModelPreviewFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingDashboard") or IsAddOnLoaded("Blizzard_HousingDashboard") then
+						if _G.HousingDashboardFrame then
+							if not _G.HousingDashboardFrame.shadow then
+								_G.HousingDashboardFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingDashboardFrame.shadow)
 							end
 						end
 					end
