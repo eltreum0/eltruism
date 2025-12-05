@@ -1197,7 +1197,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end)
 				end)
 			end
-		elseif E.Classic or E.TBC or E.Wrath then
+		elseif E.Classic or E.TBC then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
 				return
 			end
@@ -1470,7 +1470,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Mists then
+		elseif E.Mists or E.Wrath then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			if _G.ObjectiveFrameMover then

@@ -652,10 +652,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	end
 
 	--objective frame movers
-	if E.Classic then
+	if E.Classic or E.TBC then
 		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-111,-230"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-109,-337"
-	elseif E.Mists or E.TBC or E.Wrath then
+	elseif E.Mists or E.Wrath then
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-319"
 	elseif E.Retail then
