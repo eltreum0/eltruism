@@ -1996,17 +1996,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.statcolors or E.db.ElvUI_EltreumUI.skins.characterskingradients then
-			--set hooks
-			if E.Wrath then
-				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetStatGradient)
-				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetStatGradient)
-			end
 			hooksecurefunc("PaperDollFrame_UpdateStats", SetStatGradient)
 		else
-			if E.Wrath then
-				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetFontSize)
-				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetFontSize)
-			end
 			hooksecurefunc("PaperDollFrame_UpdateStats", SetFontSize)
 		end
 
