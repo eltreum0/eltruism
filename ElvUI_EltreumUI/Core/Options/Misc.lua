@@ -2,7 +2,6 @@ local E, _, _, P = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
-local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local C_ToyBox = _G.C_ToyBox
 local PlayerHasToy = _G.PlayerHasToy
 local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
@@ -127,15 +126,16 @@ function ElvUI_EltreumUI:MiscOptions()
 		local tpspellsitems = {}
 		for _, v in _G.pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-				local spellData = GetSpellInfo(v)
+				local spellName = ElvUI_EltreumUI:EltruismSpellInfo(v)
 				local hasSpell
 				if _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown then
 					hasSpell = _G.C_SpellBook.IsSpellKnown(v)
 				else
 					hasSpell = IsSpellKnown(v)
 				end
+				if v == 1233637 then hasSpell = true end
 				if hasSpell then
-					tpspellsitems[v] = spellData.name
+					tpspellsitems[v] = spellName
 				end
 			else
 				local name, itemLink = GetItemInfo(v)
@@ -149,12 +149,9 @@ function ElvUI_EltreumUI:MiscOptions()
 		return tpspellsitems
 	end, false, "full", function()
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			local spellData = GetSpellInfo(_G.tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
-			if spellData then
-				local value = spellData.spellID
-				if value then
-					return value
-				end
+			local spellName, spellID = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			if spellName then
+				return spellID
 			else
 				return 187874 --fallback value
 			end
@@ -168,11 +165,12 @@ function ElvUI_EltreumUI:MiscOptions()
 	end,
 	function(_, value)
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			local spellData = GetSpellInfo(_G.tostring(value))
-			if spellData then
-				local spellID = spellData.spellID
-				if spellID then
-					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = spellID
+			local spellName, spellID = ElvUI_EltreumUI:EltruismSpellInfo(value)
+			if spellName and spellID then
+				if spellID == 1233637 then
+					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(spellID)
+				else
+					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = spellName
 				end
 			end
 		else

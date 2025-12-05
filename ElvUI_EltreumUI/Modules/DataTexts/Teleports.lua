@@ -22,6 +22,8 @@ local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
 local hsIsReady = true
 local C_Map = _G.C_Map
 local InCombatLockdown = _G.InCombatLockdown
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
 --most from https://www.wowhead.com/item=6948/hearthstone#comments
@@ -142,6 +144,7 @@ local TeleportsItems = {
 	17909, --frostwolf-insignia-rank-6
 }
 local TeleportsSpells = {
+	1233637, --Teleport to Plot
 	556, --astral-recall
 	50977, --death-gate
 	126892, --zen-pilgrimage
@@ -357,6 +360,7 @@ local texturePaths = {
 	["209035"] = "Interface\\Icons\\inv_holiday_hearthstonemidsummerfirefestival", --hearthstone-of-the-flame
 	["236687"] = "Interface\\Icons\\inv_111_goldenbomb_goldblue", --explosive-hearthstone
 	["246565"] = "Interface\\Icons\\spell_holy_circleofrenewal_shadow", --cosmic-hearthstone
+	["1233637"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Housing.tga", --teleport home
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -413,6 +417,13 @@ _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
 _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 
 local function EltruismTeleportsOnEvent(self)
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+		if not IsAddOnLoaded("Blizzard_HousingDashboard") then
+			LoadAddOn("Blizzard_HousingDashboard")
+			_G.ToggleFrame(_G.HousingDashboardFrame)
+			_G.ToggleFrame(_G.HousingDashboardFrame)
+		end
+	end
 
 	--fix id
 	if not hsIsReady and E.myclass == "SHAMAN" then
@@ -456,9 +467,19 @@ local function EltruismTeleportsOnEvent(self)
 				end
 			else
 				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-					displayStringEltruismTeleports = "|cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+						local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+						displayStringEltruismTeleports = "|cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+					else
+						displayStringEltruismTeleports = "|cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
 				else
-					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+						local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
 				end
 			end
 		elseif cooldownAR <= 0 then
@@ -470,9 +491,19 @@ local function EltruismTeleportsOnEvent(self)
 				end
 			else
 				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-					displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+						local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+						displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+					else
+						displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
 				else
-					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+						local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
 				end
 			end
 		end
@@ -485,7 +516,12 @@ local function EltruismTeleportsOnEvent(self)
 					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..GetBindLocation().."|r"
 				end
 			else
-				displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			end
 			hsIsReady = false
 		elseif cooldown <= 0 then
@@ -496,7 +532,21 @@ local function EltruismTeleportsOnEvent(self)
 					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
 				end
 			else
-				displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+						local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+						displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+					else
+						displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
+				else
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+						local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
+				end
 			end
 			hsIsReady = true
 		end
@@ -542,6 +592,10 @@ local function EltruismTeleportsOnEnter()
 		local texture = GetSpellTexture(v)
 		local namespells = ElvUI_EltreumUI:EltruismSpellInfo(v)
 		local hasSpell = IsSpellKnown(v)
+		if v == 1233637 then
+			hasSpell = true
+			texture = texturePaths["1233637"]
+		end
 		if texture and namespells and hasSpell then
 			local start, duration = SpellCooldown(v)
 			local cooldown = start + duration - GetTime()
@@ -580,9 +634,19 @@ local function EltruismTeleportsOnEnter()
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-				displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			else
-				displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			end
 		end
 		hsIsReady = false
@@ -595,14 +659,29 @@ local function EltruismTeleportsOnEnter()
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-				displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			else
-				displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			end
 		end
 		hsIsReady = true
 	end
-	DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+		local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+		DT.tooltip:AddDoubleLine(L["Double Click:"], spellName)
+	else
+		DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+	end
 	DT.tooltip:Show()
 
 	teleportupdate:SetScript("OnUpdate", function(_, elapsed)
@@ -643,6 +722,10 @@ local function EltruismTeleportsOnEnter()
 				local texture = GetSpellTexture(v)
 				local namespells = ElvUI_EltreumUI:EltruismSpellInfo(v)
 				local hasSpell = IsSpellKnown(v)
+				if v == 1233637 then
+					hasSpell = true
+					texture = texturePaths["1233637"]
+				end
 				if texture and namespells and hasSpell then
 					local startcd2, durationcd2 = SpellCooldown(v)
 					local cooldown3 = startcd2 + durationcd2 - GetTime()
@@ -681,7 +764,21 @@ local function EltruismTeleportsOnEnter()
 							displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..GetBindLocation().."|r"
 						end
 					else
-						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+						if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
+							if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+								local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+								displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+							else
+								displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+							end
+						else
+							if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+								local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+								displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+							else
+								displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+							end
+						end
 					end
 					hsIsReady = false
 				else
@@ -693,15 +790,30 @@ local function EltruismTeleportsOnEnter()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-							displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+							if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+								local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+								displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+							else
+								displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+							end
 						else
-							displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+							if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+								local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+								displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+							else
+								displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+							end
 						end
 					end
 					hsIsReady = true
 				end
 			end
-			DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+				local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+				DT.tooltip:AddDoubleLine(L["Double Click:"], spellName)
+			else
+				DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			end
 			DT.tooltip:Show()
 		end
 	end)
@@ -723,10 +835,24 @@ local function EltruismTeleportsOnClick(self)
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', nameastrall)
 	else
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
 			local namespell, spellID = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-			_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
-			_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', namespell)
+			if spellID == 1233637 then
+				_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'clicky')
+				_G["EltruismHearthStoneSecureButton"]:SetScript("OnAttributeChanged", function(_,_,mode)
+					if mode == "clicky" then
+						--can teleport to house, but the return throws a taint for some reason
+						if _G.HousingDashboardFrame.HouseInfoContent.ContentFrame.HouseUpgradeFrame.TeleportToHouseButton.teleportToPlot ~= false then
+							_G.HousingDashboardFrame.HouseInfoContent.ContentFrame.HouseUpgradeFrame.TeleportToHouseButton:Click()
+						else
+							ElvUI_EltreumUI:Print(_G.HOUSING_DASHBOARD_RETURN.." ".._G.ADDON_DISABLED.." (by Blizzard)") --print because it would taint otherwise
+						end
+					end
+				end)
+			else
+				_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
+				_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
+				_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', namespell)
+			end
 		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == nil then
 				E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = 6948
@@ -774,9 +900,19 @@ local function EltruismTeleportsOnClick(self)
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-				displayStringEltruismTeleports = "|cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			else
-				displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			end
 		end
 	elseif cooldown <= 0 then
@@ -788,9 +924,19 @@ local function EltruismTeleportsOnClick(self)
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-				displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			else
-				displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
+					local spellName = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(spellName), 23).."|r"
+				else
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+				end
 			end
 		end
 	end
