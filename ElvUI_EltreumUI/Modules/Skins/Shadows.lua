@@ -72,6 +72,20 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.HousingCornerstoneVisitorFrame.shadow)
 							end
 						end
+						if _G.HousingCornerstoneHouseInfoFrame then
+							if not _G.HousingCornerstoneHouseInfoFrame.shadow then
+								_G.HousingCornerstoneHouseInfoFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingCornerstoneHouseInfoFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingHouseSettings") or IsAddOnLoaded("Blizzard_HousingHouseSettings") then
+						if _G.HousingHouseSettingsFrame then
+							if not _G.HousingHouseSettingsFrame.shadow then
+								_G.HousingHouseSettingsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingHouseSettingsFrame.shadow)
+							end
+						end
 					end
 					if (arg == "Blizzard_HouseEditor") or IsAddOnLoaded("Blizzard_HouseEditor") then
 						if _G.HouseEditorFrame then
