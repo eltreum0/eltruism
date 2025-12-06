@@ -478,7 +478,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	--from elvui, to fix the buttons on the game menu
-	if E.Retail then
+	if E.Retail or E.TBC then
 		hooksecurefunc(_G.GameMenuFrame, 'Layout', function()
 			for _,button in pairs(_G.GameMenuFrame.MenuButtons) do
 				CreateFader(button)
