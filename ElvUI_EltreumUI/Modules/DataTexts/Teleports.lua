@@ -849,6 +849,7 @@ local function EltruismTeleportsOnClick(self)
 						if _G.HousingDashboardFrame.HouseInfoContent.ContentFrame.HouseUpgradeFrame.TeleportToHouseButton.teleportToPlot ~= false then
 							_G.HousingDashboardFrame.HouseInfoContent.ContentFrame.HouseUpgradeFrame.TeleportToHouseButton:Click()
 						else
+							--C_Housing.ReturnAfterVisitingHouse() this would taint
 							ElvUI_EltreumUI:Print(_G.HOUSING_DASHBOARD_RETURN.." ".._G.ADDON_DISABLED.." (by Blizzard)") --print because it would taint otherwise
 						end
 					end
