@@ -1049,6 +1049,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsFrameTab3,
 				_G.FriendsFrameTab4,
 				_G.FriendsFrameTab5, --only in classic though
+				_G.FriendsFrame and _G.FriendsFrame.IgnoreListWindow,
+				_G.FriendsFrameBattlenetFrame and _G.FriendsFrameBattlenetFrame.BroadcastFrame,
 				_G.FriendsTooltip,
 				_G.GhostFrameContentsFrame,
 				_G.GossipFrame,
