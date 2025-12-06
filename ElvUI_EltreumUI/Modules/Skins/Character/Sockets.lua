@@ -1199,8 +1199,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 			if 255 >= strlenutf8(text) then
 				_G.MacroFrameText:Insert(link)
 			end
-		elseif _G.ChatEdit_GetActiveWindow() then
+		elseif _G.ChatEdit_GetActiveWindow and _G.ChatEdit_GetActiveWindow() then
 			_G.ChatEdit_InsertLink(link)
+		elseif _G.ChatFrameUtil and _G.ChatFrameUtil.GetActiveWindow and _G.ChatFrameUtil.GetActiveWindow() then
+			_G.ChatFrameUtil.InsertLink()
 		end
 	end
 
