@@ -41,6 +41,9 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+				if E.db.ElvUI_EltreumUI.dev then
+					ElvUI_EltreumUI:Print(arg)
+				end
 				if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then
 					if IsAddOnLoaded("ElvUI_WindTools") then
 						if E.private.WT.skins.addons.weakAuras then
