@@ -9,19 +9,27 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog'
 	ElvUI_EltreumUI.Options.args.changelog.args.changelog = E.Libs.ACH:Input(L["Changelog"], "", 1, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
 	ElvUI_EltreumUI.Options.args.changelog.args.description1 = E.Libs.ACH:Description(E.NewSign..E:TextGradient("v"..ElvUI_EltreumUI.Version, 0.50, 0.70, 1, 0.67, 0.95, 1), 2, "large", nil, nil, nil, nil, "full")
+
+	--added
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added back support for TBC and Wrath
+Added Teleport to Home to the Teleport Datatext (please note you can't return due to taints)
+Added more shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
-	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
-	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated for 11.2.7
-]], 5, "small", nil, nil, nil, nil, "full")
+
+	--updated
+	--ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	--ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
+	--ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
+--]], 5, "small", nil, nil, nil, nil, "full")
+
+	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an error due to a change on the Windtools database
+Fixed an issue with the Chat where it could error after the Chat changes in 11.2.7
+Fixed some issues on Wrath Titan with the help of Barney
+Fixed some issues on TBC PTR
 ]], 7, "small", nil, nil, nil, nil, "full")
 end

@@ -1,6 +1,13 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.4.3
+Added Teleport to Home to the Teleport Datatext (please note you can't return due to taints)  
+Added more shadows  
+Fixed an issue with the Chat where it could error after the Chat changes in 11.2.7  
+Fixed some issues on Wrath Titan with the help of Barney  
+Fixed some issues on TBC PTR  
+---
 ### 4.4.2
 Added back support for TBC and Wrath  
 Updated for 11.2.7  
