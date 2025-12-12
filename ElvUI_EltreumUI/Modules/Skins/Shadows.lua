@@ -72,12 +72,65 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.HousingCornerstoneVisitorFrame.shadow)
 							end
 						end
+						if _G.HousingCornerstoneHouseInfoFrame then
+							if not _G.HousingCornerstoneHouseInfoFrame.shadow then
+								_G.HousingCornerstoneHouseInfoFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingCornerstoneHouseInfoFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingHouseSettings") or IsAddOnLoaded("Blizzard_HousingHouseSettings") then
+						if _G.HousingHouseSettingsFrame then
+							if not _G.HousingHouseSettingsFrame.shadow then
+								_G.HousingHouseSettingsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingHouseSettingsFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HouseEditor") or IsAddOnLoaded("Blizzard_HouseEditor") then
+						if _G.HouseEditorFrame then
+							if not _G.HouseEditorFrame.shadow then
+								_G.HouseEditorFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HouseEditorFrame.shadow)
+							end
+							if _G.HouseEditorFrame.StoragePanel then
+								if not _G.HouseEditorFrame.StoragePanel.shadow then
+									_G.HouseEditorFrame.StoragePanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.HouseEditorFrame.StoragePanel.shadow)
+								end
+								if _G.HouseEditorFrame.StoragePanel.TabSystem then
+									for i = 1, _G.HouseEditorFrame.StoragePanel.TabSystem:GetNumChildren() do
+										local tab = select(i, _G.HouseEditorFrame.StoragePanel.TabSystem:GetChildren())
+										if tab and tab.backdrop and not tab.backdrop.shadow then
+											tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+										end
+									end
+								end
+							end
+						end
 					end
 					if (arg == "Blizzard_HousingHouseFinder") or IsAddOnLoaded("Blizzard_HousingHouseFinder") then
 						if _G.HouseFinderFrame then
 							if not _G.HouseFinderFrame.shadow then
 								_G.HouseFinderFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.HouseFinderFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingModelPreview") or IsAddOnLoaded("Blizzard_HousingModelPreview") then
+						if _G.HousingModelPreviewFrame then
+							if not _G.HousingModelPreviewFrame.shadow then
+								_G.HousingModelPreviewFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingModelPreviewFrame.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_HousingDashboard") or IsAddOnLoaded("Blizzard_HousingDashboard") then
+						if _G.HousingDashboardFrame then
+							if not _G.HousingDashboardFrame.shadow then
+								_G.HousingDashboardFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HousingDashboardFrame.shadow)
 							end
 						end
 					end
@@ -996,6 +1049,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsFrameTab3,
 				_G.FriendsFrameTab4,
 				_G.FriendsFrameTab5, --only in classic though
+				_G.FriendsFrame and _G.FriendsFrame.IgnoreListWindow,
+				_G.FriendsFrameBattlenetFrame and _G.FriendsFrameBattlenetFrame.BroadcastFrame,
 				_G.FriendsTooltip,
 				_G.GhostFrameContentsFrame,
 				_G.GossipFrame,

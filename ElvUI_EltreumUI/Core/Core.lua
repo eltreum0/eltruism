@@ -601,8 +601,13 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				Menubutton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name)
 				S:HandleButton(Menubutton,nil,nil,nil,true)
 
+				local offset = E.TBC and 19 or 36
 				local xMenubutton = _G.GameMenuFrame:GetSize()
-				Menubutton:Size(xMenubutton-62, 36)
+				if E.TBC then
+					Menubutton:Size(xMenubutton-118, offset)
+				else
+					Menubutton:Size(xMenubutton-62, offset)
+				end
 
 				GameMenuFrame.Eltruism = Menubutton
 				GameMenuFrame.MenuButtons.Eltruism = Menubutton
@@ -612,12 +617,14 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					for _, button in pairs(GameMenuFrame.MenuButtons) do
 						if button then
 							local point, anchor, point2, x, y = button:GetPoint()
-							button:SetPoint(point, anchor, point2, x, y - 35)
+							button:SetPoint(point, anchor, point2, x, y - offset)
 						end
 					end
 
 					--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-					GameMenuFrame:Height(538 + 36) --yes i can set the actual math but this lets me recall its + menubutton height
+					if E.Retail then
+						GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+					end
 
 					--use elvui moveui instead of blizzard edit mode
 					local EditModeButton = EM:GetGameMenuEditModeButton()

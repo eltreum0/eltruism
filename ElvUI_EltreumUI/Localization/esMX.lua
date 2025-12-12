@@ -1634,5 +1634,5 @@ L["Nameplate Castbar Border"] = "Borde de la barra de lanzamiento de la placa de
 L["Nameplate Castbar Thickness"] = "Grosor de la barra de lanzamiento de la placa de identificación"
 L["How do I disable the class color texture at the bottom of the screen?"] = "¿Cómo deshabilito la textura de color de clase en la parte inferior de la pantalla?"
 L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"] = "Esta es la textura que viene con Eltruism Datatext. Para desactivarla, ve a:\n\nElvUI > Eltruism > Misc > DataTexts > Desmarca Textura de color de clase con Eltruism Datatext"
-L["Displays short value at max health, percentage at health lost"] = true
-L["Displays full value at max health, percentage at health lost"] = true
+L["Displays short value at max health, percentage at health lost"] = "Muestra el valor corto en la salud máxima y el porcentaje en la salud perdida."
+L["Displays full value at max health, percentage at health lost"] = "Muestra el valor completo en la salud máxima y el porcentaje en la salud perdida."

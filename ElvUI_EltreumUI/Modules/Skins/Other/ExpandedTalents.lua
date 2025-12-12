@@ -3,6 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local EltruismExpandedTalents = CreateFrame("Frame")
+local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn
 
 --Reskin Blizzard Talent frame
 function ElvUI_EltreumUI:ExpandedTalents()
@@ -59,7 +60,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 				end)
 			end
 		end)]]
-	elseif E.Classic then
+	elseif E.Classic or E.TBC or E.Wrath then
 		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable and E.private.skins.blizzard.talent then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -77,14 +78,22 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					EltruismExpandedTalents:UnregisterAllEvents()
 					--hide the scroll
-					if PlayerTalentFrameScrollFrameScrollBar then
-						PlayerTalentFrameScrollFrameScrollBar:ClearAllPoints()
-						PlayerTalentFrameScrollFrameScrollBar:Hide()
+					if not E.Cata then
+						if PlayerTalentFrameScrollFrameScrollBar then
+							PlayerTalentFrameScrollFrameScrollBar:ClearAllPoints()
+							PlayerTalentFrameScrollFrameScrollBar:Hide()
+						end
 					end
-
 					--increase the size of the whole frame
 					if PlayerTalentFrame then
-						PlayerTalentFrame:SetSize(376, 670)
+						--PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
+						if E.TBC then
+							PlayerTalentFrame:SetSize(376, 780)
+						elseif E.Wrath then
+							PlayerTalentFrame:SetSize(376, 780)
+						elseif E.Classic then
+							PlayerTalentFrame:SetSize(376, 670)
+						end
 					end
 
 					--fix rank size
@@ -96,44 +105,141 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					if PlayerTalentFrameScrollFrame then
 						--increase the size of the actual frame that has the talent buttons
-						PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
-
+						if E.TBC then
+							PlayerTalentFrameScrollFrame:SetSize( 280 , 620)
+						elseif E.Wrath then
+							PlayerTalentFrameScrollFrame:SetSize( 280 , 720)
+						elseif E.Classic then
+							PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
+						end
 						--set the position
 						PlayerTalentFrameScrollFrame:ClearAllPoints()
-						PlayerTalentFrameScrollFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -37)
-						PlayerTalentFrameScrollChildFrame:ClearAllPoints()
-						PlayerTalentFrameScrollChildFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -57)
+						if E.TBC then
+							PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, -11, 20)
+						elseif E.Wrath then
+							PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
+						else
+							PlayerTalentFrameScrollFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -37)
+							PlayerTalentFrameScrollChildFrame:ClearAllPoints()
+							PlayerTalentFrameScrollChildFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -57)
+						end
 					end
 
 					--increase the size of the background
 					if PlayerTalentFrameBackgroundTopLeft then
-						--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
-						if PlayerTalentFrameScrollFrame.backdrop then
-							PlayerTalentFrameScrollFrame.backdrop:Kill()
+						if E.TBC then
+							--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+							if PlayerTalentFrameScrollFrame.backdrop then
+								PlayerTalentFrameScrollFrame.backdrop:Kill()
+							end
+							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", -8, 1)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(243, 471)
+
+							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", -8, 0)
+							PlayerTalentFrameBackgroundBottomLeft:SetSize(243, 150)
+
+							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 12, 1)
+							PlayerTalentFrameBackgroundTopRight:SetSize(57, 471)
+
+							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 12, 0)
+							PlayerTalentFrameBackgroundBottomRight:SetSize(57, 150)
+						elseif E.Wrath then
+							if PlayerTalentFrameScrollFrame.backdrop then
+								PlayerTalentFrameScrollFrame.backdrop:Kill()
+							end
+
+							PlayerTalentFrameScrollFrame:SetScale(0.85)
+
+							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", -15, -2)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(203, 467)
+
+							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", -15, 23)
+							PlayerTalentFrameBackgroundBottomLeft:SetSize(203, 120)
+
+							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 0, -2)
+							PlayerTalentFrameBackgroundTopRight:SetSize(50 , 467)
+
+							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 0, 23)
+							PlayerTalentFrameBackgroundBottomRight:SetSize(50 , 120)
+						elseif E.Classic then
+							--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+							if PlayerTalentFrameScrollFrame.backdrop then
+								PlayerTalentFrameScrollFrame.backdrop:Kill()
+							end
+							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", 0, 0)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(204, 374)
+
+							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", 0, -54)
+							PlayerTalentFrameBackgroundBottomLeft:SetSize(204, 150)
+
+							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 24, 0)
+							PlayerTalentFrameBackgroundTopRight:SetSize(100, 374)
+
+							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 24, -54)
+							PlayerTalentFrameBackgroundBottomRight:SetSize(100, 150)
 						end
-						PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
-						PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
-						PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", 0, 0)
-						PlayerTalentFrameBackgroundTopLeft:SetSize(204, 374)
-
-						PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
-						PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
-						PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", 0, -54)
-						PlayerTalentFrameBackgroundBottomLeft:SetSize(204, 150)
-
-						PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
-						PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
-						PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 24, 0)
-						PlayerTalentFrameBackgroundTopRight:SetSize(100, 374)
-
-						PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
-						PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
-						PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 24, -54)
-						PlayerTalentFrameBackgroundBottomRight:SetSize(100, 150)
 					end
 					--hide the close button (only shows up for some people?)
 					if PlayerTalentFrameCancelButton then
 						PlayerTalentFrameCancelButton:Hide()
+					end
+
+					-- fix glyph size
+					if E.Wrath then
+						LoadAddOn("Blizzard_GlyphUI")
+						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
+
+						_G.GlyphFrame:HookScript("OnShow", function()
+
+							--fix the button being behind the frame
+							if _G.PlayerTalentFrameCloseButton then
+								_G.PlayerTalentFrameCloseButton:SetFrameStrata("HIGH")
+							end
+
+							PlayerTalentFrame:SetSize(384, 512)
+							_G.GlyphFrame:Show()
+							PlayerTalentFrameBackgroundTopLeft:Hide()
+							PlayerTalentFrameBackgroundBottomLeft:Hide()
+							PlayerTalentFrameBackgroundTopRight:Hide()
+							PlayerTalentFrameBackgroundBottomRight:Hide()
+							_G.PlayerTalentFrameStatusFrame:Hide()
+							_G.GlyphFrame:ClearAllPoints()
+							_G.GlyphFrame:SetPoint("CENTER", _G.PlayerTalentFrame, "CENTER", 0, 4)
+							_G.GlyphFrame:SetFrameStrata("HIGH")
+						end)
+						_G.GlyphFrame:HookScript("OnHide", function()
+							PlayerTalentFrame:SetSize(376, 780)
+							_G.GlyphFrame:Hide()
+							_G.PlayerTalentFrameStatusFrame:Show()
+							PlayerTalentFrameBackgroundTopLeft:Show()
+							PlayerTalentFrameBackgroundBottomLeft:Show()
+							PlayerTalentFrameBackgroundTopRight:Show()
+							PlayerTalentFrameBackgroundBottomRight:Show()
+						end)
 					end
 
 					-- fix talent frame position due to expanded character bg

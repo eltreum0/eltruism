@@ -11,6 +11,10 @@ local gsub = _G.gsub
 local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
 local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
 local Chat_ShouldColorChatByClass = _G.Chat_ShouldColorChatByClass or _G.ChatFrameUtil.ShouldColorChatByClass
+local issecretvalue = _G.issecretvalue
+local IsRecentAllyByGUID = _G.C_RecentAllies and _G.C_RecentAllies.IsRecentAllyByGUID
+local RECENTALLY_ATLAS = '|A:friendslist-recentallies-yellow:%s:%s:0:0|a '
+local RECENTALLY_SMALL = format(RECENTALLY_ATLAS, 11, 11)
 
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
@@ -273,15 +277,16 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	local flag = ''
 
 	if specialFlag ~= '' then
+		local GetMentorChannelStatus = (_G.ChatFrameUtil and _G.ChatFrameUtil.GetMentorChannelStatus) or _G.ChatFrame_GetMentorChannelStatus
 		if specialFlag == 'GM' or specialFlag == 'DEV' then
 			-- Add Blizzard Icon if this was sent by a GM/DEV
 			flag = [[|TInterface\ChatFrame\UI-ChatIcon-Blizz:12:20:0:0:32:16:4:28:0:16|t ]]
 		elseif specialFlag == 'GUIDE' then
-			if CH.db.mentorshipIcon and _G.ChatFrame_GetMentorChannelStatus(CHATCHANNELRULESET_MENTOR, GetChannelRulesetForChannelID(zoneChannelID)) == CHATCHANNELRULESET_MENTOR then
+			if CH.db.mentorshipIcon and GetMentorChannelStatus(CHATCHANNELRULESET_MENTOR, GetChannelRulesetForChannelID(zoneChannelID)) == CHATCHANNELRULESET_MENTOR then
 				flag = NPEV2_CHAT_USER_TAG_GUIDE
 			end
 		elseif specialFlag == 'NEWCOMER' then
-			if CH.db.mentorshipIcon and _G.ChatFrame_GetMentorChannelStatus(PLAYERMENTORSHIPSTATUS_NEWCOMER, GetChannelRulesetForChannelID(zoneChannelID)) == PLAYERMENTORSHIPSTATUS_NEWCOMER then
+			if CH.db.mentorshipIcon and GetMentorChannelStatus(PLAYERMENTORSHIPSTATUS_NEWCOMER, GetChannelRulesetForChannelID(zoneChannelID)) == PLAYERMENTORSHIPSTATUS_NEWCOMER then
 				flag = _G.NPEV2_CHAT_USER_TAG_NEWCOMER
 			end
 		else
@@ -289,12 +294,18 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 		end
 	end
 
-	if E.Retail and E.db.chat.timerunningIcon and unitGUID and IsTimerunningPlayer(unitGUID) then
-		flag = flag .. TIMERUNNING_SMALL
+	if E.Retail and unitGUID and (not issecretvalue or not issecretvalue(unitGUID)) then
+		if CH.db.timerunningIcon and IsTimerunningPlayer(unitGUID) then
+			flag = flag .. TIMERUNNING_SMALL
+		end
+
+		if CH.db.recentAllyIcon and IsRecentAllyByGUID(unitGUID) then
+			flag = flag .. RECENTALLY_SMALL
+		end
 	end
 
 	--get the data to add the race/sex icons and then add it
-	if unitGUID then
+	if unitGUID and (not issecretvalue or not issecretvalue(unitGUID)) then
 		local data = CH:GetPlayerInfoByGUID(unitGUID)
 		--some nil checks
 		if not data then
@@ -308,7 +319,6 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 				flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Classic\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
 			end
 		end
-
 	end
 
 	return flag

@@ -671,7 +671,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		for i = 1, _G.NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
-			if E.Retail then
+			if E.Retail or E.TBC then
 				button.AutoCastOverlay:Hide()
 				button.AutoCastOverlay:SetAlpha(0)
 			else
