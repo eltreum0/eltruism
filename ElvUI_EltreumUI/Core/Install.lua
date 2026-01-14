@@ -384,7 +384,7 @@ ElvUI_EltreumUI.InstallerData = {
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
-				if (E.Mists or E.TBC or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
+				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum DPS/Tank ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')')
@@ -413,13 +413,17 @@ ElvUI_EltreumUI.InstallerData = {
 						FCF_OpenNewWindow()
 						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-						ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						if E.TBC then
+							_G.ChatFrame5:AddChannel(lfg)
+						else
+							ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						end
 						FCFTab_UpdateColors(_G.ChatFrame5Tab)
 						FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
-				if (E.Mists or E.TBC or E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
+				if (E.Mists or E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum Healer ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
@@ -447,13 +451,17 @@ ElvUI_EltreumUI.InstallerData = {
 						FCF_OpenNewWindow()
 						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-						ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						if E.TBC then
+							_G.ChatFrame5:AddChannel(lfg)
+						else
+							ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						end
 						FCFTab_UpdateColors(_G.ChatFrame5Tab)
 						FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
-				if (E.Mists or E.TBC or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
+				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum Thin ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile('Eltreum Thin ('..E.mynameRealm..')')
