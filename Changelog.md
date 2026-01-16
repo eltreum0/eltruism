@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.4.4
+Added support for Burning Crusade Classic  
+Updated for ElvUI 14.07  
+Fixed undocumented changes in Burning Crusade Anniversary  
+Fixed an issue with classic action bars  
+---
+### 4.4.3.1
+Updated .toc for Mists of Pandaria Classic  
+---
 ### 4.4.3
 Added Teleport to Home to the Teleport Datatext (please note you can't return due to taints)  
 Added more shadows  
