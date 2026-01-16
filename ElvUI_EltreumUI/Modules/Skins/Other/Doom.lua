@@ -373,7 +373,7 @@ function ElvUI_EltreumUI:Doom()
 			DCP:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 		end
 
-		function DCP:PLAYER_ENTERING_WORLD() --todo: maybe make an option for it in arena
+		function DCP:PLAYER_ENTERING_WORLD()
 			local inInstance,instanceType = IsInInstance()
 			if (inInstance and instanceType == "arena") then
 				self:SetScript("OnUpdate", nil)
