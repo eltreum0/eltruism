@@ -190,8 +190,10 @@ function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
 		bar.bg:SetAlpha(0)
 	end
 end
-hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
+hooksecurefunc(NP, "SetStatusBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
 
+--style filters were removed
+--[[
 --to fix stylefilter for gradient nameplates
 function ElvUI_EltreumUI:StyleFilterClearChanges(frame)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
@@ -220,6 +222,7 @@ function ElvUI_EltreumUI:StyleFilterSetChanges(frame)
 	end
 end
 hooksecurefunc(NP, "StyleFilterSetChanges", ElvUI_EltreumUI.StyleFilterSetChanges)
+]]
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
