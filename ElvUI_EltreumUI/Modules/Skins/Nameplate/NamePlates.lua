@@ -231,7 +231,7 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 	end
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
-
+--[[
 --for general nameplates
 local playerclassv1 = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",
@@ -297,7 +297,7 @@ local rareclass = {
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 	["EVOKER"] = "Eltreum-Class-Evoker",
 }
-
+]]
 local nameplateclasscolors
 
 --sets them enabled/disabled
@@ -424,13 +424,13 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	if E.private.nameplates.enable then
 
 		--fix threat
-		if E.global.nameplates.filters.EltreumTarget then
+		--[[if E.global.nameplates.filters.EltreumTarget then
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["colors"]["enable"] = false
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["colors"]["class"] = false
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then --gradient check for my filters
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = false
 			end
-		end
+		end]]
 
 		--glow color
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow then
@@ -440,7 +440,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--border colors
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
+		--[[if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["enable"] = true
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["playerClass"] = true
@@ -564,7 +564,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					end
 				end
 			end
-		end
+		end]]
 
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then

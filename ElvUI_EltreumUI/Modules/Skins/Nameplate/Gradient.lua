@@ -13,8 +13,9 @@ local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
+--style filter gone
 --gradient threat
-function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
+--[[function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local nameplate, db = self.__owner, NP.db.threat
 	local sf = NP:StyleFilterChanges(nameplate)
@@ -110,7 +111,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	end
 end
 hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator_PostUpdate)
-
+]]
 --gradient nameplates
 local bordercolor = E.myClassColor
 local function GradientNameplates(unit)
@@ -136,10 +137,10 @@ local function GradientNameplates(unit)
 	end
 
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		local sf = NP:StyleFilterChanges(unit)
-		if (sf and sf.health and sf.health.color) then
-			unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
-		else
+		--local sf = NP:StyleFilterChanges(unit)
+		--if (sf and sf.health and sf.health.color) then
+		--	unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
+		--else
 			if not InCombatLockdown() or UnitIsDead("player") then
 				unit.CurrentlyBeingTanked = nil
 			end
@@ -165,7 +166,7 @@ local function GradientNameplates(unit)
 					end
 				end
 			end
-		end
+		--end
 	end
 	if unit.Health.EltruismNameplateBorder then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
