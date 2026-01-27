@@ -1885,7 +1885,7 @@ end
 
 --from elvui
 local debuffColors = { -- handle colors of LibDispel
-	["none"] = { r = E.db.general.debuffColors.none.r, g = E.db.general.debuffColors.none.g, b = E.db.general.debuffColors.none.b },
+	["None"] = { r = E.db.general.debuffColors.None.r, g = E.db.general.debuffColors.None.g, b = E.db.general.debuffColors.None.b },
 	["Magic"] = { r = E.db.general.debuffColors.Magic.r, g = E.db.general.debuffColors.Magic.g, b = E.db.general.debuffColors.Magic.b },
 	["Curse"] = { r = E.db.general.debuffColors.Curse.r, g = E.db.general.debuffColors.Curse.g, b = E.db.general.debuffColors.Curse.b },
 	["Disease"] = { r = E.db.general.debuffColors.Disease.r, g = E.db.general.debuffColors.Disease.g, b = E.db.general.debuffColors.Disease.b },

@@ -94,6 +94,6 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
+--hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
 hooksecurefunc(NP, "NamePlateCallBack", ElvUI_EltreumUI.NameplateCustomOptions) --when they appear after the stylefilter changes in elvui
 --UNIT_FLAGS might work, as might "UNIT_THREAT_LIST_UPDATE", but linking to the function is the issue
