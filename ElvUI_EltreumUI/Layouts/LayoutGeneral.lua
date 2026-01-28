@@ -2165,7 +2165,7 @@ function ElvUI_EltreumUI:GreyBg()
 	E.db["general"]["backdropfadecolor"]["r"] = 0.13725490196078
 
 	E.db.ElvUI_EltreumUI.unitframes.greybackground = true
-	E:UpdateMediaItems()
+	--E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Grey Background")
 end
 
@@ -2180,7 +2180,7 @@ function ElvUI_EltreumUI:BlackBg()
 	E.db["general"]["backdropfadecolor"]["r"] = 0
 
 	E.db.ElvUI_EltreumUI.unitframes.greybackground = false
-	E:UpdateMediaItems()
+	--E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
 end
 

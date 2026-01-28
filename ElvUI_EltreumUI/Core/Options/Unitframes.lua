@@ -116,15 +116,15 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.apply = E.Libs.ACH:Execute(L["Apply"], L["Apply the mode selected"], 3, function()
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			ElvUI_EltreumUI:LightMode()
-			E:StaggeredUpdateAll()
+
 			E:StaticPopup_Show('CONFIG_RL')
 		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 			ElvUI_EltreumUI:DarkMode()
-			E:StaggeredUpdateAll()
+
 			E:StaticPopup_Show('CONFIG_RL')
 		else
 			ElvUI_EltreumUI:LightMode()
-			E:StaggeredUpdateAll()
+
 			E:StaticPopup_Show('CONFIG_RL')
 		end
 	end, nil, false, nil, nil, nil, function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) end)

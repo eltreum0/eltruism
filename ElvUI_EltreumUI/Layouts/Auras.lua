@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
 		end
 	end
-	E:StaggeredUpdateAll()
+	--E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Buff filters were setup"])
 end
 
@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
 		end
 	end
-	E:StaggeredUpdateAll()
+	--E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Debuff filters were setup"])
 end
 
@@ -311,6 +311,6 @@ function ElvUI_EltreumUI:SetupAllAuras(type)
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = minimalAura
 		E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
 	end
-	E:StaggeredUpdateAll()
+	--E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Aura filters were setup"])
 end
