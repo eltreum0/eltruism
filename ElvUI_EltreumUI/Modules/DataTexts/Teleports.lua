@@ -422,6 +422,7 @@ _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
 _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 
 local function EltruismTeleportsOnEvent(self)
+	if E.Retail and InCombatLockdown() then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleport == "1233637" then
 		if not IsAddOnLoaded("Blizzard_HousingDashboard") then
 			LoadAddOn("Blizzard_HousingDashboard")
