@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:CooldownColors()
 		E.db.general.backdropcolor.b = valuecolors.b*0.3
 		E.db.general.backdropcolor.g = valuecolors.g*0.3
 		E.db.general.backdropcolor.r = valuecolors.r*0.3
-		E:UpdateMediaItems()
+		--E:UpdateMediaItems()
 	end
 
 	if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticonclasscolor and E.Retail then
@@ -102,7 +102,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 					E.db["unitframe"]["units"]["arena"]["enable"] = true
 				end
 			end
-			E:UpdateUnitFrames()
+			--E:UpdateUnitFrames()
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
 			local UF = E:GetModule('UnitFrames')
@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 					--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 				end
 			end
-			E:UpdateNamePlates()
+			--E:UpdateNamePlates()
 		end
 	end
 end
@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 					E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 				end
 			end
-			E:UpdateNamePlates()
+			--E:UpdateNamePlates()
 		end
 	end
 end

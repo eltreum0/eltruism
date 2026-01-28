@@ -350,10 +350,10 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 	E.db["ElvUI_EltreumUI"]["borders"]["ytarget"] = 39
 	E.db["ElvUI_EltreumUI"]["borders"]["ytargettarget"] = 39
 
-	E:UpdateLayout()
-	E:UpdateUnitFrames()
-	E:UpdateActionBars()
-	E:UpdateMoverPositions()
+	--E:UpdateLayout()
+	--E:UpdateUnitFrames()
+	--E:UpdateActionBars()
+	--E:UpdateMoverPositions()
 	E:StaticPopup_Show('CONFIG_RL')
 
 	ElvUI_EltreumUI:Print("Thin Layout applied")

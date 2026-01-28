@@ -265,7 +265,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["actionbar"]["barPet"]["keepSizeRatio"] = false
 	E.db["actionbar"]["barPet"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; [@pet,exists] show; hide"
 	E.db["actionbar"]["chargeCooldown"] = true
-	E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
+	--E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
 	E.db["actionbar"]["desaturateOnCooldown"] = true
 	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.7
 	E.db["actionbar"]["extraActionButton"]["clean"] = true
@@ -1276,7 +1276,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["targettargettarget"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
-	E:StaggeredUpdateAll()
+	--E:StaggeredUpdateAll()
 	if not silent then
 		ElvUI_EltreumUI:Print(L["DPS/Tank Layout has been set."])
 	end

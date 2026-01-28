@@ -211,8 +211,8 @@ function ElvUI_EltreumUI:DarkMode()
 
 		end
 
-		E:UpdateMediaItems()
-		E:UpdateUnitFrames()
+		--E:UpdateMediaItems()
+		--E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
 		_G.LeftChatToggleButton:SetAlpha(1)
@@ -374,8 +374,8 @@ function ElvUI_EltreumUI:LightMode()
 			end]]
 		end
 
-		E:UpdateMediaItems()
-		E:UpdateUnitFrames()
+		--E:UpdateMediaItems()
+		--E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
 		_G.LeftChatToggleButton:SetAlpha(1)
@@ -703,8 +703,8 @@ function ElvUI_EltreumUI:GradientMode()
 			end
 		end
 
-		E:UpdateMediaItems()
-		E:UpdateUnitFrames()
+		--E:UpdateMediaItems()
+		--E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
 		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
