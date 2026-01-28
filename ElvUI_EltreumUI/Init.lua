@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
-		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
+		--ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
 	end
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
