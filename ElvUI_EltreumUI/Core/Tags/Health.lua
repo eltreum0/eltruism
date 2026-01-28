@@ -20,6 +20,8 @@ local string = _G.string
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitIsFeignDeath = _G.UnitIsFeignDeath
 local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
+local ScaleTo100 = _G.CurveConstants and _G.CurveConstants.ScaleTo100
+local UnitHealthPercent = _G.UnitHealthPercent
 
 if not E.Retail then
 	E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
@@ -43,9 +45,10 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local textformat = E.Retail and format('%d', UnitHealthPercent(unit, true, ScaleTo100)) or E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-			return E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
+			return textformat
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -55,7 +58,7 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 		end
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			return E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
+			return textformat
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -90,10 +93,11 @@ E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION P
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local perc = cur / maxhp * 100
+	local textformat = E.Retail and E:AbbreviateNumbers(cur, E.Abbreviate.short) or format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-			local perc = cur / maxhp * 100
-			return format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
+			return textformat
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -103,8 +107,7 @@ E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION P
 		end
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			local perc = cur / maxhp * 100
-			return format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
+			return textformat
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -309,32 +312,35 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 	local min, max = UnitHealth(unit), UnitHealthMax(unit)
-	local value = E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
-	local lengthOK = string.len(value) > 2 and true or false
+	local value = E.Retail and format('%s - %.1f%%', AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100)) or E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
+	local lengthOK
+	if not E.Retail then
+		lengthOK = string.len(value) > 2 and true or false
+	end
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if reaction >= 5 then
-					if lengthOK then
+					if not E.Retail and lengthOK then
 						return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)
 					else
 						return value
 					end
 				elseif reaction == 4 then
-					if lengthOK then
+					if not E.Retail and lengthOK then
 						return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)
 					else
 						return value
 					end
 				elseif reaction == 3 then
-					if lengthOK then
+					if not E.Retail and lengthOK then
 						return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)
 					else
 						return value
 					end
 				elseif reaction == 2 or reaction == 1 then
-					if lengthOK then
+					if not E.Retail and lengthOK then
 						return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)
 					else
 						return value
@@ -352,7 +358,7 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			if lengthOK then
+			if not E.Retail and lengthOK then
 				return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
 			else
 				return value
