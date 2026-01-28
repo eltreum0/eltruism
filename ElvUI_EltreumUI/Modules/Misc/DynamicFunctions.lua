@@ -154,7 +154,7 @@ function ElvUI_EltreumUI:DynamicClassicDatatext()
 end
 
 --Dynamic Level Nameplate Style Filter
-function ElvUI_EltreumUI:DynamicLevelStyleFilter()
+--[[function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	if E.db.ElvUI_EltreumUI.nameplates.nameplatelevel and E.db.nameplates.filters.EltreumLevel and not InCombatLockdown() then
 		if not E.private.ElvUI_EltreumUI.install_version then
 			return
@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 			--E:UpdateNamePlates()
 		end
 	end
-end
+end]]
 
 --Dynamic Spellsteal Nameplate Style Filter
 function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
