@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:CooldownColors()
 			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
 			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
 		end
-		E:UpdateCooldownSettings('all')
+		--E:UpdateCooldownSettings('all')
 	end
 
 	--leave it here for now
