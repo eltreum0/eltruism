@@ -870,7 +870,9 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 		end
 	end
 end
-hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
+if not E.Retail then
+	hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
+end
 
 hooksecurefunc(NP, 'Initialize', function()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then

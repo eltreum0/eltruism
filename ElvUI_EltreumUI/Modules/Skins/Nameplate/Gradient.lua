@@ -234,7 +234,6 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 	local _, unitclass = UnitClass(unit)
 	local reactiontarget = UnitReaction(unit, "player")
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-
 		if self.notInterruptible and UnitCanAttack('player', unit) then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 				self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom,a= 1})
@@ -303,12 +302,15 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
-
+if not E.Retail then
+	hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
+end
 --interrupted
 function ElvUI_EltreumUI:Castbar_PostCastFail()
 	if self.EltruismNameplateBorder then
 		self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castInterruptedColor.r, E.db.nameplates.colors.castInterruptedColor.g, E.db.nameplates.colors.castInterruptedColor.b, 1)
 	end
 end
-hooksecurefunc(NP, "Castbar_PostCastFail", ElvUI_EltreumUI.Castbar_PostCastFail)
+if not E.Retail then
+	hooksecurefunc(NP, "Castbar_PostCastFail", ElvUI_EltreumUI.Castbar_PostCastFail)
+end
