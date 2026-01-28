@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 		if unitframe and unitframe.Power then
 			if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
 				unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-				unitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+				unitframe.Power.bg:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
 				if unitframe.Power.backdropTex then
 					unitframe.Power.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 								unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, true, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, true, false, true))
+								unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, true, false, true))
 							end
 						else
 							if E.db.unitframe.colors.transparentPower and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 								unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
+								unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
 							end
 						end
 					else
@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 							unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
 						end
 						if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-							unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
+							unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
 						end
 					end
 				else
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 								unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, true, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, true, false,true))
+								unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, true, false,true))
 							end
 						else
 							if E.db.unitframe.colors.transparentPower and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
@@ -97,7 +97,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 								unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
+								unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
 							end
 						end
 					else
@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 							unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
 						end
 						if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-							unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
+							unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
 						end
 					end
 				end
@@ -118,18 +118,18 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 						if unit == "target" then
 							unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+								unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 							end
 						else
 							unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade, g=(g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+								unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade, g=(g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 							end
 						end
 					else
 						unitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + 0.2,g= g + 0.2, b=b + 0.2, a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-							unitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+							unitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 						end
 					end
 				end
@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 			if groupunitframe.Power then
 				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
 					groupunitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-					groupunitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+					groupunitframe.Power.bg:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
 					if groupunitframe.Power.backdropTex then
 						groupunitframe.Power.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 					end
@@ -160,7 +160,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 								groupunitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								groupunitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
+								groupunitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
 							end
 						else
 							if E.db.unitframe.colors.transparentPower and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
@@ -169,7 +169,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 								groupunitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								groupunitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
+								groupunitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false,true))
 							end
 						end
 					else
@@ -180,7 +180,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 								groupunitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								groupunitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
+								groupunitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
 							end
 						else
 							if E.db.unitframe.colors.transparentPower and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
@@ -189,7 +189,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 								groupunitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
 							end
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								groupunitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
+								groupunitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false,true))
 							end
 						end
 					end
@@ -199,12 +199,12 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then
 							groupunitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								groupunitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade, g=(g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+								groupunitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade, g=(g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 							end
 						else
 							groupunitframe.Power:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + 0.2,g= g + 0.2, b=b + 0.2, a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 							if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-								groupunitframe.Power.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+								groupunitframe.Power.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 							end
 						end
 					end
@@ -216,12 +216,12 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then
 						groupunitframe.AlternativePower:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-							groupunitframe.AlternativePower.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade, g=(g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+							groupunitframe.AlternativePower.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade, g=(g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 						end
 					else
 						groupunitframe.AlternativePower:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + 0.2,g= g + 0.2, b=b + 0.2, a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						if not E.db.unitframe.colors.custompowerbackdrop and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-							groupunitframe.AlternativePower.BG:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
+							groupunitframe.AlternativePower.bg:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=(r - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b - 0.4) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1}, {r=(r + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,g= (g + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,b= (b + 0.2) - E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade,a= 1})
 						end
 					end
 				end
@@ -231,22 +231,30 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 end
 
 --additional power gradient/combo/runes as well
-function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r= r - 0.3,g= g - 0.3,b= b - 0.3,a= 1}, {r=r,g= g,b= b,a= 1})
-		if E.db.unitframe.units.player.classbar.fill == "spaced" then
-			bar.bg:SetAlpha(0)
-			--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
-			--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-			if E.db.unitframe.colors.customclasspowerbackdrop then
-				bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
+function ElvUI_EltreumUI:UFClassPower_SetBarColor(frame)
+	if frame and frame.ClassPower and not frame.ClassPower.EltruismHookedGradient then
+		hooksecurefunc(frame.ClassPower,"UpdateColor", function(bar,powerType)
+			local color = bar.__owner.colors.power[powerType]
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+				for i = 1, bar.__max do
+					bar[i]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r = color.r - 0.3, g = color.g - 0.3, b = color.b - 0.3, a = 1}, {r = color.r, g = color.g, b = color.b, a = 1})
+					if E.db.unitframe.units.player.classbar.fill == "spaced" then
+						bar[i].bg:SetAlpha(0)
+						--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
+						--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+						if E.db.unitframe.colors.customclasspowerbackdrop then
+							bar[i].backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
+						end
+					else
+						bar[i].bg:SetAlpha(E.db.general.backdropfadecolor.a)
+					end
+				end
 			end
-		else
-			bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
-		end
+		end)
+		frame.ClassPower.EltruismHookedGradient = true
 	end
 end
-hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.UFClassPower_SetBarColor)
+hooksecurefunc(UF, "Configure_ClassBar", ElvUI_EltreumUI.UFClassPower_SetBarColor)
 
 --Gradient Power Colors
 function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
