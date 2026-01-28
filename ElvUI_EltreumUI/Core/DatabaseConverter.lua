@@ -506,9 +506,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 				end
 			end
 
-			E:Delay(1, function()
-				E:StaggeredUpdateAll()
-			end)
+			--[[E:Delay(1, function()
+				--E:StaggeredUpdateAll()
+			end)]]
 			E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
 			E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		end

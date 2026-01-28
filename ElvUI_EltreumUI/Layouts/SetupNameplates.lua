@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.private["nameplates"]["enable"] = true
 
 		-- Style Filters & CVars
-		ElvUI_EltreumUI:SetupStyleFilters()
+		--ElvUI_EltreumUI:SetupStyleFilters()
 
 		--Nameplates
 		E.db["nameplates"]["fadeIn"] = false --disable fading animation
@@ -44,29 +44,11 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["power"]["MANA"]["b"] = 1
 		E.db["nameplates"]["colors"]["power"]["MANA"]["g"] = 0.71372549019608
 		E.db["nameplates"]["colors"]["power"]["MANA"]["r"] = 0.49019607843137
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25098039215686
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.25098039215686
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 0.78039215686275
-		E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.30196078431373
-		E.db["nameplates"]["colors"]["reactions"]["good"]["g"] = 0.67843137254902
-		E.db["nameplates"]["colors"]["reactions"]["good"]["r"] = 0.29019607843137
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["b"] = 0.36078431372549
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["g"] = 0.76862745098039
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["r"] = 0.85098039215686
 		E.db["nameplates"]["colors"]["selection"][2]["g"] = 0.85098039215686
 		E.db["nameplates"]["colors"]["selection"][8]["b"] = 0.41960784313725
 		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.27843137254902
 		E.db["nameplates"]["colors"]["selection"][13]["g"] = 0.58039215686275
 		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.10196078431373
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.32156862745098
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.32156862745098
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 1
-		E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.44313725490196
-		E.db["nameplates"]["colors"]["reactions"]["good"]["g"] = 1
-		E.db["nameplates"]["colors"]["reactions"]["good"]["r"] = 0.42745098039216
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["b"] = 0.42352941176471
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["g"] = 0.90196078431373
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["r"] = 1
 		E.db["nameplates"]["colors"]["threat"]["badColor"]["b"] = 0.17647058823529
 		E.db["nameplates"]["colors"]["threat"]["badColor"]["g"] = 0.17647058823529
 		E.db["nameplates"]["colors"]["threat"]["goodColor"]["g"] = 1
@@ -89,20 +71,9 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.49019607843137
 		E.db["nameplates"]["colors"]["selection"][13]["g"] = 1
 		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
-		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
-		E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
 		--remove the by type border colors
 		E.db["nameplates"]["colors"]["auraByType"] = false
-		--boss mods
-		E.db["nameplates"]["bossMods"]["enable"] = true
-		E.db["nameplates"]["bossMods"]["anchorPoint"] = 'BOTTOM'
-		E.db["nameplates"]["bossMods"]["growthX"] = 'RIGHT'
-		E.db["nameplates"]["bossMods"]["growthY"] = 'DOWN'
-		E.db["nameplates"]["bossMods"]["size"] = 34
-		E.db["nameplates"]["bossMods"]["spacing"] = 1
-		E.db["nameplates"]["bossMods"]["yOffset"] = -10
-		E.db["nameplates"]["bossMods"]["xOffset"] = 0
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
@@ -187,7 +158,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 
 		--spellsteal style filter
-		if E.Retail or E.Mists or E.TBC or E.Wrath then
+		--[[if E.Retail or E.Mists or E.TBC or E.Wrath then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 		elseif E.Classic then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
@@ -212,17 +183,10 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		if E.db["nameplates"]["filters"]["ElvUI_Below20"] then
 			E.db["nameplates"]["filters"]["ElvUI_Below20"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["ElvUI_Below20_Players"]["triggers"]["enable"] = false
-		end
+		end]]
 
 		E.db["nameplates"]["highlight"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.2
-
-		E.db["nameplates"]["plateSize"]["friendlyWidth"] = 150
-		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 30
-		E.db["nameplates"]["plateSize"]["enemyWidth"] = 150
-		E.db["nameplates"]["plateSize"]["enemyHeight"] = 30
-		E.db["nameplates"]["plateSize"]["personalWidth"] = 150
-		E.db["nameplates"]["plateSize"]["personalHeight"] = 30
 
 		E.db["nameplates"]["statusbar"] = "ElvUI Norm1"
 		E.db["nameplates"]["overlapH"] = 0.8
@@ -663,7 +627,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 end
 
 -- Style Filter Setup
-function ElvUI_EltreumUI:SetupStyleFilters()
+--[[function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private.nameplates.enable then
 		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems', 'EltreumDeadNP', 'EltreumWorldCombatFriendly'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
@@ -890,7 +854,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E:UpdateNamePlates()
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters were set."])
 	end
-end
+end]]
 
 --restore nameplate cvars if user wants
 function ElvUI_EltreumUI:RestoreNameplateNames()

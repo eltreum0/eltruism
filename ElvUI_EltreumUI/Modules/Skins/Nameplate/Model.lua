@@ -25,10 +25,10 @@ local function SetNameplateModelSettings(nameplate)
 	target3d:SetAlpha(0)
 	target3d:SetParent(nameplate.Health)
 	target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
-	if E.db.nameplates.plateSize and E.db.nameplates.plateSize.enemyWidth then
-		target3d:SetSize(E.db.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
+	if E.db.nameplates.clickSize and E.db.nameplates.clickSize.enemyWidth then
+		target3d:SetSize(E.db.nameplates.clickSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
 	else
-		target3d:SetSize(P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
+		target3d:SetSize(P.nameplates.clickSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
 	end
 	target3d:ClearAllPoints()
 	target3d:SetPoint("CENTER", nameplate.Health, "CENTER")

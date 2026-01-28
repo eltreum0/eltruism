@@ -175,9 +175,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 
 	--fix the style filter
-	if E.global.nameplates.filters.EltreumWorldCombatFriendly and not E.global.nameplates.filters.EltreumWorldCombatFriendly.triggers.instanceType.none then
+	--[[if E.global.nameplates.filters.EltreumWorldCombatFriendly and not E.global.nameplates.filters.EltreumWorldCombatFriendly.triggers.instanceType.none then
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["instanceType"]["none"] = true
-	end
+	end]]
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()

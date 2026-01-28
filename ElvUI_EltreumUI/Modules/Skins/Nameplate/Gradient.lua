@@ -13,8 +13,9 @@ local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
+--style filter gone
 --gradient threat
-function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
+--[[function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local nameplate, db = self.__owner, NP.db.threat
 	local sf = NP:StyleFilterChanges(nameplate)
@@ -110,7 +111,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	end
 end
 hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator_PostUpdate)
-
+]]
 --gradient nameplates
 local bordercolor = E.myClassColor
 local function GradientNameplates(unit)
@@ -136,10 +137,10 @@ local function GradientNameplates(unit)
 	end
 
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		local sf = NP:StyleFilterChanges(unit)
-		if (sf and sf.health and sf.health.color) then
-			unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
-		else
+		--local sf = NP:StyleFilterChanges(unit)
+		--if (sf and sf.health and sf.health.color) then
+		--	unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
+		--else
 			if not InCombatLockdown() or UnitIsDead("player") then
 				unit.CurrentlyBeingTanked = nil
 			end
@@ -165,7 +166,7 @@ local function GradientNameplates(unit)
 					end
 				end
 			end
-		end
+		--end
 	end
 	if unit.Health.EltruismNameplateBorder then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
@@ -233,7 +234,6 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 	local _, unitclass = UnitClass(unit)
 	local reactiontarget = UnitReaction(unit, "player")
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-
 		if self.notInterruptible and UnitCanAttack('player', unit) then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 				self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom,a= 1})
@@ -302,12 +302,15 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
-
+if not E.Retail then
+	hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
+end
 --interrupted
 function ElvUI_EltreumUI:Castbar_PostCastFail()
 	if self.EltruismNameplateBorder then
 		self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castInterruptedColor.r, E.db.nameplates.colors.castInterruptedColor.g, E.db.nameplates.colors.castInterruptedColor.b, 1)
 	end
 end
-hooksecurefunc(NP, "Castbar_PostCastFail", ElvUI_EltreumUI.Castbar_PostCastFail)
+if not E.Retail then
+	hooksecurefunc(NP, "Castbar_PostCastFail", ElvUI_EltreumUI.Castbar_PostCastFail)
+end

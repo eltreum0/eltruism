@@ -32,8 +32,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["general"]["itemLevel"]["totalLevelFontOutline"] = fontStyle
 
 	-- Cooldown
-	E.db["cooldown"]["fonts"]["fontOutline"] = fontStyle
-	E.db["WeakAuras"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	--E.db["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	--E.db["WeakAuras"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
 
 	-- Private
 	E.private["general"]["nameplateFontOutline"] = fontStyle
@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["databars"]["threat"]["fontOutline"] = fontStyle
 
 	-- Bags
-	E.db["bags"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	--E.db["bags"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
 	E.db["bags"]["countFontOutline"] = fontStyle
 	E.db["bags"]["itemInfoFontOutline"] = fontStyle
 	E.db["bags"]["itemLevelFontOutline"] = fontStyle
@@ -75,7 +75,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["actionbar"]["fontOutline"] = fontStyle
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = fontStyle
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = fontStyle
-	E.db["actionbar"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	--E.db["actionbar"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
 	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = fontStyle
 	E.db["actionbar"]["bar1"]["countFontOutline"] = fontStyle
 	E.db["actionbar"]["bar1"]["hotkeyFontOutline"] = fontStyle
@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
 	-- Unitframes
 	E.db["unitframe"]["fontOutline"] = fontStyle
-	E.db["unitframe"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	--E.db["unitframe"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["assist"]["auras"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["assist"]["auras"]["sourceText"]["fontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["assist"]["buffs"]["sourceText"]["fontOutline"] = fontStyle
@@ -249,7 +249,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFontOutline"] = fontStyle
 
 	-- Nameplates
-	E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	--E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontOutline"] = fontStyle

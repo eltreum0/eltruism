@@ -676,7 +676,8 @@ pewcheck:SetScript("OnEvent",function()
 						end
 					end
 				end)
-				hooksecurefunc(_G["ElvUF_Pet"], "SetAlpha", function(_,alpha)
+				if _G["ElvUF_Pet"] then
+					hooksecurefunc(_G["ElvUF_Pet"], "SetAlpha", function(_,alpha)
 					if alpha == 0 then
 						if _G["EltruismPetPowerBarEffect"] then
 							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
@@ -700,7 +701,8 @@ pewcheck:SetScript("OnEvent",function()
 							end
 						end
 					end
-				end)
+					end)
+				end
 				_G["ElvUF_Player"].EltruismAlphaCheck = true
 			end
 			if _G["EltruismPlayerEffect"] then

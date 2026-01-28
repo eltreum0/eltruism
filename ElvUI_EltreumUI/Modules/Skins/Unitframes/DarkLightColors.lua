@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:DarkMode()
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
-			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+			--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
 				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
 				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
 			end
@@ -207,11 +207,12 @@ function ElvUI_EltreumUI:DarkMode()
 			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
 				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
 				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
-			end
+			end]]
+
 		end
 
-		E:UpdateMediaItems()
-		E:UpdateUnitFrames()
+		--E:UpdateMediaItems()
+		--E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
 		_G.LeftChatToggleButton:SetAlpha(1)
@@ -362,7 +363,7 @@ function ElvUI_EltreumUI:LightMode()
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
-			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+			--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
 				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
 				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
 			end
@@ -370,11 +371,11 @@ function ElvUI_EltreumUI:LightMode()
 			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
 				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
 				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
-			end
+			end]]
 		end
 
-		E:UpdateMediaItems()
-		E:UpdateUnitFrames()
+		--E:UpdateMediaItems()
+		--E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
 		_G.LeftChatToggleButton:SetAlpha(1)
@@ -671,7 +672,7 @@ function ElvUI_EltreumUI:GradientMode()
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[eltruismname:title][eltruismrealm:dash]"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
 
-				if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
 					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[name:eltruism:gradient]"
 					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets]"
 				end
@@ -679,7 +680,7 @@ function ElvUI_EltreumUI:GradientMode()
 				if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
 					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[eltruismname:title][eltruismrealm:dash]"
 					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets][eltruismguild:brackets]"
-				end
+				end]]
 			else
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
@@ -690,7 +691,7 @@ function ElvUI_EltreumUI:GradientMode()
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
-				if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
 					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
 					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
 				end
@@ -698,12 +699,12 @@ function ElvUI_EltreumUI:GradientMode()
 				if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
 					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
 					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
-				end
+				end]]
 			end
 		end
 
-		E:UpdateMediaItems()
-		E:UpdateUnitFrames()
+		--E:UpdateMediaItems()
+		--E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
 		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then

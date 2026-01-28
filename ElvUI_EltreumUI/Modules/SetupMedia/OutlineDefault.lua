@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
-	E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+	--E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontOutline"] = "THICKOUTLINE"

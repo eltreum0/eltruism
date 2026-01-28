@@ -231,7 +231,7 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 	end
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
-
+--[[
 --for general nameplates
 local playerclassv1 = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",
@@ -297,8 +297,6 @@ local rareclass = {
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 	["EVOKER"] = "Eltreum-Class-Evoker",
 }
-
-local nameplateclasscolors
 
 --sets them enabled/disabled
 function ElvUI_EltreumUI:SetStyleFilters()
@@ -417,20 +415,21 @@ function ElvUI_EltreumUI:SetStyleFilters()
 	end
 	NP:ConfigureAll() --update style filters using the same call that is on the Enable button in the style filter
 end
-
+]]
+local nameplateclasscolors
 -- Nameplate options for Border and Glow and Texture
 function ElvUI_EltreumUI:NamePlateOptions()
 	nameplateclasscolors = E.myClassColor
 	if E.private.nameplates.enable then
 
 		--fix threat
-		if E.global.nameplates.filters.EltreumTarget then
+		--[[if E.global.nameplates.filters.EltreumTarget then
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["colors"]["enable"] = false
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["colors"]["class"] = false
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then --gradient check for my filters
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = false
 			end
-		end
+		end]]
 
 		--glow color
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow then
@@ -440,7 +439,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--border colors
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
+		--[[if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["enable"] = true
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["playerClass"] = true
@@ -564,7 +563,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					end
 				end
 			end
-		end
+		end]]
 
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then
@@ -681,7 +680,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--automatically set the execute % based on class
-		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
+		--[[if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
 				if E.myclass == "WARRIOR" then
 					if IsPlayerSpell(206315) or IsPlayerSpell(281001) then -- massacre talent
@@ -721,7 +720,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
 				end
 			end
-		end
+		end]]
 	end
 end
 
@@ -871,7 +870,9 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 		end
 	end
 end
-hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
+if not E.Retail then
+	hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
+end
 
 hooksecurefunc(NP, 'Initialize', function()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then

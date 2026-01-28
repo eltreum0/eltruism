@@ -68,9 +68,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:Anchors() --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
 	ElvUI_EltreumUI:UnitframeRoleIcons() --adds custom role icons in chat when swapping roles
 	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
-	ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
 	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth
-	ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
+	--ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
 	ElvUI_EltreumUI:DynamicExperienceDatabar() --makes experience bar mouseover or not depending on current player level
 	ElvUI_EltreumUI:BlizzCombatText() --enables or disables blizzard's combat text depending on player setting in eltruism
 	ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes() --hides elvui unitframes in bgs/arenas
@@ -88,7 +87,10 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
-	ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
+	if not E.Retail then
+		ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
+		ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
+	end
 	ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
 	ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
 	ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
@@ -125,7 +127,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
-		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
+		--ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
 	end
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
@@ -266,9 +268,9 @@ function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED(_,unit)
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
-	ElvUI_EltreumUI:DynamicLevelStyleFilter()
+	--ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	ElvUI_EltreumUI:DynamicExperienceDatabar()
-	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
+	--ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	ElvUI_EltreumUI:AutoScreenshot()
 end
 

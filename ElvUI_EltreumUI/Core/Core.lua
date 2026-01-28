@@ -260,13 +260,18 @@ function ElvUI_EltreumUI:eltruismdif(value)
 end
 
 -- Ghost frame for Automatic Weakauras Positioning
-local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
-EltreumWAAnchor:SetPoint("CENTER", E.UIParent, "CENTER", 0, -380)
-local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", E.UIParent)
-EltreumWAAnchor2:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
-local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", E.UIParent)
---postion the anchor right below the player unitframe
-EltruismWAConsumablesAnchor:SetPoint("LEFT", _G["ElvUF_Player"], 0, -75)
+local EltreumWAAnchor
+local EltreumWAAnchor2
+local EltruismWAConsumablesAnchor
+if not E.Retail then
+	EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
+	EltreumWAAnchor:SetPoint("CENTER", E.UIParent, "CENTER", 0, -380)
+	EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", E.UIParent)
+	EltreumWAAnchor2:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
+	EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", E.UIParent)
+	--postion the anchor right below the player unitframe
+	EltruismWAConsumablesAnchor:SetPoint("LEFT", _G["ElvUF_Player"], 0, -75)
+end
 --archeology mover
 local EltreumArcheologyAnchor = CreateFrame("Frame", "EltruismArcheology", E.UIParent)
 EltreumArcheologyAnchor:SetPoint("TOP", E.UIParent, "TOP", 0, -230)
@@ -274,24 +279,27 @@ EltreumArcheologyAnchor:SetSize(200, 50)
 
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
-		--Anchor for general weakauras, like those that replace actionbars
-		EltreumWAAnchor:SetParent(_G["ElvUF_Player"])
-		EltreumWAAnchor:SetFrameStrata("BACKGROUND")
-		--position the anchor around the place where the action bars would be
-		EltreumWAAnchor:Size(250, 70)
-		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
-		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
-		--do it again
-		EltreumWAAnchor2:SetParent(_G["ElvUF_Player"])
-		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
-		EltreumWAAnchor2:Size(250, 70)
-		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 
-		--consumable weakauras, usually placed near player unitframe
-		EltruismWAConsumablesAnchor:SetParent(_G["ElvUF_Player"])
-		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
-		EltruismWAConsumablesAnchor:Size(270, 30)
-		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		if not E.Retail then
+			--Anchor for general weakauras, like those that replace actionbars
+			EltreumWAAnchor:SetParent(_G["ElvUF_Player"])
+			EltreumWAAnchor:SetFrameStrata("BACKGROUND")
+			--position the anchor around the place where the action bars would be
+			EltreumWAAnchor:Size(250, 70)
+			--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
+			E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+			--do it again
+			EltreumWAAnchor2:SetParent(_G["ElvUF_Player"])
+			EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
+			EltreumWAAnchor2:Size(250, 70)
+			E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+
+			--consumable weakauras, usually placed near player unitframe
+			EltruismWAConsumablesAnchor:SetParent(_G["ElvUF_Player"])
+			EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
+			EltruismWAConsumablesAnchor:Size(270, 30)
+			E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		end
 
 		if E.private.general.raidUtility and E.private.unitframe.disabledBlizzardFrames.raid and E.private.unitframe.disabledBlizzardFrames.party then
 			if _G.RaidUtility_ShowButton then
@@ -627,7 +635,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					end
 
 					--use elvui moveui instead of blizzard edit mode
-					local EditModeButton = EM:GetGameMenuEditModeButton()
+					local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
 					if EditModeButton then
 						EditModeButton:RegisterForClicks("AnyUp")
 						EditModeButton:SetScript("OnClick", function(_, button)

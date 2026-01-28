@@ -65,8 +65,6 @@ EltruismCooldownMask:SetAllPoints(EltruismCooldownFrame)
 EltruismCooldownFrame:Hide()
 
 function ElvUI_EltreumUI:CooldownEnable()
-
-
 	if E.db.ElvUI_EltreumUI then
 		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor then
 			cooldownsize = 28

@@ -25,9 +25,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			end]]
 
 			--rerun elvui style filters due to elvui np changes (but only if it was an old version)
-			if E.private.ElvUI_EltreumUI.install_version < "4.3.9" then
+			--[[if E.private.ElvUI_EltreumUI.install_version < "4.3.9" then
 				ElvUI_EltreumUI:SetupStyleFilters()
-			end
+			end]]
 
 			--disable the custom auras on target and enemy npc
 			E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false

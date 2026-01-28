@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--luckyone based optimizations
 	E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
 	E.db["auras"]["debuffs"]["seperateOwn"] = 0 -- do not sort auras
-	E.db["auras"]["cooldown"]["override"] = false
+	--E.db["auras"]["cooldown"]["override"] = false
 	E.db["chat"]["fade"] = true -- fade text again
 	E.db["unitframe"]["units"]["assist"]["enable"] = false --disable assist/tank frames
 	E.db["unitframe"]["units"]["tank"]["enable"] = false --disable assist/tank frames
@@ -845,7 +845,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["chat"]["RightChatDataPanelAnchor"] = "BELOW_CHAT"
 
 	-- Cooldown Text
-	E.db["cooldown"]["daysColor"]["g"] = 1
+	--[[E.db["cooldown"]["daysColor"]["g"] = 1
 	E.db["cooldown"]["daysColor"]["r"] = 1
 	E.db["cooldown"]["expireIndicator"]["b"] = 0.2
 	E.db["cooldown"]["expireIndicator"]["g"] = 0.2
@@ -934,7 +934,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
 	E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
 	E.db["actionbar"]["cooldown"]["threshold"] = 5
-	E.db["actionbar"]["cooldown"]["fonts"]["enable"] = false
+	E.db["actionbar"]["cooldown"]["fonts"]["enable"] = false]]
 
 	E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 	E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
@@ -1886,7 +1886,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["panels"]["EltruismTime"]["enable"] = true
 
 	E.db["datatexts"]["panels"]["EltruismDataText"]["battleground"] = true
-	E.db["datatexts"]["battlePanel"]["EltruismDataText"][1] = "PvP: Kills"
+	--[[E.db["datatexts"]["battlePanel"]["EltruismDataText"][1] = "PvP: Kills"
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][2] = "PvP: Deaths"
 	if E.Retail then
 		E.db["datatexts"]["battlePanel"]["EltruismDataText"][3] = "PvP: Objectives"
@@ -1898,7 +1898,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][6] = "Eltruism Stats 2"
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][7] = "System"
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][8] = "Combat"
-	E.db["datatexts"]["battlePanel"]["EltruismDataText"][9] = "PvP: Honor Gained"
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][9] = "PvP: Honor Gained"]]
 
 	--hide other panels since now its in one panel
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
@@ -2034,13 +2034,12 @@ end
 function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
-	SetCVar('nameplateLargeBottomInset', 0.02)
-	SetCVar('nameplateLargeTopInset', 0.1)
+
 	SetCVar('nameplateTargetRadialPosition', 1)
 	SetCVar('nameplateLargerScale', 1.2)
 	SetCVar('nameplateMinScale', 1)
 	SetCVar('nameplateMinAlpha',1)
-	SetCVar('nameplateGlobalScale', 1)
+
 	SetCVar('nameplateMaxDistance', 60)
 	SetCVar('nameplateMotion', 1)
 	SetCVar('nameplateOccludedAlphaMult', 0)
@@ -2052,6 +2051,29 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
+
+	SetCVar('nameplateMaxAlpha', 1)
+	SetCVar('nameplateMaxAlphaDistance', GetCVarDefault('nameplateMaxAlphaDistance'))
+	SetCVar('nameplateMaxScale', 1)
+	SetCVar('nameplateMaxScaleDistance', 40)
+	SetCVar('nameplateMinAlphaDistance', GetCVarDefault('nameplateMinAlphaDistance'))
+	SetCVar('nameplateMinScaleDistance', 0)
+	SetCVar('nameplatePlayerLargerScale', 1.8)
+	SetCVar('nameplateSelectedAlpha', 1)
+
+	if not E.Retail then
+		SetCVar('nameplateSelfScale', 1)
+		SetCVar('nameplateGlobalScale', 1)
+		SetCVar('NamePlateHorizontalScale', 1)
+		SetCVar('nameplateClassResourceTopInset', GetCVarDefault('nameplateClassResourceTopInset'))
+		SetCVar('nameplateLargeBottomInset', 0.02)
+		SetCVar('nameplateLargeTopInset', 0.1)
+		SetCVar('nameplateMotionSpeed', GetCVarDefault('nameplateMotionSpeed'))
+		SetCVar('nameplateResourceOnTarget', GetCVarDefault('nameplateResourceOnTarget'))
+		SetCVar('nameplateSelfBottomInset', GetCVarDefault('nameplateSelfBottomInset'))
+		SetCVar('nameplateSelfTopInset', GetCVarDefault('nameplateSelfTopInset'))
+	end
+
 	ElvUI_EltreumUI:Print(L["NamePlate CVars have been set."])
 end
 
@@ -2143,7 +2165,7 @@ function ElvUI_EltreumUI:GreyBg()
 	E.db["general"]["backdropfadecolor"]["r"] = 0.13725490196078
 
 	E.db.ElvUI_EltreumUI.unitframes.greybackground = true
-	E:UpdateMediaItems()
+	--E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Grey Background")
 end
 
@@ -2158,7 +2180,7 @@ function ElvUI_EltreumUI:BlackBg()
 	E.db["general"]["backdropfadecolor"]["r"] = 0
 
 	E.db.ElvUI_EltreumUI.unitframes.greybackground = false
-	E:UpdateMediaItems()
+	--E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
 end
 

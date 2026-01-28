@@ -19,7 +19,7 @@ local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpe
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 		ElvUI_EltreumUI:CastCursor()
-		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown then
+		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown and not E.Retail then
 			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 		end
 	end
@@ -449,8 +449,10 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast.UNIT_SPELLCAST_EMPOWER_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
 
 		-- GCD Ring
-		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
-		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
+		if not E.Retail then
+			GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+			GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
+		end
 		function GCD:UNIT_SPELLCAST_START(_, unit, _, spellID)
 			if unit and unit ~= 'player' then
 				return

@@ -299,7 +299,11 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
-			EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
+			if E.Retail then
+				EltreumPowerBar.Text:SetText(UnitPower("player"))
+			else
+				EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
+			end
 
 			--adjust position, show/hide, show colors depending on powertype if not gradient
 			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
@@ -819,13 +823,17 @@ end
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		EltreumPowerBar:SetValue(UnitPower("player"))
-		EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
+		if E.Retail then
+			EltreumPowerBar.Text:SetText(_G.AbbreviateNumbers(UnitPower("player"), E.Abbreviate.short))
+		else
+			EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
 
-		--fix if incoming would be higher than the max
-		if UnitPower("player") >= UnitPowerMax("player") then
-			EltreumPowerPredictionIncoming:SetValue(0)
-		elseif (UnitPower("player") + EltreumPowerPredictionIncoming:GetValue()) >= UnitPowerMax("player") then
-			EltreumPowerPredictionIncoming:SetValue(UnitPowerMax("player") - UnitPower("player"))
+			--fix if incoming would be higher than the max
+			if UnitPower("player") >= UnitPowerMax("player") then
+				EltreumPowerPredictionIncoming:SetValue(0)
+			elseif (UnitPower("player") + EltreumPowerPredictionIncoming:GetValue()) >= UnitPowerMax("player") then
+				EltreumPowerPredictionIncoming:SetValue(UnitPowerMax("player") - UnitPower("player"))
+			end
 		end
 	end
 end
@@ -845,7 +853,7 @@ local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
-	if UnitExists("target") then
+	if UnitExists("target") and not E.Retail then
 		ElvUI_EltreumUI:PowerPrediction()
 	end
 end)
@@ -871,7 +879,9 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 	if UnitExists("target") then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		ElvUI_EltreumUI:NameplatePower()
-		ElvUI_EltreumUI:PowerPrediction()
+		if not E.Retail then
+			ElvUI_EltreumUI:PowerPrediction()
+		end
 	end
 end)
 

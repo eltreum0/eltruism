@@ -244,7 +244,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			E.db.ElvUI_EltreumUI.otherstuff.colorbg = false
 			ElvUI_EltreumUI:Print("Disabled Class Color background, using default background color instead.")
 		end
-		E:UpdateMediaItems()
+		--E:UpdateMediaItems()
 	elseif message == 'modeldebug' then
 		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" and UnitExists("target") then
 			ElvUI_EltreumUI:Print(UnitName("target").." ".._G["ElvUF_Target"].Portrait3D:GetModelFileID())
