@@ -187,7 +187,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 
 		--spellsteal style filter
-		if E.Retail or E.Mists or E.TBC or E.Wrath then
+		--[[if E.Retail or E.Mists or E.TBC or E.Wrath then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 		elseif E.Classic then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
@@ -212,7 +212,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		if E.db["nameplates"]["filters"]["ElvUI_Below20"] then
 			E.db["nameplates"]["filters"]["ElvUI_Below20"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["ElvUI_Below20_Players"]["triggers"]["enable"] = false
-		end
+		end]]
 
 		E.db["nameplates"]["highlight"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.2
@@ -663,7 +663,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 end
 
 -- Style Filter Setup
-function ElvUI_EltreumUI:SetupStyleFilters()
+--[[function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private.nameplates.enable then
 		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems', 'EltreumDeadNP', 'EltreumWorldCombatFriendly'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
@@ -890,7 +890,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E:UpdateNamePlates()
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters were set."])
 	end
-end
+end]]
 
 --restore nameplate cvars if user wants
 function ElvUI_EltreumUI:RestoreNameplateNames()

@@ -297,8 +297,6 @@ local rareclass = {
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 	["EVOKER"] = "Eltreum-Class-Evoker",
 }
-]]
-local nameplateclasscolors
 
 --sets them enabled/disabled
 function ElvUI_EltreumUI:SetStyleFilters()
@@ -417,7 +415,8 @@ function ElvUI_EltreumUI:SetStyleFilters()
 	end
 	NP:ConfigureAll() --update style filters using the same call that is on the Enable button in the style filter
 end
-
+]]
+local nameplateclasscolors
 -- Nameplate options for Border and Glow and Texture
 function ElvUI_EltreumUI:NamePlateOptions()
 	nameplateclasscolors = E.myClassColor
@@ -681,7 +680,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--automatically set the execute % based on class
-		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
+		--[[if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
 				if E.myclass == "WARRIOR" then
 					if IsPlayerSpell(206315) or IsPlayerSpell(281001) then -- massacre talent
@@ -721,7 +720,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
 				end
 			end
-		end
+		end]]
 	end
 end
 
