@@ -299,10 +299,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
-			if not E.Retail then
-				EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
-			else
+			if E.Retail then
 				EltreumPowerBar.Text:SetText(UnitPower("player"))
+			else
+				EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
 			end
 
 			--adjust position, show/hide, show colors depending on powertype if not gradient
