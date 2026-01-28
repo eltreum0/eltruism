@@ -49,15 +49,15 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["bags"]["countFont"] = fontvalue
 	E.db["bags"]["itemInfoFont"] = fontvalue
 	E.db["bags"]["itemLevelFont"] = fontvalue
-	E.db["bags"]["cooldown"]["fonts"]["font"] = fontvalue
+	--E.db["bags"]["cooldown"]["fonts"]["font"] = fontvalue
 
 	-- Chat
 	E.db["chat"]["font"] = fontvalue
 	E.db["chat"]["tabFont"] = fontvalue
 
 	-- Cooldown
-	E.db["cooldown"]["fonts"]["font"] = fontvalue
-	E.db["WeakAuras"]["cooldown"]["fonts"]["font"] = fontvalue
+	--E.db["cooldown"]["fonts"]["font"] = fontvalue
+	--E.db["WeakAuras"]["cooldown"]["fonts"]["font"] = fontvalue
 
 	-- Databars
 	E.db["databars"]["honor"]["font"] = fontvalue
@@ -75,7 +75,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["tooltip"]["headerFont"] = fontvalue
 
 	--ActionBars
-	E.db["actionbar"]["cooldown"]["fonts"]["font"] = fontvalue
+	--E.db["actionbar"]["cooldown"]["fonts"]["font"] = fontvalue
 	E.db["actionbar"]["bar1"]["countFont"] = fontvalue
 	E.db["actionbar"]["bar1"]["hotkeyFont"] = fontvalue
 	E.db["actionbar"]["bar1"]["macroFont"] = fontvalue
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = fontvalue
 
 	--Nameplates
-	E.db["nameplates"]["cooldown"]["fonts"]["font"] = fontvalue
+	--E.db["nameplates"]["cooldown"]["fonts"]["font"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFont"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = fontvalue
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["sourceText"]["font"] = fontvalue
@@ -167,7 +167,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	-- Unitframes
 	E.db["unitframe"]["font"] = fontvalue
-	E.db["unitframe"]["cooldown"]["fonts"]["font"] = fontvalue
+	--E.db["unitframe"]["cooldown"]["fonts"]["font"] = fontvalue
 	E.db["unitframe"]["units"]["arena"]["auras"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["arena"]["auras"]["sourceText"]["font"] = fontvalue
 	E.db["unitframe"]["units"]["arena"]["buffs"]["sourceText"]["font"] = fontvalue
@@ -672,7 +672,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["mMT"]["objectivetracker"]["font"]["font"] = fontvalue
 	end
 
-	E:StaggeredUpdateAll()
+	--E:StaggeredUpdateAll()
 
 	if custom then
 		ElvUI_EltreumUI:Print(L["Your custom font has been set."])
