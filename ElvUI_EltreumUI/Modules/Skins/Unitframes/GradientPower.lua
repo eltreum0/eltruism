@@ -39,13 +39,13 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 				if unitframe.Power.backdropTex then
 					unitframe.Power.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
-				local shouldFIX = unitframe.USE_MINI_POWERBAR or unitframe.USE_INSET_POWERBAR --spaced or inset only
+				--[[local shouldFIX = unitframe.USE_MINI_POWERBAR or unitframe.USE_INSET_POWERBAR --spaced or inset only
 				if not unitframe.Power.EltruismTransparencyFix and E.db.unitframe.thinBorders and shouldFIX then
 					unitframe.Power.backdrop:ClearAllPoints()
 					unitframe.Power.backdrop:SetAllPoints(unitframe.Power:GetStatusBarTexture())
 					unitframe.Power.backdrop:SetInside(unitframe.Power:GetStatusBarTexture(), 0, 0)
 					unitframe.Power.EltruismTransparencyFix = true
-				end
+				end]]
 			end
 			if powertypes[powertype] then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
