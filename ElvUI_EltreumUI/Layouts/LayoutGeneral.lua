@@ -2052,6 +2052,13 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
 
+	if E.Retail then
+		SetCVar("nameplateShowFriendlyPlayers", 1)
+		SetCVar("nameplateSelectedScale", 1.4)
+		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)
+		E.db["nameplates"]["visibility"]["showOnlyNames"] = true --same as above, but persistent
+	end
+
 	SetCVar('nameplateMaxAlpha', 1)
 	SetCVar('nameplateMaxAlphaDistance', GetCVarDefault('nameplateMaxAlphaDistance'))
 	SetCVar('nameplateMaxScale', 1)
