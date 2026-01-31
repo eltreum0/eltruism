@@ -46,7 +46,21 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["chat"]["tabFontOutline"] = "OUTLINE"
-	E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+
+	--E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["actionbar"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["aurabars"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["auras"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["bags"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["bossbutton"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["cdmanager"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["global"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["nameplates"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["totemtracker"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["unitframe"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["zonebutton"]["fontOutline"] = "THICKOUTLINE"
+
+
 	E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"

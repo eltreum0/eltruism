@@ -58,6 +58,17 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	-- Cooldown
 	--E.db["cooldown"]["fonts"]["font"] = fontvalue
 	--E.db["WeakAuras"]["cooldown"]["fonts"]["font"] = fontvalue
+	E.db["cooldown"]["actionbar"]["font"] = fontvalue
+	E.db["cooldown"]["aurabars"]["font"] = fontvalue
+	E.db["cooldown"]["auras"]["font"] = fontvalue
+	E.db["cooldown"]["bags"]["font"] = fontvalue
+	E.db["cooldown"]["bossbutton"]["font"] = fontvalue
+	E.db["cooldown"]["cdmanager"]["font"] = fontvalue
+	E.db["cooldown"]["global"]["font"] = fontvalue
+	E.db["cooldown"]["nameplates"]["font"] = fontvalue
+	E.db["cooldown"]["totemtracker"]["font"] = fontvalue
+	E.db["cooldown"]["unitframe"]["font"] = fontvalue
+	E.db["cooldown"]["zonebutton"]["font"] = fontvalue
 
 	-- Databars
 	E.db["databars"]["honor"]["font"] = fontvalue

@@ -34,6 +34,17 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	-- Cooldown
 	--E.db["cooldown"]["fonts"]["fontOutline"] = fontStyle
 	--E.db["WeakAuras"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["actionbar"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["aurabars"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["auras"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["bags"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["bossbutton"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["cdmanager"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["global"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["nameplates"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["totemtracker"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["unitframe"]["fontOutline"] = fontStyle
+	E.db["cooldown"]["zonebutton"]["fontOutline"] = fontStyle
 
 	-- Private
 	E.private["general"]["nameplateFontOutline"] = fontStyle
