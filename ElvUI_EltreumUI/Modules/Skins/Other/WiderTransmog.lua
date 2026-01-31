@@ -5,6 +5,7 @@ local S = E:GetModule('Skins')
 
 --Wider Transmog Window
 function ElvUI_EltreumUI:WiderTransmog()
+	if E.Retail then return end
 	if not _G.WardrobeTransmogFrame then return end
 	_G.WardrobeTransmogFrame:HookScript("OnShow", function()
 		if not _G.WardrobeFrame then return end
