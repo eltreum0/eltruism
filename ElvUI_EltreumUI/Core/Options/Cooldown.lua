@@ -4,6 +4,7 @@ local _G = _G
 
 -- Eltruism cooldown options
 function ElvUI_EltreumUI:CooldownOptions()
+	if E.Retail then return end
 	ElvUI_EltreumUI.Options.args.cooldown = E.Libs.ACH:Group(E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.cooldown.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown'
 	ElvUI_EltreumUI.Options.args.cooldown.args.description1 = E.Libs.ACH:Description(L["Cooldown"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
