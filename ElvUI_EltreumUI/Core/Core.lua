@@ -1017,3 +1017,16 @@ else
 	bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerWheel, "BOTTOMLEFT", -2, -2)
 	_G.ColorPickerWheel:AddMaskTexture(bettermask)
 end
+
+function ElvUI_EltreumUI:RetailInstanceSecret()
+	local _, instanceType = _G.IsInInstance()
+	if E.Retail then
+		if instanceType ~= "none" then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end

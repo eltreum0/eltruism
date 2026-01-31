@@ -377,16 +377,37 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, cu
 end
 
 --sets name with gradient colors using elvui
-function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
+function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit)
 	if not name then return end
-	--local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-		if not isTarget then
-			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+	if ElvUI_EltreumUI:RetailInstanceSecret() and isUnit then
+		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
+	else
+		--local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+			local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+			if not isTarget then
+				return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+			else
+				return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
+			end
 		else
-			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
+			local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+			if not isTarget then
+				return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+			else
+				return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
+			end
 		end
+	end
+end
+
+--sets name with default gradient colors using elvui
+function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget,isUnit)
+	if not name then return end
+	if ElvUI_EltreumUI:RetailInstanceSecret() and isUnit then
+		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
 		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
 		if not isTarget then
@@ -394,17 +415,6 @@ function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
 		else
 			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 		end
-	end
-end
-
---sets name with default gradient colors using elvui
-function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget)
-	if not name then return end
-	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
-	if not isTarget then
-		return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
-	else
-		return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 	end
 end
 
