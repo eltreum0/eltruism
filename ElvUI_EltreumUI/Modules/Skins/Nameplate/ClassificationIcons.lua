@@ -2178,16 +2178,20 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 end
 
 --Difficulty Icon for npcs
+local unitisnotboss = {
+	["worldboss"] = true,
+	["elite"] = true,
+	["rareelite"] = true,
+	["rare"] = true,
+}
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 	local red,green,blue
 	local icon
+	if ElvUI_EltreumUI:RetailInstanceSecret() then return end
 	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
-	if UnitGUID(unit) then
-		local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
-		--print(classification,unitID,UnitGUID(unit))
-		--make sure its not a player as to not overwrite class colors
+	if unitisnotboss[classification] then
 		if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
-			if classification == 'worldboss' or bossIDs[unitID] then
+			if classification == 'worldboss' then
 				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
 				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
 				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
@@ -2229,6 +2233,22 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 					return icon
 				else
 					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				end
+			end
+		end
+	elseif not E.Retail then
+		if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
+			local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
+			if bossIDs[unitID] then
+				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
+				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
+				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
+				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
+					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				else
+					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 					return icon
 				end
 			end

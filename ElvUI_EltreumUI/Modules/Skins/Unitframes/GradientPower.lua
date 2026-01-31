@@ -39,13 +39,13 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 				if unitframe.Power.backdropTex then
 					unitframe.Power.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
-				local shouldFIX = unitframe.USE_MINI_POWERBAR or unitframe.USE_INSET_POWERBAR --spaced or inset only
+				--[[local shouldFIX = unitframe.USE_MINI_POWERBAR or unitframe.USE_INSET_POWERBAR --spaced or inset only
 				if not unitframe.Power.EltruismTransparencyFix and E.db.unitframe.thinBorders and shouldFIX then
 					unitframe.Power.backdrop:ClearAllPoints()
 					unitframe.Power.backdrop:SetAllPoints(unitframe.Power:GetStatusBarTexture())
 					unitframe.Power.backdrop:SetInside(unitframe.Power:GetStatusBarTexture(), 0, 0)
 					unitframe.Power.EltruismTransparencyFix = true
-				end
+				end]]
 			end
 			if powertypes[powertype] then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
@@ -231,27 +231,48 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 end
 
 --additional power gradient/combo/runes as well
-function ElvUI_EltreumUI:UFClassPower_SetBarColor(frame)
-	if frame and frame.ClassPower and not frame.ClassPower.EltruismHookedGradient then
-		hooksecurefunc(frame.ClassPower,"UpdateColor", function(bar,powerType)
-			local color = bar.__owner.colors.power[powerType]
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-				for i = 1, bar.__max do
-					bar[i]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r = color.r - 0.3, g = color.g - 0.3, b = color.b - 0.3, a = 1}, {r = color.r, g = color.g, b = color.b, a = 1})
-					if E.db.unitframe.units.player.classbar.fill == "spaced" then
-						bar[i].bg:SetAlpha(0)
-						--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
-						--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-						if E.db.unitframe.colors.customclasspowerbackdrop then
-							bar[i].backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
-						end
-					else
-						bar[i].bg:SetAlpha(E.db.general.backdropfadecolor.a)
-					end
+local function gradientclassbar(powerbar,powerType)
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		for index, bar in ipairs(powerbar) do
+			local isRunes = powerType == 'RUNES'
+			local colors, powers, fallback = UF:ClassPower_GetColor(UF.db.colors, powerType)
+			local color = UF:ClassPower_BarColor(bar, index, colors, powers, isRunes)
+			if not color or not color.r then
+				if powerbar.GetVertexColor then
+					color.r,color.g,color.b = powerbar:GetVertexColor()
+				else
+					color = fallback
 				end
 			end
-		end)
-		frame.ClassPower.EltruismHookedGradient = true
+			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r = color.r - 0.3, g = color.g - 0.3, b = color.b - 0.3, a = 1}, {r = color.r, g = color.g, b = color.b, a = 1})
+			if E.db.unitframe.units.player.classbar.fill == "spaced" then
+				bar.bg:SetAlpha(0)
+				--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
+				--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+				if E.db.unitframe.colors.customclasspowerbackdrop then
+					bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
+				end
+			else
+				bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
+			end
+		end
+	end
+end
+function ElvUI_EltreumUI:UFClassPower_SetBarColor(frame)
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if frame and not frame.EltruismHookedGradientClassPower then
+			if frame.ClassPower then
+				hooksecurefunc(frame.ClassPower,"UpdateColor", function(powerbar,powerType)
+					gradientclassbar(powerbar,powerType)
+				end)
+			end
+			--[[if frame.Runes then
+				hooksecurefunc(frame.Runes,"UpdateColor", function(powerbar,powerType)
+					gradientclassbar(powerbar,powerType)
+				end)
+			end]]
+			frame.EltruismHookedGradientClassPower = true
+		end
 	end
 end
 hooksecurefunc(UF, "Configure_ClassBar", ElvUI_EltreumUI.UFClassPower_SetBarColor)

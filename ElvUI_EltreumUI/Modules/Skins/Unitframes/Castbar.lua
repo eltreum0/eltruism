@@ -67,7 +67,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 								end
 							end
-							if castbar.notInterruptible then --cant interrupt
+							local notInterruptible = E:NotSecretValue(castbar.notInterruptible) and castbar.notInterruptible
+							if notInterruptible then --cant interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible then
 									if E.db.unitframe.units.player.castbar.reverse then
 										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -99,7 +100,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 										end
 									end
 								end
-							elseif (not castbar.notInterruptible) then --can interrupt
+							elseif (not notInterruptible) then --can interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar then
 									if E.db.unitframe.units.player.castbar.reverse then
 										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar then
@@ -196,7 +197,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 								end
 							end
-							if (targetcastbar.notInterruptible) then --cant interrupt
+							local notInterruptible = E:NotSecretValue(targetcastbar.notInterruptible) and targetcastbar.notInterruptible
+							if notInterruptible then --cant interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
 									if E.db.unitframe.units.target.castbar.reverse then
 										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -228,7 +230,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 										end
 									end
 								end
-							elseif (not targetcastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
+							elseif (not notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar then
 									if E.db.unitframe.units.target.castbar.reverse then
 										if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
@@ -467,7 +469,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 								end
 							end
-							if (focuscastbar.notInterruptible) then --cant interrupt
+							local notInterruptible = E:NotSecretValue(focuscastbar.notInterruptible) and focuscastbar.notInterruptible
+							if notInterruptible then --cant interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
 									if E.db.unitframe.units.focus.castbar.reverse then
 										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -483,7 +486,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 										end
 									end
 								end
-							elseif (not focuscastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
+							elseif (not notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar then
 									if E.db.unitframe.units.focus.castbar.reverse then
 										if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
@@ -724,7 +727,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 								end
 							end
-							if (petcastbar.notInterruptible) then --cant interrupt
+							local notInterruptible = E:NotSecretValue(petcastbar.notInterruptible) and petcastbar.notInterruptible
+							if notInterruptible then --cant interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
 									if E.db.unitframe.units.pet.castbar.reverse then
 										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -740,7 +744,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 										end
 									end
 								end
-							elseif (not petcastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
+							elseif (not notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar then
 									if E.db.unitframe.units.pet.castbar.reverse then
 										if UnitIsPlayer("pet") or (E.Retail and UnitInPartyIsAI("pet")) then
@@ -976,7 +980,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 											groupbutton.Castbar.backdrop:SetBackdropColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 											groupbutton.Castbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 										end
-										if groupbutton.Castbar.notInterruptible then --cant interrupt
+										local notInterruptible = E:NotSecretValue(groupbutton.Castbar.notInterruptible) and groupbutton.Castbar.notInterruptible
+										if notInterruptible then --cant interrupt
 											if E.db.unitframe.units.party.castbar.reverse then
 												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 													if E.db.unitframe.colors.transparentCastbar then
@@ -1006,7 +1011,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 													end
 												end
 											end
-										elseif (not groupbutton.Castbar.notInterruptible) then --can interrupt
+										elseif (not notInterruptible) then --can interrupt
 											if E.db.unitframe.units.party.castbar.reverse then
 												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar then
 													if E.db.unitframe.colors.transparentCastbar then
@@ -1105,7 +1110,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 										bosscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 									end
 								end
-								if (bosscastbar.notInterruptible) then --cant interrupt
+								local notInterruptible = E:NotSecretValue(bosscastbar.notInterruptible) and bosscastbar.notInterruptible
+								if (notInterruptible) then --cant interrupt
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
 										if E.db.unitframe.units.boss.castbar.reverse then
 											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -1121,7 +1127,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 											end
 										end
 									end
-								elseif (not bosscastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
+								elseif (not notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar then
 										if E.db.unitframe.units.boss.castbar.reverse then
 											if UnitIsPlayer("boss") or (E.Retail and UnitInPartyIsAI("boss")) then

@@ -795,6 +795,36 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 
+				local function positionScenarioObjectiveBlockBackground(frame)
+					if not ScenarioObjectiveBlockBackground.SizeSet then
+						ScenarioObjectiveBlockBackground:SetSize(243, 80)
+						ScenarioObjectiveBlockBackground.SizeSet = true
+					end
+					--ScenarioObjectiveBlockBackground:ClearAllPoints()
+					if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
+						ScenarioObjectiveBlockBackground:SetParent(_G.EltruismDungeonLine)
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
+					elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
+						ScenarioObjectiveBlockBackground:SetParent(_G.EltruismScenarioLine)
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
+					elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
+						ScenarioObjectiveBlockBackground:SetParent(_G.EltruismDelvesLine)
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
+					elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
+						ScenarioObjectiveBlockBackground:SetParent(_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine)
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
+					else
+						ScenarioObjectiveBlockBackground:SetParent(frame)
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
+					end
+					if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
+						ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
+					end
+					ScenarioObjectiveBlockBackground:SetFrameLevel(3)
+					ScenarioObjectiveBlockBackground:Show()
+				end
+
 				local function hooks(k)
 					k:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					k:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
@@ -896,7 +926,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
 										end
 										module.Header.EltruismStatusLine:SetFrameLevel(1)
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow and E.private.general.pixelPerfect then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 											--module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
 											module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											module.Header.EltruismStatusLine.shadow:SetFrameStrata("LOW")
@@ -941,27 +971,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											frame.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 										end
 										frame.Stage:SetWordWrap(true)
-										ScenarioObjectiveBlockBackground:SetParent(frame)
-										ScenarioObjectiveBlockBackground:ClearAllPoints()
-										if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
-										elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
-										elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
-										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
-										else
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
-										end
-
-										ScenarioObjectiveBlockBackground:SetSize(243, 80)
-										ScenarioObjectiveBlockBackground:SetFrameLevel(3)
-										ScenarioObjectiveBlockBackground:Show()
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
-											ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
-										end
+										positionScenarioObjectiveBlockBackground(frame)
 									end
 									if frame.NormalBG then
 										frame.NormalBG:Hide()
@@ -989,27 +999,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											frame.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 										end
 										frame.Stage:SetWordWrap(true)
-										ScenarioObjectiveBlockBackground:SetParent(frame)
-										ScenarioObjectiveBlockBackground:ClearAllPoints()
-										if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
-										elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
-										elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
-										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
-										else
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
-										end
-
-										ScenarioObjectiveBlockBackground:SetSize(243, 80)
-										ScenarioObjectiveBlockBackground:SetFrameLevel(3)
-										ScenarioObjectiveBlockBackground:Show()
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect then
-											ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
-										end
+										positionScenarioObjectiveBlockBackground(frame)
 									end
 									if frame.NormalBG then
 										frame.NormalBG:Hide()
@@ -1027,26 +1017,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if k.UpdateTime and not k.UpdateTimeHook then
 						hooksecurefunc(k, "UpdateTime", function(frame)
 							if frame and not frame.EltruismSkin then
-								ScenarioObjectiveBlockBackground:SetParent(frame)
-								ScenarioObjectiveBlockBackground:ClearAllPoints()
-								if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
-									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
-								elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
-									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
-								elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
-									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
-								elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
-									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
-								else
-									ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
-								end
-								ScenarioObjectiveBlockBackground:SetSize(243, 80)
-								ScenarioObjectiveBlockBackground:SetFrameLevel(3)
-								ScenarioObjectiveBlockBackground:Show()
-								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
-									ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
-								end
+								positionScenarioObjectiveBlockBackground(frame)
 								frame:StripTextures()
 								frame.EltruismSkin = true
 							end
@@ -1072,6 +1043,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									if v then
 										hooks(v)
 										blockskin(v)
+										positionScenarioObjectiveBlockBackground(v) ----asdasdsd
 									end
 								end
 							end
