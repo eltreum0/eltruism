@@ -73,13 +73,15 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 					else
 						local classification = UnitClassification("target")
 						if not classification then return end
-						local guid = UnitGUID("target")
-						if not guid then return end
-						local bossID = select(6, strsplit('-', guid))
-						if not bossID then return end
-						local isBoss = ElvUI_EltreumUI:GetBossIconTextureAndID(false,true,bossID)
-						if isBoss then
-							classification = 'worldboss'
+						if not E.Retail then
+							local guid = UnitGUID("target")
+							if not guid then return end
+							local bossID = select(6, strsplit('-', guid))
+							if not bossID then return end
+							local isBoss = ElvUI_EltreumUI:GetBossIconTextureAndID(false,true,bossID)
+							if isBoss then
+								classification = 'worldboss'
+							end
 						end
 						if(classification == 'rare') then
 							if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
