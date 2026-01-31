@@ -32,6 +32,7 @@ local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
+	if E.Retail then return end
 	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if IsInGroup() then
