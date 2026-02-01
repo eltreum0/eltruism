@@ -156,16 +156,18 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
 
 	--weakauras anchor
-	ElvUI_EltreumUI.Options.args.weakauras = E.Libs.ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
-	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
-	ElvUI_EltreumUI.Options.args.weakauras.args.description1 = E.Libs.ACH:Description(L["WeakAuras"], 2, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.description2 = E.Libs.ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.description3 = E.Libs.ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.description4 = E.Libs.ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.image = E.Libs.ACH:Group(L["How to use the Anchors"], nil, 6)
-	ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
-	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = E.Libs.ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
+	if not E.Retail then
+		ElvUI_EltreumUI.Options.args.weakauras = E.Libs.ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
+		ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
+		ElvUI_EltreumUI.Options.args.weakauras.args.description1 = E.Libs.ACH:Description(L["WeakAuras"], 2, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.description2 = E.Libs.ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.description3 = E.Libs.ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.description4 = E.Libs.ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.image = E.Libs.ACH:Group(L["How to use the Anchors"], nil, 6)
+		ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
+		ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = E.Libs.ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
+	end
 
 	--credits
 	ElvUI_EltreumUI.Options.args.credits = E.Libs.ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 98)
