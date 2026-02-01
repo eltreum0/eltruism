@@ -11,6 +11,14 @@ local TEXT_TO_SPEECH = _G.TEXT_TO_SPEECH
 local C_VoiceChat = _G.C_VoiceChat
 local PlaySoundFile = _G.PlaySoundFile
 
+local function voiceplayback(text)
+	if E.Retail then
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), 1, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume, true)
+	else
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+	end
+end
+
 -- Eltruism other options
 function ElvUI_EltreumUI:MiscOptions()
 	ElvUI_EltreumUI.Options.args.misc = E.Libs.ACH:Group(E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"], 85, 'tab')
@@ -40,7 +48,7 @@ function ElvUI_EltreumUI:MiscOptions()
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTS = E.Libs.ACH:Input(L["Text to Speech announcement"], nil, 21, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end, function(_, value)
 		E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = _G.tostring(value)
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
-			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(value) , _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+			voiceplayback(value)
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSconfig = E.Libs.ACH:Select(L["Text to Speech Config"], nil, 22, function()
@@ -50,7 +58,7 @@ function ElvUI_EltreumUI:MiscOptions()
 			Voices[v.voiceID] = v.name
 		end
 		return Voices
-	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = _G.tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
+	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = _G.tonumber(value) voiceplayback(TEXT_TO_SPEECH) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSvolume = E.Libs.ACH:Range(_G.VOLUME or "", nil, 23, { min = 1, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.description9 = E.Libs.ACH:Description(L["Mail Animation"], 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailAnimation = E.Libs.ACH:Toggle(L["Enable Mail Animation"], L["Play a Blizzard animation when receiving mail or when new mail exists"], 25, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailAnimation end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailAnimation = value E:StaticPopup_Show('CONFIG_RL') end)
