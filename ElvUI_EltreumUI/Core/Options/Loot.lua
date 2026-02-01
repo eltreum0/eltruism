@@ -12,7 +12,7 @@ local ITEM_QUALITY4_DESC = _G.ITEM_QUALITY4_DESC
 function ElvUI_EltreumUI:LootOptions()
 	ElvUI_EltreumUI.Options.args.loot = E.Libs.ACH:Group(E:TextGradient(_G.LOOT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add a scrolling loot text that will show items that you loot, filter which items you can loot, enable fast looting and create your own item wishlist"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.loot.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot'
-	ElvUI_EltreumUI.Options.args.loot.args.loottext = E.Libs.ACH:Group(L["LootText"], nil, 1)
+	ElvUI_EltreumUI.Options.args.loot.args.loottext = E.Libs.ACH:Group(L["LootText"], nil, 1, nil,nil,nil,nil,E.Retail)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.setting = E.Libs.ACH:Group("", nil, 1)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.setting.inline = true
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.setting.args.description1 = E.Libs.ACH:Description(L["Show a floating loot text"], 1, nil, nil, nil, nil, nil, "full")

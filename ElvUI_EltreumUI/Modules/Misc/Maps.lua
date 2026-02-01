@@ -526,11 +526,13 @@ local function RotateMinimap()
 			Enum.EditModeMinimapSetting.RotateMinimap = 1
 		end
 		SetCVar("rotateMinimap",1)
+		E.db["general"]["minimap"]["rotate"] = true
 	else
 		if E.Retail then
 			Enum.EditModeMinimapSetting.RotateMinimap = 0
 		end
 		SetCVar("rotateMinimap",0)
+		E.db["general"]["minimap"]["rotate"] = false
 	end
 end
 

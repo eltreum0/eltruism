@@ -52,6 +52,7 @@ E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,S
 
 -- preview function
 function ElvUI_EltreumUI:PreviewDoom()
+	if E.Retail then return end
 	if not E.Classic then
 		DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
 	else

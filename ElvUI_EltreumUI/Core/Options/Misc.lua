@@ -11,6 +11,14 @@ local TEXT_TO_SPEECH = _G.TEXT_TO_SPEECH
 local C_VoiceChat = _G.C_VoiceChat
 local PlaySoundFile = _G.PlaySoundFile
 
+local function voiceplayback(text)
+	if E.Retail then
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), 1, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume, true)
+	else
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+	end
+end
+
 -- Eltruism other options
 function ElvUI_EltreumUI:MiscOptions()
 	ElvUI_EltreumUI.Options.args.misc = E.Libs.ACH:Group(E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"], 85, 'tab')
@@ -40,7 +48,7 @@ function ElvUI_EltreumUI:MiscOptions()
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTS = E.Libs.ACH:Input(L["Text to Speech announcement"], nil, 21, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end, function(_, value)
 		E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = _G.tostring(value)
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
-			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(value) , _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+			voiceplayback(value)
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSconfig = E.Libs.ACH:Select(L["Text to Speech Config"], nil, 22, function()
@@ -50,7 +58,7 @@ function ElvUI_EltreumUI:MiscOptions()
 			Voices[v.voiceID] = v.name
 		end
 		return Voices
-	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = _G.tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
+	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = _G.tonumber(value) voiceplayback(TEXT_TO_SPEECH) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSvolume = E.Libs.ACH:Range(_G.VOLUME or "", nil, 23, { min = 1, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.description9 = E.Libs.ACH:Description(L["Mail Animation"], 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailAnimation = E.Libs.ACH:Toggle(L["Enable Mail Animation"], L["Play a Blizzard animation when receiving mail or when new mail exists"], 25, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailAnimation end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailAnimation = value E:StaticPopup_Show('CONFIG_RL') end)
@@ -65,10 +73,10 @@ function ElvUI_EltreumUI:MiscOptions()
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.arenaUF = E.Libs.ACH:Toggle(L["Enable"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.arenaunitframes end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description3 = E.Libs.ACH:Description(L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.battlegroundUF = E.Libs.ACH:Toggle(L["Enable"], nil, 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.bgunitframes end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description4 = E.Libs.ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicator = E.Libs.ACH:Toggle(L["Enable Entering/Leaving Combat Indicator Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicatorcustom = E.Libs.ACH:Toggle(L["Custom Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 9, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end)
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextenter = E.Libs.ACH:Input(_G.ENTERING_COMBAT or "", nil, 10, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter = _G.tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description4 = E.Libs.ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicator = E.Libs.ACH:Toggle(L["Enable Entering/Leaving Combat Indicator Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicatorcustom = E.Libs.ACH:Toggle(L["Custom Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 9, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end, E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextenter = E.Libs.ACH:Input(_G.ENTERING_COMBAT or "", nil, 10, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter = _G.tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, E.Retail)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextentercolor = E.Libs.ACH:Color(L["Color"], nil, 11, false, nil, function()
 		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
 		local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
@@ -76,8 +84,8 @@ function ElvUI_EltreumUI:MiscOptions()
 	end, function(_, r, g, b)
 		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
 		color.r, color.g, color.b = r, g, b
-	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleave = E.Libs.ACH:Input(_G.LEAVING_COMBAT or "", nil, 12, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave = _G.tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleave = E.Libs.ACH:Input(_G.LEAVING_COMBAT or "", nil, 12, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave = _G.tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, E.Retail)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleavecolor = E.Libs.ACH:Color(L["Color"], nil, 13, false, nil, function()
 		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
 		local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
@@ -85,7 +93,7 @@ function ElvUI_EltreumUI:MiscOptions()
 	end, function(_, r, g, b)
 		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
 		color.r, color.g, color.b = r, g, b
-	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, E.Retail)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description5 = E.Libs.ACH:Description(" ", 14, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.darksouls = E.Libs.ACH:Toggle(L["Enable a Dark Souls death animation"], L["Plays an animation when you die"], 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.playerdeath end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeath = value end, function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.gta = E.Libs.ACH:Toggle(L["Enable a GTA death animation"], L["Plays an animation when you die"], 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathgta = value end, function() return E.db.ElvUI_EltreumUI.skins.playerdeath or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end)

@@ -6,7 +6,6 @@ local InCombatLockdown = _G.InCombatLockdown
 local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
 local C_VoiceChat = _G.C_VoiceChat
-local Enum = _G.Enum
 
 local EltruismMailArrive = CreateFrame("FRAME","EltruismMailArrive")
 EltruismMailArrive:SetSize(40,40)
@@ -106,7 +105,11 @@ function ElvUI_EltreumUI:BlizzMail()
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 			if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice then
 				--C_VoiceChat.SpeakText(voiceID, text, destination, rate, volume)
-				C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+				if E.Retail then
+					C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, 1, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume,true)
+				else
+					C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+				end
 			elseif E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" then
 				PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
 			end

@@ -85,9 +85,11 @@ local function SetupFrameHooks(frame,isTree)
 		FrameInteracted(frame)
 	end)
 
-	frame:HookScript("OnClick", function()
-		FrameInteracted(frame)
-	end)
+	if frame.OnClick then
+		frame:HookScript("OnClick", function()
+			FrameInteracted(frame)
+		end)
+	end
 
 	frame:HookScript("OnDisable", function()
 		FrameInteracted(frame)

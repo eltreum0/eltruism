@@ -22,23 +22,23 @@ function ElvUI_EltreumUI:InstallerOptions()
 		E:SetupChat()
 		ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 		--for classic chat lfg
-		local lfg
-		if E.global.general.locale == "enUS" then
-			lfg = "LookingForGroup"
-		elseif E.global.general.locale == "deDE" then
-			lfg = "SucheNachGruppe"
-		elseif E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
-			lfg = "BuscarGrupo"
-		elseif E.global.general.locale == "frFR" then
-			lfg = "RechercheDeGroupe"
-		elseif E.global.general.locale == "ruRU" then
-			lfg = "ПоискСпутников"
-		elseif E.global.general.locale == "zhTW" then
-			lfg = "尋求組隊"
-		else
-			lfg = "LookingForGroup"
-		end
 		if not E.Retail then --remove lfg spam from general and creat tab for it
+			local lfg
+			if E.global.general.locale == "enUS" then
+				lfg = "LookingForGroup"
+			elseif E.global.general.locale == "deDE" then
+				lfg = "SucheNachGruppe"
+			elseif E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
+				lfg = "BuscarGrupo"
+			elseif E.global.general.locale == "frFR" then
+				lfg = "RechercheDeGroupe"
+			elseif E.global.general.locale == "ruRU" then
+				lfg = "ПоискСпутников"
+			elseif E.global.general.locale == "zhTW" then
+				lfg = "尋求組隊"
+			else
+				lfg = "LookingForGroup"
+			end
 			if lfg then
 				ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
 				_G.FCF_OpenNewWindow()
@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.original = E.Libs.ACH:Execute(L["Original Layout"], nil, 23, function() ElvUI_EltreumUI:OriginalGroupsDPS() end, nil, false, "full")
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description7 = E.Libs.ACH:Description(_G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.blizzeditmodelayout = E.Libs.ACH:Execute(E.Retail and _G.HUD_EDIT_MODE_IMPORT_LAYOUT.." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", nil, 25, function() ElvUI_EltreumUI:NewRetailEditModeLayout() end,nil,false,'full',nil,nil,nil, not E.Retail)
-	ElvUI_EltreumUI.Options.args.installer.args.tab4 = E.Libs.ACH:Group(L["Aura Filters"], nil, 4)
+	--[[ElvUI_EltreumUI.Options.args.installer.args.tab4 = E.Libs.ACH:Group(L["Aura Filters"], nil, 4)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description0 = E.Libs.ACH:Description(L["Choose to show all debuffs/buffs or use default Filters"], 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.general = E.Libs.ACH:Group(L["All"], nil, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.general.args.description1 = E.Libs.ACH:Description(L["Apply To All"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
@@ -168,6 +168,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.aurabar.args.eltruismdebuffs = E.Libs.ACH:Execute("Eltruism", nil, 5, function() ElvUI_EltreumUI:SetupDebuffs('aurabar', 'Eltruism') end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.aurabar.args.description3 = E.Libs.ACH:Description(nil, 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.aurabar.args.minimalbuffs = E.Libs.ACH:Execute(L["Minimal"], nil, 7, function() ElvUI_EltreumUI:SetupBuffs('aurabar', 'Minimal') end,nil,false,'full')
+	]]
 	ElvUI_EltreumUI.Options.args.installer.args.tab5 = E.Libs.ACH:Group(L["Gradient"], nil, 4, 'tab')
 	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export = E.Libs.ACH:Group(L["Export"], nil, 1, 'tab')
 	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export.args.input = E.Libs.ACH:Input(L["Exported Gradient Data:"], nil, 1, 27, "full", function() return ElvUI_EltreumUI:ExportImportGradient(nil,"export") end, function() return end)

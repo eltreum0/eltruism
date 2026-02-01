@@ -54,6 +54,22 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_DamageMeter") or IsAddOnLoaded("Blizzard_DamageMeter") then
+						if _G.DamageMeterSessionWindow1 and _G.DamageMeterSessionWindow1.backdrop then
+							if not _G.DamageMeterSessionWindow1.backdrop.shadow then
+								_G.DamageMeterSessionWindow1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.DamageMeterSessionWindow1.backdrop.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_Transmog") or IsAddOnLoaded("Blizzard_Transmog") then
+						if _G.TransmogFrame then
+							if not _G.TransmogFrame.shadow then
+								_G.TransmogFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.TransmogFrame.shadow)
+							end
+						end
+					end
 					if (arg == "Blizzard_HousingBulletinBoard") or IsAddOnLoaded("Blizzard_HousingBulletinBoard") then
 						if _G.HousingBulletinBoardFrame then
 							if not _G.HousingBulletinBoardFrame.shadow then
@@ -1196,6 +1212,7 @@ function ElvUI_EltreumUI:Shadows()
 				E.Retail and _G.CooldownViewerSettings, --retail new cd
 				E.Retail and _G.CooldownViewerSettings and _G.CooldownViewerSettings.SpellsTab and _G.CooldownViewerSettings.SpellsTab.backdrop, --retail new cd
 				E.Retail and _G.CooldownViewerSettings and _G.CooldownViewerSettings.AurasTab and _G.CooldownViewerSettings.AurasTab.backdrop, --retail new cd
+				_G.DamageMeterSessionWindow1,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then

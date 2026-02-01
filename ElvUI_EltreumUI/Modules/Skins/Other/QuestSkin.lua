@@ -795,7 +795,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 
-				local function positionScenarioObjectiveBlockBackground(frame)
+				local function positionScenarioObjectiveBlockBackground()
 					if not ScenarioObjectiveBlockBackground.SizeSet then
 						ScenarioObjectiveBlockBackground:SetSize(243, 80)
 						ScenarioObjectiveBlockBackground.SizeSet = true
@@ -813,9 +813,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
 						ScenarioObjectiveBlockBackground:SetParent(_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine)
 						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
-					else
-						ScenarioObjectiveBlockBackground:SetParent(frame)
-						ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
 					end
 					if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

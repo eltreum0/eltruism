@@ -14,7 +14,53 @@ local GameTooltip = _G.GameTooltip
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
---gradient tooltip health
+
+--gradient tooltip healthbar
+local function GameTooltipStatusBarGradient(unit,classunit,reaction)
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+			_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
+		else
+			_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
+		end
+	else
+		if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+				_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
+			else
+				_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
+			end
+		else
+			if reaction and reaction >= 5 then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
+				else
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
+				end
+			elseif reaction and reaction == 4 then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, false))
+				else
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
+				end
+			elseif reaction and reaction == 3 then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, false))
+				else
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, false))
+				end
+			elseif reaction and reaction <= 2 then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
+				else
+					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
+				end
+			end
+		end
+	end
+end
+
+--gradient tooltip text
 local function SetTooltipGradient(unit)
 	if not unit then return end
 	if not E.private.tooltip.enable then return end
@@ -42,47 +88,7 @@ local function SetTooltipGradient(unit)
 			end
 		end
 
-		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-				_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
-			else
-				_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
-			end
-		else
-			if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-				else
-					_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
-				end
-			else
-				if reaction and reaction >= 5 then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
-					else
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
-					end
-				elseif reaction and reaction == 4 then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, false))
-					else
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
-					end
-				elseif reaction and reaction == 3 then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, false))
-					else
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, false))
-					end
-				elseif reaction and reaction <= 2 then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
-					else
-						_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
-					end
-				end
-			end
-		end
+		GameTooltipStatusBarGradient(unit,classunit,reaction)
 	end
 end
 
@@ -401,3 +407,5 @@ end
 hooksecurefunc(TT, 'AddTargetInfo', ElvUI_EltreumUI.Tooltip)
 hooksecurefunc(TT, 'GameTooltip_OnTooltipSetUnit', ElvUI_EltreumUI.Tooltip)
 hooksecurefunc(TT, 'MODIFIER_STATE_CHANGED', ElvUI_EltreumUI.Tooltip)
+hooksecurefunc(TT, 'GameTooltipStatusBar_UpdateUnitHealth', ElvUI_EltreumUI.Tooltip)
+

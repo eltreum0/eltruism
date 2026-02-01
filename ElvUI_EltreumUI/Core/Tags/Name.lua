@@ -22,6 +22,7 @@ local UnitExists = _G.UnitExists
 --from elvui, modified for gradient
 do
 	local function EltruismGetTitleNPC(unit, custom)
+		if ElvUI_EltreumUI:RetailInstanceSecret() then return end
 		if UnitIsPlayer(unit) or (E.Mists or E.TBC or E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		-- similar to TT.GetLevelLine
@@ -62,12 +63,12 @@ do
 	end
 
 	E:AddTag('eltruismnpctitle', 'UNIT_NAME_UPDATE', function(unit)
-		return EltruismGetTitleNPC(unit)
+		return EltruismGetTitleNPC(unit) or ""
 	end)
 	E:AddTagInfo("eltruismnpctitle", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient"])
 
 	E:AddTag('eltruismnpctitle:brackets', 'UNIT_NAME_UPDATE', function(unit)
-		return EltruismGetTitleNPC(unit, '<%s>')
+		return EltruismGetTitleNPC(unit, '<%s>') or ""
 	end)
 	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient with brackets"])
 end

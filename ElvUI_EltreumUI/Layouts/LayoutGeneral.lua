@@ -935,6 +935,28 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
 	E.db["actionbar"]["cooldown"]["threshold"] = 5
 	E.db["actionbar"]["cooldown"]["fonts"]["enable"] = false]]
+	E.db["cooldown"]["actionbar"]["font"] = "Kimberley"
+	E.db["cooldown"]["aurabars"]["font"] = "Kimberley"
+	E.db["cooldown"]["auras"]["font"] = "Kimberley"
+	E.db["cooldown"]["bags"]["font"] = "Kimberley"
+	E.db["cooldown"]["bossbutton"]["font"] = "Kimberley"
+	E.db["cooldown"]["cdmanager"]["font"] = "Kimberley"
+	E.db["cooldown"]["global"]["font"] = "Kimberley"
+	E.db["cooldown"]["nameplates"]["font"] = "Kimberley"
+	E.db["cooldown"]["totemtracker"]["font"] = "Kimberley"
+	E.db["cooldown"]["unitframe"]["font"] = "Kimberley"
+	E.db["cooldown"]["zonebutton"]["font"] = "Kimberley"
+	E.db["cooldown"]["actionbar"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["aurabars"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["auras"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["bags"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["bossbutton"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["cdmanager"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["global"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["nameplates"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["totemtracker"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["unitframe"]["fontOutline"] = "THICKOUTLINE"
+	E.db["cooldown"]["zonebutton"]["fontOutline"] = "THICKOUTLINE"
 
 	E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 	E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
@@ -2051,6 +2073,13 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
+
+	if E.Retail then
+		SetCVar("nameplateShowFriendlyPlayers", 1)
+		SetCVar("nameplateSelectedScale", 1.4)
+		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)
+		E.db["nameplates"]["visibility"]["showOnlyNames"] = true --same as above, but persistent
+	end
 
 	SetCVar('nameplateMaxAlpha', 1)
 	SetCVar('nameplateMaxAlphaDistance', GetCVarDefault('nameplateMaxAlphaDistance'))

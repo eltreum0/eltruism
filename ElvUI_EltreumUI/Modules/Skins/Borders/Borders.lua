@@ -73,34 +73,39 @@ function ElvUI_EltreumUI:GetBorderClassColors()
 end
 
 function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
-	if E.db.ElvUI_EltreumUI.borders.classcolor then
-		if button.aura.sourceUnit then
-			if UnitIsPlayer(button.aura.sourceUnit) or (E.Retail and UnitInPartyIsAI(button.caster)) then
-				local _, classunit = UnitClass(button.aura.sourceUnit)
-				classcolor2 = E:ClassColor(classunit, true)
-				classcolor2check = true
-			else
-				local reactiontarget = UnitReaction(button.aura.sourceUnit, "player")
-				if reactiontarget then
-					if reactiontarget >= 5 then
-						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
-					elseif reactiontarget == 4 then
-						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
-					elseif reactiontarget == 3 then
-						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
-					elseif reactiontarget == 2 or reactiontarget == 1 then
-						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
-					end
+	if E.Retail then
+		classcolor2 = {}
+		classcolor2check = false
+	else
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
+			if button.aura.sourceUnit then
+				if UnitIsPlayer(button.aura.sourceUnit) or (E.Retail and UnitInPartyIsAI(button.caster)) then
+					local _, classunit = UnitClass(button.aura.sourceUnit)
+					classcolor2 = E:ClassColor(classunit, true)
+					classcolor2check = true
 				else
-					classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("SHAMAN")
+					local reactiontarget = UnitReaction(button.aura.sourceUnit, "player")
+					if reactiontarget then
+						if reactiontarget >= 5 then
+							classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
+						elseif reactiontarget == 4 then
+							classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
+						elseif reactiontarget == 3 then
+							classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
+						elseif reactiontarget == 2 or reactiontarget == 1 then
+							classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
+						end
+					else
+						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("SHAMAN")
+					end
 				end
+			else
+				classcolor2 = {}
+				classcolor2check = false
 			end
 		else
-			classcolor2 = {}
 			classcolor2check = false
 		end
-	else
-		classcolor2check = false
 	end
 end
 
