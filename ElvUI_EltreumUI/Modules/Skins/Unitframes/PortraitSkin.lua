@@ -23,7 +23,6 @@ local notexcoord = {
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
 local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	if not frame then return end
-	if not frame.USE_PORTRAIT then return end
 	if not frame.unit then return end
 
 	if db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT" then
@@ -451,7 +450,6 @@ hooksecurefunc(UF,"PortraitUpdate", ElvUI_EltreumUI.BlizzPortraits)
 function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if not frame then return end
-		if not frame.USE_PORTRAIT then return end
 		if not frame:GetName() then return end
 		if frame:GetName():match("PartyGroup") and not frame:GetName():match("Pet") then
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"party") end)
