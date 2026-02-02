@@ -263,4 +263,4 @@ function ElvUI_EltreumUI:EltruismBagSync()
 		end)
 	end
 end
-S:AddCallbackForAddon('BagSync', "EltruismBagSync", ElvUI_EltreumUI.EltruismBagSync)
+--S:AddCallbackForAddon('BagSync', "EltruismBagSync", ElvUI_EltreumUI.EltruismBagSync)
