@@ -5,7 +5,7 @@ local tostring = _G.tostring
 local tonumber = _G.tonumber
 local OKAY = _G.OKAY
 
-local PortraitStyles = {
+--[[local PortraitStyles = {
 	["RELEAF"] = "Releaf",
 	["OUTLINE"] = L["Outline"],
 	["BLIZZARD"] = L["Blizzard"],
@@ -102,7 +102,7 @@ local function PortraitWasToggled(portrait, value)
 			end
 		end
 	end
-end
+end]]
 
 -- Eltruism unitframe options
 function ElvUI_EltreumUI:UnitframeOptions()
@@ -771,7 +771,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.npcs.args.gap5 = E.Libs.ACH:Description('', 16, nil)
-	ElvUI_EltreumUI.Options.args.unitframes.args.portrait = E.Libs.ACH:Group(L["Portrait"], nil, 4, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
+	--[[ElvUI_EltreumUI.Options.args.unitframes.args.portrait = E.Libs.ACH:Group(L["Portrait"], nil, 4, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args.general = E.Libs.ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args.general.args.description1 = E.Libs.ACH:Description(L["Target Portrait Fix"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args.general.args.enableportraitfix = E.Libs.ACH:Toggle(L["Automatically rotate Target Portrait"], L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end)
@@ -997,6 +997,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args.boss.args.custombgcolor = E.Libs.ACH:Color(L["Background Color"], nil, 12, false, nil, function() local dr = P.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.r local dg = P.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.g local db = P.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.b return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.r, E.db.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.g, E.db.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.b, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.r, E.db.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.g, E.db.ElvUI_EltreumUI.unitframes.portrait.boss.backgroundcolor.b = r, g, b ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.background or not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.custom or not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.customcircle end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args.boss.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args.boss.args.texture.style = "radio"
+	]]
 	ElvUI_EltreumUI.Options.args.unitframes.args.models = E.Libs.ACH:Group(L["Models"], nil, 4, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.models.args.warning = E.Libs.ACH:Description("|cffFF0000WARNING:|r"..L[" This can be a very demanding feature, it's not recommended to use models for performance."], 1, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.models.args.unitframes = E.Libs.ACH:Group(L["UnitFrames"], nil, 2, "tab", nil, nil)

@@ -39,7 +39,9 @@
 	<Script file='Unitframes/Models.lua'/>
 	<Script file='Unitframes/Orientation.lua'/>
 	<Script file='Unitframes/PortraitFix.lua'/>
-	<Script file='Unitframes/PortraitSkin.lua'/>
+	<Script file='Unitframes/Blinkii/portraits_txdb.lua'/>
+	<Script file='Unitframes/Blinkii/portrait.lua'/>
+	<!-- Script file='Unitframes/PortraitSkin.lua'/-->
 	<Script file='Unitframes/RoleIcons.lua'/>
 	<Script file='Unitframes/Textures.lua'/>
 </Ui>

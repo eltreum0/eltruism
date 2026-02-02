@@ -151,6 +151,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
 	ElvUI_EltreumUI:BordersTargetChanged() --fix borders for focus
 	ElvUI_EltreumUI:PerformanceCVars(false,true) --set some cvars that reset on login
+	ElvUI_EltreumUI:InitializePortraits(true) --blinkii's mmediatag portraits
 end
 
 function ElvUI_EltreumUI:Initialize()
