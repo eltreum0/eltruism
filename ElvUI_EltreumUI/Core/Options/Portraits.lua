@@ -3,6 +3,8 @@ local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local pairs = _G.pairs
 
+--this file is a conversion of mmediatag portraits options, as authorized by blinkii
+
 local form = {
 	SQ = L["Old"] .. " " .. L["Drop"],
 	RO = L["Old"] .. " " .. L["Drop round"],
@@ -83,7 +85,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portrait = E.Libs.ACH:Group(L["Portrait"], nil, 4, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	local Args = ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args
 
-	Args.toggle_enable = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable = value ElvUI_EltreumUI:InitializePortraits() E:StaticPopup_Show("CONFIG_RL") end)
+	Args.toggle_enable = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable = value ElvUI_EltreumUI:InitializePortraits() E:StaticPopup_Show("CONFIG_RL") end)
 
 	Args.header_general = E.Libs.ACH:Group(L["General"], nil, 2)
 	local InnerGen = Args.header_general.args
@@ -160,11 +162,8 @@ function ElvUI_EltreumUI:PortraitOptions()
 		end
 	)
 
--- ========================================================================
--- 2. TEXTURES & STYLES
--- ========================================================================
-Args.header_style = E.Libs.ACH:Group(L["Textures & Styles"], nil, 2)
-local StyleArgs = Args.header_style.args
+	Args.header_style = E.Libs.ACH:Group(L["Textures & Styles"], nil, 2)
+	local StyleArgs = Args.header_style.args
 
 	-- Portrait Texture
 	StyleArgs.header_portrait_texture = E.Libs.ACH:Group(L["Portrait Texture"], nil, 1)
@@ -491,11 +490,8 @@ local StyleArgs = Args.header_style.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.zoom = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 3. PLAYER
--- ========================================================================
-Args.header_player = E.Libs.ACH:Group(L["Player"], nil, 3)
-local PlayerArgs = Args.header_player.args
+	Args.header_player = E.Libs.ACH:Group(L["Player"], nil, 3)
+	local PlayerArgs = Args.header_player.args
 
 	PlayerArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Player Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.player.enable end,
@@ -556,11 +552,8 @@ local PlayerArgs = Args.header_player.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 4. TARGET
--- ========================================================================
-Args.header_target = E.Libs.ACH:Group(L["Target"], nil, 4)
-local TargetArgs = Args.header_target.args
+	Args.header_target = E.Libs.ACH:Group(L["Target"], nil, 4)
+	local TargetArgs = Args.header_target.args
 
 	TargetArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Target Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.target.enable end,
@@ -625,11 +618,8 @@ local TargetArgs = Args.header_target.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 5. TARGET OF TARGET
--- ========================================================================
-Args.header_targettarget = E.Libs.ACH:Group(L["Target of Target"], nil, 5)
-local ToTArgs = Args.header_targettarget.args
+	Args.header_targettarget = E.Libs.ACH:Group(L["Target of Target"], nil, 5)
+	local ToTArgs = Args.header_targettarget.args
 
 	ToTArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Target of Target Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.enable end,
@@ -690,11 +680,8 @@ local ToTArgs = Args.header_targettarget.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 6. PET
--- ========================================================================
-Args.header_pet = E.Libs.ACH:Group(L["Pet"], nil, 6)
-local PetArgs = Args.header_pet.args
+	Args.header_pet = E.Libs.ACH:Group(L["Pet"], nil, 6)
+	local PetArgs = Args.header_pet.args
 
 	PetArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Pet Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.pet.enable end,
@@ -751,11 +738,8 @@ local PetArgs = Args.header_pet.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.pet.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 7. FOCUS
--- ========================================================================
-Args.header_focus = E.Libs.ACH:Group(L["Focus"], nil, 7)
-local FocusArgs = Args.header_focus.args
+	Args.header_focus = E.Libs.ACH:Group(L["Focus"], nil, 7)
+	local FocusArgs = Args.header_focus.args
 
 	FocusArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Focus Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.focus.enable end,
@@ -820,11 +804,8 @@ local FocusArgs = Args.header_focus.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 8. PARTY
--- ========================================================================
-Args.header_party = E.Libs.ACH:Group(L["Party"], nil, 8)
-local PartyArgs = Args.header_party.args
+	Args.header_party = E.Libs.ACH:Group(L["Party"], nil, 8)
+	local PartyArgs = Args.header_party.args
 
 	PartyArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Party Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.party.enable end,
@@ -885,11 +866,8 @@ local PartyArgs = Args.header_party.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 9. BOSS
--- ========================================================================
-Args.header_boss = E.Libs.ACH:Group(L["Boss"], nil, 9)
-local BossArgs = Args.header_boss.args
+	Args.header_boss = E.Libs.ACH:Group(L["Boss"], nil, 9)
+	local BossArgs = Args.header_boss.args
 
 	BossArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Boss Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.boss.enable end,
@@ -950,11 +928,8 @@ local BossArgs = Args.header_boss.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 10. ARENA
--- ========================================================================
-Args.header_arena = E.Libs.ACH:Group(L["Arena"], nil, 10)
-local ArenaArgs = Args.header_arena.args
+	Args.header_arena = E.Libs.ACH:Group(L["Arena"], nil, 10)
+	local ArenaArgs = Args.header_arena.args
 
 	ArenaArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Arena Portraits"], 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.arena.enable end,
@@ -1015,11 +990,8 @@ local ArenaArgs = Args.header_arena.args
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.level = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 11. SHADOW
--- ========================================================================
-Args.header_shadow = E.Libs.ACH:Group(L["Shadow"], nil, 11)
-local ShadowArgs = Args.header_shadow.args
+	Args.header_shadow = E.Libs.ACH:Group(L["Shadow"], nil, 11)
+	local ShadowArgs = Args.header_shadow.args
 
 	ShadowArgs.shadow = E.Libs.ACH:Group(L["Shadow"], nil, 0)
 	ShadowArgs.shadow.inline = true
@@ -1043,11 +1015,8 @@ local ShadowArgs = Args.header_shadow.args
 		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.innerColor; t.r, t.g, t.b, t.a = r, g, b, a; ElvUI_EltreumUI:InitializePortraits() end
 	)
 
--- ========================================================================
--- 12. COLORS
--- ========================================================================
-Args.header_colors = E.Libs.ACH:Group(L["Colors"], nil, 12)
-local ColorsArgs = Args.header_colors.args
+	Args.header_colors = E.Libs.ACH:Group(L["Colors"], nil, 12)
+	local ColorsArgs = Args.header_colors.args
 
 	-- Settings
 	ColorsArgs.settings = E.Libs.ACH:Group(L["Settings"], nil, 1)
@@ -1177,6 +1146,4 @@ local ColorsArgs = Args.header_colors.args
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.bgColorShift end,
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.bgColorShift = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
-
-
 end
