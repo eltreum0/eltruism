@@ -15,11 +15,10 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --style filter gone
 --gradient threat
---[[function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
+function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local nameplate, db = self.__owner, NP.db.threat
-	local sf = NP:StyleFilterChanges(nameplate)
-	if sf and status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not (sf.health and sf.health.color) then
+	if status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) then
 		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
 
@@ -111,7 +110,7 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 	end
 end
 hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator_PostUpdate)
-]]
+
 --gradient nameplates
 local bordercolor = E.myClassColor
 local function GradientNameplates(unit)
