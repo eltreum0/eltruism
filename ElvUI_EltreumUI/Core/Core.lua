@@ -170,6 +170,9 @@ function ElvUI_EltreumUI:BlizzCombatText()
 			SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
 			SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
 			SetCVar("floatingCombatTextCombatDamage", 0)
+			if E.Retail then
+				SetCVar("floatingCombatTextCombatDamage_v2", 0)
+			end
 		elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
 			SetCVar("floatingCombatTextEnergyGains", 1)
 			SetCVar("enableFloatingCombatText", 1) ----this is damage taken without this the floating resource will not work
@@ -186,6 +189,13 @@ function ElvUI_EltreumUI:RestoreBlizzCombatText()
 		SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 1)
 		SetCVar("floatingCombatTextCombatDamage", 1)
 		SetCVar("floatingCombatTextEnergyGains", 1)
+
+		if E.Retail then
+			SetCVar("floatingCombatTextCombatDamage_v2", 1)
+			SetCVar("floatingCombatTextCombatLogPeriodicSpells_v2", 1)
+			SetCVar("floatingCombatTextPetMeleeDamage_v2", 1)
+			SetCVar("floatingCombatTextPetSpellDamage_v2", 1)
+		end
 	end
 end
 

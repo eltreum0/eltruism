@@ -331,5 +331,6 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI:QuestOptions()
 	ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI:UnitframeOptions()
+	ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI:Changelog()
 end
