@@ -2078,6 +2078,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 		SetCVar("nameplateShowFriendlyPlayers", 1)
 		SetCVar("nameplateSelectedScale", 1.4)
 		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)
+		SetCVar("nameplateUseClassColorForFriendlyPlayerUnitNames", 1)
 		E.db["nameplates"]["visibility"]["showOnlyNames"] = true --same as above, but persistent
 	end
 
