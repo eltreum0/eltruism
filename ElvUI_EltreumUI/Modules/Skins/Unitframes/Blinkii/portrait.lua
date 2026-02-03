@@ -98,6 +98,9 @@ local function getColor(unit, isPlayer, isDead)
 end
 
 local function adjustColor(color, shift)
+	if not color then return end
+	if not shift then return end
+	if not color.r then return end
 	return {
 		r = color.r * shift,
 		g = color.g * shift,
