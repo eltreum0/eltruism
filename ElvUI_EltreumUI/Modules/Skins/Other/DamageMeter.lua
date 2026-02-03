@@ -6,8 +6,6 @@ local hooksecurefunc = _G.hooksecurefunc
 --pretty much copied from elvui and edited to look more like details
 do
 
-	--GetSpecializationInfo(1)
-
 	local BlizzardTextureIDsForSpecs = {
 		["608952"] = 270,
 		["608953"] = 269,
@@ -65,6 +63,66 @@ do
 		--["132355"]=1446,
 	}
 
+	--use the same coords as details so its compatible with details icon packs
+	--credits for the cords to details and tercio and team
+	--have to add devourer
+
+	local class_specs_coords = {
+		[577] = {128/512, 192/512, 256/512, 320/512}, --havoc demon hunter
+		[581] = {192/512, 256/512, 256/512, 320/512}, --vengeance demon hunter
+
+		[250] = {0, 64/512, 0, 64/512}, --blood dk
+		[251] = {64/512, 128/512, 0, 64/512}, --frost dk
+		[252] = {128/512, 192/512, 0, 64/512}, --unholy dk
+
+		[102] = {192/512, 256/512, 0, 64/512}, -- druid balance
+		[103] = {256/512, 320/512, 0, 64/512}, -- druid feral
+		[104] = {320/512, 384/512, 0, 64/512}, -- druid guardian
+		[105] = {384/512, 448/512, 0, 64/512}, -- druid resto
+
+		[253] = {448/512, 512/512, 0, 64/512}, -- hunter bm
+		[254] = {0, 64/512, 64/512, 128/512}, --hunter marks
+		[255] = {64/512, 128/512, 64/512, 128/512}, --hunter survivor
+
+		[62] = {(128/512) + 0.001953125, 192/512, 64/512, 128/512}, --mage arcane
+		[63] = {192/512, 256/512, 64/512, 128/512}, --mage fire
+		[64] = {256/512, 320/512, 64/512, 128/512}, --mage frost
+
+		[268] = {320/512, 384/512, 64/512, 128/512}, --monk bm
+		[269] = {448/512, 512/512, 64/512, 128/512}, --monk ww
+		[270] = {384/512, 448/512, 64/512, 128/512}, --monk mw
+
+		[65] = {0, 64/512, 128/512, 192/512}, --paladin holy
+		[66] = {64/512, 128/512, 128/512, 192/512}, --paladin protect
+		[70] = {(128/512) + 0.001953125, 192/512, 128/512, 192/512}, --paladin ret
+
+		[256] = {192/512, 256/512, 128/512, 192/512}, --priest disc
+		[257] = {256/512, 320/512, 128/512, 192/512}, --priest holy
+		[258] = {(320/512) + (0.001953125 * 4), 384/512, 128/512, 192/512}, --priest shadow
+
+		[259] = {384/512, 448/512, 128/512, 192/512}, --rogue assassination
+		[260] = {448/512, 512/512, 128/512, 192/512}, --rogue combat
+		[261] = {0, 64/512, 192/512, 256/512}, --rogue sub
+
+		[262] = {64/512, 128/512, 192/512, 256/512}, --shaman elemental
+		[263] = {128/512, 192/512, 192/512, 256/512}, --shamel enhancement
+		[264] = {192/512, 256/512, 192/512, 256/512}, --shaman resto
+
+		[265] = {256/512, 320/512, 192/512, 256/512}, --warlock aff
+		[266] = {320/512, 384/512, 192/512, 256/512}, --warlock demo
+		[267] = {384/512, 448/512, 192/512, 256/512}, --warlock destro
+
+		[71] = {448/512, 512/512, 192/512, 256/512}, --warrior arms
+		[72] = {0, 64/512, 256/512, 320/512}, --warrior fury
+		[73] = {64/512, 128/512, 256/512, 320/512}, --warrior protect
+
+		[1467] = {256/512, 320/512, 256/512, 320/512}, -- Devastation
+		[1468] = {320/512, 384/512, 256/512, 320/512}, -- Preservation
+		[1473] = {384/512, 448/512, 256/512, 320/512}, -- Augmentation
+	}
+
+
+
 
 
 
@@ -101,6 +159,11 @@ do
 						print(bar2,bar2.Icon,bar2.Icon.Icon)
 						--there is a bar2.specIconID, but its using texture ids, would need to look up each spec texture
 						--perhaps add options to customize icons, if map the textures to specs
+						if bar2.specIconID and BlizzardTextureIDsForSpecs[bar2.specIconID] then
+							local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[bar2.specIconID]]
+							bar2.Icon.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
+							bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+						end
 					end)
 					bar.UpdateIconEltruismHook = true
 				end
