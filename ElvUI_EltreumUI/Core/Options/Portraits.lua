@@ -82,8 +82,8 @@ function ElvUI_EltreumUI:PortraitOptions()
 	BuildIconStylesTable()
 	BuildCustomTexturesTable()
 
-	ElvUI_EltreumUI.Options.args.unitframes.args.portrait = E.Libs.ACH:Group(L["Portrait"], nil, 4, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
-	local Args = ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args
+	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraitmmt = E.Libs.ACH:Group(L["Portrait (mMT)"], nil, 4, "tab", nil, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	local Args = ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraitmmt.args
 
 	Args.toggle_enable = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable = value ElvUI_EltreumUI:InitializePortraits() E:StaticPopup_Show("CONFIG_RL") end)
 

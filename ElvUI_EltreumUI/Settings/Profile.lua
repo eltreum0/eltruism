@@ -1090,7 +1090,7 @@ P.ElvUI_EltreumUI = {
 		blizzardresticon = true,
 		blizzardresticonclasscolor = false,
 		blizzardresticongradient = true,
-		--[[portrait = {
+		portrait = {
 			enable = false,
 			shadow = true,
 			gradient = true,
@@ -1334,7 +1334,7 @@ P.ElvUI_EltreumUI = {
 					b = 0.07,
 				},
 			},
-		},]]
+		},
 		portraits = {
 			custom = {
 				border = "",
