@@ -1040,7 +1040,15 @@ function ElvUI_EltreumUI:SkinQuests()
 									if v then
 										hooks(v)
 										blockskin(v)
-										positionScenarioObjectiveBlockBackground(v) ----asdasdsd
+										positionScenarioObjectiveBlockBackground(v)
+										if v.NormalBG then
+											v.NormalBG:Hide()
+											v.NormalBG:SetTexture()
+										end
+										if v.FinalBG then
+											v.FinalBG:Hide()
+											v.FinalBG:SetTexture()
+										end
 									end
 								end
 							end
@@ -1158,6 +1166,14 @@ function ElvUI_EltreumUI:SkinQuests()
 										v:UnregisterEvent("ADDON_ACTION_BLOCKED")
 										v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 										blockskin(v)
+										if v.NormalBG then
+											v.NormalBG:Hide()
+											v.NormalBG:SetTexture()
+										end
+										if v.FinalBG then
+											v.FinalBG:Hide()
+											v.FinalBG:SetTexture()
+										end
 									end
 								end
 							end
