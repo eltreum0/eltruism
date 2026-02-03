@@ -222,6 +222,7 @@ local function UpdateExtraTexture(portraitFrame, classification)
 end
 
 local function GetNPCID(unit)
+	if ElvUI_EltreumUI:RetailInstanceSecret() then return end
 	local guid = UnitGUID(unit)
 	return guid and select(6, strsplit("-", guid))
 end
@@ -242,6 +243,7 @@ local simpleClassification = {
 local function CheckRareElite(frame, unit, unitColor)
 	local c = UnitClassification(unit) --"worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	local npcID = GetNPCID(unit)
+	if not npcID then return end
 	local classification = (ElvUI_EltreumUI:GetBossIconTextureAndID(nil,true,npcID) and true or simpleClassification[c])
 
 	if classification then
