@@ -233,7 +233,7 @@ end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
 --for general nameplates
-local playerclassv1 = {
+--[[local playerclassv1 = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",
 	["PALADIN"] = "Eltreum-Class-Paladin",
 	["HUNTER"] = "Eltreum-Class-Hunter",
@@ -279,7 +279,7 @@ local playerclassv3 = {
 	["DRUID"] = "Eltreum-Class-DruidV3",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV3",
 	["EVOKER"] = "Eltreum-Class-EvokerV3",
-}
+}]]
 
 -- for rare nameplates
 local rareclass = {
