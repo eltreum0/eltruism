@@ -51,7 +51,7 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then --thin mode aurabars?
-			bar:SetHeight(5)
+			--bar:SetHeight(5)
 			bar.icon:SetSize(25,15)
 			bar.icon:ClearAllPoints()
 			bar.icon:SetPoint("BOTTOMRIGHT",bar,"BOTTOMLEFT",-7,0)
