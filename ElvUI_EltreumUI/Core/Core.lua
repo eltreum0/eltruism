@@ -1032,7 +1032,7 @@ function ElvUI_EltreumUI:RetailInstanceSecret(value)
 	local _, instanceType = _G.IsInInstance()
 	if E.Retail then
 		if value and _G.canaccessvalue(value) then --new api to check if value is secret
-			return true
+			return false
 		elseif instanceType ~= "none" then
 			return true
 		else
