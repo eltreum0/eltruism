@@ -147,6 +147,13 @@ local function GradientNameplates(unit)
 		--if (sf and sf.health and sf.health.color) then
 		--	unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
 		--else
+		local isOK
+		if E.Retail then
+			isOK = true
+		else
+			isOK = (unit.CurrentlyBeingTanked ~= UnitGUID(unit.unit))
+		end
+
 		if not InCombatLockdown() or UnitIsDead("player") then
 			unit.CurrentlyBeingTanked = nil
 		end
@@ -161,7 +168,7 @@ local function GradientNameplates(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors(className))
 				end
-			elseif reaction and (unit.CurrentlyBeingTanked ~= UnitGUID(unit.unit)) then
+			elseif reaction and isOK then
 				if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
