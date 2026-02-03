@@ -19,7 +19,9 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 								end
 								bar.spark:SetBlendMode('BLEND')
 								--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
-								bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								if not ElvUI_EltreumUI:RetailInstanceSecret() then
+									bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								end
 								bar.EltruismSparkPlayer = true
 							end
 							if E.db.unitframe.colors.transparentAurabars then
@@ -35,7 +37,9 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 								end
 								bar.spark:SetBlendMode('BLEND')
 								--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
-								bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								if not ElvUI_EltreumUI:RetailInstanceSecret() then
+									bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								end
 								bar.EltruismSparkTarget = true
 							end
 							if E.db.unitframe.colors.transparentAurabars then
@@ -51,16 +55,13 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then --thin mode aurabars?
-			E.db["unitframe"]["units"]["target"]["aurabar"]["height"] = 5
-			E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 17
-			E.db["unitframe"]["units"]["player"]["aurabar"]["height"] = 5
-			E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 17
-
-			--bar:SetHeight(5)
-			bar.icon:SetSize(25,15)
-			bar.icon:ClearAllPoints()
-			bar.icon:SetPoint("BOTTOMRIGHT",bar,"BOTTOMLEFT",-7,0)
-			bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
+			if not ElvUI_EltreumUI:RetailInstanceSecret() then
+				bar:SetHeight(5)
+				bar.icon:SetSize(25,15)
+				bar.icon:ClearAllPoints()
+				bar.icon:SetPoint("BOTTOMRIGHT",bar,"BOTTOMLEFT",-7,0)
+				bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
+			end
 
 			bar.nameText:ClearAllPoints()
 			bar.nameText:SetPoint('LEFT', bar, 'LEFT', 4, 4)
@@ -122,12 +123,14 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 								end
 							end
 						end
-						if bar.unit == "target" and E.db.unitframe.units.target.aurabar.reverseFill then
-							bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
-						elseif bar.unit == "player" and E.db.unitframe.units.player.aurabar.reverseFill then
-							bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
-						else
-							bar.backdrop:SetBackdropColor(0,0,0,0)
+						if not ElvUI_EltreumUI:RetailInstanceSecret() then
+							if bar.unit == "target" and E.db.unitframe.units.target.aurabar.reverseFill then
+								bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
+							elseif bar.unit == "player" and E.db.unitframe.units.player.aurabar.reverseFill then
+								bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
+							else
+								bar.backdrop:SetBackdropColor(0,0,0,0)
+							end
 						end
 					end
 				end
