@@ -2067,7 +2067,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateOccludedAlphaMult', 0)
 	SetCVar("nameplateOverlapH", 0.8)
 	SetCVar("nameplateOverlapV", 1.1)
-	SetCVar('nameplateSelectedScale', 1)
+	SetCVar('nameplateSelectedScale', 1,4)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
@@ -2076,10 +2076,12 @@ function ElvUI_EltreumUI:NameplateCVars()
 
 	if E.Retail then
 		SetCVar("nameplateShowFriendlyPlayers", 1)
-		SetCVar("nameplateSelectedScale", 1.4)
 		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)
 		SetCVar("nameplateUseClassColorForFriendlyPlayerUnitNames", 1)
-		E.db["nameplates"]["visibility"]["showOnlyNames"] = true --same as above, but persistent
+		E.db.nameplates.visibility.showOnlyNames = true --same as above, but persistent
+		SetCVar("nameplatePlayerLargerScale", 1.8)
+	else
+		SetCVar("nameplateNotSelectedAlpha",0.5)
 	end
 
 	SetCVar('nameplateMaxAlpha', 1)
