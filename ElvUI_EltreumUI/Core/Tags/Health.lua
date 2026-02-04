@@ -260,7 +260,7 @@ E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UN
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 	local value
 	if E.Retail then
-		value = UnitHealthPercent(unit, true, ScaleTo100)
+		value = format('%d', UnitHealthPercent(unit, true, ScaleTo100)).."%"
 	else
 		value = math.floor(((cur / maxhp) * 100) + 0.5)
 	end
