@@ -777,19 +777,21 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
-			if IsAddOnLoaded("BattleGroundEnemies") then
-				_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
-				_G.PluginInstallFrame.Option1:Enable()
-				_G.PluginInstallFrame.Option1:Show()
-				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
-				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
-				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
-			else
-				_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
-				_G.PluginInstallFrame.Option1:Disable()
-				_G.PluginInstallFrame.Option1:Show()
-				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+			if not E.Retail then
+				if IsAddOnLoaded("BattleGroundEnemies") then
+					_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
+					_G.PluginInstallFrame.Option1:Enable()
+					_G.PluginInstallFrame.Option1:Show()
+					_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+					_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
+					_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+				else
+					_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
+					_G.PluginInstallFrame.Option1:Disable()
+					_G.PluginInstallFrame.Option1:Show()
+					_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+				end
 			end
 			if IsAddOnLoaded("Capping") then
 				_G.PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
@@ -820,7 +822,7 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:Show()
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				end
-
+				--[[
 				if IsAddOnLoaded("OmniCD") then
 					_G.PluginInstallFrame.Desc4:SetText(L["Import OmniCD profile"])
 					_G.PluginInstallFrame.Option4:Enable()
@@ -842,7 +844,7 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option4:Disable()
 					_G.PluginInstallFrame.Option4:Show()
 					_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
-				end
+				end]]
 			else
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
@@ -862,20 +864,21 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
 			_G.PluginInstallFrame.Desc3:SetText(L["Import Dynamic Cam profile"])
 			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-			_G.PluginInstallFrame.Option1:Enable()
-			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
+			if not E.Retail then
+				_G.PluginInstallFrame.Option1:Enable()
+				_G.PluginInstallFrame.Option1:Show()
+				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
 
-			_G.PluginInstallFrame.Option2:Enable()
-			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
-
+				_G.PluginInstallFrame.Option2:Enable()
+				_G.PluginInstallFrame.Option2:Show()
+				_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
+			end
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupImmersion() end)
@@ -889,22 +892,23 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
-
-			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
-				_G.PluginInstallFrame.Option1:Disable()
-			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
-				_G.PluginInstallFrame.Option2:Disable()
-			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
-				_G.PluginInstallFrame.Option1:Disable()
-				_G.PluginInstallFrame.Option2:Disable()
+			if not E.Retail then
+				if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
+					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+					_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
+					_G.PluginInstallFrame.Option1:Disable()
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
+					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+					_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
+					_G.PluginInstallFrame.Option2:Disable()
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+					_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
+					_G.PluginInstallFrame.Option1:Disable()
+					_G.PluginInstallFrame.Option2:Disable()
+				end
 			end
 			if (not IsAddOnLoaded("Immersion")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
