@@ -273,6 +273,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["xOffset"] = 4
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -1
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["width"] = 187
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = true
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontOutline"] = "OUTLINE"
@@ -386,6 +387,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["xOffset"] = 4
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["yOffset"] = -1
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["format"] = "[eltruism:perhpstatus]"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["width"] = 187
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["enable"] = false
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "THICKOUTLINE"
@@ -444,6 +446,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["enable"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["format"] = "[eltruism:perhpstatus]"
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["width"] = 187
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["enable"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Kimberley"
@@ -502,6 +505,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["fontOutline"] = "NONE"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["yOffset"] = -1
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["format"] = "[eltruism:perhpstatus]"
+		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["width"] = 187
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["enable"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["fontOutline"] = "NONE"
@@ -590,6 +594,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["xOffset"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["yOffset"] = -1
+		E.db["nameplates"]["units"]["PLAYER"]["health"]["width"] = 187
 		E.db["nameplates"]["units"]["PLAYER"]["level"]["enable"] = false
 		E.db["nameplates"]["units"]["PLAYER"]["name"]["enable"] = false
 		E.db["nameplates"]["units"]["PLAYER"]["portrait"]["enable"] = false
