@@ -1,8 +1,11 @@
-local E = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
+local embedpanel
+local RightChatDamageMeterHook = false
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --pretty much copied from elvui and edited to look more like details
 do
@@ -400,6 +403,105 @@ do
 					_G.DamageMeter:RefreshLayout()
 				end)
 				_G.DamageMeter:RefreshLayout()
+			end
+
+
+			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
+				if not _G["EltruismDamageMeterEmbedPanel"] then
+					embedpanel = _G.CreateFrame("FRAME","EltruismDamageMeterEmbedPanel")
+				else
+					embedpanel = _G["EltruismDamageMeterEmbedPanel"]
+				end
+
+				if not _G.InCombatLockdown() then
+					embedpanel:SetAllPoints(_G["RightChatPanel"])
+					embedpanel:SetParent(E.UIParent)
+					embedpanel:SetFrameStrata("BACKGROUND")
+
+					if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then
+						S:HandleFrame(embedpanel)
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+							if embedpanel and not embedpanel.shadow then
+								embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(embedpanel.shadow)
+							end
+						end
+					end
+
+					for i = 1, 5 do
+						if _G["DamageMeterSessionWindow"..i] then
+							_G["DamageMeterSessionWindow"..i]:SetParent(embedpanel)
+							_G["DamageMeter"]:SetParent(embedpanel)
+						end
+					end
+					if _G["DamageMeterSessionWindow1"] then
+						_G["DamageMeterSessionWindow1"]:ClearAllPoints()
+						_G["DamageMeterSessionWindow1"]:SetPoint("TOPLEFT", embedpanel, "TOPLEFT",0,-20)
+					end
+				end
+
+				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+					embedpanel:RegisterEvent("PLAYER_REGEN_ENABLED")
+					embedpanel:RegisterEvent("PLAYER_REGEN_DISABLED")
+				end
+				embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
+
+				--[[if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
+					E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+				end]]
+
+				embedpanel:SetScript("OnEvent", function(_,event)
+					if event == "PLAYER_REGEN_DISABLED" then
+						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+								embedpanel:Show()
+								_G["RightChatPanel"]:Hide()
+								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+						end
+					elseif event == "PLAYER_REGEN_ENABLED" then
+						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+							E:Delay(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay, function()
+								embedpanel:Hide()
+								_G["RightChatPanel"]:Show()
+								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = true
+							end)
+						end
+					elseif event == "PLAYER_ENTERING_WORLD" then
+						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden then
+							embedpanel:Hide()
+							_G["RightChatPanel"]:Show()
+						else
+							embedpanel:Show()
+							_G["RightChatPanel"]:Hide()
+						end
+					end
+					if not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+						embedpanel:UnregisterEvent("PLAYER_REGEN_ENABLED")
+						embedpanel:UnregisterEvent("PLAYER_REGEN_DISABLED")
+					end
+				end)
+
+				if not RightChatDamageMeterHook then
+					_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)
+						if button == 'RightButton' then
+							if embedpanel:IsShown() then
+								embedpanel:Hide()
+								_G["RightChatPanel"]:Show()
+								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = true
+							else
+								embedpanel:Show()
+								_G["RightChatPanel"]:Hide()
+								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+							end
+						end
+					end)
+
+					_G.RightChatToggleButton:HookScript('OnEnter', function()
+						_G.GameTooltip:AddDoubleLine(L["Right Click:"], L["Toggle Damage Meter"], 1, 1, 1)
+						_G.GameTooltip:Show()
+					end)
+
+					RightChatDamageMeterHook = true
+				end
 			end
 		end
 	end
