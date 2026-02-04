@@ -140,17 +140,14 @@ do
 		--print(window,'1')
 	end
 
-	local function SkinDamageMeter(bar) --actually this is the spell list not the dps meter
+	local function SkinDamageMeter(bar)
 		if not bar then return end
 		if not bar.StatusBar then return end
-		--print(bar,"2")
-
 		if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
 			hooksecurefunc(bar, "UpdateIcon", function(bar2)
-				print(bar2,bar2.specIconID,bar2.Icon,bar2.spellID)
-				if bar2.specIconID and BlizzardTextureIDsForSpecs[bar2.specIconID] then
-					print(BlizzardTextureIDsForSpecs[bar2.specIconID])
-					local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[bar2.specIconID]]
+				print(bar2.specIconID,BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)])
+				if bar2.specIconID and BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)] then
+					local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)]]
 					bar2.Icon.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
 					bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 				end
@@ -170,6 +167,14 @@ do
 			_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 
 			_G.DamageMeter.EltruismHook = true
+
+			--if no refresh then turns out the specicons are nil because it seems they are loaded later
+			--because of blizzard being blizzard we need to run the refresh more than once as it turns out
+			E:Delay(1, function()
+				_G.DamageMeter:RefreshLayout()
+			end)
+			_G.DamageMeter:RefreshLayout()
+
 		end
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)
