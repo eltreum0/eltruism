@@ -254,9 +254,9 @@ P.ElvUI_EltreumUI = {
 
 		blizzdamagemeter = {
 			enable = true,
-			texture = "Eltreum7pixel",
+			texture = "ElvUI Norm1",
 			shadows = true,
-			iconPack = "Eltruism",
+			iconPack = "EltruismSpec",
 			iconSpec = true,
 			gradientBar = true,
 			embed = true,
