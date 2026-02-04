@@ -66,7 +66,6 @@ do
 	--use the same coords as details so its compatible with details icon packs
 	--credits for the cords to details and tercio and team
 	--have to add devourer
-
 	local class_specs_coords = {
 		[577] = {128/512, 192/512, 256/512, 320/512}, --havoc demon hunter
 		[581] = {192/512, 256/512, 256/512, 320/512}, --vengeance demon hunter
@@ -121,13 +120,9 @@ do
 		[1473] = {384/512, 448/512, 256/512, 320/512}, -- Augmentation
 	}
 
-
-
-
-
-
-	local function SkinDamageMeter(window)
+	local function SkinDamageMeterWindow(window) --actual window
 		if not window then return end
+		--print(window.Icon,window.StatusBar,window.updateLock,window.useClassColor)
 		--[[local ScrollBar = window.GetScrollBar and window:GetScrollBar()
 		if ScrollBar then
 			S:HandleTrimScrollBar(ScrollBar)
@@ -142,42 +137,40 @@ do
 		end]]
 
 		--if not bar.StatusBar then return end
-		print(window,'1')
+		--print(window,'1')
+	end
+
+	local function SkinDamageMeter(bar) --actually this is the spell list not the dps meter
+		if not bar then return end
+		if not bar.StatusBar then return end
+		--print(bar,"2")
+
+		if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
+			hooksecurefunc(bar, "UpdateIcon", function(bar2)
+				print(bar2,bar2.specIconID,bar2.Icon,bar2.spellID)
+				if bar2.specIconID and BlizzardTextureIDsForSpecs[bar2.specIconID] then
+					print(BlizzardTextureIDsForSpecs[bar2.specIconID])
+					local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[bar2.specIconID]]
+					bar2.Icon.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
+					bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+				end
+			end)
+			bar.UpdateIconEltruismHook = true
+		end
 	end
 
 	--skin blizzard's dps meter to be similar to my details skin
 	function ElvUI_EltreumUI:BlizzDamageMeter()
 		if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
-			hooksecurefunc(S, "DamageMeter_HandleStatusBar", function(bar)
-				if not bar then return end
-				if not bar.StatusBar then return end
-				print(bar,"2")
-
-				if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
-					hooksecurefunc(bar, "UpdateIcon", function(bar2)
-						if not bar2.Icon or not bar2.Icon.Icon then return end
-						print(bar2,bar2.Icon,bar2.Icon.Icon)
-						--there is a bar2.specIconID, but its using texture ids, would need to look up each spec texture
-						--perhaps add options to customize icons, if map the textures to specs
-						if bar2.specIconID and BlizzardTextureIDsForSpecs[bar2.specIconID] then
-							local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[bar2.specIconID]]
-							bar2.Icon.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
-							bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
-						end
-					end)
-					bar.UpdateIconEltruismHook = true
-				end
-				--bar.StatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
-			end)
+			hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
 			hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
-				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeter)
+				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 			end)
-			_G.DamageMeter:ForEachSessionWindow(SkinDamageMeter)
+			_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 
 			_G.DamageMeter.EltruismHook = true
 		end
-
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)
 
