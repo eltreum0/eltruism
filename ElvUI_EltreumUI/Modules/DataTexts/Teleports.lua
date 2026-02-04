@@ -460,6 +460,7 @@ local function EltruismTeleportsOnEvent(self)
 		end
 	end
 	if not start then return end
+	if ElvUI_EltreumUI:RetailInstanceSecret() then return end
 	local cooldown = start + duration - GetTime()
 	if E.myclass == "SHAMAN" and cooldown >= 2 then
 		local startAR,durationAR = SpellCooldown(556)
