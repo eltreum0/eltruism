@@ -360,7 +360,7 @@ do
 			--turns out the details hook was indeed useful later (years later) but i need to get the texture first
 			bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
 			local sbtexture = bar.StatusBar:GetStatusBarTexture()
-			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows and not bar.StatusBar.shadow then
+			if not ElvUI_EltreumUI:RetailInstanceSecret() and E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows and not bar.StatusBar.shadow then
 				bar.StatusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
 			end
