@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
+local tostring = _G.tostring
 
 --pretty much copied from elvui and edited to look more like details
 do
@@ -119,6 +120,181 @@ do
 		[1468] = {320/512, 384/512, 256/512, 320/512}, -- Preservation
 		[1473] = {384/512, 448/512, 256/512, 320/512}, -- Augmentation
 	}
+	local class_coords = {
+		["DEMONHUNTER"] = {
+			0.73828126 / 2, -- [1]
+			1 / 2, -- [2]
+			0.5 / 2, -- [3]
+			0.75 / 2, -- [4]
+		},
+		["HUNTER"] = {
+			0, -- [1]
+			0.25 / 2, -- [2]
+			0.25 / 2, -- [3]
+			0.5 / 2, -- [4]
+		},
+		["WARRIOR"] = {
+			0, -- [1]
+			0.25 / 2, -- [2]
+			0, -- [3]
+			0.25 / 2, -- [4]
+		},
+		["ROGUE"] = {
+			0.49609375 / 2, -- [1]
+			0.7421875 / 2, -- [2]
+			0, -- [3]
+			0.25 / 2, -- [4]
+		},
+		["MAGE"] = {
+			0.25 / 2, -- [1]
+			0.49609375 / 2, -- [2]
+			0, -- [3]
+			0.25 / 2, -- [4]
+		},
+		["PET"] = {
+			0.25 / 2, -- [1]
+			0.49609375 / 2, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["DRUID"] = {
+			0.7421875 / 2, -- [1]
+			0.98828125 / 2, -- [2]
+			0, -- [3]
+			0.25 / 2, -- [4]
+		},
+		["MONK"] = {
+			0.5 / 2, -- [1]
+			0.73828125 / 2, -- [2]
+			0.5 / 2, -- [3]
+			0.75 / 2, -- [4]
+		},
+		["DEATHKNIGHT"] = {
+			0.25 / 2, -- [1]
+			0.5 / 2, -- [2]
+			0.5 / 2, -- [3]
+			0.75 / 2, -- [4]
+		},
+		["UNKNOW"] = {
+			0.5 / 2, -- [1]
+			0.75 / 2, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["PRIEST"] = {
+			0.49609375 / 2, -- [1]
+			0.7421875 / 2, -- [2]
+			0.25 / 2, -- [3]
+			0.5 / 2, -- [4]
+		},
+		["UNGROUPPLAYER"] = {
+			0.5 / 2, -- [1]
+			0.75 / 2, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["Alliance"] = {
+			0.49609375 / 2, -- [1]
+			0.742187 / 25, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["WARLOCK"] = {
+			0.7421875 / 2, -- [1]
+			0.98828125 / 2, -- [2]
+			0.25 / 2, -- [3]
+			0.5 / 2, -- [4]
+		},
+		["ENEMY"] = {
+			0, -- [1]
+			0.25 / 2, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["Horde"] = {
+			0.7421875 / 2, -- [1]
+			0.98828125 / 2, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["PALADIN"] = {
+			0, -- [1]
+			0.25 / 2, -- [2]
+			0.5 / 2, -- [3]
+			0.75 / 2, -- [4]
+		},
+		["MONSTER"] = {
+			0, -- [1]
+			0.25 / 2, -- [2]
+			0.75 / 2, -- [3]
+			1 / 2, -- [4]
+		},
+		["SHAMAN"] = {
+			0.25 / 2, -- [1]
+			0.49609375 / 2, -- [2]
+			0.25 / 2, -- [3]
+			0.5 / 2, -- [4]
+		},
+		["EVOKER"] = {
+			0.50390625, -- [1]
+			0.625, -- [2]
+			0, -- [3]
+			0.125, -- [4]
+		},
+	}
+
+	ElvUI_EltreumUI.DamageMeterIcons = {
+		["Eltruism"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism",
+		},
+		["Eltruism Bars"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars",
+		},
+		["Eltruism Bars Solid"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid",
+		},
+		["Eltruism Bars Solid Outline"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid_outline",
+		},
+		["Eltruism Flat"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-flat-wow",
+		},
+		["Eltruism B&W"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism-bw",
+		},
+		["Eltruism UGG"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-ugg",
+		},
+		["Eltruism UGG B&W"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-ugg-bw",
+		},
+		["Eltruism Symbols"] = {
+			["isSpec"] = false,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism-symbols",
+		},
+		["Eltruism Spec"] = {
+			["isSpec"] = true,
+			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism",
+		},
+	}
+
+	function ElvUI_EltreumUI:AddDamageMeterIconPack(name,isSpec,path)
+		--name: what is going to show on the options
+		--isSpec: if its spec icons, set true, otherwise its class so false
+		--path: the path to the file
+		_G.tinsert(ElvUI_EltreumUI.DamageMeterIcons[name])
+		_G.tinsert(ElvUI_EltreumUI.DamageMeterIcons[name][isSpec])
+		_G.tinsert(ElvUI_EltreumUI.DamageMeterIcons[name][path])
+	end
+
 
 	local function SkinDamageMeterWindow(window) --actual window
 		if not window then return end
@@ -126,18 +302,14 @@ do
 		--[[local ScrollBar = window.GetScrollBar and window:GetScrollBar()
 		if ScrollBar then
 			S:HandleTrimScrollBar(ScrollBar)
-		end
-		local ScrollBox = window.GetScrollBox and window:GetScrollBox()
+		end]]
+		--[[local ScrollBox = window.GetScrollBox and window:GetScrollBox()
 		if ScrollBox and not ScrollBox.IsSkinned then
-			hooksecurefunc(ScrollBox, 'Update', S.DamageMeter_HandleScrollBox)
-
-			S.DamageMeter_HandleScrollBox(ScrollBox)
-
+			hooksecurefunc(ScrollBox, 'Update', function()
+				ScrollBox:ForEachFrame(SkinDamageMeterStatusBars)
+			end)
 			ScrollBox.IsSkinned = true
 		end]]
-
-		--if not bar.StatusBar then return end
-		--print(window,'1')
 	end
 
 	local function SkinDamageMeter(bar)
@@ -145,36 +317,68 @@ do
 		if not bar.StatusBar then return end
 		if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
 			hooksecurefunc(bar, "UpdateIcon", function(bar2)
-				print(bar2.specIconID,BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)])
-				if bar2.specIconID and BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)] then
-					local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)]]
-					bar2.Icon.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
+				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
+					if bar2.specIconID and BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)] then
+						local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)]]
+						bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["Eltruism Spec"]["path"])
+						bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+					end
+				else
+					local textureCoords = class_coords[bar.classFilename]
+					bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["Eltruism"]["path"])
 					bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 				end
 			end)
 			bar.UpdateIconEltruismHook = true
 		end
+		if not bar.GradientStatusBarEltruismHook then
+			--turns out the details hook was indeed useful later (years later) but i need to get the texture first
+			bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
+			local sbtexture = bar.StatusBar:GetStatusBarTexture()
+			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows and not bar.StatusBar.shadow then
+				bar.StatusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
+			end
+			hooksecurefunc(sbtexture, "SetVertexColor", function(_, r, g, b)
+				if bar.classFilename then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
+					else
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
+					end
+				else
+					sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+				end
+				--even though its supposed to not be secret we will get the secret error
+				--[[if bar.StatusBar.Name then
+					local name = E:StripString(bar.StatusBar.Name:GetText())
+					bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
+				end]]
+			end)
+			bar.GradientStatusBarEltruismHook = true
+		end
 	end
 
 	--skin blizzard's dps meter to be similar to my details skin
 	function ElvUI_EltreumUI:BlizzDamageMeter()
-		if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
-			hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
+		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable then
+			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
+				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
-			hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+				hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+					_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
+				end)
 				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
-			end)
-			_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 
-			_G.DamageMeter.EltruismHook = true
+				_G.DamageMeter.EltruismHook = true
 
-			--if no refresh then turns out the specicons are nil because it seems they are loaded later
-			--because of blizzard being blizzard we need to run the refresh more than once as it turns out
-			E:Delay(1, function()
+				--if no refresh then turns out the specicons are nil because it seems they are loaded later
+				--because of blizzard being blizzard we need to run the refresh more than once as it turns out
+				E:Delay(1, function()
+					_G.DamageMeter:RefreshLayout()
+				end)
 				_G.DamageMeter:RefreshLayout()
-			end)
-			_G.DamageMeter:RefreshLayout()
-
+			end
 		end
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)

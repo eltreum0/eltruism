@@ -251,6 +251,16 @@ P.ElvUI_EltreumUI = {
 		detailsembedhidden = true,
 		detailsdelay = 1,
 		detailsmode = "LIGHT",
+
+		blizzdamagemeter = {
+			enable = true,
+			texture = "Eltreum7pixel",
+			shadows = true,
+			iconPack = "Eltruism",
+			iconSpec = false,
+			gradientBar = true,
+			--gradientName = true,
+		},
 		bugsack = false,
 		clique = false,
 		immersion = false,
