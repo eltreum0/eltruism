@@ -461,4 +461,38 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontsize = E.Libs.ACH:Range(L["Font Size"], nil, 6, { min = 4, max = 40, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontx = E.Libs.ACH:Range(L["Text X offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fonty = E.Libs.ACH:Range(L["Text Y offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter = E.Libs.ACH:Group(E.NewSign..L["Damage Meter"], nil, 2, "tab", nil, nil, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.enable = E.Libs.ACH:Toggle(L["Enable Damage Meter Skin"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.gradient = E.Libs.ACH:Toggle(L["Enable Gradient"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.shadows = E.Libs.ACH:Toggle(L["Enable Shadows"], L["Shadows will only work in non restricted environments"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.description2 = E.Libs.ACH:Description(" ", 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.embed = E.Libs.ACH:Toggle(L["Embed"], L["Simple Right Chat Embed"], 7, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.hide = E.Libs.ACH:Toggle(L["Hide Out of Combat"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed or not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.skin = E.Libs.ACH:Range(L["Out of Combat Delay"], nil, 9, { min = 1, max = 30, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay = value end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed or not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable or not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.description3 = E.Libs.ACH:Description(" ", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.isSpec = E.Libs.ACH:Select(L["Icon Pack Type"], L["Select the type of Icon pack, if based by Specialization or Class"], 11, {
+		[true] = "Specialization",
+		[false] = "Class",
+	}, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.isSpec.style = "radio"
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.iconPack = E.Libs.ACH:Select(L["Select an Icon Pack"], nil, 12, function()
+		local iconPacks = {}
+		for k, v in _G.pairs(ElvUI_EltreumUI.DamageMeterIcons) do
+			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
+				if v.isSpec then
+					iconPacks[k] = "|T"..v.path..":25:25:0:0:512:512:130:190:60:120|t"..v.DisplayName
+				end
+			else
+				if not v.isSpec then
+					iconPacks[k] = "|T"..v.path..":25:25:0:0:512:512:64:128:0:64|t"..v.DisplayName
+				end
+			end
+		end
+		return iconPacks
+	end, false, nil, function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack end,
+	function(_, value) print(value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = value E:StaticPopup_Show('CONFIG_RL') end,
+	function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.iconPack.style = "radio"
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.texture = E.Libs.ACH:SharedMediaStatusbar(L["Texture"], L["Select a Texture"], 25, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture end, function(_,key) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture = key end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
 end
