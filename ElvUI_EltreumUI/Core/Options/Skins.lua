@@ -491,7 +491,7 @@ function ElvUI_EltreumUI:SkinsOptions()
 		end
 		return iconPacks
 	end, false, nil, function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack end,
-	function(_, value) print(value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = value E:StaticPopup_Show('CONFIG_RL') end,
+	function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = value E:StaticPopup_Show('CONFIG_RL') end,
 	function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.iconPack.style = "radio"
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.texture = E.Libs.ACH:SharedMediaStatusbar(L["Texture"], L["Select a Texture"], 25, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture end, function(_,key) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture = key end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
