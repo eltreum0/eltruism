@@ -341,18 +341,19 @@ do
 		if not bar then return end
 		if not bar.StatusBar then return end
 		if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
-			hooksecurefunc(bar, "UpdateIcon", function(bar2)
+			hooksecurefunc(bar, "UpdateIcon", function(icon)
+				local textureCoords
 				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
-					if bar2.specIconID and BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)] then
-						local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)]]
-						bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
-						bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+					if icon.specIconID and BlizzardTextureIDsForSpecs[tostring(icon.specIconID)] then
+						textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(icon.specIconID)]]
+					else
+						textureCoords = class_coords[bar.classFilename]
 					end
 				else
-					local textureCoords = class_coords[bar.classFilename]
-					bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
-					bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+					textureCoords = class_coords[bar.classFilename]
 				end
+				icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
+				icon.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 			end)
 			bar.UpdateIconEltruismHook = true
 		end
