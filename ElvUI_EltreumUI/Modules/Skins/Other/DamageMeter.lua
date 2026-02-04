@@ -311,20 +311,27 @@ do
 		}
 	end
 
+	local function SetMouseOver(frame,parent)
+		frame:SetParent(parent)
+		frame:SetAlpha(0)
+		frame:SetScript('OnEnter', function()
+			_G.UIFrameFadeIn(frame, 0.5, 0, 1)
+		end)
+		frame:SetScript('OnLeave', function()
+			_G.UIFrameFadeOut(frame, 0.5, 1, 0)
+		end)
+	end
+
 	local function SkinDamageMeterWindow(window) --actual window
 		if not window then return end
-		--print(window.Icon,window.StatusBar,window.updateLock,window.useClassColor)
-		--[[local ScrollBar = window.GetScrollBar and window:GetScrollBar()
-		if ScrollBar then
-			S:HandleTrimScrollBar(ScrollBar)
-		end]]
-		--[[local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-		if ScrollBox and not ScrollBox.IsSkinned then
-			hooksecurefunc(ScrollBox, 'Update', function()
-				ScrollBox:ForEachFrame(SkinDamageMeterStatusBars)
-			end)
-			ScrollBox.IsSkinned = true
-		end]]
+
+		SetMouseOver(window.DamageMeterTypeDropdown,window)
+		SetMouseOver(window.headerBackdrop,window)
+		SetMouseOver(window.SessionDropdown,window)
+		SetMouseOver(window.SettingsDropdown,window)
+		window.DamageMeterTypeDropdown.TypeName:SetParent(window)
+		window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
+		window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	end
 
 	local function SkinDamageMeter(bar)
