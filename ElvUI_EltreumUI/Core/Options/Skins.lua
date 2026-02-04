@@ -462,11 +462,6 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontx = E.Libs.ACH:Range(L["Text X offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fonty = E.Libs.ACH:Range(L["Text Y offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter = E.Libs.ACH:Group(L["Damage Meter"]..E.NewSign, nil, 2, "tab", nil, nil, nil, not E.Retail)
-
-
-
-
-
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.enable = E.Libs.ACH:Toggle(L["Enable Damage Meter Skin"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.gradient = E.Libs.ACH:Toggle(L["Enable Gradient"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
