@@ -300,11 +300,11 @@ do
 	}
 
 	function ElvUI_EltreumUI:AddDamageMeterIconPack(name,DisplayName,isSpec,path)
-		--name: what is going to show on the options, avoid spaces
+		--name: what is going to show in the variables, avoid spaces
 		--DisplayName: the name that shows in the options, can have spaces and fancy colors
 		--isSpec: if its spec icons, set true, otherwise its class so false
 		--path: the path to the file
-		--exammple:
+		--example:
 		--ElvUI_EltreumUI:AddDamageMeterIconPack("EltruismSpec","Very Fancy and Long name",true,"Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
 		if ElvUI_EltreumUI.DamageMeterIcons[name] then return end --protect against adding it multiple times
 		ElvUI_EltreumUI.DamageMeterIcons[name] = {
