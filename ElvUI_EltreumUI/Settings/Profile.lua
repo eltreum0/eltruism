@@ -260,6 +260,7 @@ P.ElvUI_EltreumUI = {
 			iconSpec = true,
 			gradientBar = true,
 			embed = true,
+			embedhidden = false,
 			embedhideooc = true,
 			embedDelay = 1,
 			--gradientName = true,

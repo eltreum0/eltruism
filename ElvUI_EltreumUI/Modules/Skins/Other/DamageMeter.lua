@@ -345,42 +345,46 @@ do
 				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
 					if bar2.specIconID and BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)] then
 						local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)]]
-						bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["EltruismSpec"]["path"])
+						bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
 						bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 					end
 				else
 					local textureCoords = class_coords[bar.classFilename]
-					bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["Eltruism"]["path"])
+					bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
 					bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 				end
 			end)
 			bar.UpdateIconEltruismHook = true
 		end
-		if not bar.GradientStatusBarEltruismHook then
-			--turns out the details hook was indeed useful later (years later) but i need to get the texture first
-			bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
-			local sbtexture = bar.StatusBar:GetStatusBarTexture()
-			if not ElvUI_EltreumUI:RetailInstanceSecret() and E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows and not bar.StatusBar.shadow then
-				bar.StatusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
-			end
-			hooksecurefunc(sbtexture, "SetVertexColor", function(_, r, g, b)
-				if bar.classFilename then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
+
+		--turns out the details hook was indeed useful later (years later) but i need to get the texture first
+		bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
+
+		if not ElvUI_EltreumUI:RetailInstanceSecret() and E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows and not bar.StatusBar.shadow then
+			bar.StatusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
+		end
+		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar then
+			if not bar.GradientStatusBarEltruismHook then
+				local sbtexture = bar.StatusBar:GetStatusBarTexture()
+				hooksecurefunc(sbtexture, "SetVertexColor", function(_, r, g, b)
+					if bar.classFilename then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+							sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
+						else
+							sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
+						end
 					else
-						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
 					end
-				else
-					sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
-				end
-				--even though its supposed to not be secret we will get the secret error
-				--[[if bar.StatusBar.Name then
-					local name = E:StripString(bar.StatusBar.Name:GetText())
-					bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
-				end]]
-			end)
-			bar.GradientStatusBarEltruismHook = true
+					--even though its supposed to not be secret we will get the secret error
+					--[[if bar.StatusBar.Name then
+						local name = E:StripString(bar.StatusBar.Name:GetText())
+						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
+					end]]
+				end)
+				bar.GradientStatusBarEltruismHook = true
+			end
 		end
 	end
 
@@ -440,7 +444,7 @@ do
 					end
 				end
 
-				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
 					embedpanel:RegisterEvent("PLAYER_REGEN_ENABLED")
 					embedpanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 				end
@@ -452,13 +456,13 @@ do
 
 				embedpanel:SetScript("OnEvent", function(_,event)
 					if event == "PLAYER_REGEN_DISABLED" then
-						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
 								embedpanel:Show()
 								_G["RightChatPanel"]:Hide()
 								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
 						end
 					elseif event == "PLAYER_REGEN_ENABLED" then
-						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
 							E:Delay(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay, function()
 								embedpanel:Hide()
 								_G["RightChatPanel"]:Show()
@@ -474,7 +478,7 @@ do
 							_G["RightChatPanel"]:Hide()
 						end
 					end
-					if not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedooc then
+					if not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
 						embedpanel:UnregisterEvent("PLAYER_REGEN_ENABLED")
 						embedpanel:UnregisterEvent("PLAYER_REGEN_DISABLED")
 					end
@@ -506,5 +510,4 @@ do
 		end
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)
-
 end
