@@ -236,9 +236,12 @@ local function UpdateExtraTexture(portraitFrame, classification)
 end
 
 local function GetNPCID(unit)
-	if ElvUI_EltreumUI:RetailInstanceSecret() then return end
-	local guid = UnitGUID(unit)
-	return guid and select(6, strsplit("-", guid))
+	if ElvUI_EltreumUI:RetailInstanceSecret() then
+		return " "
+	else
+		local guid = UnitGUID(unit)
+		return guid and select(6, strsplit("-", guid))
+	end
 end
 
 local function HideRareElite(frame)
