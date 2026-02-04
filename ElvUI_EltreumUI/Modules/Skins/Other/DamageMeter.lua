@@ -245,60 +245,71 @@ do
 
 	ElvUI_EltreumUI.DamageMeterIcons = {
 		["Eltruism"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1),
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism",
 		},
-		["Eltruism Bars"] = {
+		["EltruismBars"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Bars",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars",
 		},
-		["Eltruism Bars Solid"] = {
+		["EltruismBarsSolid"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Bars Solid",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid",
 		},
-		["Eltruism Bars Solid Outline"] = {
+		["EltruismBarsSolidOutline"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Bars Solid Outline",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid_outline",
 		},
-		["Eltruism Flat"] = {
+		["EltruismFlat"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Flat",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-flat-wow",
 		},
-		["Eltruism B&W"] = {
+		["EltruismBW"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." B&W",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism-bw",
 		},
-		["Eltruism UGG"] = {
+		["EltruismUGG"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." UGG",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-ugg",
 		},
-		["Eltruism UGG B&W"] = {
+		["EltruismUGGBW"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." UGG B&W",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-ugg-bw",
 		},
-		["Eltruism Symbols"] = {
+		["EltruismSymbols"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Symbols",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism-symbols",
 		},
-		["Eltruism Spec"] = {
+		["EltruismSpec"] = {
+			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Spec",
 			["isSpec"] = true,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism",
 		},
 	}
 
-	function ElvUI_EltreumUI:AddDamageMeterIconPack(name,isSpec,path)
-		--name: what is going to show on the options
+	function ElvUI_EltreumUI:AddDamageMeterIconPack(name,DisplayName,isSpec,path)
+		--name: what is going to show on the options, avoid spaces
+		--DisplayName: the name that shows in the options, can have spaces and fancy colors
 		--isSpec: if its spec icons, set true, otherwise its class so false
 		--path: the path to the file
 		--exammple:
-		--ElvUI_EltreumUI:AddDamageMeterIconPack("Eltruism Spec",true,"Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
+		--ElvUI_EltreumUI:AddDamageMeterIconPack("EltruismSpec","Very Fancy and Long name",true,"Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
 		if ElvUI_EltreumUI.DamageMeterIcons[name] then return end --protect against adding it multiple times
 		ElvUI_EltreumUI.DamageMeterIcons[name] = {
+			["DisplayName"] = DisplayName,
 			["isSpec"] = isSpec,
 			["path"] = path,
 		}
 	end
-
 
 	local function SkinDamageMeterWindow(window) --actual window
 		if not window then return end
@@ -324,7 +335,7 @@ do
 				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
 					if bar2.specIconID and BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)] then
 						local textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(bar2.specIconID)]]
-						bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["Eltruism Spec"]["path"])
+						bar2.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["EltruismSpec"]["path"])
 						bar2.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 					end
 				else
