@@ -257,7 +257,7 @@ P.ElvUI_EltreumUI = {
 			texture = "Eltreum7pixel",
 			shadows = true,
 			iconPack = "Eltruism",
-			iconSpec = false,
+			iconSpec = true,
 			gradientBar = true,
 			--gradientName = true,
 		},
