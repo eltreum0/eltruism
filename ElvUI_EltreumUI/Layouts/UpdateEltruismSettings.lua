@@ -21,10 +21,20 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 
+		--dmg meter skin
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = false
+
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
 	else
 		--to make sure everything resets during import
 		E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
+
+		--dmg meter skin
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = false
 
 		-- Chat
 		E.db.ElvUI_EltreumUI.chat.enable = true

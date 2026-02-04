@@ -253,7 +253,7 @@ P.ElvUI_EltreumUI = {
 		detailsmode = "LIGHT",
 
 		blizzdamagemeter = {
-			enable = true,
+			enable = false,
 			texture = "ElvUI Norm1",
 			shadows = true,
 			iconPack = "EltruismSpec",
