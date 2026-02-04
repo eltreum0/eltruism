@@ -1,15 +1,26 @@
 local E = unpack(ElvUI)
 
 local _G = _G
-local SetPortraitTexture = SetPortraitTexture
-local UnitExists = UnitExists
-local tinsert = tinsert
+local SetPortraitTexture = _G.SetPortraitTexture
+local UnitExists = _G.UnitExists
+local tinsert = _G.tinsert
 local UF = E:GetModule("UnitFrames")
-local UnitGUID = UnitGUID
-local select, strsplit = select, strsplit
-local mathmax = math.max
-local mathmin = math.min
-local UnitIsDead = UnitIsDead
+local UnitGUID = _G.UnitGUID
+local select, strsplit = _G.select, _G.strsplit
+local mathmax = _G.math.max
+local mathmin = _G.math.min
+local UnitIsDead = _G.UnitIsDead
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitFactionGroup = _G.UnitFactionGroup
+local UnitClass = _G.UnitClass
+local UnitReaction = _G.UnitReaction
+local UnitClassification = _G.UnitClassification
+local InCombatLockdown = _G.InCombatLockdown
+local UnitCastingInfo = _G.UnitCastingInfo
+local UnitChannelInfo = _G.UnitChannelInfo
+local CreateFrame = _G.CreateFrame
+local hooksecurefunc = _G.hooksecurefunc
 
 ElvUI_EltreumUI.Portraits = {}
 local module = ElvUI_EltreumUI.Portraits
@@ -502,6 +513,8 @@ local function SetScripts(portrait, force)
 		portrait:RegisterEvent("PORTRAITS_UPDATED")
 		tinsert(portrait.allEvents, "PORTRAITS_UPDATED")
 
+		--disable due to overlapping with other elements and blocking chat for example
+		--[[
 		-- scripts to interact with mouse
 		portrait:SetAttribute("unit", portrait.unit)
 		portrait:SetAttribute("*type1", "target")
@@ -509,7 +522,7 @@ local function SetScripts(portrait, force)
 		portrait:SetAttribute("type3", "focus")
 		portrait:SetAttribute("toggleForVehicle", true)
 		portrait:SetAttribute("ping-receiver", true)
-		portrait:RegisterForClicks("AnyUp")
+		portrait:RegisterForClicks("AnyUp")]]
 
 		portrait.isBuild = true
 	end
