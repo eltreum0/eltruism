@@ -290,9 +290,13 @@ do
 		--name: what is going to show on the options
 		--isSpec: if its spec icons, set true, otherwise its class so false
 		--path: the path to the file
-		_G.tinsert(ElvUI_EltreumUI.DamageMeterIcons[name])
-		_G.tinsert(ElvUI_EltreumUI.DamageMeterIcons[name][isSpec])
-		_G.tinsert(ElvUI_EltreumUI.DamageMeterIcons[name][path])
+		--exammple:
+		--ElvUI_EltreumUI:AddDamageMeterIconPack("Eltruism Spec",true,"Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism")
+		if ElvUI_EltreumUI.DamageMeterIcons[name] then return end --protect against adding it multiple times
+		ElvUI_EltreumUI.DamageMeterIcons[name] = {
+			["isSpec"] = isSpec,
+			["path"] = path,
+		}
 	end
 
 
