@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:CooldownColors()
 	local valuecolors = E.myClassColor
 	if E.db.ElvUI_EltreumUI.skins.classcolorcooldowns then
 		if E.myclass == "PRIEST" then
-			E.db["cooldown"]["daysIndicator"]["b"] = 0.7
+			--[[E.db["cooldown"]["daysIndicator"]["b"] = 0.7
 			E.db["cooldown"]["daysIndicator"]["g"] = 0.7
 			E.db["cooldown"]["daysIndicator"]["r"] = 0.7
 			E.db["cooldown"]["hhmmColorIndicator"]["b"] = 0.7
@@ -33,9 +33,12 @@ function ElvUI_EltreumUI:CooldownColors()
 			E.db["cooldown"]["secondsIndicator"]["r"] = 0.7
 			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["b"] = 0.7
 			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = 0.7
-			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = 0.7
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = 0.7]]
+			E.db["cooldown"]["auras"]["colors"]["text"]["b"] = 0.7
+			E.db["cooldown"]["auras"]["colors"]["text"]["g"] = 0.7
+			E.db["cooldown"]["auras"]["colors"]["text"]["r"] = 0.7
 		else
-			E.db["cooldown"]["daysIndicator"]["b"] = valuecolors.b
+			--[[E.db["cooldown"]["daysIndicator"]["b"] = valuecolors.b
 			E.db["cooldown"]["daysIndicator"]["g"] = valuecolors.g
 			E.db["cooldown"]["daysIndicator"]["r"] = valuecolors.r
 			E.db["cooldown"]["hhmmColorIndicator"]["b"] = valuecolors.b
@@ -55,9 +58,14 @@ function ElvUI_EltreumUI:CooldownColors()
 			E.db["cooldown"]["secondsIndicator"]["r"] = valuecolors.r
 			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["b"] = valuecolors.b
 			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
-			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r]]
+			E.db["cooldown"]["auras"]["colors"]["text"]["b"] = valuecolors.b
+			E.db["cooldown"]["auras"]["colors"]["text"]["g"] = valuecolors.g
+			E.db["cooldown"]["auras"]["colors"]["text"]["r"] = valuecolors.r
 		end
+
 		--E:UpdateCooldownSettings('all')
+		--E:CooldownSettings('all')
 	end
 
 	--leave it here for now
