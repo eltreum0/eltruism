@@ -219,6 +219,7 @@ end
 
 local function UpdateExtraTexture(portraitFrame, classification)
 	classification = (classification == "rareelite") and "rare" or classification
+	if not classification then return end
 	local extraTextures = portraitFrame.textures[classification] and portraitFrame.textures[classification].texture
 	SetTextures(portraitFrame.extra, extraTextures)
 
@@ -261,7 +262,7 @@ local function CheckRareElite(frame, unit, unitColor)
 	local c = UnitClassification(unit) --"worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	local npcID = GetNPCID(unit)
 	if not npcID then return end
-	local classification = (ElvUI_EltreumUI:GetBossIconTextureAndID(nil,true,npcID) and true or simpleClassification[c])
+	local classification = (ElvUI_EltreumUI:GetBossIconTextureAndID(nil,true,npcID) and "boss" or simpleClassification[c])
 
 	if classification then
 		local color = useTextureColor and (unitColor or colors[classification]) or colors[classification]
