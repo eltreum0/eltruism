@@ -25,7 +25,7 @@ do
 		["5198700"] = 1473,
 		["1247264"] = 577,
 		["1247265"] = 581,
-		["7455385"] = 1480,
+		["7455385"] = 1480, --devourer
 		["135940"] = 256,
 		["237542"] = 257,
 		["136207"] = 258,
@@ -353,8 +353,10 @@ do
 				else
 					textureCoords = class_coords[bar.classFilename]
 				end
-				icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
-				icon.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+				if textureCoords then
+					icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
+					icon.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+				end
 			end)
 			bar.UpdateIconEltruismHook = true
 		end
