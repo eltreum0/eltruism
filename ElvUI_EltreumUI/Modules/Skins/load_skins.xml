@@ -17,6 +17,7 @@
 	<Script file='Nameplate/Model.lua'/>
 	<Script file='Other/Animations.lua'/>
 	<Script file='Other/Bags.lua'/>
+	<Script file='Other/DamageMeter.lua'/>
 	<Script file='Other/Databars.lua'/>
 	<Script file='Other/Doom.lua'/>
 	<Script file='Other/ExpandedTalents.lua'/>
@@ -41,7 +42,7 @@
 	<Script file='Unitframes/PortraitFix.lua'/>
 	<Script file='Unitframes/Blinkii/portraits_txdb.lua'/>
 	<Script file='Unitframes/Blinkii/portrait.lua'/>
-	<!-- Script file='Unitframes/PortraitSkin.lua'/-->
+	<Script file='Unitframes/PortraitSkin.lua'/>
 	<Script file='Unitframes/RoleIcons.lua'/>
 	<Script file='Unitframes/Textures.lua'/>
 </Ui>

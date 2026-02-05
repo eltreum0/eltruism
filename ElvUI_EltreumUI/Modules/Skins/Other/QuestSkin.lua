@@ -1040,7 +1040,15 @@ function ElvUI_EltreumUI:SkinQuests()
 									if v then
 										hooks(v)
 										blockskin(v)
-										positionScenarioObjectiveBlockBackground(v) ----asdasdsd
+										positionScenarioObjectiveBlockBackground(v)
+										if v.NormalBG then
+											v.NormalBG:Hide()
+											v.NormalBG:SetTexture()
+										end
+										if v.FinalBG then
+											v.FinalBG:Hide()
+											v.FinalBG:SetTexture()
+										end
 									end
 								end
 							end
@@ -1158,6 +1166,14 @@ function ElvUI_EltreumUI:SkinQuests()
 										v:UnregisterEvent("ADDON_ACTION_BLOCKED")
 										v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 										blockskin(v)
+										if v.NormalBG then
+											v.NormalBG:Hide()
+											v.NormalBG:SetTexture()
+										end
+										if v.FinalBG then
+											v.FinalBG:Hide()
+											v.FinalBG:SetTexture()
+										end
 									end
 								end
 							end
@@ -1825,6 +1841,13 @@ end
 
 --because the objective is removed from frame manager, when swapping to another layout that isnt it can error when trying to export it, so break it from manager again
 if E.Retail then
+	E.PopupDialogs["EDITMODEBEINGSPAMMED"] = {
+		text = "Edit Mode is being spammed by BetterCooldownManager, if you have issues please report to its author.",
+		button1 = _G.ACCEPT,
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = true,
+	}
 	local editmodecheck = CreateFrame("FRAME")
 	editmodecheck:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
 	editmodecheck:RegisterEvent("FIRST_FRAME_RENDERED")
@@ -1838,7 +1861,11 @@ if E.Retail then
 
 			if not _G.EditModeManagerFrame.EltruismExitRL then --call for a reload on blizzard's edit mode changes
 				_G.EditModeManagerFrame:HookScript("OnHide", function()
-					E:StaticPopup_Show('CONFIG_RL')
+					if IsAddOnLoaded("BetterCooldownManager") then
+						E:StaticPopup_Show('EDITMODEBEINGSPAMMED')
+					else
+						E:StaticPopup_Show('CONFIG_RL')
+					end
 				end)
 				_G.EditModeManagerFrame.EltruismExitRL = true
 			end

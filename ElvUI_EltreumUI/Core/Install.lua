@@ -227,7 +227,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 	local layoutstable = C_EditMode.GetLayouts()
 	if not layoutstable.layouts then return end
 	local alreadyimported = false
-	local taintpreventlayout = C_EditMode.ConvertStringToLayoutInfo("0 39 0 0 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%)#+# 0 1 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%(#,$ 0 2 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%(#,$ 0 3 1 5 5 UIParent -5.0 -77.0 -1 #$$$%/&('%(#,$ 0 4 1 5 5 UIParent -5.0 -77.0 -1 #$$$%/&('%(#,$ 0 5 1 1 4 UIParent 0.0 0.0 -1 ##$$%/&('%(#,$ 0 6 1 1 4 UIParent 0.0 -50.0 -1 ##$$%/&('%(#,$ 0 7 1 1 4 UIParent 0.0 -100.0 -1 ##$$%/&('%(#,$ 0 10 1 7 7 UIParent 0.0 45.0 -1 ##$$&('% 0 11 1 7 7 UIParent 0.0 45.0 -1 ##$$&('%,# 0 12 1 7 7 UIParent 0.0 45.0 -1 ##$$&('% 1 -1 1 4 4 UIParent 0.0 0.0 -1 ##$#%# 2 -1 0 1 1 UIParent 944.7 -2.0 -1 ##$#%( 3 0 1 8 7 UIParent -300.0 250.0 -1 $#3# 3 1 1 6 7 UIParent 300.0 250.0 -1 %#3# 3 2 1 6 7 UIParent 520.0 265.0 -1 %#&#3# 3 3 1 0 2 CompactRaidFrameManager 0.0 -7.0 -1 '#(#)#-#.#/#1$3# 3 4 1 0 2 CompactRaidFrameManager 0.0 -5.0 -1 ,#-#.#/#0#1#2( 3 5 1 5 5 UIParent 0.0 0.0 -1 &#*$3# 3 6 1 5 5 UIParent 0.0 0.0 -1 -#.#/#4& 3 7 1 4 4 UIParent 0.0 0.0 -1 3# 4 -1 1 7 7 UIParent 0.0 45.0 -1 # 5 -1 1 7 7 UIParent 0.0 45.0 -1 # 6 0 1 2 2 UIParent -255.0 -10.0 -1 ##$#%#&.(()( 6 1 1 2 2 UIParent -270.0 -155.0 -1 ##$#%#'+(()( 7 -1 0 4 4 UIParent 0.0 322.7 -1 # 8 -1 1 6 6 UIParent 35.0 50.0 -1 #'$A%$&7 9 -1 0 1 1 UIParent 842.0 -222.0 -1 # 10 -1 1 0 0 UIParent 16.0 -116.0 -1 # 11 -1 1 8 8 UIParent -9.0 85.0 -1 # 12 -1 0 5 5 UIParent -87.8 -64.7 -1 #2$# 13 -1 1 8 8 MicroButtonAndBagsBar 0.0 0.0 -1 ##$#%#&- 14 -1 0 8 2 MicroMenuContainer 0.0 4.0 -1 ##$#%( 15 0 1 7 7 StatusTrackingBarManager 0.0 0.0 -1 # 15 1 1 7 7 StatusTrackingBarManager 0.0 17.0 -1 # 16 -1 0 8 6 VehicleSeatIndicator -4.0 0.0 -1 #( 17 -1 1 1 1 UIParent 0.0 -100.0 -1 ## 18 -1 0 1 1 UIParent 574.0 -242.0 -1 #- 19 -1 1 7 7 UIParent 0.0 0.0 -1 ##")
+	local taintpreventlayout = C_EditMode.ConvertStringToLayoutInfo("2 50 0 0 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%)#+#,$ 0 1 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%(#,$ 0 2 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%(#,$ 0 3 1 5 5 UIParent -5.0 -77.0 -1 #$$$%/&('%(#,$ 0 4 1 5 5 UIParent -5.0 -77.0 -1 #$$$%/&('%(#,$ 0 5 1 1 4 UIParent 0.0 0.0 -1 ##$$%/&('%(#,$ 0 6 1 1 4 UIParent 0.0 -50.0 -1 ##$$%/&('%(#,$ 0 7 1 1 4 UIParent 0.0 -100.0 -1 ##$$%/&('%(#,$ 0 10 1 7 7 UIParent 0.0 45.0 -1 ##$$&('% 0 11 1 7 7 UIParent 0.0 45.0 -1 ##$$&('%,# 0 12 1 7 7 UIParent 0.0 45.0 -1 ##$$&('% 1 -1 1 4 4 UIParent 0.0 0.0 -1 ##$#%# 2 -1 0 1 1 UIParent 944.7 -2.0 -1 ##$#%( 3 0 1 8 7 UIParent -300.0 250.0 -1 $#3# 3 1 1 6 7 UIParent 300.0 250.0 -1 %#3# 3 2 1 6 7 UIParent 520.0 265.0 -1 %#&#3# 3 3 1 0 2 CompactRaidFrameManager 0.0 -7.0 -1 '#(#)#-#.#/#1$3#5#6(7-7$ 3 4 1 0 2 CompactRaidFrameManager 0.0 -5.0 -1 ,#-#.#/#0#1#2(5#6(7-7$ 3 5 1 5 5 UIParent 0.0 0.0 -1 &#*$3# 3 6 1 5 5 UIParent 0.0 0.0 -1 -#.#/#4&5#6(7-7$ 3 7 1 4 4 UIParent 0.0 0.0 -1 3# 4 -1 1 7 7 UIParent 0.0 45.0 -1 # 5 -1 1 7 7 UIParent 0.0 45.0 -1 # 6 0 1 2 2 UIParent -255.0 -10.0 -1 ##$#%#&.(()( 6 1 1 2 2 UIParent -270.0 -155.0 -1 ##$#%#'+(()(-$ 6 2 0 7 7 UIParent 5.5 1002.0 -1 ##$#%$&.())(+#,-,$ 7 -1 0 4 4 UIParent 0.0 322.7 -1 # 8 -1 1 6 6 UIParent 35.0 50.0 -1 #'$A%$&7 9 -1 0 1 1 UIParent 842.0 -222.0 -1 # 10 -1 1 0 0 UIParent 16.0 -116.0 -1 # 11 -1 1 8 8 UIParent -9.0 85.0 -1 # 12 -1 0 5 5 UIParent -87.8 -64.7 -1 #2$#%# 13 -1 0 7 7 UIParent 380.0 642.0 -1 ##$#%=&7 14 -1 0 8 2 MicroMenuContainer 0.0 4.0 -1 ##$#%( 15 0 1 7 7 StatusTrackingBarManager 0.0 0.0 -1 # 15 1 1 7 7 StatusTrackingBarManager 0.0 17.0 -1 # 16 -1 0 8 6 VehicleSeatIndicator -4.0 0.0 -1 #( 17 -1 1 1 1 UIParent 0.0 -100.0 -1 ## 18 -1 0 1 1 UIParent 574.0 -242.0 -1 #- 19 -1 1 7 7 UIParent 0.0 0.0 -1 ## 20 0 1 7 7 UIParent 0.0 310.0 -1 ##$/%$&('%(-($)#+$,$-$ 20 1 1 7 7 UIParent 0.0 240.0 -1 ##$*%$&('%(-($)#+$,$-$ 20 2 1 7 7 UIParent 0.0 370.0 -1 ##$$%$&('((-($)#+$,$-$ 20 3 1 7 7 UIParent 420.0 430.0 -1 #$$$%#&('((-($)#*#+$,$-$.-.$ 21 -1 1 7 7 UIParent -410.0 380.0 -1 ##$# 22 0 1 8 7 UIParent -457.0 336.0 -1 #$$$%#&('((#)U*$+$,$ 22 1 1 1 1 UIParent 0.0 -40.0 -1 &('()U*#+$ 22 2 1 1 1 UIParent 0.0 -90.0 -1 &('()U*#+$ 22 3 1 1 1 UIParent 0.0 -130.0 -1 &('()U*#+$ 23 -1 0 7 7 UIParent 547.5 2.0 -1 ##$$%$&#'%'$(&)U+$,$-%.&/#")
 	taintpreventlayout.layoutType = Enum.EditModeLayoutType.Account
 	taintpreventlayout.layoutName = "EltruismTaintPreventer"
 
@@ -777,19 +777,21 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
-			if IsAddOnLoaded("BattleGroundEnemies") then
-				_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
-				_G.PluginInstallFrame.Option1:Enable()
-				_G.PluginInstallFrame.Option1:Show()
-				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
-				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
-				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
-			else
-				_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
-				_G.PluginInstallFrame.Option1:Disable()
-				_G.PluginInstallFrame.Option1:Show()
-				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+			if not E.Retail then
+				if IsAddOnLoaded("BattleGroundEnemies") then
+					_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
+					_G.PluginInstallFrame.Option1:Enable()
+					_G.PluginInstallFrame.Option1:Show()
+					_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+					_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
+					_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+				else
+					_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
+					_G.PluginInstallFrame.Option1:Disable()
+					_G.PluginInstallFrame.Option1:Show()
+					_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+				end
 			end
 			if IsAddOnLoaded("Capping") then
 				_G.PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
@@ -820,7 +822,7 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:Show()
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				end
-
+				--[[
 				if IsAddOnLoaded("OmniCD") then
 					_G.PluginInstallFrame.Desc4:SetText(L["Import OmniCD profile"])
 					_G.PluginInstallFrame.Option4:Enable()
@@ -842,7 +844,7 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option4:Disable()
 					_G.PluginInstallFrame.Option4:Show()
 					_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
-				end
+				end]]
 			else
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
@@ -862,20 +864,21 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
 			_G.PluginInstallFrame.Desc3:SetText(L["Import Dynamic Cam profile"])
 			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-			_G.PluginInstallFrame.Option1:Enable()
-			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
+			if not E.Retail then
+				_G.PluginInstallFrame.Option1:Enable()
+				_G.PluginInstallFrame.Option1:Show()
+				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
 
-			_G.PluginInstallFrame.Option2:Enable()
-			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
-
+				_G.PluginInstallFrame.Option2:Enable()
+				_G.PluginInstallFrame.Option2:Show()
+				_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
+			end
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupImmersion() end)
@@ -889,22 +892,23 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
-
-			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
-				_G.PluginInstallFrame.Option1:Disable()
-			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
-				_G.PluginInstallFrame.Option2:Disable()
-			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
-				_G.PluginInstallFrame.Option1:Disable()
-				_G.PluginInstallFrame.Option2:Disable()
+			if not E.Retail then
+				if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
+					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+					_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
+					_G.PluginInstallFrame.Option1:Disable()
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
+					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+					_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
+					_G.PluginInstallFrame.Option2:Disable()
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+					_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
+					_G.PluginInstallFrame.Option1:Disable()
+					_G.PluginInstallFrame.Option2:Disable()
+				end
 			end
 			if (not IsAddOnLoaded("Immersion")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])

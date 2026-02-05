@@ -231,9 +231,9 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 	end
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
---[[
+
 --for general nameplates
-local playerclassv1 = {
+--[[local playerclassv1 = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",
 	["PALADIN"] = "Eltreum-Class-Paladin",
 	["HUNTER"] = "Eltreum-Class-Hunter",
@@ -279,7 +279,7 @@ local playerclassv3 = {
 	["DRUID"] = "Eltreum-Class-DruidV3",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV3",
 	["EVOKER"] = "Eltreum-Class-EvokerV3",
-}
+}]]
 
 -- for rare nameplates
 local rareclass = {
@@ -297,9 +297,12 @@ local rareclass = {
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 	["EVOKER"] = "Eltreum-Class-Evoker",
 }
+function ElvUI_EltreumUI:GetNameplateRareClassTexture()
+	return rareclass[E.myclass]
+end
 
 --sets them enabled/disabled
-function ElvUI_EltreumUI:SetStyleFilters()
+--[[function ElvUI_EltreumUI:SetStyleFilters()
 
 	--fix threat
 	if E.global.nameplates.filters.EltreumTarget then

@@ -82,8 +82,8 @@ function ElvUI_EltreumUI:PortraitOptions()
 	BuildIconStylesTable()
 	BuildCustomTexturesTable()
 
-	ElvUI_EltreumUI.Options.args.unitframes.args.portrait = E.Libs.ACH:Group(L["Portrait"], nil, 4, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
-	local Args = ElvUI_EltreumUI.Options.args.unitframes.args.portrait.args
+	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraitmmt = E.Libs.ACH:Group(L["Portrait (mMT)"]..E.NewSign, nil, 4, "tab", nil, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	local Args = ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraitmmt.args
 
 	Args.toggle_enable = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable = value ElvUI_EltreumUI:InitializePortraits() E:StaticPopup_Show("CONFIG_RL") end)
 
@@ -1023,7 +1023,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ColorsArgs.settings.inline = true
 	ColorsArgs.settings.args.execute_apply = E.Libs.ACH:Execute(L["Apply"], nil, 1, function() ElvUI_EltreumUI:InitializePortraits() end)
 
-	ColorsArgs.settings.args.toggle_default = E.Libs.ACH:Toggle(L["Use only Default Color"], L["Uses for every Unit the Default Color."], 2, nil, nil, nil,
+	ColorsArgs.settings.args.toggle_default = E.Libs.ACH:Toggle(L["Use only Default Color"], L["Uses the Default Color for every Unit."], 2, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.general.default end,
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.default = value; ElvUI_EltreumUI:InitializePortraits() end
 	)
@@ -1051,7 +1051,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		return group
 	end
 
-	GeneralColors.default = CreateColorPair("Deafault", 1, E.db.ElvUI_EltreumUI.unitframes.portraits.colors.default)
+	GeneralColors.default = CreateColorPair(L["Default"], 1, E.db.ElvUI_EltreumUI.unitframes.portraits.colors.default)
 
 	-- Class Colors
 	ColorsArgs.class_colors = E.Libs.ACH:Group(L["Class"], nil, 3)
@@ -1072,7 +1072,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ClassColors.WARRIOR = CreateColorPair("WARRIOR", 15, E.db.ElvUI_EltreumUI.unitframes.portraits.colors.WARRIOR)
 
 	-- Classification Colors
-	ColorsArgs.clasification_colors = E.Libs.ACH:Group(L["Clasification"], nil, 4)
+	ColorsArgs.clasification_colors = E.Libs.ACH:Group(L["Classification"], nil, 4)
 	local ClassifColors = ColorsArgs.clasification_colors.args
 
 	ClassifColors.rare = CreateColorPair("RARE", 17, E.db.ElvUI_EltreumUI.unitframes.portraits.colors.rare)

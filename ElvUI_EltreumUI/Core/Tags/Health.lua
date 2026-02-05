@@ -258,11 +258,17 @@ E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UN
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-	if (maxhp == 0) then
+	local value
+	if E.Retail then
+		value = format('%d', UnitHealthPercent(unit, true, ScaleTo100)).."%"
+	else
+		value = math.floor(((cur / maxhp) * 100) + 0.5)
+	end
+	if not E.Retail and (maxhp == 0) then
 		return 0
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then
-			return math.floor(((cur / maxhp) * 100) + 0.5)
+			return value
 		elseif UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture

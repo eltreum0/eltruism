@@ -1,15 +1,26 @@
 local E = unpack(ElvUI)
 
 local _G = _G
-local SetPortraitTexture = SetPortraitTexture
-local UnitExists = UnitExists
-local tinsert = tinsert
+local SetPortraitTexture = _G.SetPortraitTexture
+local UnitExists = _G.UnitExists
+local tinsert = _G.tinsert
 local UF = E:GetModule("UnitFrames")
-local UnitGUID = UnitGUID
-local select, strsplit = select, strsplit
-local mathmax = math.max
-local mathmin = math.min
-local UnitIsDead = UnitIsDead
+local UnitGUID = _G.UnitGUID
+local select, strsplit = _G.select, _G.strsplit
+local mathmax = _G.math.max
+local mathmin = _G.math.min
+local UnitIsDead = _G.UnitIsDead
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitFactionGroup = _G.UnitFactionGroup
+local UnitClass = _G.UnitClass
+local UnitReaction = _G.UnitReaction
+local UnitClassification = _G.UnitClassification
+local InCombatLockdown = _G.InCombatLockdown
+local UnitCastingInfo = _G.UnitCastingInfo
+local UnitChannelInfo = _G.UnitChannelInfo
+local CreateFrame = _G.CreateFrame
+local hooksecurefunc = _G.hooksecurefunc
 
 ElvUI_EltreumUI.Portraits = {}
 local module = ElvUI_EltreumUI.Portraits
@@ -98,6 +109,9 @@ local function getColor(unit, isPlayer, isDead)
 end
 
 local function adjustColor(color, shift)
+	if not color then return end
+	if not shift then return end
+	if not color.r then return end
 	return {
 		r = color.r * shift,
 		g = color.g * shift,
@@ -205,6 +219,7 @@ end
 
 local function UpdateExtraTexture(portraitFrame, classification)
 	classification = (classification == "rareelite") and "rare" or classification
+	if not classification then return end
 	local extraTextures = portraitFrame.textures[classification] and portraitFrame.textures[classification].texture
 	SetTextures(portraitFrame.extra, extraTextures)
 
@@ -222,8 +237,12 @@ local function UpdateExtraTexture(portraitFrame, classification)
 end
 
 local function GetNPCID(unit)
-	local guid = UnitGUID(unit)
-	return guid and select(6, strsplit("-", guid))
+	if ElvUI_EltreumUI:RetailInstanceSecret() then
+		return " "
+	else
+		local guid = UnitGUID(unit)
+		return guid and select(6, strsplit("-", guid))
+	end
 end
 
 local function HideRareElite(frame)
@@ -242,7 +261,8 @@ local simpleClassification = {
 local function CheckRareElite(frame, unit, unitColor)
 	local c = UnitClassification(unit) --"worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	local npcID = GetNPCID(unit)
-	local classification = (ElvUI_EltreumUI:GetBossIconTextureAndID(nil,true,npcID) and true or simpleClassification[c])
+	if not npcID then return end
+	local classification = (ElvUI_EltreumUI:GetBossIconTextureAndID(nil,true,npcID) and "boss" or simpleClassification[c])
 
 	if classification then
 		local color = useTextureColor and (unitColor or colors[classification]) or colors[classification]
@@ -497,6 +517,8 @@ local function SetScripts(portrait, force)
 		portrait:RegisterEvent("PORTRAITS_UPDATED")
 		tinsert(portrait.allEvents, "PORTRAITS_UPDATED")
 
+		--disable due to overlapping with other elements and blocking chat for example
+		--[[
 		-- scripts to interact with mouse
 		portrait:SetAttribute("unit", portrait.unit)
 		portrait:SetAttribute("*type1", "target")
@@ -504,7 +526,7 @@ local function SetScripts(portrait, force)
 		portrait:SetAttribute("type3", "focus")
 		portrait:SetAttribute("toggleForVehicle", true)
 		portrait:SetAttribute("ping-receiver", true)
-		portrait:RegisterForClicks("AnyUp")
+		portrait:RegisterForClicks("AnyUp")]]
 
 		portrait.isBuild = true
 	end

@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 
 		if UnitExists("target")then
 			if nameplate and nameplate.unit and UnitIsUnit(nameplate.unit,"target") then
-				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
+				--ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health and nameplate.Health:IsVisible() then
 
 					--original, but can have wrong camera

@@ -958,6 +958,91 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["cooldown"]["unitframe"]["fontOutline"] = "THICKOUTLINE"
 	E.db["cooldown"]["zonebutton"]["fontOutline"] = "THICKOUTLINE"
 
+	E.db["cooldown"]["actionbar"]["colors"]["edgeCharge"]["a"] = 0
+	E.db["cooldown"]["actionbar"]["colors"]["edgeCharge"]["g"] = 0
+	E.db["cooldown"]["actionbar"]["colors"]["edgeCharge"]["r"] = 0
+	E.db["cooldown"]["actionbar"]["colors"]["edgeLOC"]["a"] = 0
+	E.db["cooldown"]["actionbar"]["colors"]["edgeLOC"]["b"] = 0.80000007152557
+	E.db["cooldown"]["actionbar"]["colors"]["edgeLOC"]["g"] = 0.20000001788139
+	E.db["cooldown"]["actionbar"]["colors"]["swipeCharge"]["a"] = 0.21093778312206
+	E.db["cooldown"]["actionbar"]["colors"]["swipeCharge"]["b"] = 0.59607845544815
+	E.db["cooldown"]["actionbar"]["colors"]["swipeCharge"]["g"] = 1
+
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["targetFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["targetFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["arena"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["arena"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["arena"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["assist"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["assist"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["assist"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["assist"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["boss"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["boss"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["focus"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["focus"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["focus"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["focustarget"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["focustarget"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["focustarget"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["focustarget"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["pettarget"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pettarget"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["pettarget"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["pettarget"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raidpet"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raidpet"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raidpet"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raidpet"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["targettarget"]["auras"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["targettarget"]["auras"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["targettarget"]["buffs"]["sourceText"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["sourceText"]["font"] = "Kimberley"
+
+
+
+
 	E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 	E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
 	E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
@@ -2067,7 +2152,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateOccludedAlphaMult', 0)
 	SetCVar("nameplateOverlapH", 0.8)
 	SetCVar("nameplateOverlapV", 1.1)
-	SetCVar('nameplateSelectedScale', 1)
+	SetCVar('nameplateSelectedScale', 1,4)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
@@ -2076,9 +2161,12 @@ function ElvUI_EltreumUI:NameplateCVars()
 
 	if E.Retail then
 		SetCVar("nameplateShowFriendlyPlayers", 1)
-		SetCVar("nameplateSelectedScale", 1.4)
 		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)
-		E.db["nameplates"]["visibility"]["showOnlyNames"] = true --same as above, but persistent
+		SetCVar("nameplateUseClassColorForFriendlyPlayerUnitNames", 1)
+		E.db.nameplates.visibility.showOnlyNames = true --same as above, but persistent
+		SetCVar("nameplatePlayerLargerScale", 1.8)
+	else
+		SetCVar("nameplateNotSelectedAlpha",0.5)
 	end
 
 	SetCVar('nameplateMaxAlpha', 1)

@@ -218,6 +218,17 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	end
 end
 
+function ElvUI_EltreumUI:UNIT_DIED(_,guid)
+	if guid and not ElvUI_EltreumUI:RetailInstanceSecret(guid) then
+		local UnitToken = _G.UnitTokenFromGUID(guid) --use api from 10.0 for getting token from guid
+		if not ElvUI_EltreumUI:RetailInstanceSecret(UnitToken) then
+			if (UnitToken == "player") or (UnitToken == "pet") or _G.UnitInParty(UnitToken) or _G.UnitInRaid(UnitToken) then
+				ElvUI_EltreumUI:RaidDeath()
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:ENCOUNTER_START(event)
 	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:CombatMusic(event)

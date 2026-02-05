@@ -32,24 +32,39 @@ local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
-	if E.Retail then return end
 	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if IsInGroup() then
 			if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable then --to disable it in arena/bg
 				if instanceType == "arena" or instanceType == "pvp" then
-					ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
+					if E.Retail then
+						ElvUI_EltreumUI:UnregisterEvent('UNIT_DIED')
+					else
+						ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
+					end
 				else
 					deaththrottle = 1
-					ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+					if E.Retail then
+						ElvUI_EltreumUI:RegisterEvent('UNIT_DIED')
+					else
+						ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+					end
 				end
 			else
 				deaththrottle = 1
-				ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+				if E.Retail then
+					ElvUI_EltreumUI:RegisterEvent('UNIT_DIED')
+				else
+					ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+				end
 			end
 		elseif not IsInGroup() then
 			deaththrottle = 0
-			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
+			if E.Retail then
+				ElvUI_EltreumUI:UnregisterEvent('UNIT_DIED')
+			else
+				ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
+			end
 		end
 	end
 end
@@ -63,9 +78,13 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if deaththrottle == 1 then
-			if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
-				if bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) > 0 or bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) > 0 then
-					PlaySoundFile(deathsound , "Master")
+			if E.Retail then
+				PlaySoundFile(deathsound , "Master")
+			else
+				if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
+					if bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) > 0 or bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) > 0 then
+						PlaySoundFile(deathsound , "Master")
+					end
 				end
 			end
 		end

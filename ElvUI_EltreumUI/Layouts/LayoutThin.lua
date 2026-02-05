@@ -89,8 +89,9 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "LEFT"
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 11
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 16
-	E.db["unitframe"]["units"]["player"]["aurabar"]["height"] = 15
+	E.db["unitframe"]["units"]["player"]["aurabar"]["height"] = 5
 	E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 15
+	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 17
 	E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 10
@@ -125,6 +126,8 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -20
 	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 20
+	E.db["unitframe"]["units"]["target"]["aurabar"]["height"] = 5
+	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 17
 	E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 7
 	E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true

@@ -50,17 +50,21 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 			end
 		end
 
+
 		if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then --thin mode aurabars?
 			bar:SetHeight(5)
 			bar.icon:SetSize(25,15)
+
 			bar.icon:ClearAllPoints()
 			bar.icon:SetPoint("BOTTOMRIGHT",bar,"BOTTOMLEFT",-7,0)
-			bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
 
 			bar.nameText:ClearAllPoints()
 			bar.nameText:SetPoint('LEFT', bar, 'LEFT', 4, 4)
 			bar.timeText:ClearAllPoints()
 			bar.timeText:SetPoint('RIGHT', bar, 'RIGHT', -2, 4)
+
+			if ElvUI_EltreumUI:RetailInstanceSecret() then return end
+			bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
 		end
 	end
 end
@@ -73,28 +77,34 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 		if frame and frame.AuraBars and not frame.AuraBarHook then
 			hooksecurefunc(frame.AuraBars, 'PostUpdateBar', function(_,_,bar)
 				if bar then
-					if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-						bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(bar.shadow)
-						if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then
-							if bar.shadow then
-								bar.shadow:ClearAllPoints()
-								bar.shadow:SetPoint("TOPRIGHT", bar.backdrop, "TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-								bar.shadow:SetPoint("BOTTOMLEFT", bar.backdrop, "BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if bar.backdrop and not bar.backdrop.shadow then
-									bar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(bar.backdrop.shadow)
-									if bar.icon and bar.icon.backdrop then
-										bar.backdrop.shadow:ClearAllPoints()
-										bar.backdrop.shadow:SetPoint("TOPRIGHT",bar.icon.backdrop, "TOPRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
-										bar.backdrop.shadow:SetPoint("BOTTOMLEFT",bar.icon.backdrop, "BOTTOMLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if not E.Retail then
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
+							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(bar.shadow)
+							if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then
+								if bar.shadow then
+									bar.shadow:ClearAllPoints()
+									bar.shadow:SetPoint("TOPRIGHT", bar.backdrop, "TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									bar.shadow:SetPoint("BOTTOMLEFT", bar.backdrop, "BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									if bar.backdrop and not bar.backdrop.shadow then
+										bar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(bar.backdrop.shadow)
+										if not ElvUI_EltreumUI:RetailInstanceSecret() then
+											if bar.icon and bar.icon.backdrop then
+												bar.backdrop.shadow:ClearAllPoints()
+												bar.backdrop.shadow:SetPoint("TOPRIGHT",bar.icon.backdrop, "TOPRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
+												bar.backdrop.shadow:SetPoint("BOTTOMLEFT",bar.icon.backdrop, "BOTTOMLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+											end
+										end
 									end
 								end
+							else
+								if bar.shadow then
+									bar.shadow:ClearAllPoints()
+									bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
+									bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
 							end
-						else
-							bar.shadow:ClearAllPoints()
-							bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
-							bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					if E.db.ElvUI_EltreumUI.borders.universalborders then
