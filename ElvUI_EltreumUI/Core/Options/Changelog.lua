@@ -14,21 +14,24 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added support for Burning Crusade Classic
+Added support for 12.0
+Added a skin for the Blizzard Damage Meter
+Added a function to allow other addons to add Icon Packs for the Blizzard Damage Meter (ElvUI_EltreumUI:AddDamageMeterIconPack)
+Added portraits from mMediaTag, thanks Blinkii!
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated for ElvUI 14.07
+Updated several functions to work in Midnight, some of them will not be the same
 --]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed undocumented changes in Burning Crusade Anniversary
-Fixed an issue with classic action bars
+Fixed an issue where Expanded Talents option wasn't being shown in TBC and Wrath
+Fixed an issue with the Auctionator skin in TBC
 ]], 7, "small", nil, nil, nil, nil, "full")
 end
