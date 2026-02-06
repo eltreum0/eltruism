@@ -1324,7 +1324,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------ tooltip
-		if E.db.ElvUI_EltreumUI.skins.shadow.tooltip then
+		if E.db.ElvUI_EltreumUI.skins.shadow.tooltip and not E.Retail then
 			if _G.GameTooltip and not _G.GameTooltip.shadow then
 				if E.private.tooltip.enable then
 					_G.GameTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
