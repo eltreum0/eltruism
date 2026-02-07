@@ -157,7 +157,7 @@ local function GradientNameplates(unit)
 		if not InCombatLockdown() or UnitIsDead("player") then
 			unit.CurrentlyBeingTanked = nil
 		end
-		if isRare then
+		if isRare and not _G.IsInInstance() then
 			unit.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
 			unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r = 1, g = 1, b = 1, a = 1}, {r = 1, 1, 1, g = 1, b = 1, a = 1})
 		else
