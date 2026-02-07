@@ -18,6 +18,15 @@ local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
 
+do -- Midnight API Fix. Credit: fang (WindTools)
+	local BackdropTemplateMixin_SetupTextureCoordinates = _G.BackdropTemplateMixin.SetupTextureCoordinates
+	function _G.BackdropTemplateMixin:SetupTextureCoordinates(...)
+		if E:NotSecretValue(self:GetWidth()) then
+			BackdropTemplateMixin_SetupTextureCoordinates(self, ...)
+		end
+	end
+end
+
 --simple function to set shadow color
 function ElvUI_EltreumUI:ShadowColor(shadow)
 	if shadow then
