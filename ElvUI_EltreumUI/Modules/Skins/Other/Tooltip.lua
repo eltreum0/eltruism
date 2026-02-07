@@ -104,7 +104,7 @@ function ElvUI_EltreumUI:Tooltip()
 		if not self.isHooked then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				local _,unittp = _G.GameTooltip:GetUnit()
-				if unittp then
+				if unittp and E:NotSecretValue(unittp) then
 					SetTooltipGradient(unittp)
 				end
 			end)
@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:Tooltip()
 		end
 
 		local _, fixunit = _G.GameTooltip:GetUnit()
-		if fixunit then
+		if fixunit and E:NotSecretValue(fixunit) then
 			SetTooltipGradient(fixunit)
 		end
 	end
