@@ -424,6 +424,8 @@ function ElvUI_EltreumUI:Keys(event,message)
 		return
 	elseif message == nil then
 		return
+	elseif ElvUI_EltreumUI:RetailInstanceSecret(message) then
+		return
 	elseif message:match("!keys") == false or message:match("!key") == false then
 		return
 	end

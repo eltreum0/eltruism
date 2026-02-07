@@ -510,7 +510,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	PlayerArgs.general.args.toggle_cast = E.Libs.ACH:Toggle(L["Cast Icon"], L["Enable Cast Icons"], 3, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.player.cast end,
-		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.cast = value; ElvUI_EltreumUI.Portraits:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
+		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.cast = value; ElvUI_EltreumUI:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
 	)
 
 	PlayerArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
@@ -576,7 +576,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	TargetArgs.general.args.toggle_cast = E.Libs.ACH:Toggle(L["Cast Icon"], L["Enable Cast Icons"], 4, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.target.cast end,
-		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.cast = value; ElvUI_EltreumUI.Portraits:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
+		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.cast = value; ElvUI_EltreumUI:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
 	)
 
 	TargetArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
@@ -762,7 +762,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	FocusArgs.general.args.toggle_cast = E.Libs.ACH:Toggle(L["Cast Icon"], L["Enable Cast Icons"], 4, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.focus.cast end,
-		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.cast = value; ElvUI_EltreumUI.Portraits:InitializePortraits(true) end
+		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.cast = value; ElvUI_EltreumUI:InitializePortraits(true) end
 	)
 
 	FocusArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
@@ -824,7 +824,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	PartyArgs.general.args.toggle_cast = E.Libs.ACH:Toggle(L["Cast Icon"], L["Enable Cast Icons"], 3, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.party.cast end,
-		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.cast = value; ElvUI_EltreumUI.Portraits:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
+		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.cast = value; ElvUI_EltreumUI:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
 	)
 
 	PartyArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
@@ -886,7 +886,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	BossArgs.general.args.toggle_cast = E.Libs.ACH:Toggle(L["Cast Icon"], L["Enable Cast Icons"], 3, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.boss.cast end,
-		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.cast = value; ElvUI_EltreumUI.Portraits:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
+		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.cast = value; ElvUI_EltreumUI:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
 	)
 
 	BossArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
@@ -948,7 +948,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	ArenaArgs.general.args.toggle_cast = E.Libs.ACH:Toggle(L["Cast Icon"], L["Enable Cast Icons"], 3, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.arena.cast end,
-		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.cast = value; ElvUI_EltreumUI.Portraits:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
+		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.cast = value; ElvUI_EltreumUI:InitializePortraits(true); E:StaticPopup_Show("CONFIG_RL") end
 	)
 
 	ArenaArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)

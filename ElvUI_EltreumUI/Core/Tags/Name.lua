@@ -155,7 +155,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 	if not args then args = 16 end
 	args = tonumber(args)
 	local isTarget
-	if not ElvUI_EltreumUI:RetailInstanceSecret() then
+	if not ElvUI_EltreumUI:RetailInstanceSecret() and not ElvUI_EltreumUI:RetailInstanceSecret(name) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))

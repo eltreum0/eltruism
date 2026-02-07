@@ -66,6 +66,7 @@ local function SetTooltipGradient(unit)
 	if not E.private.tooltip.enable then return end
 	if E.db.ElvUI_EltreumUI.skins.gradienttooltip then
 		if ElvUI_EltreumUI:RetailInstanceSecret() then return end
+		if ElvUI_EltreumUI:RetailInstanceSecret(unit) or ElvUI_EltreumUI:RetailInstanceSecret(UnitClass(unit)) then return end
 		local _, classunit = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
 		if GameTooltip and GameTooltip:IsForbidden() then return end
@@ -103,7 +104,7 @@ function ElvUI_EltreumUI:Tooltip()
 		if not self.isHooked then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				local _,unittp = _G.GameTooltip:GetUnit()
-				if unittp then
+				if unittp and E:NotSecretValue(unittp) then
 					SetTooltipGradient(unittp)
 				end
 			end)
@@ -111,7 +112,7 @@ function ElvUI_EltreumUI:Tooltip()
 		end
 
 		local _, fixunit = _G.GameTooltip:GetUnit()
-		if fixunit then
+		if fixunit and E:NotSecretValue(fixunit) then
 			SetTooltipGradient(fixunit)
 		end
 	end

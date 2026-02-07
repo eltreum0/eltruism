@@ -2098,6 +2098,10 @@ function ElvUI_EltreumUI:SetupCVars()
 	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 
+		--new midnight things
+		SetCVar('damageMeterEnabled',  1)
+		SetCVar('floatingCombatTextCombatDamage_v2',  1)
+
 		--this makes it so that the non nameplate names are hidden
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs, even when they are dead
 		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
@@ -2152,7 +2156,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateOccludedAlphaMult', 0)
 	SetCVar("nameplateOverlapH", 0.8)
 	SetCVar("nameplateOverlapV", 1.1)
-	SetCVar('nameplateSelectedScale', 1,4)
+	SetCVar('nameplateSelectedScale', 1.4)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
