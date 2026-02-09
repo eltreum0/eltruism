@@ -2091,9 +2091,10 @@ function ElvUI_EltreumUI:TooltipBorder()
 
 	if not tooltipborder.Hooks then
 		local function FixSize()
+			ttx,tty = _G.GameTooltip:GetSize()
+			if ElvUI_EltreumUI:RetailInstanceSecret(ttx) then return end
 			if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
 				tthpy = _G.select(2,_G.GameTooltipStatusBar:GetSize())
-				ttx,tty = _G.GameTooltip:GetSize()
 				if E.db.tooltip.healthBar.statusPosition == "TOP" then
 					tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, tthpy/2)
 				else
@@ -2101,7 +2102,6 @@ function ElvUI_EltreumUI:TooltipBorder()
 				end
 				tooltipborder:SetSize(ttx+E.db.ElvUI_EltreumUI.borders.tooltipsizex, tty+tthpy+E.db.ElvUI_EltreumUI.borders.tooltipsizey)
 			else
-				ttx,tty = _G.GameTooltip:GetSize()
 				tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, 0)
 				tooltipborder:SetSize(ttx+E.db.ElvUI_EltreumUI.borders.tooltipsizex, tty+E.db.ElvUI_EltreumUI.borders.tooltipsizey)
 			end
