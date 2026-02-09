@@ -853,7 +853,9 @@ function ElvUI_EltreumUI:InitializePortraits(force)
 
 		if _G.ElvUF_Boss1 and E.db.ElvUI_EltreumUI.unitframes.portraits.boss.enable then
 			for i = 1, 8 do
-				CreatePortraits("Boss" .. i, _G["ElvUF_Boss" .. i].unit, _G["ElvUF_Boss" .. i], E.db.ElvUI_EltreumUI.unitframes.portraits.boss, { "INSTANCE_ENCOUNTER_ENGAGE_UNIT", "UNIT_TARGETABLE_CHANGED" })
+				if _G["ElvUF_Boss" .. i] then
+					CreatePortraits("Boss" .. i, _G["ElvUF_Boss" .. i].unit, _G["ElvUF_Boss" .. i], E.db.ElvUI_EltreumUI.unitframes.portraits.boss, { "INSTANCE_ENCOUNTER_ENGAGE_UNIT", "UNIT_TARGETABLE_CHANGED" })
+				end
 			end
 		elseif module.Boss1 then
 			for i = 1, 8 do
