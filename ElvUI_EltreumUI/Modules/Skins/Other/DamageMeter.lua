@@ -123,6 +123,7 @@ do
 		[1467] = {256/512, 320/512, 256/512, 320/512}, -- Devastation
 		[1468] = {320/512, 384/512, 256/512, 320/512}, -- Preservation
 		[1473] = {384/512, 448/512, 256/512, 320/512}, -- Augmentation
+		[1465] = {256/512, 320/512, 256/512, 320/512}, -- Initial, let it use Devastation
 	}
 	local class_coords = {
 		["DEMONHUNTER"] = {
