@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 		if E.db.ElvUI_EltreumUI.glow.enableUFs then
 			local name = object:GetName()
 			if (name ~= "ElvUF_Player" and name ~= "ElvUF_Target") then
-				if debuffType then
+				if debuffType and UF.db.colors.debuffHighlight[debuffType] then
 					if not wasFiltered then
 						--local canDispel = filtercheck:StyleFilterDispelCheck(object, debuffType)
 						local color = UF.db.colors.debuffHighlight[debuffType]
@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 	end
 
 	--mark frame so that the gradient backdrop doesnt overwrite it
-	if debuffType then
+	if debuffType and UF.db.colors.debuffHighlight[debuffType] then
 		if not wasFiltered then
 			object.EltruismDebuffExists = true
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
