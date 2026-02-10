@@ -2065,7 +2065,17 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 		if button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.aurabordernp then
 			HandleUFAuraBorder(button,button.isNamePlateElement)
 		elseif button.isUnitFrameElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
-			HandleUFAuraBorder(button,false)
+			if E.db.ElvUI_EltreumUI.borders.disableRaidAuraBorder then
+				if ElvUI_EltreumUI:RetailInstanceSecret(button) or ElvUI_EltreumUI:RetailInstanceSecret(button:GetDebugName()) then
+					return
+				else
+					if button:GetDebugName():match("Raid") == false then
+						HandleUFAuraBorder(button,false)
+					end
+				end
+			else
+				HandleUFAuraBorder(button,false)
+			end
 		end
 	end
 end
