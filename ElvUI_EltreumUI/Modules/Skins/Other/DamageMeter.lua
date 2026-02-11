@@ -371,7 +371,6 @@ do
 			if not bar.StatusBar.backdrop.shadow then
 				bar.StatusBar.backdrop:CreateShadow(1)
 				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.backdrop.shadow)
-
 			end
 		end
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar then
