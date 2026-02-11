@@ -3,9 +3,9 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
-local embedpanel
-local RightChatDamageMeterHook = false
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+--local embedpanel
+--local RightChatDamageMeterHook = false
+--local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --pretty much copied from elvui and edited to look more like details
 do
@@ -316,7 +316,7 @@ do
 		}
 	end
 
-	local function SetMouseOver(frame,parent)
+	--[[local function SetMouseOver(frame,parent)
 		frame:SetParent(parent)
 		frame:SetAlpha(0)
 		frame:SetScript('OnEnter', function()
@@ -337,7 +337,7 @@ do
 		window.DamageMeterTypeDropdown.TypeName:SetParent(window)
 		window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
 		window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	end
+	end]]
 
 	local function SkinDamageMeter(bar)
 		if not bar then return end
@@ -345,18 +345,20 @@ do
 		if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
 			hooksecurefunc(bar, "UpdateIcon", function(icon)
 				local textureCoords
-				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
-					if icon.specIconID and BlizzardTextureIDsForSpecs[tostring(icon.specIconID)] then
-						textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(icon.specIconID)]]
+				if not bar.spellID then --avoid spell stuff
+					if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
+						if icon.specIconID and BlizzardTextureIDsForSpecs[tostring(icon.specIconID)] then
+							textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(icon.specIconID)]]
+						else
+							textureCoords = class_coords[bar.classFilename]
+						end
 					else
 						textureCoords = class_coords[bar.classFilename]
 					end
-				else
-					textureCoords = class_coords[bar.classFilename]
-				end
-				if textureCoords then
-					icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
-					icon.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+					if textureCoords then
+						icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
+						icon.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+					end
 				end
 			end)
 			bar.UpdateIconEltruismHook = true
@@ -365,9 +367,11 @@ do
 		--turns out the details hook was indeed useful later (years later) but i need to get the texture first
 		bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
 
-		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows and not bar.StatusBar.shadow then
-			bar.StatusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
+		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows then
+			if not bar.StatusBar.backdrop.shadow then
+				bar.StatusBar.backdrop:CreateShadow(1)
+				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.backdrop.shadow)
+			end
 		end
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar then
 			if not bar.GradientStatusBarEltruismHook then
@@ -399,23 +403,23 @@ do
 			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
 				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
-				hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+				--[[hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
 					_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 				end)
-				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
+				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)]]
 
 				_G.DamageMeter.EltruismHook = true
 
 				--if no refresh then turns out the specicons are nil because it seems they are loaded later
 				--because of blizzard being blizzard we need to run the refresh more than once as it turns out
-				E:Delay(1, function()
+				--[[E:Delay(1, function()
 					_G.DamageMeter:RefreshLayout()
 				end)
-				_G.DamageMeter:RefreshLayout()
+				_G.DamageMeter:RefreshLayout()]]
 			end
 
 
-			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
+			--[[if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
 				if not _G["EltruismDamageMeterEmbedPanel"] then
 					embedpanel = _G.CreateFrame("FRAME","EltruismDamageMeterEmbedPanel")
 				else
@@ -455,9 +459,9 @@ do
 				end
 				embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-				--[[if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
+				if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
 					E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
-				end]]
+				end
 
 				embedpanel:SetScript("OnEvent", function(_,event)
 					if event == "PLAYER_REGEN_DISABLED" then
@@ -511,7 +515,7 @@ do
 
 					RightChatDamageMeterHook = true
 				end
-			end
+			end]]
 		end
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)

@@ -800,6 +800,8 @@ P.ElvUI_EltreumUI = {
 		auranplevel = 4,
 		npaurasize = 10,
 
+		disableRaidAuraBorder = false,
+
 		chatborder = true,
 		leftchatborderx = 432,
 		leftchatbordery = 224,

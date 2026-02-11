@@ -477,6 +477,18 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["tooltipAnchorY"] = 0
 
+	---aurabar filter for retail
+	--[[E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraBigDefensive"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraDefensive"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraImportant"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraRaid"] = false
+
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraBigDefensive"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraCrowdControl"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraImportant"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaid"] = false
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaidPlayerDispellable"] = true]]
+
 	-- unitframe colors
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
 	E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = valuecolors.g
@@ -485,9 +497,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["aurabar_backdrop"]["g"] = 0
 	E.db["unitframe"]["colors"]["aurabar_backdrop"]["r"] = 0
 	E.db["unitframe"]["colors"]["castClassColor"] = true
-	E.db["unitframe"]["colors"]["castColor"]["b"] = valuecolors.b
-	E.db["unitframe"]["colors"]["castColor"]["g"] = valuecolors.g
-	E.db["unitframe"]["colors"]["castColor"]["r"] = valuecolors.r
+	E.db["unitframe"]["colors"]["castColor"]["b"] = 0 --fix interruptable color
+	E.db["unitframe"]["colors"]["castColor"]["g"] = 0.58823531866074
+	E.db["unitframe"]["colors"]["castColor"]["r"] = 1
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0
@@ -682,6 +694,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["runeBySpec"] = true
 	E.db["nameplates"]["colors"]["chargingRunes"] = true
 	E.db["nameplates"]["colors"]["runeBySpec"] = true
+
+	E.db["nameplates"]["colors"]["castColor"]["b"] = 0 --fix interruptable color
+	E.db["nameplates"]["colors"]["castColor"]["g"] = 0.58823531866074
+	E.db["nameplates"]["colors"]["castColor"]["r"] = 1
 
 	-- General
 	E.db["general"]["altPowerBar"]["font"] = "Kimberley"

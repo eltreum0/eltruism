@@ -1806,6 +1806,44 @@ function ElvUI_EltreumUI:ClassicSockets()
 	function SlotIconManager:IsSlotEnchantRequired(slotName)
 		return self.slotsWithRequiredEnchants[slotName] ~= nil and _G.IsPlayerAtEffectiveMaxLevel
 	end
+	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SOCKET INFO
+	local SocketInfo = {
+		TYPE = {
+			UNKNOWN = 0,
+			PRISMATIC = 1,
+			RED = 2,
+			BLUE = 3,
+			YELLOW = 4,
+			META = 5,
+		}
+	}
+	SocketInfo.__index = SocketInfo
+	function SocketInfo:new(typeId, gemItemInfo, relicType, missingGemText)
+		return setmetatable({
+			typeId = typeId,
+			gemItemInfo = gemItemInfo,
+			relicType = relicType,
+			missingGemText = missingGemText,
+		}, self)
+	end
+	function SocketInfo:getTypeId()
+		return self.typeId
+	end
+	function SocketInfo:isEmpty()
+		return self.gemItemInfo == nil
+	end
+	function SocketInfo:getGem()
+		return self.gemItemInfo
+	end
+	function SocketInfo:getTextureName()
+		return self.typeId
+	end
+	function SocketInfo:getRelicType()
+		return self.relicType
+	end
+	function SocketInfo:getMissingGemText()
+		return self.missingGemText ~= nil and self.missingGemText or 'Missing gem'
+	end
 
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ITEM STRING INFO
 	function ItemStringInfoFunctionTable:new(itemString)
@@ -2036,44 +2074,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 	function TooltipFunctionTable:Hide()
 		self:_HideTooltips()
-	end
-	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SOCKET INFO
-	local SocketInfo = {
-		TYPE = {
-			UNKNOWN = 0,
-			PRISMATIC = 1,
-			RED = 2,
-			BLUE = 3,
-			YELLOW = 4,
-			META = 5,
-		}
-	}
-	SocketInfo.__index = SocketInfo
-	function SocketInfo:new(typeId, gemItemInfo, relicType, missingGemText)
-		return setmetatable({
-			typeId = typeId,
-			gemItemInfo = gemItemInfo,
-			relicType = relicType,
-			missingGemText = missingGemText,
-		}, self)
-	end
-	function SocketInfo:getTypeId()
-		return self.typeId
-	end
-	function SocketInfo:isEmpty()
-		return self.gemItemInfo == nil
-	end
-	function SocketInfo:getGem()
-		return self.gemItemInfo
-	end
-	function SocketInfo:getTextureName()
-		return self.typeId
-	end
-	function SocketInfo:getRelicType()
-		return self.relicType
-	end
-	function SocketInfo:getMissingGemText()
-		return self.missingGemText ~= nil and self.missingGemText or 'Missing gem'
 	end
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SPELL INFO
 	function SpellInfoFunctionTable:new(itemString)

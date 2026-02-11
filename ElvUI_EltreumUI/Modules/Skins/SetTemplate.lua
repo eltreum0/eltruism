@@ -586,10 +586,12 @@ local function EltruismShadow(frame,template)
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
-			if frame:GetDebugName():match("PetBattleFrame") then
-				if not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+			if not ElvUI_EltreumUI:RetailInstanceSecret() then
+				if frame:GetDebugName():match("PetBattleFrame") then
+					if not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
 				end
 			end
 			if frame:GetParent() and frame:GetParent() == _G["ElvUIPetBattleActionBar"] and not E.db.ElvUI_EltreumUI.borders.universalborders then
