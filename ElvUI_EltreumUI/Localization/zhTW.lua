@@ -1700,7 +1700,6 @@ L["Optional textures, these textures are not mandatory, but improve the appearan
 L["Party"] = true
 L["Pet"] = true
 L["Player"] = true
-L["Portrait (mMT)"] = true
 L["Portrait Offset/ Zoom"] = true
 L["Portrait Texture"] = true
 L["Rare"] = true

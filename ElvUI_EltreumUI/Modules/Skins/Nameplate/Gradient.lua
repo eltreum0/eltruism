@@ -27,84 +27,89 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 			if not InCombatLockdown() or UnitIsDead("player") then
 				nameplate.CurrentlyBeingTanked = nil
 			end
-			if status == 3 then -- securely tanking
-				if self.offTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+			if nameplate.isRare then
+				nameplate.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
+				nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r = 1, g = 1, b = 1, a = 1}, {r = 1, 1, 1, g = 1, b = 1, a = 1})
+			else
+				if status == 3 then -- securely tanking
+					if self.offTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANK", false, false))
+						end
+					elseif self.isTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+						end
 					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANK", false, false))
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
+						end
 					end
-				elseif self.isTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+				elseif status == 2 then -- insecurely tanking
+					if self.offTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANKBADTHREATTRANSITION", false, false))
+						end
+					elseif self.isTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
+						end
 					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
+						end
 					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+				elseif status == 1 then -- not tanking but threat higher than tank
+					if self.offTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANKGOODTHREATTRANSITION", false, false))
+						end
+					elseif self.isTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
+						end
 					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
+						end
 					end
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+				else -- not tanking at all
+					if self.isTank then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
+						end
+					else
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+						end
+					end
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
 				end
-				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
-			elseif status == 2 then -- insecurely tanking
-				if self.offTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANKBADTHREATTRANSITION", false, false))
-					end
-				elseif self.isTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
-					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-					end
-				end
-				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
-			elseif status == 1 then -- not tanking but threat higher than tank
-				if self.offTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANKGOODTHREATTRANSITION", false, false))
-					end
-				elseif self.isTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
-					end
-				end
-				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
-			else -- not tanking at all
-				if self.isTank then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
-					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-					end
-				end
-				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
 			end
 		end
 	end
@@ -122,13 +127,6 @@ local function GradientNameplates(unit)
 	local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
 	local reaction = UnitReaction(unit.unit, "player")
 	local targettype
-
-	local classification = unit.classification
-	local isRare = false
-	if classification == 'worldboss' or classification == 'rareelite' or classification == 'rare' then
-		isRare = true
-	end
-
 
 	if reaction and reaction >= 5 then
 		targettype = "NPCFRIENDLY"
@@ -149,15 +147,23 @@ local function GradientNameplates(unit)
 		--else
 		local isOK
 		if E.Retail then
-			isOK = true
+			isOK = not unit.CurrentlyBeingTanked
 		else
 			isOK = (unit.CurrentlyBeingTanked ~= UnitGUID(unit.unit))
+		end
+
+		local classification = unit.classification
+		if (classification == 'worldboss' or classification == 'rareelite' or classification == 'rare') and not _G.IsInInstance() then
+			unit.isRare = true
+		else
+			unit.isRare = false
 		end
 
 		if not InCombatLockdown() or UnitIsDead("player") then
 			unit.CurrentlyBeingTanked = nil
 		end
-		if isRare and not _G.IsInInstance() then
+
+		if unit.isRare then
 			unit.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
 			unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r = 1, g = 1, b = 1, a = 1}, {r = 1, 1, 1, g = 1, b = 1, a = 1})
 		else

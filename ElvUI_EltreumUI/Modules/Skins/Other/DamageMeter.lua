@@ -3,9 +3,9 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
---local embedpanel
---local RightChatDamageMeterHook = false
---local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local embedpanel
+local RightChatDamageMeterHook = false
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --pretty much copied from elvui and edited to look more like details
 do
@@ -316,28 +316,30 @@ do
 		}
 	end
 
-	--[[local function SetMouseOver(frame,parent)
-		frame:SetParent(parent)
-		frame:SetAlpha(0)
-		frame:SetScript('OnEnter', function()
+	local function SetMouseOver(frame,mode)
+		--frame:SetParent(parent)
+		--frame:SetAlpha(0)
+		if mode == "enter" then
 			_G.UIFrameFadeIn(frame, 0.5, 0, 1)
-		end)
-		frame:SetScript('OnLeave', function()
+		elseif mode == "leave" then
 			_G.UIFrameFadeOut(frame, 0.5, 1, 0)
-		end)
+		end
 	end
 
-	local function SkinDamageMeterWindow(window) --actual window
-		if not window then return end
-
-		SetMouseOver(window.DamageMeterTypeDropdown,window)
-		SetMouseOver(window.headerBackdrop,window)
-		SetMouseOver(window.SessionDropdown,window)
-		SetMouseOver(window.SettingsDropdown,window)
-		window.DamageMeterTypeDropdown.TypeName:SetParent(window)
-		window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
-		window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	end]]
+	local function SetupEnterLeave(frame)
+		frame:SetScript("OnEnter", function()
+			SetMouseOver(frame.Header,"enter")
+			SetMouseOver(frame.DamageMeterTypeDropdown,"enter")
+			SetMouseOver(frame.SessionDropdown,"enter")
+			SetMouseOver(frame.SettingsDropdown,"enter")
+		end)
+		frame:SetScript("OnLeave", function()
+			SetMouseOver(frame.Header,"leave")
+			SetMouseOver(frame.DamageMeterTypeDropdown,"leave")
+			SetMouseOver(frame.SessionDropdown,"leave")
+			SetMouseOver(frame.SettingsDropdown,"leave")
+		end)
+	end
 
 	local function SkinDamageMeter(bar)
 		if not bar then return end
@@ -368,9 +370,10 @@ do
 		bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
 
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows then
-			if not bar.StatusBar.backdrop.shadow then
-				bar.StatusBar.backdrop:CreateShadow(1)
-				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.backdrop.shadow)
+			if not bar.StatusBar.shadow then
+				bar.StatusBar:CreateShadow() --shadows seem tricky, they dont seem to appear due to the .Background unless they are huge
+				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
+				--bar.StatusBar.shadow:SetOutside(bar.StatusBar.Background)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar then
@@ -384,7 +387,7 @@ do
 							sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
 						end
 					else
-						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=ElvUI_EltreumUI:Interval(r-0.5, 0, 1),g=ElvUI_EltreumUI:Interval(g-0.5, 0, 1),b=ElvUI_EltreumUI:Interval(b-0.5, 0, 1),a= 0.9}, {r=ElvUI_EltreumUI:Interval(r+0.2, 0, 1),g=ElvUI_EltreumUI:Interval(g+0.2, 0, 1),b=ElvUI_EltreumUI:Interval(b+0.2, 0, 1),a= 0.9})
 					end
 					--even though its supposed to not be secret we will get the secret error
 					--[[if bar.StatusBar.Name then
@@ -392,21 +395,52 @@ do
 						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
 					end]]
 				end)
+
+				--set it outside as well, so that on PEW it gets gradient as well
+				if bar.classFilename then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
+					else
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
+					end
+				end
+
 				bar.GradientStatusBarEltruismHook = true
 			end
 		end
 	end
 
+	local function SkinDamageMeterWindow(window) --actual window
+		if not window then return end
+		--start hidden
+		_G.UIFrameFadeOut(window.Header, 0, 1, 0)
+		_G.UIFrameFadeOut(window.DamageMeterTypeDropdown, 0, 1, 0)
+		_G.UIFrameFadeOut(window.SessionDropdown, 0, 1, 0)
+		_G.UIFrameFadeOut(window.SettingsDropdown, 0, 1, 0)
+
+		SetMouseOver(window.Header,window)
+		SetupEnterLeave(window)
+
+		--window.DamageMeterTypeDropdown.TypeName:SetParent(window)
+		--window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
+		--window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	end
+
 	--skin blizzard's dps meter to be similar to my details skin
 	function ElvUI_EltreumUI:BlizzDamageMeter()
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable then
+
+			--prep for the meter
+			_G.C_CVar.SetCVar("damageMeterEnabled", 1) --no point in skin if the meter is not enabled
+			local numberOfWindows = _G.DamageMeter:GetCurrentSessionWindowCount() or 0 --setup for embed, and maybe refresh if that didnt throw errors
+
 			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
 				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
-				--[[hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+				hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
 					_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 				end)
-				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)]]
+				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 
 				_G.DamageMeter.EltruismHook = true
 
@@ -416,10 +450,16 @@ do
 					_G.DamageMeter:RefreshLayout()
 				end)
 				_G.DamageMeter:RefreshLayout()]]
+
+				--different refresh
+				--[[for i = 1, numberOfWindows do
+					if _G["DamageMeterSessionWindow"..i] then
+						_G["DamageMeterSessionWindow"..i]:Refresh()
+					end
+				end]]
 			end
 
-
-			--[[if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
+			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
 				if not _G["EltruismDamageMeterEmbedPanel"] then
 					embedpanel = _G.CreateFrame("FRAME","EltruismDamageMeterEmbedPanel")
 				else
@@ -441,7 +481,7 @@ do
 						end
 					end
 
-					for i = 1, 5 do
+					for i = 1, numberOfWindows do
 						if _G["DamageMeterSessionWindow"..i] then
 							_G["DamageMeterSessionWindow"..i]:SetParent(embedpanel)
 							_G["DamageMeter"]:SetParent(embedpanel)
@@ -515,7 +555,7 @@ do
 
 					RightChatDamageMeterHook = true
 				end
-			end]]
+			end
 		end
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)

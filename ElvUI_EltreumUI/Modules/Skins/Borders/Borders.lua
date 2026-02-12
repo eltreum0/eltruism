@@ -2060,18 +2060,21 @@ local function HandleUFAuraBorder(button,isNamePlateElement)
 	end
 end
 
+local raidFrames ={
+	["raid1"] = true,
+	["raid2"] = true,
+	["raid3"] = true,
+	["raidpet"] = true,
+}
+
 function ElvUI_EltreumUI:UFAuraBorders(_,button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.private.auras.enable then
 		if button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.aurabordernp then
 			HandleUFAuraBorder(button,button.isNamePlateElement)
 		elseif button.isUnitFrameElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
 			if E.db.ElvUI_EltreumUI.borders.disableRaidAuraBorder then
-				if ElvUI_EltreumUI:RetailInstanceSecret(button) or ElvUI_EltreumUI:RetailInstanceSecret(button:GetDebugName()) then
-					return
-				else
-					if button:GetDebugName():match("Raid") == false then
-						HandleUFAuraBorder(button,false)
-					end
+				if not raidFrames[button:GetParent():GetParent().unitframeType] then
+					HandleUFAuraBorder(button,false)
 				end
 			else
 				HandleUFAuraBorder(button,false)
@@ -2175,6 +2178,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 		_G.GameTooltip:HookScript("OnShow", TooltipBorderFix) --when it appears
 		_G.GameTooltip:HookScript("OnEvent", TooltipBorderFix) --for other events
 		_G.GameTooltip:HookScript("OnSizeChanged", TooltipBorderFix) --when comparing
+		_G.GameTooltip:HookScript("OnTooltipCleared", TooltipBorderFix) --on it being cleared
 		tooltipborder.Hooks = true
 	end
 end
