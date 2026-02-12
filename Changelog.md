@@ -1,6 +1,19 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.0.1
+Added an option to disable Borders on Raid Unitframe Auras  
+Updated Gradient Nameplates to fix issue with flashing threat colors  
+Updated Portraits naming scheme  
+Updated Damage Meter skin  
+Updated Nameplate CVars  
+Fixed an issue with Borders and changes in ElvUI debuff types  
+Fixed an issue with the Burning Crusade Profession skin  
+Fixed an issue with the Alternate Power Bar and secrets  
+Fixed issues with secrets related to Tooltip borders  
+Fixed an issue with the Sockets in Burning Crusade  
+Fixed an issue when changing Portrait settings  
+---
 ### 5.0.0
 Added support for 12.0  
 Added a skin for the Blizzard Damage Meter  

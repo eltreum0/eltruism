@@ -14,24 +14,28 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added support for 12.0
-Added a skin for the Blizzard Damage Meter
-Added a function to allow other addons to add Icon Packs for the Blizzard Damage Meter (ElvUI_EltreumUI:AddDamageMeterIconPack)
-Added portraits from mMediaTag, thanks Blinkii!
+Added an option to disable Borders on Raid Unitframe Auras
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated several functions to work in Midnight, some of them will not be the same
+Updated Gradient Nameplates to fix issue with flashing threat colors
+Updated Portraits naming scheme
+Updated Damage Meter skin
+Updated Nameplate CVars
 --]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an issue where Expanded Talents option wasn't being shown in TBC and Wrath
-Fixed an issue with the Auctionator skin in TBC
+Fixed an issue with Borders and changes in ElvUI debuff types
+Fixed an issue with the Burning Crusade Profession skin
+Fixed an issue with the Alternate Power Bar and secrets
+Fixed issues with secrets related to Tooltip borders
+Fixed an issue with the Sockets in Burning Crusade
+Fixed an issue when changing Portrait settings
 ]], 7, "small", nil, nil, nil, nil, "full")
 end
