@@ -371,8 +371,9 @@ do
 
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows then
 			if not bar.StatusBar.shadow then
-				bar.StatusBar:CreateShadow()
+				bar.StatusBar:CreateShadow() --shadows seem tricky, they dont seem to appear due to the .Background unless they are huge
 				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
+				--bar.StatusBar.shadow:SetOutside(bar.StatusBar.Background)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar then
@@ -394,6 +395,16 @@ do
 						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
 					end]]
 				end)
+
+				--set it outside as well, so that on PEW it gets gradient as well
+				if bar.classFilename then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
+					else
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
+					end
+				end
+
 				bar.GradientStatusBarEltruismHook = true
 			end
 		end
