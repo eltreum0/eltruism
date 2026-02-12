@@ -9,7 +9,7 @@
 ## OptionalDeps: ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
 ## X-Interface: 38000
-## X-ElvUI: 15.02
+## X-ElvUI: 15.05
 ## X-Tukui-ProjectID: 10
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
