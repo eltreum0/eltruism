@@ -3,9 +3,9 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
---local embedpanel
---local RightChatDamageMeterHook = false
---local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local embedpanel
+local RightChatDamageMeterHook = false
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --pretty much copied from elvui and edited to look more like details
 do
@@ -316,28 +316,50 @@ do
 		}
 	end
 
-	--[[local function SetMouseOver(frame,parent)
-		frame:SetParent(parent)
-		frame:SetAlpha(0)
-		frame:SetScript('OnEnter', function()
+	local function SetMouseOver(frame,mode)
+		--frame:SetParent(parent)
+		--frame:SetAlpha(0)
+		if mode == "enter" then
 			_G.UIFrameFadeIn(frame, 0.5, 0, 1)
-		end)
-		frame:SetScript('OnLeave', function()
+		elseif mode == "leave" then
 			_G.UIFrameFadeOut(frame, 0.5, 1, 0)
-		end)
+		end
 	end
 
 	local function SkinDamageMeterWindow(window) --actual window
 		if not window then return end
+		--start hidden
+		_G.UIFrameFadeOut(window.Header, 0, 1, 0)
+		_G.UIFrameFadeOut(window.DamageMeterTypeDropdown, 0, 1, 0)
+		_G.UIFrameFadeOut(window.SessionDropdown, 0, 1, 0)
+		_G.UIFrameFadeOut(window.SettingsDropdown, 0, 1, 0)
 
-		SetMouseOver(window.DamageMeterTypeDropdown,window)
-		SetMouseOver(window.headerBackdrop,window)
-		SetMouseOver(window.SessionDropdown,window)
-		SetMouseOver(window.SettingsDropdown,window)
-		window.DamageMeterTypeDropdown.TypeName:SetParent(window)
-		window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
-		window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	end]]
+
+		--SetMouseOver(window.DamageMeterTypeDropdown,window)
+		SetMouseOver(window.Header,window)
+		--SetMouseOver(window.SessionDropdown,window)
+		--SetMouseOver(window.SettingsDropdown,window)
+		--window.SessionDropdown:SetParent(window.Header)
+		--window.SettingsDropdown:SetParent(window.Header)
+		--window.DamageMeterTypeDropdown:SetParent(window.Header)
+
+		window.Header:SetScript("OnEnter", function()
+			SetMouseOver(window.Header,"enter")
+			SetMouseOver(window.DamageMeterTypeDropdown,"enter")
+			SetMouseOver(window.SessionDropdown,"enter")
+			SetMouseOver(window.SettingsDropdown,"enter")
+		end)
+		window.Header:SetScript("OnLeave", function()
+			SetMouseOver(window.Header,"leave")
+			SetMouseOver(window.DamageMeterTypeDropdown,"leave")
+			SetMouseOver(window.SessionDropdown,"leave")
+			SetMouseOver(window.SettingsDropdown,"leave")
+		end)
+
+		--window.DamageMeterTypeDropdown.TypeName:SetParent(window)
+		--window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
+		--window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	end
 
 	local function SkinDamageMeter(bar)
 		if not bar then return end
@@ -403,10 +425,10 @@ do
 			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
 				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
-				--[[hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+				hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
 					_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 				end)
-				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)]]
+				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 
 				_G.DamageMeter.EltruismHook = true
 
@@ -419,7 +441,7 @@ do
 			end
 
 
-			--[[if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
+			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
 				if not _G["EltruismDamageMeterEmbedPanel"] then
 					embedpanel = _G.CreateFrame("FRAME","EltruismDamageMeterEmbedPanel")
 				else
@@ -515,7 +537,7 @@ do
 
 					RightChatDamageMeterHook = true
 				end
-			end]]
+			end
 		end
 	end
 	S:AddCallbackForAddon('Blizzard_DamageMeter', "EltruismBlizzDamageMeter", ElvUI_EltreumUI.BlizzDamageMeter)
