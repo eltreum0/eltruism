@@ -28,13 +28,9 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 				local function adjustscale()
                     if not _G.InCombatLockdown() then
-                        local elvScale = E.db.scale or UIParent:GetEffectiveScale()
                         local expandedScale = E.db.ElvUI_EltreumUI.skins.expandedtalentscale
-                        _G.PlayerSpellsFrame:SetScale(expandedScale * elvScale)
-
-                        if E.db.ElvUI_EltreumUI.skins.classicarmory and _G.CharacterModelFrame:IsVisible() then
-                            _G.PlayerSpellsFrame:ClearAllPoints()
-                            _G.PlayerSpellsFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPRIGHT", -30 / elvScale, 0)
+                        if expandedScale ~= 1 then
+                            _G.PlayerSpellsFrame:SetScale(expandedScale)
                         end
                     end
                 end
