@@ -368,9 +368,9 @@ do
 		bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.texture))
 
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows then
-			if not bar.StatusBar.backdrop.shadow then
-				bar.StatusBar.backdrop:CreateShadow(1)
-				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.backdrop.shadow)
+			if not bar.StatusBar.shadow then
+				bar.StatusBar:CreateShadow(1)
+				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.gradientBar then
