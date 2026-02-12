@@ -391,7 +391,7 @@ do
 
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows then
 			if not bar.StatusBar.shadow then
-				bar.StatusBar:CreateShadow(1)
+				bar.StatusBar:CreateShadow()
 				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
 			end
 		end
