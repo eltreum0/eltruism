@@ -2178,6 +2178,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 		_G.GameTooltip:HookScript("OnShow", TooltipBorderFix) --when it appears
 		_G.GameTooltip:HookScript("OnEvent", TooltipBorderFix) --for other events
 		_G.GameTooltip:HookScript("OnSizeChanged", TooltipBorderFix) --when comparing
+		_G.GameTooltip:HookScript("OnTooltipCleared", TooltipBorderFix) --on it being cleared
 		tooltipborder.Hooks = true
 	end
 end
