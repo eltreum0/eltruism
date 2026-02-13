@@ -732,3 +732,27 @@ E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function()
 	end
 end)
 E:AddTagInfo("name:eltruism:gradient:targetoftarget", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+
+--reversed gradient name
+E:AddTag("name:eltruism:gradientreverse", "UNIT_NAME_UPDATE", function(unit)
+	local name = UnitName(unit)
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
+		return ElvUI_EltreumUI:GradientName(name, unitClass,true,true)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", true,true)
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", true,true)
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", true,true)
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", true,true)
+			end
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradientreverse", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
