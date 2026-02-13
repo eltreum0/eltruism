@@ -55,7 +55,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		end
 	end
 
-	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
+	--[[if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.unit:match("nameplate") then --unit is always nameplate
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.disableCombatConditions then
 			if UnitIsUnit(unit.unit, "target") then
@@ -68,12 +68,6 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
 			end
 		else
-
-			--check if its not explosive
-			--[[if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
-				return
-			end]]
-
 			if UnitIsUnit(unit.unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
 					unit.Health:SetHeight(heighttable[unit.frameType])
@@ -92,12 +86,12 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				end
 			end
 		end
-	end
+	end]]
 end
 --hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
---[[hooksecurefunc(NP, "NamePlateCallBack", ElvUI_EltreumUI.NameplateCustomOptions) --when they appear after the stylefilter changes in elvui
+hooksecurefunc(NP, "NamePlateCallBack", ElvUI_EltreumUI.NameplateCustomOptions) --when they appear after the stylefilter changes in elvui
 hooksecurefunc(NP, "Update_TargetIndicator", ElvUI_EltreumUI.NameplateCustomOptions)
 hooksecurefunc(NP, "Construct_Highlight", ElvUI_EltreumUI.NameplateCustomOptions)
 hooksecurefunc(NP, "ScalePlate", ElvUI_EltreumUI.NameplateCustomOptions)
-hooksecurefunc(NP, "UpdatePlate", ElvUI_EltreumUI.NameplateCustomOptions)]]
+hooksecurefunc(NP, "UpdatePlate", ElvUI_EltreumUI.NameplateCustomOptions)
 --UNIT_FLAGS might work, as might "UNIT_THREAT_LIST_UPDATE", but linking to the function is the issue
