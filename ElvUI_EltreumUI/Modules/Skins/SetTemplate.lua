@@ -308,6 +308,7 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 	if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
 	if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 	if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
+	if (frame:GetParent() and frame:GetParent().VisitHouseButton) then return end
 	if not frame.EltruismBackground then
 		frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
 		frame.eltruismbgtexture:SetParent(frame)
