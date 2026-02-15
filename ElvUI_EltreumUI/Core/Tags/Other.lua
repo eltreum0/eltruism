@@ -343,13 +343,31 @@ E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", functio
 end)
 E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays the number of the group for the first member of that group, \nraid sorting can break this tag making it show up on other members."])
 
+--from oUF
+local GenerateTextColorCode = _G.C_ColorUtil and _G.C_ColorUtil.GenerateTextColorCode
+local function Hex(r, g, b)
+	if not r or type(r) == 'string' then -- wtf?
+		return '|cffFFFFFF'
+	elseif type(r) == 'table' then
+		if E.Retail then
+			return '|c' .. GenerateTextColorCode(r)
+		elseif(r.r) then
+			r, g, b = r.r, r.g, r.b
+		else
+			r, g, b = unpack(r)
+		end
+	end
+	return _G.format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+end
+
 --Class color but only for players, from elvui but without the npc stuff
 E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		local cs = _G.ElvUF.colors.class[unitClass]
-		return (cs and E:RGBToHex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
+		if not cs then return end
+		return cs and Hex(cs) or '|cFFcccccc'
 	end
 end)
 E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Returns class color only for players"])
