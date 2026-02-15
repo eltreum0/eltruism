@@ -263,6 +263,7 @@ P.ElvUI_EltreumUI = {
 			embedhidden = false,
 			embedhideooc = true,
 			embedDelay = 1,
+			mouseOverTop = true,
 			--gradientName = true,
 		},
 		bugsack = false,
