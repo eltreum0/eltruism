@@ -10,7 +10,7 @@ local Enum = _G.Enum
 local gsub = _G.gsub
 local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
 local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
-local Chat_ShouldColorChatByClass = (_G.ChatFrameUtil and _G.ChatFrameUtil.ShouldColorChatByClass) or _G.Chat_ShouldColorChatByClass
+local ShouldColorChatByClass = (_G.ChatFrameUtil and _G.ChatFrameUtil.ShouldColorChatByClass) or _G.Chat_ShouldColorChatByClass
 local IsRecentAllyByGUID = _G.C_RecentAllies and _G.C_RecentAllies.IsRecentAllyByGUID
 local RECENTALLY_ATLAS = '|A:friendslist-recentallies-yellow:%s:%s:0:0|a '
 local RECENTALLY_SMALL = format(RECENTALLY_ATLAS, 11, 11)
@@ -231,9 +231,9 @@ end
 
 --Add class icons next to player names in chat
 function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
-	if E:IsSecretValue(arg12) then -- guid is blocked so use uncached
+	if E:IsSecretValue(arg12) and not ElvUI_EltreumUI:RetailInstanceSecret(arg12) then -- guid is blocked so use uncached
 		local _, englishClass = _G.GetPlayerInfoByGUID(arg12)
-		local classColor = Chat_ShouldColorChatByClass(englishClass)
+		local classColor = ShouldColorChatByClass(englishClass)
 		return (classColor and classColor:WrapTextInColorCode(arg2)) or arg2
 	elseif E:IsSecretValue(arg2) then -- when the name is secret
 		return arg2
@@ -254,7 +254,7 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 	local name = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
 
 	local info = name and arg12 and _G.ChatTypeInfo[chatType]
-	if info and Chat_ShouldColorChatByClass(info) then
+	if info and ShouldColorChatByClass(info) then
 		local data = CH:GetPlayerInfoByGUID(arg12)
 		local classColor = data and data.classColor
 		if classColor and data.englishClass then
