@@ -419,7 +419,9 @@ do
 		_G.UIFrameFadeOut(window.SettingsDropdown, 0, 1, 0)
 
 		SetMouseOver(window.Header,window)
-		SetupEnterLeave(window)
+		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
+			SetupEnterLeave(window)
+		end
 
 		--window.DamageMeterTypeDropdown.TypeName:SetParent(window)
 		--window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)

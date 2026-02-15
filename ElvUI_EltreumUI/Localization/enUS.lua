@@ -1745,3 +1745,4 @@ L["Uses the Default Color for every Unit."] = true
 L["X offset"] = true
 L["Y offset"] = true
 L["Zoom"] = true
+L["Mouse Over Menu"] = true
