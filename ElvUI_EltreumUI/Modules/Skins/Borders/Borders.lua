@@ -2132,15 +2132,20 @@ function ElvUI_EltreumUI:TooltipBorder()
 						unittp = "target"
 					end
 				end
-				local reaction = UnitReaction(unittp, "player")
-				if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
-					local _, classunit = UnitClass(unittp)
-					local valuecolors = E:ClassColor(classunit, true)
-					tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+				if ElvUI_EltreumUI:RetailInstanceSecret(unittp) then --its a secret so consider it always an enemy
+					local reactionColor = _G.ElvUF.colors.reaction[2]
+					tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 				else
-					local reactionColor = _G.ElvUF.colors.reaction[reaction]
-					if reactionColor then
-						tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
+					if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
+						local _, classunit = UnitClass(unittp)
+						local valuecolors = E:ClassColor(classunit, true)
+						tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+					else
+						local reaction = UnitReaction(unittp, "player")
+						local reactionColor = _G.ElvUF.colors.reaction[reaction]
+						if reactionColor then
+							tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
+						end
 					end
 				end
 			elseif _G.GameTooltip:GetItem() then --has item
