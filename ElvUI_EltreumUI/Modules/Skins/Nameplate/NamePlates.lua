@@ -24,7 +24,7 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local TimeSinceLastUpdate = 0
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
-local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
+--local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
 local UnitIsUnit = _G.UnitIsUnit
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
@@ -752,7 +752,8 @@ end
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	local nameplateShowOnlyNames = tostring(GetCVar('nameplateShowOnlyNames'))
+	local nameplateShowOnlyNames = (E.Retail and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
+	local showOnlyNamesString = (E.Retail and  "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
 	local nameplateShowFriends = tostring(GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
@@ -787,7 +788,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
 				if nameplateShowOnlyNames == "0" then
-					SetCVar("nameplateShowOnlyNames", 1)
+					SetCVar(showOnlyNamesString, 1)
 				end
 			end
 		end
@@ -817,7 +818,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		end
 		if E.db.ElvUI_EltreumUI.nameplates.customizeFriendlySize then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
-				SetCVar("nameplateShowOnlyNames", 0)
+				SetCVar(showOnlyNamesString, 0)
 				C_NamePlate.SetNamePlateFriendlySize(E.db.ElvUI_EltreumUI.nameplates.customizeFriendlySizeX, 25)
 			end
 		end
