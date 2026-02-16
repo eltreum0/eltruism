@@ -24,7 +24,7 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local TimeSinceLastUpdate = 0
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
-local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
+--local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
 local UnitIsUnit = _G.UnitIsUnit
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
@@ -752,7 +752,7 @@ end
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	local nameplateShowOnlyNames = E.Retail and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits')) or tostring(GetCVar('nameplateShowOnlyNames'))
+	local nameplateShowOnlyNames = (E.Retail and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
 	local showOnlyNamesString = (E.Retail and  "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
 	local nameplateShowFriends = tostring(GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
