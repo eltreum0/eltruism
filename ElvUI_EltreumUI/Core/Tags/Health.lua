@@ -82,11 +82,11 @@ E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION P
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-	local perc = cur / maxhp * 100
 	local textformat
 	if E.Retail then
 		textformat = E:AbbreviateNumbers(cur, E.Abbreviate.short)
 	else
+		local perc = cur / maxhp * 100
 		textformat = format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
 	end
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
