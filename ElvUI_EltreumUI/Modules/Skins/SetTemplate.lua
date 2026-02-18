@@ -494,7 +494,7 @@ local function EltruisAce3(frame)
 					end
 				end
 			end
-			if frame.name and frame.name.SetText then
+			if not ElvUI_EltreumUI:RetailInstanceSecret(frame.name) and frame.name and frame.name.SetText then
 				if frame.objectType and frame.objectType == "item" then
 					return
 				end
