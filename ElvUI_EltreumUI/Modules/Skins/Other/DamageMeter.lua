@@ -418,8 +418,8 @@ do
 		_G.UIFrameFadeOut(window.SessionDropdown, 0, 1, 0)
 		_G.UIFrameFadeOut(window.SettingsDropdown, 0, 1, 0)
 
-		SetMouseOver(window.Header,window)
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
+			SetMouseOver(window.Header,window)
 			SetupEnterLeave(window)
 		end
 
