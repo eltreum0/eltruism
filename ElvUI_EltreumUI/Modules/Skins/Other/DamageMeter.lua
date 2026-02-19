@@ -419,10 +419,7 @@ do
 		_G.UIFrameFadeOut(window.SettingsDropdown, 0, 1, 0)
 
 		SetMouseOver(window.Header,window)
-		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
-			SetupEnterLeave(window)
-		end
-
+		SetupEnterLeave(window)
 		--window.DamageMeterTypeDropdown.TypeName:SetParent(window)
 		--window.DamageMeterTypeDropdown.TypeName:SetTextColor(1, 1, 1, 1)
 		--window.DamageMeterTypeDropdown.TypeName:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -437,13 +434,21 @@ do
 			local numberOfWindows = _G.DamageMeter:GetCurrentSessionWindowCount() or 0 --setup for embed, and maybe refresh if that didnt throw errors
 
 			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
+
+				--acidweb's fix
+				_G.DamageMeter:SetClampedToScreen(false)
+				_G.DamageMeter:SetClampRectInsets(-2000, -2000, -2000, -2000)
+				_G.DamageMeterSessionWindow1:SetClampedToScreen(false)
+				_G.DamageMeterSessionWindow1:SetClampRectInsets(-2000, -2000, -2000, -2000)
+
 				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
-				hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
+					hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+						_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
+					end)
 					_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
-				end)
-				_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
-
+				end
 				_G.DamageMeter.EltruismHook = true
 
 				--if no refresh then turns out the specicons are nil because it seems they are loaded later

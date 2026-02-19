@@ -128,7 +128,7 @@ WorldTextMinSize 6
 				return true
 			end
 		end, function(_, value)
-			if value == true then
+			if value then
 				SetCVar('SoftTargetInteract', 3)
 				SetCVar('SoftTargetIconInteract', 1)
 				SetCVar('SoftTargetIconGameObject', 1)
@@ -166,7 +166,7 @@ WorldTextMinSize 6
 				return true
 			end
 		end, function(_, value)
-			if value == true then
+			if value then
 				SetCVar('clampTargetNameplateToScreen', 1)
 				E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 1
 			else
@@ -184,7 +184,7 @@ WorldTextMinSize 6
 			return true
 		end
 	end, function(_, value)
-		if value == true then
+		if value then
 			SetCVar('showInGameNavigation', 1)
 			E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 1
 		else
@@ -202,7 +202,7 @@ WorldTextMinSize 6
 				return true
 			end
 		end, function(_, value)
-			if value == true then
+			if value then
 				SetCVar('ResampleAlwaysSharpen', 1)
 			else
 				SetCVar('ResampleAlwaysSharpen', 0)
@@ -226,7 +226,7 @@ WorldTextMinSize 6
 				return true
 			end
 		end, function(_, value)
-			if value == true then
+			if value then
 				SetCVar('DynamicRenderScale', 1)
 			else
 				SetCVar('DynamicRenderScale', 0)
@@ -245,7 +245,7 @@ WorldTextMinSize 6
 				return false
 			end
 		end, function(_, value)
-			if value == true then
+			if value then
 				SetCVar('worldPreloadNonCritical', 0)
 			else
 				SetCVar('worldPreloadNonCritical', 2)
