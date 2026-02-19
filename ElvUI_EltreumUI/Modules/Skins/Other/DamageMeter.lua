@@ -437,6 +437,13 @@ do
 			local numberOfWindows = _G.DamageMeter:GetCurrentSessionWindowCount() or 0 --setup for embed, and maybe refresh if that didnt throw errors
 
 			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
+
+				--acidweb's fix
+				_G.DamageMeter:SetClampedToScreen(false)
+				_G.DamageMeter:SetClampRectInsets(-2000, -2000, -2000, -2000)
+				_G.DamageMeterSessionWindow1:SetClampedToScreen(false)
+				_G.DamageMeterSessionWindow1:SetClampRectInsets(-2000, -2000, -2000, -2000)
+
 				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
 
 				hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
