@@ -144,7 +144,7 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 	end
 	local textformat2
 	if E.Retail then
-		textformat2 = format('%s - %.1f%%',UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
+		textformat2 = format('%.1f%% - %s',UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
 	else
 		textformat2 = E:GetFormattedText('CURRENT_PERCENT', maxhp, cur, nil, true)
 	end
