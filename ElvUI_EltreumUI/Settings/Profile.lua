@@ -1661,6 +1661,7 @@ P.ElvUI_EltreumUI = {
 				g = -0.2,
 				b = -0.2,
 			},
+			mirrorTimers = true,
 
 			enableplayer = true,
 			enabletarget = true,

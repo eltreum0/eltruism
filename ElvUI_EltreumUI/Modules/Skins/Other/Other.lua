@@ -16,7 +16,7 @@ local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName
 
 --gradient loot roll/mirror/breath/feigndeath
 function ElvUI_EltreumUI:GradientMirrorLoot()
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.mirrorTimers then
 
 		--breath/mirror
 		if not E.Retail then
