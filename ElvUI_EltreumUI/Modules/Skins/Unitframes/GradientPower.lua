@@ -28,11 +28,11 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 		unit = "player"
 	end
 
-	if UnitExists(unit) and powertype then
+	if UnitExists(unit) then
 		--print(powertype,unit)
 		local _, powertype = UnitPowerType(unit)
 		local unitframe = _G["ElvUF_"..name]
-		if unitframe and unitframe.Power then
+		if unitframe and unitframe.Power and powertype then
 			if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
 				if unitframe.Power.backdrop.Center then
 					unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
