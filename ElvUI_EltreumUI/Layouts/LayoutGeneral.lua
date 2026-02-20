@@ -2008,7 +2008,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["panels"]["EltruismTime"][1] = "Time"
 	E.db["datatexts"]["panels"]["EltruismTime"]["enable"] = true
 
-	E.db["datatexts"]["panels"]["EltruismDataText"]["battleground"] = true
+	--E.db["datatexts"]["panels"]["EltruismDataText"]["battleground"] = true
 	--[[E.db["datatexts"]["battlePanel"]["EltruismDataText"][1] = "PvP: Kills"
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][2] = "PvP: Deaths"
 	if E.Retail then
