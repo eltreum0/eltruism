@@ -150,11 +150,15 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 	end
 	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-			if maxhp == 0 then maxhp = 1 end
-			if cur == maxhp then
-				return textformat
-			else
+			if E.Retail then
 				return textformat2
+			else
+				if maxhp == 0 then maxhp = 1 end
+				if cur == maxhp then
+					return textformat
+				else
+					return textformat2
+				end
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
@@ -165,12 +169,16 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 		end
 	else
 		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			if not maxhp then maxhp = 1 end
-			if maxhp == 0 then maxhp = 1 end
-			if cur == maxhp then
-				return textformat
-			else
+			if E.Retail then
 				return textformat2
+			else
+				if not maxhp then maxhp = 1 end
+				if maxhp == 0 then maxhp = 1 end
+				if cur == maxhp then
+					return textformat
+				else
+					return textformat2
+				end
 			end
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
