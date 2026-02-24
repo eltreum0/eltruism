@@ -672,7 +672,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = fontvalue
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = fontvalue
 		E.db["WT"]["maps"]["eventTracker"]["font"]["name"] = fontvalue
-		E.db["WT"]["maps"]["whoClicked"]["font"]["name"] = fontvalue
+		--E.db["WT"]["maps"]["whoClicked"]["font"]["name"] = fontvalue
 		E.db["WT"]["quest"]["switchButtons"]["font"]["name"] = fontvalue
 		E.db["WT"]["social"]["friendList"]["infoFont"]["name"] = fontvalue
 		E.db["WT"]["social"]["friendList"]["nameFont"]["name"] = fontvalue
