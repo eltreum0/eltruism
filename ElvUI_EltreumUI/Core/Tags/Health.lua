@@ -310,12 +310,17 @@ E:AddTagInfo("eltruism:perhpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["
 E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
-	local min, max = UnitHealth(unit), UnitHealthMax(unit)
+	local isTarget
+	if not ElvUI_EltreumUI:RetailInstanceSecret(unit) then
+		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+	else
+		isTarget = false
+	end
 	local value
 	if E.Retail then
 		value = format('%s - %.1f%%', AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
 	else
+		local min, max = UnitHealth(unit), UnitHealthMax(unit)
 		value = E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
 	end
 	local lengthOK
@@ -402,7 +407,12 @@ E:AddTagInfo("eltruism:hpstatus:gradient", ElvUI_EltreumUI.Name.." "..L["Health"
 E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+	local isTarget
+	if not ElvUI_EltreumUI:RetailInstanceSecret(unit) then
+		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+	else
+		isTarget = false
+	end
 	local value
 	if E.Retail then
 		--value = E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
@@ -493,7 +503,12 @@ E:AddTagInfo("eltruism:hpstatusnopc:gradient", ElvUI_EltreumUI.Name.." "..L["Hea
 E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+	local isTarget
+	if not ElvUI_EltreumUI:RetailInstanceSecret(unit) then
+		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+	else
+		isTarget = false
+	end
 	local value = tostring(UnitHealth(unit))
 	local lengthOK = false
 	if not E.Retail then
@@ -579,7 +594,12 @@ if not E.Retail then
 	E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local deficit = maxhp - cur
-		local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+		local isTarget
+		if not ElvUI_EltreumUI:RetailInstanceSecret(unit) then
+			isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+		else
+			isTarget = false
+		end
 		local value = "-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', cur, maxhp)
 		if deficit > 0 and cur > 0 then
 			if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
@@ -608,7 +628,12 @@ if not E.Retail then
 	E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local deficit = maxhp - cur
-		local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+		local isTarget
+		if not ElvUI_EltreumUI:RetailInstanceSecret(unit) then
+			isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+		else
+			isTarget = false
+		end
 		if deficit > 0 and cur > 0 then
 			local value = E:GetFormattedText('PERCENT', cur, maxhp)
 			if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
@@ -636,7 +661,12 @@ if not E.Retail then
 	--health:current-max-percent:shortvalue but gradient
 	E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET', function(unit)
 		local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-		local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+		local isTarget
+		if not ElvUI_EltreumUI:RetailInstanceSecret(unit) then
+			isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+		else
+			isTarget = false
+		end
 		if status then
 			return status
 		else
