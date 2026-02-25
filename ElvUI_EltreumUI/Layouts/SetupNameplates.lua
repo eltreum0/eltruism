@@ -858,7 +858,7 @@ end
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["priority"] = 15
 		E.global["nameplates"]["filters"]["EltreumWorldCombatFriendly"]["triggers"]["instanceType"]["none"] = true
 
-		--E:StaggeredUpdateAll()
+		E:StaggeredUpdateAll()
 		E:UpdateNamePlates()
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters were set."])
 	end

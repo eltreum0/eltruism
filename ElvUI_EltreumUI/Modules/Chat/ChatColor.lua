@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:TransparentChat()
 	E:UpdateLayout()
 	E:UpdateDataBars()
 	E:UpdateDataTexts()
-	--E:StaggeredUpdateAll()
+	E:StaggeredUpdateAll()
 
 	if _G["EltruismRightChatShadowFrame"] then
 		_G["EltruismRightChatShadowFrame"]:Hide()
@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:DarkChat()
 	E:UpdateLayout()
 	E:UpdateDataBars()
 	E:UpdateDataTexts()
-	--E:StaggeredUpdateAll()
+	E:StaggeredUpdateAll()
 
 	if _G["EltruismRightChatShadowFrame"] then
 		_G["EltruismRightChatShadowFrame"]:Show()
