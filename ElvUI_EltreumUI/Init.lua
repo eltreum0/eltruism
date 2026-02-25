@@ -271,7 +271,7 @@ function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED(_,unit)
 	if unit == "player" then
 		ElvUI_EltreumUI:NameplateRestedOverlaps()
 		ElvUI_EltreumUI:AFKmusic()
-		if _G.UnitIsAFK("player") then
+		if not ElvUI_EltreumUI:RetailInstanceSecret(_G.UnitIsAFK("player")) and _G.UnitIsAFK("player") then
 			if E.db.general.afk then
 				ElvUI_EltreumUI:AFKLogo()
 			end
