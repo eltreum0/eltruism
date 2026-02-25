@@ -28,9 +28,10 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 		unit = "player"
 	end
 
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) and ElvUI_EltreumUI:IsThisASafeSecret(UnitPowerType(unit),true) and UnitExists(unit) then
+	if E.NotSecretUnit(unit) and UnitExists(unit) then
 		--print(powertype,unit)
 		local _, powertype = UnitPowerType(unit)
+
 		local unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Power and powertype then
 			if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
