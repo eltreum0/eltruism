@@ -207,17 +207,21 @@ end
 
 --copy of elvui abbrev
 function ElvUI_EltreumUI:Abbrev(name)
-	local letters, lastWord = '', _G.strmatch(name, '.+%s(.+)$')
-	if lastWord then
-		for word in _G.gmatch(name, '.-%s') do
-			local firstLetter = string.utf8sub(_G.gsub(word, '^[%s%p]*', ''), 1, 1)
-			if firstLetter ~= string.utf8lower(firstLetter) then
-				letters = format('%s%s. ', letters, firstLetter)
+	if ElvUI_EltreumUI:RetailInstanceSecret(name) then
+		return name
+	else
+		local letters, lastWord = '', _G.strmatch(name, '.+%s(.+)$')
+		if lastWord then
+			for word in _G.gmatch(name, '.-%s') do
+				local firstLetter = string.utf8sub(_G.gsub(word, '^[%s%p]*', ''), 1, 1)
+				if firstLetter ~= string.utf8lower(firstLetter) then
+					letters = format('%s%s. ', letters, firstLetter)
+				end
 			end
+			name = format('%s%s', letters, lastWord)
 		end
-		name = format('%s%s', letters, lastWord)
+		return name
 	end
-	return name
 end
 
 local classcolorcast = {
