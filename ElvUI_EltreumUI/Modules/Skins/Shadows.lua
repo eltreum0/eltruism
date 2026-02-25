@@ -981,6 +981,10 @@ function ElvUI_EltreumUI:Shadows()
 							_G.EncounterJournalMonthlyActivitiesTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow)
 						end
+						if _G.EncounterJournal.TutorialsTab and _G.EncounterJournal.TutorialsTab.backdrop and not _G.EncounterJournal.TutorialsTab.backdrop.shadow then
+							_G.EncounterJournal.TutorialsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournal.TutorialsTab.backdrop.shadow)
+						end
 					end
 					if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then
 						if not _G.WeeklyRewardsFrame.shadow then
