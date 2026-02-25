@@ -97,7 +97,7 @@ function ElvUI_EltreumUI:BlizzardAltPower()
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower then
 			if E.db.general.altPowerBar.statusBarColorGradient then
 				local power, maxPower = B.AltPowerBar.powerValue or 0, B.AltPowerBar.powerMaxValue or 0
-				if ElvUI_EltreumUI:RetailInstanceSecret(power) then return end
+				if ElvUI_EltreumUI:IsThisASafeSecret(power) then return end
 				local value = (maxPower > 0 and power / maxPower) or 0
 				local r, g, b = E:ColorGradient(value,0.8,0,0, 0.8,0.8,0, 0,0.8,0)
 				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})

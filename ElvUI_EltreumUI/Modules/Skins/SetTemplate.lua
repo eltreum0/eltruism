@@ -351,7 +351,7 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 			frame.eltruismbgtexture:SetTexture("")
 		end
 
-		if _G.canaccessvalue(frame) and frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue --has secret
+		if ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue --has secret
 			if frame.icon and frame.backdrop then frame.backdrop:SetFrameLevel(frame:GetFrameLevel()+2) end
 		end
 
@@ -494,7 +494,7 @@ local function EltruisAce3(frame)
 					end
 				end
 			end
-			if not ElvUI_EltreumUI:RetailInstanceSecret(frame.name) and frame.name and frame.name.SetText then
+			if not ElvUI_EltreumUI:IsThisASafeSecret(frame.name) and frame.name and frame.name.SetText then
 				if frame.objectType and frame.objectType == "item" then
 					return
 				end
@@ -587,7 +587,7 @@ local function EltruismShadow(frame,template)
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
-			if not ElvUI_EltreumUI:RetailInstanceSecret(nil,true) then
+			if not ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then
 				if frame:GetDebugName():match("PetBattleFrame") then
 					if not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

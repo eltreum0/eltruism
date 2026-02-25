@@ -219,9 +219,9 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 end
 
 function ElvUI_EltreumUI:UNIT_DIED(_,guid)
-	if guid and not ElvUI_EltreumUI:RetailInstanceSecret(guid) then
+	if guid and not ElvUI_EltreumUI:IsThisASafeSecret(guid) then
 		local UnitToken = _G.UnitTokenFromGUID(guid) --use api from 10.0 for getting token from guid
-		if not ElvUI_EltreumUI:RetailInstanceSecret(UnitToken) then
+		if not ElvUI_EltreumUI:IsThisASafeSecret(UnitToken) then
 			if (UnitToken == "player") or (UnitToken == "pet") or _G.UnitInParty(UnitToken) or _G.UnitInRaid(UnitToken) then
 				ElvUI_EltreumUI:RaidDeath()
 			end
@@ -271,7 +271,7 @@ function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED(_,unit)
 	if unit == "player" then
 		ElvUI_EltreumUI:NameplateRestedOverlaps()
 		ElvUI_EltreumUI:AFKmusic()
-		if not ElvUI_EltreumUI:RetailInstanceSecret(_G.UnitIsAFK("player")) and _G.UnitIsAFK("player") then
+		if not ElvUI_EltreumUI:IsThisASafeSecret(_G.UnitIsAFK("player")) and _G.UnitIsAFK("player") then
 			if E.db.general.afk then
 				ElvUI_EltreumUI:AFKLogo()
 			end

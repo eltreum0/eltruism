@@ -207,7 +207,7 @@ end
 
 --copy of elvui abbrev
 function ElvUI_EltreumUI:Abbrev(name)
-	if ElvUI_EltreumUI:RetailInstanceSecret(name) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name) then
 		return name
 	else
 		local letters, lastWord = '', _G.strmatch(name, '.+%s(.+)$')
@@ -887,7 +887,7 @@ end
 do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
 	function ElvUI_EltreumUI:ShortenString(text, length, cut,firstname)
-		if ElvUI_EltreumUI:RetailInstanceSecret(text) then
+		if ElvUI_EltreumUI:IsThisASafeSecret(text) then
 			return text
 		else
 			if text and string.len(text) > length then
@@ -1036,7 +1036,7 @@ else
 	_G.ColorPickerWheel:AddMaskTexture(bettermask)
 end
 
-function ElvUI_EltreumUI:RetailInstanceSecret(value,hasValue)
+function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue)
 	if E.Retail then
 		if hasValue then
 			if _G.canaccessvalue(value) then --new api to check if value is secret

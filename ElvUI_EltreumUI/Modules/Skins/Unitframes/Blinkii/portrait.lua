@@ -237,7 +237,7 @@ local function UpdateExtraTexture(portraitFrame, classification)
 end
 
 local function GetNPCID(unit)
-	if ElvUI_EltreumUI:RetailInstanceSecret(nil,true) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then
 		return " "
 	else
 		local guid = UnitGUID(unit)

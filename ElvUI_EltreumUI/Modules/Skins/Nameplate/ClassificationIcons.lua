@@ -2187,7 +2187,7 @@ local unitisnotboss = {
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 	local red,green,blue
 	local icon
-	if ElvUI_EltreumUI:RetailInstanceSecret(nil,true) then return end
+	if ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then return end
 	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	if unitisnotboss[classification] then
 		if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then

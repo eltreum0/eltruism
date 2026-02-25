@@ -379,7 +379,7 @@ end
 --sets name with gradient colors using elvui
 function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit)
 	if not name then return end
-	if ElvUI_EltreumUI:RetailInstanceSecret(nil,true) and isUnit then
+	if ElvUI_EltreumUI:IsThisASafeSecret(nil,true) and isUnit then
 		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
@@ -405,7 +405,7 @@ end
 --sets name with default gradient colors using elvui
 function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget,isUnit)
 	if not name then return end
-	if ElvUI_EltreumUI:RetailInstanceSecret(nil,true) and isUnit then
+	if ElvUI_EltreumUI:IsThisASafeSecret(nil,true) and isUnit then
 		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
