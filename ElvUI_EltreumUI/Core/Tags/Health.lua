@@ -323,7 +323,7 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 		local min, max = UnitHealth(unit), UnitHealthMax(unit)
 		value = E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
 	end
-	local lengthOK
+	local lengthOK = false
 	if not E.Retail then
 		lengthOK = string.len(value) > 2 and true or false
 	end
