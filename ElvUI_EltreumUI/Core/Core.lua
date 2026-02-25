@@ -1028,10 +1028,10 @@ else
 	_G.ColorPickerWheel:AddMaskTexture(bettermask)
 end
 
-function ElvUI_EltreumUI:RetailInstanceSecret(value)
+function ElvUI_EltreumUI:RetailInstanceSecret(value,hasValue)
 	local _, instanceType = _G.IsInInstance()
 	if E.Retail then
-		if value then
+		if hasValue then
 			if _G.canaccessvalue(value) then --new api to check if value is secret
 				return false
 			else

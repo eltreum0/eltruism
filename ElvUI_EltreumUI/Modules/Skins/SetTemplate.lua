@@ -587,7 +587,7 @@ local function EltruismShadow(frame,template)
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
-			if not ElvUI_EltreumUI:RetailInstanceSecret() then
+			if not ElvUI_EltreumUI:RetailInstanceSecret(nil,true) then
 				if frame:GetDebugName():match("PetBattleFrame") then
 					if not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

@@ -61,7 +61,7 @@ local musicSettingLoadingIn = GetCVar('Sound_EnableMusic')
 local musicSetting = musicSettingLoadingIn
 function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable then
-		if UnitIsAFK("player") then
+		if not ElvUI_EltreumUI:RetailInstanceSecret(UnitIsAFK("player")) and UnitIsAFK("player") then --huh
 			musicSetting = tonumber(GetCVar('Sound_EnableMusic'))
 			SetCVar("Sound_EnableMusic", 1)
 			if E.Retail then
