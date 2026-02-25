@@ -1036,13 +1036,20 @@ else
 	_G.ColorPickerWheel:AddMaskTexture(bettermask)
 end
 
-function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue)
+function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
 	if E.Retail then
 		if hasValue then
 			if _G.canaccessvalue(value) then --new api to check if value is secret
 				return true
 			else
 				return false
+			end
+		elseif isBG then
+			local _, instanceType = _G.IsInInstance()
+			if instanceType == "pvp" or instanceType == "arena" then
+				return false
+			else
+				return true
 			end
 		else
 			local _, instanceType = _G.IsInInstance()
