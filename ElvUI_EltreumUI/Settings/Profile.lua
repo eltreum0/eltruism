@@ -525,6 +525,7 @@ P.ElvUI_EltreumUI = {
 			hidedebuffsnontarget = false,
 			hideaurasnoncombat = false,
 			npglow = false,
+			raretexture = true,
 		},
 		nptextureversion = "V1",
 		nameplatelevel = false,
