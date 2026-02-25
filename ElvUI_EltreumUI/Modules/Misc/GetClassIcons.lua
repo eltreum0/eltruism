@@ -639,6 +639,8 @@ local UGGGREY = {
 
 --return icons for other functions
 local ScreenWidth = GetScreenWidth()
+local escapeSequence = E.Retail and ":16:16:0:0|t" or ":0:0:0:0|t"
+local escapeSequence2 = E.Retail and ":16:16:0:0:64:64:64:0:0:64|t" or ":0:0:0:0:64:64:64:0:0:64|t"
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring)
 	if ScreenWidth < 2000 then
 		if resolution == "32" then
@@ -676,55 +678,55 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 	else
 		if not invert then
 			if icon == "RELEAF" then
-				return "|T"..classIconsReleaf[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..classIconsReleaf[resolution][unitclass]..escapeSequence
 			elseif icon == "OUTLINE" then
-				return "|T"..classIconsOutline[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..classIconsOutline[resolution][unitclass]..escapeSequence
 			elseif icon == "BLIZZARD" then
-				return "|T"..classIconsBlizzard[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..classIconsBlizzard[resolution][unitclass]..escapeSequence
 			elseif icon == "BORDER" then
-				return "|T"..classIconsBorder[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..classIconsBorder[resolution][unitclass]..escapeSequence
 			elseif icon == "SHADOW" then
-				return "|T"..classIconsShadow[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..classIconsShadow[resolution][unitclass]..escapeSequence
 			elseif icon == "ORIGINAL" then
-				return "|T"..OriginalIcons[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..OriginalIcons[resolution][unitclass]..escapeSequence
 			elseif icon == "GRADIENT" then
-				return "|T"..gradient[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..gradient[resolution][unitclass]..escapeSequence
 			elseif icon == "SYMBOLS" then
-				return "|T"..classSymbols[unitclass]..":0:0:0:0|t"
+				return "|T"..classSymbols[unitclass]..escapeSequence
 			elseif icon == "BW" then
-				return "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..blackandwhite[resolution][unitclass]..escapeSequence
 			elseif icon == "UGG" then
-				return "|T"..UGG[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..UGG[resolution][unitclass]..escapeSequence
 			elseif icon == "UGGGREY" then
-				return "|T"..UGGGREY[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..UGGGREY[resolution][unitclass]..escapeSequence
 			elseif icon == "CUSTOM" then
-				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0|t"
+				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..escapeSequence
 			end
 		else
 			if icon == "RELEAF" then
-				return "|T"..classIconsReleaf[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..classIconsReleaf[resolution][unitclass]..escapeSequence2
 			elseif icon == "OUTLINE" then
-				return "|T"..classIconsOutline[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..classIconsOutline[resolution][unitclass]..escapeSequence2
 			elseif icon == "BLIZZARD" then
-				return "|T"..classIconsBlizzard[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..classIconsBlizzard[resolution][unitclass]..escapeSequence2
 			elseif icon == "BORDER" then
-				return "|T"..classIconsBorder[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..classIconsBorder[resolution][unitclass]..escapeSequence2
 			elseif icon == "SHADOW" then
-				return "|T"..classIconsShadow[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..classIconsShadow[resolution][unitclass]..escapeSequence2
 			elseif icon == "ORIGINAL" then
-				return "|T"..OriginalIcons[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..OriginalIcons[resolution][unitclass]..escapeSequence2
 			elseif icon == "GRADIENT" then
-				return "|T"..gradient[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..gradient[resolution][unitclass]..escapeSequence2
 			elseif icon == "SYMBOLS" then
-				return "|T"..classSymbols[unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..classSymbols[unitclass]..escapeSequence2
 			elseif icon == "BW" then
-				return "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..blackandwhite[resolution][unitclass]..escapeSequence2
 			elseif icon == "UGG" then
-				return "|T"..UGG[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..UGG[resolution][unitclass]..escapeSequence2
 			elseif icon == "UGGGREY" then
-				return "|T"..UGGGREY[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..UGGGREY[resolution][unitclass]..escapeSequence2
 			elseif icon == "CUSTOM" then
-				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..escapeSequence2
 			end
 		end
 	end
