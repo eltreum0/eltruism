@@ -494,7 +494,7 @@ local function EltruisAce3(frame)
 					end
 				end
 			end
-			if not ElvUI_EltreumUI:IsThisASafeSecret(frame.name) and frame.name and frame.name.SetText then
+			if ElvUI_EltreumUI:IsThisASafeSecret(frame.name,true) and frame.name and frame.name.SetText then
 				if frame.objectType and frame.objectType == "item" then
 					return
 				end
@@ -587,7 +587,7 @@ local function EltruismShadow(frame,template)
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
-			if not ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then
+			if ElvUI_EltreumUI:IsThisASafeSecret(frame,true) then
 				if frame:GetDebugName():match("PetBattleFrame") then
 					if not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

@@ -2106,10 +2106,10 @@ function ElvUI_EltreumUI:TooltipBorder()
 	if not tooltipborder.Hooks then
 		local function FixSize()
 			ttx,tty = _G.GameTooltip:GetSize()
-			if ElvUI_EltreumUI:IsThisASafeSecret(ttx) then return end
+			if not ElvUI_EltreumUI:IsThisASafeSecret(ttx,true) then return end
 			if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
 				tthpy = _G.select(2,_G.GameTooltipStatusBar:GetSize())
-				if ElvUI_EltreumUI:IsThisASafeSecret(tthpy) then
+				if not ElvUI_EltreumUI:IsThisASafeSecret(tthpy,true) then
 					tooltipborder:SetOutside(_G.GameTooltip)
 				else
 					if E.db.tooltip.healthBar.statusPosition == "TOP" then
@@ -2135,7 +2135,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 						unittp = "target"
 					end
 				end
-				if ElvUI_EltreumUI:IsThisASafeSecret(unittp) then --its a secret so consider it always an enemy
+				if not ElvUI_EltreumUI:IsThisASafeSecret(unittp,true) then --its a secret so consider it always an enemy
 					local reactionColor = _G.ElvUF.colors.reaction[2]
 					tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 				else

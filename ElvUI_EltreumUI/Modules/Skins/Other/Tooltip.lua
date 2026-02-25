@@ -65,8 +65,8 @@ local function SetTooltipGradient(unit)
 	if not unit then return end
 	if not E.private.tooltip.enable then return end
 	if E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-		if ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then return end
-		if ElvUI_EltreumUI:IsThisASafeSecret(unit) or ElvUI_EltreumUI:IsThisASafeSecret(UnitClass(unit)) then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret(unit,true) or not ElvUI_EltreumUI:IsThisASafeSecret(UnitClass(unit),true) then return end
 		local _, classunit = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
 		if GameTooltip and GameTooltip:IsForbidden() then return end

@@ -22,7 +22,7 @@ local UnitExists = _G.UnitExists
 --from elvui, modified for gradient
 do
 	local function EltruismGetTitleNPC(unit, custom)
-		if ElvUI_EltreumUI:IsThisASafeSecret(unit) then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then return end
 		if UnitIsPlayer(unit) or (E.Mists or E.TBC or E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		-- similar to TT.GetLevelLine
@@ -77,7 +77,7 @@ end
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		if name and string.len(name) > 16 then
 			name = ElvUI_EltreumUI:ShortenString(name, 16)
 		end
@@ -92,7 +92,7 @@ E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name.." "..L["Names"], 
 E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		if name and string.len(name) > 20 then
 			name = ElvUI_EltreumUI:ShortenString(name, 20)
 		end
@@ -107,7 +107,7 @@ E:AddTagInfo("name:eltruism:abbreviate20", ElvUI_EltreumUI.Name.." "..L["Names"]
 E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		if name and string.len(name) > 10 then
 			name = ElvUI_EltreumUI:ShortenString(name, 10)
 		end
@@ -122,7 +122,7 @@ E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Name
 E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	else
 		isTarget = false
@@ -155,7 +155,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 	if not args then args = 16 end
 	args = tonumber(args)
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
@@ -194,7 +194,7 @@ E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
 	if not namecheck then return end
 	local name = string.upper(namecheck)
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	else
 		isTarget = false
@@ -229,7 +229,7 @@ E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,
 	if not args then args = 16 end
 	args = tonumber(args)
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 		end
@@ -267,7 +267,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 	local name = Translit:Transliterate(targetName)
 	if not name then return end
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		if args then
 			if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
@@ -306,7 +306,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	local targetName = UnitName(unit)
 	local name = targetName
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		name = Translit:Transliterate(targetName)
 		if name and string.len(name) > 16 then
@@ -388,7 +388,7 @@ E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Dis
 E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	else
 		isTarget = false
@@ -418,7 +418,7 @@ E:AddTagInfo("name:eltruism:gradientdefaultcolors", ElvUI_EltreumUI.Name.." "..L
 E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		if name and string.len(name) > 16 then
 			name = ElvUI_EltreumUI:ShortenString(name, 16)
@@ -453,7 +453,7 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 	local namecheck = UnitName(unit)
 	if not namecheck then return end
 	local name = string.upper(namecheck)
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		if not args then args = 16 end
 		args = tonumber(args)
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
@@ -637,7 +637,7 @@ E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_
 	args = tonumber(args)
 	--name = "Mannequin d'entraïnement aux dégäts de zone"
 	local isTarget
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
@@ -678,7 +678,7 @@ E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
 	if not name then return end
 	if not args then args = 16 end
 	args = tonumber(args)
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:Abbrev(name)
 		end
@@ -695,7 +695,7 @@ E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
 	if not targetName then return end
 	if not args then args = 16 end
 	args = tonumber(args)
-	if not ElvUI_EltreumUI:IsThisASafeSecret(name) and not ElvUI_EltreumUI:IsThisASafeSecret(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(targetName,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		if string.len(targetName) > tonumber(args) then --first for npcs with multiple names/titles
 			targetName = ElvUI_EltreumUI:Abbrev(targetName)
 		end

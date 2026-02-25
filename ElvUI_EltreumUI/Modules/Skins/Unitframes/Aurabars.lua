@@ -63,7 +63,7 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 			bar.timeText:ClearAllPoints()
 			bar.timeText:SetPoint('RIGHT', bar, 'RIGHT', -2, 4)
 
-			if ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then return end
+			if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
 			bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
 		end
 	end
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 								if bar.backdrop and not bar.backdrop.shadow then
 									bar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(bar.backdrop.shadow)
-									if not ElvUI_EltreumUI:IsThisASafeSecret(nil,true) then
+									if ElvUI_EltreumUI:IsThisASafeSecret() then
 										if bar.icon and bar.icon.backdrop then
 											bar.backdrop.shadow:ClearAllPoints()
 											bar.backdrop.shadow:SetPoint("TOPRIGHT",bar.icon.backdrop, "TOPRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)

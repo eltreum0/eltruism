@@ -231,7 +231,7 @@ end
 
 --Add class icons next to player names in chat
 function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
-	if E:IsSecretValue(arg12) and not ElvUI_EltreumUI:IsThisASafeSecret(arg12) then -- guid is blocked so use uncached
+	if E:IsSecretValue(arg12) and ElvUI_EltreumUI:IsThisASafeSecret(arg12,true) then -- guid is blocked so use uncached
 		local _, englishClass = _G.GetPlayerInfoByGUID(arg12)
 		local classColor = ShouldColorChatByClass(englishClass)
 		return (classColor and classColor:WrapTextInColorCode(arg2)) or arg2

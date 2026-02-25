@@ -28,7 +28,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 		unit = "player"
 	end
 
-	if not ElvUI_EltreumUI:IsThisASafeSecret(unit) and not ElvUI_EltreumUI:IsThisASafeSecret(UnitPowerType(unit)) and UnitExists(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) and ElvUI_EltreumUI:IsThisASafeSecret(UnitPowerType(unit),true) and UnitExists(unit) then
 		--print(powertype,unit)
 		local _, powertype = UnitPowerType(unit)
 		local unitframe = _G["ElvUF_"..name]
