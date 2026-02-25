@@ -286,7 +286,6 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 		ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Player")
 		ElvUI_EltreumUI:ApplyUnitGradientPower("target", "Target")
 		ElvUI_EltreumUI:ApplyUnitGradientPower("pet", "Pet")
-
 		if ElvUI_EltreumUI:IsThisASafeSecret(nil,nil,true) then
 			ElvUI_EltreumUI:ApplyUnitGradientPower("targettarget", "TargetTarget")
 			ElvUI_EltreumUI:ApplyUnitGradientPower("targettargettarget", "TargetTargetTarget")
