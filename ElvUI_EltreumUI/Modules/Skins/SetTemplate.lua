@@ -351,7 +351,7 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 			frame.eltruismbgtexture:SetTexture("")
 		end
 
-		if frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue
+		if _G.canaccessvalue(frame) and frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue --has secret
 			if frame.icon and frame.backdrop then frame.backdrop:SetFrameLevel(frame:GetFrameLevel()+2) end
 		end
 

@@ -887,23 +887,27 @@ end
 do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
 	function ElvUI_EltreumUI:ShortenString(text, length, cut,firstname)
-		if text and string.len(text) > length then
-			if cut then
-				text = E:ShortenString(text,length)
-			else
-				if firstname then
-					local first, last = text:match('^(%a*)(.*)$')
-					if first and last then
-						text = first.." "..last:gsub('(%S+)', shortenReplace)
+		if ElvUI_EltreumUI:RetailInstanceSecret(text) then
+			return text
+		else
+			if text and string.len(text) > length then
+				if cut then
+					text = E:ShortenString(text,length)
+				else
+					if firstname then
+						local first, last = text:match('^(%a*)(.*)$')
+						if first and last then
+							text = first.." "..last:gsub('(%S+)', shortenReplace)
+						else
+							text = text:gsub('(%S+) ', shortenReplace)
+						end
 					else
 						text = text:gsub('(%S+) ', shortenReplace)
 					end
-				else
-					text = text:gsub('(%S+) ', shortenReplace)
 				end
 			end
+			return text
 		end
-		return text
 	end
 end
 
