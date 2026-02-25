@@ -1746,3 +1746,4 @@ L["X offset"] = true
 L["Y offset"] = true
 L["Zoom"] = true
 L["Mouse Over Menu"] = true
+L["Change the texture of the nameplate to be a class color if the unit is a Rare"] = true
