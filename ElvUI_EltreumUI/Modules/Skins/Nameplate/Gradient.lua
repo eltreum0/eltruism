@@ -27,7 +27,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 			if not InCombatLockdown() or UnitIsDead("player") then
 				nameplate.CurrentlyBeingTanked = nil
 			end
-			if nameplate.isRare then
+			if nameplate.isRare and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.raretexture then
 				nameplate.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
 				nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r = 1, g = 1, b = 1, a = 1}, {r = 1, 1, 1, g = 1, b = 1, a = 1})
 			else

@@ -207,27 +207,27 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["unitFrames"]["roleIcon"]["roleIconStyle"] = "DEFAULT"
 
 		E.db["WT"]["announcement"]["enable"] = false --disable
-		E.db["WT"]["announcement"]["combatResurrection"]["onlySourceIsPlayer"] = true
-		E.db["WT"]["announcement"]["combatResurrection"]["text"] = "Casting %spell% on %target%"
+		--E.db["WT"]["announcement"]["combatResurrection"]["onlySourceIsPlayer"] = true
+		--E.db["WT"]["announcement"]["combatResurrection"]["text"] = "Casting %spell% on %target%"
 		E.db["WT"]["announcement"]["goodbye"]["enable"] = false
-		E.db["WT"]["announcement"]["interrupt"]["enable"] = false
-		E.db["WT"]["announcement"]["interrupt"]["onlyInstance"] = false
-		E.db["WT"]["announcement"]["interrupt"]["player"]["enable"] = false
+		--E.db["WT"]["announcement"]["interrupt"]["enable"] = false
+		--E.db["WT"]["announcement"]["interrupt"]["onlyInstance"] = false
+		--E.db["WT"]["announcement"]["interrupt"]["player"]["enable"] = false
 		E.db["WT"]["announcement"]["keystone"]["enable"] = false
 		E.db["WT"]["announcement"]["quest"]["channel"]["instance"] = "NONE"
 		E.db["WT"]["announcement"]["quest"]["channel"]["raid"] = "NONE"
-		E.db["WT"]["announcement"]["taunt"]["others"]["pet"]["enable"] = false
-		E.db["WT"]["announcement"]["taunt"]["others"]["player"]["enable"] = false
-		E.db["WT"]["announcement"]["taunt"]["player"]["pet"]["enable"] = false
-		E.db["WT"]["announcement"]["threatTransfer"]["enable"] = false
-		E.db["WT"]["announcement"]["utility"]["spells"]["190336"]["text"] = "%player% casted %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["195782"]["text"] = "%player% used %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["261602"]["text"] = "%player% called %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["29893"]["text"] = "%player% casted %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["54710"]["text"] = "%player% puts down a %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["bots"]["text"] = "%player% summons %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["feasts"]["text"] = "%player% sets down a %spell%!"
-		E.db["WT"]["announcement"]["utility"]["spells"]["toys"]["text"] = "%player% uses %spell%!"
+		--E.db["WT"]["announcement"]["taunt"]["others"]["pet"]["enable"] = false
+		--E.db["WT"]["announcement"]["taunt"]["others"]["player"]["enable"] = false
+		--E.db["WT"]["announcement"]["taunt"]["player"]["pet"]["enable"] = false
+		--E.db["WT"]["announcement"]["threatTransfer"]["enable"] = false
+		--E.db["WT"]["announcement"]["utility"]["spells"]["190336"]["text"] = "%player% casted %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["195782"]["text"] = "%player% used %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["261602"]["text"] = "%player% called %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["29893"]["text"] = "%player% casted %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["54710"]["text"] = "%player% puts down a %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["bots"]["text"] = "%player% summons %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["feasts"]["text"] = "%player% sets down a %spell%!"
+		--E.db["WT"]["announcement"]["utility"]["spells"]["toys"]["text"] = "%player% uses %spell%!"
 		E.db["WT"]["announcement"]["keystone"]["command"] = false
 
 		E.db["WT"]["combat"]["combatAlert"]["animation"] = false
@@ -308,8 +308,8 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["name"] = E.db.general.font
 
 		E.db["WT"]["maps"]["rectangleMinimap"]["heightPercentage"] = 0.7
-		E.db["WT"]["maps"]["whoClicked"]["addRealm"] = true
-		E.db["WT"]["maps"]["whoClicked"]["onlyOnCombat"] = false
+		--E.db["WT"]["maps"]["whoClicked"]["addRealm"] = true
+		--E.db["WT"]["maps"]["whoClicked"]["onlyOnCombat"] = false
 		E.db["WT"]["maps"]["eventTracker"]["enable"] = false
 
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = E.db.general.font
