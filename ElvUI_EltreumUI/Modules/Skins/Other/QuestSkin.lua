@@ -1847,6 +1847,9 @@ if E.Retail then
 		timeout = 0,
 		whileDead = 1,
 		hideOnEscape = true,
+		OnAccept = function()
+			E.db.ElvUI_EltreumUI.editModeSpamWarning = false
+		end,
 	}
 	local editmodecheck = CreateFrame("FRAME")
 	editmodecheck:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
@@ -1861,7 +1864,7 @@ if E.Retail then
 
 			if not _G.EditModeManagerFrame.EltruismExitRL then --call for a reload on blizzard's edit mode changes
 				_G.EditModeManagerFrame:HookScript("OnHide", function()
-					if IsAddOnLoaded("BetterCooldownManager") then
+					if IsAddOnLoaded("BetterCooldownManager") and E.db.ElvUI_EltreumUI.editModeSpamWarning then
 						E:StaticPopup_Show('EDITMODEBEINGSPAMMED')
 					else
 						E:StaticPopup_Show('CONFIG_RL')
