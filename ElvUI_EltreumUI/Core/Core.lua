@@ -1029,7 +1029,6 @@ else
 end
 
 function ElvUI_EltreumUI:RetailInstanceSecret(value,hasValue)
-	local _, instanceType = _G.IsInInstance()
 	if E.Retail then
 		if hasValue then
 			if _G.canaccessvalue(value) then --new api to check if value is secret
@@ -1037,10 +1036,13 @@ function ElvUI_EltreumUI:RetailInstanceSecret(value,hasValue)
 			else
 				return true
 			end
-		elseif instanceType ~= "none" then
-			return true
 		else
-			return false
+			local _, instanceType = _G.IsInInstance()
+			if instanceType ~= "none" then
+				return true
+			else
+				return false
+			end
 		end
 	else
 		return false
