@@ -1340,7 +1340,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------CHARACTER FRAME ADAPTER
 	function CharacterFrameAdapter:new()
 		local instance
-		if (E.Mists or E.TBC or E.Wrath) then
+		if _G.CharacterModelScene then
 			instance = FrameAdapter:new(_G.CharacterModelScene, _G.CharacterModelScene, 'Character')
 		else
 			instance = FrameAdapter:new(_G.CharacterModelFrame, _G.CharacterModelFrame, 'Character')
