@@ -1864,8 +1864,10 @@ if E.Retail then
 
 			if not _G.EditModeManagerFrame.EltruismExitRL then --call for a reload on blizzard's edit mode changes
 				_G.EditModeManagerFrame:HookScript("OnHide", function()
-					if IsAddOnLoaded("BetterCooldownManager") and E.db.ElvUI_EltreumUI.editModeSpamWarning then
-						E:StaticPopup_Show('EDITMODEBEINGSPAMMED')
+					if IsAddOnLoaded("BetterCooldownManager") then
+						if E.db.ElvUI_EltreumUI.editModeSpamWarning then
+							E:StaticPopup_Show('EDITMODEBEINGSPAMMED')
+						end
 					else
 						E:StaticPopup_Show('CONFIG_RL')
 					end
