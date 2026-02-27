@@ -1543,10 +1543,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		["enable"] = false,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 27,
+		["justifyH"] = "RIGHT",
+		["size"] = 16,
 		["text_format"] = "[eltruism:dead][eltruism:dc]",
-		["xOffset"] = 50,
+		["xOffset"] = -2,
 		["yOffset"] = 0
 	}
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] = {
@@ -1764,10 +1764,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		["enable"] = false,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 27,
+		["justifyH"] = "LEFT",
+		["size"] = 16,
 		["text_format"] = "[eltruism:dead][eltruism:dc]",
-		["xOffset"] = -50,
+		["xOffset"] = 2,
 		["yOffset"] = 0
 	}
 	if E.Retail then
@@ -1858,11 +1858,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		["enable"] = true,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 15,
+		["justifyH"] = "LEFT",
+		["size"] = 16,
 		["text_format"] = "[eltruism:dead][eltruism:dc]",
-		["xOffset"] = 0,
-		["yOffset"] = 22
+		["xOffset"] = 2,
+		["yOffset"] = 3
 	}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
