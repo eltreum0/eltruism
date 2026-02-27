@@ -18,7 +18,7 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitClassification = _G.UnitClassification
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitIsFeignDeath = _G.UnitIsFeignDeath
-local escapeSequence = E.Retail and ":16:16:0:0" or ":0:0:0:0"
+local escapeSequence = ":0:0:0:0"
 
 --show class icons on all targets
 E:AddTag("eltruism:class:all", "UNIT_NAME_UPDATE", function(unit)
