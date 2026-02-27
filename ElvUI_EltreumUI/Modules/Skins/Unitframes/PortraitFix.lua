@@ -474,6 +474,7 @@ local modelsRotate = {
 	[5789477] = true, --Void Speaker Eirich
 	[6211938] = true, --Arator
 	[6225127] = true, --Lady Liadrin
+	[3049179] = true, --Valeera Sanguinar
 }
 
 local targetlike = {
