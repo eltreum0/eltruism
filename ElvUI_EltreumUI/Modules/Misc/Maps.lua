@@ -466,7 +466,9 @@ function ElvUI_EltreumUI:WorldMapScale()
 						end
 					end
 				else
-					_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+					if ElvUI_EltreumUI:IsThisASafeSecret(_G["WorldMapFrame"],true) then
+						_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+					end
 				end
 			end)
 
