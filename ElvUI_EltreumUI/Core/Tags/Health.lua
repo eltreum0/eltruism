@@ -23,7 +23,7 @@ local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
 local ScaleTo100 = _G.CurveConstants and _G.CurveConstants.ScaleTo100
 local UnitHealthPercent = _G.UnitHealthPercent
 local AbbreviateNumbers = _G.AbbreviateNumbers
-local escapeSequence = ":0:0:0:0"
+local escapeSequence = E.Retail and ":16:16:0:0" or ":0:0:0:0"
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
