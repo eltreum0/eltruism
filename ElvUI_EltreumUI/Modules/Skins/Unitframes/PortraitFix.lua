@@ -472,6 +472,8 @@ local modelsRotate = {
 	[6218203] = true, --Ascendance
 	[6020408] = true, --Ascendance
 	[5789477] = true, --Void Speaker Eirich
+	[6211938] = true, --Arator
+	[6225127] = true, --Lady Liadrin
 }
 
 local targetlike = {
