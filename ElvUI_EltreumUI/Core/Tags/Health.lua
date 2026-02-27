@@ -23,7 +23,41 @@ local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
 local ScaleTo100 = _G.CurveConstants and _G.CurveConstants.ScaleTo100
 local UnitHealthPercent = _G.UnitHealthPercent
 local AbbreviateNumbers = _G.AbbreviateNumbers
-local escapeSequence = E.Retail and ":16:16:0:0" or ":0:0:0:0"
+local escapeSequence = ":0:0:0:0"
+
+--tag that only shows the icon, due to secrets
+E:AddTag("eltruism:status", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
+	if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then
+		return
+	elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
+		if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+			return deadtexture
+		else
+			return L["Dead"]
+		end
+	elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+			return dctexture
+		else
+			return L["Offline"]
+		end
+	elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
+		if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+			return dctexture
+		else
+			return L["Offline"]
+		end
+	elseif UnitIsGhost(unit) then
+		if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+		else
+			return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+		end
+	end
+end)
+E:AddTagInfo("eltruism:status", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays a status symbol. Can be customized in Eltruism > Media"])
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
