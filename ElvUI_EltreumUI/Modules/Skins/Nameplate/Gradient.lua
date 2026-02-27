@@ -209,13 +209,17 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 --power gradient/combo/runes
 function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		if bar.classPowerID or bar.token then --use somechecking for classpower and power bars
-			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= 1}, {r=r,g= g,b= b,a= 1})
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
+			if bar.classPowerID or bar.token then --use somechecking for classpower and power bars
+				bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= 1}, {r=r,g= g,b= b,a= 1})
+			else
+				GradientNameplates(bar)
+			end
+			--bar.bg:SetAlpha(0)
 		else
 			GradientNameplates(bar)
 		end
-		--bar.bg:SetAlpha(0)
 	end
 end
 hooksecurefunc(NP, "SetStatusBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
