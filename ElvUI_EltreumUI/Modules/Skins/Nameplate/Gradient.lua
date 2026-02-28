@@ -206,6 +206,7 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 hooksecurefunc(NP, "StylePlate", GradientNameplates)
+hooksecurefunc(NP, "Health_SetColors", GradientNameplates)
 
 --power gradient/combo/runes
 function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)

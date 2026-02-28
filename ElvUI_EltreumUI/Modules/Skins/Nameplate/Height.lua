@@ -101,4 +101,6 @@ hooksecurefunc(NP, "Update_TargetIndicator", ElvUI_EltreumUI.NameplateCustomOpti
 hooksecurefunc(NP, "Construct_Highlight", ElvUI_EltreumUI.NameplateCustomOptions)
 hooksecurefunc(NP, "ScalePlate", ElvUI_EltreumUI.NameplateCustomOptions)
 hooksecurefunc(NP, "UpdatePlate", ElvUI_EltreumUI.NameplateCustomOptions)
+--hooksecurefunc(NP, "StylePlate", ElvUI_EltreumUI.NameplateCustomOptions)
+--hooksecurefunc(NP, "Health_SetColors", ElvUI_EltreumUI.NameplateCustomOptions)
 --UNIT_FLAGS might work, as might "UNIT_THREAT_LIST_UPDATE", but linking to the function is the issue
