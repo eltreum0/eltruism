@@ -93,37 +93,68 @@ function ElvUI_EltreumUI:QuestCombat(event)
 			end
 		end
 	elseif event == "INSTANCE_ENCOUNTER_ENGAGE_UNIT" then --started boss fight
-		if E.db.ElvUI_EltreumUI.quests.enable and _G.UnitExists("boss1") then
+		if E.db.ElvUI_EltreumUI.quests.enable then
 			local _, instanceType = IsInInstance()
 			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
-				if E.Retail then
-					--ObjectiveTracker_Collapse()
-					--ObjectiveTrackerFrame:Hide()
-					ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
-					--ObjectiveTrackerFrame:SetAlpha(0)
-					--_G.ObjectiveTrackerFrame:SetCollapsed(true)
-				elseif E.Classic or E.TBC then
-					if IsAddOnLoaded("Questie") then
-						if _G["Questie_BaseFrame"] then
-							_G["Questie_BaseFrame"]:Hide()
+				if _G.UnitExists("boss1") then
+					if E.Retail then
+						--ObjectiveTracker_Collapse()
+						--ObjectiveTrackerFrame:Hide()
+						ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
+						--ObjectiveTrackerFrame:SetAlpha(0)
+						--_G.ObjectiveTrackerFrame:SetCollapsed(true)
+					elseif E.Classic or E.TBC then
+						if IsAddOnLoaded("Questie") then
+							if _G["Questie_BaseFrame"] then
+								_G["Questie_BaseFrame"]:Hide()
+							else
+								_G.QuestWatchFrame:Hide()
+							end
 						else
 							_G.QuestWatchFrame:Hide()
 						end
-					else
-						_G.QuestWatchFrame:Hide()
-					end
-				elseif E.Mists or E.Wrath then
-					if IsAddOnLoaded("Questie") then
-						if _G["Questie_BaseFrame"] then
-							_G["Questie_BaseFrame"]:Hide()
+					elseif E.Mists or E.Wrath then
+						if IsAddOnLoaded("Questie") then
+							if _G["Questie_BaseFrame"] then
+								_G["Questie_BaseFrame"]:Hide()
+							else
+								_G.WatchFrame:Hide()
+							end
 						else
 							_G.WatchFrame:Hide()
 						end
-					else
-						_G.WatchFrame:Hide()
 					end
+					otherBossEncounter = true
+				else
+					if E.Retail then
+						if _G["ObjectiveFrameHolder"] then
+							ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
+						else
+							ObjectiveTrackerFrame:SetParent(UIParent)
+						end
+					elseif E.Classic or E.TBC then
+						if IsAddOnLoaded("Questie") then
+							if _G["Questie_BaseFrame"] then
+								_G["Questie_BaseFrame"]:Show()
+							else
+								_G.QuestWatchFrame:Show()
+							end
+						else
+							_G.QuestWatchFrame:Show()
+						end
+					elseif E.Mists or E.Wrath then
+						if IsAddOnLoaded("Questie") then
+							if _G["Questie_BaseFrame"] then
+								_G["Questie_BaseFrame"]:Show()
+							else
+								_G.WatchFrame:Show()
+							end
+						else
+							_G.WatchFrame:Show()
+						end
+					end
+					otherBossEncounter = false
 				end
-				otherBossEncounter = true
 			end
 		end
 	elseif event == "ENCOUNTER_START" then --started boss fight
