@@ -358,7 +358,15 @@ do
 						textureCoords = class_coords[bar.classFilename]
 					end
 					if textureCoords then
-						icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
+						if ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"] then
+							icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons[tostring(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack)]["path"])
+						else
+							if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
+								icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["EltruismSpec"]["path"])
+							else
+								icon.Icon.Icon:SetTexture(ElvUI_EltreumUI.DamageMeterIcons["Eltruism"]["path"])
+							end
+						end
 						icon.Icon.Icon:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
 					end
 				end
