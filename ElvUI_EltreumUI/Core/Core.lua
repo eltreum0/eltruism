@@ -442,7 +442,7 @@ function ElvUI_EltreumUI:DevTools()
 			_G.EventTrace.LogEvent = LogEvent
 		end
 
-		if _G.EventTrace then
+		if not E.Retail and _G.EventTrace then
 			OnEventTraceLoaded()
 		else
 			local frame = CreateFrame("Frame")
@@ -452,7 +452,9 @@ function ElvUI_EltreumUI:DevTools()
 					ElvUI_EltreumUI:Print("Addon Loaded: "..arg)
 				end
 				if arg == "Blizzard_EventTrace" then
-					OnEventTraceLoaded()
+					if not E.Retail then
+						OnEventTraceLoaded()
+					end
 					if not IsAddOnLoaded("Blizzard_DebugTools") then
 						UIParentLoadAddOn("Blizzard_DebugTools")
 					end
