@@ -16,6 +16,9 @@ local UIParent = _G.UIParent
 
 --Hide Quests during events
 function ElvUI_EltreumUI:QuestCombat(event)
+	if E.db.ElvUI_EltreumUI.dev then
+		ElvUI_EltreumUI:Print(event)
+	end
 	if event == "PLAYER_REGEN_ENABLED" then --out of combat
 		if E.db.ElvUI_EltreumUI.quests.combatenable or otherBossEncounter then
 			if E.Retail then
@@ -92,7 +95,7 @@ function ElvUI_EltreumUI:QuestCombat(event)
 	elseif event == "INSTANCE_ENCOUNTER_ENGAGE_UNIT" then --started boss fight
 		if E.db.ElvUI_EltreumUI.quests.enable and _G.UnitExists("boss1") then
 			local _, instanceType = IsInInstance()
-			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
 				if E.Retail then
 					--ObjectiveTracker_Collapse()
 					--ObjectiveTrackerFrame:Hide()
