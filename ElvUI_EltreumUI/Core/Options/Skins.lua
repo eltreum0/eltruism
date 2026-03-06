@@ -474,12 +474,13 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.hide = E.Libs.ACH:Toggle(L["Hide Out of Combat"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed or not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.skin = E.Libs.ACH:Range(L["Out of Combat Delay"], nil, 9, { min = 1, max = 30, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay = value end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed or not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable or not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc end)
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.description3 = E.Libs.ACH:Description(" ", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.isSpec = E.Libs.ACH:Select(L["Icon Pack Type"], L["Select the type of Icon pack, if based by Specialization or Class"], 11, {
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.replaceIcon = E.Libs.ACH:Toggle(E.NewSign..L["Replace Icon"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.replaceIcon end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.replaceIcon = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.isSpec = E.Libs.ACH:Select(L["Icon Pack Type"], L["Select the type of Icon pack, if based by Specialization or Class"], 12, {
 		[true] = "Specialization",
 		[false] = "Class",
 	}, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.isSpec.style = "radio"
-	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.iconPack = E.Libs.ACH:Select(L["Select an Icon Pack"], nil, 12, function()
+	ElvUI_EltreumUI.Options.args.skins.args.damagemeter.args.iconPack = E.Libs.ACH:Select(L["Select an Icon Pack"], nil, 13, function()
 		local iconPacks = {}
 		for k, v in _G.pairs(ElvUI_EltreumUI.DamageMeterIcons) do
 			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
