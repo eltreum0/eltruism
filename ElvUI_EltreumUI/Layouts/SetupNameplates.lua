@@ -1,11 +1,11 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local pairs = _G.pairs
+--local pairs = _G.pairs
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 -- for rare nameplates
-local rareclass = {
+--[[local rareclass = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",
 	["PALADIN"] = "Eltreum-Class-Paladin",
 	["HUNTER"] = "Eltreum-Class-Hunter",
@@ -19,7 +19,7 @@ local rareclass = {
 	["DRUID"] = "Eltreum-Class-Druid",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 	["EVOKER"] = "Eltreum-Class-Evoker",
-}
+}]]
 
 -- NamePlate Setup
 function ElvUI_EltreumUI:SetupNamePlates()
