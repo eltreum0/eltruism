@@ -369,8 +369,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--other
 	--CheckMerathilisUI(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.mui.CombatAlert.enable")
-	CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Hover"],L["Auto color Glow"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow", "db.mMT.nameplate.bordercolor.glow")
-	CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Border"],L["Auto color Border"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate", "db.mMT.nameplate.bordercolor.border")
+	--CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Hover"],L["Auto color Glow"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow", "db.mMT.nameplate.bordercolor.glow")
+	--CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Border"],L["Auto color Border"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate", "db.mMT.nameplate.bordercolor.border")
 	CheckmMediaTag(L["Quests Skin"], L["Objective Tracker"], "db.ElvUI_EltreumUI.skins.quests", "db.mMT.objectivetracker.enable")
 	CheckmMediaTag(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.mMT.roleicons.enable")
 	CheckmMediaTag(L["A.F.K"].."\n"..L["Eltruism Logo"], "AFK Logo", "db.ElvUI_EltreumUI.otherstuff.afklogoeltruism", "db.mMT.afk.logo")
