@@ -16,6 +16,8 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
 Added a new tag [eltruism:status] that combines the dead and dc icons, check note below
 Added an option to disable replacing Damage Meter icons
+
+Note: after a hotfix icons can no longer be displayed with Health values, meaning tags need to be set on separate fields to display those icons. Your [eltruism:hpstatus...] tags won't display icons due to this. I recommend creating a new custom text and using [eltruism:status] or [eltruism:dead][eltruism:dc] to get those icons working again. Sadly this is out of my control.
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
