@@ -9,7 +9,6 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
@@ -260,6 +259,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	end
 end
 
+local forced = false
 function ElvUI_EltreumUI:CustomTexture(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
@@ -299,10 +299,11 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena5", "Arena5", "arena",true)
 		end
 
-		local forced = false
 		if unit == "testunit" then
 			forced = true
 			unit = "player"
+		else
+			forced = false
 		end
 
 		if forced then
@@ -324,74 +325,81 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 
 		--group/raid unitframes
-		if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
-			local headergroup = nil
-			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
-				headergroup = _G["ElvUF_Raid1"]
-			elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
-				headergroup = _G["ElvUF_Raid2"]
-			elseif _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() then
-				headergroup = _G["ElvUF_Raid3"]
-			elseif _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
-				headergroup = _G["ElvUF_Party"]
-			end
+		if (UnitExists(unit) or forced) then
 
-			local headertank = nil
-			if _G["ElvUF_Tank"] and _G["ElvUF_Tank"]:IsShown() then
-				headertank = _G["ElvUF_Tank"]
-			end
-
-			local headerassist = nil
-			if _G["ElvUF_Assist"] and _G["ElvUF_Assist"]:IsShown() then
-				headerassist = _G["ElvUF_Assist"]
-			end
-
-			local headerraidpet = nil
-			if _G["ElvUF_RaidpetGroup1"] and _G["ElvUF_RaidpetGroup1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
-				headerraidpet = _G["ElvUF_RaidpetGroup1"]
-			end
-
-			local _, unit1class = UnitClass(unit)
-			if not unit1class then
-				return
-			end
-
-			if headergroup ~= nil then
-				for i = 1, headergroup:GetNumChildren() do
-					local group = select(i, headergroup:GetChildren())
-					for j = 1, group:GetNumChildren() do
-						local groupbutton = select(j, group:GetChildren())
-						if groupbutton and groupbutton.Health then
-							if headergroup == _G["ElvUF_Party"] then
-								ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true,"party")
-							else
-								ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true,"raid")
+			--party/raid
+			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then
+				local partymembers = {_G["ElvUF_PartyGroup1"]:GetChildren()}
+				for _, frame in pairs(partymembers) do
+					if frame and frame.Health then
+						ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"party")
+					end
+				end
+				if E.db.unitframe.units.party.petsGroup.enable then
+					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsVisible() then
+						for i = 1, 5 do
+							local partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
+							if partypetbutton and partypetbutton.Health then
+								ElvUI_EltreumUI:ApplyGroupCustomTexture(partypetbutton,true)
 							end
 						end
 					end
 				end
 			end
 
-			if headergroup == _G["ElvUF_Party"] and E.db.unitframe.units.party.petsGroup.enable then
-				for i = 1, 5 do
-					local partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
-					if partypetbutton and partypetbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(partypetbutton)
+			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsVisible() then
+				for i = 1, 8 do
+					if _G["ElvUF_Raid1Group"..i] then
+						local raidmembers = {_G["ElvUF_Raid1Group"..i]:GetChildren()}
+						for _, frame in pairs(raidmembers) do
+							if frame and frame.Health then
+								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
+							end
+						end
 					end
 				end
 			end
 
-			if headertank ~= nil then
-				for i = 1, headertank:GetNumChildren() do
-					local tankbutton = select(i, headertank:GetChildren())
-					if tankbutton and tankbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(tankbutton,true)
+			if _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsVisible() then
+				for i = 1, 8 do
+					if _G["ElvUF_Raid2Group"..i] then
+						local raidmembers = {_G["ElvUF_Raid2Group"..i]:GetChildren()}
+						for _, frame in pairs(raidmembers) do
+							if frame and frame.Health then
+								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
+							end
+						end
+					end
+				end
+			end
+
+			if _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsVisible() then
+				for i = 1, 8 do
+					if _G["ElvUF_Raid3Group"..i] then
+						local raidmembers = {_G["ElvUF_Raid3Group"..i]:GetChildren()}
+						for _, frame in pairs(raidmembers) do
+							if frame and frame.Health then
+								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
+							end
+						end
+					end
+				end
+			end
+
+			--tanks
+			if _G["ElvUF_TankUnitButton1"] and _G["ElvUF_TankUnitButton1"]:IsVisible() then
+				for i = 1, 8 do
+					local tankmembers = {_G["ElvUF_TankUnitButton"..i]}
+					for _, frame in pairs(tankmembers) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
+						end
 					end
 				end
 			end
 
 			--tank targets
-			if _G["ElvUF_TankUnitButton1Target"] and _G["ElvUF_TankUnitButton1Target"]:IsShown() then
+			if _G["ElvUF_TankUnitButton1Target"] and _G["ElvUF_TankUnitButton1Target"]:IsVisible() then
 				for i = 1, 8 do
 					local tanktargetmembers = {_G["ElvUF_TankUnitButton"..i.."Target"]}
 					for _, frame in pairs(tanktargetmembers) do
@@ -402,20 +410,38 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				end
 			end
 
-			if headerassist ~= nil then
-				for i = 1, headerassist:GetNumChildren() do
-					local assistbutton = select(i, headerassist:GetChildren())
-					if assistbutton and assistbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(assistbutton,true)
+			--raid assist
+			if _G["ElvUF_AssistUnitButton1"] and _G["ElvUF_AssistUnitButton1"]:IsVisible() then
+				for i = 1, 8 do
+					local assistmembers = {_G["ElvUF_AssistUnitButton"..i]}
+					for _, frame in pairs(assistmembers) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
+						end
 					end
 				end
 			end
 
-			if headerraidpet ~= nil then
-				for i = 1, headerraidpet:GetNumChildren() do
-					local raidpetbutton = select(i, headerraidpet:GetChildren())
-					if raidpetbutton and raidpetbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(raidpetbutton,true)
+			--raid assist targets
+			if _G["ElvUF_AssistUnitButton1Target"] and _G["ElvUF_AssistUnitButton1Target"]:IsVisible() then
+				for i = 1, 8 do
+					local assisttargetmembers = {_G["ElvUF_AssistUnitButton"..i.."Target"]}
+					for _, frame in pairs(assisttargetmembers) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame)
+						end
+					end
+				end
+			end
+
+			--raid pets
+			if _G["ElvUF_RaidpetGroup1UnitButton1"] and _G["ElvUF_RaidpetGroup1UnitButton1"]:IsVisible() and E.db.unitframe.units.raidpet.enable then
+				for i = 1, 40 do
+					local raidpetbutton = {_G["ElvUF_RaidpetGroup1UnitButton"..i]}
+					for _, frame in pairs(raidpetbutton) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
+						end
 					end
 				end
 			end
