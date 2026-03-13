@@ -2126,6 +2126,9 @@ function ElvUI_EltreumUI:ClassicSockets()
 			inspectorSlotIconManager = inspectorSlotIconManager + SlotIconManager.STYLE.ENABLED
 			if self.inspectorSlotIconManager then
 				self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
+			else
+				self.inspectorSlotIconManager = SlotIconManager:new(InspectionFrameAdapter:new())
+				self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
 			end
 		end
 	end
