@@ -29,31 +29,27 @@ local escapeSequence = ":0:0:0:0"
 E:AddTag("eltruism:status", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
-	if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then
-		return
-	elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-		if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-			return deadtexture
-		else
-			return L["Dead"]
+	if UnitIsConnected(unit) then
+		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+			return
+		elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		elseif UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+			else
+				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+			end
 		end
-	elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+	else
 		if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 			return dctexture
 		else
 			return L["Offline"]
-		end
-	elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-		if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-			return dctexture
-		else
-			return L["Offline"]
-		end
-	elseif UnitIsGhost(unit) then
-		if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-		else
-			return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 		end
 	end
 end)
@@ -81,31 +77,27 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 			end
 		end
 	else
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			return textformat
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				return textformat
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -135,31 +127,27 @@ E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION P
 			end
 		end
 	else
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			return textformat
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				return textformat
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -203,41 +191,37 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 			end
 		end
 	else
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			if E.Retail then
-				return textformat2
-			else
-				if not maxhp then maxhp = 1 end
-				if maxhp == 0 then maxhp = 1 end
-				if cur == maxhp then
-					return textformat
-				else
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				if E.Retail then
 					return textformat2
+				else
+					if not maxhp then maxhp = 1 end
+					if maxhp == 0 then maxhp = 1 end
+					if cur == maxhp then
+						return textformat
+					else
+						return textformat2
+					end
+				end
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 				end
 			end
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
-			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -265,31 +249,27 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 			end
 		end
 	else
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			return textformat
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				return textformat
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -310,31 +290,27 @@ E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UN
 	if not E.Retail and (maxhp == 0) then
 		return 0
 	else
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then
-			return value
-		elseif UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then
+				return value
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -402,36 +378,32 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 	else
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			if not E.Retail and lengthOK then
-				return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
-			else
-				return value
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				if not E.Retail and lengthOK then
+					return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
+				else
+					return value
+				end
+				--return gsub(ElvUI_EltreumUI:GradientName(E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true), unitClass,isTarget),"-","||")
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-			--return gsub(ElvUI_EltreumUI:GradientName(E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true), unitClass,isTarget),"-","||")
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
-			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -499,35 +471,31 @@ E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONN
 	else
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			if lengthOK then
-				return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
-			else
-				return value
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				if lengthOK then
+					return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
+				else
+					return value
+				end
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
-			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
@@ -589,35 +557,31 @@ E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_
 	else
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
-		if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-			if lengthOK then
-				return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
-			else
-				return value
+		if UnitIsConnected(unit) then
+			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
+				if lengthOK then
+					return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
+				else
+					return value
+				end
+			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			elseif UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
 			end
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-				return deadtexture
-			else
-				return L["Dead"]
-			end
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
 				return dctexture
 			else
 				return L["Offline"]
-			end
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
 		end
 	end
