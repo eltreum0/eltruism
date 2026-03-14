@@ -119,6 +119,9 @@ hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator
 --gradient nameplates
 local bordercolor = E.myClassColor
 local function GradientNameplates(unit,unit2)
+	if not E.db.ElvUI_EltreumUI then return end
+	if not E.db.ElvUI_EltreumUI.borders then return end
+	if not E.db.ElvUI_EltreumUI.borders.bordercolors then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not unit2 and not unit then return end
 	if unit2 and not unit then
