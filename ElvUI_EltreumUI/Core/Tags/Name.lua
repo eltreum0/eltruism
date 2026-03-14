@@ -119,13 +119,16 @@ end)
 E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 10 characters"])
 
 --gradient name
-E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
+E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
 	local name = UnitName(unit)
 	local isTarget
 	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
+	end
+	if args then
+		isTarget = nil
 	end
 	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
