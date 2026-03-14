@@ -24,9 +24,9 @@ function ElvUI_EltreumUI:BagProfessions()
 				[7] = 3100, --Blacksmithing
 				[8] = 2018, --Blacksmithing
 				[9] = 3538, --Blacksmithing
-				[10] = 9785, --Blacksmithing
-				[11] = 29844, --Blacksmithing
-				[12] = 51300, --Blacksmithing
+				[10] = 9785, --Blacksmithing --last classic era bs
+				[11] = 29844, --Blacksmithing --tbc level bs
+				[12] = 51300, --Blacksmithing --wrath bs
 				[13] = 7411, --Enchanting
 				[14] = 7412, --Enchanting
 				[15] = 7413, --Enchanting
@@ -349,13 +349,20 @@ function ElvUI_EltreumUI:BagProfessions()
 									_G["EltruismProfession"..k.."BagButton"].backdrop.Center:Hide()
 									S:HandleButton(_G["EltruismProfession"..k.."BagButton"])
 									_G["EltruismProfession"..k.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
-									_G["EltruismProfession"..k.."BagButton"]:SetAttribute('type', 'spell')
-									_G["EltruismProfession"..k.."BagButton"]:SetAttribute('spell', name)
+									if not E.TBC then
+										_G["EltruismProfession"..k.."BagButton"]:SetAttribute('type', 'spell')
+										_G["EltruismProfession"..k.."BagButton"]:SetAttribute('spell', name)
+									end
 									_G["EltruismProfession"..k.."BagButton"]:RegisterForClicks("AnyUp")
 									_G["EltruismProfession"..k.."BagButton"].icon = _G["EltruismProfession"..k.."BagButton"]:CreateTexture(nil,"ARTWORK")
 									_G["EltruismProfession"..k.."BagButton"].icon:SetTexture(icon)
 									_G["EltruismProfession"..k.."BagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 									_G["EltruismProfession"..k.."BagButton"].icon:SetAllPoints()
+									if E.TBC then
+										_G["EltruismProfession"..v.."BagButton"]:SetScript("OnClick", function()
+											CastSpell(v, "Spell")
+										end)
+									end
 								end
 							end
 						end
@@ -372,8 +379,14 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"].backdrop.Center:Hide()
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
 								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
-								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
-								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', 13262)
+								if not E.TBC then
+									_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
+									_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', 13262)
+								else
+									_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnClick", function()
+										CastSpell(13262, "Spell")
+									end)
+								end
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterForClicks("AnyUp")
 								_G["EltruismProfessionDisenchantBagButton"].icon = _G["EltruismProfessionDisenchantBagButton"]:CreateTexture(nil,"ARTWORK")
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexture(icon)
@@ -452,8 +465,14 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionLockpickBagButton"].backdrop.Center:Hide()
 								S:HandleButton(_G["EltruismProfessionLockpickBagButton"])
 								_G["EltruismProfessionLockpickBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
-								_G["EltruismProfessionLockpickBagButton"]:SetAttribute('type', 'spell')
-								_G["EltruismProfessionLockpickBagButton"]:SetAttribute('spell', 1804)
+								if not E.TBC then
+									_G["EltruismProfessionLockpickBagButton"]:SetAttribute('type', 'spell')
+									_G["EltruismProfessionLockpickBagButton"]:SetAttribute('spell', 1804)
+								else
+									_G["EltruismProfessionLockpickBagButton"]:SetScript("OnClick", function()
+										CastSpell(1804, "Spell")
+									end)
+								end
 								_G["EltruismProfessionLockpickBagButton"]:RegisterForClicks("AnyUp")
 								_G["EltruismProfessionLockpickBagButton"].icon = _G["EltruismProfessionLockpickBagButton"]:CreateTexture(nil,"ARTWORK")
 								_G["EltruismProfessionLockpickBagButton"].icon:SetTexture(icon)
