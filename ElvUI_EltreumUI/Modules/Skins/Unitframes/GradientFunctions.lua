@@ -377,14 +377,14 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, cu
 end
 
 --sets name with gradient colors using elvui
-function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit)
+function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit,isCustom)
 	if not name then return end
 	if not ElvUI_EltreumUI:IsThisASafeSecret() and isUnit then
 		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
 		--local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor or isCustom then
 			local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
 			if not isTarget then
 				return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)

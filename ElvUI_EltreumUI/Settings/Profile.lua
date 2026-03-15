@@ -154,6 +154,7 @@ P.ElvUI_EltreumUI = {
 		ilvltextchangepoint = true,
 		itemquality = false,
 		characterskingradients = false,
+		characterskingradientscustom = false,
 		armorybgtype = "CLASS",
 		armoryfontsize = 11,
 		armorynamefontsize = 17,
