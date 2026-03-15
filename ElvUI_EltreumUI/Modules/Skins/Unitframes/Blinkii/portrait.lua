@@ -526,7 +526,7 @@ local function SetScripts(portrait, force)
 		portrait:SetAttribute("type3", "focus")
 		portrait:SetAttribute("toggleForVehicle", true)
 		portrait:SetAttribute("ping-receiver", true)
-		ElvUI_EltreumUI:MacroText(portrait)]]
+		ElvUI_EltreumUI:MacroClick(portrait)]]
 
 		portrait.isBuild = true
 	end

@@ -49,7 +49,7 @@ end
 
 --fix macro
 local keydown = _G.C_CVar.GetCVarBool('ActionButtonUseKeyDown')
-function ElvUI_EltreumUI:MacroText(button)
+function ElvUI_EltreumUI:MacroClick(button)
 	button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
 	if E.Retail or E.TBC then
 		button:SetAttribute('useOnKeyDown', keydown)
@@ -662,7 +662,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					--use elvui moveui instead of blizzard edit mode
 					local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
 					if EditModeButton then
-						ElvUI_EltreumUI:MacroText(EditModeButton)
+						ElvUI_EltreumUI:MacroClick(EditModeButton)
 						EditModeButton:SetScript("OnClick", function(_, button)
 							if not InCombatLockdown() then
 								if button == "LeftButton" then
@@ -774,7 +774,7 @@ function ElvUI_EltreumUI:ClickCastingShortcut()
 		bindexture:SetTexture("interface\\cursor\\crosshair\\cast")
 		bindexture:SetTexCoord(0.08,0.92,0.08,0.92)
 		bindexture:SetAllPoints(clickbindopenbutton)
-		ElvUI_EltreumUI:MacroText(clickbindopenbutton)
+		ElvUI_EltreumUI:MacroClick(clickbindopenbutton)
 
 		clickbindopenbutton:SetScript("OnEnter", function()
 			_G["GameTooltip"]:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')

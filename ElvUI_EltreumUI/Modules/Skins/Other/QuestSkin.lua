@@ -171,7 +171,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 		end
 		--register the button for clicks
-		ElvUI_EltreumUI:MacroText(wowheadbutton)
+		ElvUI_EltreumUI:MacroClick(wowheadbutton)
 
 		--get questid
 		if E.Retail then
