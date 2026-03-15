@@ -372,102 +372,106 @@ E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 end)
 E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Returns class color only for players"])
 
---plays a sound for healers when they have low mana, has anti spam
-local manaspam = false
-E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
-	local percentage = strsplit(':', args or '')
-	if percentage == nil then
-		percentage = 1
-	end
-	if UnitIsUnit("player", unit) then
-		local role
-		if E.Retail then
-			local currentSpec = GetSpecialization()
-			if currentSpec ~= nil then
-				role = GetSpecializationRole(currentSpec)
-			end
-		elseif E.Mists or E.TBC or E.Wrath then
-			role = UnitGroupRolesAssigned("player")
+if not E.Retail then --due to secrets they no longer work in retail
+
+	--plays a sound for healers when they have low mana, has anti spam
+	local manaspam = false
+	E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
+		local percentage = strsplit(':', args or '')
+		if percentage == nil then
+			percentage = 1
 		end
-		if role == 'HEALER' or E.Classic then
-			if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
-				if not manaspam then
-					DoEmote("OOM")
-					manaspam = true
+		if UnitIsUnit("player", unit) then
+			local role
+			if E.Retail then
+				local currentSpec = GetSpecialization()
+				if currentSpec ~= nil then
+					role = GetSpecializationRole(currentSpec)
 				end
-				return ""
-			elseif (UnitPower("player")/UnitPowerMax("player")) > (tonumber(percentage) * 0.01) then
-				manaspam = false
-				return ""
+			elseif E.Mists or E.TBC or E.Wrath then
+				role = UnitGroupRolesAssigned("player")
 			end
-		end
-	end
-end)
-E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
-
---emote when low on health
-local hpspam = false
-E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,args)
-	local percentage = strsplit(':', args or '')
-	if percentage == nil then
-		percentage = 1
-	end
-	if UnitIsUnit("player", unit) then --player
-		if not UnitIsDead("player") then
-			if (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
-				if not hpspam then
-					DoEmote("HEALME")
-					hpspam = true
+			if role == 'HEALER' or E.Classic then
+				if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
+					if not manaspam then
+						DoEmote("OOM")
+						manaspam = true
+					end
+					return ""
+				elseif (UnitPower("player")/UnitPowerMax("player")) > (tonumber(percentage) * 0.01) then
+					manaspam = false
+					return ""
 				end
-			elseif (UnitHealth("player")/UnitHealthMax("player")) > (tonumber(percentage) * 0.01) then
-				hpspam = false
 			end
 		end
-	end
-end)
-E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])
+	end)
+	E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
 
-E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
-	local role = UnitGroupRolesAssigned(unit)
-	if role and role == 'HEALER' then
-		if UnitPower(unit, Enum.PowerType.Mana) ~= 0 then
-			return math.floor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100).."%"
-		else
-			return "0%"
+
+	--emote when low on health
+	local hpspam = false
+	E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,args)
+		local percentage = strsplit(':', args or '')
+		if percentage == nil then
+			percentage = 1
 		end
-	end
-end)
-E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])
+		if UnitIsUnit("player", unit) then --player
+			if not UnitIsDead("player") then
+				if (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
+					if not hpspam then
+						DoEmote("HEALME")
+						hpspam = true
+					end
+				elseif (UnitHealth("player")/UnitHealthMax("player")) > (tonumber(percentage) * 0.01) then
+					hpspam = false
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])
 
---experimental dps on unit tag
-local lastHp = 0
-local lastTime = GetTime()
-E:AddTag("eltruism:unitdps", "UNIT_HEALTH", function(unit)
-	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-	local now = GetTime()
-	if lastHp == 0 or lastHp > maxhp then
-		lastHp = cur
-		lastTime = now
-		return ""
-	end
-	if UnitIsDead(unit) then
-		return ""
-	end
-	local timediff = now - lastTime
-	local hpdiff = lastHp - cur
-	lastHp = cur
-	lastTime = now
-	if timediff > 0 then
-		local dps = math.floor(hpdiff / timediff)
-		if hpdiff > 0 then
-			return E:ShortValue(dps)
-		elseif hpdiff < 0 then
-			return "|cFF00FF00"..E:ShortValue(dps*-1).."|r"
-		elseif hpdiff == 0 then
+	E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
+		local role = UnitGroupRolesAssigned(unit)
+		if role and role == 'HEALER' then
+			if UnitPower(unit, Enum.PowerType.Mana) ~= 0 then
+				return math.floor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100).."%"
+			else
+				return "0%"
+			end
+		end
+	end)
+	E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])
+
+	--experimental dps on unit tag
+	local lastHp = 0
+	local lastTime = GetTime()
+	E:AddTag("eltruism:unitdps", "UNIT_HEALTH", function(unit)
+		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+		local now = GetTime()
+		if lastHp == 0 or lastHp > maxhp then
+			lastHp = cur
+			lastTime = now
 			return ""
 		end
-	else
-		return ""
-	end
-end)
-E:AddTagInfo("eltruism:unitdps", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays the instant DPS on the unit"])
+		if UnitIsDead(unit) then
+			return ""
+		end
+		local timediff = now - lastTime
+		local hpdiff = lastHp - cur
+		lastHp = cur
+		lastTime = now
+		if timediff > 0 then
+			local dps = math.floor(hpdiff / timediff)
+			if hpdiff > 0 then
+				return E:ShortValue(dps)
+			elseif hpdiff < 0 then
+				return "|cFF00FF00"..E:ShortValue(dps*-1).."|r"
+			elseif hpdiff == 0 then
+				return ""
+			end
+		else
+			return ""
+		end
+	end)
+	E:AddTagInfo("eltruism:unitdps", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays the instant DPS on the unit"])
+end
