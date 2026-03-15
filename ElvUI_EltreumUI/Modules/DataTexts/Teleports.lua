@@ -550,19 +550,21 @@ local function EltruismTeleportsOnEnter()
 		local hasSpell = IsSpellKnown(v)
 		if texture and namespells and hasSpell then
 			local start, duration = SpellCooldown(v)
-			local cooldown = start + duration - GetTime()
-			if cooldown >= 2 then
-				local hours = math.floor(cooldown /3600)
-				local minutes = math.floor(cooldown / 60)
-				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
-				if hours >= 1 then
-					minutes = math.floor(mod(cooldown,3600)/60)
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
-				else
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+			if ElvUI_EltreumUI:IsThisASafeSecret(start,true) and ElvUI_EltreumUI:IsThisASafeSecret(duration,true) then
+				local cooldown = start + duration - GetTime()
+				if cooldown >= 2 then
+					local hours = math.floor(cooldown /3600)
+					local minutes = math.floor(cooldown / 60)
+					local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
+					if hours >= 1 then
+						minutes = math.floor(mod(cooldown,3600)/60)
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+					else
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+					end
+				elseif cooldown <= 0 then
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00"..L["Ready"].."|r")
 				end
-			elseif cooldown <= 0 then
-				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00"..L["Ready"].."|r")
 			end
 		end
 	end
