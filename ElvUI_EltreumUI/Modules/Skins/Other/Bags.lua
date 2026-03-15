@@ -359,7 +359,7 @@ function ElvUI_EltreumUI:BagProfessions()
 									_G["EltruismProfession"..k.."BagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 									_G["EltruismProfession"..k.."BagButton"].icon:SetAllPoints()
 									if E.TBC then
-										_G["EltruismProfession"..v.."BagButton"]:SetScript("OnClick", function()
+										_G["EltruismProfession"..k.."BagButton"]:SetScript("OnClick", function()
 											CastSpell(v, "Spell")
 										end)
 									end
