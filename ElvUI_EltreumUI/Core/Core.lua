@@ -47,6 +47,15 @@ function ElvUI_EltreumUI:Print(msg)
 	print(E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)..': '..msg)
 end
 
+--fix macro
+local keydown = _G.C_CVar.GetCVarBool('ActionButtonUseKeyDown')
+function ElvUI_EltreumUI:MacroText(button)
+	button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
+	if E.Retail or E.TBC then
+		button:SetAttribute('useOnKeyDown', keydown)
+	end
+end
+
 --hide popups during install
 function ElvUI_EltreumUI:HidePopups(delay)
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
@@ -653,7 +662,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					--use elvui moveui instead of blizzard edit mode
 					local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
 					if EditModeButton then
-						EditModeButton:RegisterForClicks("AnyUp")
+						ElvUI_EltreumUI:MacroText(EditModeButton)
 						EditModeButton:SetScript("OnClick", function(_, button)
 							if not InCombatLockdown() then
 								if button == "LeftButton" then
@@ -765,7 +774,7 @@ function ElvUI_EltreumUI:ClickCastingShortcut()
 		bindexture:SetTexture("interface\\cursor\\crosshair\\cast")
 		bindexture:SetTexCoord(0.08,0.92,0.08,0.92)
 		bindexture:SetAllPoints(clickbindopenbutton)
-		clickbindopenbutton:RegisterForClicks("AnyUp")
+		ElvUI_EltreumUI:MacroText(clickbindopenbutton)
 
 		clickbindopenbutton:SetScript("OnEnter", function()
 			_G["GameTooltip"]:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')

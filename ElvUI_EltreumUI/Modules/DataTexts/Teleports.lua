@@ -411,7 +411,7 @@ _G["EltruismHearthStoneSecureButton"].id = "6948"
 _G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
 local name = GetItemInfo(6948)
 _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
-_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
+ElvUI_EltreumUI:MacroText(_G["EltruismHearthStoneSecureButton"])
 
 local function EltruismTeleportsOnEvent(self)
 	if E.Retail and InCombatLockdown() then return end
@@ -755,7 +755,7 @@ local function EltruismTeleportsOnClick(self)
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', namehs)
 		end
 	end
-	_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
+	ElvUI_EltreumUI:MacroText(_G["EltruismHearthStoneSecureButton"])
 	_G["EltruismHearthStoneSecureButton"]:Show()
 	_G["EltruismHearthStoneSecureButton"]:SetAllPoints(self)
 

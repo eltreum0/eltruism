@@ -171,7 +171,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 		end
 		--register the button for clicks
-		wowheadbutton:RegisterForClicks("AnyUp")
+		ElvUI_EltreumUI:MacroText(wowheadbutton)
 
 		--get questid
 		if E.Retail then

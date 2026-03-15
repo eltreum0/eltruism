@@ -383,7 +383,7 @@ function ElvUI_EltreumUI:QuestItem()
 					end
 				end
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
-				b:RegisterForClicks("AnyDown","AnyUp")
+				ElvUI_EltreumUI:MacroText(b)
 				b:SetScript("OnEnter", function (button)
 					GameTooltip:SetOwner(E.UIParent, "ANCHOR_CURSOR")
 					local bag, slot = button:GetAttribute("bag"), button:GetAttribute("slot")
@@ -480,7 +480,7 @@ function ElvUI_EltreumUI:QuestItem()
 				btn:SetAttribute("type*","item")
 				btn:SetAttribute("bag",bag)
 				btn:SetAttribute("slot",slot)
-				btn:RegisterForClicks("AnyDown", "AnyUp")
+				ElvUI_EltreumUI:MacroText(btn)
 				btn:Enable()
 
 				if (index > 1) then
