@@ -50,15 +50,6 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 			end
 		end
 
-		--likely needs another hook, as it doesnt work every time
-		--[[if bar.cooldown then
-			if bar.cooldown:IsShown() then
-				bar:Show()
-			else
-				bar:Hide()
-			end
-		end]]
-
 		if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then --thin mode aurabars?
 			bar:SetHeight(5)
 			bar.icon:SetSize(25,15)
@@ -68,11 +59,14 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 
 			bar.nameText:ClearAllPoints()
 			bar.nameText:SetPoint('LEFT', bar, 'LEFT', 4, 4)
-			bar.timeText:ClearAllPoints()
-			bar.timeText:SetPoint('RIGHT', bar, 'RIGHT', -2, 4)
+			if bar.Cooldown and bar.Cooldown.Text then
+				bar.Cooldown.Text:ClearAllPoints()
+				bar.Cooldown.Text:SetPoint('RIGHT', bar, 'RIGHT', -2, 4)
+			end
 
-			if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
-			bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
+			if ElvUI_EltreumUI:IsThisASafeSecret(bar,true) then
+				bar.icon:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
+			end
 		end
 	end
 end
@@ -96,7 +90,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 								if bar.backdrop and not bar.backdrop.shadow then
 									bar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(bar.backdrop.shadow)
-									if ElvUI_EltreumUI:IsThisASafeSecret() then
+									if ElvUI_EltreumUI:IsThisASafeSecret(bar,true) then
 										if bar.icon and bar.icon.backdrop then
 											bar.backdrop.shadow:ClearAllPoints()
 											bar.backdrop.shadow:SetPoint("TOPRIGHT",bar.icon.backdrop, "TOPRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
