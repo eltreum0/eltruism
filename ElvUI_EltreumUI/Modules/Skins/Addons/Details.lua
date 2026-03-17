@@ -86,6 +86,25 @@ do
 					if instancia.barras and instancia.barras[1] then
 						for _, row in next, instancia.barras do
 							if not row then return end
+
+							if E.db.ElvUI_EltreumUI.skins.detailsgradientname then
+								if row.lineText1 and row.classFilename then
+									local name = E:StripString(row.lineText1:GetText())
+									--if detailsDB.use_multi_fontstrings and detailsDB.use_auto_align_multi_fontstrings then
+									--	row.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), row.minha_tabela:class()))
+									--else
+
+									--might need to hook this
+									--Details:UpdateBarApocalypseWow
+
+										row.lineText1:SetText(ElvUI_EltreumUI:GradientName(name, row.classFilename))
+									--end
+									if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
+										row.lineText1:SetShadowOffset(2, -2)
+									end
+								end
+							end
+
 							if E.db.ElvUI_EltreumUI.skins.detailsmode == "LIGHT" then
 								if row.textura and not row.textura.EltruismHook then
 									hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
@@ -106,16 +125,21 @@ do
 											end
 											row:SetHeight(21)
 										end
-										if row.minha_tabela and row.minha_tabela.name then
-											local unitclass = row.minha_tabela:class() --from details api returns class of that row
-											if classes[unitclass] then
-												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
-												else
-													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
-												end
+										local unitclass
+										if row.classFilename then
+											unitclass = row.classFilename
+										else
+											if row.minha_tabela and row.minha_tabela.name then
+												unitclass = row.minha_tabela:class() --from details api returns class of that row
 											else
-												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+												unitclass = "PRIEST" --debug
+											end
+										end
+										if classes[unitclass] then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+											else
+												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 											end
 										else
 											row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
@@ -159,25 +183,29 @@ do
 										else
 											row.background:SetTexture(row.textura:GetTexture())
 										end
-										if row.minha_tabela and row.minha_tabela.name then
-											local unitclass = row.minha_tabela:class() --from details api returns class of that row
-											if classes[unitclass] then
-												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-													row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
-												else
-													row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
-												end
+										local unitclass
+										if row.classFilename then
+											unitclass = row.classFilename
+										else
+											if row.minha_tabela and row.minha_tabela.name then
+												unitclass = row.minha_tabela:class() --from details api returns class of that row
 											else
-												row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = r-0.5,g = g-0.5,b = b-0.5,a = 0.9}, {r= r+0.2,g = g+0.2,b = b+0.2,a = 0.9})
+												unitclass = "PRIEST" --debug
+											end
+										end
+										if classes[unitclass] then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+												row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+											else
+												row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 											end
 										else
-											row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = r-0.5,g = g-0.5,b = b-0.5,a = 0.9}, {r = r+0.2,g = g+0.2,b = b+0.2,a = 0.9})
+											row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = r-0.5,g = g-0.5,b = b-0.5,a = 0.9}, {r= r+0.2,g = g+0.2,b = b+0.2,a = 0.9})
 										end
 									end)
 									row.background.EltruismHook = true
 								end
 							end
-
 						end
 					end
 				end)
