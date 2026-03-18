@@ -284,7 +284,9 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
 
 				CraftFrame:HookScript("OnShow", function() --is also the pet training in classic
-					_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
+					if not E.TBC then
+						_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
+					end
 
 					E:Delay(0, function()
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
