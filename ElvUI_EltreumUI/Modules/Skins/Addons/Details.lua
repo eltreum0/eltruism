@@ -88,7 +88,7 @@ do
 							if not row then return end
 
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientname then
-								if row.lineText1 and row.classFilename and ElvUI_EltreumUI:IsThisASafeSecret(row.lineText1,true) then
+								if row.lineText1 and row.classFilename and ElvUI_EltreumUI:IsThisASafeSecret(row.lineText1,true) and ElvUI_EltreumUI:IsThisASafeSecret(row.lineText1:GetText(),true) then
 									local name = E:StripString(row.lineText1:GetText())
 									--if detailsDB.use_multi_fontstrings and detailsDB.use_auto_align_multi_fontstrings then
 									--	row.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), row.minha_tabela:class()))
