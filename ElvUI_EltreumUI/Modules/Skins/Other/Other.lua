@@ -661,17 +661,21 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 end
 
 --skin the vehicle button, since its been a long time unskinned
-if _G["MainMenuBarVehicleLeaveButton"] then
-	S:HandleButton(_G["MainMenuBarVehicleLeaveButton"])
-	if _G["MainMenuBarVehicleLeaveButton"].hover then
-		_G["MainMenuBarVehicleLeaveButton"].hover:Hide()
+function ElvUI_EltreumUI:SkinVehicleButton()
+	if E.db.ElvUI_EltreumUI.skins.skinvehiclebutton then
+		if _G["MainMenuBarVehicleLeaveButton"] then
+			S:HandleButton(_G["MainMenuBarVehicleLeaveButton"])
+			if _G["MainMenuBarVehicleLeaveButton"].hover then
+				_G["MainMenuBarVehicleLeaveButton"].hover:Hide()
+			end
+			if _G["MainMenuBarVehicleLeaveButton"].Highlight then
+				_G["MainMenuBarVehicleLeaveButton"].Highlight:SetTexture(nil)
+			end
+			_G["MainMenuBarVehicleLeaveButton"]:GetNormalTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
+			_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
+			_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetVertexColor(1,0,0,1)
+			_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
+			_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetVertexColor(1,0,0,1)
+		end
 	end
-	if _G["MainMenuBarVehicleLeaveButton"].Highlight then
-		_G["MainMenuBarVehicleLeaveButton"].Highlight:SetTexture(nil)
-	end
-	_G["MainMenuBarVehicleLeaveButton"]:GetNormalTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
-	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
-	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetVertexColor(1,0,0,1)
-	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
-	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetVertexColor(1,0,0,1)
 end

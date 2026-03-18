@@ -454,6 +454,7 @@ P.ElvUI_EltreumUI = {
 		professionscale = 1,
 		oldclasscolors = false,
 		classicblueshaman = true,
+		skinvehiclebutton = true,
 	},
 
 	cursors = {
