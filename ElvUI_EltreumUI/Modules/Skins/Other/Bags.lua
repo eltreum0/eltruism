@@ -100,6 +100,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				[81] = 105206, --mop Alchemy
 				[82] = 104381, --mop Cooking
 				[83] = 110406, --mop First Aid
+				[84] = 33359, --tbc cooking
 				--[84] = 61422, --mop/wrath Smelting ?
 			}
 			local blockprof = {
