@@ -166,7 +166,12 @@ local function EltruismStatsDatatextOnEnter()
 			else
 				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 			end
-			DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", (GetSpellHitModifier())).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
+			if E.Classic then
+				DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", (GetSpellHitModifier())).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
+			elseif E.Mists or E.TBC or E.Wrath then
+				DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", (math.max(GetSpellHitModifier(),GetCombatRatingBonus(8),GetCombatRatingBonus(6)))).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
+			end
+
 			DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetHaste()).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 			DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", spellcrit).."|r",1,1,1)
 			DT.tooltip:AddLine(' ')
