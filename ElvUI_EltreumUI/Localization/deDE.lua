@@ -1748,3 +1748,4 @@ L["Zoom"] = true
 L["Mouse Over Menu"] = "Mouseover Menu"
 L["Change the texture of the nameplate to be a class color if the unit is a Rare"] = "Ändert die Textur des Namensplakette in eine Klassenfarbe, wenn die Einheit selten ist."
 L["Replace Icon"] = true
+L["Skin Vehicle Leave Button"] = true
