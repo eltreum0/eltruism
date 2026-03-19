@@ -389,7 +389,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[2647] = 27899, -- +$k1 Strength
 		[2648] = 27906, -- +$k1 Dodge
 		[2649] = 27914, -- +$k1 Stamina
-		[2650] = 23802, -- +$k1 Spell Power
+		[2650] = E.TBC and 27917 or 23802, -- +$k1 Spell Power
 		[2653] = 27944, -- +$k1 Dodge
 		[2654] = 27945, -- +$k1 Intellect
 		[2655] = 27946, -- +$k1 Parry
@@ -864,7 +864,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[5124] = 142469, -- Spirit of Conquest
 		[5125] = 142468, -- Bloody Dancing Steel
 		[5183] = 27911, -- +$k1 Spell Power
-		[5184] = 27917, -- +$k1 Spell Power
+		[5184] = E.TBC and 1 or 27917, -- +$k1 Spell Power, debug in tbc
 		[5237] = 33990, -- +$k1 Spirit
 		[5250] = 33995, -- +$k1 Strength
 		[5255] = 33996, -- +$k1 Attack Power
