@@ -40,6 +40,7 @@ local TeleportsItems = {
 	--193588, --timewalkers-hearthstone
 	--208704, --deepdwellers-earthen-hearthstone
 	246565, --cosmic-hearthstone
+	260221, --naarus-embrace
 	235016, --redeployment module
 	209035, --hearthstone-of-the-flame
 	228940, --notorious-threads-hearthstone
@@ -358,6 +359,7 @@ local texturePaths = {
 	["236687"] = "Interface\\Icons\\inv_111_goldenbomb_goldblue", --explosive-hearthstone
 	["246565"] = "Interface\\Icons\\spell_holy_circleofrenewal_shadow", --cosmic-hearthstone
 	--["1233637"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Housing.tga", --teleport home
+	["260221"] = "Interface\\Icons\\spell_holy_surgeoflight", --naarus-embrace
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -376,6 +378,7 @@ local hearthstones = {
 	["228940"] = true, --notorious-threads-hearthstone
 	["236687"] = true, --explosive-hearthstone
 	["246565"] = true, --cosmic-hearthstone
+	["260221"] = true, --naarus-embrace
 }
 
 local function SpellCooldown(spellID)
