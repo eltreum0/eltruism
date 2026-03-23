@@ -195,7 +195,10 @@ E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
 	if not unit then return end
 	local namecheck = UnitName(unit)
 	if not namecheck then return end
-	local name = string.upper(namecheck)
+	local name = namecheck
+	if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
+		name = string.upper(namecheck)
+	end
 	local isTarget
 	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
@@ -228,11 +231,12 @@ E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,
 	if not unit then return end
 	local namecheck = UnitName(unit)
 	if not namecheck then return end
-	local name = string.upper(namecheck)
+	local name = namecheck
 	if not args then args = 16 end
 	args = tonumber(args)
 	local isTarget
 	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+		name = string.upper(namecheck)
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 		end
@@ -455,14 +459,14 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 	if not unit then return end
 	local namecheck = UnitName(unit)
 	if not namecheck then return end
-	local name = string.upper(namecheck)
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	local name = namecheck
+	if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		name = string.upper(namecheck)
 		if not args then args = 16 end
 		args = tonumber(args)
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 		end
-
 		if string.len(name) > tonumber(args) then --second for players
 			name = E:ShortenString(name, tonumber(args))
 		end
@@ -493,8 +497,10 @@ E:AddTag("name:eltruism:capital", "UNIT_NAME_UPDATE", function(unit)
 	if not unit then return end
 	local namecheck = UnitName(unit)
 	if not namecheck then return end
-	local name = string.upper(namecheck)
-	return name
+	if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
+		local name = string.upper(namecheck)
+		return name
+	end
 end)
 E:AddTagInfo("name:eltruism:capital", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in capital"])
 
