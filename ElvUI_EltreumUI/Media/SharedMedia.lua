@@ -168,6 +168,7 @@ LSM:Register("sound", "Withered Run Away", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register("sound", "Overwatch - Death", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\OverwatchDeath.ogg]])
 LSM:Register("sound", "Overconfidence", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\overconfidence.ogg]])
 LSM:Register("sound", "Painsmith - Unleash the Instrument", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Painsmith.ogg]])
+LSM:Register("sound", "AOL - You've Got Mail", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\youvegotmail.ogg]])
 
 --Warcraft 3 sounds
 LSM:Register("sound", "Warcraft 3 - Night Elf Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NightElfAllyHeroDies.ogg]])
