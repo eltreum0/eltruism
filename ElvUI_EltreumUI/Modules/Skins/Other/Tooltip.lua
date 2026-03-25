@@ -141,12 +141,14 @@ function ElvUI_EltreumUI:Tooltip()
 					b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
 					b2 = ElvUI_EltreumUI:Interval(b2, 0, 1)
 					if _G["GameTooltipTextLeft1"] then
-						if _G["GameTooltipTextLeft1"]:GetText() ~= nil and ElvUI_EltreumUI:IsThisASafeSecret(_G["GameTooltipTextLeft1"]:GetText(),true) then
-							local icon = _G.strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
-							if icon then
-								_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
-							else
-								_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+						if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
+							if ElvUI_EltreumUI:IsThisASafeSecret(_G["GameTooltipTextLeft1"]:GetText(),true) then
+								local icon = _G.strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
+								if icon then
+									_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+								else
+									_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+								end
 							end
 						else
 							_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
