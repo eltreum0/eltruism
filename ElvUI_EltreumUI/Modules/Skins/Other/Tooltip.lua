@@ -72,7 +72,7 @@ local function SetTooltipGradient(unit)
 		if GameTooltip and GameTooltip:IsForbidden() then return end
 
 		local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
-		if tooltipname and classunit and reaction then
+		if tooltipname and ElvUI_EltreumUI:IsThisASafeSecret(tooltipname,true) and classunit and reaction then
 			tooltipname = E:StripString(tooltipname)
 			if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and classunit then
 				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
