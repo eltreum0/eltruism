@@ -30,7 +30,7 @@ do
 		local line = info and info.lines[GetCVarBool('colorblindmode') and 3 or 2]
 		local ttText = line and line.leftText
 
-		local ttLower = ttText and strlower(ttText)
+		local ttLower = E:NotSecretValue(ttText) and ttText and strlower(ttText)
 		if ttLower and not strfind(ttLower, LEVEL) and not strfind(ttText,LEVEL) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
