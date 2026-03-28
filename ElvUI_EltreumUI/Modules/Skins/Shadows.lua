@@ -1132,7 +1132,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVEFrameTab2,
 				_G.PVEFrameTab3,
 				_G.PVEFrameTab4,
-				_G.PVPFrame,
+				not E.TBC and _G.PVPFrame,
 				_G.PVPFrameTab1,
 				_G.PVPFrameTab2,
 				_G.PVPFrameTab3,
