@@ -6,9 +6,14 @@ local tostring = _G.tostring
 local embedpanel
 local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local instanceType = "none"
 
 --pretty much copied from elvui and edited to look more like details
 do
+
+	function ElvUI_EltreumUI:DamageMeterZoneCheck()
+		instanceType = select(2,_G.IsInInstance())
+	end
 
 	local BlizzardTextureIDsForSpecs = {
 		["608952"] = 270,
@@ -342,6 +347,7 @@ do
 	end
 
 	local function SkinDamageMeter(bar)
+		if instanceType == "pvp" or instanceType == "arena" then return end
 		if not bar then return end
 		if not bar.StatusBar then return end
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.replaceIcon then
@@ -438,139 +444,143 @@ do
 	--skin blizzard's dps meter to be similar to my details skin
 	function ElvUI_EltreumUI:BlizzDamageMeter()
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable then
+			ElvUI_EltreumUI:DamageMeterZoneCheck()
 
 			--prep for the meter
 			_G.C_CVar.SetCVar("damageMeterEnabled", 1) --no point in skin if the meter is not enabled
 			local numberOfWindows = _G.DamageMeter:GetCurrentSessionWindowCount() or 0 --setup for embed, and maybe refresh if that didnt throw errors
 
-			if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
+			if instanceType ~= "pvp" and instanceType ~= "arena" then
 
-				--acidweb's fix
-				_G.DamageMeter:SetClampedToScreen(false)
-				_G.DamageMeter:SetClampRectInsets(-2000, -2000, -2000, -2000)
-				_G.DamageMeterSessionWindow1:SetClampedToScreen(false)
-				_G.DamageMeterSessionWindow1:SetClampRectInsets(-2000, -2000, -2000, -2000)
+				if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
 
-				hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
+					--acidweb's fix
+					_G.DamageMeter:SetClampedToScreen(false)
+					_G.DamageMeter:SetClampRectInsets(-2000, -2000, -2000, -2000)
+					_G.DamageMeterSessionWindow1:SetClampedToScreen(false)
+					_G.DamageMeterSessionWindow1:SetClampRectInsets(-2000, -2000, -2000, -2000)
 
-				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
-					hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+					hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
+
+					if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
+						hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
+							_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
+						end)
 						_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
-					end)
-					_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
-				end
-				_G.DamageMeter.EltruismHook = true
-
-				--if no refresh then turns out the specicons are nil because it seems they are loaded later
-				--because of blizzard being blizzard we need to run the refresh more than once as it turns out
-				--[[E:Delay(1, function()
-					_G.DamageMeter:RefreshLayout()
-				end)
-				_G.DamageMeter:RefreshLayout()]]
-
-				--different refresh
-				--[[for i = 1, numberOfWindows do
-					if _G["DamageMeterSessionWindow"..i] then
-						_G["DamageMeterSessionWindow"..i]:Refresh()
 					end
-				end]]
-			end
+					_G.DamageMeter.EltruismHook = true
 
-			if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
-				if not _G["EltruismDamageMeterEmbedPanel"] then
-					embedpanel = _G.CreateFrame("FRAME","EltruismDamageMeterEmbedPanel")
-				else
-					embedpanel = _G["EltruismDamageMeterEmbedPanel"]
+					--if no refresh then turns out the specicons are nil because it seems they are loaded later
+					--because of blizzard being blizzard we need to run the refresh more than once as it turns out
+					--[[E:Delay(1, function()
+						_G.DamageMeter:RefreshLayout()
+					end)
+					_G.DamageMeter:RefreshLayout()]]
+
+					--different refresh
+					--[[for i = 1, numberOfWindows do
+						if _G["DamageMeterSessionWindow"..i] then
+							_G["DamageMeterSessionWindow"..i]:Refresh()
+						end
+					end]]
 				end
 
-				if not _G.InCombatLockdown() then
-					embedpanel:SetAllPoints(_G["RightChatPanel"])
-					embedpanel:SetParent(E.UIParent)
-					embedpanel:SetFrameStrata("BACKGROUND")
+				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed and E.private.chat.enable and not IsAddOnLoaded("Details") then
+					if not _G["EltruismDamageMeterEmbedPanel"] then
+						embedpanel = _G.CreateFrame("FRAME","EltruismDamageMeterEmbedPanel")
+					else
+						embedpanel = _G["EltruismDamageMeterEmbedPanel"]
+					end
 
-					if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then
-						S:HandleFrame(embedpanel)
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-							if embedpanel and not embedpanel.shadow then
-								embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(embedpanel.shadow)
+					if not _G.InCombatLockdown() then
+						embedpanel:SetAllPoints(_G["RightChatPanel"])
+						embedpanel:SetParent(E.UIParent)
+						embedpanel:SetFrameStrata("BACKGROUND")
+
+						if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then
+							S:HandleFrame(embedpanel)
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if embedpanel and not embedpanel.shadow then
+									embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(embedpanel.shadow)
+								end
 							end
 						end
-					end
 
-					for i = 1, numberOfWindows do
-						if _G["DamageMeterSessionWindow"..i] then
-							_G["DamageMeterSessionWindow"..i]:SetParent(embedpanel)
-							_G["DamageMeter"]:SetParent(embedpanel)
+						for i = 1, numberOfWindows do
+							if _G["DamageMeterSessionWindow"..i] then
+								_G["DamageMeterSessionWindow"..i]:SetParent(embedpanel)
+								_G["DamageMeter"]:SetParent(embedpanel)
+							end
+						end
+						if _G["DamageMeterSessionWindow1"] then
+							_G["DamageMeterSessionWindow1"]:ClearAllPoints()
+							_G["DamageMeterSessionWindow1"]:SetPoint("TOPLEFT", embedpanel, "TOPLEFT",0,-20)
 						end
 					end
-					if _G["DamageMeterSessionWindow1"] then
-						_G["DamageMeterSessionWindow1"]:ClearAllPoints()
-						_G["DamageMeterSessionWindow1"]:SetPoint("TOPLEFT", embedpanel, "TOPLEFT",0,-20)
+
+					if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
+						embedpanel:RegisterEvent("PLAYER_REGEN_ENABLED")
+						embedpanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 					end
-				end
+					embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-				if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
-					embedpanel:RegisterEvent("PLAYER_REGEN_ENABLED")
-					embedpanel:RegisterEvent("PLAYER_REGEN_DISABLED")
-				end
-				embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
+					if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
+						E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+					end
 
-				if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
-					E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
-				end
-
-				embedpanel:SetScript("OnEvent", function(_,event)
-					if event == "PLAYER_REGEN_DISABLED" then
-						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
-								embedpanel:Show()
-								_G["RightChatPanel"]:Hide()
-								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
-						end
-					elseif event == "PLAYER_REGEN_ENABLED" then
-						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
-							E:Delay(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay, function()
+					embedpanel:SetScript("OnEvent", function(_,event)
+						if event == "PLAYER_REGEN_DISABLED" then
+							if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
+									embedpanel:Show()
+									_G["RightChatPanel"]:Hide()
+									E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+							end
+						elseif event == "PLAYER_REGEN_ENABLED" then
+							if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
+								E:Delay(E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedDelay, function()
+									embedpanel:Hide()
+									_G["RightChatPanel"]:Show()
+									E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = true
+								end)
+							end
+						elseif event == "PLAYER_ENTERING_WORLD" then
+							if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden then
 								embedpanel:Hide()
 								_G["RightChatPanel"]:Show()
-								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = true
-							end)
-						end
-					elseif event == "PLAYER_ENTERING_WORLD" then
-						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden then
-							embedpanel:Hide()
-							_G["RightChatPanel"]:Show()
-						else
-							embedpanel:Show()
-							_G["RightChatPanel"]:Hide()
-						end
-					end
-					if not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
-						embedpanel:UnregisterEvent("PLAYER_REGEN_ENABLED")
-						embedpanel:UnregisterEvent("PLAYER_REGEN_DISABLED")
-					end
-				end)
-
-				if not RightChatDamageMeterHook then
-					_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)
-						if button == 'RightButton' then
-							if embedpanel:IsShown() then
-								embedpanel:Hide()
-								_G["RightChatPanel"]:Show()
-								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = true
 							else
 								embedpanel:Show()
 								_G["RightChatPanel"]:Hide()
-								E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
 							end
+						end
+						if not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc then
+							embedpanel:UnregisterEvent("PLAYER_REGEN_ENABLED")
+							embedpanel:UnregisterEvent("PLAYER_REGEN_DISABLED")
 						end
 					end)
 
-					_G.RightChatToggleButton:HookScript('OnEnter', function()
-						_G.GameTooltip:AddDoubleLine(L["Right Click:"], L["Toggle Damage Meter"], 1, 1, 1)
-						_G.GameTooltip:Show()
-					end)
+					if not RightChatDamageMeterHook then
+						_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)
+							if button == 'RightButton' then
+								if embedpanel:IsShown() then
+									embedpanel:Hide()
+									_G["RightChatPanel"]:Show()
+									E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = true
+								else
+									embedpanel:Show()
+									_G["RightChatPanel"]:Hide()
+									E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+								end
+							end
+						end)
 
-					RightChatDamageMeterHook = true
+						_G.RightChatToggleButton:HookScript('OnEnter', function()
+							_G.GameTooltip:AddDoubleLine(L["Right Click:"], L["Toggle Damage Meter"], 1, 1, 1)
+							_G.GameTooltip:Show()
+						end)
+
+						RightChatDamageMeterHook = true
+					end
 				end
 			end
 		end

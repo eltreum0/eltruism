@@ -318,6 +318,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:BattleRes()
 	ElvUI_EltreumUI:ArenaQuest()
+	ElvUI_EltreumUI:DamageMeterZoneCheck()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
