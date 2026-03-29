@@ -446,11 +446,10 @@ do
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable then
 			ElvUI_EltreumUI:DamageMeterZoneCheck()
 
-			--prep for the meter
-			_G.C_CVar.SetCVar("damageMeterEnabled", 1) --no point in skin if the meter is not enabled
-			local numberOfWindows = _G.DamageMeter:GetCurrentSessionWindowCount() or 0 --setup for embed, and maybe refresh if that didnt throw errors
-
 			if instanceType ~= "pvp" and instanceType ~= "arena" then
+
+				--prep for the meter
+				_G.C_CVar.SetCVar("damageMeterEnabled", 1) --no point in skin if the meter is not enabled
 
 				if _G.DamageMeter and not _G.DamageMeter.EltruismHook then
 
@@ -506,6 +505,8 @@ do
 								end
 							end
 						end
+
+						local numberOfWindows = _G.DamageMeter:GetCurrentSessionWindowCount() or 0 --setup for embed, and maybe refresh if that didnt throw errors
 
 						for i = 1, numberOfWindows do
 							if _G["DamageMeterSessionWindow"..i] then
