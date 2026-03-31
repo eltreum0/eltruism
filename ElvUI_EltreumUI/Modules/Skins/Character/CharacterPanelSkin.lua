@@ -2169,7 +2169,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
-				if InCombatLockdown() then
+				--[[if InCombatLockdown() then
 					_G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
 					local width = CharacterFrame:GetWidth()
 					if math.floor(width) ~= 700 then
@@ -2218,7 +2218,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if PaperDollFrame:IsVisible() then
 						ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 					end
-				else
+				else]]
 					CharacterFrame.Text4:Show()
 					CharacterFrame.StatusLine4:Show()
 					CharacterFrame.StatusLine2:Show()
@@ -2263,7 +2263,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 						end
 					end
-				end
+				--end
 			end
 
 			CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
