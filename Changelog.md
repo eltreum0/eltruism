@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.0.5
+Updated Character Panel skin in Classic, TBC and Wrath to allow resizing in combat again  
+Updated Damage Meter skin to avoid skinning in PVP areas  
+Fixed an issue with the Character Panel shadow in TBC  
+Fixed an issue with the Character Panel Skin in PVP  
+Fixed an issue related to secrets on the tooltip  
+Fixed issues with tags due to secrets  
+---
 ### 5.0.4
 Added an option to use custom gradient colors in the Character Panel skin  
 Added an option to disable skinning the Vehicle Leave Button  
