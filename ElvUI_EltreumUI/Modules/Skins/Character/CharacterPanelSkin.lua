@@ -2953,7 +2953,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 											_G.InspectTalentFrameScrollFrame:SetSize(300,720)
 											E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
-											if E.Wrath then
+											if _G.InspectTalentFramePointsBar then
 												_G.InspectTalentFramePointsBar:ClearAllPoints()
 												_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
 												_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
@@ -2961,7 +2961,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 											end
 
 											--kill stuff
-											_G.InspectTalentFrameCloseButton:Hide()
+											if _G.InspectTalentFrameCloseButton then
+												_G.InspectTalentFrameCloseButton:Hide()
+											end
 											if _G.InspectTalentFrameBackgroundTopRight then
 												_G.InspectTalentFrameBackgroundTopRight:Kill()
 											end
