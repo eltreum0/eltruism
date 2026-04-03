@@ -122,7 +122,7 @@ E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Name
 E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
 	local name = UnitName(unit)
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -158,7 +158,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 	if not args then args = 16 end
 	args = tonumber(args)
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -202,7 +202,7 @@ E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
 		name = string.upper(namecheck)
 	end
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -237,7 +237,7 @@ E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,
 	if not args then args = 16 end
 	args = tonumber(args)
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -278,7 +278,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 	local name = Translit:Transliterate(targetName)
 	if not name then return end
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -319,7 +319,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	local targetName = UnitName(unit)
 	local name = targetName
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -403,7 +403,7 @@ E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Dis
 E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -433,7 +433,7 @@ E:AddTagInfo("name:eltruism:gradientdefaultcolors", ElvUI_EltreumUI.Name.." "..L
 E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -590,7 +590,7 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 	local _, unitClass = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
@@ -661,7 +661,7 @@ E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_
 	args = tonumber(args)
 	--name = "Mannequin d'entraïnement aux dégäts de zone"
 	local isTarget
-	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 		isTarget = UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 	else
 		isTarget = false
