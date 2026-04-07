@@ -381,7 +381,7 @@ if not E.Retail then --due to secrets they no longer work in retail
 		if percentage == nil then
 			percentage = 1
 		end
-		if UnitIsUnit("player", unit) then
+		if E:UnitIsUnit("player", unit) then
 			local role
 			if E.Retail then
 				local currentSpec = GetSpecialization()
@@ -415,7 +415,7 @@ if not E.Retail then --due to secrets they no longer work in retail
 		if percentage == nil then
 			percentage = 1
 		end
-		if UnitIsUnit("player", unit) then --player
+		if E:UnitIsUnit("player", unit) then --player
 			if not UnitIsDead("player") then
 				if (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
 					if not hpspam then
