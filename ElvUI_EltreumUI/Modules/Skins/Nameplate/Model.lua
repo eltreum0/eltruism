@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
 
 		if UnitExists("target")then
-			if nameplate and nameplate.unit and UnitIsUnit(nameplate.unit,"target") then
+			if nameplate and nameplate.unit and E:UnitIsUnit(nameplate.unit,"target") then
 				--ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health and nameplate.Health:IsVisible() then
 

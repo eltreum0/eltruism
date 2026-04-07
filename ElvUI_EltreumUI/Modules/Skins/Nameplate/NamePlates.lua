@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				button:Hide()
 			end]]
 
-			--[[if UnitIsUnit(button.aura.sourceUnit, "player") then
+			--[[if E:UnitIsUnit(button.aura.sourceUnit, "player") then
 				button:SetSize(50,50)
 			end]]
 
@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 
 						--hide debuffs if they are not target
 						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
-							if not UnitIsUnit(unit,"target") then
+							if not E:UnitIsUnit(unit,"target") then
 								button:Hide()
 							else
 								button:Show()
@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							local debufftime = tonumber(button.Cooldown.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-									if button.aura.sourceUnit and UnitIsUnit(button.aura.sourceUnit, "player") then
+									if button.aura.sourceUnit and E:UnitIsUnit(button.aura.sourceUnit, "player") then
 										if E.db.ElvUI_EltreumUI.glow.pixel then
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
