@@ -38,6 +38,7 @@ local racialMusic = {
 	["MagharOrc"] = 2146630,
 	["Dracthyr"] = 4880311, --4872480, --use the forbidden reach which is more drachtyr
 	["EarthenDwarf"] = 6065661, --6065451, --6065451 is inn music, use more combat themed
+	["Harronir"] = 7692166, --haranir
 }
 local classMusic = {
 	["WARRIOR"] = 1417334,
