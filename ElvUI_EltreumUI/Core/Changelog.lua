@@ -14,23 +14,25 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
+Added Haranir Character Panel skin
+Added Haranir Chat Icons
+Added Haranir AFK music
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated Character Panel skin in Classic, TBC and Wrath to allow resizing in combat again
-Updated Damage Meter skin to avoid skinning in PVP areas
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an issue with the Character Panel shadow in TBC
-Fixed an issue with the Character Panel Skin in PVP
-Fixed an issue related to secrets on the tooltip
-Fixed issues with tags due to secrets
+Fixed issues with tags due to hotfixes that changed UnitIsUnit, target reversed colors won't work in Retail
+Fixed an error on Classic versions due to missing Damage Meter
+Fixed an error on Classic versions due to the Inspect Talent skin
+Fixed an error due to a removed function from ElvUI
+
 ]], 7, "small", nil, nil, nil, nil, "full")
 end

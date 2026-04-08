@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.0.6
+Added Haranir Character Panel skin  
+Added Haranir Chat Icons
+Added Haranir AFK music
+Fixed issues with tags due to hotfixes that changed UnitIsUnit, target reversed colors won't work in Retail  
+Fixed an error on Classic versions due to missing Damage Meter  
+Fixed an error on Classic versions due to the Inspect Talent skin  
+Fixed an error due to a removed function from ElvUI  
+---
 ### 5.0.5
 Updated Character Panel skin in Classic, TBC and Wrath to allow resizing in combat again  
 Updated Damage Meter skin to avoid skinning in PVP areas  
