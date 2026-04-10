@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
 		classcolor2check = false
 	else
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
-			if button.aura.sourceUnit then
+			if button.aura and button.aura.sourceUnit then
 				if UnitIsPlayer(button.aura.sourceUnit) or (E.Retail and UnitInPartyIsAI(button.caster)) then
 					local _, classunit = UnitClass(button.aura.sourceUnit)
 					classcolor2 = E:ClassColor(classunit, true)
