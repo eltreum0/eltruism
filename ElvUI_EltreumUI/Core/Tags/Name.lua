@@ -388,10 +388,12 @@ E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
 	local _, realm = UnitName(unit)
 	local _, unitClass = UnitClass(unit)
 	if realm and unitClass then
-		if realm ~= '' then
-			if realm ~= E.myrealm then
-				realm = format('-%s', realm)
-				return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
+		if ElvUI_EltreumUI:IsThisASafeSecret(realm,true) then
+			if realm ~= '' then
+				if realm ~= E.myrealm then
+					realm = format('-%s', realm)
+					return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
+				end
 			end
 		end
 	end
