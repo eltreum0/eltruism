@@ -753,11 +753,15 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
 	local nameplateShowOnlyNames = (E.Retail and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
-	local showOnlyNamesString = (E.Retail and  "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
+	local showOnlyNamesString = (E.Retail and "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
 	local nameplateShowFriends = tostring(GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
 		if E.Retail then
+
+			--set the nameplates to use class colors instead of the blue for everything
+			SetCVar("nameplateUseClassColorForFriendlyPlayerUnitNames", 1)
+
 			local UnitNameHostleNPC = GetCVar('UnitNameHostleNPC')
 			local UnitNameInteractiveNPC = GetCVar('UnitNameInteractiveNPC')
 			local UnitNameNPC = GetCVar('UnitNameNPC')
