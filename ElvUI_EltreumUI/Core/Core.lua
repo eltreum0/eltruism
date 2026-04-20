@@ -634,12 +634,12 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				Menubutton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name)
 				S:HandleButton(Menubutton,nil,nil,nil,true)
 
-				local offset = E.TBC and 19 or 36
+				local offset = E.Retail and 36 or 19
 				local xMenubutton = _G.GameMenuFrame:GetSize()
-				if E.TBC then
-					Menubutton:Size(xMenubutton-118, offset)
-				else
+				if E.Retail then
 					Menubutton:Size(xMenubutton-62, offset)
+				else
+					Menubutton:Size(xMenubutton-118, offset)
 				end
 
 				GameMenuFrame.Eltruism = Menubutton
