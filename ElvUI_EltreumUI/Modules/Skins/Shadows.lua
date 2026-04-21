@@ -1225,7 +1225,7 @@ function ElvUI_EltreumUI:Shadows()
 				E.Retail and _G.CooldownViewerSettings, --retail new cd
 				E.Retail and _G.CooldownViewerSettings and _G.CooldownViewerSettings.SpellsTab and _G.CooldownViewerSettings.SpellsTab.backdrop, --retail new cd
 				E.Retail and _G.CooldownViewerSettings and _G.CooldownViewerSettings.AurasTab and _G.CooldownViewerSettings.AurasTab.backdrop, --retail new cd
-				_G.DamageMeterSessionWindow1,
+				--_G.DamageMeterSessionWindow1,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then
