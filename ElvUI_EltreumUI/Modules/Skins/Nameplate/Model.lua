@@ -50,9 +50,10 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if not E.db.ElvUI_EltreumUI.nameplates then return end
 	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
+	if E.Retail then return end
 
 		if UnitExists("target")then
-			if nameplate and nameplate.unit and E:UnitIsUnit(nameplate.unit,"target") then
+			if nameplate and nameplate.unit and E:UnitIsUnit(nameplate.unit,"target") then --12.0.5 breaks this
 				--ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health and nameplate.Health:IsVisible() then
 
