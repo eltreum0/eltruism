@@ -152,6 +152,10 @@ end
 function ElvUI_EltreumUI:Ace3Skin()
 	if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 
+	if E.Retail then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
+		E.private.skins.blizzard.bgscore = false
+	end
+
 	if _G.PluginInstallFrame then --add fader to install frames, but will only work when not using eltruism installer due to the image previews
 		if _G.PluginInstallOption1Button then CreateFader(_G.PluginInstallOption1Button) end
 		if _G.PluginInstallOption2Button then CreateFader(_G.PluginInstallOption2Button) end
