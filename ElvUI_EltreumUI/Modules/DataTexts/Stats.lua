@@ -71,6 +71,10 @@ local function EltruismStatsDatatextOnEnter()
 	local basestat3, currentstat3, statbuff3, statnerf3 = UnitStat('player', LE_UNIT_STAT_INTELLECT)
 	local basestatlabel, basestat, currentstat,statbuff,statnerf
 
+	if not ElvUI_EltreumUI:IsThisASafeSecret(currentstat1,true) then return end
+	if not ElvUI_EltreumUI:IsThisASafeSecret(currentstat2,true) then return end
+	if not ElvUI_EltreumUI:IsThisASafeSecret(currentstat3,true) then return end
+
 	if currentstat1 > currentstat2 and currentstat1 > currentstat3 then
 		basestatlabel = SPEC_FRAME_PRIMARY_STAT_STRENGTH
 		basestat = basestat1
@@ -263,6 +267,8 @@ end
 --haste and crit datatext
 local function EltruismStatsDatatext1(dt)
 	if E.Retail then
+		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCritChance(),true) then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret(GetSpellCritChance(),true) then return end
 		local retailhaste = GetHaste()
 		local retailcrit = math.max(GetCritChance(),GetSpellCritChance())
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailhaste).."|r"
@@ -321,6 +327,9 @@ DT:RegisterDatatext('Eltruism Stats 1', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RAT
 --mastery/vers or power/hit
 local function EltruismStatsDatatext2(dt)
 	if E.Retail then
+		if not ElvUI_EltreumUI:IsThisASafeSecret(GetMasteryEffect(),true) then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCombatRatingBonus(29),true) then return end
+
 		--mastery
 		local mastery = STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMasteryEffect()).."|r"
 		--versatility

@@ -613,7 +613,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.EltruismSpeedDescTooltip:Show()
 				CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
 					_G["GameTooltip"]:SetOwner(CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
-					_G["GameTooltip"]:AddLine(format(_G.CR_SPEED_TOOLTIP, string.format('%.2f', (_G.GetUnitSpeed("player"))), ((_G.GetUnitSpeed("player")/7) *100)))
+					if ElvUI_EltreumUI:IsThisASafeSecret(_G.GetUnitSpeed("player"),true) then
+						_G["GameTooltip"]:AddLine(format(_G.CR_SPEED_TOOLTIP, string.format('%.2f', (_G.GetUnitSpeed("player"))), ((_G.GetUnitSpeed("player")/7) *100)))
+					end
 					_G["GameTooltip"]:Show()
 				end)
 				CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
@@ -826,19 +828,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					--extra stats
 					if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-						local speed = ((_G.GetUnitSpeed("player")/7) *100)
-						CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
-						local _, combat = _G.GetManaRegen()
-						combat = math.floor(combat * 5.0)
-						local combatText = _G.BreakUpLargeNumbers(combat)
-						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
-						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-							CharacterFrame.EltruismClassResource:SetText(combatText)
-						elseif E.myclass == 'DEATHKNIGHT' then
-							local _, regenRate = _G.GetRuneCooldown(1)
-							local regenRateText = (format(_G.STAT_RUNE_REGEN_FORMAT, regenRate))
-							CharacterFrame.EltruismClassResource:SetText(regenRateText)
+						if ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then
+							local speed = ((_G.GetUnitSpeed("player")/7) *100)
+							CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
+							local _, combat = _G.GetManaRegen()
+							combat = math.floor(combat * 5.0)
+							local combatText = _G.BreakUpLargeNumbers(combat)
+							if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+								CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
+							elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+								CharacterFrame.EltruismClassResource:SetText(combatText)
+							elseif E.myclass == 'DEATHKNIGHT' then
+								local _, regenRate = _G.GetRuneCooldown(1)
+								local regenRateText = (format(_G.STAT_RUNE_REGEN_FORMAT, regenRate))
+								CharacterFrame.EltruismClassResource:SetText(regenRateText)
+							end
 						end
 
 						if E.myclass == 'DRUID' or E.myclass == 'MONK' then
