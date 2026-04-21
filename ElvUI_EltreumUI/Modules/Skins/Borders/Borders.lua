@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local _G = _G
 local A = E:GetModule('Auras')
 local UF = E:GetModule('UnitFrames')
+local TT = E:GetModule('Tooltip')
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
@@ -2126,8 +2127,8 @@ function ElvUI_EltreumUI:TooltipBorder()
 		end
 
 		local function FixColor()
-			if _G.GameTooltip:GetUnit() and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
-				local _,unittp = _G.GameTooltip:GetUnit() --can error for target of target npc
+			if  TT:GetDisplayedUnit(_G.GameTooltip) and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
+				local unittp = TT:GetDisplayedUnit(_G.GameTooltip)
 				if not unittp and E:NotSecretValue(unittp) then
 					if UnitExists("targettarget") then
 						unittp = "targettarget"
