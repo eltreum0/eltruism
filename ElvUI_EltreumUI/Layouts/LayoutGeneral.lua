@@ -489,6 +489,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaid"] = false
 	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaidPlayerDispellable"] = true]]
 
+	--hide permanent auras
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraPermanentPlayer"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraPermanentPlayer"] = true
+
 	-- unitframe colors
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
 	E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = valuecolors.g
