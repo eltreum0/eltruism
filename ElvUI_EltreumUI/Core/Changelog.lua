@@ -30,7 +30,6 @@ Updated for Titan Reforged 3.8.1
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-
 Fixed an error in the [eltruismrealm:dash] tag due to realm being secret in Retail
 Fixed an error in Burning Crusade Classic due to aura button being nil sometimes
 Fixed issues with several stats due to stats now being secret in 12.0.5
