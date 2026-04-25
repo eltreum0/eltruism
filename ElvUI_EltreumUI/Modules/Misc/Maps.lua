@@ -168,16 +168,18 @@ if E.Retail then
 
 							--calculate time to arrive
 							local speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
+
+							--player speed can be secret, so protect in case there is a waypoint when it is
+							if not ElvUI_EltreumUI:IsThisASafeSecret(speed,true) then return end
+
 							local distance = C_Navigation.GetDistance()
 							local seconds = 0
 							local minutes = 0
 							if not speed or speed == 0 then
 								local _,_,flyspeed = GetUnitSpeed('player')
+								if not ElvUI_EltreumUI:IsThisASafeSecret(flyspeed,true) then return end
 								speed = flyspeed
 							end
-
-							--player speed can be secret, so protect in case there is a waypoint when it is
-							if not ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then return end
 
 							if IsPlayerMoving() or _G.UnitOnTaxi("player") then
 								if (not speed or speed == 0) then --might be dragonflying, calculate based on delta distance
