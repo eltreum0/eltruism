@@ -28,6 +28,56 @@ local AcceptQuest = _G.AcceptQuest
 local C_Map = _G.C_Map
 local ConfirmAcceptQuest = _G.ConfirmAcceptQuest
 local UnitGUID = _G.UnitGUID
+local ignoredNPCS = {
+	[164079] = true,
+	[174871] = true,
+	[164173] = true,
+	[111243] = true,
+	[142063] = true,
+	[141584] = true,
+	[88570] = true,
+	[87391] = true,
+	[18166] = true,
+	[142700] = true,
+	[143005] = true,
+	[142685] = true,
+	[142975] = true,
+	[143007] = true,
+	[142992] = true,
+	[142997] = true,
+	[142998] = true,
+	[142983] = true,
+	[142995] = true,
+	[142993] = true,
+	[142981] = true,
+	[143004] = true,
+	[142973] = true,
+	[142970] = true,
+	[142994] = true,
+	[142969] = true,
+	[142157] = true,
+	[143008] = true,
+	[142158] = true,
+	[142159] = true,
+	[142977] = true,
+	[172925] = true,
+	[169501] = true,
+	[181059] = true,
+	[182681] = true,
+	[54334] = true, --darkmoon tp
+	[55382] = true, --darkmoon tp
+	[54346] = true, --darkmoon tp
+	[28160] = true, --free teleport guy for wrath to scholazar
+	[26673] = true, --magical kingdom of dalaran alliance free tp to dalaran
+	[29155] = true, --magical kingdom of dalaran horde free tp to dalaran
+	[29156] = true, --magical kingdom of dalaran free tp to dalaran
+	[196499] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
+	[199366] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
+	[194584] = true, --Khuri, fishing npc
+	[113617] = true, --cos teleport back npc
+	[193110] = true, --Khadin, profession npc
+	[222413] = true, --Zalgo
+}
 
 --yet another quest auto accept thing
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
@@ -156,58 +206,15 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					if guid == nil then
 						return
 					end
-					local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
-					local ignoredNPCS = {
-						[164079] = true,
-						[174871] = true,
-						[164173] = true,
-						[111243] = true,
-						[142063] = true,
-						[141584] = true,
-						[88570] = true,
-						[87391] = true,
-						[18166] = true,
-						[142700] = true,
-						[143005] = true,
-						[142685] = true,
-						[142975] = true,
-						[143007] = true,
-						[142992] = true,
-						[142997] = true,
-						[142998] = true,
-						[142983] = true,
-						[142995] = true,
-						[142993] = true,
-						[142981] = true,
-						[143004] = true,
-						[142973] = true,
-						[142970] = true,
-						[142994] = true,
-						[142969] = true,
-						[142157] = true,
-						[143008] = true,
-						[142158] = true,
-						[142159] = true,
-						[142977] = true,
-						[172925] = true,
-						[169501] = true,
-						[181059] = true,
-						[182681] = true,
-						[54334] = true, --darkmoon tp
-						[55382] = true, --darkmoon tp
-						[54346] = true, --darkmoon tp
-						[28160] = true, --free teleport guy for wrath to scholazar
-						[26673] = true, --magical kingdom of dalaran alliance free tp to dalaran
-						[29155] = true, --magical kingdom of dalaran horde free tp to dalaran
-						[29156] = true, --magical kingdom of dalaran free tp to dalaran
-						[196499] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
-						[199366] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
-						[194584] = true, --Khuri, fishing npc
-						[113617] = true, --cos teleport back npc
-						[193110] = true, --Khadin, profession npc
-						[222413] = true, --Zalgo
-					}
-					if ignoredNPCS[NPC_ID] then
+					local isSafe = true
+					local NPC_ID = 0
+					if not ElvUI_EltreumUI:IsThisASafeSecret(guid,true) then
+						isSafe = false
+					end
+					if isSafe then
+						NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+					end
+					if isSafe and ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
 							ElvUI_EltreumUI:Print("npc is in the ignored list")
 						end
