@@ -327,17 +327,19 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 		end
 
 		--to NPC_ID
-		local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+		if ElvUI_EltreumUI:IsThisASafeSecret(guid,true) then
+			local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 
-		--get gossip options
-		local gossipInfoTable = C_GossipInfo.GetOptions()
+			--get gossip options
+			local gossipInfoTable = C_GossipInfo.GetOptions()
 
-		--only run on correct npcs
-		if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
-			if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
-				return
-			else
-				C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
+			--only run on correct npcs
+			if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
+				if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
+					return
+				else
+					C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
+				end
 			end
 		end
 	end
