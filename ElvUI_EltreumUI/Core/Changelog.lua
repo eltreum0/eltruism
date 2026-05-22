@@ -20,19 +20,15 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated Nameplate Target Model to be disabled in Retail for now due to the unit tokens now being secret in 12.0.5
-Updated the Friendly Nameplate hide to better work with the Class Color due to CVar not being account wide
-Updated Ace3 and ElvUI skin to disable the PVP Scoreboard skin in Retail due to an error in PVP
-Updated for Titan Reforged 3.8.1
+Updated Waypoint Time To Arrive to use other calculations when player speed is secret
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an error in the [eltruismrealm:dash] tag due to realm being secret in Retail
-Fixed an error in Burning Crusade Classic due to aura button being nil sometimes
-Fixed issues with several stats due to stats now being secret in 12.0.5
-Fixed issues with Tooltip due to changes introduced in 12.0.5
+Fixed an issue with the Time to Arrive due to player speed being secret
+Fixed an issue with the Quest Auto Accept due to NPC id being secret
+Fixed an issue with the font dropdown due to the AvQuest font
 ]], 7, "small", nil, nil, nil, nil, "full")
 end

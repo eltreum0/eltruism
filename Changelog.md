@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.0.8
+Updated Waypoint Time To Arrive to use other calculations when player speed is secret  
+Fixed an issue with the Time to Arrive due to player speed being secret  
+Fixed an issue with the Quest Auto Accept due to NPC id being secret  
+Fixed an issue with the font dropdown due to the AvQuest font  
+---
 ### 5.0.7
 Updated Nameplate Target Model to be disabled in Retail for now due to the unit tokens now being secret in 12.0.5  
 Updated the Friendly Nameplate hide to better work with the Class Color due to CVar not being account wide  
