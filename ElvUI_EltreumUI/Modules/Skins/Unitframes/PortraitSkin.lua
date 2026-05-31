@@ -473,6 +473,7 @@ end
 hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
 hooksecurefunc(UF,"Update_PartyFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
 hooksecurefunc(UF,"Update_BossFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
+hooksecurefunc(UF,"UpdateRoleIcon", ElvUI_EltreumUI.BlizzPortraitsGroup) --has trigger for UNIT_CONNECTION
 
 --function to update portrait when settings change
 function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
