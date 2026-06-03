@@ -20,15 +20,12 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated Waypoint Time To Arrive to use other calculations when player speed is secret
+Updated for Classic Mists 5.5.4
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an issue with the Time to Arrive due to player speed being secret
-Fixed an issue with the Quest Auto Accept due to NPC id being secret
-Fixed an issue with the font dropdown due to the AvQuest font
 ]], 7, "small", nil, nil, nil, nil, "full")
 end

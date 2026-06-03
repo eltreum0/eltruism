@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.0.9
+Updated for Classic Mists 5.5.4
+---
 ### 5.0.8
 Updated Waypoint Time To Arrive to use other calculations when player speed is secret  
 Fixed an issue with the Time to Arrive due to player speed being secret  
