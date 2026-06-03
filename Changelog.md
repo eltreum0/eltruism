@@ -3,6 +3,7 @@ The future is uncertain
 ---
 ### 5.0.9
 Updated for Classic Mists 5.5.4
+Removed LootText from Classic Mists due to the removal of the Blizzard functions necessary for it
 ---
 ### 5.0.8
 Updated Waypoint Time To Arrive to use other calculations when player speed is secret  

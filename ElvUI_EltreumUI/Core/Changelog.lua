@@ -21,6 +21,7 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
 Updated for Classic Mists 5.5.4
+Removed LootText from Classic Mists due to the removal of the Blizzard functions necessary for it
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
