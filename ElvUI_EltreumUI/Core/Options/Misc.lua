@@ -12,7 +12,7 @@ local C_VoiceChat = _G.C_VoiceChat
 local PlaySoundFile = _G.PlaySoundFile
 
 local function voiceplayback(text)
-	if E.Retail then
+	if E.Retail or E.Mists then
 		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), 1, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume, true)
 	else
 		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)

@@ -78,7 +78,11 @@ function ElvUI_EltreumUI:PreviewDoom()
 
 	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
 		local tts = GetSpellInfo(33786)
-		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		if E.Mists then --uses Retail args
+			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		else
+			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		end
 	end
 
 	wasPreviewing = true
@@ -288,7 +292,11 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							if E.Mists or E.TBC or E.Wrath then --cata on 29/10/2024 seems to not have fully migrated like classic era
+							if E.Mists then --uses Retail args
+								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
+									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+								end
+							elseif E.TBC or E.Wrath then --cata on 29/10/2024 seems to not have fully migrated like classic era
 								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
 									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 								end

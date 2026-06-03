@@ -3,7 +3,7 @@ local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 
 local function voiceplayback()
-	if E.Retail then
+	if E.Retail or E.Mists then
 		_G.C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, _G.TEXT_TO_SPEECH or "Text to Speech", 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume, true)
 	else
 		_G.C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, _G.TEXT_TO_SPEECH or "Text to Speech", _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
