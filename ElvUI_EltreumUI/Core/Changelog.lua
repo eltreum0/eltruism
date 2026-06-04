@@ -28,5 +28,6 @@ Removed LootText from Classic Mists due to the removal of the Blizzard functions
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
+Fixed an error in Classic Mists due to a change in Blizzard Chat
 ]], 7, "small", nil, nil, nil, nil, "full")
 end
