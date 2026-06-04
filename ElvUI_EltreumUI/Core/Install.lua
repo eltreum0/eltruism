@@ -374,7 +374,7 @@ ElvUI_EltreumUI.InstallerData = {
 						FCF_OpenNewWindow()
 						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-						if E.TBC then
+						if E.TBC or E.Mists then
 							_G.ChatFrame5:AddChannel(lfg)
 						else
 							ChatFrame_AddChannel(_G.ChatFrame5, lfg)
@@ -413,7 +413,7 @@ ElvUI_EltreumUI.InstallerData = {
 						FCF_OpenNewWindow()
 						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-						if E.TBC then
+						if E.TBC or E.Mists then
 							_G.ChatFrame5:AddChannel(lfg)
 						else
 							ChatFrame_AddChannel(_G.ChatFrame5, lfg)
@@ -451,7 +451,7 @@ ElvUI_EltreumUI.InstallerData = {
 						FCF_OpenNewWindow()
 						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-						if E.TBC then
+						if E.TBC or E.Mists then
 							_G.ChatFrame5:AddChannel(lfg)
 						else
 							ChatFrame_AddChannel(_G.ChatFrame5, lfg)

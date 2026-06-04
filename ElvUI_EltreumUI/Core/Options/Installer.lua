@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 				_G.FCF_OpenNewWindow()
 				ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
 				_G.FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-				if E.TBC then
+				if E.TBC or E.Mists then
 					_G.ChatFrame5:AddChannel(lfg)
 				else
 					ChatFrame_AddChannel(_G.ChatFrame5, lfg)
