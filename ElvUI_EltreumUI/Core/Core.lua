@@ -32,7 +32,6 @@ local strsub = _G.strsub
 local ShowUIPanel = _G.ShowUIPanel
 local EditModeManagerFrame = _G.EditModeManagerFrame
 local SOUNDKIT = _G.SOUNDKIT
-local pairs = _G.pairs
 local StaticPopupDialogs = _G.StaticPopupDialogs
 local ceil = _G.ceil
 local BuffFrame = _G.BuffFrame
@@ -641,26 +640,40 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				else
 					Menubutton:Size(xMenubutton-118, offset)
 				end
-
 				GameMenuFrame.Eltruism = Menubutton
-				GameMenuFrame.MenuButtons.Eltruism = Menubutton
 
 				hooksecurefunc(GameMenuFrame, 'Layout', function()
-					GameMenuFrame.MenuButtons.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -20)
-					for _, button in pairs(GameMenuFrame.MenuButtons) do
-						if button then
+					if E.Retail then
+						GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
+					else
+						GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -35)
+					end
+
+					local EditModeButton
+					for button in GameMenuFrame.buttonPool:EnumerateActive() do
+						if button.layoutIndex then
 							local point, anchor, point2, x, y = button:GetPoint()
-							button:SetPoint(point, anchor, point2, x, y - offset)
+							if button.layoutIndex == 1 then
+								button:ClearAllPoints()
+								button:SetPoint("TOP", GameMenuFrame.Eltruism, "BOTTOM", 0, 0)
+							else
+								button:SetPoint(point, anchor, point2, x, y - offset)
+							end
+						end
+						if button:GetText() == _G.HUD_EDIT_MODE_MENU then
+							EditModeButton = button
 						end
 					end
 
 					--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
 					if E.Retail then
 						GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+					else
+						GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
 					end
 
 					--use elvui moveui instead of blizzard edit mode
-					local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
+					--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
 					if EditModeButton then
 						ElvUI_EltreumUI:MacroClick(EditModeButton)
 						EditModeButton:SetScript("OnClick", function(_, button)
