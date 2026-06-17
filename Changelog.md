@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.1.0
+Updated for Midnight 12.0.7  
+Fixed an error with pet action bars in Mists of Pandaria Classic  
+Fixed Eltruism Game Menu button position after an ElvUI change  
+---
 ### 5.0.9.1
 Fixed an error in Classic Mists due to a change in Blizzard Chat  
 ---

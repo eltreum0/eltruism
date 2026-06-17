@@ -1,5 +1,5 @@
-### 5.0.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 5.1.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Updated for Classic Mists 5.5.4  
-Fixed an error in Classic Mists due to a change in Blizzard Chat  
-Removed LootText from Classic Mists due to the removal of the Blizzard functions necessary for it
+Updated for Midnight 12.0.7  
+Fixed an error with pet action bars in Mists of Pandaria Classic  
+Fixed Eltruism Game Menu button position after an ElvUI change
