@@ -20,14 +20,14 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated for Classic Mists 5.5.4
-Removed LootText from Classic Mists due to the removal of the Blizzard functions necessary for it
+Updated for Midnight 12.0.7
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an error in Classic Mists due to a change in Blizzard Chat
+Fixed an error with pet action bars in Mists of Pandaria Classic
+Fixed Eltruism Game Menu button position after an ElvUI change
 ]], 7, "small", nil, nil, nil, nil, "full")
 end
