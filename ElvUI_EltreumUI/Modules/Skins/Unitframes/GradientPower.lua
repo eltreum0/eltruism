@@ -25,10 +25,6 @@ local powertypes ={
 --Apply Gradient Power Colors to Unit
 function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 	if not unit then return end
-	if unit == "testunit" then
-		unit = "player"
-	end
-
 	if E.NotSecretUnit(unit) and UnitExists(unit) then --can error now in 12.0.7?
 	--if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) and UnitExists(unit) then
 		--print(powertype,unit)
@@ -324,21 +320,21 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 
 		if forced then
 			if E.Retail or E.Mists or E.TBC or E.Wrath then
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss1")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss2")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss3")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss4")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss5")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss6")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss7")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss8")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Focus")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "FocusTarget")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Arena1")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Arena2")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Arena3")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Arena4")
-				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Arena5")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss1")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss2")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss3")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss4")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss5")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss6")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss7")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Boss8")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Focus")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "FocusTarget")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Arena1")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Arena2")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Arena3")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Arena4")
+				ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Arena5")
 			end
 		end
 
