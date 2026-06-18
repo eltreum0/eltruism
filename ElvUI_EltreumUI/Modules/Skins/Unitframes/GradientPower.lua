@@ -24,13 +24,12 @@ local powertypes ={
 
 --Apply Gradient Power Colors to Unit
 function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
-	if not unit then return end
 	if unit == "testunit" then
 		unit = "player"
 	end
 
-	if E.NotSecretUnit(unit) and UnitExists(unit) then --can error now in 12.0.7?
-	--if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) and UnitExists(unit) then
+	--if E.NotSecretUnit(unit) and UnitExists(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) and UnitExists(unit) then
 		--print(powertype,unit)
 		local _, powertype = UnitPowerType(unit)
 
