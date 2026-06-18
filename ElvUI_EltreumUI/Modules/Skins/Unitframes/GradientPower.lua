@@ -28,7 +28,8 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 		unit = "player"
 	end
 
-	if E.NotSecretUnit(unit) and UnitExists(unit) then
+	--if E.NotSecretUnit(unit) and UnitExists(unit) then
+	if ElvUI_EltreumUI:IsThisASafeSecret(unit,true) and UnitExists(unit) then
 		--print(powertype,unit)
 		local _, powertype = UnitPowerType(unit)
 
