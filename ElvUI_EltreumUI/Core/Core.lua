@@ -1062,29 +1062,18 @@ else
 end
 
 function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
-	if E.Retail then
-		if hasValue then
-			if _G.canaccessvalue(value) then --new api to check if value is secret
-				return true
-			else
-				return false
-			end
-		elseif isBG then
-			local _, instanceType = _G.IsInInstance()
-			if instanceType == "pvp" or instanceType == "arena" then
-				return false
-			else
-				return true
-			end
-		else
-			local _, instanceType = _G.IsInInstance()
-			if instanceType ~= "none" then
-				return false
-			else
-				return true
-			end
-		end
-	else
+	if not E.Retail then
 		return true
+	end
+
+	if hasValue then
+		return E:CanAccessValue(value) --new api to check if value is secret
+	else
+	  local _, instanceType = _G.IsInInstance()
+	  if isBG then
+		return instanceType ~= "pvp" and instanceType ~= "arena"
+	  else
+		return instanceType == "none"
+	  end
 	end
 end
