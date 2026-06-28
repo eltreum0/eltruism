@@ -26,7 +26,9 @@ local classcolorsescape = {
 }
 
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain, modified to do more things
-local function AddLootIcons(_, _, message, ...)
+local function AddLootIcons(_, _, message, ...) --arg2 is event
+	--local chatType = strsub(event, 10)
+	--if E:IsSecretValue(chatType) then return end
 	local _, _, _, _, _, _, _, _, _, _, guid = ...
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
@@ -118,8 +120,8 @@ local function AddLootIcons(_, _, message, ...)
 		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", AddLootIcons)
 		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_RAID_LEADER", AddLootIcons)
 		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_RAID_WARNING", AddLootIcons)
-		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER", AddLootIcons)
-		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER_INFORM", AddLootIcons)
+		--ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER", AddLootIcons)
+		--ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER_INFORM", AddLootIcons)
 		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_YELL", AddLootIcons)
 		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_BN_WHISPER", AddLootIcons)
 		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", AddLootIcons)
@@ -139,8 +141,8 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY_LEADER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_LEADER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_WARNING", AddLootIcons)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", AddLootIcons)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", AddLootIcons)
+--ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", AddLootIcons)
+--ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", AddLootIcons)
