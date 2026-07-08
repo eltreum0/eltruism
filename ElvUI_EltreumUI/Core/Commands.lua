@@ -66,18 +66,20 @@ function ElvUI_EltreumUI:RunCommands(message)
 	if message == 'installer' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	elseif message == 'loot' then
-		if E.db.ElvUI_EltreumUI.loot.loottext.enable then
-			local aImage = GetCoinIcon(9999999999)
-			local aSilver = GetCoinIcon(100)
-			local aCopper = GetCoinIcon(1)
-			--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
-			if E.Retail then
-				CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
-			elseif E.Classic or E.Mists or E.TBC or E.Wrath then
-				CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", CombatText_StandardScroll, 255, 255, 255)
+		if E.Classic or E.Wrath then --retail, mists and tbc have removed the combat text function
+			if E.db.ElvUI_EltreumUI.loot.loottext.enable then
+				local aImage = GetCoinIcon(9999999999)
+				local aSilver = GetCoinIcon(100)
+				local aCopper = GetCoinIcon(1)
+				--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
+				if E.Retail then
+					CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
+				elseif E.Classic or E.Mists or E.TBC or E.Wrath then
+					CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", CombatText_StandardScroll, 255, 255, 255)
+				end
+			else
+				CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 			end
-		else
-			CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end
 	elseif message == 'config' or message == 'options' or message == '' then
 		if not InCombatLockdown() then

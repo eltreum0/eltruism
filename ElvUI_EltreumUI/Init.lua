@@ -91,10 +91,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.Retail then
 		ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
 	end
-	if not E.Retail and not E.Mists then --now mists also has the combat text functions removed it seems
+	if E.Wrath or E.Classic then --now mists also has the combat text functions removed it seems
 		ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
 	end
-
 	ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
 	ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
 	ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
