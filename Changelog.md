@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.1.1
+Updated for Burning Crusade Anniversary 2.5.6  
+Updated Nameplate Threat color functions  
+Updated Chat to sync with ElvUI changes  
+Fixed an Error when trying to Link Achievements in Chat  
+Fixed an issue with Gradient Power in Retail  
+Removed LootText from Burning Crusade Anniversary due to it now being synced with Retail  
+---
 ### 5.1.0
 Updated for Midnight 12.0.7  
 Fixed an error with pet action bars in Mists of Pandaria Classic  
