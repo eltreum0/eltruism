@@ -2359,7 +2359,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--player castbar
-				if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.player.castbar.icon then
+				if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.castbar.enable and E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.player.castbar.icon then
 					if _G["ElvUF_Player_CastBar"].shadow then
 						if not E.db.unitframe.units.player.castbar.iconAttached then
 							if E.db.unitframe.units.player.castbar.iconPosition == "RIGHT" then
@@ -2447,7 +2447,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--target castbar
-				if E.db.unitframe.units.target.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.target.castbar.icon then
+				if E.db.unitframe.units.target.enable and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.target.castbar.icon then
 					if _G["ElvUF_Target_CastBar"].shadow then
 						if not E.db.unitframe.units.target.castbar.iconAttached then
 							if E.db.unitframe.units.target.castbar.iconPosition == "RIGHT" then
@@ -2535,7 +2535,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--focus castbar
-				if E.db.unitframe.units.focus.enable and E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon and E.db.unitframe.units.focus.enable then
+				if E.db.unitframe.units.focus.enable and E.db.unitframe.units.focus.castbar.enable and E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon and E.db.unitframe.units.focus.enable then
 					if _G["ElvUF_Focus_CastBar"] and _G["ElvUF_Focus_CastBar"].shadow then
 						if not E.db.unitframe.units.focus.castbar.iconAttached then
 							if E.db.unitframe.units.focus.castbar.iconPosition == "RIGHT" then
