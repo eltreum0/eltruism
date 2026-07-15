@@ -2183,6 +2183,11 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
 
+	--[[12.1.0 new cvars
+	nameplateCheckDistanceForTarget --ignores distance to display target np
+	nameplateNotSelectedAlpha returns for retail
+	]]
+
 	if E.Retail then
 		SetCVar("nameplateShowFriendlyPlayers", 1)
 		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)

@@ -6,7 +6,9 @@ local hooksecurefunc = _G.hooksecurefunc
 local InCombatLockdown = _G.InCombatLockdown
 local UnitLevel = _G.UnitLevel
 local level
-local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
+
+--12.1.0 changes
+local IsPlayerAtEffectiveMaxLevel = _G.GameRulesUtil and _G.GameRulesUtil.IsPlayerAtEffectiveMaxLevel or _G.IsPlayerAtEffectiveMaxLevel
 
 --fixed cooldown text to be class color
 function ElvUI_EltreumUI:CooldownColors()

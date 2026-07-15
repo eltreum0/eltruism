@@ -17,7 +17,8 @@ local GetContainerItemLink = C_Container.GetContainerItemLink
 local GetContainerItemInfo = C_Container.GetContainerItemInfo
 local GetContainerItemCooldown = C_Container.GetContainerItemCooldown
 local tonumber = _G.tonumber
-local GetInventorySlotInfo = _G.GetInventorySlotInfo
+--12.1.0 changes
+local GetInventorySlotInfo = _G.C_PaperDollInfo and _G.C_PaperDollInfo.GetInventorySlotInfo or _G.GetInventorySlotInfo
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local CooldownFrame_Set = _G.CooldownFrame_Set
