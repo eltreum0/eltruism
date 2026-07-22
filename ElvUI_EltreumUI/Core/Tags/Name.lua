@@ -22,7 +22,7 @@ local UnitExists = _G.UnitExists
 do
 	local function EltruismGetTitleNPC(unit, custom)
 		if not ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then return end
-		if UnitIsPlayer(unit) or (E.Mists or E.TBC or E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
+		if UnitIsPlayer(unit) or ((E.Mists or E.TBC or E.Wrath) and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		-- similar to TT.GetLevelLine
 		local info = E.ScanTooltip:GetUnitInfo(unit)
