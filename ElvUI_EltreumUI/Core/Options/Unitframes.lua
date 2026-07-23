@@ -725,6 +725,4 @@ function ElvUI_EltreumUI:UnitframeOptions()
 			hideOnEscape = true,
 		}
 		if E.Retail then if tonumber(value) ~= nil then return true else return E:StaticPopup_Show('ELTRUISMINVALIDMODELPOWER') and false end else return true end end)
-
-	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
 end
