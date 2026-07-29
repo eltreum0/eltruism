@@ -333,7 +333,7 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 end
 
 hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
-	if E.db.ElvUI_EltreumUI.chat.enable then
+	if E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.chat and E.db.ElvUI_EltreumUI.chat.enable then
 		if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) then
 			CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
 		end

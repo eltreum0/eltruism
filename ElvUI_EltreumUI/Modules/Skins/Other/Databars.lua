@@ -16,7 +16,7 @@ hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabarXP)
 
 --gradient rep
 function ElvUI_EltreumUI:GradientDatabarRep()
-	if _G["ElvUI_ReputationBar"] and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation then
+	if _G["ElvUI_ReputationBar"] and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.unitframes and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation then
 		if not DB.db then return end
 		if not DB.db.colors then return end
 
