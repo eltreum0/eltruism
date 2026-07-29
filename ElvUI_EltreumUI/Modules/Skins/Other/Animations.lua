@@ -171,7 +171,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 					gta:SetSize(x,y)
 					gta:SetPoint("Center", E.UIParent)
 
-					gtatex:SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\White8x8.tga")
+					gtatex:SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\White8x8.tga")
 					gtatex:SetVertexColor(0.03, 0.03, 0)
 					gtatex:SetAlpha(0.40)
 					gtatex:SetAllPoints(gta)

@@ -49,7 +49,7 @@ function ElvUI_EltreumUI:EltruismSAM()
 					if not category.IsSkinned then
 						S:HandleCheckBox(category.EnabledButton)
 						S:HandleCollapseTexture(category.ExpandOrCollapseButton, nil, true) --not sure if its working or is my glues
-						category.HighlightTexture:SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\NormTex2")
+						category.HighlightTexture:SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\NormTex2")
 						category.HighlightTexture:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 0.3)
 						category.IsSkinned = true
 					end
@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:EltruismSAM()
 				for _, category in pairs(frame.buttons) do
 					if not category.IsSkinned then
 						S:HandleCheckBox(category.EnabledButton)
-						category.HighlightTexture:SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\NormTex2")
+						category.HighlightTexture:SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\NormTex2")
 						category.HighlightTexture:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 0.3)
 						category.IsSkinned = true
 					end

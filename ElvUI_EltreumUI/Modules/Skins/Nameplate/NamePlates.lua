@@ -98,7 +98,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						if button.Cooldown.timer then
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
 								button.Cooldown:SetSwipeColor(0, 0, 0, 0)
-								button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
+								button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
 								button.Cooldown.timer.text:ClearAllPoints()
@@ -204,7 +204,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					if button.Cooldown.timer then
 						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
 							button.Cooldown:SetSwipeColor(0, 0, 0, 0)
-							button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
+							button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 						end
 						button.Cooldown:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
 						if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position

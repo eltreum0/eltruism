@@ -440,7 +440,7 @@ function ElvUI_EltreumUI:LoadIconTags()
 			elseif E.db.unitframe.units.player.CombatIcon.texture == "SKULL" then
 				return "|TInterface\\LootFrame\\LootPanel-Icon:0:0:0:0|t"
 			elseif E.db.unitframe.units.player.CombatIcon.texture == "COMBAT" then
-				return "|TInterface\\Addons\\ElvUI\\Core\\Media\\Textures\\Combat.tga"..escapeSequence.."|t"
+				return "|TInterface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\Combat.tga"..escapeSequence.."|t"
 			else
 				return E:TextureString(E.Media.CombatIcons[E.db.unitframe.units.player.CombatIcon.texture],':20:20')-- "|T"..E.Media.CombatIcons[texture]..":0:0:0|t"
 			end
