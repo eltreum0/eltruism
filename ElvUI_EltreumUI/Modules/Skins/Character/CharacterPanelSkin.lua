@@ -2140,14 +2140,17 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 			end)
 
-			if E.Wrath or E.TBC then
+			if _G.PlayerTitleDropdown then
 				_G.PlayerTitleDropdown:ClearAllPoints()
 				_G.PlayerTitleDropdown:SetParent(CharacterModelFrame)
 				_G.PlayerTitleDropdown:SetPoint('TOP', CharacterModelFrame, -6, 40)
+			end
+			if _G.PVPFrameToggleButton then
 				_G.PVPFrameToggleButton:ClearAllPoints()
 				_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 90, 47)
 				_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
-			elseif E.Classic then
+			end
+			if CharacterTitleText then
 				CharacterTitleText:ClearAllPoints()
 				CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
 				CharacterTitleText:SetParent(CharacterModelFrame)
