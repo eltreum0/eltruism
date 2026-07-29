@@ -8,8 +8,6 @@ local GetNumAddOns = _G.C_AddOns and _G.C_AddOns.GetNumAddOns or _G.GetNumAddOns
 local SaveAddOns = _G.C_AddOns and _G.C_AddOns.SaveAddOns or _G.SaveAddOns
 local CreateFrame = _G.CreateFrame
 local GetCoinIcon = _G.C_CurrencyInfo and _G.C_CurrencyInfo.GetCoinIcon or _G.GetCoinIcon
-local CombatText_AddMessage = _G.CombatText_AddMessage
-local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
 local strlower = _G.strlower
 local C_Container= _G.C_Container
@@ -66,20 +64,19 @@ function ElvUI_EltreumUI:RunCommands(message)
 	if message == 'installer' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	elseif message == 'loot' then
-		if E.Classic or E.Wrath then --retail, mists and tbc have removed the combat text function
-			if E.db.ElvUI_EltreumUI.loot.loottext.enable then
-				local aImage = GetCoinIcon(9999999999)
-				local aSilver = GetCoinIcon(100)
-				local aCopper = GetCoinIcon(1)
-				--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
-				if E.Retail then
-					CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
-				elseif E.Classic or E.Mists or E.TBC or E.Wrath then
-					CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", CombatText_StandardScroll, 255, 255, 255)
-				end
-			else
-				CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
+		--_G.CombatText:AddMessage(message, scrollFunction, r, g, b, displayType, isStaggered)
+		if E.db.ElvUI_EltreumUI.loot.loottext.enable then
+			local aImage = GetCoinIcon(9999999999)
+			local aSilver = GetCoinIcon(100)
+			local aCopper = GetCoinIcon(1)
+			--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
+			if E.Retail then
+				_G.CombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+			elseif E.Classic or E.Mists or E.TBC or E.Wrath then
+				_G.CombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 			end
+		else
+			_G.CombatText:AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 		end
 	elseif message == 'config' or message == 'options' or message == '' then
 		if not InCombatLockdown() then
