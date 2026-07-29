@@ -72,218 +72,99 @@ do
 	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient with brackets"])
 end
 
--- Name custom abbreviation by Azilroka
-E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		if name and string.len(name) > 16 then
-			name = ElvUI_EltreumUI:ShortenString(name, 16)
-		end
-		return name
-	else
-		return name
-	end
-end)
-E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 16 characters, made by Azilroka"])
+function ElvUI_EltreumUI:LoadNameTags()
 
--- Abbreviate in 20 chars for Nekator
-E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		if name and string.len(name) > 20 then
-			name = ElvUI_EltreumUI:ShortenString(name, 20)
-		end
-		return name
-	else
-		return name
-	end
-end)
-E:AddTagInfo("name:eltruism:abbreviate20", ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
-
--- Abbreviate very short due to small raid frames
-E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		if name and string.len(name) > 10 then
-			name = ElvUI_EltreumUI:ShortenString(name, 10)
-		end
-		return name
-	else
-		return name
-	end
-end)
-E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 10 characters"])
-
---gradient name
-E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local name = UnitName(unit)
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if args then
-		isTarget = nil
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+	-- Name custom abbreviation by Azilroka
+	E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			if name and string.len(name) > 16 then
+				name = ElvUI_EltreumUI:ShortenString(name, 16)
 			end
+			return name
+		else
+			return name
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+	end)
+	E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 16 characters, made by Azilroka"])
 
---gradient name abbreviate
-E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local name = UnitName(unit)
-	if not name then return end
-	if not args then args = 16 end
-	args = tonumber(args)
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
-		end
-		if string.len(name) > tonumber(args) then --second for players
-			name = E:ShortenString(name, tonumber(args))
-		end
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+	-- Abbreviate in 20 chars for Nekator
+	E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			if name and string.len(name) > 20 then
+				name = ElvUI_EltreumUI:ShortenString(name, 20)
 			end
+			return name
+		else
+			return name
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+	end)
+	E:AddTagInfo("name:eltruism:abbreviate20", ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
 
---gradient name in caps
-E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
-	if not unit then return end
-	local namecheck = UnitName(unit)
-	if not namecheck then return end
-	local name = namecheck
-	if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
-		name = string.upper(namecheck)
-	end
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+	-- Abbreviate very short due to small raid frames
+	E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			if name and string.len(name) > 10 then
+				name = ElvUI_EltreumUI:ShortenString(name, 10)
 			end
+			return name
+		else
+			return name
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientcaps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+	end)
+	E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Abbreviates the unit name once it goes over 10 characters"])
 
---gradient name abbreviate in caps
-E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,args)
-	if not unit then return end
-	local namecheck = UnitName(unit)
-	if not namecheck then return end
-	local name = namecheck
-	if not args then args = 16 end
-	args = tonumber(args)
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		name = string.upper(namecheck)
-		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+	--gradient name
+	E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
+		local name = UnitName(unit)
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
 		end
-		if string.len(name) > tonumber(args) then --second for players
-			name = E:ShortenString(name, tonumber(args))
-		end
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
-			end
-		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientshortcaps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
-
---gradient name translit
-E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local targetName = UnitName(unit)
-	local name = Translit:Transliterate(targetName)
-	if not name then return end
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		if args then
+			isTarget = nil
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+
+	--gradient name abbreviate
+	E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args)
+		local name = UnitName(unit)
+		if not name then return end
+		if not args then args = 16 end
+		args = tonumber(args)
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 			end
@@ -291,258 +172,397 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 				name = E:ShortenString(name, tonumber(args))
 			end
 		end
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
-			end
-		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradienttranslit", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
-
---gradient name abbreviate translit
-E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(unit)
-	local targetName = UnitName(unit)
-	local name = targetName
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		name = Translit:Transliterate(targetName)
-		if name and string.len(name) > 16 then
-			name = ElvUI_EltreumUI:ShortenString(name, 16)
-		end
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
-			end
-		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientshorttranslit", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
-
-E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-	local name = UnitName(unit)
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(UnitPVPName(unit), unitClass,nil,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY",nil,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL",nil,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY",nil,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE",nil,true)
-			end
-		end
-	end
-end)
-E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays name and title"])
-
-E:AddTag('eltruismguild:brackets', 'PLAYER_GUILD_UPDATE', function(unit)
-	local guildName = GetGuildInfo(unit)
-	if guildName then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		guildName = format('<%s>', guildName)
-		return ElvUI_EltreumUI:GradientName(guildName, unitClass,nil,true)
-	end
-end)
-E:AddTagInfo("eltruismguild:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the guild name with brackets in gradient"])
-
-E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
-	local _, realm = UnitName(unit)
-	local _, unitClass = UnitClass(unit)
-	if realm and unitClass then
-		if ElvUI_EltreumUI:IsThisASafeSecret(realm,true) then
-			if realm ~= '' then
-				if realm ~= E.myrealm then
-					realm = format('-%s', realm)
-					return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
 				end
 			end
 		end
-	end
-end)
-E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
+	end)
+	E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
---gradient name default colors
-E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCHOSTILE", isTarget,true)
+	--gradient name in caps
+	E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
+		if not unit then return end
+		local namecheck = UnitName(unit)
+		if not namecheck then return end
+		local name = namecheck
+		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
+			name = string.upper(namecheck)
+		end
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+				end
 			end
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientdefaultcolors", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+	end)
+	E:AddTagInfo("name:eltruism:gradientcaps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
 
---gradient name abbreviate default colors
-E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		if name and string.len(name) > 16 then
-			name = ElvUI_EltreumUI:ShortenString(name, 16)
-		end
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCHOSTILE", isTarget,true)
-			end
-		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientdefaultcolorsshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
-
---class color name abbreviate in caps
-E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
-	if not unit then return end
-	local namecheck = UnitName(unit)
-	if not namecheck then return end
-	local name = namecheck
-	if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		name = string.upper(namecheck)
+	--gradient name abbreviate in caps
+	E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,args)
+		if not unit then return end
+		local namecheck = UnitName(unit)
+		if not namecheck then return end
+		local name = namecheck
 		if not args then args = 16 end
 		args = tonumber(args)
-		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
 		end
-		if string.len(name) > tonumber(args) then --second for players
-			name = E:ShortenString(name, tonumber(args))
-		end
-	end
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return "|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..name.."|r"
-			elseif reaction == 4 then
-				return "|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..name.."|r"
-			elseif reaction == 3 then
-				return "|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..name.."|r"
-			elseif reaction == 2 or reaction == 1 then
-				return "|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..name.."|r"
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			name = string.upper(namecheck)
+			if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+			end
+			if string.len(name) > tonumber(args) then --second for players
+				name = E:ShortenString(name, tonumber(args))
 			end
 		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:gradientshortcaps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+
+	--gradient name translit
+	E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,args)
+		local targetName = UnitName(unit)
+		local name = Translit:Transliterate(targetName)
+		if not name then return end
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			if args then
+				if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+					name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+				end
+				if string.len(name) > tonumber(args) then --second for players
+					name = E:ShortenString(name, tonumber(args))
+				end
+			end
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:gradienttranslit", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+
+	--gradient name abbreviate translit
+	E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(unit)
+		local targetName = UnitName(unit)
+		local name = targetName
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			name = Translit:Transliterate(targetName)
+			if name and string.len(name) > 16 then
+				name = ElvUI_EltreumUI:ShortenString(name, 16)
+			end
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:gradientshorttranslit", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+
+	E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		local name = UnitName(unit)
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(UnitPVPName(unit), unitClass,nil,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY",nil,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL",nil,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY",nil,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE",nil,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays name and title"])
+
+	E:AddTag('eltruismguild:brackets', 'PLAYER_GUILD_UPDATE', function(unit)
+		local guildName = GetGuildInfo(unit)
+		if guildName then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			guildName = format('<%s>', guildName)
+			return ElvUI_EltreumUI:GradientName(guildName, unitClass,nil,true)
+		end
+	end)
+	E:AddTagInfo("eltruismguild:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the guild name with brackets in gradient"])
+
+	E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
+		local _, realm = UnitName(unit)
+		local _, unitClass = UnitClass(unit)
+		if realm and unitClass then
+			if ElvUI_EltreumUI:IsThisASafeSecret(realm,true) then
+				if realm ~= '' then
+					if realm ~= E.myrealm then
+						realm = format('-%s', realm)
+						return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
+					end
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
+
+	--gradient name default colors
+	E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCHOSTILE", isTarget,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:gradientdefaultcolors", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+
+	--gradient name abbreviate default colors
+	E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			if name and string.len(name) > 16 then
+				name = ElvUI_EltreumUI:ShortenString(name, 16)
+			end
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCFRIENDLY", isTarget,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCNEUTRAL", isTarget,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCUNFRIENDLY", isTarget,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientNameDefaultColors(name, "NPCHOSTILE", isTarget,true)
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:gradientdefaultcolorsshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+
+	--class color name abbreviate in caps
+	E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
+		if not unit then return end
+		local namecheck = UnitName(unit)
+		if not namecheck then return end
+		local name = namecheck
+		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			name = string.upper(namecheck)
+			if not args then args = 16 end
+			args = tonumber(args)
+			if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+			end
+			if string.len(name) > tonumber(args) then --second for players
+				name = E:ShortenString(name, tonumber(args))
+			end
+		end
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return "|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..name.."|r"
+				elseif reaction == 4 then
+					return "|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..name.."|r"
+				elseif reaction == 3 then
+					return "|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..name.."|r"
+				elseif reaction == 2 or reaction == 1 then
+					return "|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..name.."|r"
+				end
+			end
+		end
+	end)
+	E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"])
+
+	--name in caps
+	E:AddTag("name:eltruism:capital", "UNIT_NAME_UPDATE", function(unit)
+		if not unit then return end
+		local namecheck = UnitName(unit)
+		if not namecheck then return end
+		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
+			local name = string.upper(namecheck)
+			return name
+		end
+	end)
+	E:AddTagInfo("name:eltruism:capital", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in capital"])
+
+	--Details nickname using the nicktag library suggested by VXT
+	local nicktag
+	if IsAddOnLoaded("Details") then
+		nicktag = LibStub('NickTag-1.0')
 	end
-end)
-E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"])
 
---name in caps
-E:AddTag("name:eltruism:capital", "UNIT_NAME_UPDATE", function(unit)
-	if not unit then return end
-	local namecheck = UnitName(unit)
-	if not namecheck then return end
-	if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
-		local name = string.upper(namecheck)
-		return name
-	end
-end)
-E:AddTagInfo("name:eltruism:capital", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in capital"])
-
---Details nickname using the nicktag library suggested by VXT
-local nicktag
-if IsAddOnLoaded("Details") then
-	nicktag = LibStub('NickTag-1.0')
-end
-
---Class Color nickname
-E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
-	if not unit then return end
-	local name = UnitName(unit)
-	local _, unitClass = UnitClass(unit)
-	local reaction = UnitReaction(unit, "player")
-	if nicktag then
-		local nickname = nicktag:GetNickname(UnitName(unit), false, true)
-		if nickname then
-			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-				if not unitClass then return end
-				return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..nickname.."|r"
+	--Class Color nickname
+	E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
+		if not unit then return end
+		local name = UnitName(unit)
+		local _, unitClass = UnitClass(unit)
+		local reaction = UnitReaction(unit, "player")
+		if nicktag then
+			local nickname = nicktag:GetNickname(UnitName(unit), false, true)
+			if nickname then
+				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+					if not unitClass then return end
+					return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..nickname.."|r"
+				else
+					if reaction then
+						if reaction >= 5 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..nickname.."|r"
+						elseif reaction == 4 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..nickname.."|r"
+						elseif reaction == 3 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..nickname.."|r"
+						elseif reaction == 2 or reaction == 1 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..nickname.."|r"
+						end
+					end
+				end
 			else
-				if reaction then
-					if reaction >= 5 then
-						return "|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..nickname.."|r"
-					elseif reaction == 4 then
-						return "|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..nickname.."|r"
-					elseif reaction == 3 then
-						return "|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..nickname.."|r"
-					elseif reaction == 2 or reaction == 1 then
-						return "|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..nickname.."|r"
+				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+					if not unitClass then return end
+					return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
+				else
+					if reaction then
+						if reaction >= 5 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..name.."|r"
+						elseif reaction == 4 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..name.."|r"
+						elseif reaction == 3 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..name.."|r"
+						elseif reaction == 2 or reaction == 1 then
+							return "|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..name.."|r"
+						end
 					end
 				end
 			end
@@ -564,54 +584,54 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 				end
 			end
 		end
-	else
-		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-			if not unitClass then return end
-			return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
-		else
-			if reaction then
-				if reaction >= 5 then
-					return "|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..name.."|r"
-				elseif reaction == 4 then
-					return "|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..name.."|r"
-				elseif reaction == 3 then
-					return "|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..name.."|r"
-				elseif reaction == 2 or reaction == 1 then
-					return "|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..name.."|r"
-				end
-			end
-		end
-	end
-end)
-E:AddTagInfo("eltruism:detailsnickname", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
+	end)
+	E:AddTagInfo("eltruism:detailsnickname", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
 
---Gradient nickname
-E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	local _, unitClass = UnitClass(unit)
-	local reaction = UnitReaction(unit, "player")
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if nicktag then
-		local nickname = nicktag:GetNickname(UnitName(unit), false, true)
-		if nickname then
-			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-				if not unitClass then return end
-				return ElvUI_EltreumUI:GradientName(nickname, unitClass,isTarget,true)
-			elseif not UnitIsPlayer(unit) then
-				if reaction then
-					if reaction >= 5 then
-						return ElvUI_EltreumUI:GradientName(nickname, "NPCFRIENDLY", isTarget,true)
-					elseif reaction == 4 then
-						return ElvUI_EltreumUI:GradientName(nickname, "NPCNEUTRAL", isTarget,true)
-					elseif reaction == 3 then
-						return ElvUI_EltreumUI:GradientName(nickname, "NPCUNFRIENDLY", isTarget,true)
-					elseif reaction == 2 or reaction == 1 then
-						return ElvUI_EltreumUI:GradientName(nickname, "NPCHOSTILE", isTarget,true)
+	--Gradient nickname
+	E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		local _, unitClass = UnitClass(unit)
+		local reaction = UnitReaction(unit, "player")
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if nicktag then
+			local nickname = nicktag:GetNickname(UnitName(unit), false, true)
+			if nickname then
+				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+					if not unitClass then return end
+					return ElvUI_EltreumUI:GradientName(nickname, unitClass,isTarget,true)
+				elseif not UnitIsPlayer(unit) then
+					if reaction then
+						if reaction >= 5 then
+							return ElvUI_EltreumUI:GradientName(nickname, "NPCFRIENDLY", isTarget,true)
+						elseif reaction == 4 then
+							return ElvUI_EltreumUI:GradientName(nickname, "NPCNEUTRAL", isTarget,true)
+						elseif reaction == 3 then
+							return ElvUI_EltreumUI:GradientName(nickname, "NPCUNFRIENDLY", isTarget,true)
+						elseif reaction == 2 or reaction == 1 then
+							return ElvUI_EltreumUI:GradientName(nickname, "NPCHOSTILE", isTarget,true)
+						end
+					end
+				end
+			else
+				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+					if not unitClass then return end
+					return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
+				elseif not UnitIsPlayer(unit) then
+					if reaction then
+						if reaction >= 5 then
+							return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
+						elseif reaction == 4 then
+							return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
+						elseif reaction == 3 then
+							return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
+						elseif reaction == 2 or reaction == 1 then
+							return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+						end
 					end
 				end
 			end
@@ -633,11 +653,39 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 				end
 			end
 		end
-	else
+	end)
+	E:AddTagInfo("eltruism:detailsnickname:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
+
+	--gradient short but dont abbreviate first name
+	E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_,args)
+		local name = UnitName(unit)
+		if not name then return end
+		if not args then args = 16 end
+		args = tonumber(args)
+		--name = "Mannequin d'entraïnement aux dégäts de zone"
+		local isTarget
+		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
+		else
+			isTarget = false
+		end
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
+			if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
+			end
+		end
+
+		--this would end up removing some of the shortened text in this case
+		--[[if string.len(name) > tonumber(args) then --second for players
+			name = E:ShortenString(name, tonumber(args))
+		end]]
+
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
-			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
+			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if reaction >= 5 then
 					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
@@ -650,136 +698,91 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 				end
 			end
 		end
-	end
-end)
-E:AddTagInfo("eltruism:detailsnickname:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
+	end)
+	E:AddTagInfo("name:eltruism:gradientshortfirst", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
---gradient short but dont abbreviate first name
-E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local name = UnitName(unit)
-	if not name then return end
-	if not args then args = 16 end
-	args = tonumber(args)
-	--name = "Mannequin d'entraïnement aux dégäts de zone"
-	local isTarget
-	if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
-	else
-		isTarget = false
-	end
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-			name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
-		end
-	end
-
-	--this would end up removing some of the shortened text in this case
-	--[[if string.len(name) > tonumber(args) then --second for players
-		name = E:ShortenString(name, tonumber(args))
-	end]]
-
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget,true)
+	--elvui name abbrev but with args
+	E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
+		local name = UnitName(unit)
+		if not name then return end
+		if not args then args = 16 end
+		args = tonumber(args)
+		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:Abbrev(name)
 			end
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientshortfirst", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
-
---elvui name abbrev but with args
-E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local name = UnitName(unit)
-	if not name then return end
-	if not args then args = 16 end
-	args = tonumber(args)
-	if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-			name = ElvUI_EltreumUI:Abbrev(name)
+		if name then
+			return E:ShortenString(name, args)
 		end
-	end
-	if name then
-		return E:ShortenString(name, args)
-	end
-end)
-E:AddTagInfo("name:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the name of the unit with abbreviation, accepts length args"])
+	end)
+	E:AddTagInfo("name:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the name of the unit with abbreviation, accepts length args"])
 
---elvui target name abbrev but with args
-E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
-	local targetName = UnitName(unit..'target')
-	if not targetName then return end
-	if not args then args = 16 end
-	args = tonumber(args)
-	if ElvUI_EltreumUI:IsThisASafeSecret(targetName,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-		if string.len(targetName) > tonumber(args) then --first for npcs with multiple names/titles
-			targetName = ElvUI_EltreumUI:Abbrev(targetName)
+	--elvui target name abbrev but with args
+	E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
+		local targetName = UnitName(unit..'target')
+		if not targetName then return end
+		if not args then args = 16 end
+		args = tonumber(args)
+		if ElvUI_EltreumUI:IsThisASafeSecret(targetName,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			if string.len(targetName) > tonumber(args) then --first for npcs with multiple names/titles
+				targetName = ElvUI_EltreumUI:Abbrev(targetName)
+			end
 		end
-	end
-	if targetName then
-		return E:ShortenString(targetName, args)
-	end
-end)
-E:AddTagInfo("target:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the current target of the unit, accepts length args"])
+		if targetName then
+			return E:ShortenString(targetName, args)
+		end
+	end)
+	E:AddTagInfo("target:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the current target of the unit, accepts length args"])
 
---target of target gradient name
-E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function()
-	if not UnitExists("targettarget") then return end
-	local name = UnitName("targettarget")
-	if name then
-		if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
-			local _, unitClass = UnitClass("targettarget")
-			if not unitClass then return end
-			return ElvUI_EltreumUI:GradientName(name, unitClass,nil,true)
-		elseif not UnitIsPlayer("targettarget") then
-			local reaction = UnitReaction("targettarget", "player")
-			if reaction then
-				if reaction >= 5 then
-					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY",nil,true)
-				elseif reaction == 4 then
-					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL",nil,true)
-				elseif reaction == 3 then
-					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY",nil,true)
-				elseif reaction == 2 or reaction == 1 then
-					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE",nil,true)
+	--target of target gradient name
+	E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function()
+		if not UnitExists("targettarget") then return end
+		local name = UnitName("targettarget")
+		if name then
+			if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
+				local _, unitClass = UnitClass("targettarget")
+				if not unitClass then return end
+				return ElvUI_EltreumUI:GradientName(name, unitClass,nil,true)
+			elseif not UnitIsPlayer("targettarget") then
+				local reaction = UnitReaction("targettarget", "player")
+				if reaction then
+					if reaction >= 5 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY",nil,true)
+					elseif reaction == 4 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL",nil,true)
+					elseif reaction == 3 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY",nil,true)
+					elseif reaction == 2 or reaction == 1 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE",nil,true)
+					end
 				end
 			end
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradient:targetoftarget", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+	end)
+	E:AddTagInfo("name:eltruism:gradient:targetoftarget", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
 
---reversed gradient name
-E:AddTag("name:eltruism:gradientreverse", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		local _, unitClass = UnitClass(unit)
-		if not unitClass then return end
-		return ElvUI_EltreumUI:GradientName(name, unitClass,true,true)
-	elseif not UnitIsPlayer(unit) then
-		local reaction = UnitReaction(unit, "player")
-		if reaction then
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", true,true)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", true,true)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", true,true)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", true,true)
+	--reversed gradient name
+	E:AddTag("name:eltruism:gradientreverse", "UNIT_NAME_UPDATE", function(unit)
+		local name = UnitName(unit)
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass,true,true)
+		elseif not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", true,true)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", true,true)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", true,true)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", true,true)
+				end
 			end
 		end
-	end
-end)
-E:AddTagInfo("name:eltruism:gradientreverse", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+	end)
+	E:AddTagInfo("name:eltruism:gradientreverse", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+end

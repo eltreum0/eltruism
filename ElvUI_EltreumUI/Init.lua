@@ -155,6 +155,12 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:BordersTargetChanged() --fix borders for focus
 	ElvUI_EltreumUI:PerformanceCVars(false,true) --set some cvars that reset on login
 	ElvUI_EltreumUI:InitializePortraits(true) --blinkii's mmediatag portraits
+
+	--hardcore requires loading tags later so db is confirmed loaded
+	ElvUI_EltreumUI:LoadHealthTags()
+	ElvUI_EltreumUI:LoadIconTags()
+	ElvUI_EltreumUI:LoadNameTags()
+	ElvUI_EltreumUI:LoadOtherTags()
 end
 
 function ElvUI_EltreumUI:Initialize()
