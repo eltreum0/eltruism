@@ -394,7 +394,10 @@ function ElvUI_EltreumUI:ColorModes()
 		ElvUI_EltreumUI:DarkMode()
 	elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and not E.db.ElvUI_EltreumUI.unitframes.lightmode then
 		ElvUI_EltreumUI:LightMode()
+	else --something is wrong and both are enabled
+		ElvUI_EltreumUI:LightMode()
 	end
+
 	ElvUI_EltreumUI:GradientColorTableUpdate()
 end
 

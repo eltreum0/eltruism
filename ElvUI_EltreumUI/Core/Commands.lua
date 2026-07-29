@@ -116,13 +116,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif message == 'color' then
 		if not InCombatLockdown() then
-			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
-			elseif not E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				ElvUI_EltreumUI:LightMode() E:StaticPopup_Show('CONFIG_RL')
-			else
-				ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
-			end
+			ElvUI_EltreumUI:ColorModes()
+			E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
 		if not InCombatLockdown() then
