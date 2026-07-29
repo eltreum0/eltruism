@@ -57,30 +57,26 @@ combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 local errorthrottle = false
 
 --recreate blizzard combat text (somewhat) to get it working again
-local EltruismCombatText = CreateFrame("Frame", "EltruismCombatText", UIParent)
-Mixin(EltruismCombatText, CombatTextMixin)
-
+local EltruismCombatText = CreateFrame("Frame", "EltruismCombatText", _G.UIParent)
+_G.Mixin(EltruismCombatText, CombatTextMixin)
 EltruismCombatText:SetScript("OnUpdate", EltruismCombatText.OnUpdate)
-hooksecurefunc(EltruismCombatText, "AddMessage", function(self)
+_G.hooksecurefunc(EltruismCombatText, "AddMessage", function(self)
 	if not self:GetScript("OnUpdate") then
 		self:SetScript("OnUpdate", self.OnUpdate)
 	end
 end)
-hooksecurefunc(EltruismCombatText, "ReleaseFontString", function(self)
+_G.hooksecurefunc(EltruismCombatText, "ReleaseFontString", function(self)
 	if #self.activeFontStrings == 0 then
 		self:SetScript("OnUpdate", nil)
 	end
 end)
-
-
-
-EltruismCombatText.fontStringPool = CreateFontStringPool(EltruismCombatText, "ARTWORK", 0, "CombatTextFont")
+EltruismCombatText.fontStringPool = _G.CreateFontStringPool(EltruismCombatText, "ARTWORK", 0, "CombatTextFont")
 EltruismCombatText.activeFontStrings = {}
 EltruismCombatText.textLocations = {
 	startX = 0,
-	startY = 384,
+	startY = 400,
 	endX = 0,
-	endY = 609
+	endY = 650
 }
 EltruismCombatText.xDir = 1
 EltruismCombatText.textSpacing = 10
@@ -88,7 +84,7 @@ EltruismCombatText.textOffsetAdjustment = 130
 EltruismCombatText.textOffsetMax = 130
 
 --use elvui general font
-hooksecurefunc(EltruismCombatText, "InitializeFontString", function(self, fontString)
+_G.hooksecurefunc(EltruismCombatText, "InitializeFontString", function(_, fontString)
 	if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
 		fontString:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
