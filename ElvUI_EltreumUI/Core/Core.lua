@@ -613,13 +613,13 @@ do
 end
 
 --from elvui api, add button to game menu
-local EltruismMenuButton = CreateFrame('Button', nil, GameMenuFrame, 'GameMenuButtonTemplate')
-local isMenuExpanded = false
+--local EltruismMenuButton = CreateFrame('Button', nil, GameMenuFrame, 'GameMenuButtonTemplate')
+--local isMenuExpanded = false
 local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
-		if not E.Classic then
+		--if not E.Classic then
 			--local EM = E:GetModule('EditorMode')
 			local Menubutton
 			if not _G["EltruismGameMenu"] then
@@ -700,7 +700,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 
 				end)
 			end
-		else
+		--[[else
 			if not isMenuExpanded then
 				EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
 				S:HandleButton(EltruismMenuButton)
@@ -738,7 +738,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				end)
 				isMenuExpanded = true
 			end
-		end
+		end]]
 	end
 end)
 
