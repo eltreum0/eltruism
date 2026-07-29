@@ -71,12 +71,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 			local aCopper = GetCoinIcon(1)
 			--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
 			if E.Retail then
-				_G.CombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+				_G.EltruismCombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 			elseif E.Classic or E.Mists or E.TBC or E.Wrath then
-				_G.CombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+				_G.EltruismCombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 			end
 		else
-			_G.CombatText:AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+			_G.EltruismCombatText:AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 		end
 	elseif message == 'config' or message == 'options' or message == '' then
 		if not InCombatLockdown() then

@@ -56,9 +56,52 @@ combatindicatorframe:RegisterEvent("PLAYER_REGEN_ENABLED")
 combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 local errorthrottle = false
 
+--recreate blizzard combat text (somewhat) to get it working again
+local EltruismCombatText = CreateFrame("Frame", "EltruismCombatText", UIParent)
+Mixin(EltruismCombatText, CombatTextMixin)
+
+EltruismCombatText:SetScript("OnUpdate", EltruismCombatText.OnUpdate)
+hooksecurefunc(EltruismCombatText, "AddMessage", function(self)
+	if not self:GetScript("OnUpdate") then
+		self:SetScript("OnUpdate", self.OnUpdate)
+	end
+end)
+hooksecurefunc(EltruismCombatText, "ReleaseFontString", function(self)
+	if #self.activeFontStrings == 0 then
+		self:SetScript("OnUpdate", nil)
+	end
+end)
+
+
+
+EltruismCombatText.fontStringPool = CreateFontStringPool(EltruismCombatText, "ARTWORK", 0, "CombatTextFont")
+EltruismCombatText.activeFontStrings = {}
+EltruismCombatText.textLocations = {
+	startX = 0,
+	startY = 384,
+	endX = 0,
+	endY = 609
+}
+EltruismCombatText.xDir = 1
+EltruismCombatText.textSpacing = 10
+EltruismCombatText.textOffsetAdjustment = 130
+EltruismCombatText.textOffsetMax = 130
+
+--use elvui general font
+hooksecurefunc(EltruismCombatText, "InitializeFontString", function(self, fontString)
+	if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
+		fontString:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
+		fontString:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
+		fontString:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	end
+	fontString:SetShadowColor(0, 0, 0, 0)
+end)
+
 function ElvUI_EltreumUI:LootText()
-	_G.CombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale)
-	_G.CombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata)
+	EltruismCombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale)
+	EltruismCombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata)
 	--moving the combat text
 	local itemLink = nil
 	local amount = 0
@@ -69,16 +112,16 @@ function ElvUI_EltreumUI:LootText()
 		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
 			if event == "PLAYER_REGEN_DISABLED" then
 				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
-					_G.CombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.b, nil, true)
+					EltruismCombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.b, nil, true)
 				else
-					_G.CombatText:AddMessage("|cffFF0000+"..string.upper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
+					EltruismCombatText:AddMessage("|cffFF0000+"..string.upper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
 				end
 			end
 			if event == "PLAYER_REGEN_ENABLED" then
 				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
-					_G.CombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.b, nil, true)
+					EltruismCombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.b, nil, true)
 				else
-					_G.CombatText:AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
+					EltruismCombatText:AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
 				end
 			end
 		end
@@ -121,7 +164,7 @@ function ElvUI_EltreumUI:LootText()
 		LootTextframe:SetScript("OnEvent",function(_, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 				if not errorthrottle then
-					_G.CombatText:AddMessage(INVENTORY_FULL, _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true) --apparently it spams for some people
+					EltruismCombatText:AddMessage(INVENTORY_FULL, _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true) --apparently it spams for some people
 					errorthrottle = true
 					E:Delay(3, function() errorthrottle = false end)
 				end
@@ -130,7 +173,7 @@ function ElvUI_EltreumUI:LootText()
 				itemLink, amount = getLoot(arg1)
 				if E.db.ElvUI_EltreumUI.loot.loottext.pet then
 					if itemLink and itemLink:match("|Hbattlepet:") then
-						_G.CombatText:AddMessage("|T ".. 132599 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..itemLink, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+						EltruismCombatText:AddMessage("|T ".. 132599 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..itemLink, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 					end
 				end
 				if itemLink and not itemLink:match("|Hbattlepet:") then
@@ -140,9 +183,9 @@ function ElvUI_EltreumUI:LootText()
 					local r, g, b, _ = GetItemQualityColor(rarity)
 					if rarity >= tonumber(E.db.ElvUI_EltreumUI.loot.loottext.quality) then
 						if lootQuantity >= 2 then
-							_G.CombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, _G.CombatTextUtil.StandardScroll, r, g, b, nil, true)
+							EltruismCombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, _G.CombatTextUtil.StandardScroll, r, g, b, nil, true)
 						else
-							_G.CombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, _G.CombatTextUtil.StandardScroll, r, g, b, nil, true)
+							EltruismCombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, _G.CombatTextUtil.StandardScroll, r, g, b, nil, true)
 						end
 					end
 				end
@@ -155,13 +198,13 @@ function ElvUI_EltreumUI:LootText()
 					end
 					if moneystring then
 						if moneystring:match(SILVER_AMOUNT) and not moneystring:match(GOLD_AMOUNT) then
-							_G.CombatText:AddMessage("|T ".. 133786 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+							EltruismCombatText:AddMessage("|T ".. 133786 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 						elseif moneystring:match(COPPER_AMOUNT) and not moneystring:match(SILVER_AMOUNT) and not moneystring:match(GOLD_AMOUNT) then
-							_G.CombatText:AddMessage("|T ".. 133788 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+							EltruismCombatText:AddMessage("|T ".. 133788 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 						elseif moneystring:match(GOLD_AMOUNT) then
-							_G.CombatText:AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+							EltruismCombatText:AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 						else
-							_G.CombatText:AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+							EltruismCombatText:AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 						end
 					end
 				end
@@ -181,9 +224,9 @@ function ElvUI_EltreumUI:LootText()
 							local lootName = info["name"]
 							local lootQuantity = amount
 							if lootQuantity >= 2 then
-								_G.CombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+								EltruismCombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 							else
-								_G.CombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+								EltruismCombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 							end
 						end
 					end
@@ -208,9 +251,9 @@ function ElvUI_EltreumUI:LootText()
 						local lootName = info["name"]
 						local lootQuantity = amount
 						if lootQuantity >= 2 then
-							_G.CombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+							EltruismCombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 						else
-							_G.CombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+							EltruismCombatText:AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 						end
 					end
 				end
@@ -218,7 +261,7 @@ function ElvUI_EltreumUI:LootText()
 			if E.db.ElvUI_EltreumUI.loot.loottext.skill then
 				if event == 'CHAT_MSG_SKILL' and arg2 == "" then
 					E:Delay(0.5, function()
-						_G.CombatText:AddMessage(arg1, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+						EltruismCombatText:AddMessage(arg1, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 					end)
 				end
 			end
