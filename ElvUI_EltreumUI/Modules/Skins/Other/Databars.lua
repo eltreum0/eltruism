@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 
 		local customColors = DB.db.colors.useCustomFactionColors
 		local _, reaction, factionID
-		if E.Retail or E.TBC or E.Mists then
+		if _G.C_Reputation and _G.C_Reputation.GetWatchedFactionData then
 			local watchedFactionData = _G.C_Reputation.GetWatchedFactionData()
 			if not watchedFactionData then return end
 			reaction, factionID = watchedFactionData.reaction, watchedFactionData.factionID
