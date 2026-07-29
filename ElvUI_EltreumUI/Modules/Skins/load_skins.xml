@@ -34,6 +34,7 @@
 	<Script file='Unitframes/Castbar.lua'/>
 	<Script file='Unitframes/DarkLightColors.lua'/>
 	<Script file='Unitframes/DispelGlow.lua'/>
+	<Script file='Unitframes/Textures.lua'/>
 	<Script file='Unitframes/GradientPower.lua'/>
 	<Script file='Unitframes/GradientHealth.lua'/>
 	<Script file='Unitframes/Infopanel.lua'/>
@@ -44,5 +45,4 @@
 	<Script file='Unitframes/Blinkii/portrait.lua'/>
 	<Script file='Unitframes/PortraitSkin.lua'/>
 	<Script file='Unitframes/RoleIcons.lua'/>
-	<Script file='Unitframes/Textures.lua'/>
 </Ui>
