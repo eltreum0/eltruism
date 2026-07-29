@@ -77,8 +77,8 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 
 	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-		local tts = GetSpellInfo(33786)
-		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		local tts = ElvUI_EltreumUI:EltruismSpellInfo(33786) or ElvUI_EltreumUI:EltruismSpellInfo(5197)
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 	end
 
 	wasPreviewing = true
