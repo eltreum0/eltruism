@@ -608,6 +608,7 @@ end
 
 local function SkinFrame(object)
 	if not object then return end --rare but not impossible nil error
+	if E:IsSecretValue(object) then return end
 	if object:GetObjectType() == "Texture" then object = object:GetParent() end
 	local mt = getmetatable(object).__index
 	if not mt then return end
@@ -667,7 +668,7 @@ local function SkinFrame(object)
 								S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
 								widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
 								widget.backdrop:SetBackdropColor(0,0,0)
-								widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+								widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1")) ---maybe add an option for it
 
 								--[[if not atlas then
 									atlas = widget:GetStatusBarTexture():GetAtlas()
