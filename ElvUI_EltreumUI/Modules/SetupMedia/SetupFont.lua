@@ -683,7 +683,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		--E.db["mMT"]["objectivetracker"]["font"]["font"] = fontvalue
 	end
 
-	E:StaggeredUpdateAll()
+	E:UpdateAll()
 
 	if custom then
 		ElvUI_EltreumUI:Print(L["Your custom font has been set."])
