@@ -183,6 +183,7 @@ function ElvUI_EltreumUI:ModelsToggle(install)
 end
 
 function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a boss fight
+	if not E.db.ElvUI_EltreumUI then return end
 	if E.db.ElvUI_EltreumUI.encountercheck then
 		return IsEncounterInProgress()
 	else
