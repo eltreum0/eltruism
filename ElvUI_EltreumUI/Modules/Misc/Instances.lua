@@ -45,6 +45,7 @@ instancedifficulty:SetScript("OnEvent", function()
 	if not E.db.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI.skins then return end
 	if not E.db.ElvUI_EltreumUI.skins.instances then return end
+	if not E.db.ElvUI_EltreumUI.skins.instances.enable then return end
 
 	--create mover only if setting is enabled
 	if not instancedifficulty.movercreated then
@@ -55,7 +56,7 @@ instancedifficulty:SetScript("OnEvent", function()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
 
-	if AllowedInstances[instanceType] and E.db.ElvUI_EltreumUI.skins.instances.enable and not garrisons[mapID] then
+	if AllowedInstances[instanceType] and not garrisons[mapID] then
 		instancedifficulty:Show()
 		instancedifficulty.Text:Show()
 		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.instances.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -341,43 +342,41 @@ instancedifficulty:SetScript("OnEvent", function()
 			end
 		end
 		instancedifficulty:Show()
-	else
+	elseif AllowedInstances[instanceType] and garrisons[mapID] then
 		instancedifficulty:Hide()
 		instancedifficulty.Text:Hide()
 	end
 
-	if garrisons[mapID] then
-		if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
-			_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
-		end
+	if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
+		_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
+	end
 
-		if _G["MinimapCluster"] and _G["MinimapCluster"].InstanceDifficulty then
-			_G["MinimapCluster"].InstanceDifficulty:Hide()
-			_G["MinimapCluster"].InstanceDifficulty:SetAlpha(0)
-		end
+	if _G["MinimapCluster"] and _G["MinimapCluster"].InstanceDifficulty then
+		_G["MinimapCluster"].InstanceDifficulty:Hide()
+		_G["MinimapCluster"].InstanceDifficulty:SetAlpha(0)
+	end
 
-		if E.Retail then
-			if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
-				_G["MiniMapChallengeMode"]:SetAlpha(0)
+	if E.Retail then
+		if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
+			_G["MiniMapChallengeMode"]:SetAlpha(0)
+		end
+		if _G["GuildInstanceDifficulty"] then
+			_G["GuildInstanceDifficulty"]:SetAlpha(0)
+			if _G["GuildInstanceDifficulty"]:IsShown() then
+				instancedifficulty.Text:SetText(backuptext.." "..E.db.ElvUI_EltreumUI.skins.instances.guild)
 			end
-			if _G["GuildInstanceDifficulty"] then
-				_G["GuildInstanceDifficulty"]:SetAlpha(0)
-				if _G["GuildInstanceDifficulty"]:IsShown() then
-					instancedifficulty.Text:SetText(backuptext.." "..E.db.ElvUI_EltreumUI.skins.instances.guild)
+		end
+		for i = 1, _G["Minimap"]:GetNumChildren() do
+			local v = select(i, _G["Minimap"]:GetChildren())
+			 if v then
+				if v.Instance then
+					v:SetAlpha(0)
 				end
-			end
-			for i = 1, _G["Minimap"]:GetNumChildren() do
-				local v = select(i, _G["Minimap"]:GetChildren())
-				 if v then
-					if v.Instance then
-						v:SetAlpha(0)
-					end
-					if v.HeroicTexture then
-						v:SetAlpha(0)
-					end
-					if v.ChallengeModeTexture then
-						v:SetAlpha(0)
-					end
+				if v.HeroicTexture then
+					v:SetAlpha(0)
+				end
+				if v.ChallengeModeTexture then
+					v:SetAlpha(0)
 				end
 			end
 		end
