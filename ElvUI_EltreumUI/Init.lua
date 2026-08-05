@@ -45,6 +45,11 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			ElvUI_EltreumUI:Print("La traduction française provient de DeepL et est en cours de test, les commentaires sont les bienvenus.\n Tapez /eltruism translate pour désactiver ce message.")
 		end
 	end
+
+	if E.Retail then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
+		E.private.skins.blizzard.bgscore = false
+	end
+
 	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
 	ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions

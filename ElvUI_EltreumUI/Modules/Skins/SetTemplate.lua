@@ -618,10 +618,6 @@ local function SkinFrame(object)
 			if frame:GetObjectType() == "CheckButton" and frame.mask then return end --actionbar masks fix
 			if frame.bgrElvUISkin then return end --baganator elvui skin
 
-			if E.Retail then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
-				E.private.skins.blizzard.bgscore = false
-			end
-
 			--if frame.showDispellableDebuff then return end --fix RaidDebufs
 			if template ~= "NoBackdrop" then
 				if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
