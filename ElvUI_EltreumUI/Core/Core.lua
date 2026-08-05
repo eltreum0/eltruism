@@ -1043,21 +1043,34 @@ end
 
 --Export/Import Gradient Colors, basically copied from elvui distributor/core
 function ElvUI_EltreumUI:ExportImportGradient(data,mode)
-	local D = E:GetModule('Distributor')
-	local LibDeflate = E.Libs.Deflate
+	local SerializeCBOR = _G.C_EncodingUtil.SerializeCBOR
+	local DeserializeCBOR = _G.C_EncodingUtil.DeserializeCBOR
+	local CompressString = _G.C_EncodingUtil.CompressString
+	local DecompressString = _G.C_EncodingUtil.DecompressString
+	local EncodeBase64 = _G.C_EncodingUtil.EncodeBase64
+	local DecodeBase64 = _G.C_EncodingUtil.DecodeBase64
+	local COMPRESS = _G.Enum.CompressionMethod.Deflate or 0
+	local OPTIMIZE = _G.Enum.CompressionLevel.Default or 0
+	local EXPORT_PREFIX = '!E2!'
 	if mode == "export" then
 		local gradienttable = {}
 		gradienttable = E:CopyTable(gradienttable, E.db.ElvUI_EltreumUI.unitframes.gradientmode)
-		local profile = D:Serialize(gradienttable)
-		local compressed = LibDeflate:CompressDeflate(profile, LibDeflate.compressLevel)
-		local exportProfile = LibDeflate:EncodeForPrint(compressed)
-		return exportProfile
+		local serialString = SerializeCBOR(gradienttable)
+		local compressedData = CompressString(serialString, COMPRESS, OPTIMIZE)
+		local printableString = EncodeBase64(compressedData)
+		local profileExport = printableString and format('%s%s', EXPORT_PREFIX, printableString) or nil
+		return profileExport
 	elseif mode == "import" then
-		local decodedData = LibDeflate:DecodeForPrint(data)
-		local decompressed = LibDeflate:DecompressDeflate(decodedData)
-		local serializedData = format('%s%s', decompressed, '^^')
-		local success, profileData = D:Deserialize(serializedData)
-		if not success then
+		local decodedData = DecodeBase64(data)
+		local decompressed = DecompressString(decodedData, COMPRESS)
+		if not decompressed then
+			E:Print('Error decompressing data.')
+			return
+		end
+		local serializedData, profileData
+		serializedData = E:SplitString(decompressed, '::')
+		profileData = DeserializeCBOR(serializedData)
+		if not profileData then
 			E:Print('Error deserializing:', profileData)
 			return
 		end
