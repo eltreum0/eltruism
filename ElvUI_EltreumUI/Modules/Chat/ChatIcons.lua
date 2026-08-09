@@ -15,6 +15,7 @@ local IsRecentAllyByGUID = _G.C_RecentAllies and _G.C_RecentAllies.IsRecentAllyB
 local RECENTALLY_ATLAS = '|A:friendslist-recentallies-yellow:%s:%s:0:0|a '
 local RECENTALLY_SMALL = format(RECENTALLY_ATLAS, 11, 11)
 local C_ClassColor_GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor
+local DiscordDisplayNameType = Enum.DiscordDisplayNameType
 
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
@@ -231,7 +232,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 end
 
 --Add class icons next to player names in chat
-function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
+function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12, _, _, arg18) -- arg12, arg13, arg14, arg18
 	if E:IsSecretValue(arg12) then -- guid is blocked so use uncached
 		local _, englishClass = _G.GetPlayerInfoByGUID(arg12)
 		local classColor = C_ClassColor_GetClassColor(englishClass)
@@ -253,6 +254,17 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 
 	-- ambiguate guild chat names
 	local name = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
+
+	local discordInfo, isFromDiscord = CH:GetDiscordInfo(arg18)
+	if isFromDiscord then
+		local shouldShowGlobalName = discordInfo.type == DiscordDisplayNameType.GlobalName
+		if discordInfo.globalName and shouldShowGlobalName then -- Names of user from Discord have a fixed color
+			return _G.ChatFrameUtil.DiscordNameColorize(discordInfo.globalName)
+		end
+
+		name = discordInfo.lastOnlineName
+		arg12 = discordInfo.lastOnlineGUID
+	end
 
 	local info = name and arg12 and _G.ChatTypeInfo[chatType]
 	if info and ShouldColorChatByClass(info) and not E:IsSecretValue(chatType) then
@@ -297,6 +309,8 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 			if CH.db.mentorshipIcon and GetMentorChannelStatus(PLAYERMENTORSHIPSTATUS_NEWCOMER, GetChannelRulesetForChannelID(zoneChannelID)) == PLAYERMENTORSHIPSTATUS_NEWCOMER then
 				flag = _G.NPEV2_CHAT_USER_TAG_NEWCOMER
 			end
+		elseif specialFlag == 'DISCORD' then -- UI-ChatIcon-Discord
+			flag = [[|A:UI-ChatIcon-Discord:0:0:0:0|a ]]
 		else
 			flag = _G['CHAT_FLAG_'..specialFlag]
 		end
