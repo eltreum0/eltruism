@@ -4405,19 +4405,32 @@ function ElvUI_EltreumUI:Construct_AuraIcon(button)
 end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
-function ElvUI_EltreumUI:AuraShadows(button)
+function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
 	if not button then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-		if button and not button.shadow then
-			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(button.shadow)
+	if button2 then --likely is container
+		--[[if button.isAuraBar then --check for the elvui variable
+			ElvUI_EltreumUI:AuraBarRetail(button2)
+		end]]
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
+			if button2 and not button2.shadow then
+				button2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(button2.shadow)
+			end
+		end
+	else
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
+			if button and not button.shadow then
+				button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(button.shadow)
+			end
 		end
 	end
 end
-hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 if E.Retail then
 	hooksecurefunc(E, 'Auras_UpdateButton', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 	hooksecurefunc(E, 'Auras_CreateButton', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
+else
+	hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 end
 
 function ElvUI_EltreumUI:UFAuraShadows(button)

@@ -141,5 +141,17 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.AuraBarTexture)
-hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.AuraBarTexture)
+if not E.Retail then
+	hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.AuraBarTexture)
+	hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.AuraBarTexture)
+end
+
+function ElvUI_EltreumUI:AuraBarRetail(button) --container,button
+	if (button and button.statusbar and button.key and (button.key == "player" or button.key == "target")) then
+		ElvUI_EltreumUI:AuraBarGradient(button.key, button.statusbar)
+	end
+end
+
+if not E.Retail then
+	hooksecurefunc(UF, "PostUpdateBar_AuraBars", ElvUI_EltreumUI.AuraBarGradient)
+end
