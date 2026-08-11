@@ -306,8 +306,12 @@ end)
 
 --get the texture
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)
-	if unitclass then
-		return unitframeclass[unitclass]
+	if E:NotSecretValue(unitclass) then
+		if unitclass then
+			return unitframeclass[unitclass]
+		end
+	else
+		return E.db.unitframe.statusbar
 	end
 end
 
@@ -342,37 +346,47 @@ end
 
 --get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG, customalpha, isHealth)
-	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
-	if customalpha then
-		if invert then
-			return {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = customalpha}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}
+	if E:NotSecretValue(unitclass) then
+		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+		if customalpha then
+			if invert then
+				return {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = customalpha}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}
+			else
+				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}, {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = customalpha}
+			end
 		else
-			return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}, {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = customalpha}
+			if invert then
+				return {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
+			else
+				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
+			end
 		end
 	else
-		if invert then
-			return {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
-		else
-			return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
-		end
+		local classColor = _G.C_ClassColor.GetClassColor(unitclass)
+		return {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}, {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}
 	end
 end
 
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, customalpha, isHealth)
-	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-	if customalpha then
-		if invert then
-			return {r= ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= customalpha}, { r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}
+	if E:NotSecretValue(unitclass) then
+		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+		if customalpha then
+			if invert then
+				return {r= ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= customalpha}, { r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}
+			else
+				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= customalpha}
+			end
 		else
-			return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= customalpha}
+			if invert then
+				return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
+			else
+				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a = bgalpha(alpha,isHealth)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isHealth)}
+			end
 		end
 	else
-		if invert then
-			return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
-		else
-			return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a = bgalpha(alpha,isHealth)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isHealth)}
-		end
+		local classColor = _G.C_ClassColor.GetClassColor(unitclass)
+		return {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}, {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}
 	end
 end
 
@@ -380,7 +394,7 @@ end
 function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit,isCustom)
 	if not name then return end
 	if not ElvUI_EltreumUI:IsThisASafeSecret() and isUnit then
-		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass,3)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
 		--local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
@@ -406,7 +420,7 @@ end
 function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget,isUnit)
 	if not name then return end
 	if not ElvUI_EltreumUI:IsThisASafeSecret() and isUnit then
-		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass,3)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
 		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
@@ -420,29 +434,49 @@ end
 
 --sends the colors for chat
 function ElvUI_EltreumUI:ChatCustomColor(unitclass)
-	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-	return color.r1, color.g1, color.b1
+	if E:NotSecretValue(unitclass) then
+		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+		return color.r1, color.g1, color.b1
+	else
+		return ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+	end
 end
 
 --get the custom colors
 function ElvUI_EltreumUI:GetGradientCustomColor(unitclass)
-	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-	return {r = color.r1, g = color.g1, b = color.b1}, {r = color.r2, g = color.g2, b = color.b2}
+	if E:NotSecretValue(unitclass) then
+		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+		return {r = color.r1, g = color.g1, b = color.b1}, {r = color.r2, g = color.g2, b = color.b2}
+	else
+		return ElvUI_EltreumUI:GetClassColorsRGB(unitclass,2)
+	end
 end
 
 --get the default colors
 function ElvUI_EltreumUI:GetGradientDefaultColor(unitclass)
-	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
-	return {r = color.r1, g = color.g1, b = color.b1}, {r = color.r2, g = color.g2, b = color.b2}
+	if E:NotSecretValue(unitclass) then
+		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+		return {r = color.r1, g = color.g1, b = color.b1}, {r = color.r2, g = color.g2, b = color.b2}
+	else
+		return ElvUI_EltreumUI:GetClassColorsRGB(unitclass,2)
+	end
 end
 
 --different for details because bars smaller and different
 function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
-	local color = unitframegradients[unitclass] or unitframegradients["NPCNEUTRAL"]
-	return {r = color.r1 - 0.2, g = color.g1 - 0.2, b = color.b1 - 0.2, a = 0.9}, {r = color.r2 + 0.2, g = color.g2 + 0.2, b = color.b2 + 0.2, a = 0.9}
+	if E:NotSecretValue(unitclass) then
+		local color = unitframegradients[unitclass] or unitframegradients["NPCNEUTRAL"]
+		return {r = color.r1 - 0.2, g = color.g1 - 0.2, b = color.b1 - 0.2, a = 0.9}, {r = color.r2 + 0.2, g = color.g2 + 0.2, b = color.b2 + 0.2, a = 0.9}
+	else
+		return ElvUI_EltreumUI:GetClassColorsRGB(unitclass,2)
+	end
 end
 
 function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
-	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["NPCNEUTRAL"]
-	return {r = color.r1, g = color.g1, b = color.b1, a = 0.9}, {r = color.r2, g = color.g2, b = color.b2, a = 0.9}
+	if E:NotSecretValue(unitclass) then
+		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["NPCNEUTRAL"]
+		return {r = color.r1, g = color.g1, b = color.b1, a = 0.9}, {r = color.r2, g = color.g2, b = color.b2, a = 0.9}
+	else
+		return ElvUI_EltreumUI:GetClassColorsRGB(unitclass,2)
+	end
 end

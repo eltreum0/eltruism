@@ -17,6 +17,7 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
+	local isCharmed = E:NotSecretValue(UnitIsCharmed(unit)) and UnitIsCharmed(unit) or false
 	local namebar
 	if UnitExists(unit) then
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -62,7 +63,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 					end
 				end
 			end
-			if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and not UnitIsCharmed(unit) then
+			if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and not isCharmed then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then

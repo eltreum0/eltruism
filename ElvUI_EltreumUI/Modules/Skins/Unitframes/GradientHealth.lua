@@ -166,11 +166,14 @@ end
 function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 	if UnitExists(unit) then
 		local _, classunit = UnitClass(unit)
+		if not E:NotSecretValue(classunit) then return end --dont do gradient when class is secret (cant get colors)
 		local reaction = UnitReaction(unit, "player")
 		local unitframe = _G["ElvUF_"..name]
+		local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation or "HORIZONTAL"
 
 		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
-		local isCharmed = UnitIsCharmed(unit)
+		local isCharmed = E:NotSecretValue(UnitIsCharmed(unit)) and UnitIsCharmed(unit) or false
+
 		local isActualPlayer = false
 		if unitframe and unitframe.Health then
 			if unitframe.realUnit then
@@ -246,12 +249,12 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 							unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 						end
 					end
-					unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, minColor, maxColor)
+					unitframe.Health:GetStatusBarTexture():SetGradient(orientation, minColor, maxColor)
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop then
 						if UnitIsDeadOrGhost(unit) then
-							unitframe.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+							unitframe.Health:GetStatusBarTexture():SetGradient(orientation, {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						elseif not UnitIsConnected(unit) then
-							unitframe.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+							unitframe.Health:GetStatusBarTexture():SetGradient(orientation, {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						end
 					end
 				end
@@ -264,12 +267,12 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 						end
 					end
-					unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, minColor, maxColor)
+					unitframe.Health.backdropTex:SetGradient(orientation, minColor, maxColor)
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop then
 						if UnitIsDeadOrGhost(unit) then
-							unitframe.Health.backdropTex:SetGradient("HORIZONTAL", {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+							unitframe.Health.backdropTex:SetGradient(orientation, {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						elseif not UnitIsConnected(unit) then
-							unitframe.Health.backdropTex:SetGradient("HORIZONTAL", {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+							unitframe.Health.backdropTex:SetGradient(orientation, {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 						end
 					end
 				end
@@ -293,6 +296,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	else
 		buttonclass = "NPCFRIENDLY"
 	end
+	if not E:NotSecretValue(buttonclass) then return end --dont do gradient when class is secret (cant get colors)
 	if buttonclass and button.Health then
 		if not noOrientation then
 			button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
