@@ -363,7 +363,7 @@ local function EltruisAce3(frame)
 	if E.db.ElvUI_EltreumUI.skins.ace3.enable then
 		if not frame.EltruismAce3HooksSetup then
 			E:Delay(0,function()
-				if E:NotSecretValue(frame) and E:NotSecretValue(frame:GetParent()) then
+				if not _G.InCombatLockdown() and E:NotSecretValue(frame) and E:NotSecretValue(frame:GetParent()) then
 					if frame:GetParent() then
 						if frame:GetParent().obj then
 							if frame:GetParent().obj.SetValue then
@@ -451,7 +451,7 @@ local function EltruisAce3(frame)
 			frame.EltruismAce3HooksSetup = true
 		end
 		E:Delay(0,function()
-			if E:NotSecretValue(frame) and E:NotSecretValue(frame:GetParent()) then
+			if not _G.InCombatLockdown() and E:NotSecretValue(frame) and E:NotSecretValue(frame:GetParent()) then
 				if frame:GetParent() then
 					if frame:GetParent().obj then
 						if frame:GetParent().obj.label and frame:GetParent().obj.label.SetTextColor then
