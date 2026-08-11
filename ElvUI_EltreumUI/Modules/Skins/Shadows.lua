@@ -4415,6 +4415,10 @@ function ElvUI_EltreumUI:AuraShadows(button)
 	end
 end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
+if E.Retail then
+	hooksecurefunc(E, 'Auras_UpdateButton', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
+	hooksecurefunc(E, 'Auras_CreateButton', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
+end
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
 	if not button then return end
