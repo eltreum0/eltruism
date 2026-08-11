@@ -57,7 +57,6 @@ local ranged = {
 	["EVOKER"] = true,
 }
 
-
 --change target combat icon based on its class
 function ElvUI_EltreumUI:TargetCombatIconClass()
 	if not UnitExists("target") then return end
@@ -66,6 +65,7 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 			if _G["ElvUF_Target"] and _G["ElvUF_Target"].CombatIndicator then
 				if UnitExists("target") then
 					local _, targetclass = UnitClass("target")
+					if not E:NotSecretValue(targetclass) then return end --unitclass can be secret so return before doing anything if it is
 					if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
 						local texturetarget = targeticons[targetclass]
 						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[texturetarget])
