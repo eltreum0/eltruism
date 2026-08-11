@@ -48,11 +48,26 @@ local classcolorreaction = {
 	["NPCUNFRIENDLY"] = {r1 = 0.94, g1 = 0.37, b1 = 0},
 	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
 }
-function ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
-	if unitclass and classcolorreaction[unitclass] then
-		return {r = classcolorreaction[unitclass]["r1"], g= classcolorreaction[unitclass]["g1"],b = classcolorreaction[unitclass]["b1"]}
+function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
+	if E:NotSecretValue(unitclass) then
+		if unitclass and classcolorreaction[unitclass] then
+			return {r = classcolorreaction[unitclass]["r1"], g= classcolorreaction[unitclass]["g1"],b = classcolorreaction[unitclass]["b1"]}
+		else
+			return {r1 = 1, g1 = 0, b1 = 0} --debug red
+		end
 	else
-		return {r1 = 1, g1 = 0, b1 = 0} --debug red
+		local classColor = _G.C_ClassColor.GetClassColor(unitclass)
+		if tableType then
+			return classColor.r, classColor.g, classColor.b
+		else
+			if tableType == 1 then
+				return {r1 = classColor.r, g1 = classColor.g, b1 = classColor.b}
+			elseif tableType == 2 then
+				return {r = classColor.r, g = classColor.g, b = classColor.b}, {r = classColor.r, g = classColor.g, b = classColor.b}
+			elseif tableType == 3 then
+				return {r = classColor.r, g = classColor.g, b = classColor.b}
+			end
+		end
 	end
 end
 
