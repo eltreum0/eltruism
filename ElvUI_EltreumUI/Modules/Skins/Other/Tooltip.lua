@@ -68,6 +68,9 @@ local function SetTooltipGradient(unit)
 		if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
 		if not ElvUI_EltreumUI:IsThisASafeSecret(unit,true) or not ElvUI_EltreumUI:IsThisASafeSecret(UnitClass(unit),true) then return end
 		local _, classunit = UnitClass(unit)
+		if not E:NotSecretValue(classunit) then --secret class so do something else
+			return
+		end
 		local reaction = UnitReaction(unit, "player")
 		if GameTooltip and GameTooltip:IsForbidden() then return end
 

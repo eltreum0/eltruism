@@ -141,7 +141,12 @@ local function ColorSysMsgs(_, _, message, ...)
 			local name = message:gsub("%s*" .. _rollMessageTailRegex, "")
 			local _, unitClass = _G.UnitClass(name)
 			if unitClass then
-				local msg = (string.format("|cff"..classcolorsescape[unitClass]..message.."|r"))
+				local msg
+				if not E:NotSecretValue(unitClass) then --secret class so do something else
+					msg = message
+				else
+					msg = (string.format("|cff"..classcolorsescape[unitClass]..message.."|r"))
+				end
 				if msg:find(rollstring.." 1 ") then
 					if E.db.ElvUI_EltreumUI.chat.rollsound then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")

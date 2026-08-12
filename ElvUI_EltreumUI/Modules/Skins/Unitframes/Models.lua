@@ -195,7 +195,9 @@ function ElvUI_EltreumUI:TargetUFEffects()
 			local targetbar = _G["ElvUF_Target"]
 			local reactiontarget = UnitReaction("target", "player")
 			local _, targetclass = UnitClass("target")
-
+			if not E:NotSecretValue(targetclass) then --secret class so do something else
+				return
+			end
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--targeteffect:ClearModel()
 				if (UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target"))) and targetclass then
@@ -301,6 +303,9 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			local  targettargetbar = _G["ElvUF_TargetTarget"]
 			local reactiontargettarget = UnitReaction("targettarget", "player")
 			local _, targettargetclass = UnitClass("targettarget")
+			if not E:NotSecretValue(targettargetclass) then --secret class so do something else
+				return
+			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				if (UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget"))) and targettargetclass then
@@ -407,6 +412,9 @@ function ElvUI_EltreumUI:FocusUFEffects()
 			local focusbar = _G["ElvUF_Focus"]
 			local  reactionfocus = UnitReaction("focus", "player")
 			local _, focusclass = UnitClass("focus")
+			if not E:NotSecretValue(focusclass) then --secret class so do something else
+				return
+			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--focuseffect:ClearModel()

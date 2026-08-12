@@ -379,6 +379,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		else
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return value
+			end
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 					if not E.Retail and lengthOK then
@@ -472,6 +475,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		else
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return value
+			end
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 					if lengthOK then
@@ -558,6 +564,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		else
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return value
+			end
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 					if lengthOK then
@@ -618,6 +627,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				else
 					local _, unitClass = UnitClass(unit)
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return value
+					end
 					return gsub(ElvUI_EltreumUI:GradientName(value, unitClass, isTarget),"_","||")
 				end
 			end
@@ -652,6 +664,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				else
 					local _, unitClass = UnitClass(unit)
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return gsub(value.." _ "..E:ShortValue(deficit),"_","||")
+					end
 					return gsub(ElvUI_EltreumUI:GradientName(value.." _ "..E:ShortValue(deficit), unitClass, isTarget),"_","||")
 				end
 			end
@@ -680,7 +695,11 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					perc = " "
 				else
 					value = E:ShortValue(min, 0).." - "..E:ShortValue(max, 0)
-					perctext = "|c"..ElvUI_EltreumUI:classcolorcast(unitClass).." a |r"
+					if E:NotSecretValue(unitClass) then --secret class so do something else
+						perctext = "|c"..ElvUI_EltreumUI:classcolorcast(unitClass).." a |r"
+					else
+						perctext = "|c"..ElvUI_EltreumUI:classcolorcast("ROGUE").." a |r"
+					end
 					perctext = gsub(perctext,"a","||")
 					perc = tostring(format("%.1f%%",min / max * 100))
 				end
@@ -699,6 +718,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				else
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return value..perctext
+					end
 					return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, unitClass, isTarget)
 				end
 			end

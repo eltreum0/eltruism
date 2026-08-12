@@ -136,6 +136,9 @@ local function GradientNameplates(unit,unit2)
 		return
 	end
 	local _, className = UnitClass(unit.unit)
+	if not E:NotSecretValue(className) then --secret class so do something else
+		className = E.myclass
+	end
 	local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
 	local reaction = UnitReaction(unit.unit, "player")
 	local tapdenied = UnitIsTapDenied(unit.unit)
@@ -283,6 +286,9 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 		unit = 'player'
 	end
 	local _, unitclass = UnitClass(unit)
+	if not E:NotSecretValue(unitclass) then --secret class so do something else
+		unitclass = E.myclass
+	end
 	local reactiontarget = UnitReaction(unit, "player")
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if self.notInterruptible and UnitCanAttack('player', unit) then

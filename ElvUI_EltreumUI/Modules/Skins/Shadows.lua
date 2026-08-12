@@ -4244,7 +4244,9 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 			if E.db.ElvUI_EltreumUI.borders.classcolor and nameplate.unit then
 				local _, className = _G.UnitClass(nameplate.unit)
 				local isPlayer = _G.UnitIsPlayer(nameplate.unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.unit))
-
+				if not E:NotSecretValue(className) then --secret class so do something else
+					className = E.myclass
+				end
 				if isPlayer then
 					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
 				else

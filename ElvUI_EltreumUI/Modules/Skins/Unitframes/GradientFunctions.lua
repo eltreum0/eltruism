@@ -317,8 +317,12 @@ end
 
 --get the custom texture
 function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
-	if unitclass then
-		return unitframeclasscustom[unitclass]
+	if E:NotSecretValue(unitclass) then
+		if unitclass then
+			return unitframeclasscustom[unitclass]
+		end
+	else
+		return E.db.unitframe.statusbar
 	end
 end
 

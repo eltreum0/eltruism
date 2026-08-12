@@ -46,6 +46,9 @@ local function hookCell(frame,region,solo,isPet)
 				if frame and frame.SetVertexColor then
 					hooksecurefunc(frame,"SetVertexColor", function()
 						local _, englishClass = _G.UnitClass(region.unitid)
+						if not E:NotSecretValue(englishClass) then --secret class so do something else
+							return
+						end
 						--gradient
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then

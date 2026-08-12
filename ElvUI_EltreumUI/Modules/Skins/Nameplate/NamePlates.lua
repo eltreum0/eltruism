@@ -861,6 +861,9 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 				--local targetname = E:AbbreviateString(UnitName(unit..'target'))
 				if UnitIsPlayer(unit.."target") or (E.Retail and UnitInPartyIsAI(unit.."target")) then
 					local _ , classes = UnitClass(unit.."target")
+					if not E:NotSecretValue(classes) then --secret class so do something else
+						return targetname
+					end
 					self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else
 					local reaction = UnitReaction(unit.."target", "player")

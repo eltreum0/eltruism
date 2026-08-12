@@ -194,7 +194,6 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		local targetname = UnitName(unit.."target")
 		local _ , classes = UnitClass(unit.."target")
 		if not classes then return end
-		local color = ElvUI_EltreumUI:classcolorcast(classes)
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
 			_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo(unit)
@@ -206,6 +205,10 @@ function ElvUI_EltreumUI:LoadOtherTags()
 
 		if spellID and targetname and endTime > startTime then
 			if UnitIsPlayer(unit.."target") then
+				if not E:NotSecretValue(classes) then --secret class so do something else
+					return targetname
+				end
+				local color = ElvUI_EltreumUI:classcolorcast(classes)
 				return ("|c"..color..targetname.."|r")
 			elseif not UnitIsPlayer(unit.."target") then
 				if reaction then
@@ -228,8 +231,6 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		local targetname = UnitName(unit.."target")
 		local _ , classes = UnitClass(unit.."target")
 		if not classes then return end
-		local color = ElvUI_EltreumUI:classcolorcast(classes)
-
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
 			_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo(unit)
@@ -241,6 +242,10 @@ function ElvUI_EltreumUI:LoadOtherTags()
 
 		if spellID and targetname and endTime > startTime then
 			if UnitIsPlayer(unit.."target") then
+				if not E:NotSecretValue(classes) then --secret class so do something else
+					return targetname
+				end
+				local color = ElvUI_EltreumUI:classcolorcast(classes)
 				return (TARGET.." > |c"..color..targetname.."|r")
 			elseif not UnitIsPlayer(unit.."target") then
 				if reaction then
@@ -366,6 +371,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return
+			end
 			local cs = _G.ElvUF.colors.class[unitClass]
 			if not cs then return end
 			return cs and Hex(cs) or '|cFFcccccc'

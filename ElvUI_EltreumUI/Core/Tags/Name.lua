@@ -134,6 +134,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -175,6 +178,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -211,6 +217,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -255,6 +264,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -297,6 +309,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -334,6 +349,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -357,6 +375,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return UnitPVPName(unit)
+			end
 			return ElvUI_EltreumUI:GradientName(UnitPVPName(unit), unitClass,nil,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -381,6 +402,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
 			guildName = format('<%s>', guildName)
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return guildName
+			end
 			return ElvUI_EltreumUI:GradientName(guildName, unitClass,nil,true)
 		end
 	end)
@@ -394,6 +418,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 				if realm ~= '' then
 					if realm ~= E.myrealm then
 						realm = format('-%s', realm)
+						if not E:NotSecretValue(unitClass) then --secret class so do something else
+							return realm
+						end
 						return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
 					end
 				end
@@ -414,6 +441,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -449,6 +479,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -487,6 +520,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -534,6 +570,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if nickname then
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return nickname
+					end
 					return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..nickname.."|r"
 				else
 					if reaction then
@@ -551,6 +590,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			else
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return name
+					end
 					return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
 				else
 					if reaction then
@@ -569,6 +611,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		else
 			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if not unitClass then return end
+				if not E:NotSecretValue(unitClass) then --secret class so do something else
+					return name
+				end
 				return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
 			else
 				if reaction then
@@ -603,6 +648,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if nickname then
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return nickname
+					end
 					return ElvUI_EltreumUI:GradientName(nickname, unitClass,isTarget,true)
 				elseif not UnitIsPlayer(unit) then
 					if reaction then
@@ -620,6 +668,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			else
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 					if not unitClass then return end
+					if not E:NotSecretValue(unitClass) then --secret class so do something else
+						return name
+					end
 					return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 				elseif not UnitIsPlayer(unit) then
 					if reaction then
@@ -638,6 +689,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		else
 			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if not unitClass then return end
+				if not E:NotSecretValue(unitClass) then --secret class so do something else
+					return name
+				end
 				return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 			elseif not UnitIsPlayer(unit) then
 				if reaction then
@@ -683,6 +737,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
@@ -743,6 +800,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
 				local _, unitClass = UnitClass("targettarget")
 				if not unitClass then return end
+				if not E:NotSecretValue(unitClass) then --secret class so do something else
+					return name
+				end
 				return ElvUI_EltreumUI:GradientName(name, unitClass,nil,true)
 			elseif not UnitIsPlayer("targettarget") then
 				local reaction = UnitReaction("targettarget", "player")
@@ -768,6 +828,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
+			if not E:NotSecretValue(unitClass) then --secret class so do something else
+				return name
+			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,true,true)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")

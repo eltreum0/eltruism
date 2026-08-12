@@ -100,6 +100,9 @@ local function getColor(unit, isPlayer, isDead)
 			return colors[(playerFaction == unitFaction) and "friendly" or "enemy"]
 		else
 			local _, class = UnitClass(unit)
+			if not E:NotSecretValue(class) then --secret class so do something else
+				return colors[E.myclass]
+			end
 			return colors[class]
 		end
 	else
@@ -158,6 +161,9 @@ local function SetPortraits(frame, unit, masking, mirror)
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.classicons and (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) then
 		local class = select(2, UnitClass(unit))
 		if not class then return end
+		if not E:NotSecretValue(class) then --secret class so do something else
+			class = E.myclass
+		end
 
 		local style = E.db.ElvUI_EltreumUI.unitframes.portraits.general.classiconstyle
 		local classIcons = ElvUI_EltreumUI.ClassIcons.mMT[style] or ElvUI_EltreumUI.ClassIcons.Custom[style]

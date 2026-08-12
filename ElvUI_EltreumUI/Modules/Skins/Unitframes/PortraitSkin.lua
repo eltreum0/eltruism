@@ -172,6 +172,9 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 			if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcolor then
 				if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
 					local _, unitclass = UnitClass(frame.unit)
+					if not E:NotSecretValue(unitclass) then --secret class so do something else
+						return
+					end
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
 						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
 							frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
@@ -271,6 +274,9 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		if isPlayerCustom then
 			if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
 				local _, unitclass = UnitClass(frame.unit)
+				if not E:NotSecretValue(unitclass) then --secret class so do something else
+					return
+				end
 				frame.EltruismPortrait.portrait:SetTexture(ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.unitframes.portrait[db].style,unitclass,false,"128",true))
 				frame.EltruismPortrait.border:Hide()
 				frame.EltruismPortrait.rare:SetAlpha(0)

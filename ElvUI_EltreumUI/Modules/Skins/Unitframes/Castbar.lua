@@ -156,6 +156,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 					local _, targetclass = UnitClass("target")
 					local reactiontarget = UnitReaction("target", "player")
 					local targetcastbar = _G["ElvUF_Target_CastBar"]
+					if not E:NotSecretValue(targetclass) then --secret class so do something else
+						targetclass = E.myclass
+					end
 					if targetcastbar then
 
 						--spark
@@ -684,6 +687,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			if E.db.unitframe.units.pet.enable then
 				if UnitExists("pet") then
 					local _, petclass = UnitClass("pet")
+					if not E:NotSecretValue(petclass) then --secret class so do something else
+						petclass = E.myclass
+					end
 					local reactionpet = UnitReaction("pet", "player")
 					local petcastbar = _G["ElvUF_Pet_CastBar"]
 
@@ -952,6 +958,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 								local groupbutton = select(j, group:GetChildren())
 								if groupbutton and groupbutton.Castbar then
 									local _, buttonclass = UnitClass(groupbutton.unit)
+									if not E:NotSecretValue(buttonclass) then --secret class so do something else
+										buttonclass = E.myclass
+									end
 									--set textures
 									if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 										groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
@@ -1067,6 +1076,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 				for i = 1, 8 do
 					if UnitExists("boss"..i) then
 						local _, bossclass = UnitClass("boss"..i)
+						if not E:NotSecretValue(bossclass) then --secret class so do something else
+							bossclass = E.myclass
+						end
 						local reactionboss = UnitReaction("boss"..i, "player")
 						local bosscastbar = _G["ElvUF_Boss"..i.."_CastBar"]
 						if bosscastbar then

@@ -32,6 +32,9 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 						if _G["CompactRaidGroup"..k.."Member"..l] then
 							if _G["CompactRaidGroup"..k.."Member"..l].displayedUnit then
 								local _ , unitclass = UnitClass(_G["CompactRaidGroup"..k.."Member"..l].displayedUnit)
+								if not E:NotSecretValue(unitclass) then --secret class so do something else
+									return
+								end
 								if unitclass and _G["CompactRaidGroup"..k.."Member"..l].healthBar then
 
 									--textures
@@ -91,6 +94,9 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 					if _G["CompactRaidFrame"..i] then
 						if _G["CompactRaidFrame"..i].displayedUnit then
 							local _ , unitclass = UnitClass(_G["CompactRaidFrame"..i].displayedUnit)
+							if not E:NotSecretValue(unitclass) then --secret class so do something else
+								return
+							end
 							if unitclass and _G["CompactRaidFrame"..i].healthBar then
 
 								--textures
@@ -171,6 +177,9 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 						end]] --not sure yet about setting a template since maybe it will break some stuff
 						if _G["CompactPartyFrameMember"..l].displayedUnit then
 							local _ , unitclass = UnitClass(_G["CompactPartyFrameMember"..l].displayedUnit)
+							if not E:NotSecretValue(unitclass) then --secret class so do something else
+								return
+							end
 							if unitclass and _G["CompactPartyFrameMember"..l].healthBar then
 
 								--textures

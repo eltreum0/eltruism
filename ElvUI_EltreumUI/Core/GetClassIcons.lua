@@ -649,6 +649,9 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			resolution = "32"
 		end
 	end
+	if not E:NotSecretValue(unitclass) then --secret class so do something else
+		return classIconsReleaf[resolution]["ROGUE"]
+	end
 	if nostring then
 		if icon == "RELEAF" then
 			return classIconsReleaf[resolution][unitclass]
