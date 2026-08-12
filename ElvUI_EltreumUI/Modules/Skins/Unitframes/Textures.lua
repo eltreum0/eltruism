@@ -16,6 +16,7 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
 	local _, classunit = UnitClass(unit)
+	if not E:NotSecretValue(classunit) then return end --dont do texture when class is secret (cant get class)
 	local reaction = UnitReaction(unit, "player")
 	local isCharmed = E:NotSecretValue(UnitIsCharmed(unit)) and UnitIsCharmed(unit) or false
 	local namebar
@@ -187,6 +188,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	else
 		buttonclass = "NPCFRIENDLY"
 	end
+	if not E:NotSecretValue(buttonclass) then return end --dont do texture when class is secret (cant get class)
 
 	if buttonclass and button.Health then
 		if not noOrientation then
