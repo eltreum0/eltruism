@@ -136,11 +136,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 
 	--private auras
-	E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"
+	--[[E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"
 	E.db["unitframe"]["units"]["party"]["privateAuras"]["parent"]["offsetY"] = 12
 	E.db["unitframe"]["units"]["raid1"]["privateAuras"]["parent"]["offsetY"] = 5
 	E.db["unitframe"]["units"]["raid2"]["privateAuras"]["parent"]["offsetY"] = 5
-	E.db["unitframe"]["units"]["raid3"]["privateAuras"]["parent"]["offsetY"] = 5
+	E.db["unitframe"]["units"]["raid3"]["privateAuras"]["parent"]["offsetY"] = 5]]
 
 	--rest icon
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 1.00
