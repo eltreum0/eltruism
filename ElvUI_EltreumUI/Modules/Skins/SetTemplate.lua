@@ -772,7 +772,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			end
 			loopframe = EnumerateFrames(loopframe)
 		end
-		E:UpdateAll()
+		--E:UpdateAll() --sems to be causing an error with the elvui change
 		E:Delay(10, function()
 			if E.db.ElvUI_EltreumUI.chat.chattoggles then
 				_G.LeftChatToggleButton:SetAlpha(1)
