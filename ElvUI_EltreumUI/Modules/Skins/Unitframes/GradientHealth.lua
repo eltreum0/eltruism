@@ -177,11 +177,11 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 		local isActualPlayer = false
 		if unitframe and unitframe.Health then
 			if unitframe.realUnit then
-				if name == "Player" and unitframe.unit == "vehicle" then
+				if name == "Player" and unitframe.__unit == "vehicle" then
 					isPlayer = false
 					isActualPlayer = false
 				end
-				if name == "Pet" and unitframe.unit == "player" then
+				if name == "Pet" and unitframe.__unit == "player" then
 					isPlayer = true
 					isActualPlayer = true
 					classunit = E.myclass

@@ -10,8 +10,8 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
 			if not bar.EltruismHook then
 				hooksecurefunc(bar,"SetStatusBarColor", function(_,r,g,b)
-					if bar.unit then
-						if bar.unit == "player" then
+					if bar.__unit then
+						if bar.__unit == "player" then
 							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkPlayer then
 								bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.player.aurabar.reverseFill then --flip otherwise it will look wrong
@@ -27,7 +27,7 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 							else
 								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1}, {r=r,g= g,b= b,a= 1})
 							end
-						elseif bar.unit == "target" then
+						elseif bar.__unit == "target" then
 							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkTarget then
 								bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.target.aurabar.reverseFill then --flip otherwise it will look wrong
@@ -127,9 +127,9 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 								end
 							end
 						end
-						if bar.unit == "target" and E.db.unitframe.units.target.aurabar.reverseFill then
+						if bar.__unit == "target" and E.db.unitframe.units.target.aurabar.reverseFill then
 							bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
-						elseif bar.unit == "player" and E.db.unitframe.units.player.aurabar.reverseFill then
+						elseif bar.__unit == "player" and E.db.unitframe.units.player.aurabar.reverseFill then
 							bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
 						else
 							bar.backdrop:SetBackdropColor(0,0,0,0)

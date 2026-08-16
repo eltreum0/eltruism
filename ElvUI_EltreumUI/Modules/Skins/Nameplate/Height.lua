@@ -30,7 +30,7 @@ tableupdate:SetScript("OnEvent",function()
 	}
 end)
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
-	if not unit or not unit.unit or not unit.Health or not unit.Health:IsShown() then
+	if not unit or not unit.__unit or not unit.Health or not unit.Health:IsShown() then
 		return
 	end
 	if not E.db.ElvUI_EltreumUI then return end

@@ -132,7 +132,7 @@ local function GradientNameplates(unit,unit2)
 	if unit2 and not unit then
 		unit = unit2
 	end
-	if not unit or not unit.unit or not unit.Health or not unit.Health:IsShown() then
+	if not unit or not unit.__unit or not unit.Health or not unit.Health:IsShown() then
 		return
 	end
 	local _, className = UnitClass(unit.unit)

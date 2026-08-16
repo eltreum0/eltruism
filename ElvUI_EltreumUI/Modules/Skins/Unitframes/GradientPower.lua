@@ -141,7 +141,7 @@ end
 
 --Apply Gradient Power Colors to Group Unit
 function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
-	if groupunitframe and groupunitframe.unit then
+	if groupunitframe and groupunitframe.__unit then
 		local _, powertype = UnitPowerType(groupunitframe.unit)
 		if powertype then
 			if groupunitframe.Power then
@@ -355,7 +355,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 					local group = select(i, headergroup:GetChildren())
 					for j = 1, group:GetNumChildren() do
 						local groupbutton = select(j, group:GetChildren())
-						if groupbutton and groupbutton.Power and groupbutton.Power:IsShown() and groupbutton.unit then
+						if groupbutton and groupbutton.Power and groupbutton.Power:IsShown() and groupbutton.__unit then
 							ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
 						end
 					end

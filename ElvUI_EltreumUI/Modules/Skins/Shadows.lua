@@ -4241,7 +4241,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 	local bordertexture
 	if E.private.nameplates.enable then
 		if E.db.ElvUI_EltreumUI.borders.borders and (E.db.ElvUI_EltreumUI.borders.nameplateborders or E.db.ElvUI_EltreumUI.borders.nameplatecastborders) then
-			if E.db.ElvUI_EltreumUI.borders.classcolor and nameplate.unit then
+			if E.db.ElvUI_EltreumUI.borders.classcolor and nameplate.__unit then
 				local _, className = _G.UnitClass(nameplate.unit)
 				local isPlayer = _G.UnitIsPlayer(nameplate.unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.unit))
 				if not E:NotSecretValue(className) then --secret class so do something else

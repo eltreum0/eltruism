@@ -292,11 +292,11 @@ end
 local function UpdatePortrait(portraitFrame, force)
 	-- get textures
 	portraitFrame.textures = ElvUI_EltreumUI:GetTextures(portraitFrame.settings.texture)
-	portraitFrame.unit = portraitFrame.parent.unit
+	portraitFrame.__unit = portraitFrame.parent.unit
 
 	local texture, offset
 	local setting = portraitFrame.settings
-	local unit = force and "player" or (UnitExists(portraitFrame.unit) and portraitFrame.unit or (portraitFrame.parent.unit or "player"))
+	local unit = force and "player" or (UnitExists(portraitFrame.unit) and portraitFrame.__unit or (portraitFrame.parent.__unit or "player"))
 	local parent = portraitFrame.parent
 	local unitColor = getColor(unit)
 
@@ -482,7 +482,7 @@ local function SetScripts(portrait, force)
 
 			-- specific events for player and pet if player is in vehicle
 			if E.Retail or E.Mists then
-				if portrait.unit == "player" then
+				if portrait.__unit == "player" then
 					portrait:RegisterEvent("VEHICLE_UPDATE")
 					tinsert(portrait.allEvents, "VEHICLE_UPDATE")
 					portrait:RegisterUnitEvent("UNIT_ENTERED_VEHICLE", portrait.unit)
@@ -490,7 +490,7 @@ local function SetScripts(portrait, force)
 					portrait:RegisterUnitEvent("UNIT_EXITED_VEHICLE", portrait.unit)
 					tinsert(portrait.allEvents, "UNIT_EXITED_VEHICLE")
 				end
-				if portrait.unit == "pet" then
+				if portrait.__unit == "pet" then
 					portrait:RegisterEvent("VEHICLE_UPDATE")
 					tinsert(portrait.allEvents, "VEHICLE_UPDATE")
 				end
@@ -668,8 +668,8 @@ end
 
 local function shouldHandleEvent(event, eventUnit, self)
 	return (event == "UNIT_TARGET" and (eventUnit == "player" or eventUnit == "target" or eventUnit == "targettarget"))
-		or (event == "PLAYER_TARGET_CHANGED" and (self.unit == "target" or self.unit == "targettarget"))
-		or event == "PLAYER_FOCUS_CHANGED" and self.parent.unit == "focus"
+		or (event == "PLAYER_TARGET_CHANGED" and (self.__unit == "target" or self.__unit == "targettarget"))
+		or event == "PLAYER_FOCUS_CHANGED" and self.parent.__unit == "focus"
 		or eventUnit == self.unit
 end
 
@@ -683,9 +683,9 @@ local forceUpdateParty = {
 local function PartyUnitOnEvent(self, event, eventUnit)
 	if not UnitExists(self.parent.unit) then return end
 
-	if event == "UNIT_HEALTH" and eventUnit == self.unit then DeadDesaturation(self) end
+	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
-	self.unit = self.parent.unit
+	self.__unit = self.parent.unit
 
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.desaturation and not self.eventDesaturationIsSet then
 		self:RegisterUnitEvent("UNIT_HEALTH", self.unit)
@@ -696,10 +696,10 @@ local function PartyUnitOnEvent(self, event, eventUnit)
 	if event == "GROUP_ROSTER_UPDATE" then
 		-- force party portraits update
 		for i = 1, 5 do
-			module["Party" .. i].unit = module["Party" .. i].parent.unit
+			module["Party" .. i].__unit = module["Party" .. i].parent.unit
 			UnitEvent(module["Party" .. i], event)
 		end
-	elseif eventUnit == self.unit or forceUpdateParty[event] then
+	elseif eventUnit == self.__unit or forceUpdateParty[event] then
 		UnitEvent(self, event)
 	end
 end
@@ -707,29 +707,29 @@ end
 local function BossUnitOnEvent(self, event, eventUnit)
 	if not UnitExists(self.parent.unit) then return end
 
-	if event == "UNIT_HEALTH" and eventUnit == self.unit then DeadDesaturation(self) end
+	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
-	if eventUnit == self.unit or event == "INSTANCE_ENCOUNTER_ENGAGE_UNIT" or event == "PORTRAITS_UPDATED" then UnitEvent(self, event) end
+	if eventUnit == self.__unit or event == "INSTANCE_ENCOUNTER_ENGAGE_UNIT" or event == "PORTRAITS_UPDATED" then UnitEvent(self, event) end
 end
 
 local function PlayerPetUnitOnEvent(self, event, eventUnit)
 	if not UnitExists(self.parent.unit) then return end
 
-	if event == "UNIT_HEALTH" and eventUnit == self.unit then DeadDesaturation(self) end
+	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
-	if eventUnit == "vehicle" or _G.ElvUF_Player.unit == "vehicle" then
-		self.unit = (self.parent.realUnit == "player") and "pet" or "player"
+	if eventUnit == "vehicle" or _G.ElvUF_Player.__unit == "vehicle" then
+		self.__unit = (self.parent.realUnit == "player") and "pet" or "player"
 	else
-		self.unit = self.parent.unit
+		self.__unit = self.parent.unit
 	end
 
-	if eventUnit == self.unit or _G.ElvUF_Player.unit == "vehicle" or event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE" or event == "VEHICLE_UPDATE" then UnitEvent(self, event) end
+	if eventUnit == self.__unit or _G.ElvUF_Player.__unit == "vehicle" or event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE" or event == "VEHICLE_UPDATE" then UnitEvent(self, event) end
 end
 
 local function OtherUnitOnEvent(self, event, eventUnit)
 	if not UnitExists(self.unit) then return end
 
-	if event == "UNIT_HEALTH" and eventUnit == self.unit then DeadDesaturation(self) end
+	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
 	if shouldHandleEvent(event, eventUnit, self) then UnitEvent(self, event) end
 end
@@ -756,7 +756,7 @@ local function CreatePortraits(name, unit, parentFrame, unitSettings, events, un
 	if not module[name] then
 		module[name] = CreateFrame("Button", "ElvUI_EltreumUI_Portrait_" .. name, parentFrame, "SecureUnitButtonTemplate") -- CreatePortrait(parentFrame, unitSettings, unit)
 		module[name].parent = parentFrame
-		module[name].unit = unit
+		module[name].__unit = unit
 		module[name].isPartyFrame = partyFrames[name]
 		module[name].isBossFrame = bossFrames[name]
 		module[name].events = events or nil

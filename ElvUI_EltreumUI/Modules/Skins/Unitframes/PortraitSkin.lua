@@ -24,7 +24,7 @@ local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
 local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	if not frame then return end
 	if not frame.USE_PORTRAIT then return end
-	if not frame.unit then return end
+	if not frame.__unit then return end
 
 	if db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT" then
 		invert = true
@@ -435,13 +435,13 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 			end
 		end
 		for i = 1, 8 do
-			if _G["ElvUF_Boss"..i] and _G["ElvUF_Boss"..i].unit then
+			if _G["ElvUF_Boss"..i] and _G["ElvUF_Boss"..i].__unit then
 				CreatePorfraitFrameAndTexture(_G["ElvUF_Boss"..i],"ElvUF_Boss"..i,false,true,"boss")
 			end
 		end
 		if IsInGroup() and not IsInRaid() then
 			for i = 1, 5 do
-				if _G["ElvUF_PartyGroup1UnitButton"..i] and _G["ElvUF_PartyGroup1UnitButton"..i].unit then
+				if _G["ElvUF_PartyGroup1UnitButton"..i] and _G["ElvUF_PartyGroup1UnitButton"..i].__unit then
 					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton"..i],"ElvUF_PartyGroup1UnitButton"..i,false,true,"party")
 				else
 					break
@@ -511,7 +511,7 @@ function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 		end
 		if unit == "boss" then
 			for i = 1, 8 do
-				if _G["ElvUF_Boss"..i] and _G["ElvUF_Boss"..i].unit then
+				if _G["ElvUF_Boss"..i] and _G["ElvUF_Boss"..i].__unit then
 					CreatePorfraitFrameAndTexture(_G["ElvUF_Boss"..i],"ElvUF_Boss"..i,false,true,"boss",true)
 				end
 			end
