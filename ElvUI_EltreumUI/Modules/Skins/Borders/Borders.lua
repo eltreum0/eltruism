@@ -30,23 +30,23 @@ local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, c
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
-	["WARRIOR"] = {r1 = 0.77646887302399, g1 = 0.60784178972244, b1 = 0.4274500310421},
-	["PALADIN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879},
-	["HUNTER"] = {r1 = 0.66666519641876, g1 = 0.82744914293289, b1 = 0.44705784320831},
-	["ROGUE"] = {r1 = 0.99999779462814, g1 = 0.95686066150665, b1 = 0.40784224867821},
-	["PRIEST"] = {r1 = 0.99999779462814, g1 = 0.99999779462814, b1 = 0.99999779462814},
-	["DEATHKNIGHT"] = {r1 = 0.76862573623657, g1 = 0.11764679849148, b1 = 0.2274504750967},
-	["SHAMAN"] = {r1 = 0, g1 = 0.4392147064209, b1 = 0.86666476726532},
-	["MAGE"] = {r1 = 0.24705828726292, g1 = 0.78039044141769, b1 = 0.92156660556793},
-	["WARLOCK"] = {r1 = 0.52941060066223, g1 = 0.53333216905594, b1 = 0.93333131074905},
-	["MONK"] = {r1 = 0, g1 = 0.99999779462814, b1 = 0.59607714414597},
-	["DRUID"] = {r1 = 0.99999779462814, g1 = 0.48627343773842, b1 = 0.039215601980686},
-	["DEMONHUNTER"] = {r1 = 0.63921427726746, g1 = 0.1882348805666, b1 = 0.78823357820511},
-	["EVOKER"] = {r1 = 0.19607843137255, g1 = 0.46666666666667, b1 = 0.53725490196078},
-	["NPCFRIENDLY"] = {r1 = 0.2, g1 = 1, b1 = 0.2},
-	["NPCNEUTRAL"] = {r1 = 0.89, g1 = 0.89, b1 = 0},
-	["NPCUNFRIENDLY"] = {r1 = 0.94, g1 = 0.37, b1 = 0},
-	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
+	["WARRIOR"] = {r = 0.77646887302399, g = 0.60784178972244, b = 0.4274500310421},
+	["PALADIN"] = {r = 0.95686066150665, g = 0.54901838302612, b = 0.72941017150879},
+	["HUNTER"] = {r = 0.66666519641876, g = 0.82744914293289, b = 0.44705784320831},
+	["ROGUE"] = {r = 0.99999779462814, g = 0.95686066150665, b = 0.40784224867821},
+	["PRIEST"] = {r = 0.99999779462814, g = 0.99999779462814, b = 0.99999779462814},
+	["DEATHKNIGHT"] = {r = 0.76862573623657, g = 0.11764679849148, b = 0.2274504750967},
+	["SHAMAN"] = {r = 0, g = 0.4392147064209, b = 0.86666476726532},
+	["MAGE"] = {r = 0.24705828726292, g = 0.78039044141769, b = 0.92156660556793},
+	["WARLOCK"] = {r = 0.52941060066223, g = 0.53333216905594, b = 0.93333131074905},
+	["MONK"] = {r = 0, g = 0.99999779462814, b = 0.59607714414597},
+	["DRUID"] = {r = 0.99999779462814, g = 0.48627343773842, b = 0.039215601980686},
+	["DEMONHUNTER"] = {r = 0.63921427726746, g = 0.1882348805666, b = 0.78823357820511},
+	["EVOKER"] = {r = 0.19607843137255, g = 0.46666666666667, b = 0.53725490196078},
+	["NPCFRIENDLY"] = {r = 0.2, g = 1, b = 0.2},
+	["NPCNEUTRAL"] = {r = 0.89, g = 0.89, b = 0},
+	["NPCUNFRIENDLY"] = {r = 0.94, g = 0.37, b = 0},
+	["NPCHOSTILE"] = {r = 0.8, g = 0, b = 0},
 }
 function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 	if E:NotSecretValue(unitclass) then
@@ -1084,13 +1084,13 @@ local function BordersPart1()
 					if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor then
 						local reactionboss= UnitReaction("boss"..i, "player")
 						if reactionboss >= 5 then
-							bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						elseif reactionboss == 4 then
-							bossborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							bossborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						elseif reactionboss == 3 then
-							bossborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							bossborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						elseif reactionboss == 2 or reactionboss == 1 then
-							bossborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							bossborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 					else
 						bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -1133,13 +1133,13 @@ local function BordersPart1()
 					if UnitExists("arena"..i) and E.db.ElvUI_EltreumUI.borders.classcolor then
 						local reactionarena= UnitReaction("arena"..i, "player")
 						if reactionarena >= 5 then
-							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						elseif reactionarena == 4 then
-							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						elseif reactionarena == 3 then
-							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						elseif reactionarena == 2 or reactionarena == 1 then
-							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							arenaborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 					else
 						arenaborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -1882,7 +1882,7 @@ end
 function ElvUI_EltreumUI:Borders()
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.Classic and not E.db.ElvUI_EltreumUI.skins.classicblueshaman then
-			classcolorreaction["SHAMAN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879}
+			classcolorreaction["SHAMAN"] = {r = 0.95686066150665, g = 0.54901838302612, b = 0.72941017150879}
 		end
 		ElvUI_EltreumUI:GetBorderClassColors()
 
@@ -2157,7 +2157,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 				else
 					if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
 						local _, classunit = UnitClass(unittp)
-						local valuecolors = E:ClassColor(classunit, true)
+						local valuecolors = E:ClassColor(classunit, true) --possible secret error in 12.1?
 						tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 					else
 						local reaction = UnitReaction(unittp, "player")
@@ -2281,79 +2281,79 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
 					local _, targetclass = UnitClass("target")
 					if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
-						targetborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
+						targetborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r"], classcolorreaction[targetclass]["g"], classcolorreaction[targetclass]["b"], 1)
 					end
 					if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
-						targetcastbarborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
+						targetcastbarborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r"], classcolorreaction[targetclass]["g"], classcolorreaction[targetclass]["b"], 1)
 					end
 					if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 						local _, powertype = UnitPowerType("target")
 						if E.db.unitframe.colors.power[powertype] then
 							targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
 						else
-							targetpowerborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
+							targetpowerborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r"], classcolorreaction[targetclass]["g"], classcolorreaction[targetclass]["b"], 1)
 						end
 					end
 				else
 					local reactiontarget = UnitReaction("target", "player")
 					if reactiontarget >= 5 then
 						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							targetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
-							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
 							else
-								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 							end
 						end
 					elseif reactiontarget == 4 then
 						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							targetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
-							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
 							else
-								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 							end
 						end
 					elseif reactiontarget == 3 then
 						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							targetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
-							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
 							else
-								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 							end
 						end
 					elseif reactiontarget == 2 or reactiontarget == 1 then
 						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							targetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
-							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
 							else
-								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+								targetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 							end
 						end
 					end
@@ -2366,17 +2366,17 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if UnitExists("targettarget") and targettargetborder ~= nil then
 					if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
 						local _, targettargetclass = UnitClass("targettarget")
-						targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r1"], classcolorreaction[targettargetclass]["g1"], classcolorreaction[targettargetclass]["b1"], 1)
+						targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r"], classcolorreaction[targettargetclass]["g"], classcolorreaction[targettargetclass]["b"], 1)
 					else
 						local reactiontargettarget = UnitReaction("targettarget", "player")
 						if reactiontargettarget >= 5 then
-							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						elseif reactiontargettarget == 4 then
-							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						elseif reactiontargettarget == 3 then
-							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
-							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 					end
 				end
@@ -2388,34 +2388,34 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if focusborder ~= nil then
 					if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
 						local _, focusclass = UnitClass("focus")
-						focusborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
+						focusborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r"], classcolorreaction[focusclass]["g"], classcolorreaction[focusclass]["b"], 1)
 					else
 						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
-							focusborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							focusborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						elseif reactionfocus == 4 then
-							focusborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							focusborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						elseif reactionfocus == 3 then
-							focusborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							focusborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						elseif reactionfocus == 2 or reactionfocus == 1 then
-							focusborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							focusborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 					end
 				end
 				if focuscastbarborder ~= nil then
 					if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
 						local _, focusclass = UnitClass("focus")
-						focuscastbarborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
+						focuscastbarborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r"], classcolorreaction[focusclass]["g"], classcolorreaction[focusclass]["b"], 1)
 					else
 						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
-							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						elseif reactionfocus == 4 then
-							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						elseif reactionfocus == 3 then
-							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						elseif reactionfocus == 2 or reactionfocus == 1 then
-							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 					end
 				end
@@ -2428,16 +2428,16 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				local reactionfocustarget = UnitReaction("focustarget", "player")
 				if focustargetborder ~= nil then
 					if UnitIsPlayer("focustarget") or (E.Retail and UnitInPartyIsAI("focustarget")) then
-						focustargetborder:SetBackdropBorderColor(classcolorreaction[focustargetclass]["r1"], classcolorreaction[focustargetclass]["g1"], classcolorreaction[focustargetclass]["b1"], 1)
+						focustargetborder:SetBackdropBorderColor(classcolorreaction[focustargetclass]["r"], classcolorreaction[focustargetclass]["g"], classcolorreaction[focustargetclass]["b"], 1)
 					else
 						if reactionfocustarget >= 5 then
-							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						elseif reactionfocustarget == 4 then
-							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						elseif reactionfocustarget == 3 then
-							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						elseif reactionfocustarget == 2 or reactionfocustarget == 1 then
-							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 					end
 				end
@@ -2450,18 +2450,18 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if UnitExists("boss"..i) and bossbordername ~= nil then
 					if UnitIsPlayer("boss1"..i) or (E.Retail and UnitInPartyIsAI("boss1"..i)) then
 						local _, bossclass = UnitClass("boss"..i)
-						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r1"], classcolorreaction[bossclass]["g1"], classcolorreaction[bossclass]["b1"], 1)
+						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r"], classcolorreaction[bossclass]["g"], classcolorreaction[bossclass]["b"], 1)
 					else
 						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionboss = UnitReaction("boss1", "player")
 							if reactionboss >= 5 then
-								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 							elseif reactionboss == 4 then
-								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 							elseif reactionboss == 3 then
-								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 							elseif reactionboss <=2 then
-								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 							end
 						else
 							bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -2483,18 +2483,18 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if arenabordername ~= nil then
 					if arenaunit or (E.Retail and UnitInPartyIsAI("arena"..i)) then
 						local _, arenaclass = UnitClass(arenaunit)
-						arenabordername:SetBackdropBorderColor(classcolorreaction[arenaclass]["r1"], classcolorreaction[arenaclass]["g1"], classcolorreaction[arenaclass]["b1"], 1)
+						arenabordername:SetBackdropBorderColor(classcolorreaction[arenaclass]["r"], classcolorreaction[arenaclass]["g"], classcolorreaction[arenaclass]["b"], 1)
 					elseif not UnitIsPlayer(arenaunit) then
 						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionarena = UnitReaction(arenaunit, "player")
 							if reactionarena >= 5 then
-								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 							elseif reactionarena == 4 then
-								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 							elseif reactionarena == 3 then
-								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 							elseif reactionarena <=2 then
-								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+								arenabordername:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 							end
 						else
 							arenaborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -2801,7 +2801,8 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 					if _G["ElvUF_PartyGroup1UnitButton"..i] then
 						local _ , unitclass = UnitClass(_G["ElvUF_PartyGroup1UnitButton"..i].unit)
 						if unitclass then
-							_G["EltruismPartyBorder"..i]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+							local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+							_G["EltruismPartyBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 						end
 					end
 				end
@@ -2816,7 +2817,8 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 							if _G["ElvUF_Raid1Group"..k.."UnitButton"..l] then
 								local _ , unitclass = UnitClass(_G["ElvUF_Raid1Group"..k.."UnitButton"..l].unit)
 								if unitclass then
-									_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+									local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+									_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 								end
 							end
 						end
@@ -2831,11 +2833,12 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 									if _G["CompactRaidGroup"..k.."Member"..l].displayedUnit then
 										local _ , unitclass = UnitClass(_G["CompactRaidGroup"..k.."Member"..l].displayedUnit)
 										if unitclass then
+											local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
 											if _G["EltruismRaid1Group"..k.."Border"..l] then
-												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 											else
 												ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
-												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 											end
 										end
 									end
@@ -2848,11 +2851,12 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 								if _G["CompactRaidFrame"..i].displayedUnit then
 									local _ , unitclass = UnitClass(_G["CompactRaidFrame"..i].displayedUnit)
 									if unitclass then
+										local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
 										if _G["EltruismRaid1GroupBorder"..i] then
-											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 										else
 											ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
-											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 										end
 									end
 								end
@@ -2870,7 +2874,8 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 						if _G["ElvUF_Raid2Group"..k.."UnitButton"..l] then
 							local _ , unitclass = UnitClass(_G["ElvUF_Raid2Group"..k.."UnitButton"..l].unit)
 							if unitclass then
-								_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+								local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+								_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 							end
 						end
 					end
@@ -2885,7 +2890,8 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 						if _G["ElvUF_Raid3Group"..k.."UnitButton"..l] then
 							local _ , unitclass = UnitClass(_G["ElvUF_Raid3Group"..k.."UnitButton"..l].unit)
 							if unitclass then
-								_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+								local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+								_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 							end
 						end
 					end
@@ -2899,7 +2905,8 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 					if _G["ElvUF_TankUnitButton"..k.."Border"] then
 						local _ , unitclass = UnitClass(_G["ElvUF_TankUnitButton"..k].unit)
 						if unitclass then
-							_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+							local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+							_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 						end
 					end
 				end
@@ -2909,7 +2916,8 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 					if _G["ElvUF_AssistUnitButton"..k.."Border"] then
 						local _ , unitclass = UnitClass(_G["ElvUF_AssistUnitButton"..k].unit)
 						if unitclass then
-							_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+							local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+							_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 						end
 					end
 				end
