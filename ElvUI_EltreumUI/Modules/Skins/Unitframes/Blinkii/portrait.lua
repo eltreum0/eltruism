@@ -292,11 +292,11 @@ end
 local function UpdatePortrait(portraitFrame, force)
 	-- get textures
 	portraitFrame.textures = ElvUI_EltreumUI:GetTextures(portraitFrame.settings.texture)
-	portraitFrame.__unit = portraitFrame.parent.unit
+	portraitFrame.__unit = portraitFrame.parent.__unit
 
 	local texture, offset
 	local setting = portraitFrame.settings
-	local unit = force and "player" or (UnitExists(portraitFrame.unit) and portraitFrame.__unit or (portraitFrame.parent.__unit or "player"))
+	local unit = force and "player" or (UnitExists(portraitFrame.__unit) and portraitFrame.__unit or (portraitFrame.parent.__unit or "player"))
 	local parent = portraitFrame.parent
 	local unitColor = getColor(unit)
 
@@ -431,7 +431,7 @@ local function SetCastEvents(portrait, unregistering)
 			if portrait.isPartyFrame then
 				portrait:RegisterEvent(event)
 			else
-				portrait:RegisterUnitEvent(event, portrait.unit)
+				portrait:RegisterUnitEvent(event, portrait.__unit)
 			end
 			tinsert(portrait.allEvents, event)
 		end
@@ -441,7 +441,7 @@ local function SetCastEvents(portrait, unregistering)
 				if portrait.isPartyFrame then
 					portrait:RegisterEvent(event)
 				else
-					portrait:RegisterUnitEvent(event, portrait.unit)
+					portrait:RegisterUnitEvent(event, portrait.__unit)
 				end
 				tinsert(portrait.allEvents, event)
 			end
@@ -470,13 +470,13 @@ local function SetScripts(portrait, force)
 			local unitEvents = { "UNIT_MODEL_CHANGED", "UNIT_PORTRAIT_UPDATE", "UNIT_CONNECTION" }
 
 			for _, event in ipairs(unitEvents) do
-				portrait:RegisterUnitEvent(event, portrait.unit)
+				portrait:RegisterUnitEvent(event, portrait.__unit)
 				tinsert(portrait.allEvents, event)
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.portraits.general.desaturation then
 				local healthEvent = "UNIT_HEALTH"
-				portrait:RegisterUnitEvent(healthEvent, portrait.unit)
+				portrait:RegisterUnitEvent(healthEvent, portrait.__unit)
 				tinsert(portrait.allEvents, healthEvent)
 			end
 
@@ -485,9 +485,9 @@ local function SetScripts(portrait, force)
 				if portrait.__unit == "player" then
 					portrait:RegisterEvent("VEHICLE_UPDATE")
 					tinsert(portrait.allEvents, "VEHICLE_UPDATE")
-					portrait:RegisterUnitEvent("UNIT_ENTERED_VEHICLE", portrait.unit)
+					portrait:RegisterUnitEvent("UNIT_ENTERED_VEHICLE", portrait.__unit)
 					tinsert(portrait.allEvents, "UNIT_ENTERED_VEHICLE")
-					portrait:RegisterUnitEvent("UNIT_EXITED_VEHICLE", portrait.unit)
+					portrait:RegisterUnitEvent("UNIT_EXITED_VEHICLE", portrait.__unit)
 					tinsert(portrait.allEvents, "UNIT_EXITED_VEHICLE")
 				end
 				if portrait.__unit == "pet" then
@@ -505,7 +505,7 @@ local function SetScripts(portrait, force)
 
 			if portrait.unitEvents then
 				for _, event in pairs(portrait.unitEvents) do
-					portrait:RegisterUnitEvent(event, event == "UNIT_TARGET" and "target" or portrait.unit)
+					portrait:RegisterUnitEvent(event, event == "UNIT_TARGET" and "target" or portrait.__unit)
 					tinsert(portrait.allEvents, event)
 				end
 			end
@@ -526,7 +526,7 @@ local function SetScripts(portrait, force)
 		--disable due to overlapping with other elements and blocking chat for example
 		--[[
 		-- scripts to interact with mouse
-		portrait:SetAttribute("unit", portrait.unit)
+		portrait:SetAttribute("unit", portrait.__unit)
 		portrait:SetAttribute("*type1", "target")
 		portrait:SetAttribute("*type2", "togglemenu")
 		portrait:SetAttribute("type3", "focus")
@@ -586,10 +586,10 @@ local function UpdateAllPortraits(force)
 end
 
 local function CastIcon(self)
-	-- local texture = select(3, UnitCastingInfo(self.unit))
+	-- local texture = select(3, UnitCastingInfo(self.__unit))
 
-	-- if not texture then texture = select(3, UnitChannelInfo(self.unit)) end
-	return select(3, UnitCastingInfo(self.unit)) or select(3, UnitChannelInfo(self.unit))
+	-- if not texture then texture = select(3, UnitChannelInfo(self.__unit)) end
+	return select(3, UnitCastingInfo(self.__unit)) or select(3, UnitChannelInfo(self.__unit))
 end
 
 local function AddCastIcon(self)
@@ -647,7 +647,7 @@ local function UpdatePortraitTexture(self, unit)
 end
 
 local function UnitEvent(self, event)
-	local unit = self.unit
+	local unit = self.__unit
 
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.desaturation or E.db.ElvUI_EltreumUI.unitframes.portraits.general.deathcolor then self.unit_is_dead = UnitIsDead(unit) end
 
@@ -670,7 +670,7 @@ local function shouldHandleEvent(event, eventUnit, self)
 	return (event == "UNIT_TARGET" and (eventUnit == "player" or eventUnit == "target" or eventUnit == "targettarget"))
 		or (event == "PLAYER_TARGET_CHANGED" and (self.__unit == "target" or self.__unit == "targettarget"))
 		or event == "PLAYER_FOCUS_CHANGED" and self.parent.__unit == "focus"
-		or eventUnit == self.unit
+		or eventUnit == self.__unit
 end
 
 local forceUpdateParty = {
@@ -681,14 +681,14 @@ local forceUpdateParty = {
 }
 
 local function PartyUnitOnEvent(self, event, eventUnit)
-	if not UnitExists(self.parent.unit) then return end
+	if not UnitExists(self.parent.__unit) then return end
 
 	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
-	self.__unit = self.parent.unit
+	self.__unit = self.parent.__unit
 
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.desaturation and not self.eventDesaturationIsSet then
-		self:RegisterUnitEvent("UNIT_HEALTH", self.unit)
+		self:RegisterUnitEvent("UNIT_HEALTH", self.__unit)
 		tinsert(self.allEvents, "UNIT_HEALTH")
 		self.eventDesaturationIsSet = true
 	end
@@ -696,7 +696,7 @@ local function PartyUnitOnEvent(self, event, eventUnit)
 	if event == "GROUP_ROSTER_UPDATE" then
 		-- force party portraits update
 		for i = 1, 5 do
-			module["Party" .. i].__unit = module["Party" .. i].parent.unit
+			module["Party" .. i].__unit = module["Party" .. i].parent.__unit
 			UnitEvent(module["Party" .. i], event)
 		end
 	elseif eventUnit == self.__unit or forceUpdateParty[event] then
@@ -705,7 +705,7 @@ local function PartyUnitOnEvent(self, event, eventUnit)
 end
 
 local function BossUnitOnEvent(self, event, eventUnit)
-	if not UnitExists(self.parent.unit) then return end
+	if not UnitExists(self.parent.__unit) then return end
 
 	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
@@ -713,21 +713,21 @@ local function BossUnitOnEvent(self, event, eventUnit)
 end
 
 local function PlayerPetUnitOnEvent(self, event, eventUnit)
-	if not UnitExists(self.parent.unit) then return end
+	if not UnitExists(self.parent.__unit) then return end
 
 	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 
 	if eventUnit == "vehicle" or _G.ElvUF_Player.__unit == "vehicle" then
 		self.__unit = (self.parent.realUnit == "player") and "pet" or "player"
 	else
-		self.__unit = self.parent.unit
+		self.__unit = self.parent.__unit
 	end
 
 	if eventUnit == self.__unit or _G.ElvUF_Player.__unit == "vehicle" or event == "UNIT_EXITED_VEHICLE" or event == "UNIT_ENTERED_VEHICLE" or event == "VEHICLE_UPDATE" then UnitEvent(self, event) end
 end
 
 local function OtherUnitOnEvent(self, event, eventUnit)
-	if not UnitExists(self.unit) then return end
+	if not UnitExists(self.__unit) then return end
 
 	if event == "UNIT_HEALTH" and eventUnit == self.__unit then DeadDesaturation(self) end
 

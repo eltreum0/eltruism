@@ -56,16 +56,16 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	end
 
 	--works for name, but then there's the tags issue
-	--[[if not UnitCanAttack("player", unit.unit) and UnitIsEnemy("player", unit.unit) then
+	--[[if not UnitCanAttack("player", unit.__unit) and UnitIsEnemy("player", unit.__unit) then
 		unit.Health:Hide()
 	else
 		unit.Health:Show()
 	end]]
 
 	--[[if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.unit:match("nameplate") then --unit is always nameplate
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.__unit:match("nameplate") then --unit is always nameplate
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.disableCombatConditions then
-			if E:UnitIsUnit(unit.unit, "target") then
+			if E:UnitIsUnit(unit.__unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight and unit.frameType then
 					unit.Health:SetHeight(heighttable[unit.frameType])
 				else
@@ -75,14 +75,14 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
 			end
 		else
-			if E:UnitIsUnit(unit.unit, "target") then
+			if E:UnitIsUnit(unit.__unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight and unit.frameType then
 					unit.Health:SetHeight(heighttable[unit.frameType])
 				else
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
 				end
 			else
-				if UnitAffectingCombat(unit.unit) or (UnitThreatSituation("player", unit.unit) ~= nil) or E:UnitIsUnit(unit.unit.."target","player") or UnitCastingInfo(unit.unit) then
+				if UnitAffectingCombat(unit.__unit) or (UnitThreatSituation("player", unit.__unit) ~= nil) or E:UnitIsUnit(unit.__unit.."target","player") or UnitCastingInfo(unit.__unit) then
 					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight and unit.frameType then
 						unit.Health:SetHeight(heighttable[unit.frameType])
 					else

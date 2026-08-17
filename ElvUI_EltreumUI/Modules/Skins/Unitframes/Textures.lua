@@ -183,8 +183,8 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 
 	--due to raid pet, check if is player
 	local buttonclass
-	if UnitIsPlayer(button.unit) or (E.Retail and UnitInPartyIsAI(button.unit)) then
-		buttonclass = select(2, UnitClass(button.unit))
+	if UnitIsPlayer(button.__unit) or (E.Retail and UnitInPartyIsAI(button.__unit)) then
+		buttonclass = select(2, UnitClass(button.__unit))
 	else
 		buttonclass = "NPCFRIENDLY"
 	end

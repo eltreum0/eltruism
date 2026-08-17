@@ -21,9 +21,9 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	local db = NP.db.threat
 	if status and db.enable and db.useThreatColor then
 		if not nameplate.Health then return end
-		local targetUnit = nameplate.unit..'target'
+		local targetUnit = nameplate.__unit..'target'
 		local isTank = E.myrole == 'TANK' or E.GroupRoles.player == 'TANK'
-		local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(nameplate.unit)))
+		local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(nameplate.__unit)))
 
 		--NP:Health_SetColors(nameplate, true)
 
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
 						end
 					end
-					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				elseif status == 2 then -- insecurely tanking
 					if offTank then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
 						end
 					end
-					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				elseif status == 1 then -- not tanking but threat higher than tank
 					if offTank then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -98,7 +98,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
 						end
 					end
-					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				else -- not tanking at all
 					if isTank then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
 						end
 					end
-					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
+					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				end
 			end
 		end
@@ -135,13 +135,13 @@ local function GradientNameplates(unit,unit2)
 	if not unit or not unit.__unit or not unit.Health or not unit.Health:IsShown() then
 		return
 	end
-	local _, className = UnitClass(unit.unit)
+	local _, className = UnitClass(unit.__unit)
 	if not E:NotSecretValue(className) then --secret class so do something else
 		className = E.myclass
 	end
-	local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
-	local reaction = UnitReaction(unit.unit, "player")
-	local tapdenied = UnitIsTapDenied(unit.unit)
+	local isPlayer = UnitIsPlayer(unit.__unit) or (E.Retail and UnitInPartyIsAI(unit.__unit))
+	local reaction = UnitReaction(unit.__unit, "player")
+	local tapdenied = UnitIsTapDenied(unit.__unit)
 	local targettype
 
 	if reaction and reaction >= 5 then
@@ -165,7 +165,7 @@ local function GradientNameplates(unit,unit2)
 		if E.Retail then
 			isOK = not unit.CurrentlyBeingTanked
 		else
-			isOK = (unit.CurrentlyBeingTanked ~= UnitGUID(unit.unit))
+			isOK = (unit.CurrentlyBeingTanked ~= UnitGUID(unit.__unit))
 		end
 
 		local classification = unit.classification
@@ -191,7 +191,7 @@ local function GradientNameplates(unit,unit2)
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors(className))
 				end
 			elseif reaction and isOK then
-				if tapdenied and not UnitPlayerControlled(unit.unit) then
+				if tapdenied and not UnitPlayerControlled(unit.__unit) then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
 					else

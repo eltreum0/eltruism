@@ -32,7 +32,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 
 	local model = modelcheck:GetModelFileID()
 	if not model then
-		modelcheck:SetUnit(frame.unit)
+		modelcheck:SetUnit(frame.__unit)
 		model = modelcheck:GetModelFileID()
 		modelcheck:ClearModel()
 		frame.EltruismModelID = model
@@ -40,7 +40,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 
 	local isPlayerCustom
 	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
-		if UnitIsPlayer(frame.unit) then
+		if UnitIsPlayer(frame.__unit) then
 			isPlayerCustom = true
 		else
 			isPlayerCustom = false
@@ -132,7 +132,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	end
 
 	if isPlayerCustom and E.db.ElvUI_EltreumUI.unitframes.portrait[db].style ~= "ORIGINAL" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].background then
-		if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
+		if UnitIsPlayer(frame.__unit) or (E.Retail and UnitInPartyIsAI(frame.__unit)) then
 			frame.EltruismPortrait.background:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.b,1)
 		end
 	else
@@ -140,7 +140,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	end
 
 	if update then
-		--if not UnitExists(frame.unit) then return end
+		--if not UnitExists(frame.__unit) then return end
 		if not isPlayerCustom or (E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and isPlayerCustom) then
 			frame.EltruismPortrait.portrait:SetMask("")
 			frame.EltruismPortrait.portrait:Show()
@@ -148,7 +148,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 			frame.EltruismPortrait.rare:SetAlpha(1)
 			frame.EltruismPortrait.edge:SetAlpha(1)
 			if not isPlayerCustom then
-				SetPortraitTexture(frame.EltruismPortrait.portrait,frame.unit,true)
+				SetPortraitTexture(frame.EltruismPortrait.portrait,frame.__unit,true)
 			end
 			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 
@@ -161,7 +161,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and isPlayerCustom then
-				if not (UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit))) then
+				if not (UnitIsPlayer(frame.__unit) or (E.Retail and UnitInPartyIsAI(frame.__unit))) then
 					frame.EltruismPortrait.portrait:Hide()
 					frame.EltruismPortrait.border:Hide()
 					frame.EltruismPortrait.background:SetVertexColor(1,0,0,0)
@@ -170,8 +170,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 
 			--color
 			if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcolor then
-				if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
-					local _, unitclass = UnitClass(frame.unit)
+				if UnitIsPlayer(frame.__unit) or (E.Retail and UnitInPartyIsAI(frame.__unit)) then
+					local _, unitclass = UnitClass(frame.__unit)
 					if not E:NotSecretValue(unitclass) then --secret class so do something else
 						return
 					end
@@ -192,7 +192,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 						frame.EltruismPortrait.rare:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 					end
 				else
-					local reaction = UnitReaction(frame.unit, "player")
+					local reaction = UnitReaction(frame.__unit, "player")
 					if not reaction then return end
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
 						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
@@ -252,7 +252,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
 				frame.EltruismPortrait.rare:SetAlpha(1)
-				local c = UnitClassification(frame.unit)
+				local c = UnitClassification(frame.__unit)
 				if (c == 'rare') or (c == 'rareelite') then
 					frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
 					frame.EltruismPortrait.border:SetVertexColor(1,1,1,1)
@@ -262,7 +262,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 					frame.EltruismPortrait.border:SetVertexColor(0.84,0.74,0.35,1)
 					frame.EltruismPortrait.edge:SetVertexColor(0.84,0.74,0.35,1)
 				else
-					if not UnitIsPlayer(frame.unit) then
+					if not UnitIsPlayer(frame.__unit) then
 						frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
 					end
 				end
@@ -272,8 +272,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		end
 
 		if isPlayerCustom then
-			if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
-				local _, unitclass = UnitClass(frame.unit)
+			if UnitIsPlayer(frame.__unit) or (E.Retail and UnitInPartyIsAI(frame.__unit)) then
+				local _, unitclass = UnitClass(frame.__unit)
 				if not E:NotSecretValue(unitclass) then --secret class so do something else
 					return
 				end
@@ -290,7 +290,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle then
-				if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
+				if UnitIsPlayer(frame.__unit) or (E.Retail and UnitInPartyIsAI(frame.__unit)) then
 					frame.EltruismPortrait.border:Show()
 				end
 				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
@@ -463,7 +463,7 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"party") end)
 		end
 		if frame:GetName():match("Focus") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,tostring(frame.unit)) end)
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,tostring(frame.__unit)) end)
 		end
 		if frame:GetName():match("FocusTarget") then
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"focustarget") end)

@@ -406,10 +406,10 @@ function ElvUI_EltreumUI:LeaderIcon()
 	end
 	if frame.RaidRoleIndicator then
 		frame.RaidRoleIndicator:SetTexCoord(0,1,0,1)
-		if(GetPartyAssignment('MAINTANK', frame.unit)) then
+		if(GetPartyAssignment('MAINTANK', frame.__unit)) then
 			frame.RaidRoleIndicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
 			frame.RaidRoleIndicator:SetDesaturated(true)
-		elseif(GetPartyAssignment('MAINASSIST', frame.unit)) then
+		elseif(GetPartyAssignment('MAINASSIST', frame.__unit)) then
 			frame.RaidRoleIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\MainAssist1.tga')
 		end
 	end

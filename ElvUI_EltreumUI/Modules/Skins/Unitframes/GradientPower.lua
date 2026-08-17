@@ -142,7 +142,7 @@ end
 --Apply Gradient Power Colors to Group Unit
 function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 	if groupunitframe and groupunitframe.__unit then
-		local _, powertype = UnitPowerType(groupunitframe.unit)
+		local _, powertype = UnitPowerType(groupunitframe.__unit)
 		if powertype then
 			if groupunitframe.Power then
 				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop

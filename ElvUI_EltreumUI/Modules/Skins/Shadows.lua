@@ -4242,15 +4242,15 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
 	if E.private.nameplates.enable then
 		if E.db.ElvUI_EltreumUI.borders.borders and (E.db.ElvUI_EltreumUI.borders.nameplateborders or E.db.ElvUI_EltreumUI.borders.nameplatecastborders) then
 			if E.db.ElvUI_EltreumUI.borders.classcolor and nameplate.__unit then
-				local _, className = _G.UnitClass(nameplate.unit)
-				local isPlayer = _G.UnitIsPlayer(nameplate.unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.unit))
+				local _, className = _G.UnitClass(nameplate.__unit)
+				local isPlayer = _G.UnitIsPlayer(nameplate.__unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.__unit))
 				if not E:NotSecretValue(className) then --secret class so do something else
 					className = E.myclass
 				end
 				if isPlayer then
 					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
 				else
-					local reaction = _G.UnitReaction(nameplate.unit, "player")
+					local reaction = _G.UnitReaction(nameplate.__unit, "player")
 					local targettype
 					if reaction and reaction >= 5 then
 						targettype = "NPCFRIENDLY"
