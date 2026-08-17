@@ -51,7 +51,7 @@ local classcolorreaction = {
 function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 	if E:NotSecretValue(unitclass) then
 		if unitclass and classcolorreaction[unitclass] then
-			return {r = classcolorreaction[unitclass]["r1"], g= classcolorreaction[unitclass]["g1"],b = classcolorreaction[unitclass]["b1"]}
+			return {r = classcolorreaction[unitclass]["r"], g= classcolorreaction[unitclass]["g"],b = classcolorreaction[unitclass]["b"]}
 		else
 			return {r1 = 1, g1 = 0, b1 = 0} --debug red
 		end
