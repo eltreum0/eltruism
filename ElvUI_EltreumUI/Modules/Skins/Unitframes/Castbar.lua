@@ -957,7 +957,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							for j = 1, group:GetNumChildren() do
 								local groupbutton = select(j, group:GetChildren())
 								if groupbutton and groupbutton.Castbar then
-									local _, buttonclass = UnitClass(groupbutton.unit)
+									local _, buttonclass = UnitClass(groupbutton.__unit)
 									if not E:NotSecretValue(buttonclass) then --secret class so do something else
 										buttonclass = E.myclass
 									end
