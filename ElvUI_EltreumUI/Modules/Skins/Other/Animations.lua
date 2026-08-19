@@ -36,7 +36,21 @@ gtatext:SetParent(WorldFrame)
 gtatext:Hide()
 local gtabanner = gtatext:CreateTexture()
 gta.Text = gtatext:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+
 local isAnimationPlaying = false
+
+local function makeSpellId()
+	local spellId = {}
+	if not E:NotSecretValue(UnitAura("player", 1)) then
+		return
+	else
+		for i= 1, 10 do
+			local id = select(10, UnitAura("player", i))
+			spellId[id] = true
+		end
+		return spellId
+	end
+end
 
 function ElvUI_EltreumUI.PlayerDeathAnimation()
 
@@ -47,11 +61,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 		darksouls:SetScript("OnEvent", function()
 			if not isAnimationPlaying then
 				local _, instanceType = IsInInstance()
-				local spellId
-				for i= 1, 10 do
-					spellId = select(10, UnitAura("player", i))
-				end
-				if not IsEncounterSuppressingRelease() and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
+				local spellId = makeSpellId()
+				if not IsEncounterSuppressingRelease() and instanceType == "none" and (not spellId[20711]) and (not spellId[5384]) then
 					E:Delay(0.08, function()
 						if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
 							_G["ElvUF_Player"].Portrait3D:Hide()
@@ -149,11 +160,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 		gta:SetScript("OnEvent", function()
 			if not isAnimationPlaying then
 				local _, instanceType = IsInInstance()
-				local spellId
-				for i= 1, 10 do
-					spellId = select(10, UnitAura("player", i))
-				end
-				if not IsEncounterSuppressingRelease() and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
+				local spellId = makeSpellId()
+				if not IsEncounterSuppressingRelease() and instanceType == "none" and (not spellId[20711]) and (not spellId[5384]) then
 
 					E:Delay(0.08, function()
 						if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
