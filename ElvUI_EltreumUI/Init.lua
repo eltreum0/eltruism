@@ -50,6 +50,10 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		E.private.skins.blizzard.bgscore = false
 	end
 
+	if _G.InCombatLockdown() then
+		ElvUI_EltreumUI:Print("Reloading while in combat is not recommended and you are very likely to break several addons.")
+	end
+
 	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
 	ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
