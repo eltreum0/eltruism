@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.1.3
+Updated for ElvUI 15.23  
+Fixed some secret checks  
+---
 ### 5.1.2
 Updated for Retail Patch 12.1  
 Updated for Classic Era Patch 1.15.9  

@@ -20,21 +20,13 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated for Retail Patch 12.1
-Updated for Classic Era Patch 1.15.9
-Updated BugSack skin to add version listings (thanks Luckyone)
-Updated Chat functions to work with the Discord icon
-Updated LootText to once again work on all game versions
-Updated Gradient functions to perform better
+Updated for ElvUI 15.23
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed some missing textures due to an ElvUI folder change
-Fixed several issues related to the patches mentioned.
-
-Note: due to the Container change for Auras a lot of features will be missing related to them.
+Fixed some secret checks
 ]], 7, "small", nil, nil, nil, nil, "full")
 end
