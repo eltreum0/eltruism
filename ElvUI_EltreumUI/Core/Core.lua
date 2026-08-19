@@ -903,21 +903,21 @@ function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
 end
 
 function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
-	if not spellID then
-		return nil, nil, nil
-	end
+	if not spellID then return end
 	if _G.C_Spell and _G.C_Spell.GetOverrideSpell then
 		local override = _G.C_Spell.GetOverrideSpell(spellID)
 		if override and override ~= 0 then
 			spellID = override
 		end
 	end
-	if _G.C_Spell and _G.C_Spell.GetSpellInfo and _G.C_Spell.GetSpellInfo(spellID) then
+	if _G.C_Spell and _G.C_Spell.GetSpellInfo then
 		local spellData = _G.C_Spell.GetSpellInfo(spellID)
-		if type(spellData) == "table" then
-			return spellData.name, spellData.spellID, spellData.iconID
-		else
-			return "UNKNOWN", 187874, 136244--fallback value
+		if spellData then
+			if type(spellData) == "table" then
+				return spellData.name, spellData.spellID, spellData.iconID
+			else
+				return "UNKNOWN", 187874, 136244--fallback value
+			end
 		end
 	end
 	if type(GetSpellInfo) == "function" then
@@ -928,7 +928,7 @@ function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
 			return name, spellID, icon
 		end
 	end
-	return nil, nil, nil
+	return
 end
 
 do
