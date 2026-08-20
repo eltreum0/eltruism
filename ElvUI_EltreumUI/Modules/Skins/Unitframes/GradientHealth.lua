@@ -193,19 +193,17 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
 			end
-
-			if unitframe.Health.backdropTex then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
+				if unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-				end
-				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
-					unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
-					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-						unitframe.Health.backdropTex:SetTexCoord(1, 0, 0, 1)
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
+						unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+							unitframe.Health.backdropTex:SetTexCoord(1, 0, 0, 1)
+						end
 					end
 				end
 			end
-
 
 			local colorClass = "BACKDROP"
 			if (isPlayer and not isCharmed) or isActualPlayer then
@@ -312,18 +310,6 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		else
 			minColor, maxColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, E.db.unitframe.colors.transparentHealth, false, false, true)
 		end
-
-		if button.Health.backdropTex then
-			if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
-				if button.Health.backdropTex then
-					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-				end
-			end
-			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
-				button.Health.backdropTex:SetAllPoints(button.Health)
-			end
-		end
-
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -339,6 +325,14 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 						button.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.health_backdrop_dead.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 					elseif not UnitIsConnected(button.__unit) then
 						button.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.r - 0.3, 0, 1), g = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.g - 0.3, 0, 1), b = ElvUI_EltreumUI:Interval(E.db.unitframe.colors.disconnected.b - 0.3, 0, 1), a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				end
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
+				if button.Health.backdropTex then
+					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
+						button.Health.backdropTex:SetAllPoints(button.Health)
 					end
 				end
 			end
