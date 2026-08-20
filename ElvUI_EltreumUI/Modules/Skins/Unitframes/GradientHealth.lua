@@ -199,16 +199,9 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-							unitframe.Health.backdropTex:SetTexCoord(1, 0, 0, 1)
-						end
-					else
-						unitframe.Health:SetAllPoints(unitframe)
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-							unitframe.Health:SetTexCoord(1, 0, 0, 1)
-						end
+					unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+						unitframe.Health.backdropTex:SetTexCoord(1, 0, 0, 1)
 					end
 				end
 			end
@@ -327,11 +320,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				end
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					button.Health.backdropTex:SetAllPoints(button.Health)
-				else
-					button.Health:SetAllPoints(button)
-				end
+				button.Health.backdropTex:SetAllPoints(button.Health)
 			end
 		end
 
