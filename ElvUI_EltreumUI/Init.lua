@@ -59,7 +59,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:AuthorMVPDonatorIcons() -- add author/donator/mvp icons
-	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
 	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
 	E:Delay(0, function()
 		ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
@@ -170,6 +169,10 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadOtherTags()
 end
 
+function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
+	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
+end
+
 function ElvUI_EltreumUI:Initialize()
 	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
 	if not E.private.ElvUI_EltreumUI.install_version then
@@ -189,6 +192,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('INSTANCE_ENCOUNTER_ENGAGE_UNIT') ----for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
+	ElvUI_EltreumUI:RegisterEvent('FIRST_FRAME_RENDERED') --for when script too long is a thing
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP') --for the level up skin
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED') --for combat music/chat hide/unitframe hide
