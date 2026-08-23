@@ -1826,6 +1826,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
 			if ObjectiveTrackerFrame.NineSlice then
 				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+				ObjectiveTrackerFrame.NineSlice:Hide()
 			end
 
 			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
@@ -1840,6 +1841,12 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		else
 			ObjectiveTrackerFrame:BreakFromFrameManager()
 			ObjectiveTrackerFrame.Selection:Kill()
+			Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+			if ObjectiveTrackerFrame.NineSlice then
+				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+				ObjectiveTrackerFrame.NineSlice:Hide()
+			end
 			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 			_G.ObjectiveTrackerFrame:SetMovable(true)
 			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
