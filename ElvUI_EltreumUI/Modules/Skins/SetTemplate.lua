@@ -613,6 +613,7 @@ end
 local function SkinFrame(object)
 	if not object then return end --rare but not impossible nil error
 	if E:IsSecretValue(object) then return end
+	if object:IsForbidden() then return end
 	if object:GetObjectType() == "Texture" then object = object:GetParent() end
 	local mt = getmetatable(object).__index
 	if not mt then return end
@@ -767,7 +768,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		loopframe = EnumerateFrames()
 		while loopframe do
 			local objtype = loopframe:GetObjectType()
-			if E:NotSecretValue(loopframe) and (not loopframe:IsForbidden()) and not frametypes[objtype] then
+			if not frametypes[objtype] then
 				SkinFrame(loopframe)
 				frametypes[objtype] = true
 			end
