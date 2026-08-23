@@ -19,6 +19,7 @@ local UnitClass = _G.UnitClass
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitPowerType = _G.UnitPowerType
 local classcolor = E.myClassColor
+local ElvUF = _G.ElvUF
 local classcolor2 = {}
 local classcolor2check = false
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder,arenaborder
@@ -2152,7 +2153,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 					end
 				end
 				if not ElvUI_EltreumUI:IsThisASafeSecret(unittp,true) then --its a secret so consider it always an enemy
-					local reactionColor = _G.ElvUF.colors.reaction[2]
+					local reactionColor = ElvUF.colors.reaction[2]
 					tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 				else
 					if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
@@ -2161,7 +2162,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 						tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 					else
 						local reaction = UnitReaction(unittp, "player")
-						local reactionColor = _G.ElvUF.colors.reaction[reaction]
+						local reactionColor = ElvUF.colors.reaction[reaction]
 						if reactionColor then
 							tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 						end

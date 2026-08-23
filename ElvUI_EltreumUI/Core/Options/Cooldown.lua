@@ -1,6 +1,7 @@
 local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
+local pairs = _G.pairs
 
 local function voiceplayback()
 	_G.C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, _G.TEXT_TO_SPEECH or "Text to Speech", 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume, true)
@@ -31,7 +32,7 @@ function ElvUI_EltreumUI:CooldownOptions()
 	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoicetoggle = E.Libs.ACH:Toggle(L["Enable"], nil, 10, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
 	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoiceselect = E.Libs.ACH:Select(L["Text to Speech Config"], nil, 11, function()
 		local Voices = {}
-		for _, v in _G.pairs(_G.C_VoiceChat.GetTtsVoices()) do
+		for _, v in pairs(_G.C_VoiceChat.GetTtsVoices()) do
 			--Voices[i] = v.name
 			Voices[v.voiceID] = v.name
 		end

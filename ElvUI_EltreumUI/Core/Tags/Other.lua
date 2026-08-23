@@ -35,6 +35,8 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitIsEnemy = _G.UnitIsEnemy
 local GROUP = _G.GROUP
 local TARGET = _G.TARGET
+local format = _G.format
+local ElvUF = _G.ElvUF
 
 --ty a lot azilroka
 local stanceID = {
@@ -363,7 +365,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 				r, g, b = unpack(r)
 			end
 		end
-		return _G.format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+		return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
 	end
 
 	--Class color but only for players, from elvui but without the npc stuff
@@ -374,7 +376,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				return
 			end
-			local cs = _G.ElvUF.colors.class[unitClass]
+			local cs = ElvUF.colors.class[unitClass]
 			if not cs then return end
 			return cs and Hex(cs) or '|cFFcccccc'
 		end
