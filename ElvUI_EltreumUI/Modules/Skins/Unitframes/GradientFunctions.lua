@@ -255,21 +255,22 @@ colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
 colorupdateframe:RegisterEvent("FIRST_FRAME_RENDERED")
 colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 
---10.2 event order list
---[[local eventorder = {
+--[[
+--12.1 event order list
+local eventtester = CreateFrame("FRAME")
+local eventorder = {
 	["ADDON_LOADED"] = true,
 	["UPDATE_BINDINGS"] = true,
+	["UPDATE_CHAT_WINDOWS"] = true,
 	["UPDATE_FLOATING_CHAT_WINDOWS"] = true,
+	["DISPLAY_SIZE_CHANGED"] = true,
 	["UI_SCALE_CHANGED"] = true,
 	["CVAR_UPDATE"] = true,
 	["UPDATE_FACTION"] = true,
-	["OPEN_SPLASH_SCREEN"] = true,
 	["VARIABLES_LOADED"] = true,
 	["UPDATE_MACROS"] = true,
-	["UPDATE_CHAT_WINDOWS"] = true,
 	["UPDATE_CHAT_COLOR"] = true,
 	["UPDATE_CHAT_COLOR_NAME_BY_CLASS"] = true,
-	["DISPLAY_SIZE_CHANGED"] = true,
 	["PLAYER_TALENT_UPDATE"] = true,
 	["PLAYER_PVP_TALENT_UPDATE"] = true,
 	["UPDATE_INVENTORY_DURABILITY"] = true,
@@ -286,18 +287,24 @@ colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 	["COMPACT_UNIT_FRAME_PROFILES_LOADED"] = true,
 	["INITIAL_CLUBS_LOADED"] = true,
 	["CONTENT_TRACKING_LIST_UPDATE"] = true,
-	["EDIT_MODE_LAYOUTS_UPDATED"] = true,
 	["MENTORSHIP_STATUS_CHANGED"] = true,
 	["TRAIT_CONFIG_LIST_UPDATED"] = true,
+	["EDIT_MODE_LAYOUTS_UPDATED"] = true,
 	["CALENDAR_ACTION_PENDING"] = true,
-	--THEN FINALLY
-	["PLAYER_LOGIN"] = false,
-	--VARIABLES_LOADED also exists
-	--LOADING_SCREEN_ENABLED this too
-	--LOADING_SCREEN_DISABLED and this
-	--ADDONS_UNLOADING interesting
-	--there is also FIRST_FRAME_RENDERED
-}]]
+	["PLAYER_LOGIN"] = true,
+	["OPEN_SPLASH_SCREEN"] = true,
+	["LOADING_SCREEN_DISABLED"] = true,
+	["FIRST_FRAME_RENDERED"] = true,
+	--["LOADING_SCREEN_ENABLED"] = true,
+	--["ADDONS_UNLOADING"] = true,
+}
+for event,_ in pairs(eventorder) do
+	eventtester:RegisterEvent(event)
+end
+eventtester:SetScript("OnEvent",function(_,event)
+	print(event)
+	eventtester:UnregisterEvent(event)
+end)]]
 
 colorupdateframe:SetScript("OnEvent", function()
 	colorupdateframe:UnregisterAllEvents()
