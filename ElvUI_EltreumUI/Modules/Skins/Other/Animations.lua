@@ -38,9 +38,13 @@ local function HasIgnoredDeathSpell()
 	for i = 1, 40 do
 		local spellId
 		if _G.C_UnitAuras and _G.C_UnitAuras.GetAuraDataByIndex then
-			local data = _G.C_UnitAuras.GetAuraDataByIndex("player", i)
-			if not data then break end
-			spellId = data.spellId
+			if E:NotSecretValue(_G.C_UnitAuras.GetAuraDataByIndex("player", i)) then
+				local data = _G.C_UnitAuras.GetAuraDataByIndex("player", i)
+				if not data then break end
+				spellId = data.spellId
+			else
+				break
+			end
 		else
 			spellId = select(10, _G.UnitAura("player", i))
 			if not spellId then break end
