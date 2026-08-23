@@ -668,7 +668,7 @@ local function SkinFrame(object)
 								S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
 								widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
 								widget.backdrop:SetBackdropColor(0,0,0)
-								widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1")) ---maybe add an option for it
+								widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.elvui.widgettexture))
 
 								--[[if not atlas then
 									atlas = widget:GetStatusBarTexture():GetAtlas()

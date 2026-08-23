@@ -65,6 +65,7 @@ P.ElvUI_EltreumUI = {
 				a = 1,
 			},
 			texture = "Eltreum-Tile01",
+			widgettexture = "ElvUI Norm1",
 		},
 		ace3 = {
 			enable = false,
@@ -1095,7 +1096,6 @@ P.ElvUI_EltreumUI = {
 		datatextsize = 20,
 		datatextstrata =  "HIGH",
 		datatextlevel = 3,
-
 
 		bordercolors = {
 			r = 0.27,
