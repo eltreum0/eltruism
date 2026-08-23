@@ -1089,6 +1089,13 @@ P.ElvUI_EltreumUI = {
 		--nameplatestrata = "TOOLTIP",
 		--nameplatelevel = 50,
 
+		datatexts = false,
+		xdatatext = 0,
+		ydatatext = 0,
+		datatextsize = 20,
+		datatextstrata =  "HIGH",
+		datatextlevel = 3,
+
 
 		bordercolors = {
 			r = 0.27,

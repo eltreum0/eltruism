@@ -2108,8 +2108,6 @@ function ElvUI_EltreumUI:TooltipBorder()
 	else
 		tooltipborder = _G["EltruismTooltipBorder"]
 	end
-
-
 	tooltipborder:SetBackdrop({
 		edgeFile = bordertexture,
 		edgeSize = E.db.ElvUI_EltreumUI.borders.tooltipsize,
@@ -2925,4 +2923,32 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 			end
 		end
 	end
+end
+
+--Datatext borders
+local DT = E:GetModule('DataTexts')
+function ElvUI_EltreumUI:DataTextBorders(name)
+	local panel = DT:FetchFrame(name)
+	if not panel then return end
+	E:Delay(0.5, function() --needs a delay to wait for the panel setup
+		if not panel.EltruismBorder then
+			panel.EltruismBorder = CreateFrame("Frame", name.."EltruismBorder", panel, BackdropTemplateMixin and "BackdropTemplate")
+		end
+		--panel.EltruismBorder:SetPoint("CENTER", panel, "CENTER", 0, 0)
+		panel.EltruismBorder:SetOutside(panel, E.db.ElvUI_EltreumUI.borders.xdatatext, E.db.ElvUI_EltreumUI.borders.ydatatext)
+		panel.EltruismBorder:SetBackdrop({
+			edgeFile = bordertexture,
+			edgeSize = E.db.ElvUI_EltreumUI.borders.datatextsize,
+		})
+		panel.EltruismBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		panel.EltruismBorder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.datatextstrata)
+		panel.EltruismBorder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.datatextlevel)
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if panel.backdrop and panel.backdrop.eltruismuniversalborders then
+				panel.backdrop.eltruismuniversalborders:Kill()
+				panel.backdrop.eltruismuniversalborders = nil
+			end
+		end
+	end)
 end
