@@ -4409,7 +4409,7 @@ hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --n
 
 function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
 	if not button then return end
-	if button2 then --likely is container
+	if button2 and E:NotSecretValue(button2) then --likely is container
 		--[[if button.isAuraBar then --check for the elvui variable
 			ElvUI_EltreumUI:AuraBarRetail(button2)
 		end]]
@@ -4419,7 +4419,7 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 				ElvUI_EltreumUI:ShadowColor(button2.shadow)
 			end
 		end
-	else
+	elseif E:NotSecretValue(button) then
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
 			if button and not button.shadow then
 				button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -4486,10 +4486,10 @@ hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
 function ElvUI_EltreumUI:DataTextShadowsAndBorders(name)
 	if E.db.ElvUI_EltreumUI.borders.universalborders then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then return end
+	local panel = DT:FetchFrame(name)
+	if not panel then return end
 
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
-		local panel = DT:FetchFrame(name)
-		if not panel then return end
 		E:Delay(0.5, function() --needs a delay to wait for the panel setup
 			if not panel.template then return end
 			if panel.template ~= 'NoBackdrop' then
@@ -4499,7 +4499,7 @@ function ElvUI_EltreumUI:DataTextShadowsAndBorders(name)
 		end)
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.datatexts then
-		ElvUI_EltreumUI:DataTextBorders(name)
+		ElvUI_EltreumUI:DataTextBorders(panel)
 	end
 end
 hooksecurefunc(DT,"BuildPanelFrame", ElvUI_EltreumUI.DataTextShadowsAndBorders)
