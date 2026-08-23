@@ -2940,9 +2940,10 @@ function ElvUI_EltreumUI:DataTextBorders(panel)
 		if not panel.EltruismBorder then
 			panel.EltruismBorder = CreateFrame("Frame", panel:GetName().."EltruismBorder", panel, BackdropTemplateMixin and "BackdropTemplate")
 		end
-
-		--panel.EltruismBorder:SetPoint("CENTER", panel, "CENTER", 0, 0)
-		panel.EltruismBorder:SetOutside(panel, E.db.ElvUI_EltreumUI.borders.xdatatext, E.db.ElvUI_EltreumUI.borders.ydatatext)
+		panel.EltruismBorder:SetPoint("BOTTOMLEFT", panel,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.borders.xdatatext, -E.db.ElvUI_EltreumUI.borders.ydatatext)
+		panel.EltruismBorder:SetPoint("BOTTOMRIGHT", panel,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.borders.xdatatext, -E.db.ElvUI_EltreumUI.borders.ydatatext)
+		panel.EltruismBorder:SetPoint("TOPLEFT", panel,"TOPLEFT", -E.db.ElvUI_EltreumUI.borders.xdatatext, E.db.ElvUI_EltreumUI.borders.ydatatext)
+		panel.EltruismBorder:SetPoint("TOPRIGHT", panel,"TOPRIGHT", E.db.ElvUI_EltreumUI.borders.xdatatext, E.db.ElvUI_EltreumUI.borders.ydatatext)
 		panel.EltruismBorder:SetBackdrop({
 			edgeFile = bordertexture,
 			edgeSize = E.db.ElvUI_EltreumUI.borders.datatextsize,

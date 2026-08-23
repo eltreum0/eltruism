@@ -1091,9 +1091,9 @@ P.ElvUI_EltreumUI = {
 		--nameplatelevel = 50,
 
 		datatexts = false,
-		xdatatext = 0,
-		ydatatext = 0,
-		datatextsize = 20,
+		xdatatext = 10,
+		ydatatext = 10,
+		datatextsize = 12,
 		datatextstrata =  "HIGH",
 		datatextlevel = 3,
 
