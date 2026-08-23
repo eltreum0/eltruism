@@ -2926,14 +2926,21 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 end
 
 --Datatext borders
-local DT = E:GetModule('DataTexts')
-function ElvUI_EltreumUI:DataTextBorders(name)
-	local panel = DT:FetchFrame(name)
-	if not panel then return end
-	E:Delay(0.5, function() --needs a delay to wait for the panel setup
-		if not panel.EltruismBorder then
-			panel.EltruismBorder = CreateFrame("Frame", name.."EltruismBorder", panel, BackdropTemplateMixin and "BackdropTemplate")
+function ElvUI_EltreumUI:DataTextBorders(panel)
+	if E.db.ElvUI_EltreumUI.borders.texture then
+		bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
+		if bordertexture == nil then --the border was not found so apply the default
+			bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
+			E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
 		end
+	end
+
+	E:Delay(0.5, function() --needs a delay to wait for the panel setup
+		if not panel.template then return end
+		if not panel.EltruismBorder then
+			panel.EltruismBorder = CreateFrame("Frame", panel:GetName().."EltruismBorder", panel, BackdropTemplateMixin and "BackdropTemplate")
+		end
+
 		--panel.EltruismBorder:SetPoint("CENTER", panel, "CENTER", 0, 0)
 		panel.EltruismBorder:SetOutside(panel, E.db.ElvUI_EltreumUI.borders.xdatatext, E.db.ElvUI_EltreumUI.borders.ydatatext)
 		panel.EltruismBorder:SetBackdrop({
