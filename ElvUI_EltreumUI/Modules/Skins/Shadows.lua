@@ -4410,6 +4410,7 @@ hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --n
 function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
 	if not button then return end
 	if button2 and E:NotSecretValue(button2) then --likely is container
+		if not E:NotSecretValue(button2:GetFrameStrata()) then return end
 		--[[if button.isAuraBar then --check for the elvui variable
 			ElvUI_EltreumUI:AuraBarRetail(button2)
 		end]]
@@ -4420,6 +4421,7 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 			end
 		end
 	elseif E:NotSecretValue(button) then
+		if not E:NotSecretValue(button:GetFrameStrata()) then return end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
 			if button and not button.shadow then
 				button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
