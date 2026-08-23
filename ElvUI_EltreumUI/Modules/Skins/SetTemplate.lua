@@ -766,9 +766,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		SkinFrame(loopframe)
 		loopframe = EnumerateFrames()
 		while loopframe do
-			if (not loopframe:IsForbidden()) and not frametypes[loopframe:GetObjectType()] then
+			local objtype = loopframe:GetObjectType()
+			if E:NotSecretValue(loopframe) and (not loopframe:IsForbidden()) and not frametypes[objtype] then
 				SkinFrame(loopframe)
-				frametypes[loopframe:GetObjectType()] = true
+				frametypes[objtype] = true
 			end
 			loopframe = EnumerateFrames(loopframe)
 		end
