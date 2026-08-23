@@ -255,9 +255,9 @@ colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
 colorupdateframe:RegisterEvent("FIRST_FRAME_RENDERED")
 colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 
---[[
+
 --12.1 event order list
-local eventtester = CreateFrame("FRAME")
+--[[local eventtester = CreateFrame("FRAME")
 local eventorder = {
 	["ADDON_LOADED"] = true,
 	["UPDATE_BINDINGS"] = true,
@@ -292,6 +292,7 @@ local eventorder = {
 	["EDIT_MODE_LAYOUTS_UPDATED"] = true,
 	["CALENDAR_ACTION_PENDING"] = true,
 	["PLAYER_LOGIN"] = true,
+	["PLAYER_ENTERING_WORLD"] = true,
 	["OPEN_SPLASH_SCREEN"] = true,
 	["LOADING_SCREEN_DISABLED"] = true,
 	["FIRST_FRAME_RENDERED"] = true,
