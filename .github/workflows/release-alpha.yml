@@ -26,6 +26,11 @@ jobs:
       - name: Clone project
         uses: actions/checkout@v4  # note: checkout@v2 breaks git history, so generating a changelog and
                                    # file naming for non-tagged builds will not work properly
+        with:
+         fetch-depth: 0 # fetch git commit history for changelog
+
+      - name: Auto Changelog
+        run: sed -i '/manual-changelog:/,$d' .pkgmeta
 
       # once cloned, we just run the GitHub Action for the packager project
       - name: WoW Packager
