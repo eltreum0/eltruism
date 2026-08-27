@@ -470,3 +470,54 @@ E:RegisterModule(addon, CallbackInitialize)
 	ElvUI_CPU:RegisterPlugin(ElvUI_EltreumUI)
 	--ElvUIDev:RegisterPluginModule("ElvUI_EltreumUI", moduleName, module)
 end]]
+
+--12.1 event order list
+--[[local eventtester = CreateFrame("FRAME")
+local eventorder = {
+	["ADDON_LOADED"] = true,
+	["UPDATE_BINDINGS"] = true,
+	["UPDATE_CHAT_WINDOWS"] = true,
+	["UPDATE_FLOATING_CHAT_WINDOWS"] = true,
+	["DISPLAY_SIZE_CHANGED"] = true,
+	["UI_SCALE_CHANGED"] = true,
+	["CVAR_UPDATE"] = true,
+	["UPDATE_FACTION"] = true,
+	["VARIABLES_LOADED"] = true,
+	["UPDATE_MACROS"] = true,
+	["UPDATE_CHAT_COLOR"] = true,
+	["UPDATE_CHAT_COLOR_NAME_BY_CLASS"] = true,
+	["PLAYER_TALENT_UPDATE"] = true,
+	["PLAYER_PVP_TALENT_UPDATE"] = true,
+	["UPDATE_INVENTORY_DURABILITY"] = true,
+	["BAG_UPDATE"] = true,
+	["BAG_CONTAINER_UPDATE"] = true,
+	["UPDATE_VEHICLE_ACTIONBAR"] = true,
+	["SKILL_LINES_CHANGED"] = true,
+	["CURRENCY_DISPLAY_UPDATE"] = true,
+	["VEHICLE_ANGLE_SHOW"] = true,
+	["VEHICLE_POWER_SHOW"] = true,
+	["SPELL_ACTIVATION_OVERLAY_HIDE"] = true,
+	["MOUNT_JOURNAL_SEARCH_UPDATED"] = true,
+	["TRANSMOG_SEARCH_UPDATED"] = true,
+	["COMPACT_UNIT_FRAME_PROFILES_LOADED"] = true,
+	["INITIAL_CLUBS_LOADED"] = true,
+	["CONTENT_TRACKING_LIST_UPDATE"] = true,
+	["MENTORSHIP_STATUS_CHANGED"] = true,
+	["TRAIT_CONFIG_LIST_UPDATED"] = true,
+	["EDIT_MODE_LAYOUTS_UPDATED"] = true,
+	["CALENDAR_ACTION_PENDING"] = true,
+	["PLAYER_LOGIN"] = true,
+	["PLAYER_ENTERING_WORLD"] = true,
+	["OPEN_SPLASH_SCREEN"] = true,
+	["LOADING_SCREEN_DISABLED"] = true,
+	["FIRST_FRAME_RENDERED"] = true,
+	--["LOADING_SCREEN_ENABLED"] = true,
+	--["ADDONS_UNLOADING"] = true,
+}
+for event,_ in pairs(eventorder) do
+	eventtester:RegisterEvent(event)
+end
+eventtester:SetScript("OnEvent",function(_,event)
+	print(event)
+	eventtester:UnregisterEvent(event)
+end)]]
