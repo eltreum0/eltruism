@@ -612,7 +612,7 @@ end
 
 local function SkinFrame(object)
 	if not object then return end --rare but not impossible nil error
-	if E:IsSecretValue(object) then return end
+	--if E:IsSecretValue(object) then return end
 	if object:IsForbidden() then return end
 	if object:GetObjectType() == "Texture" then object = object:GetParent() end
 	local mt = getmetatable(object).__index
@@ -754,7 +754,28 @@ local frametypes = {
 	["Slider"] = true,
 	["ScrollFrame"] = true,
 	["ModelScene"] = true,
+	--["PlayerModel"] =true,
+	--["EditBox"] =true,
+	--["SimpleHTML"] =true,
+	--["TabardModel"] =true,
+	--["Browser"] =true,
+	--["FogOfWarFrame"] =true,
+	--["UnitPositionFrame"] =true,
+	--["MovieFrame"] =true,
+	--["QuestPOIFrame"] =true,
+	--["ScenarioPOIFrame"] =true,
+	--["MessageFrame"] =true,
+	--["ColorSelect"] =true,
+	--["CheckButton"] =true,
+	--["Minimap"] =true,
 }
+--[[local frametypes = {
+	["Frame"] = true,
+	["Button"] = true,
+	["StatusBar"] = true,
+	["GameTooltip"] = true,
+}]]
+
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate or E.db.ElvUI_EltreumUI.skins.ace3.enable or E.db.ElvUI_EltreumUI.skins.shadow.enable or E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not E.db.ElvUI_EltreumUI.borders.classcolor then --set the variable here so its not spamming
@@ -765,22 +786,37 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			}
 		end
 		SkinFrame(loopframe)
+		local framesToSkin = {}
 		loopframe = EnumerateFrames()
+
 		while loopframe do
-			local objtype = loopframe:GetObjectType()
-			if not frametypes[objtype] then
-				SkinFrame(loopframe)
-				frametypes[objtype] = true
+			if not loopframe:IsForbidden() then
+				table.insert(framesToSkin, loopframe)
 			end
 			loopframe = EnumerateFrames(loopframe)
 		end
-		--E:UpdateAll() --sems to be causing an error with the elvui change
+
+		E:UpdateAll()
+
+		for _, frame in ipairs(framesToSkin) do
+			local objtype = frame:GetObjectType()
+			if not frametypes[objtype] then
+				SkinFrame(frame)
+				frametypes[objtype] = true
+			end
+		end
+
 		E:Delay(10, function()
+			_G.wipe(framesToSkin)
 			if E.db.ElvUI_EltreumUI.chat.chattoggles then
-				_G.LeftChatToggleButton:SetAlpha(1)
-				_G.LeftChatToggleButton:Show()
-				_G.RightChatToggleButton:SetAlpha(1)
-				_G.RightChatToggleButton:Show()
+				if _G.LeftChatToggleButton then
+					_G.LeftChatToggleButton:SetAlpha(1)
+					_G.LeftChatToggleButton:Show()
+				end
+				if _G.RightChatToggleButton then
+					_G.RightChatToggleButton:SetAlpha(1)
+					_G.RightChatToggleButton:Show()
+				end
 			end
 		end)
 	end

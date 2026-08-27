@@ -59,6 +59,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:AuthorMVPDonatorIcons() -- add author/donator/mvp icons
+	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
 	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
 	E:Delay(0, function()
 		ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
@@ -215,7 +216,7 @@ function ElvUI_EltreumUI:Initialize()
 	if E.Classic then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
-	ElvUI_EltreumUI:RegisterEvent("FIRST_FRAME_RENDERED")
+	--ElvUI_EltreumUI:RegisterEvent("FIRST_FRAME_RENDERED")
 	--because some cvars keep resetting for some reason
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
@@ -225,10 +226,6 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
 	end
-end
-function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
-	E:UpdateAll()
-	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
