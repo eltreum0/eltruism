@@ -613,7 +613,7 @@ end
 
 local function SkinFrame(object)
 	if not object then return end --rare but not impossible nil error
-	--if E:IsSecretValue(object) then return end
+	--if E:IsSecretValue(object) then return end --seems to throw an error, test without it
 	if object:IsForbidden() then return end
 	if object:GetObjectType() == "Texture" then object = object:GetParent() end
 	local mt = getmetatable(object).__index
