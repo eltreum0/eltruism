@@ -791,19 +791,21 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		loopframe = EnumerateFrames()
 
 		while loopframe do
-			if not loopframe:IsForbidden() then
+			--if not loopframe:IsForbidden() then
 				table.insert(framesToSkin, loopframe)
-			end
+			--end
 			loopframe = EnumerateFrames(loopframe)
 		end
 
 		E:UpdateAll()
 
 		for _, frame in ipairs(framesToSkin) do
-			local objtype = frame:GetObjectType()
-			if not frametypes[objtype] then
-				SkinFrame(frame)
-				frametypes[objtype] = true
+			if not frame:IsForbidden() then
+				local objtype = frame:GetObjectType()
+				if not frametypes[objtype] then
+					SkinFrame(frame)
+					frametypes[objtype] = true
+				end
 			end
 		end
 		_G.wipe(framesToSkin)
