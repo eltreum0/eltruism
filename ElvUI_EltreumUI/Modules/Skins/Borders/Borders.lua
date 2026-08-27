@@ -2208,6 +2208,7 @@ end
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
+		if not _G["EltruismTargetPowerBorder"] then return end
 
 		--targettarget doesnt fire events, and if both units are registered then only the last one is triggering the function, with player never triggering it
 		local powertypemonitortarget = CreateFrame("frame")
