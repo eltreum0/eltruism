@@ -671,10 +671,13 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		for i = 1, _G.NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
-			if not E.Classic then
-				button.AutoCastOverlay:Hide()
-				button.AutoCastOverlay:SetAlpha(0)
-			else
+			--Classic Era now uses the shared pet action bar, so the widget has to be
+			--detected instead of assumed from the game flavour.
+			local autoCastOverlay = button.AutoCastOverlay
+			if autoCastOverlay then
+				autoCastOverlay:Hide()
+				autoCastOverlay:SetAlpha(0)
+			elseif button.AutoCastShine then
 				button.AutoCastShine:Hide()
 			end
 			if autoCastEnabled then --11.0 replaces this
