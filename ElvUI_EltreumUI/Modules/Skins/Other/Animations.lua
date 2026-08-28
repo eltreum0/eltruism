@@ -35,6 +35,10 @@ local IGNORED_SPELLS = {
 	[5384] = true, -- Feign Death
 }
 local function HasIgnoredDeathSpell()
+	if E.Retail then
+		return false
+	end
+
 	for i = 1, 40 do
 		local spellId
 		if _G.C_UnitAuras and _G.C_UnitAuras.GetAuraDataByIndex then
