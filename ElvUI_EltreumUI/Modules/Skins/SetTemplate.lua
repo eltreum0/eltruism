@@ -791,13 +791,9 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		loopframe = EnumerateFrames()
 
 		while loopframe do
-			--if not loopframe:IsForbidden() then
-				table.insert(framesToSkin, loopframe)
-			--end
+			table.insert(framesToSkin, loopframe)
 			loopframe = EnumerateFrames(loopframe)
 		end
-
-		E:UpdateAll()
 
 		for _, frame in ipairs(framesToSkin) do
 			if not frame:IsForbidden() then
@@ -809,6 +805,8 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			end
 		end
 		_G.wipe(framesToSkin)
+
+		E:UpdateAll()
 
 		E:Delay(10, function()
 			if E.db.ElvUI_EltreumUI.chat.chattoggles then
