@@ -170,62 +170,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadOtherTags()
 end
 
-function ElvUI_EltreumUI:Initialize()
-	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
-	if not E.private.ElvUI_EltreumUI.install_version then
-		if not E.private.install_complete then --check if they didnt install elvui bc eltruism will do the install things that elvui does
-			E.private.install_complete = E.version
-			E.private.ElvUI_EltreumUI.skippedcheck = true --this is in case they skip during install, when they'll need elvui install to popup again
-		end
-		ElvUI_EltreumUI:HidePopups(5)
-		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
-		return
-	end
-	--register the plugin config
-	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
-	--Register Events
-	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
-	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
-	ElvUI_EltreumUI:RegisterEvent('INSTANCE_ENCOUNTER_ENGAGE_UNIT') ----for quests and combat music
-	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP') --for the level up skin
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED') --for combat music/chat hide/unitframe hide
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED') --for combat music/chat hide/unitframe hide
-	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') --for stealth overlay
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS') --for hiding healthbar in friendly np
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED') --for hiding healthbar in friendly np
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
-	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
-	if E.Retail then
-		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
-		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
-		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
-		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-	end
-	if E.Mists or E.TBC or E.Wrath then
-		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
-		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
-	end
-	if E.ClassicSOD then
-		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-	end
-	if E.Classic then
-		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
-	end
-	--ElvUI_EltreumUI:RegisterEvent("FIRST_FRAME_RENDERED")
-	--because some cvars keep resetting for some reason
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
-	ElvUI_EltreumUI:RegisterEvent("UPDATE_PENDING_MAIL") --for mail sound/icon
-	if E.Retail then
-		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_START") --for m+ hiding objective tracker
-		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
-		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
-	end
+function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
+	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
+	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
@@ -455,6 +402,64 @@ end
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_RESET(event)
 	ElvUI_EltreumUI:QuestCombat(event)
+end
+
+function ElvUI_EltreumUI:Initialize()
+	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
+	if not E.private.ElvUI_EltreumUI.install_version then
+		if not E.private.install_complete then --check if they didnt install elvui bc eltruism will do the install things that elvui does
+			E.private.install_complete = E.version
+			E.private.ElvUI_EltreumUI.skippedcheck = true --this is in case they skip during install, when they'll need elvui install to popup again
+		end
+		ElvUI_EltreumUI:HidePopups(5)
+		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+		return
+	end
+	--register the plugin config
+	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
+	--Register Events
+	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('INSTANCE_ENCOUNTER_ENGAGE_UNIT') ----for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP') --for the level up skin
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED') --for combat music/chat hide/unitframe hide
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED') --for combat music/chat hide/unitframe hide
+	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') --for stealth overlay
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS') --for hiding healthbar in friendly np
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED') --for hiding healthbar in friendly np
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
+	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
+	if E.Retail then
+		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
+		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
+		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
+		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+	end
+	if E.Mists or E.TBC or E.Wrath then
+		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
+		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
+	end
+	if E.ClassicSOD then
+		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+	end
+	if E.Classic then
+		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
+	end
+	--ElvUI_EltreumUI:RegisterEvent("FIRST_FRAME_RENDERED")
+	--because some cvars keep resetting for some reason
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
+	ElvUI_EltreumUI:RegisterEvent("UPDATE_PENDING_MAIL") --for mail sound/icon
+	if E.Retail then
+		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_START") --for m+ hiding objective tracker
+		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
+		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
+	end
 end
 
 local function CallbackInitialize()
