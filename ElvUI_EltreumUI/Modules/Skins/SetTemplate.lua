@@ -5,7 +5,6 @@ local colorsborders = valuecolors
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
-local EnumerateFrames = _G.EnumerateFrames
 local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
@@ -747,35 +746,21 @@ local function SkinFrame(object)
 end
 
 --based on elvui toolkit
-local loopframe = CreateFrame("Frame")
 local frametypes = {
-	["Region"] = true,
-	["Texture"] = true,
-	["Cooldown"] = true,
-	["Slider"] = true,
-	["ScrollFrame"] = true,
-	["ModelScene"] = true,
-	--["PlayerModel"] =true,
-	--["EditBox"] =true,
-	--["SimpleHTML"] =true,
-	--["TabardModel"] =true,
-	--["Browser"] =true,
-	--["FogOfWarFrame"] =true,
-	--["UnitPositionFrame"] =true,
-	--["MovieFrame"] =true,
-	--["QuestPOIFrame"] =true,
-	--["ScenarioPOIFrame"] =true,
-	--["MessageFrame"] =true,
-	--["ColorSelect"] =true,
-	--["CheckButton"] =true,
-	--["Minimap"] =true,
+    "Frame",
+    "Button",
+    "StatusBar",
+    "GameTooltip",
+    "CheckButton",
+    "Slider",
+    "ScrollFrame",
+    "ColorSelect",
+    "MessageFrame",
+    --[["EditBox", --this taints everything
+    "ScrollingMessageFrame",
+    "PlayerModel",
+    "DressUpModel",]]
 }
---[[local frametypes = {
-	["Frame"] = true,
-	["Button"] = true,
-	["StatusBar"] = true,
-	["GameTooltip"] = true,
-}]]
 
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate or E.db.ElvUI_EltreumUI.skins.ace3.enable or E.db.ElvUI_EltreumUI.skins.shadow.enable or E.db.ElvUI_EltreumUI.borders.universalborders then
@@ -786,26 +771,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
 			}
 		end
-		SkinFrame(loopframe)
-		local framesToSkin = {}
-		loopframe = EnumerateFrames()
-
-		while loopframe do
-			table.insert(framesToSkin, loopframe)
-			loopframe = EnumerateFrames(loopframe)
-		end
-
-		for _, frame in ipairs(framesToSkin) do
-			if not frame:IsForbidden() then
-				local objtype = frame:GetObjectType()
-				if not frametypes[objtype] then
-					SkinFrame(frame)
-					frametypes[objtype] = true
-				end
-			end
-		end
-		_G.wipe(framesToSkin)
-
+        for _, objtype in ipairs(frametypes) do
+            local dummyFrame = CreateFrame(objtype)
+            SkinFrame(dummyFrame)
+        end
 		E:UpdateAll()
 
 		E:Delay(10, function()
