@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 5.1.4
+Added an option to change widget texture when using ElvUI Skin  
+Added borders to datatext panels  
+Updated Death Animations to better handle changes in Retail  
+Updated Edit Mode Layout  
+Fixed an issue where in Burning Crusade Classic the Talent frames weren't scaling properly  
+Fixed an issue (script ran too long) with the ElvUI Skin and Ace3 skins  
+Fixed an issue with Actionbar glows in Classic  
+Fixed an issue with Shadows and Secret Values  
+---
 ### 5.1.3
 Updated for ElvUI 15.23  
 Fixed some secret checks  
