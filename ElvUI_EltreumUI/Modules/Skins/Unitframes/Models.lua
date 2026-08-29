@@ -300,7 +300,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-			local  targettargetbar = _G["ElvUF_TargetTarget"]
+			local targettargetbar = _G["ElvUF_TargetTarget"]
 			local reactiontargettarget = UnitReaction("targettarget", "player")
 			local _, targettargetclass = UnitClass("targettarget")
 			if not E:NotSecretValue(targettargetclass) then --secret class so do something else
@@ -410,7 +410,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			local focusbar = _G["ElvUF_Focus"]
-			local  reactionfocus = UnitReaction("focus", "player")
+			local reactionfocus = UnitReaction("focus", "player")
 			local _, focusclass = UnitClass("focus")
 			if not E:NotSecretValue(focusclass) then --secret class so do something else
 				return

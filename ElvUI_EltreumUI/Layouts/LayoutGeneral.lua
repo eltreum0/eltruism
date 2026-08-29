@@ -2119,8 +2119,8 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 
 		--new midnight things
-		SetCVar('damageMeterEnabled',  1)
-		SetCVar('floatingCombatTextCombatDamage_v2',  1)
+		SetCVar('damageMeterEnabled', 1)
+		SetCVar('floatingCombatTextCombatDamage_v2', 1)
 
 		--this makes it so that the non nameplate names are hidden
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs, even when they are dead
