@@ -247,14 +247,25 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 
 					-- fix talent frame position due to expanded character bg
-					_G.PlayerTalentFrame:HookScript("OnShow", function()
+					local function ClassicTalent()
 						if E.db.ElvUI_EltreumUI.skins.classicarmory then
 							if _G.CharacterModelFrame:IsVisible() then
 								_G.PlayerTalentFrame:ClearAllPoints()
 								_G.PlayerTalentFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPRIGHT", -30, 0)
-								_G.PlayerTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
 							end
 						end
+
+						if E.db.ElvUI_EltreumUI.skins.tbctalents then
+							_G.PlayerTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+						end
+					end
+
+
+					_G.PlayerTalentFrame:HookScript("OnShow", function()
+						ClassicTalent()
+					end)
+					_G.PlayerTalentFrame:HookScript("OnEvent", function()
+						ClassicTalent()
 					end)
 				end
 			end)
