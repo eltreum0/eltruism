@@ -774,6 +774,14 @@ local frametypes = {
 	"ScenarioPOIFrame",
 	"Minimap",
 	]]
+
+	--used to be blocking only:
+	--"Region",
+	--"Texture",
+	--"Cooldown",
+	--"Slider",
+	--"ScrollFrame",
+	--"ModelScene",
 }
 
 function ElvUI_EltreumUI:SetTemplateSkin()
