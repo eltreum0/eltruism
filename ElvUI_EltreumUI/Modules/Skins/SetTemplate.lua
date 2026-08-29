@@ -759,7 +759,21 @@ local frametypes = {
 	--[["EditBox", --this taints everything
 	"ScrollingMessageFrame",
 	"PlayerModel",
-	"DressUpModel",]]
+	"ModelScene",
+	"DressUpModel",
+	"Region",
+	"Texture",
+	"Cooldown",
+	"SimpleHTML",
+	"TabardModel",
+	"Browser",
+	"FogOfWarFrame",
+	"UnitPositionFrame",
+	"MovieFrame",
+	"QuestPOIFrame",
+	"ScenarioPOIFrame",
+	"Minimap",
+	]]
 }
 
 function ElvUI_EltreumUI:SetTemplateSkin()
