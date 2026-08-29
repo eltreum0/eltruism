@@ -35,16 +35,15 @@ local IGNORED_SPELLS = {
 	[5384] = true, -- Feign Death
 }
 local function HasIgnoredDeathSpell()
-	if E.Retail then
+	--[[if E.Retail then
 		return false
-	end
-
+	end]]
 	for i = 1, 40 do
 		local spellId
 		if _G.C_UnitAuras and _G.C_UnitAuras.GetAuraDataByIndex then
-			if E:NotSecretValue(_G.C_UnitAuras.GetAuraDataByIndex("player", i)) then
-				local data = _G.C_UnitAuras.GetAuraDataByIndex("player", i)
-				if not data then break end
+			local data = _G.C_UnitAuras.GetAuraDataByIndex("player", i)
+			if not data then break end
+			if E:NotSecretValue(data) then
 				spellId = data.spellId
 			else
 				break
