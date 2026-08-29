@@ -747,19 +747,19 @@ end
 
 --based on elvui toolkit
 local frametypes = {
-    "Frame",
-    "Button",
-    "StatusBar",
-    "GameTooltip",
-    "CheckButton",
-    "Slider",
-    "ScrollFrame",
-    "ColorSelect",
-    "MessageFrame",
-    --[["EditBox", --this taints everything
-    "ScrollingMessageFrame",
-    "PlayerModel",
-    "DressUpModel",]]
+	"Frame",
+	"Button",
+	"StatusBar",
+	"GameTooltip",
+	"CheckButton",
+	"Slider",
+	"ScrollFrame",
+	"ColorSelect",
+	"MessageFrame",
+	--[["EditBox", --this taints everything
+	"ScrollingMessageFrame",
+	"PlayerModel",
+	"DressUpModel",]]
 }
 
 function ElvUI_EltreumUI:SetTemplateSkin()
@@ -771,10 +771,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
 			}
 		end
-        for _, objtype in ipairs(frametypes) do
-            local dummyFrame = CreateFrame(objtype)
-            SkinFrame(dummyFrame)
-        end
+		for _, objtype in ipairs(frametypes) do
+			local dummyFrame = CreateFrame(objtype)
+			SkinFrame(dummyFrame)
+		end
 		E:UpdateAll()
 
 		E:Delay(10, function()
