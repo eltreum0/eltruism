@@ -9,6 +9,8 @@ on:
   push:
     tags:
      - 'v*.*.*'
+    tags-ignore:
+     - '*-alpha*'
 
 # a workflow is built up as jobs, and within these jobs are steps
 jobs:
