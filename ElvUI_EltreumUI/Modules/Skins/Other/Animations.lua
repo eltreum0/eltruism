@@ -61,7 +61,7 @@ local function HasIgnoredDeathSpell()
 	return false
 end
 
-function ElvUI_EltreumUI.PlayerDeathAnimation()
+function ElvUI_EltreumUI:PlayerDeathAnimation()
 	local db = E.db.ElvUI_EltreumUI.skins
 	local isDarkSouls = db.playerdeath or db.playerdeathcustom
 	local isGTA = db.playerdeathgta
