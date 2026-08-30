@@ -312,7 +312,9 @@ local currenttalentretail = E.Retail and GetSpecialization()
 local currenttalentmists = (E.Mists or E.TBC or E.Wrath) and GetSpecialization()
 local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and _G.GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
-	ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
+	if E.Retail then
+		ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
+	end
 	local newtalentretail = E.Retail and GetSpecialization()
 	local cnewtalentmists = E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and _G.GetActiveTalentGroup()
