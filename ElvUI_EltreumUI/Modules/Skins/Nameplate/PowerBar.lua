@@ -3,7 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
-local C_UnitAuras = _G.C_UnitAuras
+local GetPlayerAuraBySpellID = _G.C_UnitAuras and _G.C_UnitAuras.GetPlayerAuraBySpellID
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local GetSpellPowerCost = _G.C_Spell and _G.C_Spell.GetSpellPowerCost or _G.GetSpellPowerCost
 local next = _G.next
@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 
 		if E.Retail then
-			local druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
+			local druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 10
 				druidstarfire = 10
