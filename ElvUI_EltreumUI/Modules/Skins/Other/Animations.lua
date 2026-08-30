@@ -11,6 +11,7 @@ local Minimap = _G.Minimap
 local PlaySoundFile = _G.PlaySoundFile
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
+local GetPlayerAuraBySpellID = _G.C_UnitAuras and _G.C_UnitAuras.GetPlayerAuraBySpellID
 
 --Dark Souls Death, my first weakaura adapted
 local deathFrame = CreateFrame("FRAME", "EltruismDeathFrame", WorldFrame)
@@ -35,28 +36,23 @@ local IGNORED_SPELLS = {
 	[5384] = true, -- Feign Death
 }
 local function HasIgnoredDeathSpell()
-	--[[if E.Retail then
-		return false
-	end]]
-	for i = 1, 40 do
-		local spellId
-		if _G.C_UnitAuras and _G.C_UnitAuras.GetAuraDataByIndex then
-			local data = _G.C_UnitAuras.GetAuraDataByIndex("player", i)
-			if not data then break end
-			if E:NotSecretValue(data) then
-				spellId = data.spellId
-			else
-				break
+	if GetPlayerAuraBySpellID then
+		for spellId in pairs(IGNORED_SPELLS) do
+			if GetPlayerAuraBySpellID(spellId) then
+				return true
 			end
-		else
-			spellId = select(10, _G.UnitAura("player", i))
-			if not spellId then break end
 		end
+	else
+		for i = 1, 40 do
+			local spellId = select(10, _G.UnitAura("player", i))
+			if not spellId then break end
 
-		if IGNORED_SPELLS[spellId] then
-			return true
+			if IGNORED_SPELLS[spellId] then
+				return true
+			end
 		end
 	end
+
 	return false
 end
 
