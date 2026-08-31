@@ -302,6 +302,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	end
 end
 
+local UnitExists = _G.UnitExists
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
@@ -310,6 +311,9 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:TargetCombatIconClass()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
+	end
+	if UnitExists("target") then
+		ElvUI_EltreumUI:GradientUF("target")
 	end
 end
 
