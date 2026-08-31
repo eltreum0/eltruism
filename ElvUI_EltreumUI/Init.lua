@@ -53,6 +53,11 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if _G.InCombatLockdown() then
 		ElvUI_EltreumUI:Print("Reloading while in combat is not recommended and you are very likely to break several addons.")
 	end
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode then
+		E.db.ElvUI_EltreumUI.unitframes.hasMode = true
+	else
+		E.db.ElvUI_EltreumUI.unitframes.hasMode = false
+	end
 
 	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
 	ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict

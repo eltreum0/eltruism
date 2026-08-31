@@ -1110,10 +1110,12 @@ P.ElvUI_EltreumUI = {
 		thinmodeaurabars = false,
 		UFmodifications = true,
 		UForientation = "HORIZONTAL",
-		lightmode = false,
+
 		uftextureversion = "V1",
 		alternativegroups = false,
+		lightmode = false,
 		darkmode = false,
+		hasMode = false,
 		--modetexture = false,
 		darkpowercolor = false,
 		blizzardresticon = true,
