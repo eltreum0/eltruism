@@ -49,7 +49,7 @@ local invertframes = {
 }
 
 --set the backdrop gradient
-function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,name)
+function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,unitDB)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 		if E.db.unitframe.colors.transparentHealth then
 			if frame.Health and frame.Health.backdrop then
@@ -80,11 +80,11 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				end
 			else
 				if isPlayer then
-					if invertframes[name] then
+					if invertframes[unitDB] then
 						invert = true
-					elseif name == 'Target' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+					elseif unitDB == 'target' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
 						invert = true
-					elseif name == 'Focus' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversefocus then
+					elseif unitDB == 'focus' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversefocus then
 						invert = true
 					end
 				end
