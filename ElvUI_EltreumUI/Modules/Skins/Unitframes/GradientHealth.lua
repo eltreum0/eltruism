@@ -79,22 +79,20 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 					colorClass = "NPCFRIENDLY"
 				end
 			else
-				if not isPlayer and not reactionunit then
-					return
-				end
-
-				if invertframes[name] then
-					invert = true
-				elseif name == 'Target' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-					invert = true
-				elseif name == 'Focus' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversefocus then
-					invert = true
+				if isPlayer then
+					if invertframes[name] then
+						invert = true
+					elseif name == 'Target' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+						invert = true
+					elseif name == 'Focus' and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversefocus then
+						invert = true
+					end
 				end
 
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
 					if isPlayer then
 						colorClass = englishClass
-					else
+					elseif reactionunit then
 						if reactionunit >= 5 then
 							colorClass = "NPCFRIENDLY"
 						elseif reactionunit == 4 then
