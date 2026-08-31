@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			local invert = false
 			if isGroupFrame then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-					colorClass = "NPCFRIENDLY"
+					colorClass = englishClass
 				end
 			else
 				if invertframes[unitDB] then
@@ -100,6 +100,8 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 						elseif reactionunit <= 2 then
 							colorClass = "NPCHOSTILE"
 						end
+					else
+						colorClass = "NPCHOSTILE"
 					end
 				end
 			end
