@@ -25,7 +25,6 @@ local PlaySound = _G.PlaySound
 local W
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
-local utf8sub = _G.string.utf8sub
 local format = _G.format
 local IsInInstance = _G.IsInInstance
 local strsub = _G.strsub
@@ -214,14 +213,16 @@ function ElvUI_EltreumUI:firstToUpper(str)
 end
 
 --copy of elvui abbrev
+local strmatch = _G.strmatch
+local gsub = _G.gsub
 function ElvUI_EltreumUI:Abbrev(name)
 	if not ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		return name
 	else
-		local letters, lastWord = '', _G.strmatch(name, '.+%s(.+)$')
+		local letters, lastWord = '', strmatch(name, '.+%s(.+)$')
 		if lastWord then
 			for word in _G.gmatch(name, '.-%s') do
-				local firstLetter = string.utf8sub(_G.gsub(word, '^[%s%p]*', ''), 1, 1)
+				local firstLetter = string.utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
 				if firstLetter ~= string.utf8lower(firstLetter) then
 					letters = format('%s%s. ', letters, firstLetter)
 				end
@@ -902,16 +903,18 @@ function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
 	end
 end
 
+local GetOverrideSpell = _G.C_Spell and _G.C_Spell.GetOverrideSpell
+local C_Spell_GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo
 function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
 	if not spellID then return end
-	if _G.C_Spell and _G.C_Spell.GetOverrideSpell then
-		local override = _G.C_Spell.GetOverrideSpell(spellID)
+	if GetOverrideSpell then
+		local override = GetOverrideSpell(spellID)
 		if override and override ~= 0 then
 			spellID = override
 		end
 	end
-	if _G.C_Spell and _G.C_Spell.GetSpellInfo then
-		local spellData = _G.C_Spell.GetSpellInfo(spellID)
+	if C_Spell_GetSpellInfo then
+		local spellData = C_Spell_GetSpellInfo(spellID)
 		if spellData then
 			if type(spellData) == "table" then
 				return spellData.name, spellData.spellID, spellData.iconID

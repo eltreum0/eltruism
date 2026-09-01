@@ -28,7 +28,9 @@ end
 
 --function to update extra frames like tank and assist and their targets
 local function UpdateTankAssistFrames(button)
-	if _G[button.."1"] and _G[button.."1"]:IsVisible() then
+	local button1 = _G[button.."1"]
+	if not button1 then return end
+	if button1:IsVisible() then
 		--print("tank gradient firing",math.random(1,99))
 		for i = 1, 8 do
 			local frame = _G[button..i]

@@ -187,11 +187,14 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	end
 end
 
+local UnitTokenFromGUID = _G.UnitTokenFromGUID
+local UnitInParty = _G.UnitInParty
+local UnitInRaid = _G.UnitInRaid
 function ElvUI_EltreumUI:UNIT_DIED(_,guid)
 	if guid and ElvUI_EltreumUI:IsThisASafeSecret(guid,true) then
-		local UnitToken = _G.UnitTokenFromGUID(guid) --use api from 10.0 for getting token from guid
+		local UnitToken = UnitTokenFromGUID(guid) --use api from 10.0 for getting token from guid
 		if ElvUI_EltreumUI:IsThisASafeSecret(UnitToken,true) then
-			if (UnitToken == "player") or (UnitToken == "pet") or _G.UnitInParty(UnitToken) or _G.UnitInRaid(UnitToken) then
+			if (UnitToken == "player") or (UnitToken == "pet") or UnitInParty(UnitToken) or UnitInRaid(UnitToken) then
 				ElvUI_EltreumUI:RaidDeath()
 			end
 		end
@@ -315,20 +318,21 @@ end
 
 local currenttalentretail = E.Retail and GetSpecialization()
 local currenttalentmists = (E.Mists or E.TBC or E.Wrath) and GetSpecialization()
-local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and _G.GetActiveTalentGroup()
+local GetActiveTalentGroup = _G.GetActiveTalentGroup
+local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	if E.Retail then
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
 	end
 	local newtalentretail = E.Retail and GetSpecialization()
 	local cnewtalentmists = E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
-	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and _G.GetActiveTalentGroup()
+	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Mists then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	elseif E.ClassicSOD or E.TBC or E.Wrath then
-		ElvUI_EltreumUI.Spec =_G.GetActiveTalentGroup()
+		ElvUI_EltreumUI.Spec = GetActiveTalentGroup()
 	end
 	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Mists and currenttalentmists ~= cnewtalentmists) or ((E.ClassicSOD or E.TBC or E.Wrath) and currenttalentclassic ~= cnewtalentclassic) then
 		currenttalentretail = newtalentretail
