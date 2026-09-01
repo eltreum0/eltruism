@@ -12,6 +12,8 @@ local UnitIsCharmed = _G.UnitIsCharmed
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
 local UnitIsConnected = _G.UnitIsConnected
+local UnitInParty = _G.UnitInParty
+local UnitInRaid = _G.UnitInRaid
 
 --function to check if colormixin tables are equal, if they are return false since its used to do something after that
 function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
@@ -410,7 +412,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 		end
 
 		--group/raid unitframes
-		if _G.UnitInParty("player") or _G.UnitInRaid("player") or forced then
+		if UnitInParty("player") or UnitInRaid("player") or forced then
 
 			--party/raid
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then

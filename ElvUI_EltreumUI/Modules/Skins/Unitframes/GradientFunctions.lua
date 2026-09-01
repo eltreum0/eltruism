@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local _G = _G
 local tostring = _G.tostring
 local CreateFrame = _G.CreateFrame
+local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
 
 --set the variables
 --maybe recreating colors can be avoided by setting the color as a variable and then creating if it doesnt exist like maybe so:
@@ -321,7 +322,7 @@ function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG, customal
 			end
 		end
 	else
-		local classColor = _G.C_ClassColor.GetClassColor(unitclass)
+		local classColor = GetClassColor(unitclass)
 		return {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}, {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}
 	end
 end
@@ -344,7 +345,7 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, cu
 			end
 		end
 	else
-		local classColor = _G.C_ClassColor.GetClassColor(unitclass)
+		local classColor = GetClassColor(unitclass)
 		return {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}, {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}
 	end
 end
