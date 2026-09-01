@@ -475,6 +475,9 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"boss") end)
 		end
 	end
+	if E.db.ElvUI_EltreumUI.borders.borders then
+		ElvUI_EltreumUI:PartyBorders()
+	end
 end
 hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
 hooksecurefunc(UF,"Update_PartyFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
@@ -492,6 +495,9 @@ function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 		end
 		if unit == "pet" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_Pet"],"ElvUF_Pet",false,true,"pet",true)
+			if E.db.ElvUI_EltreumUI.borders.borders then
+				ElvUI_EltreumUI:PetBorders()
+			end
 		end
 		if unit == "party" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton1"],"ElvUF_PartyGroup1UnitButton1",false,true,"party",true)

@@ -11,6 +11,7 @@ local pairs = _G.pairs
 local UnitExists = _G.UnitExists
 local UnitReaction = _G.UnitReaction
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local tostring = _G.tostring
@@ -57,7 +58,7 @@ function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 			return {r = 1, g = 0, b = 0} --debug red
 		end
 	else
-		local classColor = _G.C_ClassColor.GetClassColor(unitclass)
+		local classColor = GetClassColor(unitclass)
 		if tableType then
 			return classColor.r, classColor.g, classColor.b
 		else
@@ -649,80 +650,6 @@ local function BordersPart1()
 			end
 		end
 
-		--pet
-		if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
-			if not _G["EltruismPetBorder"] then
-				petborder = CreateFrame("Frame", "EltruismPetBorder", _G.ElvUF_Pet_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
-			else
-				petborder = _G["EltruismPetBorder"]
-			end
-			petborder:SetSize(E.db.ElvUI_EltreumUI.borders.petsizex, E.db.ElvUI_EltreumUI.borders.petsizey)
-			if PowerReadjust[E.db.unitframe.units.pet.power.width] then
-				petborder:SetPoint("CENTER", _G.ElvUF_Pet_HealthBar,"CENTER", 0, 0)
-			else
-				petborder:SetPoint("CENTER", _G.ElvUF_Pet,"CENTER", 0, 0)
-			end
-			petborder:SetBackdrop({
-				edgeFile = bordertexture,
-				edgeSize = E.db.ElvUI_EltreumUI.borders.petsize,
-			})
-			petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			petborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.petstrata)
-			petborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.petlevel)
-			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.pet.infoPanel.enable then
-				petborder:SetPoint("CENTER", _G.ElvUF_Pet, "CENTER", 0, E.db.unitframe.units.pet.infoPanel.height)
-			end
-
-			if E.db.ElvUI_EltreumUI.borders.universalborders then
-				if _G["ElvUF_Pet_HealthBar"].backdrop and _G["ElvUF_Pet_HealthBar"].backdrop.eltruismuniversalborders then
-					_G["ElvUF_Pet_HealthBar"].backdrop.eltruismuniversalborders:Kill()
-					_G["ElvUF_Pet_HealthBar"].backdrop.eltruismuniversalborders = nil
-				end
-			end
-		end
-
-		--party
-		if E.db.ElvUI_EltreumUI.borders.partyborders and E.db.unitframe.units.party.enable then
-			for i = 1,5 do
-				if _G["ElvUF_PartyGroup1UnitButton"..i] then
-					if not _G["EltruismPartyBorder"..i] then
-						partyborder = CreateFrame("Frame", "EltruismPartyBorder"..i, _G["ElvUF_PartyGroup1UnitButton"..i], BackdropTemplateMixin and "BackdropTemplate")
-					else
-						partyborder = _G["EltruismPartyBorder"..i]
-					end
-					partyborder:SetSize(E.db.ElvUI_EltreumUI.borders.partysizex, E.db.ElvUI_EltreumUI.borders.partysizey)
-					if PowerReadjust[E.db.unitframe.units.party.power.width] then
-						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i.."_HealthBar"], "CENTER")
-					else
-						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER")
-					end
-					partyborder:SetParent(_G["ElvUF_PartyGroup1UnitButton"..i])
-					table.insert(partyborderholder, partyborder)
-					partyborder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
-					})
-					if E.db.ElvUI_EltreumUI.borders.classcolor then
-						partyborder:SetBackdropBorderColor(1, 1, 1, 1)
-					else
-						partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-					end
-					partyborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.partystrata)
-					partyborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.partylevel)
-					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.party.infoPanel.enable then
-						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER", 0, E.db.unitframe.units.party.infoPanel.height)
-					end
-
-					if E.db.ElvUI_EltreumUI.borders.universalborders then
-						if _G["ElvUF_PartyGroup1UnitButton"..i].backdrop and _G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders then
-							_G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders:Kill()
-							_G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders = nil
-						end
-					end
-				end
-			end
-		end
-
 		--raid1
 		if E.db.ElvUI_EltreumUI.borders.raidborders then --and not (self.raid1borderscreated) then
 			if E.private.unitframe.disabledBlizzardFrames.raid then
@@ -1230,6 +1157,103 @@ local function BordersPart1()
 	end
 end
 
+function ElvUI_EltreumUI:PartyBorders()
+	if E.private.unitframe.enable then
+		--party
+		if E.db.ElvUI_EltreumUI.borders.partyborders and E.db.unitframe.units.party.enable then
+			for i = 1,5 do
+				if _G["ElvUF_PartyGroup1UnitButton"..i] then
+					if not _G["EltruismPartyBorder"..i] then
+						partyborder = CreateFrame("Frame", "EltruismPartyBorder"..i, _G["ElvUF_PartyGroup1UnitButton"..i], BackdropTemplateMixin and "BackdropTemplate")
+					else
+						partyborder = _G["EltruismPartyBorder"..i]
+					end
+					partyborder:SetSize(E.db.ElvUI_EltreumUI.borders.partysizex, E.db.ElvUI_EltreumUI.borders.partysizey)
+					if PowerReadjust[E.db.unitframe.units.party.power.width] then
+						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i.."_HealthBar"], "CENTER")
+					else
+						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER")
+					end
+					partyborder:SetParent(_G["ElvUF_PartyGroup1UnitButton"..i])
+					table.insert(partyborderholder, partyborder)
+					partyborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+					})
+					local _, buttonclass = UnitClass(_G["ElvUF_PartyGroup1UnitButton"..i].__unit)
+					if buttonclass and E:NotSecretValue(buttonclass) then
+						local classColor = GetClassColor(buttonclass)
+						partyborder:SetBackdropBorderColor(classColor.r, classColor.g, classColor.b, 1)
+					else
+						if E.db.ElvUI_EltreumUI.borders.classcolor then
+							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+					end
+					partyborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.partystrata)
+					partyborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.partylevel)
+					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.party.infoPanel.enable then
+						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER", 0, E.db.unitframe.units.party.infoPanel.height)
+					end
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if _G["ElvUF_PartyGroup1UnitButton"..i].backdrop and _G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders then
+							_G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders:Kill()
+							_G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders = nil
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+function ElvUI_EltreumUI:PetBorders()
+	if E.private.unitframe.enable then
+		--pet
+		if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
+			local ElvUF_Pet_HealthBar = _G.ElvUF_Pet_HealthBar
+			local ElvUF_Pet = _G.ElvUF_Pet
+
+			if not _G["EltruismPetBorder"] then
+				petborder = CreateFrame("Frame", "EltruismPetBorder", ElvUF_Pet_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+			else
+				petborder = _G["EltruismPetBorder"]
+			end
+			petborder:SetSize(E.db.ElvUI_EltreumUI.borders.petsizex, E.db.ElvUI_EltreumUI.borders.petsizey)
+			if PowerReadjust[E.db.unitframe.units.pet.power.width] then
+				petborder:SetPoint("CENTER", ElvUF_Pet_HealthBar,"CENTER", 0, 0)
+			else
+				petborder:SetPoint("CENTER", ElvUF_Pet,"CENTER", 0, 0)
+			end
+			petborder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.petsize,
+			})
+			local reaction = UnitReaction("pet", "player")
+			local reactionColor = ElvUF.colors.reaction[reaction]
+			if reactionColor then
+				petborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
+			else
+				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
+			petborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.petstrata)
+			petborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.petlevel)
+			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.pet.infoPanel.enable then
+				petborder:SetPoint("CENTER", ElvUF_Pet, "CENTER", 0, E.db.unitframe.units.pet.infoPanel.height)
+			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if ElvUF_Pet_HealthBar.backdrop and ElvUF_Pet_HealthBar.backdrop.eltruismuniversalborders then
+					ElvUF_Pet_HealthBar.backdrop.eltruismuniversalborders:Kill()
+					ElvUF_Pet_HealthBar.backdrop.eltruismuniversalborders = nil
+				end
+			end
+		end
+	end
+end
+
 local function BordersPart2()
 
 	--elvui action bars (has to be split because it bar can be different sizes)
@@ -1589,23 +1613,24 @@ local function BordersPart2()
 
 	--nameplate power bar
 	if E.db.ElvUI_EltreumUI.borders.powerbarborder and _G.EltruismPowerBar then
+		local EltruismPowerBar = _G.EltruismPowerBar
 		if E.db.ElvUI_EltreumUI.borders.universalborders then
-			if _G.EltruismPowerBar.eltruismuniversalborders then
-				_G.EltruismPowerBar.eltruismuniversalborders:Kill()
-				_G.EltruismPowerBar.eltruismuniversalborders = nil
+			if EltruismPowerBar.eltruismuniversalborders then
+				EltruismPowerBar.eltruismuniversalborders:Kill()
+				EltruismPowerBar.eltruismuniversalborders = nil
 			end
-			if _G.EltruismPowerBar.backdrop and _G.EltruismPowerBar.backdrop.eltruismuniversalborders then
-				_G.EltruismPowerBar.backdrop.eltruismuniversalborders:Kill()
-				_G.EltruismPowerBar.backdrop.eltruismuniversalborders = nil
+			if EltruismPowerBar.backdrop and EltruismPowerBar.backdrop.eltruismuniversalborders then
+				EltruismPowerBar.backdrop.eltruismuniversalborders:Kill()
+				EltruismPowerBar.backdrop.eltruismuniversalborders = nil
 			end
 		end
 		if not _G["EltruismNameplatePowerBarBorder"] then
-			powerbarborder = CreateFrame("Frame", "EltruismNameplatePowerBarBorder", _G.EltruismPowerBar, BackdropTemplateMixin and "BackdropTemplate")
+			powerbarborder = CreateFrame("Frame", "EltruismNameplatePowerBarBorder", EltruismPowerBar, BackdropTemplateMixin and "BackdropTemplate")
 		else
 			powerbarborder = _G["EltruismNameplatePowerBarBorder"]
 		end
 		powerbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xpowerbar, E.db.ElvUI_EltreumUI.borders.ypowerbar)
-		powerbarborder:SetPoint("CENTER", _G.EltruismPowerBar, "CENTER", 0, 0)
+		powerbarborder:SetPoint("CENTER", EltruismPowerBar, "CENTER", 0, 0)
 		powerbarborder:SetBackdrop({
 			edgeFile = bordertexture,
 			edgeSize = E.db.ElvUI_EltreumUI.borders.powerbarsize,
@@ -1901,6 +1926,8 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		BordersPart1()
+		ElvUI_EltreumUI:PartyBorders()
+		ElvUI_EltreumUI:PetBorders()
 		BordersPart2()
 	end
 end
@@ -2801,7 +2828,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 					if _G["ElvUF_PartyGroup1UnitButton"..i] then
 						local _ , unitclass = UnitClass(_G["ElvUF_PartyGroup1UnitButton"..i].__unit)
 						if unitclass then
-							local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+							local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 							_G["EltruismPartyBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 						end
 					end
@@ -2817,7 +2844,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 							if _G["ElvUF_Raid1Group"..k.."UnitButton"..l] then
 								local _ , unitclass = UnitClass(_G["ElvUF_Raid1Group"..k.."UnitButton"..l].__unit)
 								if unitclass then
-									local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+									local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 									_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 								end
 							end
@@ -2833,7 +2860,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 									if _G["CompactRaidGroup"..k.."Member"..l].displayedUnit then
 										local _ , unitclass = UnitClass(_G["CompactRaidGroup"..k.."Member"..l].displayedUnit)
 										if unitclass then
-											local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+											local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 											if _G["EltruismRaid1Group"..k.."Border"..l] then
 												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 											else
@@ -2851,7 +2878,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 								if _G["CompactRaidFrame"..i].displayedUnit then
 									local _ , unitclass = UnitClass(_G["CompactRaidFrame"..i].displayedUnit)
 									if unitclass then
-										local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+										local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 										if _G["EltruismRaid1GroupBorder"..i] then
 											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 										else
@@ -2874,7 +2901,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 						if _G["ElvUF_Raid2Group"..k.."UnitButton"..l] then
 							local _ , unitclass = UnitClass(_G["ElvUF_Raid2Group"..k.."UnitButton"..l].__unit)
 							if unitclass then
-								local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+								local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 								_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 							end
 						end
@@ -2890,7 +2917,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 						if _G["ElvUF_Raid3Group"..k.."UnitButton"..l] then
 							local _ , unitclass = UnitClass(_G["ElvUF_Raid3Group"..k.."UnitButton"..l].__unit)
 							if unitclass then
-								local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+								local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 								_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 							end
 						end
@@ -2905,7 +2932,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 					if _G["ElvUF_TankUnitButton"..k.."Border"] then
 						local _ , unitclass = UnitClass(_G["ElvUF_TankUnitButton"..k].__unit)
 						if unitclass then
-							local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+							local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 							_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 						end
 					end
@@ -2916,7 +2943,7 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 					if _G["ElvUF_AssistUnitButton"..k.."Border"] then
 						local _ , unitclass = UnitClass(_G["ElvUF_AssistUnitButton"..k].__unit)
 						if unitclass then
-							local color = (E:IsSecretValue(unitclass) and _G.C_ClassColor.GetClassColor(unitclass)) or classcolorreaction[unitclass]
+							local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 							_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
 						end
 					end
