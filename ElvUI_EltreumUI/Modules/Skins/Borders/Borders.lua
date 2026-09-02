@@ -2307,18 +2307,19 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 
 				if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
 					local _, targetclass = UnitClass("target")
+					local targetcolor = GetClassColor(targetclass)
 					if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
-						targetborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r"], classcolorreaction[targetclass]["g"], classcolorreaction[targetclass]["b"], 1)
+						targetborder:SetBackdropBorderColor(targetcolor.r, targetcolor.g, targetcolor.b, 1)
 					end
 					if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
-						targetcastbarborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r"], classcolorreaction[targetclass]["g"], classcolorreaction[targetclass]["b"], 1)
+						targetcastbarborder:SetBackdropBorderColor(targetcolor.r, targetcolor.g, targetcolor.b, 1)
 					end
 					if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 						local _, powertype = UnitPowerType("target")
 						if E.db.unitframe.colors.power[powertype] then
 							targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
 						else
-							targetpowerborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r"], classcolorreaction[targetclass]["g"], classcolorreaction[targetclass]["b"], 1)
+							targetpowerborder:SetBackdropBorderColor(targetcolor.r, targetcolor.g, targetcolor.b, 1)
 						end
 					end
 				else
@@ -2393,7 +2394,8 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if UnitExists("targettarget") and targettargetborder ~= nil then
 					if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
 						local _, targettargetclass = UnitClass("targettarget")
-						targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r"], classcolorreaction[targettargetclass]["g"], classcolorreaction[targettargetclass]["b"], 1)
+						local targettargetcolor = GetClassColor(targettargetclass)
+						targettargetborder:SetBackdropBorderColor(targettargetcolor.r, targettargetcolor.g, targettargetcolor.b, 1)
 					else
 						local reactiontargettarget = UnitReaction("targettarget", "player")
 						if reactiontargettarget >= 5 then
@@ -2412,10 +2414,11 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 
 		if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable and not E.Classic then
 			if UnitExists("focus") then
+				local _, focusclass = UnitClass("focus")
+				local focuscolor = GetClassColor(focusclass)
 				if focusborder ~= nil then
 					if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
-						local _, focusclass = UnitClass("focus")
-						focusborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r"], classcolorreaction[focusclass]["g"], classcolorreaction[focusclass]["b"], 1)
+						focusborder:SetBackdropBorderColor(focuscolor.r, focuscolor.g, focuscolor.b, 1)
 					else
 						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
@@ -2431,8 +2434,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				end
 				if focuscastbarborder ~= nil then
 					if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
-						local _, focusclass = UnitClass("focus")
-						focuscastbarborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r"], classcolorreaction[focusclass]["g"], classcolorreaction[focusclass]["b"], 1)
+						focuscastbarborder:SetBackdropBorderColor(focuscolor.r, focuscolor.g, focuscolor.b, 1)
 					else
 						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
@@ -2452,10 +2454,11 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		if E.db.ElvUI_EltreumUI.borders.focustargetborder and E.db.unitframe.units.focustarget.enable and not E.Classic then
 			if UnitExists("focustarget") then
 				local _, focustargetclass = UnitClass("focustarget")
+				local focustargetcolor = GetClassColor(focustargetclass)
 				local reactionfocustarget = UnitReaction("focustarget", "player")
 				if focustargetborder ~= nil then
 					if UnitIsPlayer("focustarget") or (E.Retail and UnitInPartyIsAI("focustarget")) then
-						focustargetborder:SetBackdropBorderColor(classcolorreaction[focustargetclass]["r"], classcolorreaction[focustargetclass]["g"], classcolorreaction[focustargetclass]["b"], 1)
+						focustargetborder:SetBackdropBorderColor(focustargetcolor.r, focustargetcolor.g, focustargetcolor.b, 1)
 					else
 						if reactionfocustarget >= 5 then
 							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
@@ -2477,7 +2480,8 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if UnitExists("boss"..i) and bossbordername ~= nil then
 					if UnitIsPlayer("boss1"..i) or (E.Retail and UnitInPartyIsAI("boss1"..i)) then
 						local _, bossclass = UnitClass("boss"..i)
-						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r"], classcolorreaction[bossclass]["g"], classcolorreaction[bossclass]["b"], 1)
+						local bosscolor = GetClassColor(bossclass)
+						bossbordername:SetBackdropBorderColor(bosscolor.r, bosscolor.g, bosscolor.b, 1)
 					else
 						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionboss = UnitReaction("boss1", "player")
@@ -2510,7 +2514,8 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if arenabordername ~= nil then
 					if arenaunit or (E.Retail and UnitInPartyIsAI("arena"..i)) then
 						local _, arenaclass = UnitClass(arenaunit)
-						arenabordername:SetBackdropBorderColor(classcolorreaction[arenaclass]["r"], classcolorreaction[arenaclass]["g"], classcolorreaction[arenaclass]["b"], 1)
+						local arenacolor = GetClassColor(arenaclass)
+						arenabordername:SetBackdropBorderColor(arenacolor.r, arenacolor.g, arenacolor.b, 1)
 					elseif not UnitIsPlayer(arenaunit) then
 						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionarena = UnitReaction(arenaunit, "player")
