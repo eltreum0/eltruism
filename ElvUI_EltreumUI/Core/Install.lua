@@ -20,6 +20,7 @@ local FCF_SetWindowName = _G.FCF_SetWindowName
 local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
 local FCFTab_UpdateColors = _G.FCFTab_UpdateColors
 local FCFDock_SelectWindow = _G.FCFDock_SelectWindow
+local MAX_PROFILE_NAME_LENGTH = 30
 
 -- Set version & reload on "Finished"
 local function InstallComplete()
@@ -270,6 +271,14 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 	end
 end
 
+-- Truncates the profile name to AceDB's 30-character limit to avoid a SetProfile error.
+local function TruncateProfileName(name)
+	if #name > MAX_PROFILE_NAME_LENGTH then
+		return name:sub(1, MAX_PROFILE_NAME_LENGTH)
+	end
+	return name
+end
+
 -- Installer Steps
 ElvUI_EltreumUI.InstallerData = {
 	Title = ElvUI_EltreumUI.Name,
@@ -385,9 +394,9 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
-					E.data:SetDualSpecProfile('Eltreum DPS/Tank ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+					E.data:SetDualSpecProfile(TruncateProfileName('Eltreum DPS/Tank ('..E.mynameRealm..')'), E.Libs.DualSpec.currentSpec)
 				else
-					E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')')
+					E.data:SetProfile(TruncateProfileName('Eltreum DPS/Tank ('..E.mynameRealm..')'))
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutDPS()
@@ -424,9 +433,9 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				if (E.Mists or E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
-					E.data:SetDualSpecProfile('Eltreum Healer ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+					E.data:SetDualSpecProfile(TruncateProfileName('Eltreum Healer ('..E.mynameRealm..')'), E.Libs.DualSpec.currentSpec)
 				else
-					E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
+					E.data:SetProfile(TruncateProfileName('Eltreum Healer ('..E.mynameRealm..')'))
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutHealer()
@@ -462,9 +471,9 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
-					E.data:SetDualSpecProfile('Eltreum Thin ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+					E.data:SetDualSpecProfile(TruncateProfileName('Eltreum Thin ('..E.mynameRealm..')'), E.Libs.DualSpec.currentSpec)
 				else
-					E.data:SetProfile('Eltreum Thin ('..E.mynameRealm..')')
+					E.data:SetProfile(TruncateProfileName('Eltreum Thin ('..E.mynameRealm..')'))
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutThin()
