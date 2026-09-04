@@ -384,10 +384,16 @@ ElvUI_EltreumUI.InstallerData = {
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
+
+				local profileName = 'Eltreum DPS/Tank ('..E.mynameRealm..')'
+				local profileLength = string.len(profileName)
+				if profileLength > 52 then
+					profileName = 'Eltreum DPS('..E.mynameRealm..')'
+				end
 				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
-					E.data:SetDualSpecProfile('Eltreum DPS/Tank ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+					E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 				else
-					E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')')
+					E.data:SetProfile(profileName)
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutDPS()
@@ -423,10 +429,16 @@ ElvUI_EltreumUI.InstallerData = {
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
+
+				local profileName = 'Eltreum Healer ('..E.mynameRealm..')'
+				local profileLength = string.len(profileName)
+				if profileLength > 52 then
+					profileName = 'EltreumHeal('..E.mynameRealm..')'
+				end
 				if (E.Mists or E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
-					E.data:SetDualSpecProfile('Eltreum Healer ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+					E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 				else
-					E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
+					E.data:SetProfile(profileName)
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutHealer()
@@ -461,10 +473,16 @@ ElvUI_EltreumUI.InstallerData = {
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
+
+				local profileName = 'Eltreum Thin ('..E.mynameRealm..')'
+				local profileLength = string.len(profileName)
+				if profileLength > 52 then
+					profileName = 'EltreumThin('..E.mynameRealm..')'
+				end
 				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
-					E.data:SetDualSpecProfile('Eltreum Thin ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+					E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 				else
-					E.data:SetProfile('Eltreum Thin ('..E.mynameRealm..')')
+					E.data:SetProfile(profileName)
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutThin()
