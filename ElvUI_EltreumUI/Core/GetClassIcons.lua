@@ -649,10 +649,10 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			resolution = "32"
 		end
 	end
-	if not E:NotSecretValue(unitclass) then --secret class so do something else
-		return classIconsReleaf[resolution]["ROGUE"]
-	end
 	if nostring then
+		if not E:NotSecretValue(unitclass) then --secret class so do something else
+			return "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\secret.tga"
+		end
 		if icon == "RELEAF" then
 			return classIconsReleaf[resolution][unitclass]
 		elseif icon == "OUTLINE" then
@@ -679,6 +679,9 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			return E.private.ElvUI_EltreumUI.chat.customicons[unitclass]
 		end
 	else
+		if not E:NotSecretValue(unitclass) then --secret class so do something else
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\secret.tga"..escapeSequence
+		end
 		if not invert then
 			if icon == "RELEAF" then
 				return "|T"..classIconsReleaf[resolution][unitclass]..escapeSequence
