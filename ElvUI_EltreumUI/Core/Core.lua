@@ -983,6 +983,23 @@ function ElvUI_EltreumUI:FontFlag(style)
 	end
 end
 
+--from oUF
+local GenerateTextColorCode = _G.C_ColorUtil and _G.C_ColorUtil.GenerateTextColorCode
+function ElvUI_EltreumUI:Hex(r, g, b)
+	if not r or type(r) == 'string' then -- wtf?
+		return '|cffFFFFFF'
+	elseif type(r) == 'table' then
+		if E.Retail then
+			return '|c' .. GenerateTextColorCode(r)
+		elseif(r.r) then
+			r, g, b = r.r, r.g, r.b
+		else
+			r, g, b = unpack(r)
+		end
+	end
+	return format('|cff%02x%02x%02x', r * 255, g * 255, b * 255)
+end
+
 --make mage and warlock use their original class colors
 function ElvUI_EltreumUI:OriginalClassColors()
 	--_G.RAID_CLASS_COLORS can cause issues inside instances if friendly nameplates are enabled, so check for that
