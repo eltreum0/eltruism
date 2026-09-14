@@ -14,26 +14,25 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added an option to change widget texture when using ElvUI Skin
-Added borders to datatext panels
+Added gradient backdrop to group frames
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated Death Animations to better handle changes in Retail
-Updated Edit Mode Layout
+Updated Pet and Party border colors to more correctly use their class/rection
+Updated some tags to use colors from default Blizzard API
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an issue where in Burning Crusade Classic the Talent frames weren't scaling properly
-Fixed an issue (script ran too long) with the ElvUI Skin and Ace3 skins
-Fixed an issue with the Death Animation in Retail
-Fixed an issue with Actionbar glows in Classic
-Fixed an issue with Shadows and Secret Values
+Fixed an issue with the installer due to an Ace3 change limiting number of characters in profile names
+Fixed an issue where inverted target gradient wasn't working correctly
+Fixed a possible issue with Ace3 when some frames are secret
+Fixed an issue with Gradient Health due to reactions
+Fixed issues with Borders due to secrets
 ]], 7, "small", nil, nil, nil, nil, "full")
 end
