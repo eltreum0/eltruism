@@ -35,8 +35,8 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitIsEnemy = _G.UnitIsEnemy
 local GROUP = _G.GROUP
 local TARGET = _G.TARGET
-local format = _G.format
 local ElvUF = _G.ElvUF
+local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
 
 --ty a lot azilroka
 local stanceID = {
@@ -208,7 +208,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		if spellID and targetname and endTime > startTime then
 			if UnitIsPlayer(unit.."target") then
 				if not E:NotSecretValue(classes) then --secret class so do something else
-					return targetname
+					local classColor = GetClassColor(classes)
+					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
+					return hex..targetname.."|r"
 				end
 				local color = ElvUI_EltreumUI:classcolorcast(classes)
 				return ("|c"..color..targetname.."|r")
@@ -245,7 +247,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		if spellID and targetname and endTime > startTime then
 			if UnitIsPlayer(unit.."target") then
 				if not E:NotSecretValue(classes) then --secret class so do something else
-					return targetname
+					local classColor = GetClassColor(classes)
+					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
+					return hex..targetname.."|r"
 				end
 				local color = ElvUI_EltreumUI:classcolorcast(classes)
 				return (TARGET.." > |c"..color..targetname.."|r")
@@ -357,7 +361,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
-				return
+				local classColor = GetClassColor(unitClass)
+				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
+				return hex
 			end
 			local cs = ElvUF.colors.class[unitClass]
 			if not cs then return end
