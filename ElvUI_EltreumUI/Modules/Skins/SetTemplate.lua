@@ -360,6 +360,7 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 end
 
 local function EltruisAce3(frame)
+	if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
 	if E.db.ElvUI_EltreumUI.skins.ace3.enable then
 		if not frame.EltruismAce3HooksSetup then
 			E:Delay(0,function()
