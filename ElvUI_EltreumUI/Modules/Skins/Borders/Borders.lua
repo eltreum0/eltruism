@@ -1181,15 +1181,15 @@ function ElvUI_EltreumUI:PartyBorders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 					})
 					local _, buttonclass = UnitClass(_G["ElvUF_PartyGroup1UnitButton"..i].__unit)
-					if buttonclass and E:NotSecretValue(buttonclass) then
+					if E.db.ElvUI_EltreumUI.borders.classcolor then
+						if buttonclass and E:NotSecretValue(buttonclass) then
 						local classColor = GetClassColor(buttonclass)
 						partyborder:SetBackdropBorderColor(classColor.r, classColor.g, classColor.b, 1)
-					else
-						if E.db.ElvUI_EltreumUI.borders.classcolor then
-							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
 						else
-							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
 						end
+					else
+						partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
 					partyborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.partystrata)
 					partyborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.partylevel)
@@ -2850,7 +2850,15 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 								local _ , unitclass = UnitClass(_G["ElvUF_Raid1Group"..k.."UnitButton"..l].__unit)
 								if unitclass then
 									local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
-									_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+									if E.db.ElvUI_EltreumUI.borders.classcolor then
+										if E:NotSecretValue(unitclass) then
+											_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+										else
+											_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(1, 1, 1, 1)
+										end
+									else
+										_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+									end
 								end
 							end
 						end
@@ -2867,10 +2875,26 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 										if unitclass then
 											local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 											if _G["EltruismRaid1Group"..k.."Border"..l] then
-												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+												if E.db.ElvUI_EltreumUI.borders.classcolor then
+													if E:NotSecretValue(unitclass) then
+														_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+													else
+														_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(1, 1, 1, 1)
+													end
+												else
+													_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+												end
 											else
 												ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
-												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+												if E.db.ElvUI_EltreumUI.borders.classcolor then
+													if E:NotSecretValue(unitclass) then
+														_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+													else
+														_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(1, 1, 1, 1)
+													end
+												else
+													_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+												end
 											end
 										end
 									end
@@ -2885,10 +2909,26 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 									if unitclass then
 										local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
 										if _G["EltruismRaid1GroupBorder"..i] then
-											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+											if E.db.ElvUI_EltreumUI.borders.classcolor then
+												if E:NotSecretValue(unitclass) then
+													_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+												else
+													_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(1, 1, 1, 1)
+												end
+											else
+												_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+											end
 										else
 											ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
-											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+											if E.db.ElvUI_EltreumUI.borders.classcolor then
+												if E:NotSecretValue(unitclass) then
+													_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+												else
+													_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(1, 1, 1, 1)
+												end
+											else
+												_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+											end
 										end
 									end
 								end
@@ -2907,7 +2947,15 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 							local _ , unitclass = UnitClass(_G["ElvUF_Raid2Group"..k.."UnitButton"..l].__unit)
 							if unitclass then
 								local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
-								_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+								if E.db.ElvUI_EltreumUI.borders.classcolor then
+									if E:NotSecretValue(unitclass) then
+										_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+									else
+										_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(1, 1, 1, 1)
+									end
+								else
+									_G["EltruismRaid2Group"..k.."Border"..l]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								end
 							end
 						end
 					end
@@ -2923,7 +2971,15 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 							local _ , unitclass = UnitClass(_G["ElvUF_Raid3Group"..k.."UnitButton"..l].__unit)
 							if unitclass then
 								local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
-								_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+								if E.db.ElvUI_EltreumUI.borders.classcolor then
+									if E:NotSecretValue(unitclass) then
+										_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+									else
+										_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(1, 1, 1, 1)
+									end
+								else
+									_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								end
 							end
 						end
 					end
@@ -2938,7 +2994,15 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 						local _ , unitclass = UnitClass(_G["ElvUF_TankUnitButton"..k].__unit)
 						if unitclass then
 							local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
-							_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								if E:NotSecretValue(unitclass) then
+									_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+								else
+									_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(1, 1, 1, 1)
+								end
+							else
+								_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							end
 						end
 					end
 				end
@@ -2949,7 +3013,15 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 						local _ , unitclass = UnitClass(_G["ElvUF_AssistUnitButton"..k].__unit)
 						if unitclass then
 							local color = (E:IsSecretValue(unitclass) and GetClassColor(unitclass)) or classcolorreaction[unitclass]
-							_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								if E:NotSecretValue(unitclass) then
+									_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+								else
+									_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(1, 1, 1, 1)
+								end
+							else
+								_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							end
 						end
 					end
 				end
