@@ -9,6 +9,7 @@ ignore:
   - eltruism/Changelog.md
   - eltruism/License.md
   - eltruism/README.md
+  - eltruism/AGENTS.md
   - "*.md"
   - eltruism/Screenshots
   - Screenshots
