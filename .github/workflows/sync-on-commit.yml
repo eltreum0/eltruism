@@ -25,18 +25,24 @@ jobs:
         run: |
           CURRENT_SHA="${{ github.sha }}"
 
-          git clone https://x-access-token:${{ secrets.PAGES_PAT }}@github.com/eltreum0/eltreum0.github.io.git /tmp/pages-repo
+          git clone https://x-access-token:${{ secrets.PAGES_PAT }}@github.com/eltreum0/eltreum0.github.io.git /tmp/pages-repo || true
+
+          if [ ! -d "/tmp/pages-repo/.git" ]; then
+            echo "Pages repo is empty or missing. Proceeding with build."
+            echo "should_run=true" >> $GITHUB_ENV
+            exit 0
+          fi
 
           LAST_DEPLOYED_SHA=$(git -C /tmp/pages-repo log -1 --pretty=format:"%s" | grep -oE '[a-f0-9]{7}$') || true
 
           echo "Current SHA: $CURRENT_SHA"
           echo "Last Deployed SHA: $LAST_DEPLOYED_SHA"
 
-          if [[ "$CURRENT_SHA" == "$LAST_DEPLOYED_SHA"* ]]; then
+          if [ -n "$LAST_DEPLOYED_SHA" ] && [[ "$CURRENT_SHA" == "$LAST_DEPLOYED_SHA"* ]]; then
             echo "Skipping build: No new changes since last deploy."
             echo "should_run=false" >> $GITHUB_ENV
           else
-            echo "New changes detected. Proceeding with build."
+            echo "New changes detected or no prior SHA found. Proceeding with build."
             echo "should_run=true" >> $GITHUB_ENV
           fi
 
