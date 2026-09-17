@@ -269,7 +269,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
 			if not entry.resultID then return end
 			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
-			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityIDs[1])
+			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityIDs[1]) --can be secret it seems
 			local categoryID = activityTable.categoryID
 
 			--start of the io/region thing
