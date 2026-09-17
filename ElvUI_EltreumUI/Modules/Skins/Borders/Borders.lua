@@ -50,7 +50,6 @@ local classcolorreaction = {
 	["NPCUNFRIENDLY"] = {r = 0.94, g = 0.37, b = 0},
 	["NPCHOSTILE"] = {r = 0.8, g = 0, b = 0},
 }
-local DebuffColors = E.Libs.Dispel:GetDebuffTypeColor()
 
 function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 	if E:NotSecretValue(unitclass) then
@@ -103,8 +102,8 @@ function ElvUI_EltreumUI:GetBorderDB(isUnitframe,isNamePlate,auraType)
 			sizeX = E.db.ElvUI_EltreumUI.borders.ufbuffsizex
 			sizeY = E.db.ElvUI_EltreumUI.borders.ufbuffsizey
 		else
-			sizeX = E.db.ElvUI_EltreumUI.borders.debuffaurasizex
-			sizeY = E.db.ElvUI_EltreumUI.borders.debuffaurasizey
+			sizeX = E.db.ElvUI_EltreumUI.borders.ufdebuffsizex
+			sizeY = E.db.ElvUI_EltreumUI.borders.ufdebuffsizey
 		end
 	elseif isNamePlate then
 		edgeSize = E.db.ElvUI_EltreumUI.borders.npaurasize
@@ -1997,327 +1996,193 @@ local raidFrames ={
 	["raid3"] = true,
 	["raidpet"] = true,
 }
-local function HandleGeneralAuras(button,isUnitframe,isNamePlate,auraType)
-	if not button then return end
 
-	local enabled
-	if isUnitframe then
-		enabled = E.db.ElvUI_EltreumUI.borders.auraborderuf
-	elseif isNamePlate then
-		enabled = E.db.ElvUI_EltreumUI.borders.aurabordernp
-	else
-		enabled = E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable
-	end
-	local bordersEnabled = E.db.ElvUI_EltreumUI.borders.borders
-	local auraborder
+function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
+	if not button or not container then return end
 
-	if not (bordersEnabled and enabled) then
-		if E.Modern then
-			auraborder = button.EltruismAuraBorder
-		else
-			auraborder = _G["EltruismAuraBorder"..button:GetName()]
+
+	local ufType = container.unitframeType or (container.parent and container.parent.unitframeType)
+	if not ufType and container.GetParent then
+		local parentFrame = container:GetParent()
+		if parentFrame then
+			ufType = parentFrame.unitframeType
 		end
+	end
+	local isNP = container.isNameplate or (ufType == "nameplate") or false
+	local isUF = container.isUnitframe or (ufType and not isNP) or false
+	local isGeneral = not isUF and not isNP -- Minimap Auras
+
+
+	local bordersEnabled = E.db.ElvUI_EltreumUI.borders.borders
+	local shouldEnable = false
+
+	if bordersEnabled then
+		if isGeneral then
+			shouldEnable = E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable
+		elseif isNP then
+			shouldEnable = E.db.ElvUI_EltreumUI.borders.aurabordernp
+		elseif isUF then
+			if E.db.ElvUI_EltreumUI.borders.disableRaidAuraBorder and ufType and raidFrames[ufType] then
+				shouldEnable = false
+			else
+				shouldEnable = E.db.ElvUI_EltreumUI.borders.auraborderuf
+			end
+		end
+	end
+
+	local auraborder
+	if E.Modern then
+		auraborder = button.EltruismAuraBorder
+	else
+		local btnName = button.GetName and button:GetName()
+		if btnName then auraborder = _G["EltruismAuraBorder"..btnName] end
+	end
+
+	if not shouldEnable then
 		if auraborder then
 			auraborder:Hide()
 		end
 		return
-	elseif bordersEnabled and enabled then
-		local edgeSize, strata, level, sizeX, sizeY = ElvUI_EltreumUI:GetBorderDB(isUnitframe,isNamePlate,auraType)
+	end
 
-		if not E.Modern then
-			if not _G["EltruismAuraBorder"..button:GetName()] then
-				auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
-			else
-				auraborder = _G["EltruismAuraBorder"..button:GetName()]
-			end
-		else
-			if not button.EltruismAuraBorder then
-				button.EltruismAuraBorder = CreateFrame("Frame", nil, button, BackdropTemplateMixin and "BackdropTemplate")
-			end
-			auraborder = button.EltruismAuraBorder
-		end
-		auraborder:Show()
+	local isDebuff = false
+	if button.isDebuff ~= nil then
+		isDebuff = button.isDebuff
+	elseif button.filter then
+		isDebuff = button.filter:match("HARMFUL") and true or false
+	elseif container.auraType == "debuffs" or button.auraType == "debuffs" then
+		isDebuff = true
+	end
 
+	local auraType = isDebuff and "debuffs" or "buffs"
+	local edgeSize, strata, level, sizeX, sizeY = ElvUI_EltreumUI:GetBorderDB(isUF, isNP, auraType)
+
+	if not auraborder then
 		if E.Modern then
-			if auraType == "buffs" then
-				if classcolor2check then
-					auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-				else
-					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				end
-			else
-				local debuffColor = DebuffColors[button.debuffType or 'None']
-				local r, g, b = debuffColor.r * 0.6, debuffColor.g * 0.6, debuffColor.b * 0.6
-				if r then
-					auraborder:SetBackdropBorderColor(r,g,b, 1)
-				else
-					auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-				end
-			end
+			button.EltruismAuraBorder = CreateFrame("Frame", nil, button, BackdropTemplateMixin and "BackdropTemplate")
+			auraborder = button.EltruismAuraBorder
 		else
-			if button.filter then
-				if button.filter:match("HELPFUL") then
-					if classcolor2check then
-						auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-					else
-						auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-					end
-				elseif button.GetBackdropBorderColor then
-					local r,g,b = button:GetBackdropBorderColor()
-					if r then
-						auraborder:SetBackdropBorderColor(r,g,b, 1)
-					else
-						auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-					end
-				end
-			end
+			local btnName = button.GetName and button:GetName()
+			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..(btnName or tostring(button)), button, BackdropTemplateMixin and "BackdropTemplate")
 		end
-
-		if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
-			button.eltruismuniversalborders:Kill()
-			button.eltruismuniversalborders = nil
-		end
-
-		auraborder:SetSize(sizeX, sizeY)
 		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
 		auraborder:SetBackdrop({
 			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
 			edgeSize = edgeSize,
 		})
-		--E:Delay(1, function()
-			--[[if button.auraType == "debuffs" then
-				print(debuffColors[button.debuffType],button.debuffType)
-				if debuffColors[button.debuffType] then
-					auraborder:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
-				else
-					auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-				end
-			else
-				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end]]
-		--end)
-
-		auraborder:SetFrameStrata(strata)
-		auraborder:SetFrameLevel(level)
 	end
-end
 
-function ElvUI_EltreumUI:AuraBorders(button,button2)
-	if not button then return end
-	if button.unitframeType then
-		if not raidFrames[button.unitframeType] then
-			return
+	auraborder:Show()
+	auraborder:SetSize(sizeX, sizeY)
+	auraborder:SetFrameStrata(strata)
+	auraborder:SetFrameLevel(level)
+
+	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
+		button.eltruismuniversalborders:Kill()
+		button.eltruismuniversalborders = nil
+	end
+
+	local count = (button.textFrame and button.textFrame.count) or button.Count or button.count
+	if count and count.GetParent then
+		local countParent = count:GetParent()
+		if countParent then
+			countParent:SetFrameStrata(strata)
+			countParent:SetFrameLevel(level + 1)
 		end
 	end
-	if button2 and E:NotSecretValue(button2) then --likely is container
-		ElvUI_EltreumUI:UFAuraBorders(nil,button2,button.auraType,button.isUnitframe,button.isNamePlate)
+
+	if auraType == "debuffs" then
+		local debuffType = (button.aura and button.aura.dispelName) or button.debuffType or button.dispelType or 'None'
+		if debuffType == "" or not debuffColors[debuffType] then
+			debuffType = 'None'
+		end
+		local debuffColor = debuffColors[debuffType]
+		if debuffColor and debuffColor.r then
+			auraborder:SetBackdropBorderColor(debuffColor.r * 0.6, debuffColor.g * 0.6, debuffColor.b * 0.6, 1)
+		elseif not E.Modern and button.GetBackdropBorderColor then
+			local r, g, b = button:GetBackdropBorderColor()
+			if r then
+				auraborder:SetBackdropBorderColor(r, g, b, 1)
+			else
+				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
+			end
+		else
+			auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
+		end
 	else
-		HandleGeneralAuras(button,button.isUnitframe,button.isNamePlate,button.auraType)
+		if isGeneral then
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		else
+			classcolor2check = false
+			if E.db.ElvUI_EltreumUI.borders.classcolor then
+				local unit = button.aura and button.aura.sourceUnit
+				if not unit then
+					unit = container.unit or (container.parent and (container.parent.unit or container.parent.__unit)) or button.unit
+				end
+				if unit and UnitExists(unit) then
+					classcolor2check = true
+					if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+						local _, classUnit = UnitClass(unit)
+						local colorTable = classUnit and classcolorreaction[classUnit]
+						if not colorTable and classUnit then
+							local blizzColor = GetClassColor(classUnit)
+							if blizzColor then
+								colorTable = blizzColor
+							end
+						end
+						if colorTable then
+							classcolor2.r, classcolor2.g, classcolor2.b = colorTable.r, colorTable.g, colorTable.b
+						else
+							classcolor2.r, classcolor2.g, classcolor2.b = classcolor.r, classcolor.g, classcolor.b
+						end
+					else
+						local reaction = UnitReaction(unit, "player")
+						if reaction then
+							if reaction >= 5 then
+								classcolor2.r, classcolor2.g, classcolor2.b = classcolorreaction["NPCFRIENDLY"].r, classcolorreaction["NPCFRIENDLY"].g, classcolorreaction["NPCFRIENDLY"].b
+							elseif reaction == 4 then
+								classcolor2.r, classcolor2.g, classcolor2.b = classcolorreaction["NPCNEUTRAL"].r, classcolorreaction["NPCNEUTRAL"].g, classcolorreaction["NPCNEUTRAL"].b
+							elseif reaction <= 3 then
+								classcolor2.r, classcolor2.g, classcolor2.b = classcolorreaction["NPCHOSTILE"].r, classcolorreaction["NPCHOSTILE"].g, classcolorreaction["NPCHOSTILE"].b
+							end
+						else
+							classcolor2check = false
+						end
+					end
+				end
+			end
+
+			if classcolor2check and classcolor2.r then
+				auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
+			else
+				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
+		end
 	end
 end
 if E.Modern then
-	hooksecurefunc(E, 'Auras_UpdateButton', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
-	hooksecurefunc(E, 'Auras_CreateButton', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
+	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button) --container auras
+		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
+	end)
 else
-	hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
+	hooksecurefunc(A, 'CreateIcon', function(_, button)  --aura (minimap)
+		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
+	end)
+	hooksecurefunc(A, 'UpdateAura', function(_, button)  --aura (minimap)
+		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
+	end)
+	hooksecurefunc(UF, 'PostUpdateAura', function(_, _, button) --uf/np aura borders and debuff colors update
+		local container = button and button:GetParent()
+		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
+	end)
 end
 
 function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
-		local auraborder
-		if E.Modern then
-			auraborder = button.EltruismAuraBorder
-		else
-			auraborder = _G["EltruismAuraBorder"..button:GetName()]
-		end
-		if not auraborder then return end
-		if button.auraType == "debuffs" then
-			if debuffColors[button.debuffType] then
-				auraborder:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
-			else
-				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-			end
-		else
-			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-		end
-	end
-
-	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
-		button.eltruismuniversalborders:Kill()
-		button.eltruismuniversalborders = nil
-	end
+	if not button then return end
+	local container = button.GetParent and button:GetParent()
+	ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 end
 hooksecurefunc(A, 'UpdateAura', ElvUI_EltreumUI.AuraBordersColorDebuff) --debuff colors update
-
-local function HandleUFAuraBorder(button,isNamePlateElement,auraType,isUnitframe)
-	ElvUI_EltreumUI:GetButtonCasterForBorderColor(button) --fix the border color
-
-	local auraborder
-	if E.Modern then
-		local edgeSize, strata, level, sizeX, sizeY = ElvUI_EltreumUI:GetBorderDB(isUnitframe,isNamePlateElement,auraType)
-
-		if not button.EltruismAuraBorder then
-
-			button.EltruismAuraBorder = CreateFrame("Frame", nil, button, BackdropTemplateMixin and "BackdropTemplate")
-			auraborder = button.EltruismAuraBorder
-			auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
-			auraborder:SetBackdrop({
-				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-				edgeSize = edgeSize,
-			})
-			auraborder:SetSize(sizeX, sizeY)
-			if auraType == "buffs" then
-				if classcolor2check then
-					auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-				else
-					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				end
-			elseif button.GetBackdropBorderColor then
-				local r,g,b = button:GetBackdropBorderColor()
-				if r then
-					auraborder:SetBackdropBorderColor(r,g,b, 1)
-				else
-					auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-				end
-			end
-			auraborder:SetFrameStrata(strata)
-			auraborder:SetFrameLevel(level)
-		else
-			auraborder = button.EltruismAuraBorder
-		end
-
-		auraborder:SetSize(sizeX, sizeY)
-		if auraType == "buffs" then
-			if classcolor2check then
-				auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-			else
-				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		else
-			local debuffColor = DebuffColors[button.debuffType or 'None']
-			local r, g, b = debuffColor.r * 0.6, debuffColor.g * 0.6, debuffColor.b * 0.6
-			if r then
-				auraborder:SetBackdropBorderColor(r,g,b, 1)
-			else
-				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-			end
-		end
-	else
-		if not _G["EltruismAuraBorder"..button:GetName()] then
-			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
-			auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
-			if isNamePlateElement then
-				auraborder:SetBackdrop({
-					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-					edgeSize = E.db.ElvUI_EltreumUI.borders.npaurasize,
-				})
-				if button.filter:match("HELPFUL") then
-					auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npbuffsizex, E.db.ElvUI_EltreumUI.borders.npbuffsizey)
-				else
-					auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npdebuffsizex, E.db.ElvUI_EltreumUI.borders.npdebuffsizey)
-				end
-			else
-				auraborder:SetBackdrop({
-					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-					edgeSize = E.db.ElvUI_EltreumUI.borders.ufaurasize,
-				})
-				if button.filter:match("HELPFUL") then
-					auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
-				else
-					auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
-				end
-			end
-
-			if button.filter:match("HELPFUL") then
-				if classcolor2check then
-					auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-				else
-					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				end
-			elseif button.GetBackdropBorderColor then
-				local r,g,b = button:GetBackdropBorderColor()
-				if r then
-					auraborder:SetBackdropBorderColor(r,g,b, 1)
-				else
-					auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-				end
-			end
-
-			if isNamePlateElement then
-				auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auranpstrata)
-				auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.auranplevel)
-				if button.Count then --raise the count so its not covered by the border
-					button.Count:GetParent():SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auranpstrata)
-					button.Count:GetParent():SetFrameLevel(E.db.ElvUI_EltreumUI.borders.auranplevel+1)
-				end
-			else
-				auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auraufstrata)
-				auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel)
-				if button.Count then --raise the count so its not covered by the border
-					button.Count:GetParent():SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auraufstrata)
-					button.Count:GetParent():SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel+1)
-				end
-			end
-		else
-			auraborder = _G["EltruismAuraBorder"..button:GetName()]
-		end
-
-		if button.filter:match("HELPFUL") then
-			if isNamePlateElement then
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npbuffsizex, E.db.ElvUI_EltreumUI.borders.npbuffsizey)
-			else
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
-			end
-			if classcolor2check then
-				auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-			else
-				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		else
-			if isNamePlateElement then
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npdebuffsizex, E.db.ElvUI_EltreumUI.borders.npdebuffsizey)
-			else
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
-			end
-			local r,g,b = button:GetBackdropBorderColor()
-			if r then
-				auraborder:SetBackdropBorderColor(r,g,b, 1)
-			else
-				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-			end
-		end
-	end
-
-	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
-		button.eltruismuniversalborders:Kill()
-		button.eltruismuniversalborders = nil
-	end
-end
-
-function ElvUI_EltreumUI:UFAuraBorders(_,button,auraType,isUnitframe,isNamePlate)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.private.auras.enable then
-		if button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.aurabordernp then
-			HandleUFAuraBorder(button,button.isNamePlateElement)
-		elseif button.isUnitFrameElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
-			if E.db.ElvUI_EltreumUI.borders.disableRaidAuraBorder then
-				if not raidFrames[button:GetParent():GetParent().unitframeType] then
-					HandleUFAuraBorder(button,false,auraType)
-				end
-			else
-				HandleUFAuraBorder(button,false,auraType)
-			end
-		else
-			if isNamePlate and E.db.ElvUI_EltreumUI.borders.aurabordernp then
-				HandleUFAuraBorder(button,isNamePlate,auraType,false)
-			elseif isUnitframe and E.db.ElvUI_EltreumUI.borders.auraborderuf then
-				HandleUFAuraBorder(button,false,auraType,isUnitframe)
-			else
-				HandleUFAuraBorder(button,false,auraType,false)
-			end
-		end
-	end
-end
-hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf/np aura borders and debuff colors update
 
 local ttx,tty,tthpy
 function ElvUI_EltreumUI:TooltipBorder()
@@ -2424,7 +2289,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 	end
 end
 
-function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
+function ElvUI_EltreumUI:BordersTargetChanged()  --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		if not _G["EltruismTargetPowerBorder"] then return end
 
@@ -2447,7 +2312,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 
 		local powertypemonitorfocus = CreateFrame("frame")
 		powertypemonitorfocus:RegisterUnitEvent("UNIT_DISPLAYPOWER", "focus")
-		powertypemonitorfocus:RegisterUnitEvent("PLAYER_FOCUS_CHANGED")
+		powertypemonitorfocus:RegisterEvent("PLAYER_FOCUS_CHANGED")
 		powertypemonitorfocus:SetScript("OnEvent", function()
 			if not UnitExists("focus") then return end
 			local _, powertypefocus = UnitPowerType("focus")
@@ -2482,24 +2347,25 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if E.db.unitframe.units.target.buffs.enable then
 					local number = (E.db.unitframe.units.target.buffs.numrows * E.db.unitframe.units.target.buffs.perrow) or 2
 					for i = 1, number do
-						if _G["ElvUF_TargetBuffsButton"..i] then
-							ElvUI_EltreumUI:UFAuraBorders(nil,_G["ElvUF_TargetBuffsButton"..i])
+						local btn = _G["ElvUF_TargetBuffsButton"..i]
+						if btn then
+							ElvUI_EltreumUI:UpdateAuraBorder(btn:GetParent(), btn)
 						end
 					end
 				end
 				if E.db.unitframe.units.target.debuffs.enable then
 					local number = (E.db.unitframe.units.target.debuffs.numrows * E.db.unitframe.units.target.debuffs.perrow) or 2
 					for i = 1, number do
-						if _G["ElvUF_TargetDebuffsButton"..i] then
-							ElvUI_EltreumUI:UFAuraBorders(nil,_G["ElvUF_TargetDebuffsButton"..i])
+						local btn = _G["ElvUF_TargetDebuffsButton"..i]
+						if btn then
+							ElvUI_EltreumUI:UpdateAuraBorder(btn:GetParent(), btn)
 						end
 					end
 				end
-
 				if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
 					local _, targetclass = UnitClass("target")
 					local targetcolor = GetClassColor(targetclass)
-					if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
+					if E.db.ElvUI_EltreumUI.borders.targetborder and targetborder ~= nil then
 						targetborder:SetBackdropBorderColor(targetcolor.r, targetcolor.g, targetcolor.b, 1)
 					end
 					if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
@@ -2516,7 +2382,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				else
 					local reactiontarget = UnitReaction("target", "player")
 					if reactiontarget >= 5 then
-						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
+						if E.db.ElvUI_EltreumUI.borders.targetborder and targetborder ~= nil then
 							targetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r"], classcolorreaction["NPCFRIENDLY"]["g"], classcolorreaction["NPCFRIENDLY"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
@@ -2531,7 +2397,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 							end
 						end
 					elseif reactiontarget == 4 then
-						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
+						if E.db.ElvUI_EltreumUI.borders.targetborder and targetborder ~= nil then
 							targetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r"], classcolorreaction["NPCNEUTRAL"]["g"], classcolorreaction["NPCNEUTRAL"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
@@ -2546,7 +2412,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 							end
 						end
 					elseif reactiontarget == 3 then
-						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
+						if E.db.ElvUI_EltreumUI.borders.targetborder and targetborder ~= nil then
 							targetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r"], classcolorreaction["NPCUNFRIENDLY"]["g"], classcolorreaction["NPCUNFRIENDLY"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
@@ -2561,7 +2427,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 							end
 						end
 					elseif reactiontarget == 2 or reactiontarget == 1 then
-						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
+						if E.db.ElvUI_EltreumUI.borders.targetborder and targetborder ~= nil then
 							targetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r"], classcolorreaction["NPCHOSTILE"]["g"], classcolorreaction["NPCHOSTILE"]["b"], 1)
 						end
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
@@ -2581,7 +2447,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		end
 
 		if E.db.unitframe.units.targettarget.enable then
-			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable then
+			if E.db.ElvUI_EltreumUI.borders.targettargetborder then
 				if UnitExists("targettarget") and targettargetborder ~= nil then
 					if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
 						local _, targettargetclass = UnitClass("targettarget")
