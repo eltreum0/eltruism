@@ -32,11 +32,10 @@ jobs:
       - name: WoW Packager
         uses: BigWigsMods/packager@v2
         with:
-         args: release.sh -n "ElvUI_EltreumUI" #-g game-version
-
-      # specify the environment variables used by the packager, matching the secrets from the project on GitHub
-    env:
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      #WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
-      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+          args: release.sh -n "ElvUI_EltreumUI" #-g game-version
+        # specify the environment variables used by the packager, matching the secrets from the project on GitHub
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          #WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
