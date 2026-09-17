@@ -54,7 +54,7 @@ jobs:
         if: env.should_run == 'true'
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
-          sed -i "s/@project-version@/Dev-${SHORT_SHA}/" ElvUI_EltreumUI/Settings/*.toc
+          sed -i "s/@project-version@/Dev-${SHORT_SHA}/" ElvUI_EltreumUI/*.toc
 
       - name: WoW Packager
         if: env.should_run == 'true'
