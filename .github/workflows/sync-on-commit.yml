@@ -1,0 +1,75 @@
+name: Dev Build
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: dev-build-release
+  cancel-in-progress: true
+
+jobs:
+  dev-release:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v4
+        with:
+         fetch-depth: 0
+
+      - name: Check for New Commits
+        id: check-commits
+        run: |
+          CURRENT_SHA="${{ github.sha }}"
+
+          git clone https://x-access-token:${{ secrets.PAGES_PAT }}@github.com/eltreum0/eltreum0.github.io.git /tmp/pages-repo
+
+          LAST_DEPLOYED_SHA=$(git -C /tmp/pages-repo log -1 --pretty=format:"%s" | grep -oE '[a-f0-9]{7}$') || true
+
+          echo "Current SHA: $CURRENT_SHA"
+          echo "Last Deployed SHA: $LAST_DEPLOYED_SHA"
+
+          if [[ "$CURRENT_SHA" == "$LAST_DEPLOYED_SHA"* ]]; then
+            echo "Skipping build: No new changes since last deploy."
+            echo "should_run=false" >> $GITHUB_ENV
+          else
+            echo "New changes detected. Proceeding with build."
+            echo "should_run=true" >> $GITHUB_ENV
+          fi
+
+      - name: Auto Changelog
+        if: env.should_run == 'true'
+        run: sed -i '/manual-changelog:/,$d' .pkgmeta
+
+      - name: Bump version to Dev SHA
+        if: env.should_run == 'true'
+        run: |
+          SHORT_SHA="${GITHUB_SHA::7}"
+          sed -i "s/@project-version@/Dev-${SHORT_SHA}/" ElvUI_EltreumUI/Settings/*.toc
+
+      - name: WoW Packager
+        if: env.should_run == 'true'
+        uses: BigWigsMods/packager@v2
+        with:
+         args: release.sh -n "ElvUI_EltreumUI"
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to Static Page Repo
+        if: env.should_run == 'true'
+        run: |
+          ZIP_FILE=$(find .release -name "ElvUI_EltreumUI-*.zip" | head -n 1)
+
+          cp "$ZIP_FILE" /tmp/pages-repo/ElvUI_EltreumUI-Dev.zip
+
+          cd /tmp/pages-repo
+
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+          git add ElvUI_EltreumUI-Dev.zip
+          git commit -m "Auto-update Dev release to ${GITHUB_SHA::7} [skip ci]" || echo "No changes to commit"
+          git push
