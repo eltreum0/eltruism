@@ -2,6 +2,8 @@
 ## Author: Eltreum
 ## Version: @project-version@
 ## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff5D81B2l|r|cff6289B7t|r|cff6790BCr|r|cff6C98C1u|r|cff719FC6i|r|cff76A7CBs|r|cff7BAED0m|r |cff86BDDBF|r|cff8BC5E0o|r|cff90CCE5r|r|cff95D4EAe|r|cff9ADBEFv|r|cff9FE3F4e|r|cffA4EAF9r|r
+## IconTexture: Interface\AddOns\ElvUI_EltreumUI\Media\Textures\tinylogodev
+## AddonCompartmentFunc: ElvUI_EltreumUI_OnAddonCompartmentClick
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI
