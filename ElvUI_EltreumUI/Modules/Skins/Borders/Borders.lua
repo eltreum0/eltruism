@@ -2036,7 +2036,7 @@ function ElvUI_EltreumUI:AuraBorders(button,button2)
 		HandleGeneralAuras(button)
 	end
 end
-if E.Retail then
+if E.Modern then
 	hooksecurefunc(E, 'Auras_UpdateButton', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
 	hooksecurefunc(E, 'Auras_CreateButton', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
 else
