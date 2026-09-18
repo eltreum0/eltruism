@@ -326,7 +326,14 @@ DT:RegisterDatatext('Eltruism Stats 1', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RAT
 
 --mastery/vers or power/hit
 local function EltruismStatsDatatext2(dt)
-	if E.Retail then
+	if E.Forever then
+		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
+		local totalmelee = meleebasepower+meleebuff+meleenerf
+		local tmeleepower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..totalmelee.."|r"
+		local tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHitModifier()).."|r" --GetCombatRatingBonus(CR_HIT_MELEE)
+
+		dt.text:SetFormattedText('%s %s|r',tmeleepower,tmeleehit)
+	elseif E.Retail then
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetMasteryEffect(),true) then return end
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCombatRatingBonus(29),true) then return end
 
