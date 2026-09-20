@@ -80,6 +80,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:GroupBorderColorUpdate()
 	end)
 	ElvUI_EltreumUI:SkinVehicleButton() -- re-skin vehicle button like elvui did
+	ElvUI_EltreumUI:CacheGradients()
 	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules

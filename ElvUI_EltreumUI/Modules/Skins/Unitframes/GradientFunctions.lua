@@ -137,14 +137,20 @@ local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targ
 end
 
 --save the colors instead of recreating them
-local function CacheGradients()
-	local transparentHealth = E.db.unitframe.colors.transparentHealth or E.db.ElvUI_EltreumUI.unitframes.lightmode
-	local healthAlpha = transparentHealth and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha or 1) or 1
-	local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
+function ElvUI_EltreumUI:CacheGradients()
+	local db = E.db and E.db.ElvUI_EltreumUI
+	local uf = db and db.unitframes
+	local customTexture = uf and uf.ufcustomtexture
+	local gm = uf and uf.gradientmode
+	local colors = E.db and E.db.unitframe and E.db.unitframe.colors
+
+	local transparentHealth = (colors and colors.transparentHealth) or (uf and uf.lightmode)
+	local healthAlpha = transparentHealth and (customTexture and customTexture.healthalpha or 1) or 1
+	local backdropAlpha = (customTexture and customTexture.backdropalpha) or 1
 	if backdropAlpha == 1 and healthAlpha < 1 then
 		backdropAlpha = healthAlpha
 	end
-	local bgOffset = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade or 0
+	local bgOffset = (gm and gm.bgfade) or 0
 
 	wipe(defaultHealthGradients.normal)
 	wipe(defaultHealthGradients.invert)
@@ -166,7 +172,6 @@ local function CacheGradients()
 	PopulateGradients(unitframecustomgradients, customHealthGradients, customBackdropGradients, customPowerGradients, healthAlpha, backdropAlpha, bgOffset)
 
 	--castbar
-	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
 	if gm then
 		cachedCastbars.noninterruptible_custom = {
 			CreateColor(clamp(gm.targetcastbarR2noninterruptiblecustom or 1), clamp(gm.targetcastbarG2noninterruptiblecustom or 0), clamp(gm.targetcastbarB2noninterruptiblecustom or 0), 1),
@@ -191,73 +196,78 @@ local function CacheGradients()
 	end
 end
 
-CacheGradients()
-
 local unitframeclasscustom = unitframeclass
 function ElvUI_EltreumUI:GradientColorTableUpdate()
+	local db = E.db and E.db.ElvUI_EltreumUI
+	local uf = db and db.unitframes
+	if not uf then return end
+	local customTex = uf.ufcustomtexture
+	local gm = uf.gradientmode
+	if not customTex or not gm then return end
+
 	unitframeclasscustom = {
-		["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture)),
-		["PALADIN"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture)),
-		["HUNTER"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture)),
-		["ROGUE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture)),
-		["PRIEST"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture)),
-		["DEATHKNIGHT"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture)),
-		["SHAMAN"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture)),
-		["MAGE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture)),
-		["WARLOCK"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture)),
-		["MONK"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture)),
-		["DRUID"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture)),
-		["DEMONHUNTER"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture)),
-		["EVOKER"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture)),
-		["NPCFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly)),
-		["NPCNEUTRAL"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral)),
-		["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly)),
-		["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile)),
-		["TAPPED"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture)),
-		["RAID"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture)),
-		["PARTY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture)),
+		["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", customTex.warriortexture)),
+		["PALADIN"] = tostring(E.LSM:Fetch("statusbar", customTex.paladintexture)),
+		["HUNTER"] = tostring(E.LSM:Fetch("statusbar", customTex.huntertexture)),
+		["ROGUE"] = tostring(E.LSM:Fetch("statusbar", customTex.roguetexture)),
+		["PRIEST"] = tostring(E.LSM:Fetch("statusbar", customTex.priesttexture)),
+		["DEATHKNIGHT"] = tostring(E.LSM:Fetch("statusbar", customTex.deathknighttexture)),
+		["SHAMAN"] = tostring(E.LSM:Fetch("statusbar", customTex.shamantexture)),
+		["MAGE"] = tostring(E.LSM:Fetch("statusbar", customTex.magetexture)),
+		["WARLOCK"] = tostring(E.LSM:Fetch("statusbar", customTex.warlocktexture)),
+		["MONK"] = tostring(E.LSM:Fetch("statusbar", customTex.monktexture)),
+		["DRUID"] = tostring(E.LSM:Fetch("statusbar", customTex.druidtexture)),
+		["DEMONHUNTER"] = tostring(E.LSM:Fetch("statusbar", customTex.demonhuntertexture)),
+		["EVOKER"] = tostring(E.LSM:Fetch("statusbar", customTex.evokertexture)),
+		["NPCFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", customTex.npcfriendly)),
+		["NPCNEUTRAL"] = tostring(E.LSM:Fetch("statusbar", customTex.npcneutral)),
+		["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", customTex.npcunfriendly)),
+		["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", customTex.npchostile)),
+		["TAPPED"] = tostring(E.LSM:Fetch("statusbar", customTex.tappedtexture)),
+		["RAID"] = tostring(E.LSM:Fetch("statusbar", customTex.raidtexture)),
+		["PARTY"] = tostring(E.LSM:Fetch("statusbar", customTex.partytexture)),
 	}
 	unitframecustomgradients = {
-		["WARRIOR"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warriorcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warriorcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warriorcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warriorcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warriorcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warriorcustomcolorB2},
-		["PALADIN"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.paladincustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.paladincustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.paladincustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.paladincustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.paladincustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.paladincustomcolorB2},
-		["HUNTER"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.huntercustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.huntercustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.huntercustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.huntercustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.huntercustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.huntercustomcolorB2},
-		["ROGUE"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.roguecustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.roguecustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.roguecustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.roguecustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.roguecustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.roguecustomcolorB2},
-		["PRIEST"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorB2},
-		["DEATHKNIGHT"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.deathknightcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.deathknightcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.deathknightcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.deathknightcustomcolorR2, g2= E.db.ElvUI_EltreumUI.unitframes.gradientmode.deathknightcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.deathknightcustomcolorB2},
-		["SHAMAN"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.shamancustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.shamancustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.shamancustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.shamancustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.shamancustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.shamancustomcolorB2},
-		["MAGE"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.magecustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.magecustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.magecustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.magecustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.magecustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.magecustomcolorB2},
-		["WARLOCK"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warlockcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warlockcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warlockcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warlockcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warlockcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.warlockcustomcolorB2},
-		["MONK"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.monkcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.monkcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.monkcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.monkcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.monkcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.monkcustomcolorB2},
-		["DRUID"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.druidcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.druidcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.druidcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.druidcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.druidcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.druidcustomcolorB2},
-		["DEMONHUNTER"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.demonhuntercustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.demonhuntercustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.demonhuntercustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.demonhuntercustomcolorR2, g2= E.db.ElvUI_EltreumUI.unitframes.gradientmode.demonhuntercustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.demonhuntercustomcolorB2},
-		["EVOKER"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR2, g2= E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB2},
-		["NPCFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcfriendlyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcfriendlyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcfriendlyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcfriendlyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcfriendlyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcfriendlyB2},
-		["NPCNEUTRAL"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcneutralR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcneutralG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcneutralB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcneutralR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcneutralG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcneutralB2},
-		["NPCUNFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcunfriendlyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcunfriendlyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcunfriendlyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcunfriendlyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcunfriendlyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcunfriendlyB2},
-		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.npchostileB2},
-		["TAPPED"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.tappedR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.tappedG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.tappedB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.tappedR2, g2= E.db.ElvUI_EltreumUI.unitframes.gradientmode.tappedG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.tappedB2},
-		["GOODTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB2},
-		["BADTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB2},
-		["GOODTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB2},
-		["BADTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB2},
-		["OFFTANK"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB2},
-		["OFFTANKBADTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB2},
-		["OFFTANKGOODTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB2},
-		["MANA"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.manaR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.manaG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.manaB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.manaR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.manaG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.manaB2}, --MANA
-		["RAGE"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.rageR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.rageG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.rageB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.rageR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.rageG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.rageB2}, --RAGE
-		["FOCUS"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusB2}, --FOCUS
-		["ENERGY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB2}, --ENERGY
-		["RUNIC_POWER"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2}, --RUNIC POWER
-		["LUNAR_POWER"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB2}, --LUNAR POWER
-		["ALT_POWER"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB2}, --ALTERNATE POWER
-		["MAELSTROM"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB2}, --MAELSTROM
-		["INSANITY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2}, --INSANITY
-		["FURY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2}, --FURY
-		["PAIN"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2}, --PAIN
+		["WARRIOR"] = {r1 = gm.warriorcustomcolorR1, g1 = gm.warriorcustomcolorG1, b1 = gm.warriorcustomcolorB1, r2 = gm.warriorcustomcolorR2, g2 = gm.warriorcustomcolorG2, b2 = gm.warriorcustomcolorB2},
+		["PALADIN"] = {r1 = gm.paladincustomcolorR1, g1 = gm.paladincustomcolorG1, b1 = gm.paladincustomcolorB1, r2 = gm.paladincustomcolorR2, g2 = gm.paladincustomcolorG2, b2 = gm.paladincustomcolorB2},
+		["HUNTER"] = {r1 = gm.huntercustomcolorR1, g1 = gm.huntercustomcolorG1, b1 = gm.huntercustomcolorB1, r2 = gm.huntercustomcolorR2, g2 = gm.huntercustomcolorG2, b2 = gm.huntercustomcolorB2},
+		["ROGUE"] = {r1 = gm.roguecustomcolorR1, g1 = gm.roguecustomcolorG1, b1 = gm.roguecustomcolorB1, r2 = gm.roguecustomcolorR2, g2 = gm.roguecustomcolorG2, b2 = gm.roguecustomcolorB2},
+		["PRIEST"] = {r1 = gm.priestcustomcolorR1, g1 = gm.priestcustomcolorG1, b1 = gm.priestcustomcolorB1, r2 = gm.priestcustomcolorR2, g2 = gm.priestcustomcolorG2, b2 = gm.priestcustomcolorB2},
+		["DEATHKNIGHT"] = {r1 = gm.deathknightcustomcolorR1, g1 = gm.deathknightcustomcolorG1, b1 = gm.deathknightcustomcolorB1, r2 = gm.deathknightcustomcolorR2, g2= gm.deathknightcustomcolorG2, b2 = gm.deathknightcustomcolorB2},
+		["SHAMAN"] = {r1 = gm.shamancustomcolorR1, g1 = gm.shamancustomcolorG1, b1 = gm.shamancustomcolorB1, r2 = gm.shamancustomcolorR2, g2 = gm.shamancustomcolorG2, b2 = gm.shamancustomcolorB2},
+		["MAGE"] = {r1 = gm.magecustomcolorR1, g1 = gm.magecustomcolorG1, b1 = gm.magecustomcolorB1, r2 = gm.magecustomcolorR2, g2 = gm.magecustomcolorG2, b2 = gm.magecustomcolorB2},
+		["WARLOCK"] = {r1 = gm.warlockcustomcolorR1, g1 = gm.warlockcustomcolorG1, b1 = gm.warlockcustomcolorB1, r2 = gm.warlockcustomcolorR2, g2 = gm.warlockcustomcolorG2, b2 = gm.warlockcustomcolorB2},
+		["MONK"] = {r1 = gm.monkcustomcolorR1, g1 = gm.monkcustomcolorG1, b1 = gm.monkcustomcolorB1, r2 = gm.monkcustomcolorR2, g2 = gm.monkcustomcolorG2, b2 = gm.monkcustomcolorB2},
+		["DRUID"] = {r1 = gm.druidcustomcolorR1, g1 = gm.druidcustomcolorG1, b1 = gm.druidcustomcolorB1, r2 = gm.druidcustomcolorR2, g2 = gm.druidcustomcolorG2, b2 = gm.druidcustomcolorB2},
+		["DEMONHUNTER"] = {r1 = gm.demonhuntercustomcolorR1, g1 = gm.demonhuntercustomcolorG1, b1 = gm.demonhuntercustomcolorB1, r2 = gm.demonhuntercustomcolorR2, g2= gm.demonhuntercustomcolorG2, b2 = gm.demonhuntercustomcolorB2},
+		["EVOKER"] = {r1 = gm.evokercustomcolorR1, g1 = gm.evokercustomcolorG1, b1 = gm.evokercustomcolorB1, r2 = gm.evokercustomcolorR2, g2= gm.evokercustomcolorG2, b2 = gm.evokercustomcolorB2},
+		["NPCFRIENDLY"] = {r1 = gm.npcfriendlyR1, g1 = gm.npcfriendlyG1, b1 = gm.npcfriendlyB1, r2 = gm.npcfriendlyR2, g2 = gm.npcfriendlyG2, b2 = gm.npcfriendlyB2},
+		["NPCNEUTRAL"] = {r1 = gm.npcneutralR1, g1 = gm.npcneutralG1, b1 = gm.npcneutralB1, r2 = gm.npcneutralR2, g2 = gm.npcneutralG2, b2 = gm.npcneutralB2},
+		["NPCUNFRIENDLY"] = {r1 = gm.npcunfriendlyR1, g1 = gm.npcunfriendlyG1, b1 = gm.npcunfriendlyB1, r2 = gm.npcunfriendlyR2, g2 = gm.npcunfriendlyG2, b2 = gm.npcunfriendlyB2},
+		["NPCHOSTILE"] = {r1 = gm.npchostileR1, g1 = gm.npchostileG1, b1 = gm.npchostileB1, r2 = gm.npchostileR2, g2 = gm.npchostileG2, b2 = gm.npchostileB2},
+		["TAPPED"] = {r1 = gm.tappedR1, g1 = gm.tappedG1, b1 = gm.tappedB1, r2 = gm.tappedR2, g2= gm.tappedG2, b2 = gm.tappedB2},
+		["GOODTHREAT"] = {r1 = gm.goodthreatR1, g1 = gm.goodthreatG1, b1 = gm.goodthreatB1, r2 = gm.goodthreatR2, g2 = gm.goodthreatG2, b2 = gm.goodthreatB2},
+		["BADTHREAT"] = {r1 = gm.badthreatR1, g1 = gm.badthreatG1, b1 = gm.badthreatB1, r2 = gm.badthreatR2, g2 = gm.badthreatG2, b2 = gm.badthreatB2},
+		["GOODTHREATTRANSITION"] = {r1 = gm.goodthreattransitionR1, g1 = gm.goodthreattransitionG1, b1 = gm.goodthreattransitionB1, r2 = gm.goodthreattransitionR2, g2 = gm.goodthreattransitionG2, b2 = gm.goodthreattransitionB2},
+		["BADTHREATTRANSITION"] = {r1 = gm.badthreattransitionR1, g1 = gm.badthreattransitionG1, b1 = gm.badthreattransitionB1, r2 = gm.badthreattransitionR2, g2 = gm.badthreattransitionG2, b2 = gm.badthreattransitionB2},
+		["OFFTANK"] = {r1 = gm.offtankR1, g1 = gm.offtankG1, b1 = gm.offtankB1, r2 = gm.offtankR2, g2 = gm.offtankG2, b2 = gm.offtankB2},
+		["OFFTANKBADTHREATTRANSITION"] = {r1 = gm.badthreattransitionofftankR1, g1 = gm.badthreattransitionofftankG1, b1 = gm.badthreattransitionofftankB1, r2 = gm.badthreattransitionofftankR2, g2 = gm.badthreattransitionofftankG2, b2 = gm.badthreattransitionofftankB2},
+		["OFFTANKGOODTHREATTRANSITION"] = {r1 = gm.goodthreattransitionofftankR1, g1 = gm.goodthreattransitionofftankG1, b1 = gm.goodthreattransitionofftankB1, r2 = gm.goodthreattransitionofftankR2, g2 = gm.goodthreattransitionofftankG2, b2 = gm.goodthreattransitionofftankB2},
+		["MANA"] = {r1 = gm.manaR1, g1 = gm.manaG1, b1 = gm.manaB1, r2 = gm.manaR2, g2 = gm.manaG2, b2 = gm.manaB2}, --MANA
+		["RAGE"] = {r1 = gm.rageR1, g1 = gm.rageG1, b1 = gm.rageB1, r2 = gm.rageR2, g2 = gm.rageG2, b2 = gm.rageB2}, --RAGE
+		["FOCUS"] = {r1 = gm.focusR1, g1 = gm.focusG1, b1 = gm.focusB1, r2 = gm.focusR2, g2 = gm.focusG2, b2 = gm.focusB2}, --FOCUS
+		["ENERGY"] = {r1 = gm.energyR1, g1 = gm.energyG1, b1 = gm.energyB1, r2 = gm.energyR2, g2 = gm.energyG2, b2 = gm.energyB2}, --ENERGY
+		["RUNIC_POWER"] = {r1 = gm.runicpowerR1, g1 = gm.runicpowerG1, b1 = gm.runicpowerB1, r2 = gm.runicpowerR2, g2 = gm.runicpowerG2, b2 = gm.runicpowerB2}, --RUNIC POWER
+		["LUNAR_POWER"] = {r1 = gm.lunarpowerR1, g1 = gm.lunarpowerG1, b1 = gm.lunarpowerB1, r2 = gm.lunarpowerR2, g2 = gm.lunarpowerG2, b2 = gm.lunarpowerB2}, --LUNAR POWER
+		["ALT_POWER"] = {r1 = gm.altpowerR1, g1 = gm.altpowerG1, b1 = gm.altpowerB1, r2 = gm.altpowerR2, g2 = gm.altpowerG2, b2 = gm.altpowerB2}, --ALTERNATE POWER
+		["MAELSTROM"] = {r1 = gm.maelstromR1, g1 = gm.maelstromG1, b1 = gm.maelstromB1, r2 = gm.maelstromR2, g2 = gm.maelstromG2, b2 = gm.maelstromB2}, --MAELSTROM
+		["INSANITY"] = {r1 = gm.insanityR1, g1 = gm.insanityG1, b1 = gm.insanityB1, r2 = gm.insanityR2, g2 = gm.insanityG2, b2 = gm.insanityB2}, --INSANITY
+		["FURY"] = {r1 = gm.furyR1, g1 = gm.furyG1, b1 = gm.furyB1, r2 = gm.furyR2, g2 = gm.furyG2, b2 = gm.furyB2}, --FURY
+		["PAIN"] = {r1 = gm.painR1, g1 = gm.painG1, b1 = gm.painB1, r2 = gm.painR2, g2 = gm.painG2, b2 = gm.painB2}, --PAIN
 		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1}, --addon gradient
-		["BACKDROP"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropB2}, --backdrop gradient
+		["BACKDROP"] = {r1 = gm.backdropR1, g1 = gm.backdropG1, b1 = gm.backdropB1, r2 = gm.backdropR2, g2 = gm.backdropG2, b2 = gm.backdropB2}, --backdrop gradient
 	}
-	if E.db.ElvUI_EltreumUI.unitframes.uftextureversion == "V2" then
+	if uf.uftextureversion == "V2" then
 		unitframeclass = {
 			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv2.tga",
 			["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",
@@ -278,7 +288,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
 			["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tappedv2.tga",
 		}
-	elseif E.db.ElvUI_EltreumUI.unitframes.uftextureversion == "V3" then
+	elseif uf.uftextureversion == "V3" then
 		unitframeclass = {
 			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv3.tga",
 			["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv3.tga",
@@ -367,12 +377,12 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	wipe(gradientColorCache)
 	wipe(gradientCustomColorCache)
 
-	CacheGradients()
+	ElvUI_EltreumUI:CacheGradients()
 	ElvUI_EltreumUI:IncrementHealthBackdropEpoch()
 
-	if E.db.unitframe.colors then
+	if E.db and E.db.unitframe and E.db.unitframe.colors then
 		local dead = E.db.unitframe.colors.health_backdrop_dead
-		local alpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
+		local alpha = customTex.backdropalpha or 1
 		if dead then
 			deadColorMin = CreateColor(clamp(dead.r - 0.3), clamp(dead.g - 0.3), clamp(dead.b - 0.3), alpha)
 			deadColorMax = CreateColor(dead.r, dead.g, dead.b, alpha)
@@ -394,17 +404,25 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	--to make the previews update
 	ElvUI_EltreumUI:CustomTexture("testunit")
 	ElvUI_EltreumUI:GradientUF("testunit")
-	if not E.private.unitframe.disabledBlizzardFrames.raid then
-		ElvUI_EltreumUI:BlizzardTexturesGradient()
+	if not (E.private and E.private.unitframe and E.private.unitframe.disabledBlizzardFrames and E.private.unitframe.disabledBlizzardFrames.raid) then
+		if ElvUI_EltreumUI.BlizzardTexturesGradient then
+			ElvUI_EltreumUI:BlizzardTexturesGradient()
+		end
 	end
-	if E.db.ElvUI_EltreumUI.skins.cell then
-		ElvUI_EltreumUI:EltruismCell()
+	if db.skins and db.skins.cell then
+		if ElvUI_EltreumUI.EltruismCell then
+			ElvUI_EltreumUI:EltruismCell()
+		end
 	end
-	if _G["EltruismPlayerRestLoopRestTexture"] and E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
-		if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
-			_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+	if _G["EltruismPlayerRestLoopRestTexture"] and uf.blizzardresticongradient then
+		if (gm.customcolor or gm.npcustomcolor) then
+			if ElvUI_EltreumUI.GradientColorsCustom then
+				_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+			end
 		else
-			_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+			if ElvUI_EltreumUI.GradientColors then
+				_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+			end
 		end
 	end
 end
@@ -415,36 +433,36 @@ colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
 colorupdateframe:RegisterEvent("FIRST_FRAME_RENDERED")
 colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 colorupdateframe:SetScript("OnEvent", function()
-	colorupdateframe:UnregisterAllEvents()
-	ElvUI_EltreumUI:GradientColorTableUpdate()
+	if E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.unitframes then
+		colorupdateframe:UnregisterAllEvents()
+		ElvUI_EltreumUI:GradientColorTableUpdate()
+	end
 end)
 
 --get the texture
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)
-	if E:NotSecretValue(unitclass) then
-		if unitclass then
-			return unitframeclass[unitclass]
-		end
+	if E:NotSecretValue(unitclass) and unitclass and unitframeclass and unitframeclass[unitclass] then
+		return unitframeclass[unitclass]
 	else
-		return E.db.unitframe.statusbar
+		return "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Elvui-Norm.tga"
 	end
 end
 
 --get the custom texture
 function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
-	if E:NotSecretValue(unitclass) then
-		if unitclass then
-			return unitframeclasscustom[unitclass]
-		end
+	if E:NotSecretValue(unitclass) and unitclass and unitframeclasscustom and unitframeclasscustom[unitclass] then
+		return unitframeclasscustom[unitclass]
 	else
-		return E.db.unitframe.statusbar
+		return "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Elvui-Norm.tga"
 	end
 end
 
 --return the background offset
 local function bgfade(isBG)
 	if isBG then
-		return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade or 0
+		local db = E.db and E.db.ElvUI_EltreumUI
+		local gm = db and db.unitframes and db.unitframes.gradientmode
+		return gm and gm.bgfade or 0
 	else
 		return 0
 	end
@@ -453,10 +471,12 @@ end
 --return the backdrop alpha
 local function bgalpha(alpha, isHealth)
 	if alpha then
+		local db = E.db and E.db.ElvUI_EltreumUI
+		local uf = db and db.unitframes and db.unitframes.ufcustomtexture
 		if isHealth then
-			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha or 1
+			return uf and uf.healthalpha or 1
 		else
-			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
+			return uf and uf.backdropalpha or 1
 		end
 	else
 		return 1
@@ -653,8 +673,9 @@ function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit,isCustom)
 		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass,3)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
-		--local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor or isCustom then
+		local db = E.db and E.db.ElvUI_EltreumUI
+		local gm = db and db.unitframes and db.unitframes.gradientmode
+		if (gm and (gm.customcolor or gm.npcustomcolor)) or isCustom then
 			local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
 			if not isTarget then
 				return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
