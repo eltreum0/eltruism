@@ -93,48 +93,42 @@ local unitframeclass = {
 	["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tapped.tga",
 }
 
+--fill the tabble with the values
 local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targetPower, healthAlpha, backdropAlpha, bgOffset)
 	for k, color in pairs(sourceTable) do
 		local r1, g1, b1 = color.r1 or 1, color.g1 or 1, color.b1 or 1
 		local r2, g2, b2 = color.r2 or 1, color.g2 or 1, color.b2 or 1
 
-		-- Health normal
 		targetHealth.normal[k] = {
 			CreateColor(clamp(r1), clamp(g1), clamp(b1), healthAlpha),
 			CreateColor(clamp(r2), clamp(g2), clamp(b2), healthAlpha)
 		}
 
-		-- Health invert
 		targetHealth.invert[k] = {
 			CreateColor(clamp(r2), clamp(g2), clamp(b2), healthAlpha),
 			CreateColor(clamp(r1), clamp(g1), clamp(b1), healthAlpha)
 		}
 
-		-- Backdrop normal
 		targetBackdrop.normal[k] = {
 			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), backdropAlpha),
 			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), backdropAlpha)
 		}
 
-		-- Backdrop invert
 		targetBackdrop.invert[k] = {
 			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), backdropAlpha),
 			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), backdropAlpha)
 		}
 
-		-- Power normal
 		targetPower.normal[k] = {
 			CreateColor(clamp(r1), clamp(g1), clamp(b1), 1),
 			CreateColor(clamp(r2), clamp(g2), clamp(b2), 1)
 		}
 
-		-- Power invert
 		targetPower.invert[k] = {
 			CreateColor(clamp(r2), clamp(g2), clamp(b2), 1),
 			CreateColor(clamp(r1), clamp(g1), clamp(b1), 1)
 		}
 
-		-- Power backdrop
 		targetPower.backdrop[k] = {
 			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), 1),
 			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), 1)
@@ -142,10 +136,14 @@ local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targ
 	end
 end
 
+--save the colors instead of recreating them
 local function CacheGradients()
-	local transparentHealth = E.db.unitframe.colors.transparentHealth
+	local transparentHealth = E.db.unitframe.colors.transparentHealth or E.db.ElvUI_EltreumUI.unitframes.lightmode
 	local healthAlpha = transparentHealth and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha or 1) or 1
 	local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
+	if backdropAlpha == 1 and healthAlpha < 1 then
+		backdropAlpha = healthAlpha
+	end
 	local bgOffset = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade or 0
 
 	wipe(defaultHealthGradients.normal)
@@ -167,7 +165,7 @@ local function CacheGradients()
 	PopulateGradients(unitframegradients, defaultHealthGradients, defaultBackdropGradients, defaultPowerGradients, healthAlpha, backdropAlpha, bgOffset)
 	PopulateGradients(unitframecustomgradients, customHealthGradients, customBackdropGradients, customPowerGradients, healthAlpha, backdropAlpha, bgOffset)
 
-	-- Cache castbar gradients
+	--castbar
 	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
 	if gm then
 		cachedCastbars.noninterruptible_custom = {
@@ -466,6 +464,9 @@ local function bgalpha(alpha, isHealth)
 end
 
 function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
+	if not key or not E:NotSecretValue(key) then
+		key = "ELTRUISM"
+	end
 	local tbl = isCustom and customHealthGradients or defaultHealthGradients
 	local bucket = invert and tbl.invert or tbl.normal
 	local entry = bucket[key] or bucket["ELTRUISM"]
@@ -480,6 +481,9 @@ function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
 end
 
 function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom)
+	if not key or not E:NotSecretValue(key) then
+		key = "ELTRUISM"
+	end
 	local tbl = isCustom and customBackdropGradients or defaultBackdropGradients
 	local bucket = invert and tbl.invert or tbl.normal
 	local entry = bucket[key] or bucket["ELTRUISM"]
@@ -494,6 +498,9 @@ function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom)
 end
 
 function ElvUI_EltreumUI:GetPowerGradient(powertype, invert, isBG, isCustom)
+	if not powertype or not E:NotSecretValue(powertype) then
+		powertype = "ELTRUISM"
+	end
 	local tbl = isCustom and customPowerGradients or defaultPowerGradients
 	local bucket
 	if isBG then
