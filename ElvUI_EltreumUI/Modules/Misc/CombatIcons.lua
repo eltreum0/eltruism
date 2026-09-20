@@ -58,6 +58,7 @@ local ranged = {
 }
 
 --change target combat icon based on its class
+local UF = E:GetModule('UnitFrames')
 function ElvUI_EltreumUI:TargetCombatIconClass()
 	if not UnitExists("target") then return end
 	if E.db.ElvUI_EltreumUI.unitframes.classcombaticons then
@@ -65,7 +66,10 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 			if _G["ElvUF_Target"] and _G["ElvUF_Target"].CombatIndicator then
 				if UnitExists("target") then
 					local _, targetclass = UnitClass("target")
-					if not E:NotSecretValue(targetclass) then return end --unitclass can be secret so return before doing anything if it is
+					if not E:NotSecretValue(targetclass) then --unitclass can be secret so use elvui's setting
+						UF:Configure_CombatIndicator(_G["ElvUF_Target"])
+						return
+					end
 					if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
 						local texturetarget = targeticons[targetclass]
 						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[texturetarget])
