@@ -2001,7 +2001,6 @@ local raidFrames ={
 function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	if not button or not container then return end
 
-
 	local ufType = container.unitframeType or (container.parent and container.parent.unitframeType)
 	if not ufType and container.GetParent then
 		local parentFrame = container:GetParent()
