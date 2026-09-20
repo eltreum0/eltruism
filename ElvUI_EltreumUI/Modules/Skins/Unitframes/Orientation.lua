@@ -54,13 +54,14 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 
 		if isTransparent then
 			if isAuraBar then
-				statusBar:SetStatusBarTexture(E.LSM:Fetch('statusbar', UF.db.statusbar))
-				UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch('statusbar', UF.db.statusbar))
+				local texture = E.LSM:Fetch('statusbar', UF.db.statusbar)
+				statusBar:SetStatusBarTexture(texture)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
 				--statusBar:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			else
 				statusBar:SetStatusBarTexture(0, 0, 0, 0)
-				if E.db.ElvUI_EltreumUI.unitframes.darkmode and isHealthBar then
-					local targetTex
+				local targetTex
+				if isHealthBar then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 						targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and E.db.unitframe.statusbar or E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
 					elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -68,13 +69,13 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 					else
 						targetTex = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture
 					end
-					local fetchedTex = E.LSM:Fetch("statusbar", targetTex)
-					UF:Update_StatusBar(statusBar.bg or statusBar.BG or backdropTex, fetchedTex)
-					if backdropTex and backdropTex.SetTexture then
-						backdropTex:SetTexture(fetchedTex)
-					end
 				else
-					UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+					targetTex = UF.db.statusbar
+				end
+				local fetchedTex = E.LSM:Fetch("statusbar", targetTex or UF.db.statusbar or E.db.unitframe.statusbar)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG or backdropTex, fetchedTex)
+				if backdropTex and backdropTex.SetTexture then
+					backdropTex:SetTexture(fetchedTex)
 				end
 			end
 
