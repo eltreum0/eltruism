@@ -5,6 +5,7 @@ local CreateFrame = _G.CreateFrame
 local GetTime = _G.GetTime
 local GetCursorPosition = _G.GetCursorPosition
 local math = _G.math
+local mathfloor = math.floor
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local GetActionInfo = _G.GetActionInfo
 local GetPetActionInfo = _G.GetPetActionInfo
@@ -219,7 +220,7 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 								EltruismCooldownText:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
 								EltruismCooldownText:SetTextColor(1, 1, 1)
 							elseif cd > 1 and cd < 60 then
-								EltruismCooldownText:SetFormattedText("%01.f", math.floor(cd))
+								EltruismCooldownText:SetFormattedText("%01.f", mathfloor(cd))
 								EltruismCooldownText:SetTextColor(1, 1, 1)
 							elseif cd > 0 and cd < 1 then
 								EltruismCooldownText:SetFormattedText("%.1f", cd)

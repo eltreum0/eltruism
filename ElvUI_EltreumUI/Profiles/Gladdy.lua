@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local table = _G.table
+local tinsert = table.insert
 
 -- Gladdy profile setup
 function ElvUI_EltreumUI:GetGladdyProfile()
@@ -9,8 +10,8 @@ function ElvUI_EltreumUI:GetGladdyProfile()
 		local GladdyXZ = _G.GladdyXZ
 		if GladdyXZ.profiles.Eltreum then
 			--local key = {[E.mynameRealm] = "Eltreum"}
-			--table.insert(GladdyXZ.profileKeys, key)
-			table.insert(GladdyXZ.profileKeys, E.mynameRealm)
+			--tinsert(GladdyXZ.profileKeys, key)
+			tinsert(GladdyXZ.profileKeys, E.mynameRealm)
 			GladdyXZ["profileKeys"][E.mynameRealm] = "Eltreum"
 		else
 			GladdyXZ["profiles"]["Eltreum"] = {}

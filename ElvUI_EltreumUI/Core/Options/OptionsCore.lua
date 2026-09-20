@@ -6,6 +6,8 @@ local tconcat = _G.table.concat
 local sort = _G.sort
 local pairs = _G.pairs
 local format = _G.format
+local stringupper = _G.string.upper
+local mathfloor = _G.math.floor
 
 --Author list
 local AUTHORS = {
@@ -108,8 +110,8 @@ local TRANSLATORS = {
 
 -- SortList
 local function SortList(a, b)
-	local aUpper = a:gsub("^%l", string.upper)
-	local bUpper = b:gsub("^%l", string.upper)
+	local aUpper = a:gsub("^%l", stringupper)
+	local bUpper = b:gsub("^%l", stringupper)
 	if E:StripString(aUpper) < E:StripString(bUpper) then
 		return true
 	else
@@ -130,7 +132,7 @@ local THANKYOU_STRING = tconcat(THANKYOU, '|n')
 
 -- Donators table
 local donator1,donator2 = {},{}
-local donatordivisor = math.floor(#DONATORS/2)
+local donatordivisor = mathfloor(#DONATORS/2)
 for i, name in pairs(DONATORS) do
 	local namecolor = "|cffB50909"..name.."|r"
 	if i <= donatordivisor then

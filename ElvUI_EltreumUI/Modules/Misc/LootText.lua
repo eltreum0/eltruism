@@ -17,6 +17,7 @@ local CombatText = _G.CombatText
 local WorldFrame = _G.WorldFrame
 local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
 local tinsert = _G.tinsert
+local stringupper = _G.string.upper
 local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
 local LOOT_ITEM_SELF = _G.LOOT_ITEM_SELF
 local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
@@ -110,14 +111,14 @@ function ElvUI_EltreumUI:LootText()
 				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
 					EltruismCombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.b, nil, true)
 				else
-					EltruismCombatText:AddMessage("|cffFF0000+"..string.upper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
+					EltruismCombatText:AddMessage("|cffFF0000+"..stringupper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
 				end
 			end
 			if event == "PLAYER_REGEN_ENABLED" then
 				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
 					EltruismCombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.b, nil, true)
 				else
-					EltruismCombatText:AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
+					EltruismCombatText:AddMessage("|cffFFFFFF-"..stringupper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
 				end
 			end
 		end

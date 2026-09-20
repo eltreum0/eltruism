@@ -21,6 +21,7 @@ local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.Ge
 local string = _G.string
 local stringlen = string.len
 local stringupper = string.upper
+local tonumber = _G.tonumber
 
 --from elvui, modified for gradient
 do

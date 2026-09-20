@@ -3,6 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local tonumber = _G.tonumber
 local string = _G.string
+local stringmatch = string.match
 local C_GossipInfo = _G.C_GossipInfo
 local IsShiftKeyDown = _G.IsShiftKeyDown
 local IsControlKeyDown = _G.IsControlKeyDown
@@ -212,7 +213,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						isSafe = false
 					end
 					if isSafe then
-						NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+						NPC_ID = tonumber(stringmatch(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 					end
 					if isSafe and ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then

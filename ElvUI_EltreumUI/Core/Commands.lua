@@ -23,6 +23,7 @@ local wipe = _G.wipe
 local pairs = _G.pairs
 local Screenshot = _G.Screenshot
 local string = _G.string
+local stringmatch = string.match
 local tonumber =_G.tonumber
 local InCombatLockdown = _G.InCombatLockdown
 local ACCEPT = _G.ACCEPT
@@ -296,12 +297,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("ElvUI Skin enabled")
 		end
 		E:StaticPopup_Show('CONFIG_RL')
-	elseif message == 'paging' and not string.match(message, 'paging%s*(%d[,.%d]*)') then
+	elseif message == 'paging' and not stringmatch(message, 'paging%s*(%d[,.%d]*)') then
 		if not InCombatLockdown() then
 			ElvUI_EltreumUI:ActionPagingSwap()
 		end
-	elseif string.match(message, 'paging%s*(%d[,.%d]*)') then
-		local pagingnumber = tonumber(string.match(message, 'paging%s*(%d[,.%d]*)'))
+	elseif stringmatch(message, 'paging%s*(%d[,.%d]*)') then
+		local pagingnumber = tonumber(stringmatch(message, 'paging%s*(%d[,.%d]*)'))
 		if pagingnumber < 10 then
 			if not InCombatLockdown() then
 				ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)

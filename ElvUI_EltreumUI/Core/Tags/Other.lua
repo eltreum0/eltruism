@@ -13,6 +13,7 @@ local UnitPower = _G.UnitPower
 local Enum = _G.Enum
 local UnitPowerMax = _G.UnitPowerMax
 local math = _G.math
+local mathfloor = math.floor
 local DoEmote = _G.DoEmote
 local GetSpecializationRole = _G.GetSpecializationRole
 local strsplit = _G.strsplit
@@ -434,7 +435,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			local role = UnitGroupRolesAssigned(unit)
 			if role and role == 'HEALER' then
 				if UnitPower(unit, Enum.PowerType.Mana) ~= 0 then
-					return math.floor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100).."%"
+					return mathfloor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100).."%"
 				else
 					return "0%"
 				end
@@ -461,7 +462,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			lastHp = cur
 			lastTime = now
 			if timediff > 0 then
-				local dps = math.floor(hpdiff / timediff)
+				local dps = mathfloor(hpdiff / timediff)
 				if hpdiff > 0 then
 					return E:ShortValue(dps)
 				elseif hpdiff < 0 then

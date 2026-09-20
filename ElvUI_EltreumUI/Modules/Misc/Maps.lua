@@ -24,12 +24,14 @@ if E.Retail then
 	local C_Navigation = _G.C_Navigation
 	local math = _G.math
 	local mathfloor = math.floor
+	local mathabs = math.abs
 	local string = _G.string
 	local stringlen = string.len
 	local stringformat = string.format
 	local stringmatch = string.match
 	local tonumber = _G.tonumber
 	local table = _G.table
+	local tinsert = table.insert
 	local wipe = _G.wipe
 	local UiMapPoint = _G.UiMapPoint
 	local SuperTrackedFrame = _G.SuperTrackedFrame
@@ -193,10 +195,10 @@ if E.Retail then
 								if (not speed or speed == 0) or notsafe then --might be dragonflying or secret, calculate based on delta distance
 									E:Delay(1, function()
 										local previousdistance = C_Navigation.GetDistance()
-										speed = math.abs(distance - previousdistance)
+										speed = mathabs(distance - previousdistance)
 										--print(distance,previousdistance, speed)
 										if speed and speed > 0 then
-											local eta= math.abs(distance / speed)
+											local eta= mathabs(distance / speed)
 											if eta > 600 then
 												minutes = stringformat("%02.f", mathfloor(eta/60 ))
 												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
@@ -222,7 +224,7 @@ if E.Retail then
 									end)
 								else
 									if speed and speed > 0 then
-										local eta= math.abs(distance / speed)
+										local eta= mathabs(distance / speed)
 										if eta > 600 then
 											minutes = stringformat("%02.f", mathfloor(eta/60 ))
 											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
@@ -276,7 +278,7 @@ if E.Retail then
 					if pattern:gmatch("#") then --add support for setting waypoints on other maps, plus compatibility with tomtom commands since its just the map and coordinates
 						pattern = gsub(pattern,"#","") --just remove the #
 					end
-					table.insert(coords, pattern)
+					tinsert(coords, pattern)
 				end
 				local canSet = C_Map.CanSetUserWaypointOnMap(C_Map.GetBestMapForUnit("player"))
 

@@ -1,5 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
+local tinsert = _G.table.insert
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 -- Questie profile setup
@@ -8,7 +9,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 		if IsAddOnLoaded("Questie") then
 			local QuestieConfig = _G.QuestieConfig
 			if QuestieConfig.profiles.Eltreum then
-				table.insert(QuestieConfig.profileKeys, E.mynameRealm)
+				tinsert(QuestieConfig.profileKeys, E.mynameRealm)
 				QuestieConfig["profileKeys"][E.mynameRealm] = "Eltreum"
 			else
 				QuestieConfig["profiles"]["Eltreum"] = {}

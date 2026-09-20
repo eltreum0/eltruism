@@ -10,6 +10,7 @@ local C_LFGList = _G.C_LFGList
 local GetCurrentRegion = _G.GetCurrentRegion
 local C_ChallengeMode = _G.C_ChallengeMode
 local table = _G.table
+local tsort = table.sort
 local unpack = _G.unpack
 local pairs = _G.pairs
 
@@ -360,7 +361,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 				end
 
 				if categoryID == 2 then --sort dungeon members
-					table.sort(partymembers, function(a,b)
+					tsort(partymembers, function(a,b)
 						if a[1] ~= b[1] then
 							return a[1] < b[1]
 						else
@@ -368,7 +369,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						end
 					end)
 				else
-					table.sort(partymembers, function(a,b)
+					tsort(partymembers, function(a,b)
 						return a[2] < b[2]
 					end)
 				end

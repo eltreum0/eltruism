@@ -7,6 +7,7 @@ local IsInInstance = _G.IsInInstance
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local tonumber = _G.tonumber
 local string = _G.string
+local stringmatch = string.match
 local C_GossipInfo = _G.C_GossipInfo
 local IsShiftKeyDown = _G.IsShiftKeyDown
 local IsControlKeyDown = _G.IsControlKeyDown
@@ -328,7 +329,7 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 
 		--to NPC_ID
 		if ElvUI_EltreumUI:IsThisASafeSecret(guid,true) then
-			local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+			local NPC_ID = tonumber(stringmatch(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 
 			--get gossip options
 			local gossipInfoTable = C_GossipInfo.GetOptions()

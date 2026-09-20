@@ -12,6 +12,9 @@ WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
 WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
 local string = _G.string
+local stringformat = string.format
+local stringmatch = string.match
+local mathfloor = _G.math.floor
 local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName
 
 --gradient loot roll/mirror/breath/feigndeath
@@ -63,10 +66,10 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 							local spellInfo = _G.C_Spell.GetSpellInfo(5384)
 							_G.hooksecurefunc(bar, "UpdateStatusBarValue", function(bar1)
 								if bar1.Text then
-									local barvalue = math.floor(bar1.StatusBar:GetValue())
-									local minutes = math.floor(barvalue/60)
+									local barvalue = mathfloor(bar1.StatusBar:GetValue())
+									local minutes = mathfloor(barvalue/60)
 									local seconds = barvalue % 60
-									local timetext = string.format('%d:%02d', minutes, seconds)
+									local timetext = stringformat('%d:%02d', minutes, seconds)
 									if bar.Text:GetText():match(_G.BREATH_LABEL) then
 										bar1.Text:SetText(_G.BREATH_LABEL.." "..timetext)
 									elseif bar.Text:GetText():match(_G.EXHAUSTION_LABEL) then
@@ -436,7 +439,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			if not E.Classic then
 				local vellum = GetItemInfo(38682)
 				if vellum then
-					vellum = string.match(vellum, "%s+(%S+)")
+					vellum = stringmatch(vellum, "%s+(%S+)")
 					vellumbutton:SetText(vellum)
 				else
 					vellumbutton:SetText("MISSING")

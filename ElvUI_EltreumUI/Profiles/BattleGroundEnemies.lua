@@ -2,6 +2,7 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local table = _G.table
+local tinsert = table.insert
 
 -- Capping profile setup
 function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
@@ -10,8 +11,8 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 
 		if BattleGroundEnemiesDB.profiles.Eltreum then
 			--local key = {[E.mynameRealm] = "Eltreum"}
-			--table.insert(CappingSettings.profileKeys, key)
-			table.insert(BattleGroundEnemiesDB.profileKeys, E.mynameRealm)
+			--tinsert(CappingSettings.profileKeys, key)
+			tinsert(BattleGroundEnemiesDB.profileKeys, E.mynameRealm)
 			BattleGroundEnemiesDB["profileKeys"][E.mynameRealm] = "Eltreum"
 		else
 			BattleGroundEnemiesDB["profileKeys"][E.mynameRealm] = "Eltreum"

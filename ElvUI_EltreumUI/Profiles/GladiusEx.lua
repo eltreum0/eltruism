@@ -1,13 +1,14 @@
 local E = unpack(ElvUI)
 local _G = _G
 local table = _G.table
+local tinsert = table.insert
 
 -- GladiusEx profile setup
 function ElvUI_EltreumUI:GetGladiusExProfile()
 	if _G.GladiusExDB.profiles.Eltreum then
 		--local key = {[E.mynameRealm] = "Eltreum"}
-		--table.insert(DynamicCamDB.profileKeys, key)
-		table.insert(_G.GladiusExDB.profileKeys, E.mynameRealm)
+		--tinsert(DynamicCamDB.profileKeys, key)
+		tinsert(_G.GladiusExDB.profileKeys, E.mynameRealm)
 		_G.GladiusExDB["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
 		_G.GladiusExDB = {

@@ -5,6 +5,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local tostring = _G.tostring
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local math = _G.math
+local mathceil = math.ceil
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 function ElvUI_EltreumUI:SetupGeneralLayout()
@@ -1974,8 +1975,8 @@ function ElvUI_EltreumUI:SetupDataText()
 
 	local buttonwidth = _G.RightChatToggleButton:GetWidth()
 	--local width = GetPhysicalScreenSize()
-	local width = math.ceil(E.screenWidth)
-	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+	local width = mathceil(E.screenWidth)
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + mathceil(width - (buttonwidth * 2))
 
 	--scale stuff for 4k
 	--print(buttonwidth,width,E:PixelBestSize())

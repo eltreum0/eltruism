@@ -7,6 +7,7 @@ local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local string = _G.string
+local stringformat = string.format
 local PlaySoundFile = _G.PlaySoundFile
 local gsub = _G.gsub
 
@@ -145,7 +146,7 @@ local function ColorSysMsgs(_, _, message, ...)
 				if not E:NotSecretValue(unitClass) then --secret class so do something else
 					msg = message
 				else
-					msg = (string.format("|cff"..classcolorsescape[unitClass]..message.."|r"))
+					msg = (stringformat("|cff"..classcolorsescape[unitClass]..message.."|r"))
 				end
 				if msg:find(rollstring.." 1 ") then
 					if E.db.ElvUI_EltreumUI.chat.rollsound then

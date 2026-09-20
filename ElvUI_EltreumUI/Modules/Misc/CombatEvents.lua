@@ -8,6 +8,7 @@ local StopMusic = _G.StopMusic
 local Minimap = _G.Minimap
 local wipe = _G.wipe
 local math = _G.math
+local mathrandom = math.random
 local strsplit = _G.strsplit
 local UnitExists = _G.UnitExists
 local dontstop = 0
@@ -51,7 +52,7 @@ function ElvUI_EltreumUI:CombatMusic(event)
 			if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
 				wipe(list)
 				list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
-				soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
+				soundfile = [[Interface\AddOns\]]..list[mathrandom(1,#list)]
 			end
 			if not E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
 				if dontstop == 0 then

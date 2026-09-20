@@ -4,6 +4,7 @@ local UIFrameFadeOut = _G.UIFrameFadeOut
 local hooksecurefunc = _G.hooksecurefunc
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local math = _G.math
+local mathceil = math.ceil
 local type = _G.type
 local ipairs = _G.ipairs
 local valuecolors = E.myClassColor
@@ -311,7 +312,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 				if E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
 					r1,g1,b1 = valuecolors.r,valuecolors.g,valuecolors.b
 				end
-				if (r == 1 and math.ceil(g*100) == 82 and b == 0) or (r == r1 and g == g1 and b == b1) then --get the other color so the disabled one is not overwritten
+				if (r == 1 and mathceil(g*100) == 82 and b == 0) or (r == r1 and g == g1 and b == b1) then --get the other color so the disabled one is not overwritten
 					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
 						tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 					else

@@ -8,6 +8,8 @@ ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.
 local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 local GetSpecialization = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetSpecialization or _G.GetSpecialization
 local GetSpecializationInfo = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetSpecializationInfo or _G.GetSpecializationInfo
+local stringfind = _G.string.find
+local stringgsub = _G.string.gsub
 
 --Binding
 _G.BINDING_HEADER_ELTRUISM = GetAddOnMetadata(..., 'Title')
@@ -26,10 +28,10 @@ _G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 
 --Constants
 local rawVersion = GetAddOnMetadata("ElvUI_EltreumUI", 'Version')
-if string.find(rawVersion, 'project%-version') then
+if stringfind(rawVersion, 'project%-version') then
     ElvUI_EltreumUI.Version = "5.1.6-Dev"
 else
-    ElvUI_EltreumUI.Version = string.gsub(rawVersion, "^v", "")
+    ElvUI_EltreumUI.Version = stringgsub(rawVersion, "^v", "")
 end
 ElvUI_EltreumUI.Config = {}
 --ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'

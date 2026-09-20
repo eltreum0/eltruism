@@ -4,6 +4,7 @@ local NP = E:GetModule('NamePlates')
 local elementAdded = false
 local _G = _G
 local math = _G.math
+local mathfloor = math.floor
 local UnitCanAttack = _G.UnitCanAttack
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitGUID = _G.UnitGUID
@@ -2192,9 +2193,9 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 	if unitisnotboss[classification] then
 		if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 			if classification == 'worldboss' then
-				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
-				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
-				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
+				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
+				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
+				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
 				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
 					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 					return icon
@@ -2203,9 +2204,9 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 					return icon
 				end
 			elseif classification == 'elite' then
-				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR*255)
-				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
-				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
+				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR*255)
+				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
+				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
 				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
 					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 					return icon
@@ -2214,9 +2215,9 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 					return icon
 				end
 			elseif classification == 'rareelite' then
-				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR*255)
-				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
-				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
+				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR*255)
+				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
+				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
 				if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
 					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 					return icon
@@ -2225,9 +2226,9 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 					return icon
 				end
 			elseif classification == 'rare' then
-				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR*255)
-				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
-				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
+				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR*255)
+				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
+				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
 				if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
 					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 					return icon
@@ -2241,9 +2242,9 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 		if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 			local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
 			if bossIDs[unitID] then
-				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
-				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
-				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
+				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
+				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
+				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
 				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
 					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 					return icon

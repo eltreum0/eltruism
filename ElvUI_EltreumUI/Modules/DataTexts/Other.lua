@@ -3,6 +3,7 @@ local _G = _G
 local DT = E:GetModule("DataTexts")
 local GetCombatRatingBonus = _G.GetCombatRatingBonus
 local math = _G.math
+local mathceil = math.ceil
 local Constants = _G.Constants --maybe should not be
 local HONOR = _G.HONOR
 local ARENA= _G.ARENA
@@ -21,7 +22,7 @@ local IsInGroup = _G.IsInGroup
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
-	local spellhastepc = ((math.ceil(spellhaste*100))/100)..'%'
+	local spellhastepc = ((mathceil(spellhaste*100))/100)..'%'
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], E.media.hexvaluecolor, spellhastepc)
 end
 if not E.Retail then

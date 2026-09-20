@@ -5,6 +5,7 @@ local UnitArmor = _G.UnitArmor
 local UnitLevel = _G.UnitLevel
 local UnitHealthMax = _G.UnitHealthMax
 local math = _G.math
+local mathfloor = math.floor
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitIsDead = _G.UnitIsDead
@@ -288,7 +289,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		if E.Retail then
 			value = format('%d', UnitHealthPercent(unit, true, ScaleTo100)).."%"
 		else
-			value = math.floor(((cur / maxhp) * 100) + 0.5)
+			value = mathfloor(((cur / maxhp) * 100) + 0.5)
 		end
 		if not E.Retail and (maxhp == 0) then
 			return 0
@@ -763,7 +764,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
 			end
 			local ehp = UnitHealthMax("player")/(1-dr)
-			local effective = math.floor((ehp*100)/100)
+			local effective = mathfloor((ehp*100)/100)
 			return effective
 		end)
 		E:AddTagInfo("eltruism:effectivehp", ElvUI_EltreumUI.Name.." "..L["Health"], L["Shows Effective Health"])

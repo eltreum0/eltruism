@@ -2,6 +2,8 @@ local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local math = _G.math
+local mathfloor = math.floor
+local tinsert = _G.table.insert
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemQuality = _G.GetInventoryItemQuality
@@ -168,9 +170,9 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		--[[local ilvltable ={}
 		for i=1, 20 do
 			local _, i = GetItemQualityAndLevel("player", i)
-			table.insert(ilvltable, i)
+			tinsert(ilvltable, i)
 		end]]
 		--local ilevel = E:GetUnitItemLevel() --GetAverageItemLevel() doesnt exist in tbc/classic
-		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+		_G.CharacterFrame.Text2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 	end
 end

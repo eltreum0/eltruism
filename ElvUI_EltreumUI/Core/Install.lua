@@ -10,6 +10,9 @@ local Enum = _G.Enum
 local CHAT_LABEL = _G.CHAT_LABEL
 local tostring = _G.tostring
 local string = _G.string
+local stringlen = string.len
+local stringlower = string.lower
+local stringformat = string.format
 local type = _G.type
 local C_EditMode = _G.C_EditMode
 local tonumber = _G.tonumber
@@ -90,7 +93,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 			end
 			if not _G.PluginInstallFrame.classsymbol then
 				_G.PluginInstallFrame.classsymbol = _G.PluginInstallTitleFrame:CreateTexture()
-				_G.PluginInstallFrame.classsymbol:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\"..tostring(ElvUI_EltreumUI:firstToUpper(string.lower(E.myclass)))..".tga")
+				_G.PluginInstallFrame.classsymbol:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\"..tostring(ElvUI_EltreumUI:firstToUpper(stringlower(E.myclass)))..".tga")
 				--_G.PluginInstallFrame.classsymbol:SetTexture(tostring(ElvUI_EltreumUI:GetClassCrest(true)))
 				_G.PluginInstallFrame.classsymbol:SetSize(128,128)
 				_G.PluginInstallFrame.classsymbol:SetPoint("BOTTOM", _G.PluginInstallTitleFrame, "BOTTOM", 0, 25)
@@ -246,7 +249,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 					layoutstable.layouts[i] = taintpreventlayout
 					layoutstable.activeLayout = i + 2
 					C_EditMode.SetActiveLayout(layoutstable.activeLayout)
-					ElvUI_EltreumUI:Print(string.format(_G.HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
+					ElvUI_EltreumUI:Print(stringformat(_G.HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
 				end
 			end
 			if not alreadyimported then
@@ -386,7 +389,7 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 
 				local profileName = 'Eltreum DPS/Tank ('..E.mynameRealm..')'
-				local profileLength = string.len(profileName)
+				local profileLength = stringlen(profileName)
 				if profileLength > 52 then
 					profileName = 'Eltreum DPS('..E.mynameRealm..')'
 				end
@@ -431,7 +434,7 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 
 				local profileName = 'Eltreum Healer ('..E.mynameRealm..')'
-				local profileLength = string.len(profileName)
+				local profileLength = stringlen(profileName)
 				if profileLength > 52 then
 					profileName = 'EltreumHeal('..E.mynameRealm..')'
 				end
@@ -475,7 +478,7 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 
 				local profileName = 'Eltreum Thin ('..E.mynameRealm..')'
-				local profileLength = string.len(profileName)
+				local profileLength = stringlen(profileName)
 				if profileLength > 52 then
 					profileName = 'EltreumThin('..E.mynameRealm..')'
 				end

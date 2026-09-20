@@ -1,5 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
+local tinsert = _G.table.insert
 
 -- ProjectAzilroka profile setup
 function ElvUI_EltreumUI:GetPAProfile()
@@ -7,7 +8,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	local ProjectAzilrokaDB = _G.ProjectAzilrokaDB
 	--PA.data:SetProfile("Default")
 	if ProjectAzilrokaDB.profiles.Eltreum then
-		table.insert(ProjectAzilrokaDB.profileKeys, E.mynameRealm)
+		tinsert(ProjectAzilrokaDB.profileKeys, E.mynameRealm)
 		ProjectAzilrokaDB["profileKeys"][E.mynameRealm] = "Eltreum"
 		E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 	else

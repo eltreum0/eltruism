@@ -6,12 +6,19 @@ local LibStub = _G.LibStub
 local CreateFrame = _G.CreateFrame
 local setmetatable = _G.setmetatable
 local table = _G.table
+local tinsert = table.insert
+local tremove = table.remove
 local IsModifiedClick = _G.IsModifiedClick
 local C_Timer = _G.C_Timer
 local pairs = _G.pairs
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local string = _G.string
+local stringformat = string.format
+local stringgsub = string.gsub
+local stringupper = string.upper
+local stringgmatch = string.gmatch
+local stringmatch = string.match
 local strsplit = _G.strsplit
 local tonumber = _G.tonumber
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
@@ -1156,7 +1163,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local category = self.categorizeCallback(...) or self.defaultCategory
 		local result
 		if self.released[category] and #self.released[category] > 0 then
-			result = table.remove(self.released[category])
+			result = tremove(self.released[category])
 			self.allocated[result] = category
 			self.reuseCallback(result, ...)
 		else
@@ -1175,7 +1182,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		if not self.released[category] then
 			self.released[category] = {}
 		end
-		table.insert(self.released[category], ref)
+		tinsert(self.released[category], ref)
 		self.releaseCallback(ref)
 	end
 
@@ -1331,7 +1338,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				end)
 			end
 		end
-		table.insert(self.callbacks[event], callback)
+		tinsert(self.callbacks[event], callback)
 	end
 
 	function FrameAdapter:OnShow(callback)
@@ -1682,7 +1689,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			end
 			slotIcon.frame:SetSize(iconSize, iconSize)
 			slotIcon.frame:SetScale(iconScale)
-			table.insert(self.slotIcons[slotName], slotIcon)
+			tinsert(self.slotIcons[slotName], slotIcon)
 		end
 		slotIcon:Render(textureName, tooltip, overlayAtlas,enchantId)
 	end
@@ -1716,7 +1723,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 						--stop errors when the enchant is unknown
 						--[[
 						local spellInfoEnchant = SpellInfoFunctionTable:new("enchant:" .. KIBC_EnchantToSpellID[enchantInfo:getId()])
-						tooltip:AddText(string.format("Unknown enchant #%d", enchantInfo:getId()).." ID:"..spellInfoEnchant.spellId)]]
+						tooltip:AddText(stringformat("Unknown enchant #%d", enchantInfo:getId()).." ID:"..spellInfoEnchant.spellId)]]
 					end
 					self:_AddIcon(slotName, texture, itemtooltip,nil,KIBC_EnchantToSpellID[enchantInfo:getId()])
 				elseif self:IsSlotEnchantRequired(slotName) then
@@ -1911,9 +1918,9 @@ function ElvUI_EltreumUI:ClassicSockets()
 			local texture = _G[InvisibleTooltip:GetName().."Texture"..i]
 			local textureName = texture and texture:GetTexture()
 			if textureName then
-				local canonicalTextureName = string.gsub(string.upper(textureName), "\\", "/")
+				local canonicalTextureName = stringgsub(stringupper(textureName), "\\", "/")
 				local _, gemItemLink = GetItemGem(self:getLink(), i)
-				table.insert(result, SocketInfo:new(canonicalTextureName, gemItemLink and ItemStringInfoFunctionTable:new(gemItemLink) or nil))
+				tinsert(result, SocketInfo:new(canonicalTextureName, gemItemLink and ItemStringInfoFunctionTable:new(gemItemLink) or nil))
 			end
 		end
 		return result
@@ -1923,7 +1930,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local result = {}
 		local socketTypeId = "INTERFACE/ITEMSOCKETINGFRAME/UI-EmptySocket-Prismatic"
 		local _, gemItemLink = GetItemGem(self.itemString, 1)
-		table.insert(result, SocketInfo:new(socketTypeId, gemItemLink and ItemStringInfoFunctionTable:new(gemItemLink) or nil))
+		tinsert(result, SocketInfo:new(socketTypeId, gemItemLink and ItemStringInfoFunctionTable:new(gemItemLink) or nil))
 		return result
 	end
 
@@ -1944,7 +1951,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		itemS = itemS:sub(1, -4)
 		itemS = itemS:sub(34)
 
-		for part in string.gmatch(itemS, "([^:]+)") do
+		for part in stringgmatch(itemS, "([^:]+)") do
 			bitem[#bitem + 1] = part
 		end
 
@@ -2016,7 +2023,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 
 	function TooltipFunctionTable:AddHyperlink(link)
 		if link then
-			table.insert(self.items, {
+			tinsert(self.items, {
 				TYPE_HYPERLINK,
 				link,
 			})
@@ -2025,7 +2032,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function TooltipFunctionTable:AddText(text)
-		table.insert(self.items, {
+		tinsert(self.items, {
 			TYPE_TEXT,
 			text,
 		})
@@ -2088,7 +2095,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	function SpellInfoFunctionTable:new(itemString)
 		local _type, spellId
 		if type(itemString) == "string" then
-			itemString = string.match(itemString,"^|%x%x%x%x%x%x%x%x%x|H([^|]+)|h") or itemString
+			itemString = stringmatch(itemString,"^|%x%x%x%x%x%x%x%x%x|H([^|]+)|h") or itemString
 			_type, spellId = strsplit(
 				":",
 				itemString

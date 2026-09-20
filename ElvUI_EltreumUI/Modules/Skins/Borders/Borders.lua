@@ -7,6 +7,7 @@ local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local table = _G.table
+local tinsert = table.insert
 local pairs = _G.pairs
 local UnitExists = _G.UnitExists
 local UnitReaction = _G.UnitReaction
@@ -270,7 +271,7 @@ local function BordersPart1()
 								comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
 								comboborder:SetPoint("CENTER", _G["ElvUF_PlayerClassIconButton"..i].backdrop, "CENTER")
 								comboborder:SetParent(_G["ElvUF_PlayerClassIconButton"..i].backdrop)
-								table.insert(comboborderholder, comboborder)
+								tinsert(comboborderholder, comboborder)
 								comboborder:SetBackdrop({
 									edgeFile = bordertexture,
 									edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -300,7 +301,7 @@ local function BordersPart1()
 								comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
 								comboborder:SetPoint("CENTER", _G["ElvUF_PlayerRuneButton"..i].backdrop, "CENTER")
 								comboborder:SetParent(_G["ElvUF_PlayerRuneButton"..i].backdrop)
-								table.insert(comboborderholder, comboborder)
+								tinsert(comboborderholder, comboborder)
 								comboborder:SetBackdrop({
 									edgeFile = bordertexture,
 									edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -330,7 +331,7 @@ local function BordersPart1()
 								comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
 								comboborder:SetPoint("CENTER", _G["ElvUF_PlayerTotem"..i].backdrop, "CENTER")
 								comboborder:SetParent(_G["ElvUF_PlayerTotem"..i].backdrop)
-								table.insert(comboborderholder, comboborder)
+								tinsert(comboborderholder, comboborder)
 								comboborder:SetBackdrop({
 									edgeFile = bordertexture,
 									edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -359,7 +360,7 @@ local function BordersPart1()
 							comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
 							comboborder:SetPoint("CENTER", _G["ElvUF_Player_ClassBar"].backdrop, "CENTER")
 							comboborder:SetParent(_G["ElvUF_Player_ClassBar"].backdrop)
-							table.insert(comboborderholder, comboborder)
+							tinsert(comboborderholder, comboborder)
 							comboborder:SetBackdrop({
 								edgeFile = bordertexture,
 								edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -385,7 +386,7 @@ local function BordersPart1()
 							comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
 							comboborder:SetPoint("CENTER", _G["ElvUF_Player_Runes"].backdrop, "CENTER")
 							comboborder:SetParent(_G["ElvUF_Player_Runes"].backdrop)
-							table.insert(comboborderholder, comboborder)
+							tinsert(comboborderholder, comboborder)
 							comboborder:SetBackdrop({
 								edgeFile = bordertexture,
 								edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -411,7 +412,7 @@ local function BordersPart1()
 							comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
 							comboborder:SetPoint("CENTER", _G["ElvUF_Player"].Totems.backdrop, "CENTER")
 							comboborder:SetParent(_G["ElvUF_Player"].Totems.backdrop)
-							table.insert(comboborderholder, comboborder)
+							tinsert(comboborderholder, comboborder)
 							comboborder:SetBackdrop({
 								edgeFile = bordertexture,
 								edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -704,7 +705,7 @@ local function BordersPart1()
 							else
 								raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
 							end
-							table.insert(raid1borderholder, raid1border)
+							tinsert(raid1borderholder, raid1border)
 							raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 							if PowerReadjust[E.db.unitframe.units.raid1.power.width] then
 								raid1border:SetPoint("CENTER", _G['ElvUF_Raid1Group'..l..'UnitButton'..k.."_HealthBar"], "CENTER")
@@ -748,7 +749,7 @@ local function BordersPart1()
 									else
 										raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
 									end
-									table.insert(raid1borderholder, raid1border)
+									tinsert(raid1borderholder, raid1border)
 									raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 									raid1border:SetPoint("CENTER", _G["CompactRaidGroup"..l.."Member"..k], "CENTER")
 									raid1border:SetParent(_G["CompactRaidGroup"..l.."Member"..k])
@@ -775,7 +776,7 @@ local function BordersPart1()
 								else
 									raid1border = _G["EltruismRaid1GroupBorder"..i]
 								end
-								table.insert(raid1borderholder, raid1border)
+								tinsert(raid1borderholder, raid1border)
 								raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 								raid1border:SetPoint("CENTER", _G["CompactRaidFrame"..i], "CENTER")
 								raid1border:SetParent(_G["CompactRaidFrame"..i])
@@ -808,7 +809,7 @@ local function BordersPart1()
 						else
 							raid2border = _G["EltruismRaid2Group"..l.."Border"..k]
 						end
-						table.insert(raid2borderholder, raid2border)
+						tinsert(raid2borderholder, raid2border)
 						raid2border:SetSize(E.db.ElvUI_EltreumUI.borders.raid2sizex, E.db.ElvUI_EltreumUI.borders.raid2sizey)
 						if PowerReadjust[E.db.unitframe.units.raid2.power.width] then
 							raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k.."_HealthBar"], "CENTER")
@@ -853,7 +854,7 @@ local function BordersPart1()
 						else
 							raid3border = _G["EltruismRaid3Group"..l.."Border"..k]
 						end
-						table.insert(raid3borderholder, raid3border)
+						tinsert(raid3borderholder, raid3border)
 						raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
 						if PowerReadjust[E.db.unitframe.units.raid3.power.width] then
 							raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k.."_HealthBar"], "CENTER")
@@ -1140,7 +1141,7 @@ local function BordersPart1()
 					else
 						tankborder = _G["ElvUF_TankUnitButton"..k.."Border"]
 					end
-					table.insert(tankborderholder, tankborder)
+					tinsert(tankborderholder, tankborder)
 					tankborder:SetSize(E.db.ElvUI_EltreumUI.borders.tankassistsizex, E.db.ElvUI_EltreumUI.borders.tankassistsizey)
 					tankborder:SetPoint("CENTER", _G['ElvUF_TankUnitButton'..k], "CENTER")
 					tankborder:SetParent(_G['ElvUF_TankUnitButton'..k])
@@ -1171,7 +1172,7 @@ local function BordersPart1()
 					else
 						assistborder = _G["ElvUF_AssistUnitButton"..k.."Border"]
 					end
-					table.insert(assistborderholder, assistborder)
+					tinsert(assistborderholder, assistborder)
 					assistborder:SetSize(E.db.ElvUI_EltreumUI.borders.tankassistsizex, E.db.ElvUI_EltreumUI.borders.tankassistsizey)
 					assistborder:SetPoint("CENTER", _G['ElvUF_AssistUnitButton'..k], "CENTER")
 					assistborder:SetParent(_G['ElvUF_AssistUnitButton'..k])
@@ -1217,7 +1218,7 @@ function ElvUI_EltreumUI:PartyBorders()
 						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER")
 					end
 					partyborder:SetParent(_G["ElvUF_PartyGroup1UnitButton"..i])
-					table.insert(partyborderholder, partyborder)
+					tinsert(partyborderholder, partyborder)
 					partyborder:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
@@ -1304,7 +1305,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled then
 			local borders1 = {}
 			for i = 1,12 do
-				table.insert(borders1, _G["ElvUI_Bar1Button"..i])
+				tinsert(borders1, _G["ElvUI_Bar1Button"..i])
 			end
 			local function createbar1borders()
 				for i,v in pairs(borders1) do
@@ -1341,7 +1342,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.bar2borders and E.db.actionbar.bar2.enabled then
 			local borders2 = {}
 			for i = 1,12 do
-				table.insert(borders2, _G["ElvUI_Bar2Button"..i])
+				tinsert(borders2, _G["ElvUI_Bar2Button"..i])
 			end
 			local function createbar2borders()
 				for i,v in pairs(borders2) do
@@ -1378,7 +1379,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.bar3borders and E.db.actionbar.bar3.enabled then
 			local borders3 = {}
 			for i = 1,12 do
-				table.insert(borders3, _G["ElvUI_Bar3Button"..i])
+				tinsert(borders3, _G["ElvUI_Bar3Button"..i])
 			end
 			local function createbar3borders()
 				for i,v in pairs(borders3) do
@@ -1415,7 +1416,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.bar4borders and E.db.actionbar.bar4.enabled then
 			local borders4 = {}
 			for i = 1,12 do
-				table.insert(borders4, _G["ElvUI_Bar4Button"..i])
+				tinsert(borders4, _G["ElvUI_Bar4Button"..i])
 			end
 			local function createbar4borders()
 				for i,v in pairs(borders4) do
@@ -1452,7 +1453,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.bar5borders and E.db.actionbar.bar5.enabled then
 			local borders5 = {}
 			for i = 1,12 do
-				table.insert(borders5, _G["ElvUI_Bar5Button"..i])
+				tinsert(borders5, _G["ElvUI_Bar5Button"..i])
 			end
 			local function createbar5borders()
 				for i,v in pairs(borders5) do
@@ -1489,7 +1490,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.bar6borders and E.db.actionbar.bar6.enabled then
 			local borders6 = {}
 			for i = 1,12 do
-				table.insert(borders6, _G["ElvUI_Bar6Button"..i])
+				tinsert(borders6, _G["ElvUI_Bar6Button"..i])
 			end
 			local function createbar6borders()
 				for i,v in pairs(borders6) do
@@ -1526,7 +1527,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.stanceborders and E.db.actionbar.stanceBar.enabled then
 			local stanceborders = {}
 			for i = 1,10 do
-				table.insert(stanceborders, _G["ElvUI_StanceBarButton"..i])
+				tinsert(stanceborders, _G["ElvUI_StanceBarButton"..i])
 			end
 			local function createstanceborders()
 				for i,v in pairs(stanceborders) do
@@ -1563,7 +1564,7 @@ local function BordersPart2()
 		if E.db.ElvUI_EltreumUI.borders.petactionborders and E.db.actionbar.barPet.enabled then
 			local petactionborders = {}
 			for i = 1,10 do
-				table.insert(petactionborders, _G["PetActionButton"..i])
+				tinsert(petactionborders, _G["PetActionButton"..i])
 			end
 			local function createstancepetactionborders()
 				for i,v in pairs(petactionborders) do
@@ -1602,10 +1603,10 @@ local function BordersPart2()
 		local borderstotemaction = {}
 		local borderstotemfly = {}
 		for i = 1,4 do
-			table.insert(borderstotemaction, _G["MultiCastActionButton"..i])
+			tinsert(borderstotemaction, _G["MultiCastActionButton"..i])
 		end
-		table.insert(borderstotemaction, _G["MultiCastSummonSpellButton"])
-		table.insert(borderstotemaction, _G["MultiCastRecallSpellButton"])
+		tinsert(borderstotemaction, _G["MultiCastSummonSpellButton"])
+		tinsert(borderstotemaction, _G["MultiCastRecallSpellButton"])
 		local function createtotemborders()
 			for i,v in pairs(borderstotemaction) do
 				if not _G["EltruismTotemBorderAction"..i] then
@@ -1628,7 +1629,7 @@ local function BordersPart2()
 
 		local function createtotemflyborders()
 			for i = 1,7 do
-				table.insert(borderstotemfly, _G["MultiCastFlyoutButton"..i])
+				tinsert(borderstotemfly, _G["MultiCastFlyoutButton"..i])
 			end
 			for i,v in pairs(borderstotemfly) do
 				if not _G["EltruismTotemBorderFly"..i] then
@@ -2833,7 +2834,7 @@ function ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
 						else
 							raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
 						end
-						table.insert(raid1borderholder, raid1border)
+						tinsert(raid1borderholder, raid1border)
 						raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 						raid1border:SetPoint("CENTER", _G["CompactRaidGroup"..l.."Member"..k], "CENTER")
 						raid1border:SetParent(_G["CompactRaidGroup"..l.."Member"..k])
@@ -2860,7 +2861,7 @@ function ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
 					else
 						raid1border = _G["EltruismRaid1Group".."Border"..i]
 					end
-					table.insert(raid1borderholder, raid1border)
+					tinsert(raid1borderholder, raid1border)
 					raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 					raid1border:SetPoint("CENTER", _G["CompactRaidFrame"..i], "CENTER")
 					raid1border:SetParent(_G["CompactRaidFrame"..i])

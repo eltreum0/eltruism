@@ -2,6 +2,7 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local table = _G.table
+local tinsert = table.insert
 
 -- OmniCD profile setup
 function ElvUI_EltreumUI:GetOmniCDProfile(profile)
@@ -9,7 +10,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 		local OmniCDDB = _G.OmniCDDB
 		if profile == "dps" then
 			if OmniCDDB.profiles.EltreumDPS then
-				table.insert(OmniCDDB.profileKeys, E.mynameRealm)
+				tinsert(OmniCDDB.profileKeys, E.mynameRealm)
 				OmniCDDB["profileKeys"][E.mynameRealm] = "EltreumDPS"
 			else
 				OmniCDDB["profiles"]["EltreumDPS"] = {}
@@ -307,7 +308,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 			end
 		elseif profile == "healer" then
 			if OmniCDDB.profiles.EltreumHealer then
-				table.insert(OmniCDDB.profileKeys, E.mynameRealm)
+				tinsert(OmniCDDB.profileKeys, E.mynameRealm)
 				OmniCDDB["profileKeys"][E.mynameRealm] = "EltreumHealer"
 			else
 				OmniCDDB["profiles"]["EltreumHealer"] = {}
