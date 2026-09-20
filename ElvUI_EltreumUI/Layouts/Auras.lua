@@ -1,5 +1,7 @@
 local E, L = unpack(ElvUI)
 
+--todo update for retail/forever
+
 --apply textured icon on profile import, ty Repooc
 local function doApplyToAll(db, dbEntry, dbValue)
 	if not db then return end
