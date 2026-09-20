@@ -12,6 +12,9 @@ local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsEnemy = _G.UnitIsEnemy
+local UnitIsFriend = _G.UnitIsFriend
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)

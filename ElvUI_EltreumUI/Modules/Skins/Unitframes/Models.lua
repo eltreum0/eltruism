@@ -19,6 +19,9 @@ local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
 local UnitReaction = _G.UnitReaction
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsEnemy = _G.UnitIsEnemy
+local UnitIsFriend = _G.UnitIsFriend
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
