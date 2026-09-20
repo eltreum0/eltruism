@@ -29,9 +29,9 @@ _G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 --Constants
 local rawVersion = GetAddOnMetadata("ElvUI_EltreumUI", 'Version')
 if stringfind(rawVersion, 'project%-version') then
-    ElvUI_EltreumUI.Version = "5.1.6-Dev"
+	ElvUI_EltreumUI.Version = "5.1.6-Dev"
 else
-    ElvUI_EltreumUI.Version = stringgsub(rawVersion, "^v", "")
+	ElvUI_EltreumUI.Version = stringgsub(rawVersion, "^v", "")
 end
 ElvUI_EltreumUI.Config = {}
 --ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
