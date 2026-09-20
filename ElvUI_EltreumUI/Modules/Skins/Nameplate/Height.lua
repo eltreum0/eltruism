@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 		return
 	end
 
-	local db = E.db.ElvUI_EltreumUI
+	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
@@ -86,7 +86,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		return
 	end
 
-	local db = E.db.ElvUI_EltreumUI
+	local db = E.db and E.db.ElvUI_EltreumUI
 	local backdropOpt = db and db.nameplates and db.nameplates.backdrop
 	if not (backdropOpt and backdropOpt.BDmodifications) then
 		return
@@ -132,7 +132,7 @@ end
 --target changed, update it
 local function OnTargetChanged(opts)
 	if not opts then
-		local db = E.db.ElvUI_EltreumUI
+		local db = E.db and E.db.ElvUI_EltreumUI
 		opts = db and db.nameplates and db.nameplates.nameplateOptions
 	end
 	if not (opts and opts.enableHealthHeight) then
@@ -169,7 +169,7 @@ eventFrame:RegisterEvent("UNIT_FLAGS")
 eventFrame:RegisterEvent("UNIT_THREAT_LIST_UPDATE")
 eventFrame:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE")
 eventFrame:SetScript("OnEvent", function(_, event, unit)
-	local db = E.db.ElvUI_EltreumUI
+	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
