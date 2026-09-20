@@ -23,7 +23,11 @@ if E.Retail then
 	local GetUnitSpeed = _G.GetUnitSpeed
 	local C_Navigation = _G.C_Navigation
 	local math = _G.math
+	local mathfloor = math.floor
 	local string = _G.string
+	local stringlen = string.len
+	local stringformat = string.format
+	local stringmatch = string.match
 	local tonumber = _G.tonumber
 	local table = _G.table
 	local wipe = _G.wipe
@@ -194,17 +198,17 @@ if E.Retail then
 										if speed and speed > 0 then
 											local eta= math.abs(distance / speed)
 											if eta > 600 then
-												minutes = string.format("%02.f", math.floor(eta/60 ))
-												seconds = string.format("%02.f", math.floor(eta - minutes *60))
+												minutes = stringformat("%02.f", mathfloor(eta/60 ))
+												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
 											elseif eta < 600 and eta > 10 then
-												minutes = string.format("%01.f", math.floor(eta/60))
-												seconds = string.format("%02.f", math.floor(eta - minutes *60))
+												minutes = stringformat("%01.f", mathfloor(eta/60))
+												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
 											elseif eta < 10 then
-												minutes = string.format("%01.f", math.floor(eta/60))
-												seconds = string.format("%1.d", math.floor(eta - minutes *60))
+												minutes = stringformat("%01.f", mathfloor(eta/60))
+												seconds = stringformat("%1.d", mathfloor(eta - minutes *60))
 											else
-												minutes = string.format("%02.f", math.floor(eta/60))
-												seconds = string.format("%02.f", math.floor(eta - minutes *60))
+												minutes = stringformat("%02.f", mathfloor(eta/60))
+												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
 											end
 										end
 										--set the time to arrive to the frame's text
@@ -220,17 +224,17 @@ if E.Retail then
 									if speed and speed > 0 then
 										local eta= math.abs(distance / speed)
 										if eta > 600 then
-											minutes = string.format("%02.f", math.floor(eta/60 ))
-											seconds = string.format("%02.f", math.floor(eta - minutes *60))
+											minutes = stringformat("%02.f", mathfloor(eta/60 ))
+											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
 										elseif eta < 600 and eta > 10 then
-											minutes = string.format("%01.f", math.floor(eta/60))
-											seconds = string.format("%02.f", math.floor(eta - minutes *60))
+											minutes = stringformat("%01.f", mathfloor(eta/60))
+											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
 										elseif eta < 10 then
-											minutes = string.format("%01.f", math.floor(eta/60))
-											seconds = string.format("%1.d", math.floor(eta - minutes *60))
+											minutes = stringformat("%01.f", mathfloor(eta/60))
+											seconds = stringformat("%1.d", mathfloor(eta - minutes *60))
 										else
-											minutes = string.format("%02.f", math.floor(eta/60))
-											seconds = string.format("%02.f", math.floor(eta - minutes *60))
+											minutes = stringformat("%02.f", mathfloor(eta/60))
+											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
 										end
 									end
 									--set the time to arrive to the frame's text
@@ -300,35 +304,35 @@ if E.Retail then
 								local info = C_Map.GetMapInfo(coords[1]) --check for map info
 								if info then --if there is one, then its all good
 									-- setup x coordinate
-									if coords[2] and string.match(coords[2], "%d+") then
-										if string.len(coords[2]) == 3 then
+									if coords[2] and stringmatch(coords[2], "%d+") then
+										if stringlen(coords[2]) == 3 then
 											x = (tonumber(coords[2])*0.001)
-										elseif string.len(coords[2]) == 2 then
+										elseif stringlen(coords[2]) == 2 then
 											x = (tonumber(coords[2])*0.01)
-										elseif string.len(coords[2]) == 4 then
+										elseif stringlen(coords[2]) == 4 then
 											x = (tonumber(coords[2])*0.01)
-										elseif string.len(coords[2]) == 5 then
+										elseif stringlen(coords[2]) == 5 then
 											x = (tonumber(coords[2])*0.01)
-										elseif string.len(coords[2]) > 5 then
+										elseif stringlen(coords[2]) > 5 then
 											coords[2] = "a"
 										end
 									end
 									-- setup y coordinate
-									if coords[3] and string.match(coords[3], "%d+") then
-										if string.len(coords[3]) == 3 then
+									if coords[3] and stringmatch(coords[3], "%d+") then
+										if stringlen(coords[3]) == 3 then
 											y = (tonumber(coords[3])*0.001)
-										elseif string.len(coords[3]) == 2 then
+										elseif stringlen(coords[3]) == 2 then
 											y = (tonumber(coords[3])*0.01)
-										elseif string.len(coords[3]) == 4 then
+										elseif stringlen(coords[3]) == 4 then
 											y = (tonumber(coords[3])*0.01)
-										elseif string.len(coords[3]) == 5 then
+										elseif stringlen(coords[3]) == 5 then
 											y = (tonumber(coords[3])*0.01)
-										elseif string.len(coords[3]) > 5 then
+										elseif stringlen(coords[3]) > 5 then
 											coords[1] = "a"
 										end
 									end
 									-- check if its numbers set the waypoint and print it otherwise error message
-									if (coords[2] and string.match(coords[2], "%a+")) or (coords[3] and string.match(coords[3], "%a+")) then
+									if (coords[2] and stringmatch(coords[2], "%a+")) or (coords[3] and stringmatch(coords[3], "%a+")) then
 										ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
 										wipe(coords)
 									elseif x == nil or y == nil then
@@ -368,35 +372,35 @@ if E.Retail then
 							end
 						else
 							-- setup x coordinate
-							if coords[1] and string.match(coords[1], "%d+") then
-								if string.len(coords[1]) == 3 then
+							if coords[1] and stringmatch(coords[1], "%d+") then
+								if stringlen(coords[1]) == 3 then
 									x = (tonumber(coords[1])*0.001)
-								elseif string.len(coords[1]) == 2 then
+								elseif stringlen(coords[1]) == 2 then
 									x = (tonumber(coords[1])*0.01)
-								elseif string.len(coords[1]) == 4 then
+								elseif stringlen(coords[1]) == 4 then
 									x = (tonumber(coords[1])*0.01)
-								elseif string.len(coords[1]) == 5 then
+								elseif stringlen(coords[1]) == 5 then
 									x = (tonumber(coords[1])*0.01)
-								elseif string.len(coords[1]) > 5 then
+								elseif stringlen(coords[1]) > 5 then
 									coords[1] = "a"
 								end
 							end
 							-- setup y coordinate
-							if coords[2] and string.match(coords[2], "%d+") then
-								if string.len(coords[2]) == 3 then
+							if coords[2] and stringmatch(coords[2], "%d+") then
+								if stringlen(coords[2]) == 3 then
 									y = (tonumber(coords[2])*0.001)
-								elseif string.len(coords[2]) == 2 then
+								elseif stringlen(coords[2]) == 2 then
 									y = (tonumber(coords[2])*0.01)
-								elseif string.len(coords[2]) == 4 then
+								elseif stringlen(coords[2]) == 4 then
 									y = (tonumber(coords[2])*0.01)
-								elseif string.len(coords[2]) == 5 then
+								elseif stringlen(coords[2]) == 5 then
 									y = (tonumber(coords[2])*0.01)
-								elseif string.len(coords[2]) > 5 then
+								elseif stringlen(coords[2]) > 5 then
 									coords[1] = "a"
 								end
 							end
 							-- check if its numbers set the waypoint and print it otherwise error message
-							if (coords[1] and string.match(coords[1], "%a+")) or (coords[2] and string.match(coords[2], "%a+")) then
+							if (coords[1] and stringmatch(coords[1], "%a+")) or (coords[2] and stringmatch(coords[2], "%a+")) then
 								ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
 								wipe(coords)
 							elseif x == nil or y == nil then

@@ -2,9 +2,11 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local math = _G.math
+local mathfloor = math.floor
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local string = _G.string
+local stringformat = string.format
 local pairs = _G.pairs
 local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon
 local PlayerHasToy = _G.PlayerHasToy
@@ -533,11 +535,11 @@ local function EltruismTeleportsOnEnter()
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
-				local hours = math.floor(cooldown /3600)
-				local minutes = math.floor(cooldown / 60)
-				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
+				local hours = mathfloor(cooldown /3600)
+				local minutes = mathfloor(cooldown / 60)
+				local seconds = stringformat("%02.f", mathfloor(cooldown - minutes * 60))
 				if hours >= 1 then
-					minutes = math.floor(mod(cooldown,3600)/60)
+					minutes = mathfloor(mod(cooldown,3600)/60)
 					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 				else
 					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
@@ -556,11 +558,11 @@ local function EltruismTeleportsOnEnter()
 			if ElvUI_EltreumUI:IsThisASafeSecret(start,true) and ElvUI_EltreumUI:IsThisASafeSecret(duration,true) then
 				local cooldown = start + duration - GetTime()
 				if cooldown >= 2 then
-					local hours = math.floor(cooldown /3600)
-					local minutes = math.floor(cooldown / 60)
-					local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
+					local hours = mathfloor(cooldown /3600)
+					local minutes = mathfloor(cooldown / 60)
+					local seconds = stringformat("%02.f", mathfloor(cooldown - minutes * 60))
 					if hours >= 1 then
-						minutes = math.floor(mod(cooldown,3600)/60)
+						minutes = mathfloor(mod(cooldown,3600)/60)
 						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 					else
 						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
@@ -636,11 +638,11 @@ local function EltruismTeleportsOnEnter()
 					local startcd, durationcd = GetItemCooldown(v)
 					local cooldown2 = startcd + durationcd - GetTime()
 					if cooldown2 >= 2 then
-						local hours = math.floor(cooldown2 /3600)
-						local minutes = math.floor(cooldown2 / 60)
-						local seconds = string.format("%02.f", math.floor(cooldown2 - minutes * 60))
+						local hours = mathfloor(cooldown2 /3600)
+						local minutes = mathfloor(cooldown2 / 60)
+						local seconds = stringformat("%02.f", mathfloor(cooldown2 - minutes * 60))
 						if hours >= 1 then
-							minutes = math.floor(mod(cooldown2,3600)/60)
+							minutes = mathfloor(mod(cooldown2,3600)/60)
 							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 						else
 							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
@@ -658,11 +660,11 @@ local function EltruismTeleportsOnEnter()
 					local startcd2, durationcd2 = SpellCooldown(v)
 					local cooldown3 = startcd2 + durationcd2 - GetTime()
 					if cooldown3 >= 2 then
-						local hours = math.floor(cooldown3 /3600)
-						local minutes = math.floor(cooldown3 / 60)
-						local seconds = string.format("%02.f", math.floor(cooldown3 - minutes * 60))
+						local hours = mathfloor(cooldown3 /3600)
+						local minutes = mathfloor(cooldown3 / 60)
+						local seconds = stringformat("%02.f", mathfloor(cooldown3 - minutes * 60))
 						if hours >= 1 then
-							minutes = math.floor(mod(cooldown3,3600)/60)
+							minutes = mathfloor(mod(cooldown3,3600)/60)
 							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 						else
 							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))

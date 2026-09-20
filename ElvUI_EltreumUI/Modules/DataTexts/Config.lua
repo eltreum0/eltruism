@@ -6,7 +6,7 @@ local UIErrorsFrame = _G.UIErrorsFrame
 local ERR_NOT_IN_COMBAT = _G.ERR_NOT_IN_COMBAT
 
 local function EltruismConfigOnEvent(self)
-	self.text:SetText('|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodev.tga:14:14:0:0|t'..E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1))
+	self.text:SetText('|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodev.tga:14:14:0:0|t'..ElvUI_EltreumUI.Name)
 end
 
 local function EltruismConfigOnEnter()

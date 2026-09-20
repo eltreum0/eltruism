@@ -255,52 +255,52 @@ do
 
 	ElvUI_EltreumUI.DamageMeterIcons = {
 		["Eltruism"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1),
+			["DisplayName"] = ElvUI_EltreumUI.Name,
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism",
 		},
 		["EltruismBars"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Bars",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." Bars",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars",
 		},
 		["EltruismBarsSolid"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Bars Solid",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." Bars Solid",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid",
 		},
 		["EltruismBarsSolidOutline"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Bars Solid Outline",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." Bars Solid Outline",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid_outline",
 		},
 		["EltruismFlat"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Flat",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." Flat",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-flat-wow",
 		},
 		["EltruismBW"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." B&W",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." B&W",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism-bw",
 		},
 		["EltruismUGG"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." UGG",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." UGG",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-ugg",
 		},
 		["EltruismUGGBW"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." UGG B&W",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." UGG B&W",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\details-ugg-bw",
 		},
 		["EltruismSymbols"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Symbols",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." Symbols",
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism-symbols",
 		},
 		["EltruismSpec"] = {
-			["DisplayName"] = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1).." Spec",
+			["DisplayName"] = ElvUI_EltreumUI.Name.." Spec",
 			["isSpec"] = true,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism",
 		},

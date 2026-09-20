@@ -23,6 +23,8 @@ local ScaleTo100 = _G.CurveConstants and _G.CurveConstants.ScaleTo100
 local UnitHealthPercent = _G.UnitHealthPercent
 local AbbreviateNumbers = _G.AbbreviateNumbers
 local escapeSequence = ":0:0:0:0"
+local stringlen = string.len
+local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
 
 function ElvUI_EltreumUI:LoadHealthTags()
 
@@ -337,7 +339,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		end
 		local lengthOK = false
 		if not E.Retail then
-			lengthOK = string.len(value) > 2 and true or false
+			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
@@ -433,7 +435,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		end
 		local lengthOK = false
 		if not E.Retail then
-			lengthOK = string.len(value) > 2 and true or false
+			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
@@ -522,7 +524,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		local value = tostring(UnitHealth(unit))
 		local lengthOK = false
 		if not E.Retail then
-			lengthOK = string.len(value) > 2 and true or false
+			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
@@ -698,7 +700,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					if E:NotSecretValue(unitClass) then --secret class so do something else
 						perctext = "|c"..ElvUI_EltreumUI:classcolorcast(unitClass).." a |r"
 					else
-						perctext = "|c"..ElvUI_EltreumUI:classcolorcast("ROGUE").." a |r"
+						local classColor = GetClassColor(unitClass)
+						local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
+						perctext = "|c"..hex.." a |r"
 					end
 					perctext = gsub(perctext,"a","||")
 					perc = tostring(format("%.1f%%",min / max * 100))

@@ -8,6 +8,7 @@ local classcolor = E.myClassColor
 local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local string = _G.string
+local stringfind = string.find
 local UnitExists = _G.UnitExists
 local tonumber = _G.tonumber
 local UnitClass = _G.UnitClass
@@ -25,7 +26,6 @@ local TimeSinceLastUpdate = 0
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
 --local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
-local UnitIsUnit = _G.UnitIsUnit
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local GetNumRegions = _G.GetNumRegions
@@ -45,7 +45,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	local r,g,b = glowcolor[1],glowcolor[2],glowcolor[3]
 
 	if button and button.spellID then
-		if not string.find(unit, "nameplate") then
+		if not stringfind(unit, "nameplate") then
 			return
 		else
 			--[[if button.aura.sourceUnit ~= "player" then
@@ -183,7 +183,7 @@ end
 
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	if button and button.spellID then
-		if not string.find(unit, "nameplate") then
+		if not stringfind(unit, "nameplate") then
 			return
 		else
 			TimeSinceLastUpdate = 0

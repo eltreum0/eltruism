@@ -23,6 +23,7 @@ local MANA_REGEN = _G.MANA_REGEN
 local CharacterModelScene = _G.CharacterModelScene
 local pairs = _G.pairs
 local string = _G.string
+local stringlen = string.len
 local InCombatLockdown = _G.InCombatLockdown
 local format = _G.format
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
@@ -3112,7 +3113,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									_G.InspectNameText:SetPoint("TOP",_G.InspectFrame,"TOP",0,-15)
 									if _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
 										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-										if string.len(_G.InspectNameText:GetText()) >= 6 then
+										if stringlen(_G.InspectNameText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
 												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom))
 											else
@@ -3135,7 +3136,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									_G.InspectFrameTitleText:SetPoint("TOP",_G.InspectFrame,"TOP",0,-5)
 									if _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
 										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
+										if stringlen(_G.InspectFrameTitleText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom))
 											else

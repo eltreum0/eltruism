@@ -13,6 +13,11 @@ local UIParentLoadAddOn = _G.UIParentLoadAddOn
 local GetCursorInfo = _G.GetCursorInfo
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local string = _G.string
+local stringlen = string.len
+local stringupper = string.upper
+local stringutf8sub = string.utf8sub
+local stringutf8lower = string.utf8lower
+local tonumber = _G.tonumber
 local DELETE_ITEM_CONFIRM_STRING = _G.DELETE_ITEM_CONFIRM_STRING
 local InCombatLockdown = _G.InCombatLockdown
 local HideUIPanel = _G.HideUIPanel
@@ -42,7 +47,7 @@ local select = _G.select
 function ElvUI_EltreumUI:Print(msg)
 	--print('|cff82B4ffEltruism|r: '..msg)
 	if not msg then return end
-	print(E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)..': '..msg)
+	print(ElvUI_EltreumUI.Name..': '..msg)
 end
 
 --fix macro
@@ -209,21 +214,22 @@ end
 --to get the correct name for the files
 --https://stackoverflow.com/questions/2421695/first-character-uppercase-lua
 function ElvUI_EltreumUI:firstToUpper(str)
-	return (str:gsub("^%l", string.upper))
+	return (str:gsub("^%l", stringupper))
 end
 
 --copy of elvui abbrev
 local strmatch = _G.strmatch
 local gsub = _G.gsub
+local gmatch = _G.gmatch
 function ElvUI_EltreumUI:Abbrev(name)
 	if not ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 		return name
 	else
 		local letters, lastWord = '', strmatch(name, '.+%s(.+)$')
 		if lastWord then
-			for word in _G.gmatch(name, '.-%s') do
-				local firstLetter = string.utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
-				if firstLetter ~= string.utf8lower(firstLetter) then
+			for word in gmatch(name, '.-%s') do
+				local firstLetter = stringutf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
+				if firstLetter ~= stringutf8lower(firstLetter) then
 					letters = format('%s%s. ', letters, firstLetter)
 				end
 			end
@@ -645,63 +651,69 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				end
 				GameMenuFrame.Eltruism = Menubutton
 
-				hooksecurefunc(GameMenuFrame, 'Layout', function()
-					if E.Retail then
-						GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
-					else
-						GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -35)
-					end
-
-					local EditModeButton
-					for button in GameMenuFrame.buttonPool:EnumerateActive() do
-						if button.layoutIndex then
-							local point, anchor, point2, x, y = button:GetPoint()
-							if button.layoutIndex == 1 then
-								button:ClearAllPoints()
-								button:SetPoint("TOP", GameMenuFrame.Eltruism, "BOTTOM", 0, 0)
-							else
-								button:SetPoint(point, anchor, point2, x, y - offset)
-							end
+				if not GameMenuFrame.EltruismHook then
+					hooksecurefunc(GameMenuFrame, 'Layout', function()
+						if E.Retail then
+							GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
+						else
+							GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -35)
 						end
-						if button:GetText() == _G.HUD_EDIT_MODE_MENU then
-							EditModeButton = button
-						end
-					end
 
-					--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-					if E.Retail then
-						GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-					else
-						GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-					end
-
-					--use elvui moveui instead of blizzard edit mode
-					--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
-					if EditModeButton then
-						ElvUI_EltreumUI:MacroClick(EditModeButton)
-						EditModeButton:SetScript("OnClick", function(_, button)
-							if not InCombatLockdown() then
-								if button == "LeftButton" then
-									E:ToggleMoveMode()
-									HideUIPanel(_G["GameMenuFrame"])
+						local EditModeButton
+						for button in GameMenuFrame.buttonPool:EnumerateActive() do
+							if button.layoutIndex then
+								local point, anchor, point2, x, y = button:GetPoint()
+								if button.layoutIndex == 1 then
+									button:ClearAllPoints()
+									button:SetPoint("TOP", GameMenuFrame.Eltruism, "BOTTOM", 0, 0)
 								else
-									PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-									ShowUIPanel(EditModeManagerFrame)
+									button:SetPoint(point, anchor, point2, x, y - offset)
 								end
 							end
-						end)
-						EditModeButton:HookScript("OnEnter", function()
-							_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
-							_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
-							_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
-							_G["GameTooltip"]:Show()
-						end)
-						EditModeButton:HookScript("OnLeave", function()
-							_G["GameTooltip"]:Hide()
-						end)
-					end
+							if button:GetText() == _G.HUD_EDIT_MODE_MENU then
+								EditModeButton = button
+							end
+						end
 
-				end)
+						--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
+						if E.Retail then
+							GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+						else
+							GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+						end
+
+						--use elvui moveui instead of blizzard edit mode
+						--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
+						if EditModeButton then
+							ElvUI_EltreumUI:MacroClick(EditModeButton)
+
+							if not EditModeButton.EltruismClickHooks then
+								EditModeButton:SetScript("OnClick", function(_, button)
+									if not InCombatLockdown() then
+										if button == "LeftButton" then
+											E:ToggleMoveMode()
+											HideUIPanel(_G["GameMenuFrame"])
+										else
+											PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+											ShowUIPanel(EditModeManagerFrame)
+										end
+									end
+								end)
+								EditModeButton:HookScript("OnEnter", function()
+									_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
+									_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
+									_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
+									_G["GameTooltip"]:Show()
+								end)
+								EditModeButton:HookScript("OnLeave", function()
+									_G["GameTooltip"]:Hide()
+								end)
+								EditModeButton.EltruismClickHooks = true
+							end
+						end
+					end)
+					GameMenuFrame.EltruismHook = true
+				end
 			end
 		--[[else
 			if not isMenuExpanded then
@@ -940,7 +952,7 @@ do
 		if not ElvUI_EltreumUI:IsThisASafeSecret(text,true) then
 			return text
 		else
-			if text and string.len(text) > length then
+			if text and stringlen(text) > length then
 				if cut then
 					text = E:ShortenString(text,length)
 				else
@@ -1009,7 +1021,7 @@ function ElvUI_EltreumUI:OriginalClassColors()
 	if not inInstance and not (mapID == 1662 or mapID == 582 or mapID == 590) then
 		canTouchRaidClassColors = true
 	else
-		if GetCVar('nameplateShowFriends') == 0 then
+		if tonumber(GetCVar('nameplateShowFriends')) == 0 then
 			canTouchRaidClassColors = true
 		else
 			canTouchRaidClassColors = false
@@ -1102,18 +1114,13 @@ function ElvUI_EltreumUI:ExportImportGradient(data,mode)
 end
 
 --color picker wheel better masking
-if _G.ColorPickerWheel then
+local pickerWheel = _G.ColorPickerWheel or (_G.ColorPickerFrame and _G.ColorPickerFrame.Content and _G.ColorPickerFrame.Content.ColorPicker and _G.ColorPickerFrame.Content.ColorPicker.Wheel)
+if pickerWheel and _G.ColorPickerFrame then
 	local bettermask = _G.ColorPickerFrame:CreateMaskTexture()
 	bettermask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-	bettermask:SetPoint("TOPRIGHT", _G.ColorPickerWheel, "TOPRIGHT", 3, 3)
-	bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerWheel, "BOTTOMLEFT", -2, -2)
-	_G.ColorPickerWheel:AddMaskTexture(bettermask)
-else
-	local bettermask = _G.ColorPickerFrame:CreateMaskTexture()
-	bettermask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-	bettermask:SetPoint("TOPRIGHT", _G.ColorPickerFrame.Content.ColorPicker.Wheel, "TOPRIGHT", 3, 3)
-	bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerFrame.Content.ColorPicker.Wheel, "BOTTOMLEFT", -2, -2)
-	_G.ColorPickerFrame.Content.ColorPicker.Wheel:AddMaskTexture(bettermask)
+	bettermask:SetPoint("TOPRIGHT", pickerWheel, "TOPRIGHT", 3, 3)
+	bettermask:SetPoint("BOTTOMLEFT", pickerWheel, "BOTTOMLEFT", -2, -2)
+	pickerWheel:AddMaskTexture(bettermask)
 end
 
 function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)

@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:LoadCommands()
 
 	--add to moveui table
 	if not self.ConfigModeAddedEltruism then
-		E:ConfigMode_AddGroup("ELTREUMUI",E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1))
+		E:ConfigMode_AddGroup("ELTREUMUI",ElvUI_EltreumUI.Name)
 		--tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
 		--E.ConfigModeLocalizedStrings["ELTREUMUI"] =
 		self.ConfigModeAddedEltruism = true
