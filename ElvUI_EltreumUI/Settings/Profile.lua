@@ -786,7 +786,7 @@ P.ElvUI_EltreumUI = {
 		aurasizey = 54,
 		debuffaurasizex = 54,
 		debuffaurasizey = 54,
-		aurastrata = "MEDIUM",
+		aurastrata = "LOW",
 		auralevel = 4,
 
 		auraborderuf = true,
@@ -794,7 +794,7 @@ P.ElvUI_EltreumUI = {
 		ufbuffsizey = 45,
 		ufdebuffsizex = 50,
 		ufdebuffsizey = 45,
-		auraufstrata = "MEDIUM",
+		auraufstrata = "LOW",
 		aurauflevel = 4,
 		ufaurasize = 13,
 
@@ -803,7 +803,7 @@ P.ElvUI_EltreumUI = {
 		npbuffsizey = 35,
 		npdebuffsizex = 41,
 		npdebuffsizey = 35,
-		auranpstrata = "MEDIUM",
+		auranpstrata = "LOW",
 		auranplevel = 4,
 		npaurasize = 10,
 
