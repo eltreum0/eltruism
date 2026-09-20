@@ -1,106 +1,228 @@
-local E, _, _, P = unpack(ElvUI)
+local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local UnitAffectingCombat = _G.UnitAffectingCombat
-local UnitIsUnit = _G.UnitIsUnit
-local CreateFrame = _G.CreateFrame
 local UnitThreatSituation = _G.UnitThreatSituation
-local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
+local UnitCastingInfo = _G.UnitCastingInfo
+local CreateFrame = _G.CreateFrame
+local mathabs = _G.math.abs
+local string_match = _G.string.match
+local C_NamePlate_GetNamePlateForUnit = _G.C_NamePlate and _G.C_NamePlate.GetNamePlateForUnit
+local C_NamePlate_GetNamePlates = _G.C_NamePlate and _G.C_NamePlate.GetNamePlates
 
---np custom health height conditions
-local heighttable = {
-	["FRIENDLY_NPC"] = 30,
-	["ENEMY_NPC"] = 30,
-	["ENEMY_PLAYER"] = 30,
-	["FRIENDLY_PLAYER"] = 30,
-	["PLAYER"] = 30,
-}
-local tableupdate = CreateFrame("FRAME")
-tableupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
-tableupdate:RegisterEvent("PLAYER_STARTED_MOVING")
-tableupdate:SetScript("OnEvent",function()
-	tableupdate:UnregisterAllEvents()
-	heighttable = {
-		["FRIENDLY_NPC"] = E.db.nameplates.units.FRIENDLY_NPC.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
-		["ENEMY_NPC"] = E.db.nameplates.units.ENEMY_NPC.health.height or P.nameplates.units.ENEMY_NPC.health.height,
-		["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
-		["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
-		["PLAYER"] = E.db.nameplates.units.PLAYER.health.height or P.nameplates.units.PLAYER.health.height,
-	}
-end)
-function ElvUI_EltreumUI:NameplateCustomOptions(unit)
-	if not unit or not unit.__unit or not unit.Health or not unit.Health:IsShown() then
+local previousTargetPlate
+
+--np custom health height
+function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
+	if not frame or not frame.__unit then
 		return
 	end
-	if not E.db.ElvUI_EltreumUI then return end
-	if not E.db.ElvUI_EltreumUI.nameplates then return end
+	local health = frame.Health
+	if not health or not health:IsShown() then
+		return
+	end
+	if frame == NP.PlayerFrame or frame.frameType == 'PLAYER' then
+		return
+	end
 
-	if E.db.ElvUI_EltreumUI.nameplates.backdrop and E.db.ElvUI_EltreumUI.nameplates.backdrop.BDmodifications then
-		if unit.Health.backdrop then
-			unit.Health.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.backdrop.backdroptexture))
-			if E.db.ElvUI_EltreumUI.nameplates.backdrop.backdroptexturestaticsize then
-				unit.Health.backdrop.Center:SetAllPoints(unit.Health)
+	local db = E.db.ElvUI_EltreumUI
+	local opts = db and db.nameplates and db.nameplates.nameplateOptions
+	if not (opts and opts.enableHealthHeight) then
+		return
+	end
+
+	local frameunit = frame.__unit
+	local isTarget = E:UnitIsUnit(frameunit, "target")
+	local isActive = isTarget
+
+	--check if in combat/threat/casting
+	if not isActive and not opts.disableCombatConditions then
+		local inCombatVal = UnitAffectingCombat(frameunit)
+		local unitInCombat = inCombatVal and E:NotSecretValue(inCombatVal) and inCombatVal
+
+		if not unitInCombat and UnitThreatSituation then
+			local threat = UnitThreatSituation("player", frameunit)
+			local canAccessThreat = threat and E:CanAccessValue(threat) and E:NotSecretValue(threat)
+			if canAccessThreat and threat > 0 then
+				unitInCombat = true
+			elseif UnitCastingInfo(frameunit) then
+				unitInCombat = true
 			end
-			if E.db.ElvUI_EltreumUI.nameplates.backdrop.backdrophidden then
-				unit.Health.backdrop.LeftEdge:Hide()
-				unit.Health.backdrop.BottomLeftCorner:Hide()
-				unit.Health.backdrop.TopLeftCorner:Hide()
-				unit.Health.backdrop.RightEdge:Hide()
-				unit.Health.backdrop.BottomRightCorner:Hide()
-				unit.Health.backdrop.TopRightCorner:Hide()
-				unit.Health.backdrop.TopEdge:Hide()
-				unit.Health.backdrop.BottomEdge:Hide()
+		end
+
+		isActive = unitInCombat
+	end
+
+	local targetHeight
+	if isActive then
+		if opts.useelvuinpheight and frame.frameType then
+			local plateDB = NP:PlateDB(frame)
+			targetHeight = (plateDB and plateDB.health and plateDB.health.height) or 30
+		else
+			targetHeight = opts.incombatHeight or 14
+		end
+	else
+		targetHeight = opts.outofcombatHeight or 4
+	end
+
+	if targetHeight then
+		local currentHeight = health:GetHeight()
+		local canAccessCurrentHeight = not currentHeight or (E:CanAccessValue(currentHeight) and E:NotSecretValue(currentHeight))
+		if canAccessCurrentHeight then
+			if not currentHeight or mathabs(currentHeight - targetHeight) > 0.05 then
+				health:SetHeight(targetHeight)
+			end
+		else
+			health:SetHeight(targetHeight)
+		end
+	end
+end
+
+--custom backdrop modifications
+function ElvUI_EltreumUI:NameplateCustomOptions(unit)
+	local health = unit and unit.Health
+	if not health or not unit.__unit or not health:IsShown() then
+		return
+	end
+
+	local db = E.db.ElvUI_EltreumUI
+	local backdropOpt = db and db.nameplates and db.nameplates.backdrop
+	if not (backdropOpt and backdropOpt.BDmodifications) then
+		return
+	end
+
+	local backdrop = health.backdrop
+	if not backdrop then
+		return
+	end
+
+	if backdropOpt.backdroptexture then
+		backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", backdropOpt.backdroptexture))
+	end
+	if backdropOpt.backdroptexturestaticsize then
+		backdrop.Center:SetAllPoints(health)
+	end
+	if backdropOpt.backdrophidden then
+		backdrop.LeftEdge:Hide()
+		backdrop.BottomLeftCorner:Hide()
+		backdrop.TopLeftCorner:Hide()
+		backdrop.RightEdge:Hide()
+		backdrop.BottomRightCorner:Hide()
+		backdrop.TopRightCorner:Hide()
+		backdrop.TopEdge:Hide()
+		backdrop.BottomEdge:Hide()
+	end
+end
+
+--update all visible nameplates
+function ElvUI_EltreumUI:UpdateAllNameplateHeights()
+	if not C_NamePlate_GetNamePlates then return end
+	local plates = C_NamePlate_GetNamePlates()
+	if plates then
+		for i = 1, #plates do
+			local blizzPlate = plates[i]
+			if blizzPlate and blizzPlate.unitFrame then
+				ElvUI_EltreumUI:UpdateNameplateHealthHeight(blizzPlate.unitFrame)
 			end
 		end
 	end
+end
 
-	--works for name, but then there's the tags issue
-	--[[if not UnitCanAttack("player", unit.__unit) and UnitIsEnemy("player", unit.__unit) then
-		unit.Health:Hide()
+--target changed, update it
+local function OnTargetChanged(opts)
+	if not opts then
+		local db = E.db.ElvUI_EltreumUI
+		opts = db and db.nameplates and db.nameplates.nameplateOptions
+	end
+	if not (opts and opts.enableHealthHeight) then
+		return
+	end
+
+	local targetFrame
+	if C_NamePlate_GetNamePlateForUnit("target") then
+		local targetPlate = C_NamePlate_GetNamePlateForUnit("target")
+		targetFrame = targetPlate and targetPlate.unitFrame
+	end
+
+	-- Restore previous target plate if it was different and is still visible
+	if previousTargetPlate and previousTargetPlate ~= targetFrame and previousTargetPlate.Health and previousTargetPlate:IsShown() then
+		ElvUI_EltreumUI:UpdateNameplateHealthHeight(previousTargetPlate)
+	end
+
+	-- Apply target height to newly targeted plate
+	if targetFrame then
+		ElvUI_EltreumUI:UpdateNameplateHealthHeight(targetFrame)
+		previousTargetPlate = targetFrame
 	else
-		unit.Health:Show()
-	end]]
+		previousTargetPlate = nil
+	end
+end
 
-	--[[if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.__unit:match("nameplate") then --unit is always nameplate
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.disableCombatConditions then
-			if E:UnitIsUnit(unit.__unit, "target") then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight and unit.frameType then
-					unit.Health:SetHeight(heighttable[unit.frameType])
-				else
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
-				end
-			else
-				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
-			end
-		else
-			if E:UnitIsUnit(unit.__unit, "target") then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight and unit.frameType then
-					unit.Health:SetHeight(heighttable[unit.frameType])
-				else
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
-				end
-			else
-				if UnitAffectingCombat(unit.__unit) or (UnitThreatSituation("player", unit.__unit) ~= nil) or E:UnitIsUnit(unit.__unit.."target","player") or UnitCastingInfo(unit.__unit) then
-					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight and unit.frameType then
-						unit.Health:SetHeight(heighttable[unit.frameType])
-					else
-						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
-					end
-				else
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight or 4)
-				end
+--handle events connected to nameplates
+local eventFrame = CreateFrame("Frame")
+eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+eventFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+eventFrame:RegisterEvent("UNIT_FLAGS")
+eventFrame:RegisterEvent("UNIT_THREAT_LIST_UPDATE")
+eventFrame:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE")
+eventFrame:SetScript("OnEvent", function(_, event, unit)
+	local db = E.db.ElvUI_EltreumUI
+	local opts = db and db.nameplates and db.nameplates.nameplateOptions
+	if not (opts and opts.enableHealthHeight) then
+		return
+	end
+
+	if event == "PLAYER_TARGET_CHANGED" then
+		OnTargetChanged(opts)
+	elseif event == "NAME_PLATE_UNIT_REMOVED" then
+		if previousTargetPlate and previousTargetPlate.__unit == unit then
+			previousTargetPlate = nil
+		end
+	elseif event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_REGEN_ENABLED" then
+		if not opts.disableCombatConditions then
+			ElvUI_EltreumUI:UpdateAllNameplateHeights()
+		end
+	elseif event == "UNIT_FLAGS" or event == "UNIT_THREAT_LIST_UPDATE" or event == "UNIT_THREAT_SITUATION_UPDATE" then
+		if unit and C_NamePlate_GetNamePlateForUnit and string_match(unit, "^nameplate%d+$") then
+			local plate = C_NamePlate_GetNamePlateForUnit(unit)
+			if plate and plate.unitFrame and plate.unitFrame.Health and plate.unitFrame.Health:IsShown() then
+				ElvUI_EltreumUI:UpdateNameplateHealthHeight(plate.unitFrame)
 			end
 		end
-	end]]
+	end
+end)
+
+local function OnUpdatePlateBase(_, nameplate)
+	if nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown() then
+		ElvUI_EltreumUI:NameplateCustomOptions(nameplate)
+		ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
+		if E:UnitIsUnit(nameplate.__unit, "target") then
+			previousTargetPlate = nameplate
+		end
+	end
 end
---hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
-hooksecurefunc(NP, "NamePlateCallBack", ElvUI_EltreumUI.NameplateCustomOptions) --when they appear after the stylefilter changes in elvui
-hooksecurefunc(NP, "Update_TargetIndicator", ElvUI_EltreumUI.NameplateCustomOptions)
-hooksecurefunc(NP, "Construct_Highlight", ElvUI_EltreumUI.NameplateCustomOptions)
-hooksecurefunc(NP, "ScalePlate", ElvUI_EltreumUI.NameplateCustomOptions)
-hooksecurefunc(NP, "UpdatePlate", ElvUI_EltreumUI.NameplateCustomOptions)
---hooksecurefunc(NP, "StylePlate", ElvUI_EltreumUI.NameplateCustomOptions)
---hooksecurefunc(NP, "Health_SetColors", ElvUI_EltreumUI.NameplateCustomOptions)
---UNIT_FLAGS might work, as might "UNIT_THREAT_LIST_UPDATE", but linking to the function is the issue
+hooksecurefunc(NP, "UpdatePlateBase", OnUpdatePlateBase) --fires when elvui updates them
+
+local function OnUpdateHealth(self, nameplate)
+	local frame = (self and self.__unit and self) or (nameplate and nameplate.__unit and nameplate)
+	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
+		ElvUI_EltreumUI:NameplateCustomOptions(frame)
+		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
+		if E:UnitIsUnit(frame.__unit, "target") then
+			previousTargetPlate = frame
+		end
+	end
+end
+hooksecurefunc(NP, "Update_Health", OnUpdateHealth) --if they are changing health they are likely in combat
+
+local function OnThreatOrColorUpdate(arg1, arg2)
+	local frame = (arg1 and arg1.__unit and arg1) or (arg2 and arg2.__unit and arg2)
+	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
+		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
+	end
+end
+hooksecurefunc(NP, "Health_UpdateColor", OnThreatOrColorUpdate) --handle health changes
+hooksecurefunc(NP, "ThreatIndicator_PostUpdate", OnThreatOrColorUpdate) --handle threat changes

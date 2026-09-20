@@ -152,6 +152,11 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
 		--ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
+
+		--return of custom nameplate heights
+		if E.db.ElvUI_EltreumUI.nameplates and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then
+			ElvUI_EltreumUI:UpdateAllNameplateHeights()
+		end
 	end
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()
