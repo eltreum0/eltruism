@@ -278,10 +278,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 					local barTex = unitframe.Health:GetStatusBarTexture()
 					if barTex then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							local targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and E.db.unitframe.statusbar or E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
-							if barTex._eltTextureKey ~= targetTex then
-								barTex:SetTexture(E.LSM:Fetch("statusbar", targetTex))
-								barTex._eltTextureKey = targetTex
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+								barTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+							else
+								barTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
 						end
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop and UnitIsDeadOrGhost(unit) then
@@ -298,10 +298,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unitDB] then
 					if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-						local targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and E.db.unitframe.statusbar or E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
-						if unitframe.Health.backdropTex._eltTextureKey ~= targetTex then
-							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", targetTex))
-							unitframe.Health.backdropTex._eltTextureKey = targetTex
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+						else
+							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 						end
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop and UnitIsDeadOrGhost(unit) then
@@ -354,10 +354,10 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				local barTex = button.Health:GetStatusBarTexture()
 				if barTex then
 					if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-						local targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and E.db.unitframe.statusbar or E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
-						if barTex._eltTextureKey ~= targetTex then
-							barTex:SetTexture(E.LSM:Fetch("statusbar", targetTex))
-							barTex._eltTextureKey = targetTex
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+							barTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+						else
+							barTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 						end
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop and UnitIsDeadOrGhost(unit) then
@@ -382,10 +382,10 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-					local targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and E.db.unitframe.statusbar or E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
-					if button.Health.backdropTex._eltTextureKey ~= targetTex then
-						button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", targetTex))
-						button.Health.backdropTex._eltTextureKey = targetTex
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+						button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+					else
+						button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 					end
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop and UnitIsDeadOrGhost(unit) then
@@ -423,7 +423,10 @@ local function HealthBar_PostUpdateHealthColor(healthBar, unit)
 	if not (E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.hasMode) then return end
 
 	local parent = healthBar.origParent or (healthBar.GetParent and healthBar:GetParent())
-	if not parent then return end
+	if not parent then
+		ElvUI_EltreumUI:GradientUF(unit)
+		return
+	end
 
 	local frameType = parent.unitframeType
 	if not frameType then
