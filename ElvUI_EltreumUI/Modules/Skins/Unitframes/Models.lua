@@ -195,24 +195,37 @@ function ElvUI_EltreumUI:TargetUFEffects()
 			local targetbar = _G["ElvUF_Target"]
 			local reactiontarget = UnitReaction("target", "player")
 			local _, targetclass = UnitClass("target")
-			if not E:NotSecretValue(targetclass) then --secret class so do something else
-				return
+			if not E:NotSecretValue(targetclass) or not targetclass then
+				targetclass = E.myclass
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--targeteffect:ClearModel()
 				if (UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target"))) and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
 				else
-					if reactiontarget then
+					local npcModel
+					if reactiontarget and E:NotSecretValue(reactiontarget) then
 						if reactiontarget >= 5 then
-							targeteffect:SetModel(classModels["NPCFRIENDLY"])
+							npcModel = classModels["NPCFRIENDLY"]
 						elseif reactiontarget == 4 then
-							targeteffect:SetModel(classModels["NPCNEUTRAL"])
+							npcModel = classModels["NPCNEUTRAL"]
 						elseif reactiontarget == 3 then
-							targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+							npcModel = classModels["NPCUNFRIENDLY"]
 						elseif reactiontarget == 2 or reactiontarget == 1 then
-							targeteffect:SetModel(classModels["NPCHOSTILE"])
+							npcModel = classModels["NPCHOSTILE"]
 						end
+					end
+					if not npcModel then
+						if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", "target")) and UnitCanAttack("player", "target")) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", "target")) and UnitIsEnemy("player", "target")) then
+							npcModel = classModels["NPCHOSTILE"]
+						elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", "target")) and UnitIsFriend("player", "target") then
+							npcModel = classModels["NPCFRIENDLY"]
+						else
+							npcModel = classModels["NPCHOSTILE"]
+						end
+					end
+					if npcModel then
+						targeteffect:SetModel(npcModel)
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
@@ -303,24 +316,37 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			local targettargetbar = _G["ElvUF_TargetTarget"]
 			local reactiontargettarget = UnitReaction("targettarget", "player")
 			local _, targettargetclass = UnitClass("targettarget")
-			if not E:NotSecretValue(targettargetclass) then --secret class so do something else
-				return
+			if not E:NotSecretValue(targettargetclass) or not targettargetclass then
+				targettargetclass = E.myclass
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				if (UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget"))) and targettargetclass then
 					targettargeteffect:SetModel(classModels[targettargetclass])
 				else
-					if reactiontargettarget then
+					local npcModel
+					if reactiontargettarget and E:NotSecretValue(reactiontargettarget) then
 						if reactiontargettarget >= 5 then
-							targettargeteffect:SetModel(classModels["NPCFRIENDLY"])
+							npcModel = classModels["NPCFRIENDLY"]
 						elseif reactiontargettarget == 4 then
-							targettargeteffect:SetModel(classModels["NPCNEUTRAL"])
+							npcModel = classModels["NPCNEUTRAL"]
 						elseif reactiontargettarget == 3 then
-							targettargeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+							npcModel = classModels["NPCUNFRIENDLY"]
 						elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
-							targettargeteffect:SetModel(classModels["NPCHOSTILE"])
+							npcModel = classModels["NPCHOSTILE"]
 						end
+					end
+					if not npcModel then
+						if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", "targettarget")) and UnitCanAttack("player", "targettarget")) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", "targettarget")) and UnitIsEnemy("player", "targettarget")) then
+							npcModel = classModels["NPCHOSTILE"]
+						elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", "targettarget")) and UnitIsFriend("player", "targettarget") then
+							npcModel = classModels["NPCFRIENDLY"]
+						else
+							npcModel = classModels["NPCHOSTILE"]
+						end
+					end
+					if npcModel then
+						targettargeteffect:SetModel(npcModel)
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
@@ -332,7 +358,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			end
 
 			if targettargetbar then
-				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				targettargeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				targettargeteffect:SetParent(targettargetbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
@@ -412,8 +438,8 @@ function ElvUI_EltreumUI:FocusUFEffects()
 			local focusbar = _G["ElvUF_Focus"]
 			local reactionfocus = UnitReaction("focus", "player")
 			local _, focusclass = UnitClass("focus")
-			if not E:NotSecretValue(focusclass) then --secret class so do something else
-				return
+			if not E:NotSecretValue(focusclass) or not focusclass then
+				focusclass = E.myclass
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
@@ -421,16 +447,29 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				if (UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus"))) and focusclass then
 					focuseffect:SetModel(classModels[focusclass])
 				else
-					if reactionfocus then
+					local npcModel
+					if reactionfocus and E:NotSecretValue(reactionfocus) then
 						if reactionfocus >= 5 then
-							focuseffect:SetModel(classModels["NPCFRIENDLY"])
+							npcModel = classModels["NPCFRIENDLY"]
 						elseif reactionfocus == 4 then
-							focuseffect:SetModel(classModels["NPCNEUTRAL"])
+							npcModel = classModels["NPCNEUTRAL"]
 						elseif reactionfocus == 3 then
-							focuseffect:SetModel(classModels["NPCUNFRIENDLY"])
+							npcModel = classModels["NPCUNFRIENDLY"]
 						elseif reactionfocus == 2 or reactionfocus == 1 then
-							focuseffect:SetModel(classModels["NPCHOSTILE"])
+							npcModel = classModels["NPCHOSTILE"]
 						end
+					end
+					if not npcModel then
+						if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", "focus")) and UnitCanAttack("player", "focus")) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", "focus")) and UnitIsEnemy("player", "focus")) then
+							npcModel = classModels["NPCHOSTILE"]
+						elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", "focus")) and UnitIsFriend("player", "focus") then
+							npcModel = classModels["NPCFRIENDLY"]
+						else
+							npcModel = classModels["NPCHOSTILE"]
+						end
+					end
+					if npcModel then
+						focuseffect:SetModel(npcModel)
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
