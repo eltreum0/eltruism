@@ -4411,13 +4411,43 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 	if not button then return end
 	if button2 and E:NotSecretValue(button2) then --likely is container
 		if not E:NotSecretValue(button2:GetFrameStrata()) then return end
-		--[[if button.isAuraBar then --check for the elvui variable
-			ElvUI_EltreumUI:AuraBarRetail(button2)
-		end]]
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
 			if button2 and not button2.shadow then
 				button2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(button2.shadow)
+			end
+			-- with the fixed variables i can check for being an aurabar
+			if button.isAuraBar and button2 then
+				if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then
+					if button2.shadow and button2.statusbar then
+						button2.shadow:ClearAllPoints()
+						button2.shadow:SetPoint("TOPLEFT", button2.statusbar, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+						button2.shadow:SetPoint("BOTTOMRIGHT", button2.statusbar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+					if button2.backdrop then
+						if not button2.iconShadow then
+							button2.iconShadow = button2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length, true)
+							ElvUI_EltreumUI:ShadowColor(button2.iconShadow)
+						end
+						if button2.iconShadow then
+							local level = button2:GetFrameLevel()
+							button2.iconShadow:SetFrameLevel(level > 1 and (level - 1) or 1)
+							button2.iconShadow:Show()
+							button2.iconShadow:ClearAllPoints()
+							button2.iconShadow:SetPoint("TOPLEFT", button2.backdrop, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+							button2.iconShadow:SetPoint("BOTTOMRIGHT", button2.backdrop, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					end
+				else
+					if button2.iconShadow then
+						button2.iconShadow:Hide()
+					end
+					if button2.shadow and button2.backdrop and button2.statusbar then
+						button2.shadow:ClearAllPoints()
+						button2.shadow:SetPoint("TOPLEFT", button2.backdrop, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+						button2.shadow:SetPoint("BOTTOMRIGHT", button2.statusbar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end
 			end
 		end
 	elseif E:NotSecretValue(button) then
@@ -4431,8 +4461,13 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 	end
 end
 if E.Retail then
-	hooksecurefunc(E, 'Auras_UpdateButton', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
-	hooksecurefunc(E, 'Auras_CreateButton', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
+	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button) --better way to pass variables
+		ElvUI_EltreumUI:AuraShadows(container, button)
+	end)
+	hooksecurefunc(E, 'Auras_CreateButton', function(_, button) --better way to pass variables
+		local container = button and (button.container or button:GetParent())
+		ElvUI_EltreumUI:AuraShadows(container, button)
+	end)
 else
 	hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 end
