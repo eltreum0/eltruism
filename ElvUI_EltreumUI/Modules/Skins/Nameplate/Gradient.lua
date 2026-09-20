@@ -12,6 +12,19 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local CreateColor = _G.CreateColor
+
+local function clamp(val)
+	if val < 0 then
+		return 0
+	elseif val > 1 then
+		return 1
+	end
+	return val
+end
+local whiteColor = CreateColor(1, 1, 1, 1)
+local npPowerMin = CreateColor(1, 1, 1, 1)
+local npPowerMax = CreateColor(1, 1, 1, 1)
 
 --style filter gone
 --gradient threat
@@ -25,95 +38,37 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 		local isTank = E.myrole == 'TANK' or E.GroupRoles.player == 'TANK'
 		local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(nameplate.__unit)))
 
-		--NP:Health_SetColors(nameplate, true)
-
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			if not InCombatLockdown() or UnitIsDead("player") then
 				nameplate.CurrentlyBeingTanked = nil
 			end
+			local tex = nameplate.Health:GetStatusBarTexture()
+			if not tex then return end
+			local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
+
 			if nameplate.isRare and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.raretexture then
 				nameplate.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
-				nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r = 1, g = 1, b = 1, a = 1}, {r = 1, 1, 1, g = 1, b = 1, a = 1})
+				tex:SetGradient(orientation, whiteColor, whiteColor)
 			else
+				local threatType
 				if status == 3 then -- securely tanking
-					if offTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANK", false, false))
-						end
-					elseif isTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
-						end
-					end
+					threatType = offTank and "OFFTANK" or (isTank and "GOODTHREAT" or "BADTHREAT")
 					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				elseif status == 2 then -- insecurely tanking
-					if offTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANKBADTHREATTRANSITION", false, false))
-						end
-					elseif isTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-						end
-					end
+					threatType = offTank and "OFFTANKBADTHREATTRANSITION" or (isTank and "BADTHREATTRANSITION" or "GOODTHREATTRANSITION")
 					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				elseif status == 1 then -- not tanking but threat higher than tank
-					if offTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("OFFTANKGOODTHREATTRANSITION", false, false))
-						end
-					elseif isTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
-						end
-					end
+					threatType = offTank and "OFFTANKGOODTHREATTRANSITION" or (isTank and "GOODTHREATTRANSITION" or "BADTHREATTRANSITION")
 					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
 				else -- not tanking at all
-					if isTank then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-						else
-							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-						end
-					end
+					threatType = isTank and "BADTHREAT" or "GOODTHREAT"
 					nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
+				end
+
+				if threatType then
+					local minC, maxC = ElvUI_EltreumUI:GetHealthGradient(threatType, false, E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor)
+					tex:SetGradient(orientation, minC, maxC)
 				end
 			end
 		end
@@ -125,23 +80,20 @@ hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator
 local bordercolor = E.myClassColor
 local function GradientNameplates(unit,unit2)
 	if not E.db.ElvUI_EltreumUI then return end
-	if not E.db.ElvUI_EltreumUI.borders then return end
-	if not E.db.ElvUI_EltreumUI.borders.bordercolors then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	if not unit2 and not unit then return end
-	if unit2 and not unit then
-		unit = unit2
-	end
-	if not unit or not unit.__unit or not unit.Health or not unit.Health:IsShown() then
+
+	local frame = (unit and unit.__unit and unit) or (unit2 and unit2.__unit and unit2)
+	if not frame or not frame.__unit or not frame.Health or not frame.Health:IsShown() then
 		return
 	end
-	local _, className = UnitClass(unit.__unit)
+
+	local _, className = UnitClass(frame.__unit)
 	if not E:NotSecretValue(className) then --secret class so do something else
 		className = E.myclass
 	end
-	local isPlayer = UnitIsPlayer(unit.__unit) or (E.Retail and UnitInPartyIsAI(unit.__unit))
-	local reaction = UnitReaction(unit.__unit, "player")
-	local tapdenied = UnitIsTapDenied(unit.__unit)
+	local isPlayer = UnitIsPlayer(frame.__unit) or (E.Retail and UnitInPartyIsAI(frame.__unit))
+	local reaction = UnitReaction(frame.__unit, "player")
+	local tapdenied = UnitIsTapDenied(frame.__unit)
 	local targettype
 
 	if reaction and reaction >= 5 then
@@ -156,72 +108,75 @@ local function GradientNameplates(unit,unit2)
 		targettype = "NPCNEUTRAL"
 	end
 
+	local hasThreat = frame.threatStatus and not tapdenied and NP.db.threat and NP.db.threat.enable and NP.db.threat.useThreatColor
+
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		--local sf = NP:StyleFilterChanges(unit)
-		--if (sf and sf.health and sf.health.color) then
-		--	unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=sf.health.color.r,g= sf.health.color.g,b= sf.health.color.b,a= 1}, {r=sf.health.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.health.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.health.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.health.color.a})
-		--else
+		if not InCombatLockdown() or UnitIsDead("player") then
+			frame.CurrentlyBeingTanked = nil
+		end
+
 		local isOK
 		if E.Retail then
-			isOK = not unit.CurrentlyBeingTanked
+			isOK = not frame.CurrentlyBeingTanked
 		else
-			isOK = (unit.CurrentlyBeingTanked ~= UnitGUID(unit.__unit))
+			isOK = (frame.CurrentlyBeingTanked ~= UnitGUID(frame.__unit))
 		end
 
-		local classification = unit.classification
+		local classification = frame.classification
 		if (classification == 'worldboss' or classification == 'rareelite' or classification == 'rare') and not _G.IsInInstance() then
-			unit.isRare = true
+			frame.isRare = true
 		else
-			unit.isRare = false
+			frame.isRare = false
 		end
 
-		if not InCombatLockdown() or UnitIsDead("player") then
-			unit.CurrentlyBeingTanked = nil
-		end
+		local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
+		local tex = frame.Health:GetStatusBarTexture()
+		if tex then
+			if frame.isRare and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.raretexture then
+				frame.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
+				tex:SetGradient(orientation, whiteColor, whiteColor)
+			elseif not hasThreat then
+				local colorKey
+				if className and isPlayer then
+					colorKey = className
+				elseif reaction and isOK then
+					if tapdenied and not UnitPlayerControlled(frame.__unit) then
+						colorKey = "TAPPED"
+					elseif targettype then
+						colorKey = targettype
+					end
+				end
 
-		if unit.isRare and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.raretexture then
-			unit.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture()))
-			unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r = 1, g = 1, b = 1, a = 1}, {r = 1, 1, 1, g = 1, b = 1, a = 1})
-		else
-			unit.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.nameplates.statusbar))
-			if className and isPlayer then
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(className))
+				if colorKey then
+					local minC, maxC = ElvUI_EltreumUI:GetHealthGradient(colorKey, false, E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor)
+					tex:SetGradient(orientation, minC, maxC)
+				end
+			end
+		end
+	end
+
+	if frame.Health.EltruismNameplateBorder and E.db.ElvUI_EltreumUI.borders and E.db.ElvUI_EltreumUI.borders.bordercolors then
+		local borderKey = E.db.ElvUI_EltreumUI.borders.classcolor and (isPlayer and className or targettype) or "static"
+		if frame.Health.EltruismNameplateBorder._eltBorderKey ~= borderKey then
+			frame.Health.EltruismNameplateBorder._eltBorderKey = borderKey
+			if E.db.ElvUI_EltreumUI.borders.classcolor then
+				if isPlayer then
+					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
 				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors(className))
+					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
 				end
-			elseif reaction and isOK then
-				if tapdenied and not UnitPlayerControlled(unit.__unit) then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-					else
-						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
-					end
-				elseif targettype then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
-					else
-						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors(targettype, false, false))
-					end
+				if bordercolor and bordercolor.r then
+					frame.Health.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
 				end
-			end
-		end
-	end
-	if unit.Health.EltruismNameplateBorder then
-		if E.db.ElvUI_EltreumUI.borders.classcolor then
-			if isPlayer then
-				bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
 			else
-				bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
+				local bc = E.db.ElvUI_EltreumUI.borders.bordercolors
+				frame.Health.EltruismNameplateBorder:SetBackdropBorderColor(bc.r, bc.g, bc.b, 1)
 			end
-			unit.Health.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
-		else
-			unit.Health.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
 		end
 	end
 
-	if unit.threatStatus and not tapdenied then
-		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, unit.threatStatus) --send to threat color
+	if hasThreat then
+		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(frame, frame.threatStatus) --send to threat color
 	end
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
@@ -234,13 +189,21 @@ function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 			if bar.classPowerID or bar.token then --use somechecking for classpower and power bars
-				bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= 1}, {r=r,g= g,b= b,a= 1})
+				local tex = bar:GetStatusBarTexture()
+				if tex then
+					local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
+					npPowerMin:SetRGBA(clamp(r - 0.3), clamp(g - 0.3), clamp(b - 0.3), 1)
+					npPowerMax:SetRGBA(clamp(r), clamp(g), clamp(b), 1)
+					tex:SetGradient(orientation, npPowerMin, npPowerMax)
+				end
 			else
-				GradientNameplates(bar)
+				local parent = bar:GetParent()
+				GradientNameplates(parent or bar)
 			end
 			--bar.bg:SetAlpha(0)
 		else
-			GradientNameplates(bar)
+			local parent = bar:GetParent()
+			GradientNameplates(parent or bar)
 		end
 	end
 end
@@ -291,60 +254,48 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 	end
 	local reactiontarget = UnitReaction(unit, "player")
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		if self.notInterruptible and UnitCanAttack('player', unit) then
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-				self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom,a= 1})
-			else
-				self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible,a= 1})
-			end
-		elseif (not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then
-			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
-					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom,a= 1})
-				elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
-						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(unitclass))
+		local tex = self:GetStatusBarTexture()
+		if tex then
+			local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
+			local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
+			if self.notInterruptible and UnitCanAttack('player', unit) then
+				local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "noninterruptible_custom" or "noninterruptible_default")
+				tex:SetGradient(orientation, c1, c2)
+			elseif (not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then
+				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+					if gm.npcustomcolor and not gm.classcolortargetcastbar then
+						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("target_custom")
+						tex:SetGradient(orientation, c1, c2)
+					elseif gm.classcolortargetcastbar then
+						local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(unitclass, false, gm.npcustomcolor)
+						tex:SetGradient(orientation, c1, c2)
 					else
-						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom,a= 1})
+						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
+						tex:SetGradient(orientation, c1, c2)
 					end
 				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
-						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors(unitclass))
+					if gm.npcustomcolor and not gm.classcolortargetcastbar then
+						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("interruptible_custom")
+						tex:SetGradient(orientation, c1, c2)
 					else
-						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable,a= 1})
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
-					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom,a= 1})
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
-							if reactiontarget >= 5 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY"))
+						if gm.targetcastbarreactioninterruptable then
+							local reactionKey
+							if reactiontarget and reactiontarget >= 5 then
+								reactionKey = "NPCFRIENDLY"
 							elseif reactiontarget == 4 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL"))
+								reactionKey = "NPCNEUTRAL"
 							elseif reactiontarget == 3 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY"))
-							elseif reactiontarget <= 2 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE"))
+								reactionKey = "NPCUNFRIENDLY"
+							elseif reactiontarget and reactiontarget <= 2 then
+								reactionKey = "NPCHOSTILE"
+							end
+							if reactionKey then
+								local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, false, gm.customcolor and gm.classcolortargetcastbar)
+								tex:SetGradient(orientation, c1, c2)
 							end
 						else
-							if reactiontarget >= 5 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("NPCFRIENDLY"))
-							elseif reactiontarget == 4 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("NPCNEUTRAL"))
-							elseif reactiontarget == 3 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY"))
-							elseif reactiontarget <= 2 then
-								self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", ElvUI_EltreumUI:GradientColors("NPCHOSTILE"))
-							end
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-							self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom,a= 1})
-						else
-							self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL", {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable,a= 1})
+							local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
+							tex:SetGradient(orientation, c1, c2)
 						end
 					end
 				end
@@ -352,10 +303,14 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 		end
 	end
 	if self.EltruismNameplateBorder then
-		if self.notInterruptible and UnitCanAttack('player', unit) then --targetcastbarR2noninterruptiblecustom
-			self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castNoInterruptColor.r, E.db.nameplates.colors.castNoInterruptColor.g, E.db.nameplates.colors.castNoInterruptColor.b, 1)
-		elseif (not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --targetcastbarR1interruptablecustom
-			self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castColor.r, E.db.nameplates.colors.castColor.g, E.db.nameplates.colors.castColor.b, 1)
+		local borderType = (self.notInterruptible and UnitCanAttack('player', unit)) and "nointerrupt" or (((not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt())) and "interrupt" or nil)
+		if borderType and self.EltruismNameplateBorder._eltCastBorderKey ~= borderType then
+			self.EltruismNameplateBorder._eltCastBorderKey = borderType
+			if borderType == "nointerrupt" then
+				self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castNoInterruptColor.r, E.db.nameplates.colors.castNoInterruptColor.g, E.db.nameplates.colors.castNoInterruptColor.b, 1)
+			else
+				self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castColor.r, E.db.nameplates.colors.castColor.g, E.db.nameplates.colors.castColor.b, 1)
+			end
 		end
 	end
 end
@@ -365,6 +320,7 @@ end
 --interrupted
 function ElvUI_EltreumUI:Castbar_PostCastFail()
 	if self.EltruismNameplateBorder then
+		self.EltruismNameplateBorder._eltCastBorderKey = "failed"
 		self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castInterruptedColor.r, E.db.nameplates.colors.castInterruptedColor.g, E.db.nameplates.colors.castInterruptedColor.b, 1)
 	end
 end

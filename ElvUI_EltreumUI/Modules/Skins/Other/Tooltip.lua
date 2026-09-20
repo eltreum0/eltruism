@@ -3,6 +3,7 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local TT = E:GetModule('Tooltip')
 local string = _G.string
+local stringformat = string.format
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitIsPlayer = _G.UnitIsPlayer
@@ -14,6 +15,10 @@ local GameTooltip = _G.GameTooltip
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
+local function clamp(v)
+	if v < 0 then return 0 elseif v > 1 then return 1 end
+	return v
+end
 
 --gradient tooltip healthbar
 local function GameTooltipStatusBarGradient(unit,classunit,reaction)
@@ -131,18 +136,14 @@ function ElvUI_EltreumUI:Tooltip()
 					local _, _, itemQuality = GetItemInfo(itemLink)
 					if not itemQuality then return end
 					local r2,g2,b2 = GetItemQualityColor(itemQuality)
-					local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-					r1 = ElvUI_EltreumUI:Interval(r1, 0, 1)
-					local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-					g1 = ElvUI_EltreumUI:Interval(g1, 0, 1)
-					local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-					b1 = ElvUI_EltreumUI:Interval(b1, 0, 1)
-					r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-					r2 = ElvUI_EltreumUI:Interval(r2, 0, 1)
-					g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-					g2 = ElvUI_EltreumUI:Interval(g2, 0, 1)
-					b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-					b2 = ElvUI_EltreumUI:Interval(b2, 0, 1)
+					local offset1 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					local offset2 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					local r1 = clamp(r2 + offset1)
+					local g1 = clamp(g2 + offset1)
+					local b1 = clamp(b2 + offset1)
+					r2 = clamp(r2 + offset2)
+					g2 = clamp(g2 + offset2)
+					b2 = clamp(b2 + offset2)
 					if _G["GameTooltipTextLeft1"] then
 						if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
 							if ElvUI_EltreumUI:IsThisASafeSecret(_G["GameTooltipTextLeft1"]:GetText(),true) then
@@ -181,7 +182,7 @@ function ElvUI_EltreumUI:Tooltip()
 							if (itemLink ~= nil) then
 								if itemLevel and (classID == 2 or classID == 4)then
 									local lefttext = _G["GameTooltipTextLeft2"]:GetText()
-									_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel).."|r\n"..lefttext)
+									_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..lefttext)
 									if _G["GameTooltipTextRight2"] then
 										local righttext = _G["GameTooltipTextRight2"]:GetText()
 										if righttext then
@@ -196,19 +197,14 @@ function ElvUI_EltreumUI:Tooltip()
 					if E.db.ElvUI_EltreumUI.skins.gradienttooltip then
 						if not itemQuality then return end
 						local r2,g2,b2 = GetItemQualityColor(itemQuality)
-						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						r1 = ElvUI_EltreumUI:Interval(r1, 0, 1)
-						local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						g1 = ElvUI_EltreumUI:Interval(g1, 0, 1)
-						local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						b1 = ElvUI_EltreumUI:Interval(b1, 0, 1)
-						r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						r2 = ElvUI_EltreumUI:Interval(r2, 0, 1)
-						g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						g2 = ElvUI_EltreumUI:Interval(g2, 0, 1)
-						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						b2 = ElvUI_EltreumUI:Interval(b2, 0, 1)
-						if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
+						local offset1 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+						local offset2 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+						local r1 = clamp(r2 + offset1)
+						local g1 = clamp(g2 + offset1)
+						local b1 = clamp(b2 + offset1)
+						r2 = clamp(r2 + offset2)
+						g2 = clamp(g2 + offset2)
+						b2 = clamp(b2 + offset2)
 						if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
 							local icon = _G.strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
 							if icon then
@@ -233,10 +229,10 @@ function ElvUI_EltreumUI:Tooltip()
 							if (itemLink ~= nil) then
 								local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
 								if itemLevel and (classID == 2 or classID == 4) then
-									--tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+									--tooltip:AddLine(stringformat(ITEM_LEVEL, itemLevel))
 									--tooltip:AppendText("("..itemLevel..")")
 									local lefttext = _G["ShoppingTooltip1TextLeft2"]:GetText()
-									_G["ShoppingTooltip1TextLeft2"]:SetText(lefttext.."|r\n".."|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel))
+									_G["ShoppingTooltip1TextLeft2"]:SetText(lefttext.."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									_G["ShoppingTooltip1TextLeft2"]:SetJustifyH("LEFT")
 									if _G["ShoppingTooltip1TextRight2"] and _G["ShoppingTooltip1TextRight2"]:GetText() then
 										local righttext = _G["ShoppingTooltip1TextRight2"]:GetText()
@@ -255,18 +251,14 @@ function ElvUI_EltreumUI:Tooltip()
 						local _, _, itemQuality = GetItemInfo(itemLink)
 						if not itemQuality then return end
 						local r2,g2,b2 = GetItemQualityColor(itemQuality)
-						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						r1 = ElvUI_EltreumUI:Interval(r1, 0, 1)
-						local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						g1 = ElvUI_EltreumUI:Interval(g1, 0, 1)
-						local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						b1 = ElvUI_EltreumUI:Interval(b1, 0, 1)
-						r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						r2 = ElvUI_EltreumUI:Interval(r2, 0, 1)
-						g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						g2 = ElvUI_EltreumUI:Interval(g2, 0, 1)
-						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						b2 = ElvUI_EltreumUI:Interval(b2, 0, 1)
+						local offset1 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+						local offset2 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+						local r1 = clamp(r2 + offset1)
+						local g1 = clamp(g2 + offset1)
+						local b1 = clamp(b2 + offset1)
+						r2 = clamp(r2 + offset2)
+						g2 = clamp(g2 + offset2)
+						b2 = clamp(b2 + offset2)
 
 						if E.Classic or E.Wrath or E.TBC and E.db.ElvUI_EltreumUI.skins.ilvltooltip then
 							local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
@@ -274,9 +266,9 @@ function ElvUI_EltreumUI:Tooltip()
 								if _G["ShoppingTooltip1TextLeft2"]:GetText() ~= nil then
 									local icon = _G.strmatch(_G["ShoppingTooltip1TextLeft2"]:GetText(), "^.-|t")
 									if icon then
-										_G["ShoppingTooltip1TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel))
+										_G["ShoppingTooltip1TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									else
-										_G["ShoppingTooltip1TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel))
+										_G["ShoppingTooltip1TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									end
 									_G["ShoppingTooltip1TextLeft2"]:SetJustifyH("LEFT")
 									if _G["ShoppingTooltip1TextRight2"] and _G["ShoppingTooltip1TextRight2"]:GetText() then
@@ -326,10 +318,10 @@ function ElvUI_EltreumUI:Tooltip()
 							if (itemLink ~= nil) then
 								local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
 								if itemLevel and (classID == 2 or classID == 4) then
-									--tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+									--tooltip:AddLine(stringformat(ITEM_LEVEL, itemLevel))
 									--tooltip:AppendText("("..itemLevel..")")
 									local lefttext = _G["ShoppingTooltip2TextLeft2"]:GetText()
-									_G["ShoppingTooltip2TextLeft2"]:SetText(lefttext.."|r\n".."|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel))
+									_G["ShoppingTooltip2TextLeft2"]:SetText(lefttext.."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									_G["ShoppingTooltip2TextLeft2"]:SetJustifyH("LEFT")
 									if _G["ShoppingTooltip2TextRight2"] and _G["ShoppingTooltip2TextRight2"]:GetText() then
 										local righttext = _G["ShoppingTooltip2TextRight2"]:GetText()
@@ -348,18 +340,14 @@ function ElvUI_EltreumUI:Tooltip()
 						local _, _, itemQuality = GetItemInfo(itemLink)
 						if not itemQuality then return end
 						local r2,g2,b2 = GetItemQualityColor(itemQuality)
-						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						r1 = ElvUI_EltreumUI:Interval(r1, 0, 1)
-						local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						g1 = ElvUI_EltreumUI:Interval(g1, 0, 1)
-						local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						b1 = ElvUI_EltreumUI:Interval(b1, 0, 1)
-						r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						r2 = ElvUI_EltreumUI:Interval(r2, 0, 1)
-						g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						g2 = ElvUI_EltreumUI:Interval(g2, 0, 1)
-						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						b2 = ElvUI_EltreumUI:Interval(b2, 0, 1)
+						local offset1 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+						local offset2 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+						local r1 = clamp(r2 + offset1)
+						local g1 = clamp(g2 + offset1)
+						local b1 = clamp(b2 + offset1)
+						r2 = clamp(r2 + offset2)
+						g2 = clamp(g2 + offset2)
+						b2 = clamp(b2 + offset2)
 
 						if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
 							local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
@@ -367,9 +355,9 @@ function ElvUI_EltreumUI:Tooltip()
 								if _G["ShoppingTooltip2TextLeft2"]:GetText() ~= nil then
 									local icon = _G.strmatch(_G["ShoppingTooltip2TextLeft2"]:GetText(), "^.-|t")
 									if icon then
-										_G["ShoppingTooltip2TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel))
+										_G["ShoppingTooltip2TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									else
-										_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..string.format(_G.ITEM_LEVEL, itemLevel))
+										_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									end
 									_G["ShoppingTooltip2TextLeft2"]:SetJustifyH("LEFT")
 									if _G["ShoppingTooltip2TextRight2"] and _G["ShoppingTooltip2TextRight2"]:GetText() then

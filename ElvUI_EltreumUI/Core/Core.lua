@@ -17,6 +17,7 @@ local stringlen = string.len
 local stringupper = string.upper
 local stringutf8sub = string.utf8sub
 local stringutf8lower = string.utf8lower
+local stringgsub = string.gsub
 local tonumber = _G.tonumber
 local DELETE_ITEM_CONFIRM_STRING = _G.DELETE_ITEM_CONFIRM_STRING
 local InCombatLockdown = _G.InCombatLockdown
@@ -25,7 +26,6 @@ local GameMenuFrame = _G.GameMenuFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local tostring = _G.tostring
-local math = _G.math
 local PlaySound = _G.PlaySound
 local W
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
@@ -555,9 +555,9 @@ function ElvUI_EltreumUI:FixChatToggles()
 		if E.global["datatexts"]["customPanels"]["EltruismDataText"] then
 			if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
 				if E.db.ElvUI_EltreumUI.chat.chattoggles then
-					E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+					E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + ceil(width - (buttonwidth * 2))
 				else
-					E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = math.ceil(width)
+					E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = ceil(width)
 				end
 				E:UpdateDataTexts()
 			end
@@ -583,7 +583,7 @@ do
 
 		local text = _G.StaticPopup1Text:GetText()
 		if not text:match("|T") then
-			local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+			local deletetext = stringgsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
 			_G.StaticPopup1Text:SetText(deletetext)
 		end
 
@@ -977,11 +977,6 @@ end
 function ElvUI_EltreumUI_OnAddonCompartmentClick()
 	E:ToggleOptions("ElvUI_EltreumUI") --has msg arg which can be used
 	--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
-end
-
---set value between two other values
-function ElvUI_EltreumUI:Interval(value, minValue, maxValue)
-	return math.max(minValue, math.min(maxValue, value))
 end
 
 function ElvUI_EltreumUI:FontFlag(style)

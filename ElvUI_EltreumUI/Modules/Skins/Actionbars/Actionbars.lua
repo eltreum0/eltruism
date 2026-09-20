@@ -16,6 +16,27 @@ local InCombatLockdown = _G.InCombatLockdown
 local GetPetActionInfo = _G.GetPetActionInfo
 local pairs = _G.pairs
 local GetNumRegions = _G.GetNumRegions
+local CreateColor = _G.CreateColor
+local function clamp(val)
+	if val < 0 then
+		return 0
+	elseif val > 1 then
+		return 1
+	end
+	return val
+end
+local glowMin = CreateColor(1, 1, 1, 1)
+local glowMax = CreateColor(1, 1, 1, 1)
+local totem1Min, totem1Max = CreateColor(0.38, 0.03, 0, 1), CreateColor(0.78, 0.43, 0.3, 1)
+local totem2Min, totem2Max = CreateColor(0.03, 0.25, 0, 1), CreateColor(0.43, 0.65, 0.33, 1)
+local totem3Min, totem3Max = CreateColor(0, 0.28, 0.40, 1), CreateColor(0.39, 0.68, 0.80, 1)
+local totem4Min, totem4Max = CreateColor(0.22, 0, 0.54, 1), CreateColor(0.62, 0.38, 0.94, 1)
+
+local function SetGlowGradient(texture, color)
+	glowMin:SetRGBA(clamp(color.r - 0.2), clamp(color.g - 0.2), clamp(color.b - 0.2), 1)
+	glowMax:SetRGBA(clamp(color.r + 0.2), clamp(color.g + 0.2), clamp(color.b + 0.2), 1)
+	texture:SetGradient("HORIZONTAL", glowMin, glowMax)
+end
 --moving createframes out of the function for some reason breaks it
 
 -- Skill Glow
@@ -86,7 +107,7 @@ function ElvUI_EltreumUI:SkillGlow()
 							if E.db.ElvUI_EltreumUI.glow.colorclass then
 								button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 							else
-								button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+								SetGlowGradient(button._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowcustomcolor)
 							end
 						end
 					elseif E.db.ElvUI_EltreumUI.glow.procglow then
@@ -203,9 +224,9 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
 													--local totem1glowcolor = {0.58, 0.23, 0.10, 1}
-													totemglow1._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = 0.38, g = 0.03, b = 0, a = 1}, {r = 0.78, g = 0.43, b = 0.3, a = 1})
+													totemglow1._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem1Min, totem1Max)
 												else
-													totemglow1._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.b + 0.2, a = 1})
+													SetGlowGradient(totemglow1._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor)
 												end
 											end
 										end
@@ -243,9 +264,9 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
 													--local totem2glowcolor = {0.23,0.45,0.13, 1}
-													totemglow2._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = 0.03, g = 0.25, b = 0, a = 1}, {r = 0.43, g = 0.65, b = 0.33, a = 1})
+													totemglow2._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem2Min, totem2Max)
 												else
-													totemglow2._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.b + 0.2, a = 1})
+													SetGlowGradient(totemglow2._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor)
 												end
 											end
 										end
@@ -283,9 +304,9 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
 													--local totem3glowcolor = {0.19,0.48,0.60, 1}
-													totemglow3._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = 0, g = 0.28, b = 0.40, a = 1}, {r = 0.39, g = 0.68, b = 0.80, a = 1})
+													totemglow3._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem3Min, totem3Max)
 												else
-													totemglow3._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.b + 0.2, a = 1})
+													SetGlowGradient(totemglow3._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor)
 												end
 											end
 										end
@@ -323,9 +344,9 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
 													--local totem4glowcolor = {0.42,0.18,0.74, 1}
-													totemglow4._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = 0.22, g = 0, b = 0.54, a = 1}, {r = 0.62, g = 0.38, b = 0.94, a = 1})
+													totemglow4._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem4Min, totem4Max)
 												else
-													totemglow4._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.b + 0.2, a = 1})
+													SetGlowGradient(totemglow4._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor)
 												end
 											end
 										end
@@ -510,7 +531,7 @@ function ElvUI_EltreumUI:SkillGlow()
 															if E.db.ElvUI_EltreumUI.glow.colorclass then
 																_G[buttonname]._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 															else
-																_G[buttonname]._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+																SetGlowGradient(_G[buttonname]._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowcustomcolor)
 															end
 														end
 													end
@@ -547,7 +568,7 @@ function ElvUI_EltreumUI:SkillGlow()
 														if E.db.ElvUI_EltreumUI.glow.colorclass then
 															_G[buttonname]._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 														else
-															_G[buttonname]._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+															SetGlowGradient(_G[buttonname]._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowcustomcolor)
 														end
 													end
 												end
@@ -599,7 +620,7 @@ function ElvUI_EltreumUI:SkillGlow()
 													if E.db.ElvUI_EltreumUI.glow.colorclass then
 														_G[buttonname]._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 													else
-														_G[buttonname]._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+														SetGlowGradient(_G[buttonname]._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowcustomcolor)
 													end
 												end
 											end
@@ -706,7 +727,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 						if E.db.ElvUI_EltreumUI.glow.colorclass then
 							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 						else
-							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+							SetGlowGradient(button._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowcustomcolor)
 						end
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.procglow then
@@ -811,7 +832,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 				if E.db.ElvUI_EltreumUI.glow.colorclass then
 					EltruismGlowPreview._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 				else
-					EltruismGlowPreview._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+					SetGlowGradient(EltruismGlowPreview._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowcustomcolor)
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.glow.procglow then

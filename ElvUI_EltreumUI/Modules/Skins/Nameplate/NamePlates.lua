@@ -32,6 +32,17 @@ local GetNumRegions = _G.GetNumRegions
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local C_NamePlate = _G.C_NamePlate
+local CreateColor = _G.CreateColor
+local function clamp(val)
+	if val < 0 then
+		return 0
+	elseif val > 1 then
+		return 1
+	end
+	return val
+end
+local glowMin = CreateColor(1, 1, 1, 1)
+local glowMax = CreateColor(1, 1, 1, 1)
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -132,7 +143,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 												if E.db.ElvUI_EltreumUI.glow.colorclass then
 													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 												else
-													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+													local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
+													glowMin:SetRGBA(clamp(c.r - 0.2), clamp(c.g - 0.2), clamp(c.b - 0.2), 1)
+													glowMax:SetRGBA(clamp(c.r + 0.2), clamp(c.g + 0.2), clamp(c.b + 0.2), 1)
+													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.procglow then

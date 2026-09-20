@@ -3,10 +3,33 @@ local _G = _G
 local tostring = _G.tostring
 local CreateFrame = _G.CreateFrame
 local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
+local CreateColor = _G.CreateColor
+local wipe = _G.wipe
+local pairs = _G.pairs
 
---set the variables
---maybe recreating colors can be avoided by setting the color as a variable and then creating if it doesnt exist like maybe so:
--- _G.Warrior1 = Warrior1 or CreateColor(r,g,b,a)
+local gradientColorCache = {}
+local gradientCustomColorCache = {}
+local defaultHealthGradients = { normal = {}, invert = {} }
+local customHealthGradients = { normal = {}, invert = {} }
+local defaultBackdropGradients = { normal = {}, invert = {} }
+local customBackdropGradients = { normal = {}, invert = {} }
+local defaultPowerGradients = { normal = {}, invert = {}, backdrop = {} }
+local customPowerGradients = { normal = {}, invert = {}, backdrop = {} }
+local cachedCastbars = {}
+local deadColorMin, deadColorMax
+local discColorMin, discColorMax
+local tappedColorMin, tappedColorMax
+local fallbackWhite = CreateColor(1, 1, 1, 1)
+
+local function clamp(val)
+	if val < 0 then
+		return 0
+	elseif val > 1 then
+		return 1
+	end
+	return val
+end
+
 local unitframegradients = {
 	["WARRIOR"] = {r1 = 0.427, g1 = 0.137, b1 = 0.09, r2 = 0.564, g2 = 0.431, b2 = 0.247},
 	["PALADIN"] = {r1 = 1, g1 = 0.266, b1 = 0.537, r2 = 0.956, g2 = 0.549, b2 = 0.729},
@@ -47,6 +70,7 @@ local unitframegradients = {
 	["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1}, --addon gradient (7fb3ff (darker 1A4682), abf2ff)
 	["BACKDROP"] = {r1 = 0, g1 = 0, b1 = 0,r2 = 0.1, g2 = 0.1, b2 = 0.1}, --backdrop gradient
 }
+
 local unitframecustomgradients = unitframegradients
 local unitframeclass = {
 	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
@@ -68,8 +92,110 @@ local unitframeclass = {
 	["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga",
 	["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tapped.tga",
 }
-local unitframeclasscustom = unitframeclass
 
+local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targetPower, healthAlpha, backdropAlpha, bgOffset)
+	for k, color in pairs(sourceTable) do
+		local r1, g1, b1 = color.r1 or 1, color.g1 or 1, color.b1 or 1
+		local r2, g2, b2 = color.r2 or 1, color.g2 or 1, color.b2 or 1
+
+		-- Health normal
+		targetHealth.normal[k] = {
+			CreateColor(clamp(r1), clamp(g1), clamp(b1), healthAlpha),
+			CreateColor(clamp(r2), clamp(g2), clamp(b2), healthAlpha)
+		}
+
+		-- Health invert
+		targetHealth.invert[k] = {
+			CreateColor(clamp(r2), clamp(g2), clamp(b2), healthAlpha),
+			CreateColor(clamp(r1), clamp(g1), clamp(b1), healthAlpha)
+		}
+
+		-- Backdrop normal
+		targetBackdrop.normal[k] = {
+			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), backdropAlpha),
+			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), backdropAlpha)
+		}
+
+		-- Backdrop invert
+		targetBackdrop.invert[k] = {
+			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), backdropAlpha),
+			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), backdropAlpha)
+		}
+
+		-- Power normal
+		targetPower.normal[k] = {
+			CreateColor(clamp(r1), clamp(g1), clamp(b1), 1),
+			CreateColor(clamp(r2), clamp(g2), clamp(b2), 1)
+		}
+
+		-- Power invert
+		targetPower.invert[k] = {
+			CreateColor(clamp(r2), clamp(g2), clamp(b2), 1),
+			CreateColor(clamp(r1), clamp(g1), clamp(b1), 1)
+		}
+
+		-- Power backdrop
+		targetPower.backdrop[k] = {
+			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), 1),
+			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), 1)
+		}
+	end
+end
+
+local function CacheGradients()
+	local transparentHealth = E.db.unitframe.colors.transparentHealth
+	local healthAlpha = transparentHealth and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha or 1) or 1
+	local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
+	local bgOffset = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade or 0
+
+	wipe(defaultHealthGradients.normal)
+	wipe(defaultHealthGradients.invert)
+	wipe(customHealthGradients.normal)
+	wipe(customHealthGradients.invert)
+	wipe(defaultBackdropGradients.normal)
+	wipe(defaultBackdropGradients.invert)
+	wipe(customBackdropGradients.normal)
+	wipe(customBackdropGradients.invert)
+	wipe(defaultPowerGradients.normal)
+	wipe(defaultPowerGradients.invert)
+	wipe(defaultPowerGradients.backdrop)
+	wipe(customPowerGradients.normal)
+	wipe(customPowerGradients.invert)
+	wipe(customPowerGradients.backdrop)
+	wipe(cachedCastbars)
+
+	PopulateGradients(unitframegradients, defaultHealthGradients, defaultBackdropGradients, defaultPowerGradients, healthAlpha, backdropAlpha, bgOffset)
+	PopulateGradients(unitframecustomgradients, customHealthGradients, customBackdropGradients, customPowerGradients, healthAlpha, backdropAlpha, bgOffset)
+
+	-- Cache castbar gradients
+	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
+	if gm then
+		cachedCastbars.noninterruptible_custom = {
+			CreateColor(clamp(gm.targetcastbarR2noninterruptiblecustom or 1), clamp(gm.targetcastbarG2noninterruptiblecustom or 0), clamp(gm.targetcastbarB2noninterruptiblecustom or 0), 1),
+			CreateColor(clamp(gm.targetcastbarR1noninterruptiblecustom or 1), clamp(gm.targetcastbarG1noninterruptiblecustom or 0), clamp(gm.targetcastbarB1noninterruptiblecustom or 0), 1)
+		}
+		cachedCastbars.noninterruptible_default = {
+			CreateColor(clamp(gm.targetcastbarR2noninterruptible or 1), clamp(gm.targetcastbarG2noninterruptible or 0), clamp(gm.targetcastbarB2noninterruptible or 0), 1),
+			CreateColor(clamp(gm.targetcastbarR1noninterruptible or 1), clamp(gm.targetcastbarG1noninterruptible or 0), clamp(gm.targetcastbarB1noninterruptible or 0), 1)
+		}
+		cachedCastbars.target_custom = {
+			CreateColor(clamp(gm.targetcastbarR1custom or 1), clamp(gm.targetcastbarG1custom or 1), clamp(gm.targetcastbarB1custom or 1), 1),
+			CreateColor(clamp(gm.targetcastbarR2custom or 1), clamp(gm.targetcastbarG2custom or 1), clamp(gm.targetcastbarB2custom or 1), 1)
+		}
+		cachedCastbars.interruptible_custom = {
+			CreateColor(clamp(gm.targetcastbarR1interruptablecustom or 1), clamp(gm.targetcastbarG1interruptablecustom or 1), clamp(gm.targetcastbarB1interruptablecustom or 1), 1),
+			CreateColor(clamp(gm.targetcastbarR2interruptablecustom or 1), clamp(gm.targetcastbarG2interruptablecustom or 1), clamp(gm.targetcastbarB2interruptablecustom or 1), 1)
+		}
+		cachedCastbars.interruptible_default = {
+			CreateColor(clamp(gm.targetcastbarR1interruptable or 1), clamp(gm.targetcastbarG1interruptable or 1), clamp(gm.targetcastbarB1interruptable or 1), 1),
+			CreateColor(clamp(gm.targetcastbarR2interruptable or 1), clamp(gm.targetcastbarG2interruptable or 1), clamp(gm.targetcastbarB2interruptable or 1), 1)
+		}
+	end
+end
+
+CacheGradients()
+
+local unitframeclasscustom = unitframeclass
 function ElvUI_EltreumUI:GradientColorTableUpdate()
 	unitframeclasscustom = {
 		["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture)),
@@ -240,6 +366,33 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		RAID_CLASS_COLORS["DEMONHUNTER"].colorSrt = E:RGBToHex(unitframecustomgradients["DEMONHUNTER"].r1,unitframecustomgradients["DEMONHUNTER"].g1,unitframecustomgradients["DEMONHUNTER"].b1, "ff")
 	end]]
 
+	wipe(gradientColorCache)
+	wipe(gradientCustomColorCache)
+
+	CacheGradients()
+	ElvUI_EltreumUI:IncrementHealthBackdropEpoch()
+
+	if E.db.unitframe.colors then
+		local dead = E.db.unitframe.colors.health_backdrop_dead
+		local alpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
+		if dead then
+			deadColorMin = CreateColor(clamp(dead.r - 0.3), clamp(dead.g - 0.3), clamp(dead.b - 0.3), alpha)
+			deadColorMax = CreateColor(dead.r, dead.g, dead.b, alpha)
+		end
+
+		local disc = E.db.unitframe.colors.disconnected
+		if disc then
+			discColorMin = CreateColor(clamp(disc.r - 0.3), clamp(disc.g - 0.3), clamp(disc.b - 0.3), alpha)
+			discColorMax = CreateColor(disc.r, disc.g, disc.b, alpha)
+		end
+
+		local tapped = E.db.unitframe.colors.tapped
+		if tapped then
+			tappedColorMin = CreateColor(clamp(tapped.r - 0.3), clamp(tapped.g - 0.3), clamp(tapped.b - 0.3), alpha)
+			tappedColorMax = CreateColor(tapped.r, tapped.g, tapped.b, alpha)
+		end
+	end
+
 	--to make the previews update
 	ElvUI_EltreumUI:CustomTexture("testunit")
 	ElvUI_EltreumUI:GradientUF("testunit")
@@ -249,7 +402,15 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	if E.db.ElvUI_EltreumUI.skins.cell then
 		ElvUI_EltreumUI:EltruismCell()
 	end
+	if _G["EltruismPlayerRestLoopRestTexture"] and E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
+		if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
+			_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+		else
+			_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+		end
+	end
 end
+
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
@@ -285,7 +446,7 @@ end
 --return the background offset
 local function bgfade(isBG)
 	if isBG then
-		return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade
+		return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade or 0
 	else
 		return 0
 	end
@@ -295,59 +456,187 @@ end
 local function bgalpha(alpha, isHealth)
 	if alpha then
 		if isHealth then
-			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha
+			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha or 1
 		else
-			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
 		end
 	else
 		return 1
 	end
 end
 
+function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
+	local tbl = isCustom and customHealthGradients or defaultHealthGradients
+	local bucket = invert and tbl.invert or tbl.normal
+	local entry = bucket[key] or bucket["ELTRUISM"]
+	if entry then
+		return entry[1], entry[2]
+	end
+	if isCustom then
+		return ElvUI_EltreumUI:GradientColorsCustom(key, invert, true, false, nil, true)
+	else
+		return ElvUI_EltreumUI:GradientColors(key, invert, true, false, nil, true)
+	end
+end
+
+function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom)
+	local tbl = isCustom and customBackdropGradients or defaultBackdropGradients
+	local bucket = invert and tbl.invert or tbl.normal
+	local entry = bucket[key] or bucket["ELTRUISM"]
+	if entry then
+		return entry[1], entry[2]
+	end
+	if isCustom then
+		return ElvUI_EltreumUI:GradientColorsCustom(key, invert, true, true, nil, false)
+	else
+		return ElvUI_EltreumUI:GradientColors(key, invert, true, true, nil, false)
+	end
+end
+
+function ElvUI_EltreumUI:GetPowerGradient(powertype, invert, isBG, isCustom)
+	local tbl = isCustom and customPowerGradients or defaultPowerGradients
+	local bucket
+	if isBG then
+		bucket = tbl.backdrop
+	elseif invert then
+		bucket = tbl.invert
+	else
+		bucket = tbl.normal
+	end
+	local entry = bucket[powertype] or bucket["ELTRUISM"]
+	if entry then
+		return entry[1], entry[2]
+	end
+	if isCustom then
+		return ElvUI_EltreumUI:GradientColorsCustom(powertype, invert, false, isBG)
+	else
+		return ElvUI_EltreumUI:GradientColors(powertype, invert, false, isBG)
+	end
+end
+
+function ElvUI_EltreumUI:GetCastbarGradient(key)
+	local entry = cachedCastbars[key]
+	if entry then
+		return entry[1], entry[2]
+	end
+	return fallbackWhite, fallbackWhite
+end
+
+function ElvUI_EltreumUI:GetDeadColors()
+	return deadColorMin, deadColorMax
+end
+
+function ElvUI_EltreumUI:GetDisconnectedColors()
+	return discColorMin, discColorMax
+end
+
+function ElvUI_EltreumUI:GetTappedColors()
+	return tappedColorMin, tappedColorMax
+end
+
+local function GetCachedColors(cache, unitclass, invert, alpha, isBG, customalpha, isHealth)
+	local c1 = cache[unitclass]
+	if not c1 then return end
+	local c2 = c1[invert or false]
+	if not c2 then return end
+	local c3 = c2[alpha or false]
+	if not c3 then return end
+	local c4 = c3[isBG or false]
+	if not c4 then return end
+	local c5 = c4[customalpha or 0]
+	if not c5 then return end
+	local entry = c5[isHealth or false]
+	if entry then
+		return entry[1], entry[2]
+	end
+end
+
+local function SetCachedColors(cache, minColor, maxColor, unitclass, invert, alpha, isBG, customalpha, isHealth)
+	local invKey = invert or false
+	local alphaKey = alpha or false
+	local bgKey = isBG or false
+	local custAlphaKey = customalpha or 0
+	local healthKey = isHealth or false
+
+	local c1 = cache[unitclass]
+	if not c1 then c1 = {}; cache[unitclass] = c1 end
+	local c2 = c1[invKey]
+	if not c2 then c2 = {}; c1[invKey] = c2 end
+	local c3 = c2[alphaKey]
+	if not c3 then c3 = {}; c2[alphaKey] = c3 end
+	local c4 = c3[bgKey]
+	if not c4 then c4 = {}; c3[bgKey] = c4 end
+	local c5 = c4[custAlphaKey]
+	if not c5 then c5 = {}; c4[custAlphaKey] = c5 end
+	c5[healthKey] = { minColor, maxColor }
+end
+
 --get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG, customalpha, isHealth)
-	if E:NotSecretValue(unitclass) then
-		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
-		if customalpha then
-			if invert then
-				return {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = customalpha}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}
-			else
-				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}, {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = customalpha}
-			end
-		else
-			if invert then
-				return {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
-			else
-				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
+	if not unitclass or not E:NotSecretValue(unitclass) then
+		if unitclass and not E:NotSecretValue(unitclass) then
+			local classColor = GetClassColor(unitclass)
+			if classColor then
+				return classColor, classColor
 			end
 		end
-	else
-		local classColor = GetClassColor(unitclass)
-		return {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}, {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}
+		unitclass = "ELTRUISM"
 	end
+
+	local minC, maxC = GetCachedColors(gradientColorCache, unitclass, invert, alpha, isBG, customalpha, isHealth)
+	if minC then
+		return minC, maxC
+	end
+
+	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+	local bgOffset = bgfade(isBG)
+	local aVal = customalpha or bgalpha(alpha, isHealth)
+	local minColor, maxColor
+
+	if invert then
+		minColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
+		maxColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
+	else
+		minColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
+		maxColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
+	end
+
+	SetCachedColors(gradientColorCache, minColor, maxColor, unitclass, invert, alpha, isBG, customalpha, isHealth)
+	return minColor, maxColor
 end
 
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, customalpha, isHealth)
-	if E:NotSecretValue(unitclass) then
-		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-		if customalpha then
-			if invert then
-				return {r= ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= customalpha}, { r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}
-			else
-				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = customalpha}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= customalpha}
-			end
-		else
-			if invert then
-				return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isHealth)}, {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1), a = bgalpha(alpha,isHealth)}
-			else
-				return {r = ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1), g = ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1), b = ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a = bgalpha(alpha,isHealth)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isHealth)}
+	if not unitclass or not E:NotSecretValue(unitclass) then
+		if unitclass and not E:NotSecretValue(unitclass) then
+			local classColor = GetClassColor(unitclass)
+			if classColor then
+				return classColor, classColor
 			end
 		end
-	else
-		local classColor = GetClassColor(unitclass)
-		return {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}, {r = classColor.r, g = classColor.g, b = classColor.b, a = bgalpha(alpha,isHealth)}
+		unitclass = "ELTRUISM"
 	end
+
+	local minC, maxC = GetCachedColors(gradientCustomColorCache, unitclass, invert, alpha, isBG, customalpha, isHealth)
+	if minC then
+		return minC, maxC
+	end
+
+	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+	local bgOffset = bgfade(isBG)
+	local aVal = customalpha or bgalpha(alpha, isHealth)
+	local minColor, maxColor
+
+	if invert then
+		minColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
+		maxColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
+	else
+		minColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
+		maxColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
+	end
+
+	SetCachedColors(gradientCustomColorCache, minColor, maxColor, unitclass, invert, alpha, isBG, customalpha, isHealth)
+	return minColor, maxColor
 end
 
 --sets name with gradient colors using elvui

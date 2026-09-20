@@ -7,6 +7,13 @@ local embedpanel
 local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local instanceType = "none"
+local CreateColor = _G.CreateColor
+local function clamp(v)
+	if v < 0 then return 0 elseif v > 1 then return 1 end
+	return v
+end
+local dmMin = CreateColor(1, 1, 1, 1)
+local dmMax = CreateColor(1, 1, 1, 1)
 
 --pretty much copied from elvui and edited to look more like details
 do
@@ -403,13 +410,19 @@ do
 							sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
 						end
 					else
-						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=ElvUI_EltreumUI:Interval(r-0.5, 0, 1),g=ElvUI_EltreumUI:Interval(g-0.5, 0, 1),b=ElvUI_EltreumUI:Interval(b-0.5, 0, 1),a= 0.9}, {r=ElvUI_EltreumUI:Interval(r+0.2, 0, 1),g=ElvUI_EltreumUI:Interval(g+0.2, 0, 1),b=ElvUI_EltreumUI:Interval(b+0.2, 0, 1),a= 0.9})
+						dmMin:SetRGBA(clamp(r - 0.5), clamp(g - 0.5), clamp(b - 0.5), 0.9)
+						dmMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), 0.9)
+						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, dmMin, dmMax)
 					end
 					--even though its supposed to not be secret we will get the secret error
 					--[[if bar.StatusBar.Name then
 						local name = E:StripString(bar.StatusBar.Name:GetText())
 						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
 					end]]
+					if bar.StatusBar.Background then
+						bar.StatusBar.Background:ClearAllPoints()
+						bar.StatusBar.Background:SetAllPoints(bar.StatusBar)
+					end
 				end)
 
 				--set it outside as well, so that on PEW it gets gradient as well

@@ -2,6 +2,17 @@ local E = unpack(ElvUI)
 local _G = _G
 local UF = E:GetModule('UnitFrames')
 local hooksecurefunc = _G.hooksecurefunc
+local CreateColor = _G.CreateColor
+local function clamp(val)
+	if val < 0 then
+		return 0
+	elseif val > 1 then
+		return 1
+	end
+	return val
+end
+local aurabarMin = CreateColor(1, 1, 1, 1)
+local aurabarMax = CreateColor(1, 1, 1, 1)
 
 --Gradient Aurabars
 function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to add a glow or something
@@ -22,11 +33,10 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 								bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
 								bar.EltruismSparkPlayer = true
 							end
-							if E.db.unitframe.colors.transparentAurabars then
-								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b=b-0.3,a= E.db.general.backdropfadecolor.a}, {r=r,g= g,b= b,a= E.db.general.backdropfadecolor.a})
-							else
-								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1}, {r=r,g= g,b= b,a= 1})
-							end
+							local a = E.db.unitframe.colors.transparentAurabars and E.db.general.backdropfadecolor.a or 1
+							aurabarMin:SetRGBA(clamp(r - 0.3), clamp(g - 0.3), clamp(b - 0.3), a)
+							aurabarMax:SetRGBA(clamp(r), clamp(g), clamp(b), a)
+							bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, aurabarMin, aurabarMax)
 						elseif bar.unit == "target" then
 							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkTarget then
 								bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
@@ -38,11 +48,10 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 								bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
 								bar.EltruismSparkTarget = true
 							end
-							if E.db.unitframe.colors.transparentAurabars then
-								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= E.db.general.backdropfadecolor.a}, {r=r-0.3,g= g-0.3,b= b-0.3,a= E.db.general.backdropfadecolor.a})
-							else
-								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= 1}, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1})
-							end
+							local a = E.db.unitframe.colors.transparentAurabars and E.db.general.backdropfadecolor.a or 1
+							aurabarMin:SetRGBA(clamp(r), clamp(g), clamp(b), a)
+							aurabarMax:SetRGBA(clamp(r - 0.3), clamp(g - 0.3), clamp(b - 0.3), a)
+							bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, aurabarMin, aurabarMax)
 						end
 					end
 				end)
