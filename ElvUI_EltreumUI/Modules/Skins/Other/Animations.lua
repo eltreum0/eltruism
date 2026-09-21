@@ -115,14 +115,13 @@ local function PlayDeathAnimation()
 		local fontsize = 240
 		if db.playerdeathcustom then
 			deathFrame.Text:SetText(db.playerdeathcustomtext)
-			deathFrame.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\OptimusPrinceps.TTF", 64, "OUTLINE")
-			local textwidth = deathFrame.Text:GetStringWidth()
-			moveOut:SetOffset(-textwidth/2, -fontsize/4)
+			--local textwidth = deathFrame.Text:GetStringWidth()
+			--moveOut:SetOffset(-textwidth/2, -fontsize/4)
 		else
 			deathFrame.Text:SetText("YOU DIED")
-			deathFrame.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\OptimusPrinceps.TTF", fontsize, "OUTLINE")
-			moveOut:SetOffset(-fontsize*1.25, fontsize/8)
 		end
+		deathFrame.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\OptimusPrinceps.TTF", fontsize, "OUTLINE")
+		moveOut:SetOffset(-fontsize*1.25, fontsize/8)
 
 		deathBanner:SetSize(x, 200)
 		deathBanner:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\YouDied.TGA")
@@ -211,14 +210,13 @@ end
 
 function ElvUI_EltreumUI:PlayerDeathAnimation(preview)
 	local db = E.db.ElvUI_EltreumUI.skins
-	local isDarkSouls = db.playerdeath or db.playerdeathcustom
-	local isGTA = db.playerdeathgta
+	local isActive = db.playerdeath or db.playerdeathcustom or db.playerdeathgta
 
 	if preview then
 		PlayDeathAnimation()
 	end
 
-	if isDarkSouls or isGTA then
+	if isActive then
 		deathFrame:RegisterEvent("PLAYER_DEAD")
 	else
 		deathFrame:UnregisterEvent("PLAYER_DEAD")
