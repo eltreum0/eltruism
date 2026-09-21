@@ -247,53 +247,61 @@ end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
 --for general nameplates
---[[local playerclassv1 = {
-	["WARRIOR"] = "Eltreum-Class-Warrior",
-	["PALADIN"] = "Eltreum-Class-Paladin",
-	["HUNTER"] = "Eltreum-Class-Hunter",
-	["ROGUE"] = "Eltreum-Class-Rogue",
-	["PRIEST"] = "Eltreum-Class-Priest",
-	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnight",
-	["SHAMAN"] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
-	["MAGE"] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
-	["WARLOCK"] = "Eltreum-Class-Warlock",
-	["MONK"] = "Eltreum-Class-Monk",
-	["DRUID"] = "Eltreum-Class-Druid",
-	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
-	["EVOKER"] = "Eltreum-Class-Evoker",
+local playerclassversion = {
+	[1] = {
+		["WARRIOR"] = "Eltreum-Class-Warrior",
+		["PALADIN"] = "Eltreum-Class-Paladin",
+		["HUNTER"] = "Eltreum-Class-Hunter",
+		["ROGUE"] = "Eltreum-Class-Rogue",
+		["PRIEST"] = "Eltreum-Class-Priest",
+		["DEATHKNIGHT"] = "Eltreum-Class-DeathKnight",
+		["SHAMAN"] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
+		["MAGE"] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
+		["WARLOCK"] = "Eltreum-Class-Warlock",
+		["MONK"] = "Eltreum-Class-Monk",
+		["DRUID"] = "Eltreum-Class-Druid",
+		["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
+		["EVOKER"] = "Eltreum-Class-Evoker",
+	},
+	[2] = {
+		["WARRIOR"] = "Eltreum-Class-WarriorV2",
+		["PALADIN"] = "Eltreum-Class-PaladinV2",
+		["HUNTER"] = "Eltreum-Class-HunterV2",
+		["ROGUE"] = "Eltreum-Class-RogueV2",
+		["PRIEST"] = "Eltreum-Class-PriestV2",
+		["DEATHKNIGHT"] = "Eltreum-Class-DeathKnightV2",
+		["SHAMAN"] = "Eltreum-Class-ShamanV2",
+		["MAGE"] = "Eltreum-Class-MageV2",
+		["WARLOCK"] = "Eltreum-Class-WarlockV2",
+		["MONK"] = "Eltreum-Class-MonkV2",
+		["DRUID"] = "Eltreum-Class-DruidV2",
+		["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV2",
+		["EVOKER"] = "Eltreum-Class-EvokerV2",
+	},
+	[3] = {
+		["WARRIOR"] = "Eltreum-Class-WarriorV3",
+		["PALADIN"] = "Eltreum-Class-PaladinV3",
+		["HUNTER"] = "Eltreum-Class-HunterV3",
+		["ROGUE"] = "Eltreum-Class-RogueV3",
+		["PRIEST"] = "Eltreum-Class-PriestV3",
+		["DEATHKNIGHT"] = "Eltreum-Class-DeathKnightV3",
+		["SHAMAN"] = "Eltreum-Class-ShamanV3",
+		["MAGE"] = "Eltreum-Class-MageV3",
+		["WARLOCK"] = "Eltreum-Class-WarlockV3",
+		["MONK"] = "Eltreum-Class-MonkV3",
+		["DRUID"] = "Eltreum-Class-DruidV3",
+		["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV3",
+		["EVOKER"] = "Eltreum-Class-EvokerV3",
+	},
 }
 
-local playerclassv2 = {
-	["WARRIOR"] = "Eltreum-Class-WarriorV2",
-	["PALADIN"] = "Eltreum-Class-PaladinV2",
-	["HUNTER"] = "Eltreum-Class-HunterV2",
-	["ROGUE"] = "Eltreum-Class-RogueV2",
-	["PRIEST"] = "Eltreum-Class-PriestV2",
-	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnightV2",
-	["SHAMAN"] = "Eltreum-Class-ShamanV2",
-	["MAGE"] = "Eltreum-Class-MageV2",
-	["WARLOCK"] = "Eltreum-Class-WarlockV2",
-	["MONK"] = "Eltreum-Class-MonkV2",
-	["DRUID"] = "Eltreum-Class-DruidV2",
-	["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV2",
-	["EVOKER"] = "Eltreum-Class-EvokerV2",
-}
-
-local playerclassv3 = {
-	["WARRIOR"] = "Eltreum-Class-WarriorV3",
-	["PALADIN"] = "Eltreum-Class-PaladinV3",
-	["HUNTER"] = "Eltreum-Class-HunterV3",
-	["ROGUE"] = "Eltreum-Class-RogueV3",
-	["PRIEST"] = "Eltreum-Class-PriestV3",
-	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnightV3",
-	["SHAMAN"] = "Eltreum-Class-ShamanV3",
-	["MAGE"] = "Eltreum-Class-MageV3",
-	["WARLOCK"] = "Eltreum-Class-WarlockV3",
-	["MONK"] = "Eltreum-Class-MonkV3",
-	["DRUID"] = "Eltreum-Class-DruidV3",
-	["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV3",
-	["EVOKER"] = "Eltreum-Class-EvokerV3",
-}]]
+function ElvUI_EltreumUI:GetUnitTextureVersion(unitclass,version,fetch)
+	if fetch then
+		return E.LSM:Fetch("statusbar", playerclassversion[version][unitclass])
+	else
+		return playerclassversion[version][unitclass]
+	end
+end
 
 -- for rare nameplates
 local rareclass = {
