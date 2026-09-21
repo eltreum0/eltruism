@@ -538,6 +538,17 @@ local ONUPDATE_INTERVAL2 = 0.01 --smooth for 60fps
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
 
+local function UpdateCardinalsRotation(_, elapsed)
+	TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
+	if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
+		TimeSinceLastUpdate2 = 0
+		local facing = GetPlayerFacing()
+		if facing and E:NotSecretValue(facing) then
+			Minimap.EltruismRotate:SetRotation(-facing)
+		end
+	end
+end
+
 local function RotateMinimap()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		if E.Retail then
@@ -620,53 +631,16 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 			if not Minimap.EltruismRotate then
 				Minimap.EltruismRotate = Minimap:CreateTexture()
 				Minimap.EltruismRotate:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\cardinals.tga")
-				Minimap.EltruismRotate:SetSize(Minimap:GetWidth(),Minimap:GetHeight())
 				Minimap.EltruismRotate:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
-
-				if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
-					Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				else
-					Minimap.EltruismRotate:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b,1)
-				end
-
-				--i really dont like onupdate here, but since events dont fire all the time this is the best case use of it
-				if not onupdatesetup then
-					Cardinals:SetScript("OnUpdate",function(_, elapsed)
-						TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
-						if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
-							TimeSinceLastUpdate2 = 0
-							local _, instanceType = IsInInstance()
-							if instanceType == "none" then
-								local facing = GetPlayerFacing()
-								if facing then
-									Minimap.EltruismRotate:SetRotation(-facing)
-								end
-								if not Minimap.EltruismRotate:IsShown() then
-									Minimap.EltruismRotate:Show()
-								end
-							else
-								if Minimap.EltruismRotate:IsShown() then
-									Minimap.EltruismRotate:Hide()
-								end
-							end
-						end
-					end)
-					onupdatesetup = true
-				end
-			else
-				Minimap.EltruismRotate:SetSize(Minimap:GetWidth()+E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset,Minimap:GetHeight()+E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
-				if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
-					Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				else
-					Minimap.EltruismRotate:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b,1)
-				end
-
-				if Minimap.EltruismRotate then
-					Minimap.EltruismRotate:Show()
-				end
-				onupdatesetup = false
-				ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 			end
+			Minimap.EltruismRotate:SetSize(Minimap:GetWidth()+E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset,Minimap:GetHeight()+E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+			if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
+				Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+			else
+				Minimap.EltruismRotate:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b,1)
+			end
+
+			ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 		else
 			if Minimap.EltruismRotate then
 				Minimap.EltruismRotate:Hide()
@@ -784,41 +758,29 @@ function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable and E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		local _, instanceType = IsInInstance()
 		if instanceType == "none" then
-			if Minimap.EltruismRotate and not onupdatesetup then
+			if Minimap.EltruismRotate then
 				Minimap.EltruismRotate:Show()
-				Cardinals:SetScript("OnUpdate",function(_, elapsed)
-					TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
-					if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
-						TimeSinceLastUpdate2 = 0
-						_, instanceType = IsInInstance()
-						if instanceType == "none" then
-							local facing = GetPlayerFacing()
-							if facing then
-								Minimap.EltruismRotate:SetRotation(-facing)
-							end
-							if not Minimap.EltruismRotate:IsShown() then
-								Minimap.EltruismRotate:Show()
-							end
-						else
-							if Minimap.EltruismRotate:IsShown() then
-								Minimap.EltruismRotate:Hide()
-							end
-						end
-					end
-				end)
-				onupdatesetup = true
+				if not onupdatesetup then
+					TimeSinceLastUpdate2 = 0
+					Cardinals:SetScript("OnUpdate", UpdateCardinalsRotation)
+					onupdatesetup = true
+				end
 			end
 		else
 			if Minimap.EltruismRotate then
 				Minimap.EltruismRotate:Hide()
 			end
-			onupdatesetup = false
-			Cardinals:SetScript("OnUpdate",nil)
+			if onupdatesetup then
+				Cardinals:SetScript("OnUpdate", nil)
+				onupdatesetup = false
+			end
 		end
 	else
 		if Minimap.EltruismRotate then
 			Minimap.EltruismRotate:Hide()
-			Cardinals:SetScript("OnUpdate",nil)
+		end
+		if onupdatesetup then
+			Cardinals:SetScript("OnUpdate", nil)
 			onupdatesetup = false
 		end
 	end
