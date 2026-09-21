@@ -532,7 +532,7 @@ end
 
 local onupdatesetup = false
 local TimeSinceLastUpdate2 = 0
-local ONUPDATE_INTERVAL2 = 0.01 --smooth for 60fps
+local ONUPDATE_INTERVAL2 = 0.016 --smooth for 60fps
 
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
