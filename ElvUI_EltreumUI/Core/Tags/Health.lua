@@ -27,12 +27,20 @@ local escapeSequence = ":0:0:0:0"
 local stringlen = string.len
 local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
 
+local deadtexture, dctexture, ghosttexture
+function ElvUI_EltreumUI:UpdateCachedHealthTagTextures()
+	if E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.otherstuff then
+		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
+		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
+		ghosttexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+	end
+end
+
 function ElvUI_EltreumUI:LoadHealthTags()
+	ElvUI_EltreumUI:UpdateCachedHealthTagTextures()
 
 	--tag that only shows the icon, due to secrets
 	E:AddTag("eltruism:status", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		if UnitIsConnected(unit) then
 			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 				return
@@ -44,7 +52,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				end
 			elseif UnitIsGhost(unit) then
 				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-					return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+					return ghosttexture
 				else
 					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 				end
@@ -61,8 +69,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
 		if E.Retail then
@@ -92,7 +98,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -110,8 +116,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--same as previous tag but with | instead of -
 	E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
 		if E.Retail then
@@ -142,7 +146,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -160,8 +164,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--reverse of the hpstatus, uses modified elvui tag code
 	E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
 		if E.Retail then
@@ -216,7 +218,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -234,8 +236,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local textformat
 		if E.Retail then
 			textformat = E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
@@ -264,7 +264,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -282,8 +282,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--perhp with status icons
 	E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local value
 		if E.Retail then
@@ -305,7 +303,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -323,8 +321,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local isTarget
 		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
@@ -401,7 +397,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -419,8 +415,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local isTarget
 		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
@@ -496,7 +490,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
@@ -514,8 +508,6 @@ function ElvUI_EltreumUI:LoadHealthTags()
 
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
 		local isTarget
 		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
@@ -585,7 +577,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					end
 				elseif UnitIsGhost(unit) then
 					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+						return ghosttexture
 					else
 						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 					end
