@@ -50,16 +50,15 @@ local classcolorreaction = {
 	["NPCNEUTRAL"] = {r = 0.89, g = 0.89, b = 0},
 	["NPCUNFRIENDLY"] = {r = 0.94, g = 0.37, b = 0},
 	["NPCHOSTILE"] = {r = 0.8, g = 0, b = 0},
+	["DEBUG"] = {r = 1, g = 0, b = 0},
 }
-
-local debugRed = {r = 1, g = 0, b = 0}
 
 function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 	if E:NotSecretValue(unitclass) then
 		if unitclass and classcolorreaction[unitclass] then
 			return classcolorreaction[unitclass]
 		else
-			return debugRed
+			return classcolorreaction["DEBUG"]
 		end
 	else
 		local classColor = GetClassColor(unitclass)
