@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.totemyborder = 44
 					E.db.ElvUI_EltreumUI.borders.petactionxborder = 50
 					E.db.ElvUI_EltreumUI.borders.petactionyborder = 37
-					E.db.ElvUI_EltreumUI.borders.stancexborder = 45
+					E.db.ElvUI_EltreumUI.borders.stancexborder = 46
 
 					--[[if E.Mists or E.TBC or E.Wrath then
 						E.db["actionbar"]["totemBar"]["spacing"] = 5
