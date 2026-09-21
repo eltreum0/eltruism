@@ -348,10 +348,10 @@ end
 
 hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
 	if E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.chat and E.db.ElvUI_EltreumUI.chat.enable then
-		if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) then
+		if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) and CH.GetColoredName ~= ElvUI_EltreumUI.ChatClassIcons then
 			CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
 		end
-		if E.db.ElvUI_EltreumUI.chat.chatraceicon then
+		if E.db.ElvUI_EltreumUI.chat.chatraceicon and CH.GetPFlag ~= ElvUI_EltreumUI.GetPFlag then
 			CH.GetPFlag = ElvUI_EltreumUI.GetPFlag
 		end
 	end
