@@ -52,12 +52,14 @@ local classcolorreaction = {
 	["NPCHOSTILE"] = {r = 0.8, g = 0, b = 0},
 }
 
+local debugRed = {r = 1, g = 0, b = 0}
+
 function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 	if E:NotSecretValue(unitclass) then
 		if unitclass and classcolorreaction[unitclass] then
-			return {r = classcolorreaction[unitclass]["r"], g= classcolorreaction[unitclass]["g"],b = classcolorreaction[unitclass]["b"]}
+			return classcolorreaction[unitclass]
 		else
-			return {r = 1, g = 0, b = 0} --debug red
+			return debugRed
 		end
 	else
 		local classColor = GetClassColor(unitclass)
