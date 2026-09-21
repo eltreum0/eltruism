@@ -32,9 +32,9 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	end, nil, false, nil, nil, nil, function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.description2 = E.Libs.ACH:Description(L["Light Mode Texture Version"], 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.textureselect = E.Libs.ACH:Select("", nil, 5, {
-		["V1"] = L["Version 1"],
-		["V2"] = L["Version 2"],
-		["V3"] = L["Version 3"],
+		["V1"] = L["Version 1"] .. " " .. E:TextureString(ElvUI_EltreumUI:GetUnitTextureVersion(E.myclass,1,true), ":14:256"),
+		["V2"] = L["Version 2"] .. " " .. E:TextureString(ElvUI_EltreumUI:GetUnitTextureVersion(E.myclass,2,true), ":14:256"),
+		["V3"] = L["Version 3"] .. " " .. E:TextureString(ElvUI_EltreumUI:GetUnitTextureVersion(E.myclass,3,true), ":14:256"),
 		["NONE"] = L["None"],
 	}, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.uftextureversion end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.uftextureversion = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.lightmode end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.textureselect.style = "radio"
