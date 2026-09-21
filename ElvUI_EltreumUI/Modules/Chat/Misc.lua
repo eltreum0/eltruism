@@ -36,6 +36,101 @@ local joinsstring3
 local leavestring
 local leavestring2
 
+local function InitSysMsgStrings()
+	if rollstring then return end
+	if E.locale == "deDE" then
+		rollstring = "würfelt. Ergebnis:"
+		onlinestring = "online"
+		offlinestring = "offline"
+		joinsstring = "schließt sich"
+		joinsstring2 = "sich dem Schlachtzug"
+		joinsstring3 = "beitreten"
+		leavestring = "verlässt"
+		leavestring2 = "verlassen"
+	elseif E.locale == "zhCN" then
+		rollstring = "掷出"
+		onlinestring = "在线"
+		offlinestring = "下线了"
+		joinsstring = "加入了"
+		joinsstring2 = "入了团"
+		joinsstring3 = "joined the"
+		leavestring = "离开"
+		leavestring2 = "leaves the"
+	elseif E.locale == "zhTW" then
+		rollstring = "擲出"
+		onlinestring = "目前在線"
+		offlinestring = "下線了"
+		joinsstring = "入了團"
+		joinsstring2 = "join the"
+		joinsstring3 = "joined the"
+		leavestring = "離開"
+		leavestring2 = "leaves the"
+	elseif E.locale == "esMX" or E.locale == "esES" then
+		rollstring = "tira los dados y obtiene"
+		onlinestring = "conectado"
+		offlinestring = "desconectado"
+		joinsstring = " se une "
+		joinsstring2 = "unisce "
+		joinsstring3 = "joined the"
+		leavestring = "abandonado"
+		leavestring2 = "deja"
+	elseif E.locale == "frFR" then
+		rollstring = "obtient un"
+		onlinestring = "en ligne "
+		offlinestring = "déconnecter"
+		joinsstring = "rejoint"
+		joinsstring2 = "joindre à"
+		joinsstring3 = "joined the"
+		leavestring = "quitté"
+		leavestring2 = "leaves the"
+	elseif E.locale == "itIT" then
+		rollstring = " tira "
+		onlinestring = "online"
+		offlinestring = "offline"
+		joinsstring = "unisce"
+		joinsstring2 = "unirti"
+		joinsstring3 = "unirte"
+		leavestring = "lascia "
+		leavestring2 = "lasci "
+	elseif E.locale == "koKR" then
+		rollstring = "님이 주사위를 굴려"
+		onlinestring = "접속 중"
+		offlinestring = "님이 게임을 종료했습니다."
+		joinsstring = "파티에 합류했"
+		joinsstring2 = "공격대에 합"
+		joinsstring3 = "joined the"
+		leavestring = "떠났습"
+		leavestring2 = "leaves the"
+	elseif E.locale == "ptBR" or E.locale == "ptPT" then
+		rollstring = " tira "
+		onlinestring = "conectado"
+		offlinestring = "desconectou"
+		joinsstring = " entra "
+		joinsstring2 = "entrar"
+		joinsstring3 = "entrou "
+		leavestring = "abandonou"
+		leavestring2 = " sai "
+	elseif E.locale == "ruRU" then
+		rollstring = "выбрасывает"
+		onlinestring = "В сети"
+		offlinestring = "выходит из игрового"
+		joinsstring = "вступает"
+		joinsstring2 = "принять участие"
+		joinsstring3 = "присоединяется к рейдовой"
+		leavestring = "покидает"
+		leavestring2 = "leaves the"
+	else
+		rollstring = "rolls"
+		onlinestring = "online"
+		offlinestring = "offline"
+		joinsstring = "joins"
+		joinsstring2 = " join "
+		joinsstring3 = " joined "
+		leavestring = " left "
+		leavestring2 = "leaves"
+	end
+end
+
 local function ColorSysMsgs(_, _, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
@@ -45,96 +140,8 @@ local function ColorSysMsgs(_, _, message, ...)
 		return
 	end
 	if E.db.ElvUI_EltreumUI.chat.colorsysmsg then
-		if E.locale == "deDE" then
-			rollstring = "würfelt. Ergebnis:"
-			onlinestring = "online"
-			offlinestring = "offline"
-			joinsstring = "schließt sich"
-			joinsstring2 = "sich dem Schlachtzug"
-			joinsstring3 = "beitreten"
-			leavestring = "verlässt"
-			leavestring2 = "verlassen"
-		elseif E.locale == "enUS" or E.locale == "enGB" or E.locale == "enCN" or E.locale == "enTW" then
-			rollstring = "rolls"
-			onlinestring = "online"
-			offlinestring = "offline"
-			joinsstring = "joins"
-			joinsstring2 = " join "
-			joinsstring3 = " joined "
-			leavestring = " left "
-			leavestring2 = "leaves"
-		elseif E.locale == "zhCN" then
-			rollstring = "掷出"
-			onlinestring = "在线"
-			offlinestring = "下线了"
-			joinsstring = "加入了"
-			joinsstring2 = "入了团"
-			joinsstring3 = "joined the"
-			leavestring = "离开"
-			leavestring2 = "leaves the"
-		elseif E.locale == "zhTW" then
-			rollstring = "擲出"
-			onlinestring = "目前在線"
-			offlinestring = "下線了"
-			joinsstring = "入了團"
-			joinsstring2 = "join the"
-			joinsstring3 = "joined the"
-			leavestring = "離開"
-			leavestring2 = "leaves the"
-		elseif E.locale == "esMX" or E.locale == "esES" then
-			rollstring = "tira los dados y obtiene"
-			onlinestring = "conectado"
-			offlinestring = "desconectado"
-			joinsstring = " se une "
-			joinsstring2 = "unisce "
-			joinsstring3 = "joined the"
-			leavestring = "abandonado"
-			leavestring2 = "deja"
-		elseif E.locale == "frFR" then
-			rollstring = "obtient un"
-			onlinestring = "en ligne "
-			offlinestring = "déconnecter"
-			joinsstring = "rejoint"
-			joinsstring2 = "joindre à"
-			joinsstring3 = "joined the"
-			leavestring = "quitté"
-			leavestring2 = "leaves the"
-		elseif E.locale == "itIT" then
-			rollstring = " tira "
-			onlinestring = "online"
-			offlinestring = "offline"
-			joinsstring = "unisce"
-			joinsstring2 = "unirti"
-			joinsstring3 = "unirte"
-			leavestring = "lascia "
-			leavestring2 = "lasci "
-		elseif E.locale == "koKR" then
-			rollstring = "님이 주사위를 굴려"
-			onlinestring = "접속 중"
-			offlinestring = "님이 게임을 종료했습니다."
-			joinsstring = "파티에 합류했"
-			joinsstring2 = "공격대에 합"
-			joinsstring3 = "joined the"
-			leavestring = "떠났습"
-			leavestring2 = "leaves the"
-		elseif E.locale == "ptBR" or E.locale == "ptPT" then
-			rollstring = " tira "
-			onlinestring = "conectado"
-			offlinestring = "desconectou"
-			joinsstring = " entra "
-			joinsstring2 = "entrar"
-			joinsstring3 = "entrou "
-			leavestring = "abandonou"
-			leavestring2 = " sai "
-		elseif E.locale == "ruRU" then
-			rollstring = "выбрасывает"
-			onlinestring = "В сети"
-			offlinestring = "выходит из игрового"
-			joinsstring = "вступает"
-			joinsstring2 = "принять участие"
-			joinsstring3 = "присоединяется к рейдовой"
-			leavestring = "покидает"
-			leavestring2 = "leaves the"
+		if not rollstring then
+			InitSysMsgStrings()
 		end
 		if message:find(rollstring) then
 			--from this deleted user on the addons discord (ty whoever you are) https://discord.com/channels/168296152670797824/168296152670797824/558463766828679188
