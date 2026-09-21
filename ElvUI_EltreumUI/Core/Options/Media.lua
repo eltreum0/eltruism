@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:MediaOptions()
 		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead6',':20:20'),
 		["7"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead7',':20:20'),
 		["NONE"] = L["None"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon = _G.tostring(value) end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon = _G.tostring(value) ElvUI_EltreumUI:UpdateCachedHealthTagTextures() end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.deadiconpick.style = "radio"
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.dciconpick = E.Libs.ACH:Select(L["Disconnected"], nil, 2, {
 		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc1',':20:20'),
@@ -67,7 +67,7 @@ function ElvUI_EltreumUI:MediaOptions()
 		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc5',':20:20'),
 		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc6',':20:20'),
 		["NONE"] = L["None"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon = _G.tostring(value) end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon = _G.tostring(value) ElvUI_EltreumUI:UpdateCachedHealthTagTextures() end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.dciconpick.style = "radio"
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead = E.Libs.ACH:Group("[eltruism:dead]", nil, 2)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.description1 = E.Libs.ACH:Description(L["Customize the Dead Icons"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -105,6 +105,6 @@ function ElvUI_EltreumUI:MediaOptions()
 		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost5',':20:20'),
 		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost6',':20:20'),
 		["NONE"] = L["None"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon = _G.tostring(value) end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon = _G.tostring(value) ElvUI_EltreumUI:UpdateCachedHealthTagTextures() end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick.style = "radio"
 end
