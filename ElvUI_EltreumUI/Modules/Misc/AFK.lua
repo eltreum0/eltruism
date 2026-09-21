@@ -12,22 +12,23 @@ local tonumber = _G.tonumber
 --/script PlaySoundFile(1417250, "Dialog", true)
 
 -- AFK music (modified with the help of Repooc!)
+local classicMusic = E.Classic or E.Forever or E.TBC or E.Wrath
 local racialMusic = {
 	["Human"] = 53210,
-	["Gnome"] = E.Classic and 53189 or 369055,
-	["NightElf"] = E.Classic and 53187 or 441709,
+	["Gnome"] = classicMusic and 53189 or 369055,
+	["NightElf"] = classicMusic and 53187 or 441709,
 	["KulTiran"] = 1781897,
-	["Dwarf"] = E.Classic and 53192 or 298910,
+	["Dwarf"] = classicMusic and 53192 or 298910,
 	["Draenei"] = 53284,
 	["Worgen"] = 441525,
 	["VoidElf"] = 1864282,
 	["LightforgedDraenei"] = 1864285,
 	["DarkIronDwarf"] = 441566,
 	["Mechagnome"] = 3028751,
-	["Orc"] = E.Classic and 53201 or 441713,
-	["Scourge"] = E.Classic and 53519 or 53217,
-	["Tauren"] = E.Classic and 53215 or 441788,
-	["Troll"] = E.Classic and 53254 or 371378,
+	["Orc"] = classicMusic and 53201 or 441713,
+	["Scourge"] = classicMusic and 53519 or 53217,
+	["Tauren"] = classicMusic and 53215 or 441788,
+	["Troll"] = classicMusic and 53254 or 371378,
 	["Goblin"] = 441627,
 	["BloodElf"] = 53473,
 	["Pandaren"] = 642246,
@@ -81,6 +82,29 @@ function ElvUI_EltreumUI:AFKmusic()
 				SetCVar("Sound_EnableMusic", musicSetting)
 			end
 		end
+	end
+end
+
+local isPreviewingAFK = false
+function ElvUI_EltreumUI:PreviewAFKMusic()
+	if not isPreviewingAFK then
+		if E.Retail then
+			if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial and racialMusic[E.myrace] then
+				PlayMusic(racialMusic[E.myrace])
+				isPreviewingAFK = true
+			elseif E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass and classMusic[E.myclass] then
+				PlayMusic(classMusic[E.myclass])
+				isPreviewingAFK = true
+			end
+		else
+			if racialMusic[E.myrace] then
+				PlayMusic(racialMusic[E.myrace])
+				isPreviewingAFK = true
+			end
+		end
+	else
+		StopMusic()
+		isPreviewingAFK = false
 	end
 end
 
