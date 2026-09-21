@@ -1131,6 +1131,47 @@ if pickerWheel and _G.ColorPickerFrame then
 	pickerWheel:AddMaskTexture(bettermask)
 end
 
+--cursor positioning with 60 FPS throttle
+local GetCursorPosition = _G.GetCursorPosition
+local GetTime = _G.GetTime
+local CURSOR_THROTTLE = 0.016 --around 60fps
+local lastCursorPollTime = 0
+local lastRawCursorX, lastRawCursorY
+local lastOffsetX, lastOffsetY
+local lastScaleDivisor
+local cachedCursorPosX, cachedCursorPosY
+function ElvUI_EltreumUI:UpdateCursorPosition(frame, elapsed, force)
+	if not frame then return end
+	frame.EltruismTimeSinceLastUpdate = (frame.EltruismTimeSinceLastUpdate or 0) + (elapsed or 0)
+	if not force and frame.EltruismTimeSinceLastUpdate < CURSOR_THROTTLE then
+		return
+	end
+	frame.EltruismTimeSinceLastUpdate = 0
+
+	local now = GetTime()
+	if now ~= lastCursorPollTime or force then
+		lastCursorPollTime = now
+		local rawX, rawY = GetCursorPosition()
+		local offsetX = (E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor and E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx) or 0
+		local offsetY = (E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor and E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety) or 0
+		local scaleDivisor = E.UIParent:GetEffectiveScale()
+		if rawX ~= lastRawCursorX or rawY ~= lastRawCursorY or offsetX ~= lastOffsetX or offsetY ~= lastOffsetY or scaleDivisor ~= lastScaleDivisor or force then
+			lastRawCursorX, lastRawCursorY = rawX, rawY
+			lastOffsetX, lastOffsetY = offsetX, offsetY
+			lastScaleDivisor = scaleDivisor
+			cachedCursorPosX = (rawX / scaleDivisor) + offsetX
+			cachedCursorPosY = (rawY / scaleDivisor) + offsetY
+		end
+	end
+
+	if cachedCursorPosX and (force or frame.EltruismCursorX ~= cachedCursorPosX or frame.EltruismCursorY ~= cachedCursorPosY) then
+		frame.EltruismCursorX = cachedCursorPosX
+		frame.EltruismCursorY = cachedCursorPosY
+		frame:ClearAllPoints()
+		frame:SetPoint("CENTER", E.UIParent, "BOTTOMLEFT", cachedCursorPosX, cachedCursorPosY)
+	end
+end
+
 function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
 	if not E.Retail then
 		return true

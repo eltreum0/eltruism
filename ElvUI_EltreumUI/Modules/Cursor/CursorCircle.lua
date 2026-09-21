@@ -11,7 +11,6 @@ local unpack = _G.unpack
 local max = _G.max
 local sin = _G.sin
 local cos = _G.cos
-local GetCursorPosition = _G.GetCursorPosition
 local InCombatLockdown = _G.InCombatLockdown
 local GetTime = _G.GetTime
 local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
@@ -193,49 +192,41 @@ function ElvUI_EltreumUI:CastCursor()
 		}
 
 		-- Root Frame
-		--throttling here makes the frame not sync up, idk if i can make it sync with a throttle
 		rootFrame:SetSize(8,8)
+		local function UpdateRootFramePosition(rootframe, elapsed)
+			ElvUI_EltreumUI:UpdateCursorPosition(rootframe, elapsed)
+		end
 		if rootFrame:IsShown() then
-			rootFrame:SetScript("OnUpdate", function(self)
-				--print("cursor spam "..math.random(1,99))
-				local x, y = GetCursorPosition()
-				local scaleDivisor = E.UIParent:GetEffectiveScale()
-				self:ClearAllPoints()
-				self:SetPoint( "CENTER", E.UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
-			end )
+			ElvUI_EltreumUI:UpdateCursorPosition(rootFrame, 0, true)
+			rootFrame:SetScript("OnUpdate", UpdateRootFramePosition)
 		end
 
 		local ringsVisible = {}
-		local function RingSetShown(self, visible)
+		local function RingSetShown(ringframe, visible)
 			if visible then
 				if not next(ringsVisible) then
 					rootFrame:Show()
-					rootFrame:SetScript("OnUpdate", function(self)
-						--print("cursor spam "..math.random(1,99))
-						local x, y = GetCursorPosition()
-						local scaleDivisor = E.UIParent:GetEffectiveScale()
-						self:ClearAllPoints()
-						self:SetPoint( "CENTER", E.UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
-					end )
+					ElvUI_EltreumUI:UpdateCursorPosition(rootFrame, 0, true)
+					rootFrame:SetScript("OnUpdate", UpdateRootFramePosition)
 				end
-				ringsVisible[self] = true
-				self:Show()
+				ringsVisible[ringframe] = true
+				ringframe:Show()
 			else
-				ringsVisible[self] = nil
+				ringsVisible[ringframe] = nil
 				if not next(ringsVisible) then
 					rootFrame:Hide()
 					rootFrame:SetScript("OnUpdate", nil)
 				end
-				self:Hide()
+				ringframe:Hide()
 			end
 		end
 		-- Shared functions
-		local function OnEvent(self,event,...)
-			self[event](self,event,...)
+		local function OnEvent(oneventself,event,...)
+			oneventself[event](oneventself,event,...)
 		end
-		local function Start(self, d, m)
-			local textures = self.textures
-			local quad = min( floor( 4 * (self.reverse and m - d or d) / m ) + 1, 4)
+		local function Start(startself, d, m)
+			local textures = startself.textures
+			local quad = min( floor( 4 * (startself.reverse and m - d or d) / m ) + 1, 4)
 			for i=1,4 do
 				local tex = textures[i]
 				if i>quad then
@@ -243,43 +234,43 @@ function ElvUI_EltreumUI:CastCursor()
 					tex:Hide()
 				else
 					tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
-					tex:SetSize(self.radius, self.radius)
+					tex:SetSize(startself.radius, startself.radius)
 					tex:Show()
 				end
 			end
-			self.quad = quad
-			self.dur = max(d,0)
-			self.max = m
-			RingSetShown(self, true)
+			startself.quad = quad
+			startself.dur = max(d,0)
+			startself.max = m
+			RingSetShown(startself, true)
 		end
-		local function Update(self, elapsed)
+		local function Update(updateself, elapsed)
 			local dur
-			if self.dur == nil then
-				self.dur = 0
+			if updateself.dur == nil then
+				updateself.dur = 0
 			end
-			dur = self.dur + elapsed
+			dur = updateself.dur + elapsed
 			if dur == nil then
 				dur = 0
 			end
-			if self.max == nil then
-				self.max = 0
+			if updateself.max == nil then
+				updateself.max = 0
 			end
-			if dur >= self.max then
-				RingSetShown(self,false)
+			if dur >= updateself.max then
+				RingSetShown(updateself,false)
 				return
 			end
-			self.dur = dur
-			local rev = self.reverse
-			local maxdur = self.max
-			local radius = self.radius
+			updateself.dur = dur
+			local rev = updateself.reverse
+			local maxdur = updateself.max
+			local radius = updateself.radius
 			local angle = 360 * ( rev and maxdur-dur or dur ) / maxdur
 			local qangle = angle % 90
 			local quad = floor(angle / 90) + 1
-			local tex = self.textures[quad]
-			local pquad = self.quad
+			local tex = updateself.textures[quad]
+			local pquad = updateself.quad
 			if quad~=pquad then
 				if pquad>0 and pquad<5 then
-					local ptex = self.textures[pquad]
+					local ptex = updateself.textures[pquad]
 					if rev then
 						ptex:Hide()
 					else
@@ -288,11 +279,11 @@ function ElvUI_EltreumUI:CastCursor()
 					end
 				end
 				tex:Show()
-				self.quad = quad
+				updateself.quad = quad
 			end
 
 			if qangle > 0 then
-				local f = qangle <= 45 and self.factor or 1
+				local f = qangle <= 45 and updateself.factor or 1
 				QUAD_COORD_FUNC[quad]( tex, radius, 0, sin(qangle)*f, cos(qangle)*f, 1 )
 			end
 		end
@@ -368,11 +359,11 @@ function ElvUI_EltreumUI:CastCursor()
 				if cfg.combat then
 					frame:RegisterEvent('PLAYER_REGEN_ENABLED')
 					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
-					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED') end)
+					frame:SetScript("OnEvent", function(function1self, event) RingSetShown(function1self,event=='PLAYER_REGEN_DISABLED') end)
 					RingSetShown( frame, InCombatLockdown() )
 				else
 					frame:RegisterEvent('PLAYER_ENTERING_WORLD')
-					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_ENTERING_WORLD') end)
+					frame:SetScript("OnEvent", function(function2self, event) RingSetShown(function2self,event=='PLAYER_ENTERING_WORLD') end)
 					RingSetShown( frame, true )
 				end
 			else

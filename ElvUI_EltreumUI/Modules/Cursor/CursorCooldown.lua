@@ -3,7 +3,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local GetTime = _G.GetTime
-local GetCursorPosition = _G.GetCursorPosition
 local math = _G.math
 local mathfloor = math.floor
 local UIFrameFadeOut = _G.UIFrameFadeOut
@@ -34,7 +33,7 @@ local updateDelay = NormalUpdateDelay
 local fadeStamp -- the timestamp when we should start fading the display
 local endStamp -- the timestamp when the cooldown will be over
 local finishStamp -- the timestamp when the we are finished with this cooldown
-local currGetCooldown, currArg, currStart, currDuration, lastTexture, lastGetCooldown, lastArg, x, y, scaleDivisor, cd, now, start, duration, getEltruismCooldownFrameAlpha
+local currGetCooldown, currArg, currStart, currDuration, lastTexture, lastGetCooldown, lastArg, cd, now, start, duration, getEltruismCooldownFrameAlpha
 local needUpdate = false
 local isActive = false
 local isAlmostReady = false
@@ -169,13 +168,11 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 			EltruismCooldownFrame:SetAlpha(0)
 		else
 			EltruismCooldownFrame:SetAlpha(1)
+			ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, 0, true)
 			--EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
 			EltruismCooldownFrame:SetScript("OnUpdate", function(_, elapsed) --if frame is removed, then pet cooldowns can have issues
 				updateDelay = NormalUpdateDelay
-				x, y = GetCursorPosition()
-				scaleDivisor = E.UIParent:GetEffectiveScale()
-				EltruismCooldownFrame:ClearAllPoints()
-				EltruismCooldownFrame:SetPoint( "CENTER", E.UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx, (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+				ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, elapsed)
 				lastUpdate = lastUpdate + elapsed
 				if lastUpdate < updateDelay then
 					return
