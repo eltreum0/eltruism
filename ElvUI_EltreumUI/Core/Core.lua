@@ -59,6 +59,19 @@ function ElvUI_EltreumUI:MacroClick(button)
 	end
 end
 
+--set gradient using vertex color of regions of a frame
+function ElvUI_EltreumUI:ApplyGlowGradient(glowFrame, r, g, b)
+	if not glowFrame then return end
+	local numRegions = glowFrame:GetNumRegions()
+	for k = 1, numRegions do
+		local region = select(k, glowFrame:GetRegions())
+		if region and region.SetVertexColor then
+			local percentage = 1 - ((k * (100 / (numRegions + 1))) / 100)
+			region:SetVertexColor((r * percentage), (g * percentage), (b * percentage), 1)
+		end
+	end
+end
+
 --hide popups during install
 function ElvUI_EltreumUI:HidePopups(delay)
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
