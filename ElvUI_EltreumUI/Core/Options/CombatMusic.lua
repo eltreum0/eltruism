@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 
 -- Eltruism combat music options
+local isPlayingMusic = false
 function ElvUI_EltreumUI:CombatMusicOptions()
 	ElvUI_EltreumUI.Options.args.combatmusic = E.Libs.ACH:Group(E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play custom music during fights and boss fights"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.combatmusic.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music'
@@ -15,6 +16,17 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.shuffle = E.Libs.ACH:Toggle(L["Shuffle"], L["Randomize Music Order"], 2, nil, false,"full",function() return E.db.ElvUI_EltreumUI.otherstuff.musicshuffle end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.musicshuffle = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.input = E.Libs.ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end, E.db.ElvUI_EltreumUI.otherstuff.musicshuffle)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.inputshuffle = E.Libs.ACH:Input(L["Shuffle List"], L["Split files with a comma, such as: file1.mp3,file2.mp3"], 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.shufflelist end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.shufflelist = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end, not E.db.ElvUI_EltreumUI.otherstuff.musicshuffle)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.playpreview = E.Libs.ACH:Execute(_G.PREVIEW or "", nil, 4, function()
+		if not isPlayingMusic then
+			if E.private.ElvUI_EltreumUI.combatmusic.musicfile and E.private.ElvUI_EltreumUI.combatmusic.musicfile ~= "" then
+				_G.PlayMusic("Interface\\AddOns\\" .. E.private.ElvUI_EltreumUI.combatmusic.musicfile)
+				isPlayingMusic = true
+			end
+		else
+			_G.StopMusic()
+			isPlayingMusic = false
+		end
+	end, nil, false, nil, nil, nil, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable or not E.private.ElvUI_EltreumUI.combatmusic.musicfile or E.private.ElvUI_EltreumUI.combatmusic.musicfile == "" end)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss = E.Libs.ACH:Group(L["Boss Music"], nil, 2)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.enable = E.Libs.ACH:Toggle(L["Enable Boss Music"], L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.description1 = E.Libs.ACH:Description(L["Boss Combat Music"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
@@ -22,4 +34,15 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.inline = true
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.description1 = E.Libs.ACH:Description(L["Example: "].."mymusic.mp3", 1)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = E.Libs.ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossfile = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.playpreview = E.Libs.ACH:Execute(_G.PREVIEW or "", nil, 4, function()
+		if not isPlayingMusic then
+			if E.private.ElvUI_EltreumUI.combatmusic.bossfile and E.private.ElvUI_EltreumUI.combatmusic.bossfile ~= "" then
+				_G.PlayMusic("Interface\\AddOns\\" .. E.private.ElvUI_EltreumUI.combatmusic.bossfile)
+				isPlayingMusic = true
+			end
+		else
+			_G.StopMusic()
+			isPlayingMusic = false
+		end
+	end, nil, false, nil, nil, nil, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic or not E.private.ElvUI_EltreumUI.combatmusic.bossfile or E.private.ElvUI_EltreumUI.combatmusic.bossfile == "" end)
 end
