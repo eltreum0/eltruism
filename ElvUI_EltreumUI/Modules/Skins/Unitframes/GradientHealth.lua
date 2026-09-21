@@ -20,7 +20,6 @@ local UnitIsFriend = _G.UnitIsFriend
 local CreateColor = _G.CreateColor
 local select = _G.select
 local type = _G.type
-local tostring = _G.tostring
 
 --function to check if colormixin tables are equal, if they are return false since its used to do something after that
 function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
@@ -102,42 +101,74 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 						end
 					end
 					if not colorClass or colorClass == "BACKDROP" then
-						if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", unit)) and UnitCanAttack("player", unit)) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", unit)) and UnitIsEnemy("player", unit)) then
+						local canAttack = UnitCanAttack("player", unit)
+						if E:NotSecretValue(canAttack) and canAttack then
 							colorClass = "NPCHOSTILE"
-						elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", unit)) and UnitIsFriend("player", unit) then
-							colorClass = "NPCFRIENDLY"
 						else
-							colorClass = "NPCHOSTILE"
+							local isEnemy = UnitIsEnemy("player", unit)
+							if E:NotSecretValue(isEnemy) and isEnemy then
+								colorClass = "NPCHOSTILE"
+							else
+								local isFriend = UnitIsFriend("player", unit)
+								if E:NotSecretValue(isFriend) and isFriend then
+									colorClass = "NPCFRIENDLY"
+								else
+									colorClass = "NPCHOSTILE"
+								end
+							end
 						end
 					end
 				end
 			end
 		end
 
-		local debuffState = frame.EltruismDebuffExists and (tostring(frame.EltruismDebuffr)..":"..tostring(frame.EltruismDebuffg)..":"..tostring(frame.EltruismDebuffb)..":"..tostring(frame.EltruismDebuffa)) or "none"
 		local deadState = 0
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop then
-			local isDead = E:NotSecretValue(UnitIsDeadOrGhost(unit)) and UnitIsDeadOrGhost(unit)
-			local isTap = E:NotSecretValue(UnitIsTapDenied(unit)) and UnitIsTapDenied(unit)
-			local isConnected = (not isPlayer) or (E:NotSecretValue(UnitIsConnected(unit)) and UnitIsConnected(unit))
-			if isDead then
+			local isDead = UnitIsDeadOrGhost(unit)
+			if E:NotSecretValue(isDead) and isDead then
 				deadState = 1
-			elseif isTap then
-				deadState = 2
-			elseif not isConnected then
-				deadState = 3
+			elseif isPlayer then
+				local isConnected = UnitIsConnected(unit)
+				if not (E:NotSecretValue(isConnected) and isConnected) then
+					deadState = 3
+				end
+			else
+				local isTap = UnitIsTapDenied(unit)
+				if E:NotSecretValue(isTap) and isTap then
+					deadState = 2
+				end
 			end
 		end
 
 		local isCustom = E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor
 		local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation or "HORIZONTAL"
-		local stateKey = colorClass .. ":" .. (invert and "1" or "0") .. ":" .. debuffState .. ":" .. deadState .. ":" .. (isCustom and "1" or "0") .. ":" .. orientation
 
-		if frame._eltBackdropEpoch == backdropEpoch and frame._eltBackdropState == stateKey then
+		if frame.EltruismBackdropEpoch == backdropEpoch and
+			frame.EltruismBackdropClass == colorClass and
+			frame.EltruismBackdropDead == deadState and
+			frame.EltruismBackdropInvert == invert and
+			frame.EltruismBackdropDebuff == frame.EltruismDebuffExists and
+			(not frame.EltruismDebuffExists or (
+				frame.EltruismBackdropDebuffR == frame.EltruismDebuffr and
+				frame.EltruismBackdropDebuffG == frame.EltruismDebuffg and
+				frame.EltruismBackdropDebuffB == frame.EltruismDebuffb and
+				frame.EltruismBackdropDebuffA == frame.EltruismDebuffa
+			))
+		then
 			return
 		end
-		frame._eltBackdropEpoch = backdropEpoch
-		frame._eltBackdropState = stateKey
+
+		frame.EltruismBackdropEpoch = backdropEpoch
+		frame.EltruismBackdropClass = colorClass
+		frame.EltruismBackdropDead = deadState
+		frame.EltruismBackdropInvert = invert
+		frame.EltruismBackdropDebuff = frame.EltruismDebuffExists
+		if frame.EltruismDebuffExists then
+			frame.EltruismBackdropDebuffR = frame.EltruismDebuffr
+			frame.EltruismBackdropDebuffG = frame.EltruismDebuffg
+			frame.EltruismBackdropDebuffB = frame.EltruismDebuffb
+			frame.EltruismBackdropDebuffA = frame.EltruismDebuffa
+		end
 
 		if E.db.unitframe.colors.transparentHealth or E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if frame.Health and frame.Health.backdrop then
@@ -246,7 +277,8 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 		local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation or "HORIZONTAL"
 
 		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
-		local isCharmed = E:NotSecretValue(UnitIsCharmed(unit)) and UnitIsCharmed(unit) or false
+		local isCharmed = UnitIsCharmed(unit)
+		isCharmed = E:NotSecretValue(isCharmed) and isCharmed or false
 
 		local isActualPlayer = false
 		if unitframe and unitframe.Health then
@@ -262,9 +294,9 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 				end
 			end
 			local targetUFOrientation = E.db.ElvUI_EltreumUI.unitframes.UForientation
-			if not noOrientation and targetUFOrientation and unitframe.Health._eltOrientation ~= targetUFOrientation then
+			if not noOrientation and targetUFOrientation and unitframe.Health.EltruismOrientation ~= targetUFOrientation then
 				unitframe.Health:SetOrientation(targetUFOrientation)
-				unitframe.Health._eltOrientation = targetUFOrientation
+				unitframe.Health.EltruismOrientation = targetUFOrientation
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
@@ -288,8 +320,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 				end
 				colorClass = classunit
 			else
-				local isTap = E:NotSecretValue(UnitIsTapDenied(unit)) and UnitIsTapDenied(unit)
-				local isPlayerControlled = E:NotSecretValue(UnitPlayerControlled(unit)) and UnitPlayerControlled(unit)
+				local isTap = UnitIsTapDenied(unit)
+				isTap = E:NotSecretValue(isTap) and isTap
+				local isPlayerControlled = UnitPlayerControlled(unit)
+				isPlayerControlled = E:NotSecretValue(isPlayerControlled) and isPlayerControlled
 				if isTap and not isPlayerControlled then
 					colorClass = "TAPPED"
 				else
@@ -305,12 +339,21 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 						end
 					end
 					if not colorClass or colorClass == "BACKDROP" then
-						if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", unit)) and UnitCanAttack("player", unit)) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", unit)) and UnitIsEnemy("player", unit)) then
+						local canAttack = UnitCanAttack("player", unit)
+						if E:NotSecretValue(canAttack) and canAttack then
 							colorClass = "NPCHOSTILE"
-						elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", unit)) and UnitIsFriend("player", unit) then
-							colorClass = "NPCFRIENDLY"
 						else
-							colorClass = "NPCHOSTILE"
+							local isEnemy = UnitIsEnemy("player", unit)
+							if E:NotSecretValue(isEnemy) and isEnemy then
+								colorClass = "NPCHOSTILE"
+							else
+								local isFriend = UnitIsFriend("player", unit)
+								if E:NotSecretValue(isFriend) and isFriend then
+									colorClass = "NPCFRIENDLY"
+								else
+									colorClass = "NPCHOSTILE"
+								end
+							end
 						end
 					end
 				end
@@ -328,8 +371,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 			local isCustom = E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor
 			local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(colorClass, invert, isCustom)
 
-			local isDead = E:NotSecretValue(UnitIsDeadOrGhost(unit)) and UnitIsDeadOrGhost(unit)
-			local isDisconnected = isPlayer and not (E:NotSecretValue(UnitIsConnected(unit)) and UnitIsConnected(unit))
+			local isDead = UnitIsDeadOrGhost(unit)
+			isDead = E:NotSecretValue(isDead) and isDead
+			local isDisconnected = UnitIsConnected(unit)
+			isDisconnected = isPlayer and not (E:NotSecretValue(isDisconnected) and isDisconnected)
 
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
@@ -423,9 +468,9 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	end
 	if buttonclass and button.Health then
 		local targetUFOrientation = E.db.ElvUI_EltreumUI.unitframes.UForientation
-		if not noOrientation and targetUFOrientation and button.Health._eltOrientation ~= targetUFOrientation then
+		if not noOrientation and targetUFOrientation and button.Health.EltruismOrientation ~= targetUFOrientation then
 			button.Health:SetOrientation(targetUFOrientation)
-			button.Health._eltOrientation = targetUFOrientation
+			button.Health.EltruismOrientation = targetUFOrientation
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 			ElvUI_EltreumUI:ApplyGradientBackdrop(unit,button,buttonclass,nil,true)
@@ -433,8 +478,10 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		local isCustom = E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor
 		local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(buttonclass, false, isCustom)
 
-		local isDead = E:NotSecretValue(UnitIsDeadOrGhost(unit)) and UnitIsDeadOrGhost(unit)
-		local isDisconnected = isPlayer and not (E:NotSecretValue(UnitIsConnected(unit)) and UnitIsConnected(unit))
+		local isDead = UnitIsDeadOrGhost(unit)
+		isDead = E:NotSecretValue(isDead) and isDead
+		local isDisconnected = UnitIsConnected(unit)
+		isDisconnected = isPlayer and not (E:NotSecretValue(isDisconnected) and isDisconnected)
 
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1

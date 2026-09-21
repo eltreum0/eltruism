@@ -157,8 +157,8 @@ local function GradientNameplates(unit,unit2)
 
 	if frame.Health.EltruismNameplateBorder and E.db.ElvUI_EltreumUI.borders and E.db.ElvUI_EltreumUI.borders.bordercolors then
 		local borderKey = E.db.ElvUI_EltreumUI.borders.classcolor and (isPlayer and className or targettype) or "static"
-		if frame.Health.EltruismNameplateBorder._eltBorderKey ~= borderKey then
-			frame.Health.EltruismNameplateBorder._eltBorderKey = borderKey
+		if frame.Health.EltruismNameplateBorder.EltruismBorderKey ~= borderKey then
+			frame.Health.EltruismNameplateBorder.EltruismBorderKey = borderKey
 			if E.db.ElvUI_EltreumUI.borders.classcolor then
 				if isPlayer then
 					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
@@ -304,8 +304,8 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 	end
 	if self.EltruismNameplateBorder then
 		local borderType = (self.notInterruptible and UnitCanAttack('player', unit)) and "nointerrupt" or (((not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt())) and "interrupt" or nil)
-		if borderType and self.EltruismNameplateBorder._eltCastBorderKey ~= borderType then
-			self.EltruismNameplateBorder._eltCastBorderKey = borderType
+		if borderType and self.EltruismNameplateBorder.EltruismCastBorderKey ~= borderType then
+			self.EltruismNameplateBorder.EltruismCastBorderKey = borderType
 			if borderType == "nointerrupt" then
 				self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castNoInterruptColor.r, E.db.nameplates.colors.castNoInterruptColor.g, E.db.nameplates.colors.castNoInterruptColor.b, 1)
 			else
@@ -320,7 +320,7 @@ end
 --interrupted
 function ElvUI_EltreumUI:Castbar_PostCastFail()
 	if self.EltruismNameplateBorder then
-		self.EltruismNameplateBorder._eltCastBorderKey = "failed"
+		self.EltruismNameplateBorder.EltruismCastBorderKey = "failed"
 		self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castInterruptedColor.r, E.db.nameplates.colors.castInterruptedColor.g, E.db.nameplates.colors.castInterruptedColor.b, 1)
 	end
 end
