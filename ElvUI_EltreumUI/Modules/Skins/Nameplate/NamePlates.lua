@@ -22,14 +22,11 @@ local tostring = _G.tostring
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local InCombatLockdown = _G.InCombatLockdown
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
-local TimeSinceLastUpdate = 0
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
 --local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
-local GetNumRegions = _G.GetNumRegions
-local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local C_NamePlate = _G.C_NamePlate
 local CreateColor = _G.CreateColor
@@ -68,7 +65,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			end]]
 
 			button.Cooldown:SetFrameStrata('DIALOG')
-			TimeSinceLastUpdate = 0
+			button.Cooldown.EltruismTimeSinceLastUpdate = 0
 			if not button.Cooldown or not button.Cooldown:IsShown() then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -82,10 +79,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			else
-				button.Cooldown:SetScript('OnUpdate', function(_, elapsed)
-					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-						TimeSinceLastUpdate = 0
+				button.Cooldown:SetScript('OnUpdate', function(buttonCooldown, elapsed)
+					buttonCooldown.EltruismTimeSinceLastUpdate = (buttonCooldown.EltruismTimeSinceLastUpdate or 0) + elapsed
+					if buttonCooldown.EltruismTimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+						buttonCooldown.EltruismTimeSinceLastUpdate = 0
 
 						--hide debuffs if they are not target
 						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
@@ -122,19 +119,13 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 										if E.db.ElvUI_EltreumUI.glow.pixel then
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
-												for k,v in pairs({button._PixelGlow:GetRegions()}) do
-													local percentage = 1 - ((k*(100/(button._PixelGlow:GetNumRegions()+1)))/100)
-													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
-												end
+												ElvUI_EltreumUI:ApplyGlowGradient(button._PixelGlow, r, g, b)
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
 											--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
-												for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-													local percentage = 1 - ((k*(100/(button._AutoCastGlow:GetNumRegions()+1)))/100)
-													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
-												end
+												ElvUI_EltreumUI:ApplyGlowGradient(button._AutoCastGlow, r, g, b)
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 											LCG.ButtonGlow_Start(button, glowcolor, 0.5)
@@ -200,11 +191,11 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		if not stringfind(unit, "nameplate") then
 			return
 		else
-			TimeSinceLastUpdate = 0
-			button.Cooldown:SetScript('OnUpdate', function(_, elapsed)
-				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-					TimeSinceLastUpdate = 0
+			button.Cooldown.EltruismTimeSinceLastUpdate = 0
+			button.Cooldown:SetScript('OnUpdate', function(buttonCooldown2, elapsed)
+				buttonCooldown2.EltruismTimeSinceLastUpdate = (buttonCooldown2.EltruismTimeSinceLastUpdate or 0) + elapsed
+				if buttonCooldown2.EltruismTimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+					buttonCooldown2.EltruismTimeSinceLastUpdate = 0
 
 					--hide buffs if they are not in combat
 					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
