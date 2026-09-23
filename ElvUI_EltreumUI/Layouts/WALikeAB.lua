@@ -15,8 +15,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		--general actionbars settings
 		E.db["actionbar"]["chargeCooldown"] = true
 		--E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
-		E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
-		E.db["actionbar"]["cooldown"]["threshold"] = 5
+		--[[E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
+		E.db["actionbar"]["cooldown"]["threshold"] = 5]]
 		E.db["actionbar"]["desaturateOnCooldown"] = true
 		E.db["unitframe"]["units"]["player"]["classbar"]["spacing"] = 5
 
