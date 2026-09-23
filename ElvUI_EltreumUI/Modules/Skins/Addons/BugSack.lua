@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:EltruismBugSack()
 		hooksecurefunc(_G.BugSack,"OpenSack",function()
 			if not _G["BugSackFrame"].IsSkinned then
 				S:HandleFrame(_G["BugSackFrame"])
-				S:HandleScrollBar(_G["BugSackScrollScrollBar"])
+				S:HandleScrollBar(_G["BugSackFrameScrollBar"])
 
 				S:HandleButton(_G["BugSackNextButton"])
 				_G["BugSackNextButton"]:ClearAllPoints()
