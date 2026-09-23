@@ -1,6 +1,7 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local ipairs = _G.ipairs
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
 
@@ -11,15 +12,26 @@ function ElvUI_EltreumUI:EltruismBugSack()
 		hooksecurefunc(_G.BugSack,"OpenSack",function()
 			if not _G["BugSackFrame"].IsSkinned then
 				S:HandleFrame(_G["BugSackFrame"])
-				S:HandleScrollBar(_G["BugSackFrameScrollBar"])
 
-				S:HandleButton(_G["BugSackNextButton"])
+				if _G["BugSackFrameScrollBar"] then
+					S:HandleScrollBar(_G["BugSackFrameScrollBar"])
+				elseif _G["BugSackScrollText"] then
+					local ScrollBar =  _G["BugSackScrollText"]:GetParent().ScrollBar
+					if E.Modern then
+						S:HandleTrimScrollBar(ScrollBar)
+					else
+						S:HandleScrollBar(ScrollBar)
+					end
+				end
+
+				--S:HandleButton(button, strip, isDecline, noStyle, createBackdrop, template, noGlossTex, overrideTex, frameLevel, regionsKill, regionsZero, isFilterButton, filterDirection)
+				S:HandleButton(_G["BugSackNextButton"], nil, nil, nil, true,'Transparent')
 				_G["BugSackNextButton"]:ClearAllPoints()
 				_G["BugSackNextButton"]:Point('BOTTOMRIGHT', _G["BugSackFrame"], 'BOTTOMRIGHT', -12, 6)
-				S:HandleButton(_G["BugSackPrevButton"])
+				S:HandleButton(_G["BugSackPrevButton"], nil, nil, nil, true,'Transparent')
 				_G["BugSackPrevButton"]:ClearAllPoints()
 				_G["BugSackPrevButton"]:Point('BOTTOMLEFT', _G["BugSackFrame"], 'BOTTOMLEFT', 12, 6)
-				S:HandleButton(_G["BugSackSendButton"])
+				S:HandleButton(_G["BugSackSendButton"], nil, nil, nil, true,'Transparent')
 
 				S:HandleTab(_G["BugSackTabSession"])
 				_G["BugSackTabSession"]:ClearAllPoints()
@@ -50,8 +62,8 @@ function ElvUI_EltreumUI:EltruismBugSack()
 				--ty luckyone for the idea, modified with ElvUI functions and Eltruism version listing
 				-- Game version left of page count (top right)
 				local countLabel
-				for i = 1, _G["BugSackFrame"]:GetNumRegions() do
-					local region = select(i, _G["BugSackFrame"]:GetRegions())
+				local labelParent = _G["BugSackFrame"].TitleContainer or _G["BugSackFrame"]
+				for _, region in ipairs({ labelParent:GetRegions() }) do
 					if region and region:IsObjectType('FontString') and region:GetJustifyH() == 'RIGHT' then
 						countLabel = region
 						break
@@ -62,7 +74,7 @@ function ElvUI_EltreumUI:EltruismBugSack()
 					local _, elvVersion = E:ParseVersionString('ElvUI')
 					local classColor = E:ClassColor(E.myclass)
 					local hex = E:RGBToHex(classColor.r, classColor.g, classColor.b, '|cff')
-					local versionLabel = _G["BugSackFrame"]:CreateFontString(nil, 'ARTWORK')
+					local versionLabel = labelParent:CreateFontString(nil, 'ARTWORK')
 					versionLabel:SetFontObject(countLabel:GetFontObject())
 					versionLabel:SetTextColor(countLabel:GetTextColor())
 					versionLabel:SetText(_G.format('%sElvUI:|r %s %sEltruism:|r %s %sPatch:|r %s %sPage:|r', hex, elvVersion, hex, ElvUI_EltreumUI.Version, hex, _G.GetBuildInfo(), hex))
