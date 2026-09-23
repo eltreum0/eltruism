@@ -42,6 +42,7 @@ local BuffFrame = _G.BuffFrame
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local select = _G.select
+local type = _G.type
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -1173,7 +1174,7 @@ function ElvUI_EltreumUI:UpdateCursorPosition(frame, elapsed, force)
 end
 
 function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
-	if not E.Retail then
+	if not E.Modern then
 		return true
 	end
 
