@@ -16,8 +16,8 @@ function ElvUI_EltreumUI:QuestOptions()
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.questarena = E.Libs.ACH:Toggle(L["Hide Quests during Battlegrounds and Arenas"], nil, 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.arena end,function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.descriptionmplus = E.Libs.ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.questmplus = E.Libs.ACH:Toggle(E.NewSign..L["Hide Quests during Mythic Plus"], nil, 8, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.mythicplus end,function(_, value) E.db.ElvUI_EltreumUI.quests.mythicplus = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
-	ElvUI_EltreumUI.Options.args.quests.args.general.args.description4 = E.Libs.ACH:Description(" ", 40, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveanchor = E.Libs.ACH:Toggle(L["Objective Frame Anchor"], L["Reactivate the ElvUI Objective Frame Anchor and Mover"], 41, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.anchor end,function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.description4 = E.Libs.ACH:Description(" ", 40, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Modern)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveanchor = E.Libs.ACH:Toggle(L["Objective Frame Anchor"], L["Reactivate the ElvUI Objective Frame Anchor and Mover"], 41, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.anchor end,function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Modern)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = E.Libs.ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 42, { min = 100, max = 900, step = 1 }, "full",
 		function()
 			if ObjectiveTrackerFrame then
@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:QuestOptions()
 				E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
 				ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 			end
-		end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
+		end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Modern)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description5 = E.Libs.ACH:Description(" ", 43, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.wowhead = E.Libs.ACH:Toggle(L["Enable Wowhead Button on Quest Log"], L["Show a button for Wowhead quest links"], 44, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.questswowhead end, function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description6 = E.Libs.ACH:Description(" ", 45, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
