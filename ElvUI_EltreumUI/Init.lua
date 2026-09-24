@@ -120,15 +120,17 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
 	ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll in classic, scale in retail
 	if E.Modern then
-		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
-		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
-		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		if E.db.ElvUI_EltreumUI.quests.anchor then
 			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
 		end
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
-		ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
+		if E.Retail then
+			ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
+			ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
+			ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
+			ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
+		end
 	else
 		if not E.Mists then
 			ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo

@@ -160,7 +160,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
 
 	--weakauras anchor
-	if not E.Retail then
+	if not E.Modern then
 		ElvUI_EltreumUI.Options.args.weakauras = E.Libs.ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
 		ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
 		ElvUI_EltreumUI.Options.args.weakauras.args.description1 = E.Libs.ACH:Description(L["WeakAuras"], 2, nil)
@@ -192,9 +192,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.credits.args.licenses = E.Libs.ACH:Group(L["License"], nil, 19)
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = E.Libs.ACH:Description(
-			E.Retail and [[
-Cooldown is a fork of discoteq's Doom Cooldown Pulse which is licensed under MIT License
-Cursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain
+			E.Modern and [[
 Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
 FreeVector (www.freevector.com) for some of the icons. List in license.txt
 Icons8 (www.icons8.com) for some of the icons. List in license.txt
@@ -227,7 +225,7 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	end)
 	ElvUI_EltreumUI.Options.args.support.args.issues = E.Libs.ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
 	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = E.Libs.ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
-		if E.Retail then
+		if E.Modern then
 			return 'https://www.tukui.org/addons.php?id=209'
 		elseif E.Cata then
 			return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
