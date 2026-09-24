@@ -17,7 +17,7 @@ local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
 
 --Conversion of Time to Arrive weakaura (new version)
-if E.Retail then
+if E.Modern then
 	local C_Map = _G.C_Map
 	local C_SuperTrack = _G.C_SuperTrack
 	local GetUnitSpeed = _G.GetUnitSpeed

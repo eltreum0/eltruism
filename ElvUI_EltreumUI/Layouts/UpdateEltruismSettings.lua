@@ -65,7 +65,12 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
 
 		--power bar scaling issues
-		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.5
+		--fix retail/forever power bar size, its actually the same size as the health bar width
+		if E.Modern then
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 150
+		else
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.5
+		end
 
 		--nameplate shadows
 		E.db.ElvUI_EltreumUI.skins.shadow.nameplates = true

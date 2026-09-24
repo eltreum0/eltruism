@@ -406,7 +406,7 @@ function ElvUI_EltreumUI:LoadIconTags()
 
 	E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 		local level
-		if E.Retail then
+		if E.Modern then
 			level = UnitEffectiveLevel(unit)
 		else
 			level = UnitLevel(unit)
@@ -423,7 +423,7 @@ function ElvUI_EltreumUI:LoadIconTags()
 
 	E:AddTag("eltruism:levelskull2", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 		local level
-		if E.Retail then
+		if E.Modern then
 			level = UnitEffectiveLevel(unit)
 		else
 			level = UnitLevel(unit)

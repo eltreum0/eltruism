@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 
 		--obtain the levels
 		local targetlevel
-		if E.Retail then
+		if E.Modern then
 			targetlevel = UnitEffectiveLevel(unit)
 		else
 			targetlevel = UnitLevel(unit)
@@ -161,7 +161,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 
 		--obtain the levels
 		local targetlevel
-		if E.Retail then
+		if E.Modern then
 			targetlevel = UnitEffectiveLevel(unit)
 		else
 			targetlevel = UnitLevel(unit)
@@ -280,7 +280,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 		local level
 		local playerlevel
-		if E.Retail then
+		if E.Modern then
 			level = UnitEffectiveLevel(unit)
 			playerlevel = UnitEffectiveLevel('player')
 		else
@@ -288,7 +288,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			playerlevel = UnitLevel('player')
 		end
 
-		if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
+		if E.Modern and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
 			return UnitBattlePetLevel(unit)
 		elseif level == playerlevel then
 			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -373,7 +373,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	end)
 	E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Returns class color only for players"])
 
-	if not E.Retail then --due to secrets they no longer work in retail
+	if not E.Modern then --due to secrets they no longer work in retail
 
 		--plays a sound for healers when they have low mana, has anti spam
 		local manaspam = false
@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			end
 			if E:UnitIsUnit("player", unit) then
 				local role
-				if E.Retail then
+				if E.Modern then
 					local currentSpec = GetSpecialization()
 					if currentSpec ~= nil then
 						role = GetSpecializationRole(currentSpec)

@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
-		if E.Retail then
+		if E.Modern then
 			textformat = format('%s - %.1f%%',E:AbbreviateNumbers(cur, E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
 		else
 			textformat = E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
@@ -118,7 +118,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
-		if E.Retail then
+		if E.Modern then
 			textformat = E:AbbreviateNumbers(cur, E.Abbreviate.short)
 		else
 			local perc = cur / maxhp * 100
@@ -166,20 +166,20 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
-		if E.Retail then
+		if E.Modern then
 			textformat = E:AbbreviateNumbers(cur, E.Abbreviate.short)
 		else
 			textformat = E:ShortValue(cur, nil)
 		end
 		local textformat2
-		if E.Retail then
+		if E.Modern then
 			textformat2 = format('%.1f%% - %s',UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
 		else
 			textformat2 = E:GetFormattedText('CURRENT_PERCENT', maxhp, cur, nil, true)
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				if E.Retail then
+				if E.Modern then
 					return textformat2
 				else
 					if maxhp == 0 then maxhp = 1 end
@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		else
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					if E.Retail then
+					if E.Modern then
 						return textformat2
 					else
 						if not maxhp then maxhp = 1 end
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local textformat
-		if E.Retail then
+		if E.Modern then
 			textformat = E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
 		else
 			textformat = E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
@@ -284,12 +284,12 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local value
-		if E.Retail then
+		if E.Modern then
 			value = format('%d', UnitHealthPercent(unit, true, ScaleTo100)).."%"
 		else
 			value = mathfloor(((cur / maxhp) * 100) + 0.5)
 		end
-		if not E.Retail and (maxhp == 0) then
+		if not E.Modern and (maxhp == 0) then
 			return 0
 		else
 			if UnitIsConnected(unit) then
@@ -322,20 +322,20 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	--HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		else
 			isTarget = false
 		end
 		local value
-		if E.Retail then
+		if E.Modern then
 			value = format('%s - %.1f%%', AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
 		else
 			local min, max = UnitHealth(unit), UnitHealthMax(unit)
 			value = E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
 		end
 		local lengthOK = false
-		if not E.Retail then
+		if not E.Modern then
 			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
@@ -343,25 +343,25 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				local reaction = UnitReaction(unit, "player")
 				if reaction then
 					if reaction >= 5 then
-						if not E.Retail and lengthOK then
+						if not E.Modern and lengthOK then
 							return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)
 						else
 							return value
 						end
 					elseif reaction == 4 then
-						if not E.Retail and lengthOK then
+						if not E.Modern and lengthOK then
 							return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)
 						else
 							return value
 						end
 					elseif reaction == 3 then
-						if not E.Retail and lengthOK then
+						if not E.Modern and lengthOK then
 							return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)
 						else
 							return value
 						end
 					elseif reaction == 2 or reaction == 1 then
-						if not E.Retail and lengthOK then
+						if not E.Modern and lengthOK then
 							return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)
 						else
 							return value
@@ -383,7 +383,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			end
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					if not E.Retail and lengthOK then
+					if not E.Modern and lengthOK then
 						return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
 					else
 						return value
@@ -416,20 +416,20 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		else
 			isTarget = false
 		end
 		local value
-		if E.Retail then
+		if E.Modern then
 			--value = E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
 			value = UnitHealth(unit)
 		else
 			value = E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		end
 		local lengthOK = false
-		if not E.Retail then
+		if not E.Modern then
 			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
@@ -509,14 +509,14 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 	E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		else
 			isTarget = false
 		end
 		local value = tostring(UnitHealth(unit))
 		local lengthOK = false
-		if not E.Retail then
+		if not E.Modern then
 			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
@@ -593,13 +593,13 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	end)
 	E:AddTagInfo("eltruism:longhpstatusnopc:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP and a status symbol from Releaf for players"])
 
-	if not E.Retail then
+	if not E.Modern then
 		--health deficit + perhp
 		E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
 			local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 			local deficit = maxhp - cur
 			local isTarget
-			if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 				isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 			else
 				isTarget = false
@@ -636,7 +636,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 			local deficit = maxhp - cur
 			local isTarget
-			if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 				isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 			else
 				isTarget = false
@@ -672,7 +672,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET', function(unit)
 			local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
 			local isTarget
-			if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+			if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 				isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 			else
 				isTarget = false

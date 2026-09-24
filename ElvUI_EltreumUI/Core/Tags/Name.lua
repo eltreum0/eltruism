@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
 		local name = UnitName(unit)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -169,7 +169,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if not args then args = 16 end
 		args = tonumber(args)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -218,7 +218,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			name = stringupper(namecheck)
 		end
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -258,7 +258,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if not args then args = 16 end
 		args = tonumber(args)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		local name = Translit:Transliterate(targetName)
 		if not name then return end
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -350,7 +350,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		local targetName = UnitName(unit)
 		local name = targetName
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -456,7 +456,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
 		local name = UnitName(unit)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -491,7 +491,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
 		local name = UnitName(unit)
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -673,7 +673,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false
@@ -759,7 +759,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		args = tonumber(args)
 		--name = "Mannequin d'entraïnement aux dégäts de zone"
 		local isTarget
-		if not E.Retail then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
 		else
 			isTarget = false

@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		end
 	end
 
-	if E.Retail then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
+	if E.Modern then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
 		E.private.skins.blizzard.bgscore = false
 	end
 
@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
-	if not E.Retail then
+	if not E.Modern then
 		ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
 	end
 	ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
@@ -119,7 +119,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
 	ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
 	ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll in classic, scale in retail
-	if E.Retail then
+	if E.Modern then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
@@ -144,7 +144,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.Mists then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
-	if not (E.Classic or E.TBC or E.Wrath) then
+	if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	end
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
@@ -303,7 +303,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:BattleRes()
 	ElvUI_EltreumUI:ArenaQuest()
-	if E.Retail then
+	if E.Modern then
 		ElvUI_EltreumUI:DamageMeterZoneCheck()
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
@@ -330,31 +330,31 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	end
 end
 
-local currenttalentretail = E.Retail and GetSpecialization()
+local currenttalentretail = E.Modern and GetSpecialization()
 local currenttalentmists = (E.Mists or E.TBC or E.Wrath) and GetSpecialization()
 local GetActiveTalentGroup = _G.GetActiveTalentGroup
 local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
-	if E.Retail then
+	if E.Modern then
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
 	end
-	local newtalentretail = E.Retail and GetSpecialization()
+	local newtalentretail = E.Modern and GetSpecialization()
 	local cnewtalentmists = E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
-	if E.Retail then
+	if E.Modern then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Mists then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	elseif E.ClassicSOD or E.TBC or E.Wrath then
 		ElvUI_EltreumUI.Spec = GetActiveTalentGroup()
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Mists and currenttalentmists ~= cnewtalentmists) or ((E.ClassicSOD or E.TBC or E.Wrath) and currenttalentclassic ~= cnewtalentclassic) then
+	if (E.Modern and currenttalentretail ~= newtalentretail) or (E.Mists and currenttalentmists ~= cnewtalentmists) or ((E.ClassicSOD or E.TBC or E.Wrath) and currenttalentclassic ~= cnewtalentclassic) then
 		currenttalentretail = newtalentretail
 		currenttalentmists = cnewtalentmists
 		currenttalentclassic = cnewtalentclassic
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail or (E.ClassicSOD or E.Mists or E.TBC or E.Wrath) then
+		if E.Modern or (E.ClassicSOD or E.Mists or E.TBC or E.Wrath) then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
 			if E.private.nameplates.enable then
@@ -458,7 +458,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
-	if E.Retail then
+	if E.Modern then
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
@@ -480,7 +480,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
 	ElvUI_EltreumUI:RegisterEvent("UPDATE_PENDING_MAIL") --for mail sound/icon
-	if E.Retail then
+	if E.Modern then
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_START") --for m+ hiding objective tracker
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
