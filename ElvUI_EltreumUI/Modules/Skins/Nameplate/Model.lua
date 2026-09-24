@@ -5,7 +5,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local UnitExists = _G.UnitExists
 local rad = _G.rad
-local UnitIsUnit = _G.UnitIsUnit
 
 --Adds a model of the Target to the Target nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
@@ -50,8 +49,6 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if not E.db.ElvUI_EltreumUI.nameplates then return end
 	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
-	if E.Retail then return end
-
 		if UnitExists("target")then
 			if nameplate and nameplate.__unit and E:UnitIsUnit(nameplate.__unit,"target") then --12.0.5 breaks this
 				--ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
