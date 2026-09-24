@@ -299,7 +299,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
-			if E.Retail then
+			if E.Modern then
 				EltreumPowerBar.Text:SetText(E:AbbreviateNumbers(UnitPower("player"), E.Abbreviate["short"]))
 			else
 				EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
@@ -790,7 +790,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				powerbareffect:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex or 133.5, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey or 6)
 				powerbareffect:SetAllPoints(EltreumPowerBar:GetStatusBarTexture())
 				if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-					if E.Retail then
+					if E.Modern then
 						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
 						powerbareffect:MakeCurrentCameraCustom()
 						powerbareffect:SetTransform( CreateVector3D(-0.035, 0, 0), CreateVector3D(4.7123889803847, 0, 0), 0.785) --was rad(270) but that started breaking in 10.2.5
@@ -802,7 +802,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						powerbareffect:SetAlpha(0.6) --might do this
 					end
 				elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-					if E.Retail then
+					if E.Modern then
 						powerbareffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 					else
 						powerbareffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
@@ -823,7 +823,7 @@ end
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		EltreumPowerBar:SetValue(UnitPower("player"))
-		if E.Retail then
+		if E.Modern then
 			EltreumPowerBar.Text:SetText(_G.AbbreviateNumbers(UnitPower("player"), E.Abbreviate.short))
 		else
 			EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
@@ -904,7 +904,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
-			elseif E.Classic then
+			elseif E.Classic or E.Forever then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
@@ -934,7 +934,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
-				if E.Classic or E.Mists or E.TBC or E.Wrath then
+				if not E.Retail then
 					if E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'PRIEST' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
