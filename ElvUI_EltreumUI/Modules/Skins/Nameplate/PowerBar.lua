@@ -300,7 +300,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
 			if E.Retail then
-				EltreumPowerBar.Text:SetText(UnitPower("player"))
+				EltreumPowerBar.Text:SetText(E:AbbreviateNumbers(UnitPower("player"), E.Abbreviate["short"]))
 			else
 				EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
 			end
