@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.databars.statusbar = "ElvUI Norm1"
 
 		--CVars
-		if E.Retail then
+		if E.Modern then
 			E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
 		end
 

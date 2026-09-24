@@ -553,7 +553,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["castbar"]["iconOffsetY"] = -1
 		E.db["nameplates"]["units"]["PLAYER"]["castbar"]["iconOffsetX"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["castbar"]["iconPosition"] = "LEFT"
-		if E.Retail then
+		if E.Modern then
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["iconSize"] = 32
 		else
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["iconSize"] = 28

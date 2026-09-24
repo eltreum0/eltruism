@@ -160,7 +160,20 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["bags"]["spinner"]["color"]["b"] = valuecolors.b
 
 	--paging
-	if E.Retail or E.Mists or E.TBC or E.Wrath then
+	if E.Classic then
+		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
+		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11; [stance:1] 7; [stance:2] 8; [stance:3] 9;"
+		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
+	else
 		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -174,19 +187,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
 		E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
-	else
-		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11; [stance:1] 7; [stance:2] 8; [stance:3] 9;"
-		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
 	end
 
 	--aura filtering
@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
 	E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
 	E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
-	E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Retail and 22 or 12
+	E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Modern and 22 or 12
 	E.db["general"]["itemLevel"]["enchantAbbrev"] = true
 	E.db["general"]["itemLevel"]["showItemLevel"] = true
 	E.db["general"]["itemLevel"]["showEnchants"] = true
@@ -664,7 +664,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-8,-5"
 	E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
-	if not E.Retail then
+	if not E.Modern then
 		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
 	end
 
@@ -675,7 +675,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	elseif E.Mists or E.Wrath then
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-319"
-	elseif E.Retail then
+	elseif E.Modern then
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 	end
 
@@ -747,11 +747,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = 0
 	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 		E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
-		if not E.Retail then
+		if not E.Modern then
 			E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -10
 		end
 	else
-		if not E.Retail then
+		if not E.Modern then
 			E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
 		end
 	end
@@ -1094,7 +1094,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["databars"]["threat"]["frameStrata"] = "MEDIUM"
 	if E.Mists or E.TBC or E.Wrath or E.Classic then
 		E.db["databars"]["threat"]["enable"] = true
-	elseif E.Retail then
+	elseif E.Modern then
 		E.db["databars"]["threat"]["enable"] = false
 	end
 	E.db["databars"]["azerite"]["font"] = "Kimberley"
@@ -1142,7 +1142,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["databars"]["experience"]["height"] = 12
 	E.db["databars"]["experience"]["mouseover"] = true
 	E.db["databars"]["experience"]["questCompletedOnly"] = true
-	if E.Retail then
+	if E.Modern then
 		E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
 	else
 		E.db["databars"]["experience"]["questCurrentZoneOnly"] = false
@@ -1378,7 +1378,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	-- Custom Text: Arena
 	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-	if E.Retail or E.Mists or E.TBC or E.Wrath then
+	if E.Modern or E.Mists or E.TBC or E.Wrath then
 		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1775,7 +1775,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		["xOffset"] = 2,
 		["yOffset"] = 0
 	}
-	if E.Retail then
+	if E.Modern then
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1787,7 +1787,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
-	elseif E.Mists or E.TBC or E.Wrath or E.Classic then
+	else
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1897,7 +1897,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["nameplateLargeFont"] = "Kimberley"
 	E.private["general"]["nameplateLargeFontSize"] = 10
 	E.private["general"]["raidUtility"] = true
-	if E.Retail then
+	if E.Modern then
 		E.private["general"]["minimap"]["hideTracking"] = true
 	end
 end
@@ -1905,7 +1905,7 @@ end
 -- Global DB
 function ElvUI_EltreumUI:SetupGlobal()
 	-- ElvUI Global DB
-	if E.Retail then
+	if E.Modern then
 		E.global["general"]["commandBarSetting"] = "ENABLED_RESIZEPARENT"
 	end
 	E.global["general"]["smallerWorldMap"] = false
@@ -2116,7 +2116,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('SoftTargetIconFriend', 0)
 	SetCVar('WorldTextMinSize', 6)
 
-	if E.Retail then
+	if E.Modern then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 
 		--new midnight things
@@ -2189,7 +2189,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	nameplateNotSelectedAlpha returns for retail
 	]]
 
-	if E.Retail then
+	if E.Modern then
 		SetCVar("nameplateShowFriendlyPlayers", 1)
 		SetCVar("nameplateShowOnlyNameForFriendlyPlayerUnits", 1)
 		SetCVar("nameplateUseClassColorForFriendlyPlayerUnitNames", 1)
@@ -2208,7 +2208,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplatePlayerLargerScale', 1.8)
 	SetCVar('nameplateSelectedAlpha', 1)
 
-	if not E.Retail then
+	if not E.Modern then
 		SetCVar('nameplateSelfScale', 1)
 		SetCVar('nameplateGlobalScale', 1)
 		SetCVar('NamePlateHorizontalScale', 1)
