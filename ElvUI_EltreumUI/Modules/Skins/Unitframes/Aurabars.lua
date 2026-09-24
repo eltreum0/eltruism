@@ -147,7 +147,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 		end
 	end
 end
-if not E.Retail then
+if not E.Modern then
 	hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.AuraBarTexture)
 	hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.AuraBarTexture)
 end

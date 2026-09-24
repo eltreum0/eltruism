@@ -126,7 +126,7 @@ function ElvUI_EltreumUI:Tooltip()
 	end
 
 	--ilvl tooltip & gradient
-	if E.Retail then
+	if E.Modern then
 		if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not self.EltruismTooltipHook then
 			_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, function(tt)
 				if tt then
