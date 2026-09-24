@@ -21,6 +21,11 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 
+		--fix retail/forever power bar size
+		if E.Modern then
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 150
+		end
+
 		--dmg meter skin
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
