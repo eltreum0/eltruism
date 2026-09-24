@@ -853,7 +853,7 @@ local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
-	if UnitExists("target") and not E.Retail then
+	if UnitExists("target") and not E.Modern then
 		ElvUI_EltreumUI:PowerPrediction()
 	end
 end)

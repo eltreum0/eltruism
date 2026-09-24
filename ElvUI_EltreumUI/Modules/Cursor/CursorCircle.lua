@@ -18,7 +18,7 @@ local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpe
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 		ElvUI_EltreumUI:CastCursor()
-		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown and not E.Retail then
+		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown and not E.Modern then
 			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 		end
 	end
@@ -396,7 +396,7 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", "player")
-		if E.Retail then
+		if E.Modern then
 			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_STOP", "player")
 		end
 		function Cast:UNIT_SPELLCAST_STOP(_, unit, castID)
@@ -415,7 +415,7 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast.UNIT_SPELLCAST_EMPOWER_STOP = Cast.UNIT_SPELLCAST_STOP
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
-		if E.Retail then
+		if E.Modern then
 			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_START", "player")
 			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_UPDATE", "player")
 		end
@@ -426,7 +426,7 @@ function ElvUI_EltreumUI:CastCursor()
 				local name, _, _, start, finish, _, _, _ ,_ , numEmpowerStages = UnitChannelInfo("player")
 				if name then
 					self.castID = nil
-					if E.Retail and numEmpowerStages and numEmpowerStages > 0 then
+					if E.Modern and numEmpowerStages and numEmpowerStages > 0 then
 						finish = finish + _G.GetUnitEmpowerHoldAtMaxTime("player")
 					end
 					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
@@ -440,7 +440,7 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast.UNIT_SPELLCAST_EMPOWER_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
 
 		-- GCD Ring
-		if not E.Retail then
+		if not E.Modern then
 			GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 			GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 		end
@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:CastCursor()
 				return
 			elseif unit and unit == 'player' then
 				local cooldowntable = GetSpellCooldown(spellID or 61304)
-				if cooldowntable.duration > 0 and (E.Retail or cooldowntable.duration <= 1.51) then
+				if cooldowntable.duration > 0 and (E.Modern or cooldowntable.duration <= 1.51) then
 					Start(self, GetTime() - cooldowntable.startTime, cooldowntable.duration )
 				end
 			end
