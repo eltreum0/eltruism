@@ -148,18 +148,21 @@ function ElvUI_EltreumUI:Tooltip()
 						if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
 							if ElvUI_EltreumUI:IsThisASafeSecret(_G["GameTooltipTextLeft1"]:GetText(),true) then
 								if E.db.ElvUI_EltreumUI.skins.ilvltooltip and E.Forever then
-									if itemLevel and (classID == 2 or classID == 4) then
-										local lefttext = _G["GameTooltipTextLeft2"]:GetText()
-										_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..lefttext)
-										if _G["GameTooltipTextRight2"] then
-											local righttext = _G["GameTooltipTextRight2"]:GetText()
-											if righttext then
-												_G["GameTooltipTextRight2"]:SetText("\n"..righttext.." ") --without the space the text truncates
+									local line = _G["GameTooltipTextLeft2"]:GetText()
+									if line and not line:match(_G.ITEM_LEVEL) then
+										if (itemLink ~= nil) then
+											if itemLevel and (classID == 2 or classID == 4) then
+												_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..line)
+												if _G["GameTooltipTextRight2"] then
+													local righttext = _G["GameTooltipTextRight2"]:GetText()
+													if righttext then
+														_G["GameTooltipTextRight2"]:SetText("\n"..righttext.." ") --without the space the text truncates
+													end
+												end
 											end
 										end
 									end
 								end
-
 								local icon = _G.strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
 								if icon then
 									_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
@@ -194,8 +197,7 @@ function ElvUI_EltreumUI:Tooltip()
 						if line and not line:match(_G.ITEM_LEVEL) then
 							if (itemLink ~= nil) then
 								if itemLevel and (classID == 2 or classID == 4) then
-									local lefttext = _G["GameTooltipTextLeft2"]:GetText()
-									_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..lefttext)
+									_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..line)
 									if _G["GameTooltipTextRight2"] then
 										local righttext = _G["GameTooltipTextRight2"]:GetText()
 										if righttext then
@@ -244,8 +246,7 @@ function ElvUI_EltreumUI:Tooltip()
 								if itemLevel and (classID == 2 or classID == 4) then
 									--tooltip:AddLine(stringformat(ITEM_LEVEL, itemLevel))
 									--tooltip:AppendText("("..itemLevel..")")
-									local lefttext = _G["ShoppingTooltip1TextLeft2"]:GetText()
-									_G["ShoppingTooltip1TextLeft2"]:SetText(lefttext.."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
+									_G["ShoppingTooltip1TextLeft2"]:SetText(line.."|r\n".."|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel))
 									_G["ShoppingTooltip1TextLeft2"]:SetJustifyH("LEFT")
 									if _G["ShoppingTooltip1TextRight2"] and _G["ShoppingTooltip1TextRight2"]:GetText() then
 										local righttext = _G["ShoppingTooltip1TextRight2"]:GetText()
