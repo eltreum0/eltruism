@@ -30,6 +30,7 @@ local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local C_VoiceChat = _G.C_VoiceChat
+local tostring = _G.tostring
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")

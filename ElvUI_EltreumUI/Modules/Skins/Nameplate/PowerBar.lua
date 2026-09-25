@@ -16,6 +16,7 @@ local C_NamePlate = _G.C_NamePlate
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local CreateVector3D = _G.CreateVector3D
 local UnitIsDead = _G.UnitIsDead
+local tostring = _G.tostring
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor

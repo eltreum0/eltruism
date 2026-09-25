@@ -7,6 +7,8 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local math = _G.math
 local mathceil = math.ceil
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
+local type = _G.type
+local GetCVarDefault = _G.C_CVar and _G.C_CVar.GetCVarDefault or _G.GetCVarDefault
 
 function ElvUI_EltreumUI:SetupGeneralLayout()
 	if not E.db.movers then E.db.movers = {} end

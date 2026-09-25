@@ -3,8 +3,6 @@ local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local LCG = E.Libs.CustomGlow
-local pairs = _G.pairs
-local GetNumRegions = _G.GetNumRegions
 --local LCG = LibStub('LibCustomGlow-1.0')
 local proc = {}
 

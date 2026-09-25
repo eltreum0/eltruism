@@ -10,6 +10,7 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitGUID = _G.UnitGUID
 local UnitClassification = _G.UnitClassification
 local hooksecurefunc = _G.hooksecurefunc
+local select = _G.select
 
 --based on blinkii's idea
 local bossIDs = {

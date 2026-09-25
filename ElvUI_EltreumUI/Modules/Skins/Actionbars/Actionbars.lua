@@ -14,8 +14,6 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitCreatureType = _G.UnitCreatureType
 local InCombatLockdown = _G.InCombatLockdown
 local GetPetActionInfo = _G.GetPetActionInfo
-local pairs = _G.pairs
-local GetNumRegions = _G.GetNumRegions
 local CreateColor = _G.CreateColor
 local function clamp(val)
 	if val < 0 then

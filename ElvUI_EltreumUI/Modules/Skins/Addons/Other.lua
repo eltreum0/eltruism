@@ -4,6 +4,7 @@ local _G = _G
 local PlaySoundFile = _G.PlaySoundFile
 local CreateFrame = _G.CreateFrame
 local C_GameRules = _G.C_GameRules
+local next = _G.next
 
 function ElvUI_EltreumUI:EltruismScrap()
 	E:Delay(0, function()

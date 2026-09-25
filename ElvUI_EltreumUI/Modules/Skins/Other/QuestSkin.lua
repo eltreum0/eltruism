@@ -25,6 +25,7 @@ local C_QuestLog = _G.C_QuestLog
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local math = _G.math
 local Enum = _G.Enum
+local next = _G.next
 local InCombatLockdown = _G.InCombatLockdown
 local tonumber = _G.tonumber
 local strmatch = _G.strmatch

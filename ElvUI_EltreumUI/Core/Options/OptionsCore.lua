@@ -8,6 +8,7 @@ local pairs = _G.pairs
 local format = _G.format
 local stringupper = _G.string.upper
 local mathfloor = _G.math.floor
+local next = _G.next
 
 --Author list
 local AUTHORS = {

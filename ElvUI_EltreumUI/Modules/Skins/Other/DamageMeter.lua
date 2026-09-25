@@ -3,6 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
+local select = _G.select
 local embedpanel
 local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded

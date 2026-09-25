@@ -1,5 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
+local tostring = _G.tostring
 
 --chat without backdrop
 function ElvUI_EltreumUI:TransparentChat()

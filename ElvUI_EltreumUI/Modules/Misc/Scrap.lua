@@ -5,6 +5,7 @@ local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local GetContainerItemID = _G.C_Container and _G.C_Container.GetContainerItemID or _G.GetContainerItemID
 local hooksecurefunc = _G.hooksecurefunc
+local select = _G.select
 
 --based on Scrap_ElvUI by RainForDays, which was removed and not updated, and is also no longer available
 function ElvUI_EltreumUI:ScrapFix()

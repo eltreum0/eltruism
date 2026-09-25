@@ -1,6 +1,8 @@
 local E, L = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local pairs = _G.pairs
+local unpack = _G.unpack
 
 --skin RareScanner
 function ElvUI_EltreumUI:EltruismRareScanner()

@@ -3,6 +3,8 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local pairs = _G.pairs
+local IsInGroup = _G.IsInGroup
 
 --main function to hook/set gradient/textures/shadows
 local function hookCell(frame,region,solo,isPet)
@@ -172,7 +174,7 @@ function ElvUI_EltreumUI:EltruismCell()
 		end
 
 		--raid
-		if _G["CellRaidFrame"] and _G.IsInGroup() then
+		if _G["CellRaidFrame"] and IsInGroup() then
 			for i = 1, 8 do
 				if _G["CellRaidFrameHeader"..i] then
 					for v = 1, 5 do
@@ -204,7 +206,7 @@ function ElvUI_EltreumUI:EltruismCell()
 		end
 
 		--party
-		if _G["CellPartyFrame"] and _G.IsInGroup() then
+		if _G["CellPartyFrame"] and IsInGroup() then
 			if _G["CellPartyFrameHeader"] then
 				for i = 1, 5 do
 					if _G["CellPartyFrameHeaderUnitButton"..i] and _G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"] then

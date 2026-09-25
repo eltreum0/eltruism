@@ -2,6 +2,10 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
+local pairs = _G.pairs
+local tostring = _G.tostring
+local unpack = _G.unpack
+local select = _G.select
 
 local function handlechildtab(frame)
 	for _, v in pairs{frame:GetChildren()} do

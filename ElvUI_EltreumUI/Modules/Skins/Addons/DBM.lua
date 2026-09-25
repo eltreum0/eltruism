@@ -1,6 +1,8 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local select = _G.select
+local next = _G.next
 
 --dbm skin, made to look similar to bigwigs
 function ElvUI_EltreumUI:DBMSkin()

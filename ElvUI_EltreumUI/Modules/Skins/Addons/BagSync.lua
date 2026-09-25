@@ -1,6 +1,7 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local valuecolors = E.myClassColor
+local select = _G.select
 
 --based on meeting horn skin
 function ElvUI_EltreumUI:EltruismBagSync()

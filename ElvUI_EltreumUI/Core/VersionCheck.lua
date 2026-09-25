@@ -8,6 +8,8 @@ local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetA
 local tonumber = _G.tonumber
 local select = _G.select
 local GetBuildInfo = _G.GetBuildInfo
+local type = _G.type
+local strmatch = _G.strmatch
 
 function ElvUI_EltreumUI:VersionCheckInit()
 	if E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then

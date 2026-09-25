@@ -10,6 +10,7 @@ local IsSpellKnown = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsSpel
 local TEXT_TO_SPEECH = _G.TEXT_TO_SPEECH
 local C_VoiceChat = _G.C_VoiceChat
 local PlaySoundFile = _G.PlaySoundFile
+local tostring = _G.tostring
 
 local function voiceplayback(text)
 	if E.Modern or E.Mists then

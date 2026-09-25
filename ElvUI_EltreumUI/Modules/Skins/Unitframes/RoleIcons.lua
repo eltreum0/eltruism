@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local unpack = _G.unpack
+local pairs = _G.pairs
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --Unitframe Role Icons

@@ -1,4 +1,7 @@
 local E, L = unpack(ElvUI)
+local _G = _G
+local pairs = _G.pairs
+local next = _G.next
 
 --set texture to all elements
 function ElvUI_EltreumUI:SetupTexture(texturevalue)

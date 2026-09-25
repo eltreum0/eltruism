@@ -1,4 +1,6 @@
 local E, L = unpack(ElvUI)
+local _G = _G
+local pairs = _G.pairs
 
 --todo update for retail/forever
 

@@ -21,6 +21,10 @@ local UnitCastingInfo = _G.UnitCastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
+local unpack = _G.unpack
+local type = _G.type
+local pairs = _G.pairs
+local ipairs = _G.ipairs
 
 ElvUI_EltreumUI.Portraits = {}
 local module = ElvUI_EltreumUI.Portraits

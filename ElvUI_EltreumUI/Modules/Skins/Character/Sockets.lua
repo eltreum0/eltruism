@@ -14,7 +14,6 @@ local pairs = _G.pairs
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local string = _G.string
-local stringformat = string.format
 local stringgsub = string.gsub
 local stringupper = string.upper
 local stringgmatch = string.gmatch

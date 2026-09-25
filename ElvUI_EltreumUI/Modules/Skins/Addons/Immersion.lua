@@ -3,6 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 --local classcolor = E.myClassColor
 local pairs = _G.pairs
+local ipairs = _G.ipairs
 local tostring = _G.tostring
 local tonumber = _G.tonumber
 local InCombatLockdown = _G.InCombatLockdown
