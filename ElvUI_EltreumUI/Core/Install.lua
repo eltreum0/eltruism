@@ -544,7 +544,6 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
 				ElvUI_EltreumUI:BorderAdjust()
-				ElvUI_EltreumUI:AuraBorders()
 				ElvUI_EltreumUI:ShowHideBorders(true)
 			end)
 			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("borders","ENTERING") end)
