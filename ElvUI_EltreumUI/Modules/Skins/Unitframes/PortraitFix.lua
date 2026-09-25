@@ -475,6 +475,8 @@ local modelsRotate = {
 	[6211938] = true, --Arator
 	[6225127] = true, --Lady Liadrin
 	[3049179] = true, --Valeera Sanguinar
+	[7478494] = true, --female skyborne
+	[7478487] = true, --male skyborne
 }
 
 local targetlike = {
