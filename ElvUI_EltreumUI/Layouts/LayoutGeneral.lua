@@ -392,9 +392,25 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["pettarget"]["buffs"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["pettarget"]["buffs"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["pettarget"]["buffs"]["tooltipAnchorY"] = 0
+
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorY"] = 0
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
+
+	---aurabar filter for retail
+	--[[E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraBigDefensive"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraDefensive"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraImportant"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraRaid"] = false
+]]
+
+	--hide permanent auras
+	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraPermanentPlayer"] = true
+
 	E.db["unitframe"]["units"]["player"]["auras"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["player"]["auras"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["player"]["auras"]["tooltipAnchorY"] = 0
@@ -452,6 +468,21 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorY"] = 0
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
+
+	---aurabar filter for retail
+	--[[E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraBigDefensive"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraCrowdControl"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraImportant"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaid"] = false
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaidPlayerDispellable"] = true]]
+
+	--hide permanent auras
+	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraPermanentPlayer"] = true
+
 	E.db["unitframe"]["units"]["target"]["auras"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["target"]["auras"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["target"]["auras"]["tooltipAnchorY"] = 0
@@ -479,22 +510,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["tooltipAnchorY"] = 0
-
-	---aurabar filter for retail
-	--[[E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraBigDefensive"] = true
-	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraDefensive"] = true
-	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraImportant"] = true
-	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraRaid"] = false
-
-	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraBigDefensive"] = true
-	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraCrowdControl"] = true
-	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraImportant"] = true
-	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaid"] = false
-	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraRaidPlayerDispellable"] = true]]
-
-	--hide permanent auras
-	E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraPermanentPlayer"] = true
-	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraPermanentPlayer"] = true
 
 	-- unitframe colors
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
