@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:Tooltip()
 					local name,itemLink = GameTooltip:GetItem()
 					if not name then return end
 					if not itemLink then return end
-					local _, _, itemQuality = GetItemInfo(itemLink)
+					local _, _, itemQuality, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
 					if not itemQuality then return end
 					local r2,g2,b2 = GetItemQualityColor(itemQuality)
 					local offset1 = E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
@@ -147,6 +147,19 @@ function ElvUI_EltreumUI:Tooltip()
 					if _G["GameTooltipTextLeft1"] then
 						if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
 							if ElvUI_EltreumUI:IsThisASafeSecret(_G["GameTooltipTextLeft1"]:GetText(),true) then
+								if E.db.ElvUI_EltreumUI.skins.ilvltooltip and E.Forever then
+									if itemLevel and (classID == 2 or classID == 4) then
+										local lefttext = _G["GameTooltipTextLeft2"]:GetText()
+										_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..lefttext)
+										if _G["GameTooltipTextRight2"] then
+											local righttext = _G["GameTooltipTextRight2"]:GetText()
+											if righttext then
+												_G["GameTooltipTextRight2"]:SetText("\n"..righttext.." ") --without the space the text truncates
+											end
+										end
+									end
+								end
+
 								local icon = _G.strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
 								if icon then
 									_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
@@ -180,7 +193,7 @@ function ElvUI_EltreumUI:Tooltip()
 						local line = _G["GameTooltipTextLeft2"]:GetText()
 						if line and not line:match(_G.ITEM_LEVEL) then
 							if (itemLink ~= nil) then
-								if itemLevel and (classID == 2 or classID == 4)then
+								if itemLevel and (classID == 2 or classID == 4) then
 									local lefttext = _G["GameTooltipTextLeft2"]:GetText()
 									_G["GameTooltipTextLeft2"]:SetText("|cfffece00"..stringformat(_G.ITEM_LEVEL, itemLevel).."|r\n"..lefttext)
 									if _G["GameTooltipTextRight2"] then
