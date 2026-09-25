@@ -44,6 +44,22 @@ ElvUI_EltreumUI.Spec = 0
 ElvUI_EltreumUI.RequiredElvUI = 15.26
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
+
+	--because people are not using beta, will be removed later
+	if not E.Modern then
+		E.PopupDialogs["USEELVUIBETA"] = {
+			text = "You are using Eltruism Dev\nYou must use ElvUI Beta or you will error",
+			button1 = _G.OKAY,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+			OnAccept = function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://api.tukui.org/v1/download/dev/elvui/beta')
+			end,
+		}
+		E:StaticPopup_Show('USEELVUIBETA')
+	end
+
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
