@@ -1,10 +1,19 @@
-### 5.1.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 5.1.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added gradient backdrop to group frames  
-Updated Pet and Party border colors to more correctly use their class/rection  
-Updated some tags to use colors from default Blizzard API  
-Fixed an issue with the installer due to an Ace3 change limiting number of characters in profile names  
-Fixed an issue where inverted target gradient wasn't working correctly  
-Fixed a possible issue with Ace3 when some frames are secret  
-Fixed an issue with Gradient Health due to reactions  
-Fixed issues with Borders due to secrets
+Added support for World of Warcraft Forever  
+Added Nameplate Custom Height back using different functions  
+Added support for Skyborne Elves in several functions  
+Updated Class Combat Indicator to use default ElvUI indicator when the unit's class is secret  
+Updated Gradient functions to optimize how they run  
+Updated Options to add Previews to several textures  
+Updated how Alphas and Dev versions are released  
+Updated Aurabar to readd Gradient in Retail  
+Updated how ElvUI version checking is done  
+Updated Glows to optimize how they run  
+Updated Aurabar to skin it again  
+Updated Aurabar shadows  
+Fixed group borders having forced class colors when class colored borders were disabled  
+Fixed a missing texture on unitframes when the health was transparent  
+Fixed default Nameplate Power Bar size in Retail  
+Fixed BugSack skin after it was updated  
+Fixed Borders due to container changes
