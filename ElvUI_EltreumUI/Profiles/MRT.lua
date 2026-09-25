@@ -1063,7 +1063,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					["Strata"] = "HIGH",
 				},
 			}
-		elseif E.Classic then
+		elseif E.Classic or E.Forever then
 			_G.VMRT = {
 				["Note"] = {
 					["BlackNames"] = {

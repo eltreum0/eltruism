@@ -61,7 +61,7 @@ if E.Retail then
 	CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if not E.Retail then
+if not E.Modern then
 	CharacterFrame.Text = CharacterFrame:CreateFontString("EltruismIlvlBanner", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString("EltruismIlvlText", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString("EltruismAttributes", "OVERLAY", "GameFontNormal")
@@ -388,7 +388,7 @@ if not E.Retail then
 		end
 	end)
 
-	if E.Mists or E.TBC or E.Wrath then
+	if E.Forever or E.Mists or E.TBC or E.Wrath then
 		local mistsdualspec = CreateFrame("FRAME")
 		mistsdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		mistsdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
@@ -1885,7 +1885,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--color stats with a class gradient
 		local function SetStatGradient()
-			if E.Wrath or E.TBC then
+			if E.Wrath or E.TBC or E.Forever then
 				for i = 1, 6 do
 					if _G["PlayerStatFrameLeft"..i.."Label"] then
 						_G["PlayerStatFrameLeft"..i.."Label"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -1982,7 +1982,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--or just set font size
 		local function SetFontSize()
-			if E.Wrath or E.TBC then
+			if E.Wrath or E.TBC or E.Forever then
 				for i = 1, 6 do
 					if _G["PlayerStatFrameLeft"..i.."Label"] then
 						_G["PlayerStatFrameLeft"..i.."Label"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -2747,7 +2747,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
 
-				if E.Retail or E.Mists then
+				if E.Modern or E.Mists then
 					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
 						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
@@ -2787,7 +2787,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
-						if E.Retail then
+						if E.Modern then
 							local borderfix = _G["Character"..InvSlotName]
 							if borderfix.IconBorder then
 								--borderfix.IconBorder:SetVertexColor(r, g, b)
@@ -2815,7 +2815,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 							end
 						end
 
-						if not E.Retail then
+						if not E.Modern then
 							--coloring ilvl based on the items they have
 							local qualitytable = {
 								[0] = 0,
@@ -2923,7 +2923,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			if englishClass or englishRace then
 				if _G.InspectFrame then
 
-					if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+					if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 						_G.InspectFrame:HookScript("OnHide", function()
 							EltruismInspectBg:UnregisterEvent("UNIT_MODEL_CHANGED")
 						end)
@@ -2936,7 +2936,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					local classcolorinspect = E:ClassColor(englishClass, true)
 
 					--inspect frame expand skin
-					if not E.Retail then
+					if not E.Modern then
 						E:Delay(0, function()
 							if InCombatLockdown() then
 								_G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
@@ -3110,7 +3110,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					--add class icon + colored name
 					if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 						E:Delay(0, function()
-							if not E.Retail then
+							if not E.Modern then
 								if _G.InspectNameText then
 									_G.InspectNameText:ClearAllPoints()
 									_G.InspectNameText:SetPoint("TOP",_G.InspectFrame,"TOP",0,-15)
@@ -3180,7 +3180,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					--calculate inspect ilvl
-					if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+					if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 						E:Delay(0, function()
 							InspectIlvl()
 						end)
@@ -3226,7 +3226,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-					if not E.Retail then
+					if not E.Modern then
 						--EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop) --check on tbc, maybe wrath is also like this now
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
@@ -3273,7 +3273,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
 					end
 
-					if E.Retail then
+					if E.Modern then
 						qualityAnchorInspect.Frame:SetFrameLevel(2)
 						qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
 					else
@@ -3311,7 +3311,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							end
 							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
-							if E.Retail then
+							if E.Modern then
 								local borderfix = _G["Inspect"..InvSlotName]
 								if borderfix.IconBorder then
 									borderfix.IconBorder:SetVertexColor(r, g, b)
@@ -3330,7 +3330,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								end
 							end
 
-							if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+							if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 								--coloring ilvl based on the items they have
 								local qualitytable = {
 									[0] = 0,
@@ -3386,7 +3386,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						--flip the texture since its on the other side
 						qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
 					elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/cata
-						if not E.Retail then
+						if not E.Modern then
 							qualityAnchorInspect.Frame:SetSize(120, _G["Inspect"..InvSlotName]:GetHeight() + 2)
 							qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
 							qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)

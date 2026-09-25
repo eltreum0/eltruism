@@ -193,7 +193,7 @@ end
 
 function ElvUI_EltreumUI:PerformanceCVars(command,login)
 	if login then --these get reset on logout/login, TODO confirm they still do
-		if E.Retail then
+		if E.Modern then
 			SetCVar('spellVisualDensityFilterSetting', 1)
 		end
 	elseif command then

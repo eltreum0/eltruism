@@ -106,7 +106,7 @@ local function EltruismStatsDatatextOnEnter()
 
 	--GetSpellCritChance(value or none at all)
 
-	if E.Retail then
+	if E.Modern then
 		local retailhaste = GetHaste()
 		local retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
 		local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
@@ -269,7 +269,7 @@ end
 
 --haste and crit datatext
 local function EltruismStatsDatatext1(dt)
-	if E.Retail then
+	if E.Modern then
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCritChance(),true) then return end
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetSpellCritChance(),true) then return end
 		local retailhaste = GetHaste()
@@ -336,7 +336,7 @@ local function EltruismStatsDatatext2(dt)
 		local tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", GetHitModifier()).."|r" --GetCombatRatingBonus(CR_HIT_MELEE)
 
 		dt.text:SetFormattedText('%s %s|r',tmeleepower,tmeleehit)
-	elseif E.Retail then
+	elseif E.Modern then
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetMasteryEffect(),true) then return end
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCombatRatingBonus(29),true) then return end
 
@@ -428,7 +428,7 @@ DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RAT
 local UnitDefense = _G.UnitDefense
 local DEFENSE = _G.DEFENSE
 local function EltruismStatsDatatext3(dt)
-	if E.Retail then
+	if E.Modern then
 		--dodge
 		local dodgeChance = GetDodgeChance()
 		local dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(dodgeChance*100)/100).."%".."|r"

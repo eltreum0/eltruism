@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 					else
 						local classification = UnitClassification("target")
 						if not classification then return end
-						if not E.Retail then
+						if not E.Modern then
 							local guid = UnitGUID("target")
 							if not guid then return end
 							local bossID = select(6, strsplit('-', guid))

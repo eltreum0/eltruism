@@ -368,7 +368,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
 				E:SetupChat()
-				if E.Retail then
+				if E.Modern then
 					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
 					ElvUI_EltreumUI:NewRetailEditModeLayout()
 				else --remove lfg spam from general and creat tab for it
@@ -393,7 +393,7 @@ ElvUI_EltreumUI.InstallerData = {
 				if profileLength > 52 then
 					profileName = 'Eltreum DPS('..E.mynameRealm..')'
 				end
-				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
+				if (E.Mists or E.Wrath or E.Modern or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile(profileName)
@@ -414,7 +414,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function()
 				E:SetupChat()
-				if E.Retail then
+				if E.Modern then
 					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
 				else --remove lfg spam from general and creat tab for it
 					if lfg then
@@ -438,7 +438,7 @@ ElvUI_EltreumUI.InstallerData = {
 				if profileLength > 52 then
 					profileName = 'EltreumHeal('..E.mynameRealm..')'
 				end
-				if (E.Mists or E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
+				if (E.Mists or E.Wrath or E.Modern) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile(profileName)
@@ -458,7 +458,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
 				E:SetupChat()
-				if E.Retail then
+				if E.Modern then
 					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
 				else --remove lfg spam from general and creat tab for it
 					if lfg then
@@ -482,7 +482,7 @@ ElvUI_EltreumUI.InstallerData = {
 				if profileLength > 52 then
 					profileName = 'EltreumThin('..E.mynameRealm..')'
 				end
-				if (E.Mists or E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
+				if (E.Mists or E.Wrath or E.Modern or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile(profileName)
@@ -644,7 +644,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsspec","ENTERING") end)
 			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			if E.Retail or E.Mists or E.TBC or E.Wrath then
+			if E.Modern or E.Mists or E.TBC or E.Wrath then
 				_G.PluginInstallFrame.Option1:SetText('Spec')
 			else
 				_G.PluginInstallFrame.Option1:SetText('Blizzard')
@@ -786,7 +786,7 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
+			if (E.Classic or E.Forever) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 			if (E.Mists or E.TBC or E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
@@ -885,7 +885,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
 			_G.PluginInstallFrame.Desc3:SetText(L["Import Dynamic Cam profile"])
 			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-			if not E.Retail then
+			if not E.Modern then
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
@@ -913,7 +913,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
-			if not E.Retail then
+			if not E.Modern then
 				if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
 					_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])

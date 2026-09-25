@@ -265,7 +265,7 @@ if E.Modern then
 	-- translate text to coordinates that are then put into the Waypoint system, inspired by the Wayfinder weakaura by Khanibrawl
 	function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 		-- most of this was done with the help of posts on stack overflow and lua-users.org
-		if E.Retail then
+		if E.Modern then
 			if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
 				-- translate the message into numbers
 				local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)"..(tonumber("1.1") and "," or ".").."(%d)", "%1"..(tonumber("1.1") and "." or ",").."%2")
@@ -467,7 +467,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 	if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale then
 		if _G["WorldMapFrame"] then
 			_G["WorldMapFrame"]:HookScript("OnShow", function()
-				if not E.Retail then
+				if not E.Modern then
 					if not InCombatLockdown then
 						if not IsAddOnLoaded("Leatrix_Maps") then
 							_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
@@ -489,7 +489,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 			end)
 
 			--make the bounty select mouseover
-			if E.Retail then
+			if E.Modern then
 				for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
 					if v then
 						if v.BountyDropDown and v.BountyDropdownButton then
@@ -551,13 +551,13 @@ end
 
 local function RotateMinimap()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
-		if E.Retail then
+		if E.Modern then
 			Enum.EditModeMinimapSetting.RotateMinimap = 1
 		end
 		SetCVar("rotateMinimap",1)
 		E.db["general"]["minimap"]["rotate"] = true
 	else
-		if E.Retail then
+		if E.Modern then
 			Enum.EditModeMinimapSetting.RotateMinimap = 0
 		end
 		SetCVar("rotateMinimap",0)
@@ -691,7 +691,7 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		end
 	else
 
-		if E.Retail then
+		if E.Modern then
 			Enum.EditModeMinimapSetting.RotateMinimap = 0
 		end
 		SetCVar("rotateMinimap",0)

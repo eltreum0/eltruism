@@ -639,8 +639,8 @@ local UGGGREY = {
 
 --return icons for other functions
 local ScreenWidth = GetScreenWidth()
-local escapeSequence = E.Retail and ":16:16:0:0|t" or ":0:0:0:0|t"
-local escapeSequence2 = E.Retail and ":16:16:0:0:64:64:64:0:0:64|t" or ":0:0:0:0:64:64:64:0:0:64|t"
+local escapeSequence = E.Modern and ":16:16:0:0|t" or ":0:0:0:0|t"
+local escapeSequence2 = E.Modern and ":16:16:0:0:64:64:64:0:0:64|t" or ":0:0:0:0:64:64:64:0:0:64|t"
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring)
 	if ScreenWidth < 2000 then
 		if resolution == "32" then

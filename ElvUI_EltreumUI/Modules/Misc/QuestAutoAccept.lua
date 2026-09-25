@@ -124,7 +124,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							ElvUI_EltreumUI:Print("numquests complete loop")
 						end
 						local _, completed = GetActiveTitle(i)
-						if E.Retail then
+						if E.Modern then
 							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("tried to complete and it's not a world quest")
@@ -145,7 +145,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					if E.db.ElvUI_EltreumUI.dev then
 						ElvUI_EltreumUI:Print("QUEST_DETAIL")
 					end
-					if E.Retail then
+					if E.Modern then
 						if QuestGetAutoAccept() then
 							if E.db.ElvUI_EltreumUI.dev then
 								ElvUI_EltreumUI:Print("its an annoying auto accept quest, panel has been closed")
@@ -222,7 +222,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						return
 					else
 						--https://wowpedia.fandom.com/wiki/Category:API_namespaces/C_GossipInfo
-						--if E.Retail or E.Mists or E.TBC or E.Wrath then
+						--if E.Modern or E.Mists or E.TBC or E.Wrath then
 						local active = C_GossipInfo.GetActiveQuests()
 						local available = C_GossipInfo.GetAvailableQuests()
 						local notcomplete = 0
@@ -317,7 +317,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								ElvUI_EltreumUI:Print("no available or active quest, looking for gossip instead")
 							end
 							local gossipInfoTable = C_GossipInfo.GetOptions()
-							if E.Retail and C_Map.GetBestMapForUnit('player') == 762 then return end
+							if E.Modern and C_Map.GetBestMapForUnit('player') == 762 then return end
 							if #gossipInfoTable == 1 then
 								if NPC_ID == 153897 then
 									return

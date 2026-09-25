@@ -37,14 +37,14 @@ function ElvUI_EltreumUI:RaidDeathGroupCheck()
 		if IsInGroup() then
 			if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable then --to disable it in arena/bg
 				if instanceType == "arena" or instanceType == "pvp" then
-					if E.Retail then
+					if E.Modern then
 						ElvUI_EltreumUI:UnregisterEvent('UNIT_DIED')
 					else
 						ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 					end
 				else
 					deaththrottle = 1
-					if E.Retail then
+					if E.Modern then
 						ElvUI_EltreumUI:RegisterEvent('UNIT_DIED')
 					else
 						ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:RaidDeathGroupCheck()
 				end
 			else
 				deaththrottle = 1
-				if E.Retail then
+				if E.Modern then
 					ElvUI_EltreumUI:RegisterEvent('UNIT_DIED')
 				else
 					ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
@@ -60,7 +60,7 @@ function ElvUI_EltreumUI:RaidDeathGroupCheck()
 			end
 		elseif not IsInGroup() then
 			deaththrottle = 0
-			if E.Retail then
+			if E.Modern then
 				ElvUI_EltreumUI:UnregisterEvent('UNIT_DIED')
 			else
 				ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if deaththrottle == 1 then
-			if E.Retail then
+			if E.Modern then
 				PlaySoundFile(deathsound , "Master")
 			else
 				if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
@@ -109,7 +109,7 @@ spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 
 spellcd:SetTextColor(1, 1, 1)
 spellcd:SetText(_G.READY)
 bresframe:SetPoint("TOPLEFT", E.UIParent, "TOPLEFT", 342, -28)
-if E.Retail then
+if E.Modern then
 	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
 end
 bresframe:SetParent(E.UIParent)
@@ -142,7 +142,7 @@ local workingIDs = {
 local difficultyok = false
 local instanceok = false
 function ElvUI_EltreumUI:BattleRes()
-	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
+	if E.Modern and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		local _, instanceType = IsInInstance()
 		local DifficultyID = select(3, GetInstanceInfo())
 

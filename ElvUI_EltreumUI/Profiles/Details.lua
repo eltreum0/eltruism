@@ -16,7 +16,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 
 	_G.Details:EraseProfile("Eltreum Dual v1")
 
-	if E.Retail then
+	if E.Modern then
 		_G.Details:ImportProfile(dtprofileRetail, "Eltreum Dual v1")
 	elseif E.Classic then
 		_G.Details:ImportProfile(dtprofileClassic, "Eltreum Dual v1")
@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 
 	_G.Details:EraseProfile("Eltreum Dual v2")
 
-	if E.Retail then
+	if E.Modern then
 		_G.Details:ImportProfile(dtprofileRetail, "Eltreum Dual v2")
 	elseif E.Classic then
 		_G.Details:ImportProfile(dtprofileClassic, "Eltreum Dual v2")
@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleafv3()
 
 	_G.Details:EraseProfile("Eltreum Dual v3")
 
-	if E.Retail then
+	if E.Modern then
 		_G.Details:ImportProfile(dtprofileRetail, "Eltreum Dual v3")
 	elseif E.Classic then
 		_G.Details:ImportProfile(dtprofileClassic, "Eltreum Dual v3")

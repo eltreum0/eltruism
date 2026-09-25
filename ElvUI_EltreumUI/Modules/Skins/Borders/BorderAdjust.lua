@@ -185,7 +185,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["actionbar"]["totemBar"]["spacing"] = 5
 						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,94"
 					end]]
-					if not E.Retail then
+					if not E.Modern then
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
 					end
 				elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then

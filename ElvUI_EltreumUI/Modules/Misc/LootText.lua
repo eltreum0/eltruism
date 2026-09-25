@@ -205,7 +205,7 @@ function ElvUI_EltreumUI:LootText()
 						end
 					end
 				end
-				if E.Retail then
+				if E.Modern then
 					if (event == "CHAT_MSG_CURRENCY") then
 						itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
 						if not amount then

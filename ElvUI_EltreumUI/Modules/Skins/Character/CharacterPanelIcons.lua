@@ -14,7 +14,7 @@ local classsymbolonframe
 local CharacterModelScene = _G.CharacterModelScene
 local numCharacters = 3 --number of letters in the name
 
-if E.Retail then
+if E.Modern then
 	CharacterLevelText:SetWidth(300) --new
 elseif E.Classic or E.Mists or E.TBC or E.Wrath then
 	CharacterLevelText:SetWidth(280) --new
@@ -83,7 +83,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					UpdateNameGradient()
 				end)
 
-				--[[if E.Retail then
+				--[[if E.Modern then
 					hooksecurefunc("CharacterFrame_Collapse", function()
 						if PaperDollFrame:IsShown() then
 							if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
@@ -183,7 +183,7 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 
 		classsymbolonframe = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,E.myclass,false,"32")
 
-		if E.Retail or E.Mists then
+		if E.Modern or E.Mists then
 			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterFrameTitleText:GetText(), E.myclass))

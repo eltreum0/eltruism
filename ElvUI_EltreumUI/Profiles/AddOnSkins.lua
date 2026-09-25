@@ -55,7 +55,7 @@ function ElvUI_EltreumUI:GetASProfile()
 		AS.db["Clique"] = false
 		AS.db["BigWigs"] = false
 		AS.db["Immersion"] = false
-		if E.Retail then
+		if E.Modern then
 			AS.db["Blizzard_AchievementUI"] = false
 		end
 	end

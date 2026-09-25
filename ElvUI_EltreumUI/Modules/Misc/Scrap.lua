@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:ScrapFix()
 	end
 
 	local function UpdateContainerElvUI(bag)
-		local frame = E.Retail and _G['ElvUI_ContainerFrameBag' .. bag] or _G['ElvUI_ContainerFrameBag' .. bag - 1]
+		local frame = E.Modern and _G['ElvUI_ContainerFrameBag' .. bag] or _G['ElvUI_ContainerFrameBag' .. bag - 1]
 		if not frame then return end
 		local name = frame:GetName()
 		local size = frame.numSlots

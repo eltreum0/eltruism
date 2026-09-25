@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:CooldownColors()
 		--E:UpdateMediaItems()
 	end
 
-	if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticonclasscolor and E.Retail then
+	if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticonclasscolor and E.Modern then
 		E.db.unitframe.units.player.RestIcon.color.r = valuecolors.r
 		E.db.unitframe.units.player.RestIcon.color.g = valuecolors.g
 		E.db.unitframe.units.player.RestIcon.color.b = valuecolors.b
@@ -216,7 +216,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 		return
 	else
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal and not InCombatLockdown() then
-			if E.Mists or E.TBC or E.Wrath or E.Retail then
+			if E.Mists or E.TBC or E.Wrath or E.Modern then
 				if E.myclass == 'MAGE' then
 					level = UnitLevel("player")
 					if E.Retail then
@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 						elseif level < 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 						end
-					elseif E.Mists or E.TBC or E.Wrath then
+					elseif not E.Classic then
 						if level >= 70 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 						elseif level < 70 then
@@ -268,7 +268,7 @@ function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 					E.db["actionbar"]["bar"..i]["paging"]["EVOKER"] = ""
 				else
 					E.db["actionbar"]["bar"..i]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-					if E.Retail or E.Mists or E.TBC or E.Wrath then
+					if E.Modern or E.Mists or E.TBC or E.Wrath then
 						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -311,7 +311,7 @@ function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 				E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 				--E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 
-				if E.Retail or E.Mists or E.TBC or E.Wrath then
+				if E.Modern or E.Mists or E.TBC or E.Wrath then
 					E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 					E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 					E.db["actionbar"]["bar1"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -367,7 +367,7 @@ function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 				E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 				--E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 
-				if E.Retail or E.Mists or E.TBC or E.Wrath then
+				if E.Modern or E.Mists or E.TBC or E.Wrath then
 					E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 					E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 					E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -423,7 +423,7 @@ function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 				E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 				--E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 
-				if E.Retail or E.Mists or E.TBC or E.Wrath then
+				if E.Modern or E.Mists or E.TBC or E.Wrath then
 					E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 					E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
 					E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"

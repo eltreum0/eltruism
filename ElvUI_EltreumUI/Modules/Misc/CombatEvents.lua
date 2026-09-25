@@ -85,7 +85,7 @@ local eyecheck
 function ElvUI_EltreumUI:MinimapHide(event)
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		if event == 'PLAYER_REGEN_DISABLED' then
-			if not E.Retail then
+			if not E.Modern then
 				Minimap:Hide()
 			else
 				_G.MinimapCluster:Hide()
@@ -106,7 +106,7 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				E:SetMoverPoints("DebuffsMover")
 			end
 		elseif event == 'PLAYER_REGEN_ENABLED' then
-			if not E.Retail then
+			if not E.Modern then
 				Minimap:Show()
 			else
 				_G.MinimapCluster:Show()

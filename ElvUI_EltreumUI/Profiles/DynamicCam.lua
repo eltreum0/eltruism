@@ -220,7 +220,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 					["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
 					["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
 					["test_cameraDynamicPitch"] = 1,
-					["cameraDistanceMaxZoomFactor"] = E.Retail and 2.6 or 3.4,
+					["cameraDistanceMaxZoomFactor"] = E.Modern and 2.6 or 3.4,
 					["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
 				},
 			},

@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	end
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
-	if E.Retail then
+	if E.Modern then
 		E.db["general"]["queueStatus"]["fontOutline"] = "OUTLINE"
 	end
 	if E.Mists or E.TBC or E.Wrath then

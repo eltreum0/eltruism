@@ -25,21 +25,21 @@ local function EltruismSpellHasteDatatext(dt)
 	local spellhastepc = ((mathceil(spellhaste*100))/100)..'%'
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], E.media.hexvaluecolor, spellhastepc)
 end
-if not E.Retail then
+if not E.Modern then
 	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_SPELL_HASTE"}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext
 local function EltruismHonorDatatext(dt)
 	local arg2 = E.Retail and COMBAT_HONOR_GAIN or HONOR
 
-	local honorCurrencyID = (E.Mists or E.TBC or E.Wrath and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID) or (E.Retail and 1792)
+	local honorCurrencyID = (not E.Retail and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID) or (E.Retail and 1792)
 	local arg4 = (not E.Classic and C_CurrencyInfo_GetCurrencyInfo(honorCurrencyID).quantity) or select(2, _G.GetPVPThisWeekStats())
 
-	local arg5 = (E.Retail and PVP_CONQUEST) or (E.Mists or E.TBC or E.Wrath and ARENA) or _G.RANK
+	local arg5 = (E.Retail and PVP_CONQUEST) or (not E.Retail and ARENA) or _G.RANK
 
 	local classicRank = E.Classic and _G.UnitPVPRank('player')-4
 	if classicRank and classicRank < 0 then classicRank = 0 end
-	local arenaCurrencyID = (E.Mists or E.TBC or E.Wrath and Constants.CurrencyConsts.CLASSIC_CONQUEST_CURRENCY_ID) or (E.Retail and 1602)
+	local arenaCurrencyID = (not E.Retail and Constants.CurrencyConsts.CLASSIC_CONQUEST_CURRENCY_ID) or (E.Retail and 1602)
 	local arg7 = (not E.Classic and C_CurrencyInfo_GetCurrencyInfo(arenaCurrencyID).quantity) or classicRank
 
 	dt.text:SetFormattedText('%s: %s%s|r %s: %s%s|r', arg2, E.media.hexvaluecolor, arg4, arg5, E.media.hexvaluecolor, arg7)

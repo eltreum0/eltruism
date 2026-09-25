@@ -419,7 +419,7 @@ _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
 ElvUI_EltreumUI:MacroClick(_G["EltruismHearthStoneSecureButton"])
 
 local function EltruismTeleportsOnEvent(self)
-	if E.Retail and InCombatLockdown() then return end
+	if E.Modern and InCombatLockdown() then return end
 
 	--fix id
 	if not hsIsReady and E.myclass == "SHAMAN" then
@@ -524,7 +524,7 @@ local function EltruismTeleportsOnEnter()
 		local hasItem = GetItemCount(v)
 
 		if v == 180817 then --hide cypher if outside the maw
-			local mapID = not E.Retail and tostring(_G.WorldMapFrame:GetMapID()) or tostring(C_Map.GetBestMapForUnit("player"))
+			local mapID = not E.Modern and tostring(_G.WorldMapFrame:GetMapID()) or tostring(C_Map.GetBestMapForUnit("player"))
 			--print(mapID)
 			if not mawIDs[mapID] then
 				hasItem = 0
@@ -629,7 +629,7 @@ local function EltruismTeleportsOnEnter()
 				local nameitems = GetItemInfo(v)
 				local hasItem = GetItemCount(v)
 				if v == 180817 then --hide cypher if outside the maw
-					local mapID = not E.Retail and tostring(_G.WorldMapFrame:GetMapID()) or tostring(C_Map.GetBestMapForUnit("player"))
+					local mapID = not E.Modern and tostring(_G.WorldMapFrame:GetMapID()) or tostring(C_Map.GetBestMapForUnit("player"))
 					if not mawIDs[mapID] then
 						hasItem = 0
 					end

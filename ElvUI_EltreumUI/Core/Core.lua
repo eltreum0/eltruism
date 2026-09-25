@@ -55,7 +55,7 @@ end
 local keydown = _G.C_CVar.GetCVarBool('ActionButtonUseKeyDown')
 function ElvUI_EltreumUI:MacroClick(button)
 	button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
-	if E.Retail or E.TBC then
+	if E.Modern or E.TBC then
 		button:SetAttribute('useOnKeyDown', keydown)
 	end
 end
@@ -196,7 +196,7 @@ function ElvUI_EltreumUI:BlizzCombatText()
 			SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
 			SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
 			SetCVar("floatingCombatTextCombatDamage", 0)
-			if E.Retail then
+			if E.Modern then
 				SetCVar("floatingCombatTextCombatDamage_v2", 0)
 			end
 		elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
@@ -216,7 +216,7 @@ function ElvUI_EltreumUI:RestoreBlizzCombatText()
 		SetCVar("floatingCombatTextCombatDamage", 1)
 		SetCVar("floatingCombatTextEnergyGains", 1)
 
-		if E.Retail then
+		if E.Modern then
 			SetCVar("floatingCombatTextCombatDamage_v2", 1)
 			SetCVar("floatingCombatTextCombatLogPeriodicSpells_v2", 1)
 			SetCVar("floatingCombatTextPetMeleeDamage_v2", 1)
@@ -306,7 +306,7 @@ end
 local EltreumWAAnchor
 local EltreumWAAnchor2
 local EltruismWAConsumablesAnchor
-if not E.Retail then
+if not E.Modern then
 	EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
 	EltreumWAAnchor:SetPoint("CENTER", E.UIParent, "CENTER", 0, -380)
 	EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", E.UIParent)
@@ -323,7 +323,7 @@ EltreumArcheologyAnchor:SetSize(200, 50)
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
 
-		if not E.Retail then
+		if not E.Modern then
 			--Anchor for general weakauras, like those that replace actionbars
 			EltreumWAAnchor:SetParent(_G["ElvUF_Player"])
 			EltreumWAAnchor:SetFrameStrata("BACKGROUND")
@@ -396,7 +396,7 @@ function ElvUI_EltreumUI:Anchors()
 		_G.ZoneTextFrame:UnregisterAllEvents()
 	end
 
-	if E.Retail then
+	if E.Modern then
 		if _G.RaidBossEmoteFrame then
 			E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		end
@@ -420,7 +420,7 @@ function ElvUI_EltreumUI:Anchors()
 		if _G.EventToastManagerFrame then
 			_G.EventToastManagerFrame:UnregisterAllEvents()
 		end
-		if E.Retail and _G.ChallengeModeCompleteBanner then
+		if E.Modern and _G.ChallengeModeCompleteBanner then
 			_G.ChallengeModeCompleteBanner:UnregisterAllEvents()
 		end
 	end
@@ -434,7 +434,7 @@ end
 
 --Set some CVars when entering world
 function ElvUI_EltreumUI:EnteringWorldCVars()
-	if E.Retail then
+	if E.Modern then
 		SetCVar("nameplatePlayerMaxDistance", 60)
 	end
 	SetCVar('nameplateOtherBottomInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset)
@@ -443,7 +443,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
 	SetCVar('nameplateOccludedAlphaMult', E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult)
 	SetCVar('DynamicRenderScaleMin', E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin)
-	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
+	if E.Modern and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
 	elseif E.Classic or E.Mists or E.TBC or E.Wrath then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
@@ -473,7 +473,7 @@ function ElvUI_EltreumUI:DevTools()
 			_G.EventTrace.LogEvent = LogEvent
 		end
 
-		if not E.Retail and _G.EventTrace then
+		if not E.Modern and _G.EventTrace then
 			OnEventTraceLoaded()
 		else
 			local frame = CreateFrame("Frame")
@@ -483,7 +483,7 @@ function ElvUI_EltreumUI:DevTools()
 					ElvUI_EltreumUI:Print("Addon Loaded: "..arg)
 				end
 				if arg == "Blizzard_EventTrace" then
-					if not E.Retail then
+					if not E.Modern then
 						OnEventTraceLoaded()
 					end
 					if not IsAddOnLoaded("Blizzard_DebugTools") then
@@ -621,7 +621,7 @@ do
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
 
-			if E.Retail then
+			if E.Modern then
 				petdetect:RegisterEvent("DELETE_ITEM_CONFIRM")
 				petdetect:SetScript("OnEvent", function(_,_,deletetype)
 					if deletetype == "Pet Cage" then
@@ -656,9 +656,9 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				Menubutton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name)
 				S:HandleButton(Menubutton,nil,nil,nil,true)
 
-				local offset = E.Retail and 36 or 19
+				local offset = E.Modern and 36 or 19
 				local xMenubutton = _G.GameMenuFrame:GetSize()
-				if E.Retail then
+				if E.Modern then
 					Menubutton:Size(xMenubutton-62, offset)
 				else
 					Menubutton:Size(xMenubutton-118, offset)
@@ -667,7 +667,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 
 				if not GameMenuFrame.EltruismHook then
 					hooksecurefunc(GameMenuFrame, 'Layout', function()
-						if E.Retail then
+						if E.Modern then
 							GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
 						else
 							GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -35)
@@ -690,7 +690,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 						end
 
 						--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-						if E.Retail then
+						if E.Modern then
 							GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
 						else
 							GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
@@ -895,7 +895,7 @@ end
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	--its secret so its always false
-	--[[if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
+	--[[if IsAddOnLoaded("ElvUI_mMediaTag") and E.Modern then
 		if (E.db.mMediaTag and E.db.mMT.interrupt_on_cd and E.db.mMT.interrupt_on_cd.enable) then
 			return _G.mMT:mMediaTag_interruptOnCD() or false
 		else
@@ -1010,7 +1010,7 @@ function ElvUI_EltreumUI:Hex(r, g, b)
 	if not r or type(r) == 'string' then -- wtf?
 		return '|cffFFFFFF'
 	elseif type(r) == 'table' then
-		if E.Retail then
+		if E.Modern then
 			return '|c' .. GenerateTextColorCode(r)
 		elseif(r.r) then
 			r, g, b = r.r, r.g, r.b

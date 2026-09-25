@@ -749,7 +749,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 		LCG.PixelGlow_Stop(EltruismGlowPreview)
 		LCG.AutoCastGlow_Stop(EltruismGlowPreview)
 		LCG.ButtonGlow_Stop(EltruismGlowPreview)
-		if E.Retail then
+		if E.Modern then
 			LCG.ProcGlow_Stop(EltruismGlowPreview)
 		end
 		EltruismGlowPreview:Hide()
