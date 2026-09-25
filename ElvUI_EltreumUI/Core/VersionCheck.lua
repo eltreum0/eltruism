@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
 function ElvUI_EltreumUI:PluginCheck()
-	if E.private.ElvUI_EltreumUI.install_version and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+	if E.private.ElvUI_EltreumUI.install_version and ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		if E.private.ElvUI_EltreumUI.install_version < "2.4.7" then
 			E.private.ElvUI_EltreumUI.isInstalled.sle = true
 			E.private.ElvUI_EltreumUI.isInstalled.windtools = true

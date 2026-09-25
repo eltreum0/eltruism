@@ -315,7 +315,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	-- Custom Texts
 	local currentprofile
-	if ElvDB.profileKeys[E.mynameRealm] then
+	if ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm] then
 		currentprofile = ElvDB.profileKeys[E.mynameRealm]
 	else
 		currentprofile = false

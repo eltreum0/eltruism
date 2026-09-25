@@ -6,7 +6,7 @@ local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 function ElvUI_EltreumUI:BorderAdjust()
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
-		if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+		if E.private.ElvUI_EltreumUI.install_version and ElvDB.profileKeys[E.mynameRealm] and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 		else
 			local width = GetPhysicalScreenSize()
@@ -117,7 +117,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 				end
 
-				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+				if ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 
 					if not E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 						E.db["actionbar"]["bar1"]["buttonSpacing"] = 4
@@ -188,7 +188,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					if not E.Modern then
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
 					end
-				elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				elseif ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 					if not E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 						E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
 						E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
@@ -266,7 +266,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 
-				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+				if ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 					if not E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 						E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 						E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
@@ -303,7 +303,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						--E.db["actionbar"]["totemBar"]["spacing"] = 3
 						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,100"
 					end
-				elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				elseif ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 					if not E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 						E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 						E.db["actionbar"]["bar2"]["buttonSpacing"] = 3

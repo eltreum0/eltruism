@@ -17,7 +17,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 		if E.private.ElvUI_EltreumUI.install_version < "3.7.5" or forced then
 			--making sure it only runs on the current char's profile
 			local currentprofile
-			if ElvDB.profileKeys[E.mynameRealm] then
+			if ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm] then
 				currentprofile = ElvDB.profileKeys[E.mynameRealm]
 			else
 				currentprofile = false

@@ -159,7 +159,7 @@ end
 -- Repooc's Dynamic Status Icons
 function ElvUI_EltreumUI:SetupDynamicStatusIcons()
 	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
-		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+		if ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244

@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("Details Hiding out of Combat Disabled")
 		end
 	elseif message == 'autoadjust' then
-		if (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+		if ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			if not E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 				E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
 				ElvUI_EltreumUI:Print("Borders Autoadjust enabled")
@@ -352,7 +352,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
 		print("|cff82B4ff/eltruism update|r - Resets/Updates Eltruism Settings to Eltreum's Defaults")
 		print("|cff82B4ff/eltruism detailshide|r - Toggles Details hiding out of combat")
-		if (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+		if ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			print("|cff82B4ff/eltruism autoadjust|r - Toggles Borders automatically adjusting the layout")
 		end
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
