@@ -46,7 +46,7 @@ ElvUI_EltreumUI.RequiredElvUI = 15.26
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 
 	--because people are not using beta, will be removed later
-	if not E.Modern then
+	if E.Modern == nil then --not just false, need it to not exist
 		E.PopupDialogs["USEELVUIBETA"] = {
 			text = "You are using Eltruism Dev\nYou must use ElvUI Beta or you will error",
 			button1 = _G.OKAY,
