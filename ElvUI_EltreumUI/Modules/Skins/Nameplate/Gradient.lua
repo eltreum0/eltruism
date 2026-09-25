@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 					tex:SetGradient(orientation, minC, maxC)
 
 					if nameplate.Health.EltruismNameplateBorder then
-						nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(minC.r,minC.g,minC.b, 1)
+						nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(maxC.r,maxC.g,maxC.b, 1)
 					end
 				end
 			end
@@ -154,6 +154,9 @@ local function GradientNameplates(unit,unit2)
 				if colorKey then
 					local minC, maxC = ElvUI_EltreumUI:GetHealthGradient(colorKey, false, E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor)
 					tex:SetGradient(orientation, minC, maxC)
+					if frame.Health.EltruismNameplateBorder then
+						frame.Health.EltruismNameplateBorder:SetBackdropBorderColor(maxC.r,maxC.g,maxC.b, 1)
+					end
 				end
 			end
 		end
