@@ -54,10 +54,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 						CharacterFrameTitleText:SetShadowOffset(2, -1)
 
-						CharacterLevelText:ClearAllPoints()
-						CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
+						if not E.Forever then
+							CharacterLevelText:ClearAllPoints()
+							CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
+							CharacterLevelText:SetDrawLayer("OVERLAY")
+						end
 
-						CharacterLevelText:SetDrawLayer("OVERLAY")
 						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							if stringlen(CharacterFrameTitleText:GetText()) >= numCharacters then

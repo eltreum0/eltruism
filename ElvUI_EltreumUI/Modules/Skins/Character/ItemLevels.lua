@@ -3,7 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local math = _G.math
 local mathfloor = math.floor
-local tinsert = _G.table.insert
+--local tinsert = _G.table.insert
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemQuality = _G.GetInventoryItemQuality
@@ -157,12 +157,14 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 					EltruismInspectilvls.isHooked = true
 				end
 			end
-			if event == "INSPECT_READY" then
-				E:Delay(0.1, function()
-					if _G.InspectFrame and _G.InspectFrame:IsVisible() then
-						_G.InspectPaperDollFrame_UpdateButtons()
-					end
-				end)
+			if not E.Forever then
+				if event == "INSPECT_READY" then
+					E:Delay(0.1, function()
+						if _G.InspectFrame and _G.InspectFrame:IsVisible() then
+							_G.InspectPaperDollFrame_UpdateButtons()
+						end
+					end)
+				end
 			end
 		end)
 
@@ -173,6 +175,8 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			tinsert(ilvltable, i)
 		end]]
 		--local ilevel = E:GetUnitItemLevel() --GetAverageItemLevel() doesnt exist in tbc/classic
-		_G.CharacterFrame.Text2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+		if _G.CharacterFrame.EltruismText2 then
+			_G.CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+		end
 	end
 end

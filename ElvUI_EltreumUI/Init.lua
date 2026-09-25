@@ -130,6 +130,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
 		if E.Retail then
 			ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
+		else
+			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
 		end
 	else
 		if not E.Mists then
