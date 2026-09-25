@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				playereffect:SetModel(classModels[E.myclass])
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				--playereffect:ClearModel()
-				if E.Retail then
+				if E.Modern then
 					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
@@ -145,7 +145,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
 			local powerbar = _G["ElvUF_Player_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffectplayer:SetModel(1715069)
 					powerbareffectplayer:MakeCurrentCameraCustom()
 					powerbareffectplayer:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.785)
@@ -157,7 +157,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 					powerbareffectplayer:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 				else
 					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
@@ -233,7 +233,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				--targeteffect:ClearModel()
-				if E.Retail then
+				if E.Modern then
 					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
@@ -267,7 +267,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
 			local targetpowerbar = _G["ElvUF_Target_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffecttarget:SetModel(1715069)
 					powerbareffecttarget:MakeCurrentCameraCustom()
 					powerbareffecttarget:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 					powerbareffecttarget:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 				else
 					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
@@ -353,7 +353,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
@@ -386,7 +386,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
 			local targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffecttargettarget:SetModel(1715069)
 					powerbareffecttargettarget:MakeCurrentCameraCustom()
 					powerbareffecttargettarget:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
@@ -398,7 +398,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 					powerbareffecttargettarget:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffecttargettarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 				else
 					powerbareffecttargettarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
@@ -477,7 +477,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				--focuseffect:ClearModel()
-				if E.Retail then
+				if E.Modern then
 					focuseffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					focuseffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
@@ -510,7 +510,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
 			local focuspowerbar = _G["ElvUF_Focus_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffectfocus:SetModel(1715069)
 					powerbareffectfocus:MakeCurrentCameraCustom()
 					powerbareffectfocus:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
@@ -522,7 +522,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 					powerbareffectfocus:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffectfocus:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 				else
 					powerbareffectfocus:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
@@ -539,7 +539,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		end
 	end
 end
-if E.Retail or E.Mists or E.TBC or E.Wrath then
+if E.Modern or E.Mists or E.TBC or E.Wrath then
 	hooksecurefunc(UF, "Construct_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 	hooksecurefunc(UF, "Update_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 end
@@ -579,7 +579,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				--peteffect:ClearModel()
-				if E.Retail then
+				if E.Modern then
 					peteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					peteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
@@ -612,7 +612,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
 			local petpowerbar = _G["ElvUF_Pet_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffectpet:SetModel(1715069)
 					powerbareffectpet:MakeCurrentCameraCustom()
 					powerbareffectpet:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
@@ -624,7 +624,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 					powerbareffectpet:SetAlpha(0.6) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 				else
 					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
@@ -670,7 +670,7 @@ function ElvUI_EltreumUI:CastbarEffects()
 			targetcastbar = _G["ElvUF_Target_CastBar"]
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" then
-				if E.Retail then
+				if E.Modern then
 					castbareffectplayer:SetModel(165821)
 					castbareffecttarget:SetModel(165821)
 				else
@@ -682,7 +682,7 @@ function ElvUI_EltreumUI:CastbarEffects()
 				castbareffecttarget:SetPosition(0, -0.85, 1.65)
 				castbareffecttarget:SetFacing(rad(180))
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "CUSTOM" then
-				if E.Retail then
+				if E.Modern then
 					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
 					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
 				else
@@ -724,7 +724,7 @@ modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so 
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 	ElvUI_EltreumUI:FocusUFEffects()
-	if E.Retail then
+	if E.Modern then
 		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" or event == "PLAYER_REGEN_DISABLED" then
 			if _G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() ~= 0 then
 				ElvUI_EltreumUI:PlayerUFEffects()
