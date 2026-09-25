@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description7 = E.Libs.ACH:Description(_G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Modern)
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.blizzeditmodelayout = E.Libs.ACH:Execute(E.Modern and _G.HUD_EDIT_MODE_IMPORT_LAYOUT.." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", nil, 25, function() ElvUI_EltreumUI:NewRetailEditModeLayout() end,nil,false,'full',nil,nil,nil, not E.Modern)
 
-	ElvUI_EltreumUI.Options.args.installer.args.tab4 = E.Libs.ACH:Group(L["Aura Filters"], nil, 4, E.Modern)
+	ElvUI_EltreumUI.Options.args.installer.args.tab4 = E.Libs.ACH:Group(L["Aura Filters"], nil, 4, nil, nil, nil, nil, E.Modern)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description0 = E.Libs.ACH:Description(L["Choose to show all debuffs/buffs or use default Filters"], 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.general = E.Libs.ACH:Group(L["All"], nil, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.general.args.description1 = E.Libs.ACH:Description(L["Apply To All"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
