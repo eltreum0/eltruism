@@ -16,7 +16,7 @@ local select = _G.select
 local ScenarioObjectiveBlockBackground
 local wowheadbutton = CreateFrame("Button", nil)
 local dontexpandanymorequests = 0
-if E.Retail then
+if E.Modern then
 	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
 	S:HandleFrame(ScenarioObjectiveBlockBackground)
 end
@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 	--create the button for wowhead
 	if E.db.ElvUI_EltreumUI.skins.questswowhead then
-		if E.Retail then
+		if E.Modern then
 			wowheadbutton:SetWidth(80)
 			wowheadbutton:SetHeight(20)
 			wowheadbutton:SetParent(_G.WorldMapFrame)
@@ -69,7 +69,7 @@ function ElvUI_EltreumUI:SkinQuests()
 		S:HandleButton(wowheadbutton)
 		--get the wowhead region based on game language region
 		local wowheadregion
-		if E.Retail then
+		if E.Modern then
 			if E.locale == "deDE" then
 				wowheadregion = "de.wowhead.com"
 			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
@@ -169,12 +169,32 @@ function ElvUI_EltreumUI:SkinQuests()
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "cn.classic.wowhead.com"
 			end
+		elseif E.Forever then
+			if E.locale == "deDE" then
+				wowheadregion = "wowhead.com/forever/de"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "wowhead.com/forever"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "wowhead.com/forever/es"
+			elseif E.locale == "frFR" then
+				wowheadregion = "wowhead.com/forever/fr"
+			elseif E.locale == "itIT" then
+				wowheadregion = "wowhead.com/forever/it"
+			elseif E.locale == "koKR" then
+				wowheadregion = "wowhead.com/forever/ko"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "wowhead.com/forever/pt"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "wowhead.com/forever/ru"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "wowhead.com/forever/cn"
+			end
 		end
 		--register the button for clicks
 		ElvUI_EltreumUI:MacroClick(wowheadbutton)
 
 		--get questid
-		if E.Retail then
+		if E.Modern then
 			local questID
 			local getquestid = CreateFrame("FRAME")
 			getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
@@ -245,7 +265,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 		end
 
-		if E.Retail then
+		if E.Modern then
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
 				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerTopBannerFrame --renamed?
@@ -1859,7 +1879,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 end
 
 --because the objective is removed from frame manager, when swapping to another layout that isnt it can error when trying to export it, so break it from manager again
-if E.Retail then
+if E.Modern then
 	E.PopupDialogs["EDITMODEBEINGSPAMMED"] = {
 		text = "Edit Mode is being spammed by BetterCooldownManager, if you have issues please report to its author.",
 		button1 = _G.ACCEPT,

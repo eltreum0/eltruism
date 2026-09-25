@@ -116,7 +116,7 @@ local function GradientNameplates(unit,unit2)
 		end
 
 		local isOK
-		if E.Retail then
+		if E.Modern then
 			isOK = not frame.CurrentlyBeingTanked
 		else
 			isOK = (frame.CurrentlyBeingTanked ~= UnitGUID(frame.__unit))
@@ -314,7 +314,7 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 		end
 	end
 end
-if not E.Retail then
+if not E.Modern then
 	hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
 end
 --interrupted
@@ -324,6 +324,6 @@ function ElvUI_EltreumUI:Castbar_PostCastFail()
 		self.EltruismNameplateBorder:SetBackdropBorderColor(E.db.nameplates.colors.castInterruptedColor.r, E.db.nameplates.colors.castInterruptedColor.g, E.db.nameplates.colors.castInterruptedColor.b, 1)
 	end
 end
-if not E.Retail then
+if not E.Modern then
 	hooksecurefunc(NP, "Castbar_PostCastFail", ElvUI_EltreumUI.Castbar_PostCastFail)
 end

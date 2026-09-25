@@ -125,10 +125,10 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
 		end
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+		ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
+		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
+		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
 		if E.Retail then
-			ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
-			ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
-			ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
 			ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		end
 	else

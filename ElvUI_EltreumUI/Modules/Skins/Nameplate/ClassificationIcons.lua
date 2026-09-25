@@ -2238,7 +2238,7 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 				end
 			end
 		end
-	elseif not E.Retail then
+	elseif not E.Modern then
 		if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 			local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
 			if bossIDs[unitID] then

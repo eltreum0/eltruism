@@ -410,7 +410,7 @@ end
 		if E.global.nameplates.filters.EltreumRare then
 			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["enable"] = false
 		end
-		if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+		if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["enable"] = false
 		end
 	end
@@ -419,7 +419,7 @@ end
 		if E.global.nameplates.filters.EltreumTarget then
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = false
 		end
-		if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+		if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["enable"] = false
 		end
 	end
@@ -464,7 +464,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["enable"] = true
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["playerClass"] = true
 			end
-			if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+			if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["enable"] = true
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["playerClass"] = true
 			end
@@ -475,7 +475,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["enable"] = false
 			end
-			if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+			if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["enable"] = false
 			end
 		end
@@ -510,25 +510,25 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			local _, targetclass = UnitClass("target")
 			local reactiontarget = UnitReaction("target", "player")
 			if UnitExists("target") and E.global.nameplates.filters.EltreumTarget then
-				if targetclass and (UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target"))) then --npc
+				if targetclass and (UnitIsPlayer("target") or (E.Modern and UnitInPartyIsAI("target"))) then --npc
 					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["texture"] = playerclassv1[targetclass]
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = true
-						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+						if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["enable"] = true
 						end
 					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["texture"] = playerclassv2[targetclass]
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = true
-						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+						if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV2"
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["enable"] = true
 						end
 					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["texture"] = playerclassv3[targetclass]
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = true
-						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+						if not E.Modern and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV3"
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["texture"]["enable"] = true
 						end
@@ -697,7 +697,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 
 		--automatically set the execute % based on class
 		--[[if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
-			if E.Retail then
+			if E.Modern then
 				if E.myclass == "WARRIOR" then
 					if IsPlayerSpell(206315) or IsPlayerSpell(281001) then -- massacre talent
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
@@ -765,12 +765,12 @@ end
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	local nameplateShowOnlyNames = (E.Retail and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
-	local showOnlyNamesString = (E.Retail and "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
+	local nameplateShowOnlyNames = (E.Modern and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
+	local showOnlyNamesString = (E.Modern and "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
 	local nameplateShowFriends = tostring(GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
-		if E.Retail then
+		if E.Modern then
 
 			--set the nameplates to use class colors instead of the blue for everything
 			SetCVar("nameplateUseClassColorForFriendlyPlayerUnitNames", 1)
@@ -894,7 +894,7 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 		end
 	end
 end
-if not E.Retail then
+if not E.Modern then
 	hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
 end
 

@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.mirrorTimers then
 
 		--breath/mirror
-		if not E.Retail then
+		if not E.Modern then
 			for i = 1, 3 do
 				local statusBar = _G['MirrorTimer'..i..'StatusBar']
 				if statusBar then
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 
 		--loot roll
 		local M = E:GetModule('Misc')
-		local maxBars = E.Retail and E.db.general.lootRoll.maxBars or _G.NUM_GROUP_LOOT_FRAMES or 4
+		local maxBars = E.Modern and E.db.general.lootRoll.maxBars or _G.NUM_GROUP_LOOT_FRAMES or 4
 		for i = 1, maxBars do
 			local frame = M:LootRoll_GetFrame(i)
 			if frame then
@@ -383,7 +383,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
 
 		--hijack here because retail is different
-		if E.Retail then
+		if E.Modern then
 			if _G.ProfessionsFrame then
 				--_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
 				_G.ProfessionsFrame:HookScript("OnEvent", function()
@@ -411,7 +411,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		local vellumbutton
 		if not E.Classic then
 			if not _G["EltruismVellumButton"] then
-				if E.Retail then
+				if E.Modern then
 					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
 					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
 				else
@@ -427,7 +427,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		--create disenchant button
 		local disenchantbutton
 		if not _G["EltruismDisenchantButton"] then
-			if E.Retail then
+			if E.Modern then
 				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["ProfessionsFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 				disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
 			else
@@ -451,7 +451,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 
 		--script buttons
 		local hookedframe
-		if E.Retail then
+		if E.Modern then
 			hookedframe = _G.ProfessionsFrame
 		else
 			hookedframe = _G.TradeSkillFrame
@@ -477,7 +477,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 						if GetItemCount(38682) > 0 then
 							vellumbutton:SetEnabled(true)
 							--C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-							if E.Retail then
+							if E.Modern then
 								_G.C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
 							else
 								_G.TradeSkillCreateButton:Click()
@@ -494,7 +494,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--fix disenchant overlap with create all
-		if E.Retail then
+		if E.Modern then
 			if _G.ProfessionsFrame.CraftingPage.CreateAllButton then
 				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnShow", function()
 					vellumbutton:ClearAllPoints()
@@ -514,7 +514,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 				local spellData = GetSpellInfo(7411)
 				enchantingtext = spellData.name
 				local tradeskilltext
-				if E.Retail then
+				if E.Modern then
 					tradeskilltext = _G.ProfessionsFrameTitleText:GetText()
 				else
 					tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
@@ -532,7 +532,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 				end
 			end)
 		end
-		if E.Retail then
+		if E.Modern then
 			_G.ProfessionsFrame:HookScript("OnShow",function() UpdateButtons() end)
 			_G.ProfessionsFrame:HookScript("OnEvent",function() UpdateButtons() end)
 		else
@@ -558,7 +558,7 @@ local function TSMCheck(arg)
 end
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	--in 10.1.5 the addon load order seems to not be reliable and tsm can error, so check for tsm being enabled (because it wont be loaded)
-	if E.Retail then
+	if E.Modern then
 		if GetAddOnEnableState("TradeSkillMaster",E.myname) == 0 then
 			TSMCheck(arg)
 		else
@@ -639,7 +639,7 @@ end
 --hide talking head
 local EltruismHideTalkingHead = CreateFrame('Frame', "EltruismHideTalkingHeadFrame")
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
-	if E.Retail then
+	if E.Modern then
 		if E.db.ElvUI_EltreumUI.skins.hidetalkinghead then
 			EltruismHideTalkingHead:RegisterEvent('ADDON_LOADED')
 			EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)

@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				if not _G["ElvUI_ContainerFrame"].numButtons then
 					if InCombatLockdown() then return end
 					_G["ElvUI_ContainerFrame"].numButtons = 0
-					if E.Retail then
+					if E.Modern then
 						for _,v in ipairs{GetProfessions()} do
 							local name, icon, _, _, _, spelloffset = GetProfessionInfo(v)
 							if name then
@@ -531,7 +531,7 @@ function ElvUI_EltreumUI:BagProfessions()
 			combatcheck:SetScript("OnEvent", function(_, event)
 				if event == "PLAYER_REGEN_DISABLED" then
 					if _G["ElvUI_ContainerFrame"].numButtons then
-						if E.Retail then
+						if E.Modern then
 							for _,v in ipairs{GetProfessions()} do
 								if _G["EltruismProfession"..v.."BagButton"] then
 									_G["EltruismProfession"..v.."BagButton"]:ClearAllPoints()
@@ -565,7 +565,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				elseif event == "PLAYER_REGEN_ENABLED" then
 					if _G["ElvUI_ContainerFrame"].numButtons then
 						_G["ElvUI_ContainerFrame"].numButtons = 0
-						if E.Retail then
+						if E.Modern then
 							for _,v in ipairs{GetProfessions()} do
 								local name, icon = GetProfessionInfo(v)
 								if name and not blockprof[icon] then

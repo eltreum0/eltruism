@@ -12,6 +12,7 @@ local PlaySoundFile = _G.PlaySoundFile
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local GetPlayerAuraBySpellID = _G.C_UnitAuras and _G.C_UnitAuras.GetPlayerAuraBySpellID
+local pairs = _G.pairs
 
 --Dark Souls Death, my first weakaura adapted
 local deathFrame = CreateFrame("FRAME", "EltruismDeathFrame", WorldFrame)
@@ -92,7 +93,7 @@ local function PlayDeathAnimation()
 	deathBanner:ClearAllPoints()
 
 	UIParent:SetAlpha(0)
-	if E.Retail then
+	if E.Modern then
 		ObjectiveTrackerFrame:SetAlpha(0)
 	end
 	Minimap:Hide()
@@ -200,7 +201,9 @@ local function PlayDeathAnimation()
 			_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
 		end
 		UIParent:SetAlpha(1)
-		if E.Retail then ObjectiveTrackerFrame:SetAlpha(1) end
+		if E.Modern then
+			ObjectiveTrackerFrame:SetAlpha(1)
+		end
 		Minimap:SetAlpha(1)
 		Minimap:Show()
 
