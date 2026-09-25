@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 16 then
-				name = ElvUI_EltreumUI:ShortenString(name, 16)
+				name = ElvUI_EltreumUI:ShortenString(name, 16,nil,nil,UnitIsPlayer(unit))
 			end
 			return name
 		else
@@ -106,7 +106,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 20 then
-				name = ElvUI_EltreumUI:ShortenString(name, 20)
+				name = ElvUI_EltreumUI:ShortenString(name, 20,nil,nil,UnitIsPlayer(unit))
 			end
 			return name
 		else
@@ -124,7 +124,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 10 then
-				name = ElvUI_EltreumUI:ShortenString(name, 10)
+				name = ElvUI_EltreumUI:ShortenString(name, 10,nil,nil,UnitIsPlayer(unit))
 			end
 			return name
 		else
@@ -191,7 +191,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
 			end
 			if stringlen(name) > tonumber(args) then --second for players
 				name = E:ShortenString(name, tonumber(args))
@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			name = stringupper(namecheck)
 			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
 			end
 			if stringlen(name) > tonumber(args) then --second for players
 				name = E:ShortenString(name, tonumber(args))
@@ -336,7 +336,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if args then
 				if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-					name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+					name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
 				end
 				if stringlen(name) > tonumber(args) then --second for players
 					name = E:ShortenString(name, tonumber(args))
@@ -385,7 +385,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			name = Translit:Transliterate(targetName)
 			if name and stringlen(name) > 16 then
-				name = ElvUI_EltreumUI:ShortenString(name, 16)
+				name = ElvUI_EltreumUI:ShortenString(name, 16,nil,nil,UnitIsPlayer(unit))
 			end
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -536,7 +536,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 16 then
-				name = ElvUI_EltreumUI:ShortenString(name, 16)
+				name = ElvUI_EltreumUI:ShortenString(name, 16,nil,nil,UnitIsPlayer(unit))
 			end
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -579,7 +579,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not args then args = 16 end
 			args = tonumber(args)
 			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
 			end
 			if stringlen(name) > tonumber(args) then --second for players
 				name = E:ShortenString(name, tonumber(args))
@@ -819,7 +819,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
+				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true,UnitIsPlayer())
 			end
 		end
 

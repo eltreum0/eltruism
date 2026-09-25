@@ -964,7 +964,8 @@ end
 
 do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
-	function ElvUI_EltreumUI:ShortenString(text, length, cut,firstname)
+	local shortenSuffix = function(t) return t:utf8sub(1,1)..'.' end
+	function ElvUI_EltreumUI:ShortenString(text, length, cut, firstname, isPlayer)
 		if not ElvUI_EltreumUI:IsThisASafeSecret(text,true) then
 			return text
 		else
@@ -972,7 +973,14 @@ do
 				if cut then
 					text = E:ShortenString(text,length)
 				else
-					if firstname then
+					if E.Forever and isPlayer then
+						local first, last = text:match('^(%a*)(.*)$')
+						if first and last then
+							text = first.." "..last:gsub('(%S+)', shortenSuffix)
+						else
+							text = text:gsub('(%S+) ', shortenReplace)
+						end
+					elseif firstname then
 						local first, last = text:match('^(%a*)(.*)$')
 						if first and last then
 							text = first.." "..last:gsub('(%S+)', shortenReplace)
