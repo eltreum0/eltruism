@@ -6,6 +6,8 @@ local PaperDollFrame_SetLevel = _G.PaperDollFrame_SetLevel
 local PaperDollFrame_UpdateStats = _G.PaperDollFrame_UpdateStats
 local tostring = _G.tostring
 local tonumber = _G.tonumber
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 -- Eltruism skins options
 function ElvUI_EltreumUI:SkinsOptions()
@@ -343,6 +345,20 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description3 = E.Libs.ACH:Description(L["Skin Objective Frame"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.enable = E.Libs.ACH:Toggle(L["Enable Skin"], L["Skin the Objective/Quest Frame"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.quests end, function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.enableshadow = E.Libs.ACH:Toggle(L["Enable Shadows"], nil, 7, nil, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.showQuestDifficultyColor = E.NewSign..E.Libs.ACH:Toggle(_G.MAP_QUEST_DIFFICULTY_TEXT or " ", nil, 7, nil, false,'full',
+	function()
+		if GetCVar('showQuestDifficultyColor') == '0' then
+			return false
+		elseif GetCVar('showQuestDifficultyColor') == '1' then
+			return true
+		end
+	end, function(_, value)
+		if value then
+			SetCVar('showQuestDifficultyColor', 1)
+		else
+			SetCVar('clampTargetNameplateToScreen', 0)
+		end
+	end, nil, not E.Forever)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description4 = E.Libs.ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Modern)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.progresstexture = E.Libs.ACH:SharedMediaStatusbar(L["Choose the Progress Bar Texture"], L["Select a Texture"], 9, "full", function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end, function(_,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end, not E.Modern)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description5 = E.Libs.ACH:Description(L["Line"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

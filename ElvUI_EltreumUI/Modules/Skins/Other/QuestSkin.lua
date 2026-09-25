@@ -266,7 +266,11 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 
 		if E.Modern then
+			--[[
+			--previous quest addons
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+			]]
+			if not IsAddOnLoaded('!KalielsTracker') then
 				--WQs banner
 				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerTopBannerFrame --renamed?
 				if ObjectiveTrackerBonusBannerFrame then
@@ -866,6 +870,12 @@ function ElvUI_EltreumUI:SkinQuests()
 						end)
 						k.OnHeaderLeaveHook = true
 					end
+					if k.SetHeader and not k.SetHeaderHook then
+						hooksecurefunc(k, "SetHeader", function(block)
+							blockskin(block)
+							k.SetHeaderHook = true
+						end)
+					end
 					if k.AddObjective and not k.AddObjectiveHook then
 						local function updateObjectiveCount()
 							--add quest count
@@ -1093,6 +1103,12 @@ function ElvUI_EltreumUI:SkinQuests()
 								blockskin(k)
 							end)
 							k.AddQuestHook = true
+						end
+						if k.SetHeader and not k.SetHeaderHook then
+							hooksecurefunc(k, "SetHeader", function(block)
+								blockskin(block)
+								k.SetHeaderHook = true
+							end)
 						end
 					end
 				end
