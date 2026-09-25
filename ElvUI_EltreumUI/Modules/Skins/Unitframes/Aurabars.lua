@@ -483,7 +483,7 @@ function ElvUI_EltreumUI:AuraBarRetail(container, button)
 	ElvUI_EltreumUI:UpdateRetailAuraBar(container, button, button.eltruismAuraData)
 end
 
-if not E.Retail then
+if not E.Modern then
 	hooksecurefunc(UF, "PostUpdateBar_AuraBars", ElvUI_EltreumUI.AuraBarGradient)
 else
 	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button)
