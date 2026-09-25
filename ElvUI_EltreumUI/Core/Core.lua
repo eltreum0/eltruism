@@ -690,8 +690,10 @@ EltruismGameMenu:SetScript("OnEvent", function()
 						end
 
 						--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-						if E.Modern then
+						if E.Retail then
 							GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+						elseif E.Forever then
+							GameMenuFrame:Height(456 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
 						else
 							GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
 						end
