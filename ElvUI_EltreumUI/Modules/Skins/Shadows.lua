@@ -11,6 +11,8 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local C_ChatBubbles = _G.C_ChatBubbles
+local tostring = _G.tostring
+local ipairs = _G.ipairs
 
 local EltruismBlizzShadows = CreateFrame("Frame")
 local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
@@ -914,6 +916,30 @@ function ElvUI_EltreumUI:Shadows()
 						if _G.ProfessionsFrame and not _G.ProfessionsFrame.shadow then
 							_G.ProfessionsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsFrame.shadow)
+							if E.Forever then
+								local foreverprofessions = {
+									_G.ProfessionsFrame.ProfessionsOverviewTab,
+									_G.ProfessionsFrame.Professions1Tab,
+									_G.ProfessionsFrame.Professions2Tab,
+									_G.ProfessionsFrame.Professions3Tab,
+									_G.ProfessionsFrame.Professions4Tab,
+								}
+								for _, frame in pairs(foreverprofessions) do
+									if frame then
+										if frame.backdrop then
+											if not frame.backdrop.shadow then
+												frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+											end
+										else
+											if not frame.shadow then
+												frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(frame.shadow)
+											end
+										end
+									end
+								end
+							end
 						end
 						if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
 							for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
@@ -1031,6 +1057,29 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.AuctionFrameTab3.backdrop.shadow)
 						end
 					end
+					if (arg == "Blizzard_LegacySystem") or IsAddOnLoaded("Blizzard_LegacySystem") then
+						if _G.LegacySystemFrame and not _G.LegacySystemFrame.shadow then
+							_G.LegacySystemFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.LegacySystemFrame.shadow)
+							if _G.LegacySystemFrame.Tabs then
+								for _, tab in ipairs(_G.LegacySystemFrame.Tabs) do
+									if tab then
+										if tab.backdrop then
+											if not tab.backdrop.shadow then
+												tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+											end
+										else
+											if not tab.shadow then
+												tab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(tab.shadow)
+											end
+										end
+									end
+								end
+							end
+						end
+					end
 				end
 			end)
 
@@ -1051,6 +1100,12 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CharacterFrameTab4,
 				_G.CharacterFrameTab4, --only in classic though
 				_G.CharacterFrameTab5, --only in classic though
+				_G.CharacterFrameModeTab1, --only in forever though
+				_G.CharacterFrameModeTab2, --only in forever though
+				_G.CharacterFrameModeTab3, --only in forever though
+				_G.CharacterFrameModeTab4, --only in forever though
+				_G.CharacterFrameModeTab5, --only in forever though
+				_G.CharacterFrameModeTab6, --only in forever though
 				_G.ChatConfigFrame,
 				_G.ChatFrame1EditBox,
 				_G.CinematicFrameCloseDialog,
@@ -1064,7 +1119,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DressUpFrame and _G.DressUpFrame.SetSelectionPanel,
 				_G.DropDownList1,
 				_G.DropDownList2,
-				E.Modern and _G.EditModeManagerFrame,
+				_G.EditModeManagerFrame,
 				_G.EltruismClickCastingToggle,
 				_G.EmbeddedItemTooltip,
 				_G.EquipmentFlyoutFrameButtons,
@@ -1223,9 +1278,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CurrencyTransferLog,
 				_G.PlayerSpellsFrame, --can be loaded before the addon too
 				_G.QuestTimerFrame, --era timed quests
-				E.Modern and _G.CooldownViewerSettings, --retail new cd
-				E.Modern and _G.CooldownViewerSettings and _G.CooldownViewerSettings.SpellsTab and _G.CooldownViewerSettings.SpellsTab.backdrop, --retail new cd
-				E.Modern and _G.CooldownViewerSettings and _G.CooldownViewerSettings.AurasTab and _G.CooldownViewerSettings.AurasTab.backdrop, --retail new cd
+				_G.CooldownViewerSettings, --retail new cd
+				_G.CooldownViewerSettings and _G.CooldownViewerSettings.SpellsTab and _G.CooldownViewerSettings.SpellsTab.backdrop, --retail new cd
+				_G.CooldownViewerSettings and _G.CooldownViewerSettings.AurasTab and _G.CooldownViewerSettings.AurasTab.backdrop, --retail new cd
 				--_G.DamageMeterSessionWindow1,
 			}
 			for _, frame in pairs(blizzardframes) do
