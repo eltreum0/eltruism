@@ -56,6 +56,23 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
+	E.PopupDialogs["USEELVUIDEV"] = {
+		text = L["You are using Eltruism Dev\nIt is highly recommended to use ElvUI Dev"],
+		button1 = OKAY,
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = false,
+	}
+
+	--check if using alpha, recommend elvui dev
+	if ElvUI_EltreumUI.DevRelease then
+		local elvuivcheck = GetAddOnMetadata("ElvUI", 'Version')
+		local _, extra = strmatch(elvuivcheck, '^v?([%d.]+)(.*)')
+		local isDev = (elvuivcheck == "@project-version@") or (extra and extra ~= "")
+		if not isDev then
+			E:StaticPopup_Show('USEELVUIDEV')
+		end
+	end
 
 	--elvui check
 	if E.version < 99999 then
