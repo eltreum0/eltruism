@@ -397,7 +397,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-						if E.Retail or E.Mists or E.TBC or E.Wrath then
+						if E.Modern or E.Mists or E.TBC or E.Wrath then
 							if not _G.MacroFrame.shadow then
 								_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
@@ -422,8 +422,8 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
-						if E.Retail or E.Mists or E.TBC or E.Wrath then
-							if E.Retail then
+						if E.Modern or E.Mists or E.TBC or E.Wrath then
+							if E.Modern then
 								if not _G.GuildBankFrame.shadow then
 									_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.shadow)
@@ -482,7 +482,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then
-						if E.Retail then
+						if E.Modern then
 							if not _G.ClassTrainerFrame.shadow then
 								_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.shadow)
@@ -507,7 +507,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
-						if E.Retail then
+						if E.Modern then
 							if not _G.TradeSkillFrame.shadow then
 								_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.shadow)
@@ -584,7 +584,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
-						if E.Retail then
+						if E.Modern then
 							if not _G.PlayerTalentFrame.shadow then
 								_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.PlayerTalentFrame.shadow)
@@ -730,7 +730,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
-						if E.Retail or E.Mists or E.Wrath then
+						if E.Modern or E.Mists or E.Wrath then
 							if _G.AchievementFrame then
 								if _G.AchievementFrame.backdrop then
 									if not _G.AchievementFrame.backdrop.shadow then
@@ -1064,7 +1064,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DressUpFrame and _G.DressUpFrame.SetSelectionPanel,
 				_G.DropDownList1,
 				_G.DropDownList2,
-				E.Retail and _G.EditModeManagerFrame,
+				E.Modern and _G.EditModeManagerFrame,
 				_G.EltruismClickCastingToggle,
 				_G.EmbeddedItemTooltip,
 				_G.EquipmentFlyoutFrameButtons,
@@ -1203,10 +1203,10 @@ function ElvUI_EltreumUI:Shadows()
 				_G.VoidStorageFrame,
 				_G.WardrobeFrame, --weird
 				_G.WeeklyRewardsFrame,
-				E.Retail and _G.WorldMapFrame,
-				E.Retail and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.QuestsTab,
-				E.Retail and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.MapLegendTab,
-				E.Retail and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.EventsTab,
+				E.Modern and _G.WorldMapFrame,
+				E.Modern and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.QuestsTab,
+				E.Modern and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.MapLegendTab,
+				E.Modern and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.EventsTab,
 				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
 				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
 				_G.WorldMapTooltip,
@@ -1223,9 +1223,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CurrencyTransferLog,
 				_G.PlayerSpellsFrame, --can be loaded before the addon too
 				_G.QuestTimerFrame, --era timed quests
-				E.Retail and _G.CooldownViewerSettings, --retail new cd
-				E.Retail and _G.CooldownViewerSettings and _G.CooldownViewerSettings.SpellsTab and _G.CooldownViewerSettings.SpellsTab.backdrop, --retail new cd
-				E.Retail and _G.CooldownViewerSettings and _G.CooldownViewerSettings.AurasTab and _G.CooldownViewerSettings.AurasTab.backdrop, --retail new cd
+				E.Modern and _G.CooldownViewerSettings, --retail new cd
+				E.Modern and _G.CooldownViewerSettings and _G.CooldownViewerSettings.SpellsTab and _G.CooldownViewerSettings.SpellsTab.backdrop, --retail new cd
+				E.Modern and _G.CooldownViewerSettings and _G.CooldownViewerSettings.AurasTab and _G.CooldownViewerSettings.AurasTab.backdrop, --retail new cd
 				--_G.DamageMeterSessionWindow1,
 			}
 			for _, frame in pairs(blizzardframes) do
@@ -1395,7 +1395,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------version specific
-		if E.Retail then
+		if E.Modern then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then --reputation detail got moved
 				if _G.ReputationFrame and _G.ReputationFrame.ReputationDetailFrame then
 					_G.ReputationFrame.ReputationDetailFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1407,7 +1407,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.Retail or E.Mists or E.TBC or E.Wrath then
+		if E.Modern or E.Mists or E.TBC or E.Wrath then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 
 				--loss of control frame icon
@@ -2076,7 +2076,7 @@ function ElvUI_EltreumUI:Shadows()
 										end
 									end
 								end
-								if E.Retail then
+								if E.Modern then
 									if _G["ElvUF_Focus_Stagger"] and _G["ElvUF_Focus_Stagger"].shadow then
 										_G["ElvUF_Focus_Stagger"].shadow:Hide()
 									end
@@ -2211,7 +2211,7 @@ function ElvUI_EltreumUI:Shadows()
 										end
 									end
 								end
-								if E.Retail then
+								if E.Modern then
 									if _G["ElvUF_FocusTarget_Stagger"] and _G["ElvUF_FocusTarget_Stagger"].shadow then
 										_G["ElvUF_FocusTarget_Stagger"].shadow:Hide()
 									end
@@ -2261,7 +2261,7 @@ function ElvUI_EltreumUI:Shadows()
 									end
 								end
 							end
-							if E.Retail then
+							if E.Modern then
 								if _G["ElvUF_Player_Stagger"] and _G["ElvUF_Player_Stagger"].shadow then
 									_G["ElvUF_Player_Stagger"].shadow:Hide()
 								end
@@ -4460,7 +4460,7 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 		end
 	end
 end
-if E.Retail then
+if E.Modern then
 	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button) --better way to pass variables
 		ElvUI_EltreumUI:AuraShadows(container, button)
 	end)
