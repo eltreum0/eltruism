@@ -25,6 +25,14 @@ jobs:
         run: |
           CURRENT_SHA="${{ github.sha }}"
 
+          # check for tag
+          TAG=$(git describe --tags --exact-match $CURRENT_SHA 2>/dev/null) || true
+          if [ -n "$TAG" ]; then
+            echo "Commit is tagged as $TAG. Skipping Dev Build to let the Release workflow handle it."
+            echo "should_run=false" >> $GITHUB_ENV
+            exit 0
+          fi
+
           git clone https://x-access-token:${{ secrets.PAGES_PAT }}@github.com/eltreum0/eltreum0.github.io.git /tmp/pages-repo || true
 
           if [ ! -d "/tmp/pages-repo/.git" ]; then
