@@ -356,7 +356,7 @@ function ElvUI_EltreumUI:SkinsOptions()
 		if value then
 			SetCVar('showQuestDifficultyColor', 1)
 		else
-			SetCVar('clampTargetNameplateToScreen', 0)
+			SetCVar('showQuestDifficultyColor', 0)
 		end
 	end, nil, not E.Forever)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description4 = E.Libs.ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Modern)
