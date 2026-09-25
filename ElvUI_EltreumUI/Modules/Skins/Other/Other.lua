@@ -379,6 +379,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 end
 
 --enchanting vellum/disenchant buttons
+local InCombatLockdown = _G.InCombatLockdown
 function ElvUI_EltreumUI:EnchantScroll()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
 
@@ -387,12 +388,15 @@ function ElvUI_EltreumUI:EnchantScroll()
 			if _G.ProfessionsFrame then
 				--_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
 				_G.ProfessionsFrame:HookScript("OnEvent", function()
+					if InCombatLockdown() then return end
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
 				_G.ProfessionsFrame:HookScript("OnShow", function()
+					if InCombatLockdown() then return end
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
 				_G.ProfessionsFrame:SetScript('OnSizeChanged', function()
+					if InCombatLockdown() then return end
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
 

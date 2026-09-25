@@ -331,9 +331,15 @@ DT:RegisterDatatext('Eltruism Stats 1', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RAT
 local function EltruismStatsDatatext2(dt)
 	if E.Forever then
 		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
-		local totalmelee = meleebasepower+meleebuff+meleenerf
-		local tmeleepower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..totalmelee.."|r"
+		local tmeleepower
 		local tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", GetHitModifier()).."|r" --GetCombatRatingBonus(CR_HIT_MELEE)
+		if E:NotSecretValue(meleebasepower) then
+			local totalmelee = meleebasepower+meleebuff+meleenerf
+			tmeleepower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..totalmelee.."|r"
+
+		else
+			tmeleepower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..meleebasepower.."|r"
+		end
 
 		dt.text:SetFormattedText('%s %s|r',tmeleepower,tmeleehit)
 	elseif E.Modern then
