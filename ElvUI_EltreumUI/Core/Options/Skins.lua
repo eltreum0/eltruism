@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description3 = E.Libs.ACH:Description(L["Skin Objective Frame"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.enable = E.Libs.ACH:Toggle(L["Enable Skin"], L["Skin the Objective/Quest Frame"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.quests end, function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.enableshadow = E.Libs.ACH:Toggle(L["Enable Shadows"], nil, 7, nil, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
-	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.showQuestDifficultyColor = E.NewSign..E.Libs.ACH:Toggle(_G.MAP_QUEST_DIFFICULTY_TEXT or " ", nil, 7, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.showQuestDifficultyColor = E.Libs.ACH:Toggle(E.NewSign.._G.MAP_QUEST_DIFFICULTY_TEXT or " ", nil, 7, nil, false,'full',
 	function()
 		if GetCVar('showQuestDifficultyColor') == '0' then
 			return false
