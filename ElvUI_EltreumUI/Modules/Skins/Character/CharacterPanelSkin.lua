@@ -1693,6 +1693,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterFrame, 'CENTER', -145, -202)
 				--_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterFrame, 'CENTER', -50, -202)
 			end
+
+			--set ilvl on char panel
+			if E.Forever then
+				CharacterFrame.EltruismText2:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20) --ilvl number
+				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
+				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			end
 		end
 
 		--add gradient text to stats
@@ -1884,11 +1892,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--set ilvl on char panel
 			if E.Forever then
-				CharacterFrame.EltruismText2:SetSize(418, 72)
 				CharacterFrame.EltruismText2:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20) --ilvl number
-				CharacterFrame.EltruismText2:SetParent(CharacterFrame.StatusLine)
+				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
 				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			end
 		end
 
