@@ -81,7 +81,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	-- Name custom abbreviation by Azilroka
 	E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 16 then
@@ -96,7 +99,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	-- Abbreviate in 20 chars for Nekator
 	E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 20 then
@@ -111,7 +117,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	-- Abbreviate very short due to small raid frames
 	E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if name and stringlen(name) > 10 then
@@ -126,7 +135,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--gradient name
 	E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
@@ -164,7 +176,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--gradient name abbreviate
 	E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		if not name then return end
 		if not args then args = 16 end
 		args = tonumber(args)
@@ -211,7 +226,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--gradient name in caps
 	E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
 		if not unit then return end
-		local namecheck = UnitName(unit)
+		local namecheck,surname = UnitName(unit)
+		if E.Forever and surname then
+			namecheck = namecheck.." "..surname
+		end
 		if not namecheck then return end
 		local name = namecheck
 		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
@@ -252,7 +270,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--gradient name abbreviate in caps
 	E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,args)
 		if not unit then return end
-		local namecheck = UnitName(unit)
+		local namecheck,surname = UnitName(unit)
+		if E.Forever and surname then
+			namecheck = namecheck.." "..surname
+		end
 		if not namecheck then return end
 		local name = namecheck
 		if not args then args = 16 end
@@ -300,7 +321,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--gradient name translit
 	E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,args)
-		local targetName = UnitName(unit)
+		local targetName,surname = UnitName(unit)
+		if E.Forever and surname then
+			targetName = targetName.." "..surname
+		end
 		local name = Translit:Transliterate(targetName)
 		if not name then return end
 		local isTarget
@@ -347,7 +371,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--gradient name abbreviate translit
 	E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(unit)
-		local targetName = UnitName(unit)
+		local targetName,surname = UnitName(unit)
+		if E.Forever and surname then
+			targetName = targetName.." "..surname
+		end
 		local name = targetName
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
@@ -388,7 +415,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTagInfo("name:eltruism:gradientshorttranslit", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
 	E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
@@ -431,30 +461,35 @@ function ElvUI_EltreumUI:LoadNameTags()
 	end)
 	E:AddTagInfo("eltruismguild:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the guild name with brackets in gradient"])
 
-	E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
-		local _, realm = UnitName(unit)
-		local _, unitClass = UnitClass(unit)
-		if realm and unitClass then
-			if ElvUI_EltreumUI:IsThisASafeSecret(realm,true) then
-				if realm ~= '' then
-					if realm ~= E.myrealm then
-						realm = format('-%s', realm)
-						if not E:NotSecretValue(unitClass) then --secret class so do something else
-							local classColor = GetClassColor(unitClass)
-							local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-							return hex..realm.."|r"
+	if not E.Forever then
+		E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
+			local _, realm = UnitName(unit)
+			local _, unitClass = UnitClass(unit)
+			if realm and unitClass then
+				if ElvUI_EltreumUI:IsThisASafeSecret(realm,true) then
+					if realm ~= '' then
+						if realm ~= E.myrealm then
+							realm = format('-%s', realm)
+							if not E:NotSecretValue(unitClass) then --secret class so do something else
+								local classColor = GetClassColor(unitClass)
+								local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
+								return hex..realm.."|r"
+							end
+							return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
 						end
-						return ElvUI_EltreumUI:GradientName(realm, unitClass,nil,true)
 					end
 				end
 			end
-		end
-	end)
-	E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
+		end)
+		E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
+	end
 
 	--gradient name default colors
 	E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
@@ -489,7 +524,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--gradient name abbreviate default colors
 	E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
@@ -530,7 +568,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--class color name abbreviate in caps
 	E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 		if not unit then return end
-		local namecheck = UnitName(unit)
+		local namecheck,surname = UnitName(unit)
+		if E.Forever and surname then
+			namecheck = namecheck.." "..surname
+		end
 		if not namecheck then return end
 		local name = namecheck
 		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
@@ -573,7 +614,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--name in caps
 	E:AddTag("name:eltruism:capital", "UNIT_NAME_UPDATE", function(unit)
 		if not unit then return end
-		local namecheck = UnitName(unit)
+		local namecheck,surname = UnitName(unit)
+		if E.Forever and surname then
+			namecheck = namecheck.." "..surname
+		end
 		if not namecheck then return end
 		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) then
 			local name = stringupper(namecheck)
@@ -591,7 +635,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--Class Color nickname
 	E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 		if not unit then return end
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
 		if nicktag then
@@ -669,7 +716,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--Gradient nickname
 	E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
 		local isTarget
@@ -753,7 +803,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--gradient short but dont abbreviate first name
 	E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_,args)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		if not name then return end
 		if not args then args = 16 end
 		args = tonumber(args)
@@ -803,7 +856,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--elvui name abbrev but with args
 	E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit)
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		if not name then return end
 		if not args then args = 16 end
 		args = tonumber(args)
@@ -820,7 +876,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--elvui target name abbrev but with args
 	E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
-		local targetName = UnitName(unit..'target')
+		local targetName,surname = UnitName(unit..'target')
+		if E.Forever and surname then
+			targetName = targetName.." "..surname
+		end
 		if not targetName then return end
 		if not args then args = 16 end
 		args = tonumber(args)
@@ -838,7 +897,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--target of target gradient name
 	E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function()
 		if not UnitExists("targettarget") then return end
-		local name = UnitName("targettarget")
+		local name,surname = UnitName("targettarget")
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		if name then
 			if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
 				local _, unitClass = UnitClass("targettarget")
@@ -869,7 +931,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--reversed gradient name
 	E:AddTag("name:eltruism:gradientreverse", "UNIT_NAME_UPDATE", function(unit)
-		local name = UnitName(unit)
+		local name,surname = UnitName(unit..'target')
+		if E.Forever and surname then
+			name = name.." "..surname
+		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
