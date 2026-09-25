@@ -134,7 +134,7 @@ function ElvUI_EltreumUI:GetBorderDB(isUnitframe,isNamePlate,auraType)
 	return edgeSize, strata, level, sizeX, sizeY
 end
 
-function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
+--[[function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
 	if E.Modern then
 		classcolor2 = {}
 		classcolor2check = false
@@ -169,7 +169,7 @@ function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
 			classcolor2check = false
 		end
 	end
-end
+end]]
 
 local function BordersPart1()
 	--elvui unitframes

@@ -22,7 +22,7 @@ local select = _G.select
 local type = _G.type
 
 --function to check if colormixin tables are equal, if they are return false since its used to do something after that
-function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
+--[[function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
 	local r1,g1,b1,a1 = table1.r,table1.g,table1.b,table1.a
 	local r2,g2,b2,a2 = table2.r,table2.g,table2.b,table2.a
 	if r1 == r2 and g1 == g2 and b1 == b2 and a1 == a2 then
@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
 	else
 		return true
 	end
-end
+end]]
 
 --function to update extra frames like tank and assist and their targets
 local function UpdateTankAssistFrames(button)

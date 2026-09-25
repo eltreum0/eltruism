@@ -744,23 +744,6 @@ local EltruismNamePlateOptionsFrame = CreateFrame("FRAME")
 EltruismNamePlateOptionsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOptions)
 
---add threat to nameplate by putting threat into title and moving title to the healthbar
-function ElvUI_EltreumUI:ClassicThreatNP()
-	if E.private.nameplates.enable then
-		if E.Classic or E.Mists or E.TBC or E.Wrath then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = E.db.general.font
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["parent"] = "Health"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontSize"] = 10
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
-		end
-	end
-end
-
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()

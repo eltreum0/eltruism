@@ -212,7 +212,7 @@ end
 end]]
 
 --Dynamic Spellsteal Nameplate Style Filter
-function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
+--[[function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	else
@@ -244,7 +244,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 			--E:UpdateNamePlates()
 		end
 	end
-end
+end]]
 
 --swap bar1 and bar4 action paging / visibility
 function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)

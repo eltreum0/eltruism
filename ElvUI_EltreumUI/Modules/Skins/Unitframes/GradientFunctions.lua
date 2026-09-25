@@ -517,7 +517,7 @@ function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom)
 	end
 end
 
-function ElvUI_EltreumUI:GetPowerGradient(powertype, invert, isBG, isCustom)
+--[[function ElvUI_EltreumUI:GetPowerGradient(powertype, invert, isBG, isCustom)
 	if not powertype or not E:NotSecretValue(powertype) then
 		powertype = "ELTRUISM"
 	end
@@ -539,7 +539,7 @@ function ElvUI_EltreumUI:GetPowerGradient(powertype, invert, isBG, isCustom)
 	else
 		return ElvUI_EltreumUI:GradientColors(powertype, invert, false, isBG)
 	end
-end
+end]]
 
 function ElvUI_EltreumUI:GetCastbarGradient(key)
 	local entry = cachedCastbars[key]
