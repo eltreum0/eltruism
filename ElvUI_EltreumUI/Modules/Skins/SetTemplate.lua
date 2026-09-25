@@ -10,6 +10,7 @@ local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local fixedConfig = false
+local ipairs = _G.ipairs
 
 local widgetAtlas = {
 	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
@@ -659,7 +660,7 @@ local function SkinFrame(object)
 						--frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 						if E.db.ElvUI_EltreumUI.dev then
-							print("atlas:",atlas)
+							ElvUI_EltreumUI:Print("atlas:",atlas)
 						end
 						if widgetAtlas[atlas] then
 							frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
