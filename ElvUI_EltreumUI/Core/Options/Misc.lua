@@ -13,11 +13,11 @@ local PlaySoundFile = _G.PlaySoundFile
 local tostring = _G.tostring
 
 local function voiceplayback(text)
-	if E.Modern or E.Mists then
+	--if E.Modern or E.Mists then
 		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), 1, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume, true)
-	else
-		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
-	end
+	--else
+	--	C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, _G.tostring(text), _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+	--end
 end
 
 -- Eltruism other options
