@@ -46,10 +46,13 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 
 	if ufCustom.enable then
 		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture))
+		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture))
 	elseif gm.useUFtexture then
 		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 	else
 		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", gm.texture))
+		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", gm.texture))
 	end
 
 	if gm.enable then
@@ -71,9 +74,10 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 		local isCustom = gm.customcolor
 		local notInterruptible = E:NotSecretValue(castbar.notInterruptible) and castbar.notInterruptible
 		local c1, c2
+
+
 		if notInterruptible then
 			if gm.enablecastbarnoninterruptible then
-				if castbar.Shield then castbar.Shield:SetAlpha(0) end
 				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default", isReverse)
 			end
 		else
@@ -112,6 +116,7 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 		end
 		if c1 and c2 then
 			tex:SetGradient(orientation, c1, c2)
+			castbar.Shield:SetGradient(orientation, c1, c2)
 		end
 	end
 end
