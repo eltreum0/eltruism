@@ -387,8 +387,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorY"] = 0
 	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["enable"] = false
 	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group3"]["enable"] = false
+	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group3"]["maxDuration"] = 300
 
 	---aurabar filter for retail
 	--[[E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraBigDefensive"] = true
@@ -459,8 +461,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorY"] = 0
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["enable"] = false
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["maxDuration"] = 300
 
 	---aurabar filter for retail
 	--[[E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraBigDefensive"] = true
