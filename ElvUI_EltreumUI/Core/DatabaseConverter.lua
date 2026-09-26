@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			hideOnEscape = false,
 		}
 
-		if E.private.ElvUI_EltreumUI.install_version < "3.7.5" or forced then
+		if E.private.ElvUI_EltreumUI.install_version < "5.1.6" or forced then
 			--making sure it only runs on the current char's profile
 			local currentprofile
 			if ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm] then
@@ -361,6 +361,148 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							if data.ElvUI_EltreumUI.gradientmode then
 								E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.gradientmode, data.ElvUI_EltreumUI.gradientmode)
 								data.ElvUI_EltreumUI.gradientmode = nil
+								profileChanged = true
+							end
+							if data.ElvUI_EltreumUI.unitframes.gradientmode then
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1custom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1custom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1custom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2custom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2custom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2custom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1noninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1noninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1noninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2noninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2noninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2noninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1noninterruptiblecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1noninterruptiblecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1noninterruptiblecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2noninterruptiblecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2noninterruptiblecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2noninterruptiblecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1interrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1interrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1interrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2interrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2interrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2interrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1interruptedcustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptedcustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1interruptedcustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptedcustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1interruptedcustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptedcustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2interruptedcustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptedcustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2interruptedcustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptedcustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2interruptedcustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptedcustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1interruptable, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1interruptable, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1interruptable, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2interruptable, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2interruptable, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2interruptable, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR1interruptablecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG1interruptablecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB1interruptablecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarR2interruptablecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarG2interruptablecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.castbarB2interruptablecustom, data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom)
+
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbar, data.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarnoninterruptible, data.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarinterrupted, data.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted)
+								E:CopyTable(data.ElvUI_EltreumUI.unitframes.gradientmode.classcolorcastbar, data.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar)
+								data.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = nil
+
+								data.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable = nil --not copied because it really should be false
+
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2 = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2interrupted = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1interruptedcustom = nil
+								data.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2interruptedcustom = nil
+
 								profileChanged = true
 							end
 							if data.ElvUI_EltreumUI.ufcustomtexture then
