@@ -673,7 +673,7 @@ pewcheck:SetScript("OnEvent",function()
 							end
 						end
 						if _G["EltruismPlayerPowerBarEffect"] then
-							if E.Retail then
+							if E.Modern then
 								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
 							else
 								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.8)
@@ -692,7 +692,7 @@ pewcheck:SetScript("OnEvent",function()
 						end
 					else
 						if _G["EltruismPetPowerBarEffect"] then
-							if E.Retail then
+							if E.Modern then
 								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
 							else
 								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.6)
@@ -791,7 +791,7 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 							end
 						end
 						if _G["EltruismPlayerPowerBarEffect"] then
-							if E.Retail then
+							if E.Modern then
 								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
 							else
 								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.8)
@@ -806,7 +806,7 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 							end
 						end
 						if _G["EltruismPetPowerBarEffect"] then
-							if E.Retail then
+							if E.Modern then
 								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
 							else
 								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.6)
