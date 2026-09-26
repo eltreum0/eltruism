@@ -466,6 +466,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|!CROWD_CONTROL'
 
 	---aurabar filter for retail
 	--[[E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraBigDefensive"] = true
