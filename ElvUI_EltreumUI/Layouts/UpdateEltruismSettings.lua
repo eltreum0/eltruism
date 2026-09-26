@@ -94,15 +94,13 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		-- Unitframes
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = "ElvUI Norm1"
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarinterrupted = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbar = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarnoninterruptible = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarnoninterruptible = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarinterrupted = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.castbarreactioninterruptable = false
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorcastbar = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation = "VERTICAL"
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = false
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = true
