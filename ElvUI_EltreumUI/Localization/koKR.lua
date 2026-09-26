@@ -1755,3 +1755,4 @@ L["Enable for Castbar (Non Interruptible)"] = true
 L["Enable Gradient colors for Castbar (Non Interruptible)"] = true
 L["Enable for Castbar (Interrupted)"] = true
 L["Enable Gradient colors for Castbar (Interrupted)"] = true
+L["Power Custom Color"] = true
