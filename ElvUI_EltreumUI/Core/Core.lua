@@ -894,20 +894,6 @@ function ElvUI_EltreumUI:ReforgedCheck(setting)
 	return false
 end
 
---check for blinkii's kick on cd function
-function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-	--its secret so its always false
-	--[[if IsAddOnLoaded("ElvUI_mMediaTag") and E.Modern then
-		if (E.db.mMediaTag and E.db.mMT.interrupt_on_cd and E.db.mMT.interrupt_on_cd.enable) then
-			return _G.mMT:mMediaTag_interruptOnCD() or false
-		else
-			return false
-		end
-	else]]
-		return false
-	--end
-end
-
 function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
 	if ShapeshiftFormID then
 		if GetShapeshiftFormInfo(1) then
