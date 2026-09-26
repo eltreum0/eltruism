@@ -174,24 +174,32 @@ function ElvUI_EltreumUI:CacheGradients()
 	--castbar
 	if gm then
 		cachedCastbars.noninterruptible_custom = {
-			CreateColor(clamp(gm.targetcastbarR2noninterruptiblecustom or 1), clamp(gm.targetcastbarG2noninterruptiblecustom or 0), clamp(gm.targetcastbarB2noninterruptiblecustom or 0), 1),
-			CreateColor(clamp(gm.targetcastbarR1noninterruptiblecustom or 1), clamp(gm.targetcastbarG1noninterruptiblecustom or 0), clamp(gm.targetcastbarB1noninterruptiblecustom or 0), 1)
+			CreateColor(clamp(gm.castbarR2noninterruptiblecustom or 1), clamp(gm.castbarG2noninterruptiblecustom or 0), clamp(gm.castbarB2noninterruptiblecustom or 0), 1),
+			CreateColor(clamp(gm.castbarR1noninterruptiblecustom or 1), clamp(gm.castbarG1noninterruptiblecustom or 0), clamp(gm.castbarB1noninterruptiblecustom or 0), 1)
 		}
 		cachedCastbars.noninterruptible_default = {
-			CreateColor(clamp(gm.targetcastbarR2noninterruptible or 1), clamp(gm.targetcastbarG2noninterruptible or 0), clamp(gm.targetcastbarB2noninterruptible or 0), 1),
-			CreateColor(clamp(gm.targetcastbarR1noninterruptible or 1), clamp(gm.targetcastbarG1noninterruptible or 0), clamp(gm.targetcastbarB1noninterruptible or 0), 1)
+			CreateColor(clamp(gm.castbarR2noninterruptible or 1), clamp(gm.castbarG2noninterruptible or 0), clamp(gm.castbarB2noninterruptible or 0), 1),
+			CreateColor(clamp(gm.castbarR1noninterruptible or 1), clamp(gm.castbarG1noninterruptible or 0), clamp(gm.castbarB1noninterruptible or 0), 1)
 		}
-		cachedCastbars.target_custom = {
-			CreateColor(clamp(gm.targetcastbarR1custom or 1), clamp(gm.targetcastbarG1custom or 1), clamp(gm.targetcastbarB1custom or 1), 1),
-			CreateColor(clamp(gm.targetcastbarR2custom or 1), clamp(gm.targetcastbarG2custom or 1), clamp(gm.targetcastbarB2custom or 1), 1)
+		cachedCastbars.castbar_custom = {
+			CreateColor(clamp(gm.castbarR1custom or 1), clamp(gm.castbarG1custom or 1), clamp(gm.castbarB1custom or 1), 1),
+			CreateColor(clamp(gm.castbarR2custom or 1), clamp(gm.castbarG2custom or 1), clamp(gm.castbarB2custom or 1), 1)
 		}
 		cachedCastbars.interruptible_custom = {
-			CreateColor(clamp(gm.targetcastbarR1interruptablecustom or 1), clamp(gm.targetcastbarG1interruptablecustom or 1), clamp(gm.targetcastbarB1interruptablecustom or 1), 1),
-			CreateColor(clamp(gm.targetcastbarR2interruptablecustom or 1), clamp(gm.targetcastbarG2interruptablecustom or 1), clamp(gm.targetcastbarB2interruptablecustom or 1), 1)
+			CreateColor(clamp(gm.castbarR1interruptablecustom or 1), clamp(gm.castbarG1interruptablecustom or 1), clamp(gm.castbarB1interruptablecustom or 1), 1),
+			CreateColor(clamp(gm.castbarR2interruptablecustom or 1), clamp(gm.castbarG2interruptablecustom or 1), clamp(gm.castbarB2interruptablecustom or 1), 1)
 		}
 		cachedCastbars.interruptible_default = {
-			CreateColor(clamp(gm.targetcastbarR1interruptable or 1), clamp(gm.targetcastbarG1interruptable or 1), clamp(gm.targetcastbarB1interruptable or 1), 1),
-			CreateColor(clamp(gm.targetcastbarR2interruptable or 1), clamp(gm.targetcastbarG2interruptable or 1), clamp(gm.targetcastbarB2interruptable or 1), 1)
+			CreateColor(clamp(gm.castbarR1interruptable or 1), clamp(gm.castbarG1interruptable or 1), clamp(gm.castbarB1interruptable or 1), 1),
+			CreateColor(clamp(gm.castbarR2interruptable or 1), clamp(gm.castbarG2interruptable or 1), clamp(gm.castbarB2interruptable or 1), 1)
+		}
+		cachedCastbars.interrupted_custom = {
+			CreateColor(clamp(gm.castbarR1interruptedcustom or 1), clamp(gm.castbarG1interruptedcustom or 1), clamp(gm.castbarB1interruptedcustom or 1), 1),
+			CreateColor(clamp(gm.castbarR2interruptedcustom or 1), clamp(gm.castbarG2interruptedcustom or 1), clamp(gm.castbarB2interruptedcustom or 1), 1)
+		}
+		cachedCastbars.interrupted_default = {
+			CreateColor(clamp(gm.castbarR1interrupted or 1), clamp(gm.castbarG1interrupted or 1), clamp(gm.castbarB1interrupted or 1), 1),
+			CreateColor(clamp(gm.castbarR2interrupted or 1), clamp(gm.castbarG2interrupted or 1), clamp(gm.castbarB2interrupted or 1), 1)
 		}
 	end
 end
@@ -541,10 +549,14 @@ end
 	end
 end]]
 
-function ElvUI_EltreumUI:GetCastbarGradient(key)
+function ElvUI_EltreumUI:GetCastbarGradient(key, invert)
 	local entry = cachedCastbars[key]
 	if entry then
-		return entry[1], entry[2]
+		if invert then
+			return entry[2], entry[1]
+		else
+			return entry[1], entry[2]
+		end
 	end
 	return fallbackWhite, fallbackWhite
 end

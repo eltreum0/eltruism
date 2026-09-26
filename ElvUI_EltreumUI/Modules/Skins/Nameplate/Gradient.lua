@@ -259,7 +259,7 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 	if not E:NotSecretValue(unitclass) then --secret class so do something else
 		unitclass = E.myclass
 	end
-	local reactiontarget = UnitReaction(unit, "player")
+	local reactionUnit = UnitReaction(unit, "player")
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		local tex = self:GetStatusBarTexture()
 		if tex then
@@ -270,10 +270,10 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 				tex:SetGradient(orientation, c1, c2)
 			elseif (not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-					if gm.npcustomcolor and not gm.classcolortargetcastbar then
-						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("target_custom")
+					if gm.npcustomcolor and not gm.classcolorcastbar then
+						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("castbar_custom")
 						tex:SetGradient(orientation, c1, c2)
-					elseif gm.classcolortargetcastbar then
+					elseif gm.classcolorcastbar then
 						local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(unitclass, false, gm.npcustomcolor)
 						tex:SetGradient(orientation, c1, c2)
 					else
@@ -281,23 +281,25 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 						tex:SetGradient(orientation, c1, c2)
 					end
 				else
-					if gm.npcustomcolor and not gm.classcolortargetcastbar then
+					if gm.npcustomcolor and not gm.classcolorcastbar then
 						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("interruptible_custom")
 						tex:SetGradient(orientation, c1, c2)
 					else
-						if gm.targetcastbarreactioninterruptable then
+						if gm.castbarreactioninterruptable then
 							local reactionKey
-							if reactiontarget and reactiontarget >= 5 then
-								reactionKey = "NPCFRIENDLY"
-							elseif reactiontarget == 4 then
-								reactionKey = "NPCNEUTRAL"
-							elseif reactiontarget == 3 then
-								reactionKey = "NPCUNFRIENDLY"
-							elseif reactiontarget and reactiontarget <= 2 then
-								reactionKey = "NPCHOSTILE"
+							if reactionUnit then
+								if reactionUnit >= 5 then
+									reactionKey = "NPCFRIENDLY"
+								elseif reactionUnit == 4 then
+									reactionKey = "NPCNEUTRAL"
+								elseif reactionUnit == 3 then
+									reactionKey = "NPCUNFRIENDLY"
+								elseif reactionUnit <= 2 then
+									reactionKey = "NPCHOSTILE"
+								end
 							end
 							if reactionKey then
-								local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, false, gm.customcolor and gm.classcolortargetcastbar)
+								local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, false, gm.npcustomcolor and gm.classcolorcastbar)
 								tex:SetGradient(orientation, c1, c2)
 							end
 						else
@@ -324,6 +326,7 @@ end
 if not E.Modern then
 	hooksecurefunc(NP, "Castbar_CheckInterrupt", ElvUI_EltreumUI.Castbar_CheckInterrupt)
 end
+
 --interrupted
 function ElvUI_EltreumUI:Castbar_PostCastFail()
 	if self.EltruismNameplateBorder then
