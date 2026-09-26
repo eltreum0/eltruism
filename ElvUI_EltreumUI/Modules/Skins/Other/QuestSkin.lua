@@ -763,6 +763,22 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 
+				local function FormatQuestTitle(rawText, titleColorHex)
+					if not rawText then return "" end
+					local colorCode, tag, title = rawText:match("^(|c%x%x%x%x%x%x%x%x)(%[%d+%+?%])|?r?%s*(.*)$")
+
+					if tag then
+						title = title:gsub("|r$", "")
+						if colorCode then
+							return string.format("%s%s|r |cff%s%s|r", colorCode, tag, titleColorHex, title)
+						else
+							return string.format("%s |cff%s%s|r", tag, titleColorHex, title)
+						end
+					end
+					local cleanTitle = rawText:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+					return string.format("|cff%s%s|r", titleColorHex, cleanTitle)
+				end
+
 				local function blockskin(block)
 					block:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 					block:UnregisterEvent("ADDON_ACTION_BLOCKED")
@@ -770,12 +786,30 @@ function ElvUI_EltreumUI:SkinQuests()
 					block.isSkinning = true
 					if block.HeaderText then --quest title
 						block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-						else
-							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-						end
 						block.HeaderText:SetWordWrap(true)
+						local currentText = block.HeaderText:GetText()
+						--print(block.HeaderText:GetText(),currentText) --E:StripString ?
+						if currentText and not block.HeaderText.EltruismColored then
+							local hex
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+								hex = E:RGBToHex(
+									mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr,
+									mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg,
+									mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb
+								):gsub("|cff", "")
+							else
+								hex = E:RGBToHex(
+									mult * classcolor.r,
+									mult * classcolor.g,
+									mult * classcolor.b
+								):gsub("|cff", "")
+							end
+							if E.Forever then
+								block.HeaderText:SetText(FormatQuestTitle(currentText, hex))
+							end
+						end
+
+						block.HeaderText.EltruismColored = true
 					end
 					local itemButton = block.itemButton or block.ItemButton
 					if itemButton then
