@@ -23,12 +23,18 @@ Added support for Skyborne Elves in several functions
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
+Updated Castbar to better handle different scenarios, this change requires a database conversion to be run
 Updated Class Combat Indicator to use default ElvUI indicator when the unit's class is secret
+Updated Installation to better handle Edit Mode in different game versions
+Updated Aura Filters to once again work in non Modern versions
 Updated Gradient functions to optimize how they run
 Updated Options to add Previews to several textures
+Updated Bag Profession spells (thanks Dongchen Xu)
 Updated how Alphas and Dev versions are released
+pdated Nameplate borders to use threat colors
 Updated Aurabar to readd Gradient in Retail
 Updated how ElvUI version checking is done
+Updated tags to support Forever's Surnames
 Updated Glows to optimize how they run
 Updated Aurabar to skin it again
 Updated Aurabar shadows
