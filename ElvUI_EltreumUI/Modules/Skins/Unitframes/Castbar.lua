@@ -75,10 +75,10 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 		local notInterruptible = E:NotSecretValue(castbar.notInterruptible) and castbar.notInterruptible
 		local c1, c2
 
-
 		if notInterruptible then
 			if gm.enablecastbarnoninterruptible then
 				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default", isReverse)
+				castbar.Shield:SetGradient(orientation, c1, c2)
 			end
 		else
 			if not gm.enablecastbar then return end
@@ -116,7 +116,6 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 		end
 		if c1 and c2 then
 			tex:SetGradient(orientation, c1, c2)
-			castbar.Shield:SetGradient(orientation, c1, c2)
 		end
 	end
 end
