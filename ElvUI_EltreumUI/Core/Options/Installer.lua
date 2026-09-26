@@ -58,7 +58,6 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.skipplugin = E.Libs.ACH:Execute(L["Skip Plugins install message"], L["Make the warnings to install profiles for other plugins stop"], 25, function()
 		E.private.ElvUI_EltreumUI.isInstalled.sle = true
 		E.private.ElvUI_EltreumUI.isInstalled.windtools = true
-		E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 	end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.description13 = E.Libs.ACH:Description(L["Database Check"], 26, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.databasecheck = E.Libs.ACH:Execute(L["Run Database Check"], L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"], 27, function() ElvUI_EltreumUI:DatabaseConversions(true) end,nil,false,'full')

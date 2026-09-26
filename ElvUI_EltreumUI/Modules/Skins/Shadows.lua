@@ -4007,23 +4007,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------other addons
-		if IsAddOnLoaded('ProjectAzilroka') then
-			if _G.stAMFrame and not _G.stAMFrame.shadow then
-				_G.stAMFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.stAMFrame.shadow)
-			end
-
-			if _G.stAMProfileMenu and not _G.stAMProfileMenu.shadow then
-				_G.stAMProfileMenu:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.stAMProfileMenu.shadow)
-			end
-
-			if _G.SquareMinimapButtonBar and not _G.SquareMinimapButtonBar.shadow then
-				_G.SquareMinimapButtonBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.SquareMinimapButtonBar.shadow)
-			end
-		end
-
 		if IsAddOnLoaded("ElvUI_WindTools") then
 			if _G["WTEventTracker"] and _G["WTEventTracker"].backdrop and not _G["WTEventTracker"].backdrop.shadow then
 				_G["WTEventTracker"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

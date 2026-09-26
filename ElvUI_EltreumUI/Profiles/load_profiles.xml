@@ -1,5 +1,4 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='AddOnSkins.lua'/>
 	<Script file='BigWigs.lua'/>
 	<Script file='BattleGroundEnemies.lua'/>
 	<Script file='Capping.lua'/>
@@ -14,7 +13,6 @@
 	<Script file='Immersion.lua'/>
 	<Script file='NameplateSCT.lua'/>
 	<Script file='OmniCD.lua'/>
-	<Script file='ProjectAzilroka.lua'/>
 	<Script file='Questie.lua'/>
 	<Script file='ShadowAndLight.lua'/>
 	<Script file='Warpdeplete.lua'/>

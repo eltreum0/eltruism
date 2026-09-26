@@ -3,16 +3,6 @@ local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
--- AddOnSkins Profile
-function ElvUI_EltreumUI:AddonSetupAS()
-	if IsAddOnLoaded("AddOnSkins") then
-		ElvUI_EltreumUI:GetASProfile()
-		ElvUI_EltreumUI:Print(L["AddOnSkins profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("AddOnSkins is not loaded")
-	end
-end
-
 -- Immersion Profile
 function ElvUI_EltreumUI:AddonSetupImmersion()
 	if IsAddOnLoaded("Immersion") then
@@ -88,16 +78,6 @@ function ElvUI_EltreumUI:AddonSetupMRT()
 		ElvUI_EltreumUI:Print(L["Method Raid Tools profile has been set."])
 	else
 		ElvUI_EltreumUI:Print("Method Raid Tools is not loaded")
-	end
-end
-
--- ProjectAzilroka Profile
-function ElvUI_EltreumUI:AddonSetupPA()
-	if IsAddOnLoaded("ProjectAzilroka") then
-		ElvUI_EltreumUI:GetPAProfile()
-		ElvUI_EltreumUI:Print(L["ProjectAzilroka profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("ProjectAzilroka is not loaded")
 	end
 end
 

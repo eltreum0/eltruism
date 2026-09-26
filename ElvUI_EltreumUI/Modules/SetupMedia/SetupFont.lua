@@ -540,43 +540,6 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		_G.NameplateSCTDB["global"]["font"] = fontvalue
 	end
 
-	if IsAddOnLoaded('ProjectAzilroka') then
-		local PAprofile = _G.ProjectAzilrokaDB["profileKeys"][E.mynameRealm]
-		_G.ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["Font"] = fontvalue
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enable"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enhancements"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enhancements"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusDebuffs"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusDebuffs"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["RaidDebuffs"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["RaidDebuffs"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["TargetDebuffs"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["TargetDebuffs"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusBuffs"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusBuffs"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Procs"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Procs"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Cooldowns"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Cooldowns"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StatusBarFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StackCountFont"] = fontvalue
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StatusBarFont"] = fontvalue
-		end
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"]["Font"] = fontvalue
-		end
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"]["Font"] = fontvalue
-		end
-	end
-
-	if IsAddOnLoaded('AddOnSkins') then
-		local AS = unpack(_G.AddOnSkins)
-		AS.db["DBMFont"] = fontvalue
-		AS.db["Font"] = fontvalue
-	end
-
 	if IsAddOnLoaded("Questie") then
 		local profile = _G.QuestieConfig["profileKeys"][E.mynameRealm]
 		_G.QuestieConfig["profiles"][profile]["trackerFontObjective"] = fontvalue

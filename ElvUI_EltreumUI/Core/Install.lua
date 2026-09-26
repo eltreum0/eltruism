@@ -39,7 +39,6 @@ local function SkipInstallComplete()
 	end
 	E.private.ElvUI_EltreumUI.isInstalled.sle = true
 	E.private.ElvUI_EltreumUI.isInstalled.windtools = true
-	E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 	ReloadUI()
 end
 

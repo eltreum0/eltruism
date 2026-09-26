@@ -28,12 +28,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
-	if IsAddOnLoaded('ProjectAzilroka') then
-		local PAprofile = _G.ProjectAzilrokaDB["profileKeys"][E.mynameRealm]
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
-		end
-	end
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	if E.Modern then

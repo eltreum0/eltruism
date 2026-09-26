@@ -31,20 +31,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--make Aura Filters use Textured Icons
 	ElvUI_EltreumUI:AuraFiltersUpdate()
 
-	-- ProjectAzilroka Profile
-	ElvUI_EltreumUI:AddonSetupPA()
-
-	-- AddOnSkins Profile
-	ElvUI_EltreumUI:AddonSetupAS()
-
 	--SetupShadowAndLight
 	if IsAddOnLoaded("ElvUI_SLE") then
 		ElvUI_EltreumUI:GetSLEProfile()
-	end
-
-	if IsAddOnLoaded("ProjectAzilroka") then
-		--E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
-		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-205"
 	end
 
 	if IsAddOnLoaded("ElvUI_WindTools") then

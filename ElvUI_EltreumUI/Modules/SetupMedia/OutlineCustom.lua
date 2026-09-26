@@ -578,45 +578,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		_G.NameplateSCTDB["global"]["fontFlag"] = ElvUI_EltreumUI:FontFlag(fontStyle)
 	end
 
-	if IsAddOnLoaded('ProjectAzilroka') then
-		local PAprofile = _G.ProjectAzilrokaDB["profileKeys"][E.mynameRealm]
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enable"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enhancements"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enhancements"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusDebuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusDebuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["RaidDebuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["RaidDebuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["TargetDebuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["TargetDebuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusBuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusBuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Procs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Procs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Cooldowns"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Cooldowns"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
-		end
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"]["FontFlag"] = fontStyle
-		end
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"]["FontFlag"] = fontStyle
-		end
-		if _G.ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"] then
-			_G.ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["FontFlag"] = fontStyle
-		end
-	end
-
-	if IsAddOnLoaded('AddOnSkins') then
-		local AS = unpack(_G.AddOnSkins)
-		AS["DBMFontFlag"] = fontStyle
-		AS["FontFlag"] = fontStyle
-	end
-
 	if IsAddOnLoaded("Questie") then
 		local profile = _G.QuestieConfig["profileKeys"][E.mynameRealm]
 		_G.QuestieConfig["profiles"][profile]["trackerFontOutline"] = ElvUI_EltreumUI:FontFlag(fontStyle)
