@@ -766,9 +766,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				local function blockskin(block)
 					block:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 					block:UnregisterEvent("ADDON_ACTION_BLOCKED")
-					if not block then
-						return
-					end
+					if not block or block.isSkinning then return end
+					block.isSkinning = true
 					if block.HeaderText then --quest title
 						block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -818,6 +817,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if block.lastRegion then
 						lastRegion(block)
 					end
+					block.isSkinning = nil
 				end
 
 				local function positionScenarioObjectiveBlockBackground()
@@ -1056,7 +1056,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if k.AddBlock and not k.AddBlockHook then
 						hooksecurefunc(k, "AddBlock", function(block)
 							blockskin(block)
-							blockskin(k)
+							--blockskin(k)
 						end)
 						k.AddBlockHook = true
 					end
