@@ -666,7 +666,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladiusEX","ENTERING") end)
 				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
-			elseif E.Classic or E.Mists or E.TBC or E.Wrath then
+			elseif E.Classic or E.Mists or E.TBC or E.Wrath or E.Forever then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
@@ -730,7 +730,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			end
-			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Mists or E.TBC or E.Wrath) then
+			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Mists or E.TBC or E.Wrath or E.Forever) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
 				_G.PluginInstallFrame.Option1:Disable()
