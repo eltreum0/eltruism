@@ -62,8 +62,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["threat"]["badTransition"]["g"] = 0.50980392156863
 		E.db["nameplates"]["colors"]["threat"]["goodTransition"]["g"] = 0.85098039215686
 		E.db["nameplates"]["colors"]["threat"]["offTankColor"]["r"] = 0.72941176470588
-		E.db["nameplates"]["threat"]["badScale"] = 0.9
-		E.db["nameplates"]["threat"]["goodScale"] = 1.1
 		E.db["nameplates"]["colors"]["selection"][0]["b"] = 0.17647058823529
 		E.db["nameplates"]["colors"]["selection"][0]["g"] = 0.17647058823529
 		E.db["nameplates"]["colors"]["selection"][3]["g"] = 1
@@ -184,6 +182,10 @@ function ElvUI_EltreumUI:SetupNamePlates()
 			E.db["nameplates"]["filters"]["ElvUI_Below20"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["ElvUI_Below20_Players"]["triggers"]["enable"] = false
 		end]]
+
+		--reset to 1, otherwise can cause issues
+		E.db["nameplates"]["threat"]["badScale"] = 1
+		E.db["nameplates"]["threat"]["goodScale"] = 1
 
 		E.db["nameplates"]["highlight"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.2
