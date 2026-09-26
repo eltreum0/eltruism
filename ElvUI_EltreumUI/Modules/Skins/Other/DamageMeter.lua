@@ -415,16 +415,27 @@ do
 						dmMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), 0.9)
 						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, dmMin, dmMax)
 					end
+
 					--even though its supposed to not be secret we will get the secret error
-					--[[if bar.StatusBar.Name then
+					if bar.StatusBar.Name and bar.StatusBar.Name.GetText and E:NotSecretValue(bar.StatusBar.Name:GetText()) then
 						local name = E:StripString(bar.StatusBar.Name:GetText())
-						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
-					end]]
-					if bar.StatusBar.Background then
-						bar.StatusBar.Background:ClearAllPoints()
-						bar.StatusBar.Background:SetAllPoints(bar.StatusBar)
+						if name and bar.classFilename and E:NotSecretValue(bar.classFilename) then
+							bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
+						end
 					end
 				end)
+
+				if bar.StatusBar.Background then
+					bar.StatusBar.Background:ClearAllPoints()
+					bar.StatusBar.Background:SetAllPoints(bar.StatusBar)
+					bar.StatusBar.Background:Hide()
+				end
+				if bar.Background then
+
+					bar.Background:ClearAllPoints()
+					bar.Background:SetAllPoints(bar.StatusBar)
+					bar.Background:Hide()
+				end
 
 				--set it outside as well, so that on PEW it gets gradient as well
 				if bar.classFilename then
