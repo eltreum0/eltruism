@@ -42,8 +42,6 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 					["trackerSortObjectives"] = "byProximity",
 					["soundOnQuestComplete"] = true,
 
-
-
 					["trackerEnabled"] = false,
 					["onlyPartyShared"] = true,
 					["hideTrackerInCombat"] = false,
@@ -55,6 +53,14 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 					["currentBackdropFader"] = true,
 					["trackerbindOpenQuestLog"] = "right",
 					["trackerColorObjectives"] = "whiteAndGreen",
+
+					--new since forever
+					["enableTooltipsBreadcrumbQuests"] = true,
+					--["migrationVersion"] = 40,
+					--["nameplateEnabled"] = false,
+					["questieShutUp"] = true,
+					--["tutorialRejectInBattlegroundsDone"] = false,
+					--["tutorialShowRunesDone"] = false,
 				}
 				QuestieConfig["profileKeys"][E.mynameRealm] = "Eltreum"
 			end
