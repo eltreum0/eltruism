@@ -138,7 +138,8 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 					if groupunitframe.Power.backdrop.Center then
 						groupunitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 						groupunitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
-						if groupunitframe.Power.backdrop.Center:GetAlpha() ~= alpha then
+						local bgA = groupunitframe.Power.backdrop.Center:GetAlpha()
+						if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= alpha then
 							groupunitframe.Power.backdrop.Center:SetAlpha(alpha)
 						end
 					end
@@ -240,14 +241,16 @@ local function gradientclassbar(powerbar,powerType)
 			fallbackMax:SetRGBA(clamp(color.r), clamp(color.g), clamp(color.b), 1)
 			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 			if E.db.unitframe.units.player.classbar.fill == "spaced" then
-				if bar.bg:GetAlpha() ~= 0 then
+				local bgA = bar.bg:GetAlpha()
+				if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= 0 then
 					bar.bg:SetAlpha(0)
 				end
 				if E.db.unitframe.colors.customclasspowerbackdrop then
 					bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
 				end
 			else
-				if bar.bg:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+				local bgA = bar.bg:GetAlpha()
+				if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= E.db.general.backdropfadecolor.a then
 					bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
 				end
 			end
@@ -411,31 +414,37 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 
 		--gradient additional power, transparent other frames if power tranparency is enabled
 		if _G["ElvUF_Player_ClassBar"] then
-			if transparent and _G["ElvUF_Player_ClassBar"]:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+			local bA = _G["ElvUF_Player_ClassBar"]:GetAlpha()
+			if transparent and ElvUI_EltreumUI:IsThisASafeSecret(bA, true) and bA ~= E.db.general.backdropfadecolor.a then
 				_G["ElvUF_Player_ClassBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
 		end
 		if _G["ElvUF_Player_Runes"] then
-			if transparent and _G["ElvUF_Player_Runes"]:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+			local bA = _G["ElvUF_Player_Runes"]:GetAlpha()
+			if transparent and ElvUI_EltreumUI:IsThisASafeSecret(bA, true) and bA ~= E.db.general.backdropfadecolor.a then
 				_G["ElvUF_Player_Runes"]:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
 		end
 		if _G["ElvUF_Player_Stagger"] then
-			if transparent and _G["ElvUF_Player_Stagger"]:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+			local bA = _G["ElvUF_Player_Stagger"]:GetAlpha()
+			if transparent and ElvUI_EltreumUI:IsThisASafeSecret(bA, true) and bA ~= E.db.general.backdropfadecolor.a then
 				_G["ElvUF_Player_Stagger"]:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
 		end
 		if _G["ElvUF_Player"] and _G["ElvUF_Player"].Totems then
-			if transparent and _G["ElvUF_Player"].Totems:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+			local bA = _G["ElvUF_Player"].Totems:GetAlpha()
+			if transparent and ElvUI_EltreumUI:IsThisASafeSecret(bA, true) and bA ~= E.db.general.backdropfadecolor.a then
 				_G["ElvUF_Player"].Totems:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
 		end
 		if _G["ElvUF_Player_AdditionalPowerBar"] then
 			if transparent then --make additional power follow power transparency
-				if _G["ElvUF_Player_AdditionalPowerBar"]:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+				local bA1 = _G["ElvUF_Player_AdditionalPowerBar"]:GetAlpha()
+				if ElvUI_EltreumUI:IsThisASafeSecret(bA1, true) and bA1 ~= E.db.general.backdropfadecolor.a then
 					_G["ElvUF_Player_AdditionalPowerBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
 				end
-				if _G["ElvUF_Player_AdditionalPowerBar"].ClipFrame:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+				local bA2 = _G["ElvUF_Player_AdditionalPowerBar"].ClipFrame:GetAlpha()
+				if ElvUI_EltreumUI:IsThisASafeSecret(bA2, true) and bA2 ~= E.db.general.backdropfadecolor.a then
 					_G["ElvUF_Player_AdditionalPowerBar"].ClipFrame:SetAlpha(E.db.general.backdropfadecolor.a)
 				end
 			end
@@ -445,7 +454,8 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 						fallbackMax:SetRGBA(clamp(r), clamp(g), clamp(b), 1)
 						_G["ElvUF_Player_AdditionalPowerBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 						if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
-							if _G["ElvUF_Player_AdditionalPowerBar"].bg:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+							local bgA = _G["ElvUF_Player_AdditionalPowerBar"].bg:GetAlpha()
+							if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= E.db.general.backdropfadecolor.a then
 								_G["ElvUF_Player_AdditionalPowerBar"].bg:SetAlpha(E.db.general.backdropfadecolor.a)
 							end
 						end
@@ -486,10 +496,12 @@ function ElvUI_EltreumUI:GradientEclipse()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if _G["ElvUF_Player_EclipsePowerBar"] then
 			if E.db.unitframe.colors.transparentPower then --make eclipse follow power transparency
-				if _G["ElvUF_Player_EclipsePowerBar"].LunarBar:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+				local lA = _G["ElvUF_Player_EclipsePowerBar"].LunarBar:GetAlpha()
+				if ElvUI_EltreumUI:IsThisASafeSecret(lA, true) and lA ~= E.db.general.backdropfadecolor.a then
 					_G["ElvUF_Player_EclipsePowerBar"].LunarBar:SetAlpha(E.db.general.backdropfadecolor.a)
 				end
-				if _G["ElvUF_Player_EclipsePowerBar"].SolarBar:GetAlpha() ~= E.db.general.backdropfadecolor.a then
+				local sA = _G["ElvUF_Player_EclipsePowerBar"].SolarBar:GetAlpha()
+				if ElvUI_EltreumUI:IsThisASafeSecret(sA, true) and sA ~= E.db.general.backdropfadecolor.a then
 					_G["ElvUF_Player_EclipsePowerBar"].SolarBar:SetAlpha(E.db.general.backdropfadecolor.a)
 				end
 			end

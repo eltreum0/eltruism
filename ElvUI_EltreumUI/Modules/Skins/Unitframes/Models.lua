@@ -103,9 +103,11 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		local playerbar = _G["ElvUF_Player"]
 		if not playerbar then return end
 		local playerAlpha = playerbar:GetAlpha() or 1
+		if not ElvUI_EltreumUI:IsThisASafeSecret(playerAlpha, true) then playerAlpha = 1 end
 		if modelsDB.unitframe then
 			if not playerbar.EltruismModelAlphaHooked then
 				hooksecurefunc(playerbar, "SetAlpha", function(_, alpha)
+					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if playereffect then playereffect:SetAlpha(alpha * baseAlpha) end
 					if powerbareffectplayer then powerbareffectplayer:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
@@ -191,9 +193,11 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		local targetbar = _G["ElvUF_Target"]
 		if not targetbar then return end
 		local targetAlpha = targetbar:GetAlpha() or 1
+		if not ElvUI_EltreumUI:IsThisASafeSecret(targetAlpha, true) then targetAlpha = 1 end
 		if modelsDB.unitframe then
 			if not targetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targetbar, "SetAlpha", function(_, alpha)
+					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if targeteffect then targeteffect:SetAlpha(alpha * baseAlpha) end
 					if powerbareffecttarget then powerbareffecttarget:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
@@ -312,9 +316,11 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		local targettargetbar = _G["ElvUF_TargetTarget"]
 		if not targettargetbar then return end
 		local targettargetAlpha = targettargetbar:GetAlpha() or 1
+		if not ElvUI_EltreumUI:IsThisASafeSecret(targettargetAlpha, true) then targettargetAlpha = 1 end
 		if modelsDB.unitframe then
 			if not targettargetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targettargetbar, "SetAlpha", function(_, alpha)
+					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if targettargeteffect then targettargeteffect:SetAlpha(alpha * baseAlpha) end
 					if powerbareffecttargettarget then powerbareffecttargettarget:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
@@ -431,9 +437,11 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		local focusbar = _G["ElvUF_Focus"]
 		if not focusbar then return end
 		local focusAlpha = focusbar and focusbar:GetAlpha() or 1
+		if not ElvUI_EltreumUI:IsThisASafeSecret(focusAlpha, true) then focusAlpha = 1 end
 		if modelsDB.unitframe then
 			if not focusbar.EltruismModelAlphaHooked then
 				hooksecurefunc(focusbar, "SetAlpha", function(_, alpha)
+					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if focuseffect then focuseffect:SetAlpha(alpha * baseAlpha) end
 					if powerbareffectfocus then powerbareffectfocus:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
@@ -554,9 +562,11 @@ function ElvUI_EltreumUI:PetUFEffects()
 		local petbar = _G["ElvUF_Pet"]
 		if not petbar then return end
 		local petAlpha = petbar and petbar:GetAlpha() or 1
+		if not ElvUI_EltreumUI:IsThisASafeSecret(petAlpha, true) then petAlpha = 1 end
 		if modelsDB.unitframe then
 			if not petbar.EltruismModelAlphaHooked then
 				hooksecurefunc(petbar, "SetAlpha", function(_, alpha)
+					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if peteffect then peteffect:SetAlpha(alpha * baseAlpha) end
 					if powerbareffectpet then powerbareffectpet:SetAlpha(alpha * (E.Modern and 0.8 or 0.6)) end

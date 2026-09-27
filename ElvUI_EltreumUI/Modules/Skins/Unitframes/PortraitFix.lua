@@ -735,7 +735,8 @@ end)
 local flagcheck = CreateFrame("FRAME")
 flagcheck:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --model seems to update when flags are changed
 local function PlayerFlagUpdate()
-	if _G["ElvUF_Player"]:GetAlpha() == 0 then
+	local pAlpha = _G["ElvUF_Player"]:GetAlpha()
+	if ElvUI_EltreumUI:IsThisASafeSecret(pAlpha, true) and pAlpha == 0 then
 		if _G["EltruismPlayerEffect"] then
 			_G["EltruismPlayerEffect"]:SetAlpha(0)
 		end
@@ -746,7 +747,8 @@ local function PlayerFlagUpdate()
 end
 
 local function PetFlagUpdate()
-	if _G["ElvUF_Pet"]:GetAlpha() == 0 then
+	local pAlpha = _G["ElvUF_Pet"]:GetAlpha()
+	if ElvUI_EltreumUI:IsThisASafeSecret(pAlpha, true) and pAlpha == 0 then
 		if _G["EltruismPetEffect"] then
 			_G["EltruismPetEffect"]:SetAlpha(0)
 		end
