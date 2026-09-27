@@ -55,21 +55,23 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		local g = button.EltruismG
 		local b = button.EltruismB
 
+		local buttonShownStatus = button:IsShown()
+
 		--hide debuffs if they are not target
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
 			if not E:UnitIsUnit(unit,"target") then
-				button:Hide()
+				if buttonShownStatus then button:Hide() end
 			else
-				button:Show()
+				if not buttonShownStatus then button:Show() end
 			end
 		end
 
 		--hide debuffs if they are not in combat
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
 			if not UnitAffectingCombat(unit) then
-				button:Hide()
+				if buttonShownStatus then button:Hide() end
 			else
-				button:Show()
+				if not buttonShownStatus then button:Show() end
 			end
 		end
 
@@ -80,8 +82,11 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 				buttonCooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 			end
 			if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
-				buttonCooldown.timer.text:ClearAllPoints()
-				buttonCooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+				if not buttonCooldown.EltruismPointSet then
+					buttonCooldown.timer.text:ClearAllPoints()
+					buttonCooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+					buttonCooldown.EltruismPointSet = true
+				end
 			end
 			local debufftime = tonumber(buttonCooldown.timer.text:GetText())
 			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
@@ -206,12 +211,14 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 		local button = buttonCooldown2:GetParent()
 		local unit = button.EltruismUnit or ""
 
+		local buttonShownStatus = button:IsShown()
+
 		--hide buffs if they are not in combat
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
 			if not UnitAffectingCombat(unit) then
-				button:Hide()
+				if buttonShownStatus then button:Hide() end
 			else
-				button:Show()
+				if not buttonShownStatus then button:Show() end
 			end
 		end
 
@@ -222,9 +229,12 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 			end
 			buttonCooldown2:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
 			if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
-				buttonCooldown2.timer.text:ClearAllPoints()
-				buttonCooldown2.timer.text:SetDrawLayer('OVERLAY',1)
-				buttonCooldown2.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+				if not buttonCooldown2.EltruismPointSet then
+					buttonCooldown2.timer.text:ClearAllPoints()
+					buttonCooldown2.timer.text:SetDrawLayer('OVERLAY',1)
+					buttonCooldown2.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+					buttonCooldown2.EltruismPointSet = true
+				end
 			end
 		end
 	end
