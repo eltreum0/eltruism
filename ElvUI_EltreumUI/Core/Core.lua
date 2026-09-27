@@ -1169,6 +1169,15 @@ function ElvUI_EltreumUI:UpdateCursorPosition(frame, elapsed, force)
 	end
 end
 
+--check on PEW, should run on all scenarios needed (but not like garrisons)
+local EltruismInstanceType = "none"
+local EltruismInstanceCheck = CreateFrame("Frame")
+EltruismInstanceCheck:RegisterEvent("PLAYER_ENTERING_WORLD")
+EltruismInstanceCheck:SetScript("OnEvent", function()
+	local _, instanceType = IsInInstance()
+	EltruismInstanceType = instanceType
+end)
+
 function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
 	if not E.Modern then
 		return true
@@ -1177,11 +1186,10 @@ function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
 	if hasValue then
 		return E:CanAccessValue(value) --new api to check if value is secret
 	else
-		local _, instanceType = IsInInstance()
 		if isBG then
-			return instanceType ~= "pvp" and instanceType ~= "arena"
+			return (EltruismInstanceType ~= "pvp" and EltruismInstanceType ~= "arena")
 		else
-			return instanceType == "none"
+			return (EltruismInstanceType == "none")
 		end
 	end
 end
