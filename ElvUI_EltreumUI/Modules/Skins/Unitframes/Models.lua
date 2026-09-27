@@ -93,58 +93,50 @@ end
 --add effects to player
 function ElvUI_EltreumUI:PlayerUFEffects()
 	if E.private.unitframe.enable then
-		if not E.private.ElvUI_EltreumUI then
-			return
-		elseif not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif not E.db.ElvUI_EltreumUI then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			return
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		if not E.private.ElvUI_EltreumUI or not E.private.ElvUI_EltreumUI.install_version then return end
+		local db = E.db.ElvUI_EltreumUI
+		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
+		local modelsDB = db.unitframes.models
+
+		if modelsDB.unitframe then
 			local playerbar = _G["ElvUF_Player"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+			if modelsDB.modeltype == "CLASS" then
 				--playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+			elseif modelsDB.modeltype == "CUSTOM" then
 				--playereffect:ClearModel()
 				if E.Modern then
-					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+					playereffect:SetModel(modelsDB.custommodel)
 				else
-					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+					playereffect:SetModel(modelsDB.custommodelclassic)
 				end
 			end
 
 			if playerbar then
-				playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				playereffect:SetDesaturation(modelsDB.ufdesaturation)
 				playereffect:SetParent(playerbar.Health)
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+				if db.unitframes.lightmode then
+					if modelsDB.insideHP then
 						playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
 					else
 						playereffect:SetInside(playerbar.Health, 0, 0)
 					end
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
-					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+					playereffect:SetAlpha(modelsDB.ufalpha)
+				elseif db.unitframes.darkmode then
+					if modelsDB.insideHP then
 						playereffect:SetInside(playerbar.Health.bg, 0, 0)
 					else
 						playereffect:SetInside(playerbar.Health, 0, 0)
 					end
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
-					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+					playereffect:SetAlpha(modelsDB.ufalphadark)
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+		if modelsDB.powerbar then
 			local powerbar = _G["ElvUF_Player_PowerBar"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectplayer:SetModel(1715069)
 					powerbareffectplayer:MakeCurrentCameraCustom()
@@ -156,11 +148,11 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 					powerbareffectplayer:SetPosition(1.2, 0, -0.5)
 					powerbareffectplayer:SetAlpha(0.8) --might do this
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
-					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+					powerbareffectplayer:SetModel(modelsDB.custommodelpower)
 				else
-					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+					powerbareffectplayer:SetModel(modelsDB.custommodelclassicpower)
 				end
 			end
 
@@ -181,27 +173,19 @@ hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
 --add effects to target
 function ElvUI_EltreumUI:TargetUFEffects()
 	if E.private.unitframe.enable then
-		if not E.private.ElvUI_EltreumUI then
-			return
-		elseif not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif not E.db.ElvUI_EltreumUI then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			return
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		if not E.private.ElvUI_EltreumUI or not E.private.ElvUI_EltreumUI.install_version then return end
+		local db = E.db.ElvUI_EltreumUI
+		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
+		local modelsDB = db.unitframes.models
+
+		if modelsDB.unitframe then
 			local targetbar = _G["ElvUF_Target"]
 			local reactiontarget = UnitReaction("target", "player")
 			local _, targetclass = UnitClass("target")
 			if not E:NotSecretValue(targetclass) or not targetclass then
 				targetclass = E.myclass
 			end
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+			if modelsDB.modeltype == "CLASS" then
 				--targeteffect:ClearModel()
 				if (UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target"))) and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
@@ -231,42 +215,42 @@ function ElvUI_EltreumUI:TargetUFEffects()
 						targeteffect:SetModel(npcModel)
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+			elseif modelsDB.modeltype == "CUSTOM" then
 				--targeteffect:ClearModel()
 				if E.Modern then
-					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+					targeteffect:SetModel(modelsDB.custommodel)
 				else
-					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+					targeteffect:SetModel(modelsDB.custommodelclassic)
 				end
 			end
 
 			if targetbar then
-				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				targeteffect:SetDesaturation(modelsDB.ufdesaturation)
 				targeteffect:SetParent(targetbar.Health)
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+				if db.unitframes.lightmode then
+					if modelsDB.insideHP then
 						targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
 					else
 						targeteffect:SetInside(targetbar.Health, 0, 0)
 					end
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
-					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+					targeteffect:SetAlpha(modelsDB.ufalpha)
+				elseif db.unitframes.darkmode then
+					if modelsDB.insideHP then
 						targeteffect:SetInside(targetbar.Health.bg, 0, 0)
 					else
 						targeteffect:SetInside(targetbar.Health, 0, 0)
 					end
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
-					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+					targeteffect:SetAlpha(modelsDB.ufalphadark)
 				end
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+		if modelsDB.powerbar then
 			local targetpowerbar = _G["ElvUF_Target_PowerBar"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffecttarget:SetModel(1715069)
 					powerbareffecttarget:MakeCurrentCameraCustom()
@@ -278,11 +262,11 @@ function ElvUI_EltreumUI:TargetUFEffects()
 					powerbareffecttarget:SetPosition(1.2, 0, -0.5)
 					powerbareffecttarget:SetAlpha(0.8) --might do this
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
-					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+					powerbareffecttarget:SetModel(modelsDB.custommodelpower)
 				else
-					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+					powerbareffecttarget:SetModel(modelsDB.custommodelclassicpower)
 				end
 			end
 			if targetpowerbar then
@@ -302,20 +286,12 @@ hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
 --add effects to target of target
 function ElvUI_EltreumUI:TargetTargetUFEffects()
 	if E.private.unitframe.enable then
-		if not E.private.ElvUI_EltreumUI then
-			return
-		elseif not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif not E.db.ElvUI_EltreumUI then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			return
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		if not E.private.ElvUI_EltreumUI or not E.private.ElvUI_EltreumUI.install_version then return end
+		local db = E.db.ElvUI_EltreumUI
+		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
+		local modelsDB = db.unitframes.models
+
+		if modelsDB.unitframe then
 			local targettargetbar = _G["ElvUF_TargetTarget"]
 			local reactiontargettarget = UnitReaction("targettarget", "player")
 			local _, targettargetclass = UnitClass("targettarget")
@@ -323,7 +299,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				targettargetclass = E.myclass
 			end
 
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+			if modelsDB.modeltype == "CLASS" then
 				if (UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget"))) and targettargetclass then
 					targettargeteffect:SetModel(classModels[targettargetclass])
 				else
@@ -352,40 +328,40 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 						targettargeteffect:SetModel(npcModel)
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+			elseif modelsDB.modeltype == "CUSTOM" then
 				if E.Modern then
-					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+					targettargeteffect:SetModel(modelsDB.custommodel)
 				else
-					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+					targettargeteffect:SetModel(modelsDB.custommodelclassic)
 				end
 			end
 
 			if targettargetbar then
-				targettargeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				targettargeteffect:SetDesaturation(modelsDB.ufdesaturation)
 				targettargeteffect:SetParent(targettargetbar.Health)
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+				if db.unitframes.lightmode then
+					if modelsDB.insideHP then
 						targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
 					else
 						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
 					end
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
-					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+					targettargeteffect:SetAlpha(modelsDB.ufalpha)
+				elseif db.unitframes.darkmode then
+					if modelsDB.insideHP then
 						targettargeteffect:SetInside(targettargetbar.Health.bg, 0, 0)
 					else
 						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
 					end
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
-					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+					targettargeteffect:SetAlpha(modelsDB.ufalphadark)
 				end
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+		if modelsDB.powerbar then
 			local targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffecttargettarget:SetModel(1715069)
 					powerbareffecttargettarget:MakeCurrentCameraCustom()
@@ -397,11 +373,11 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 					powerbareffecttargettarget:SetPosition(1.2, 0, -0.5)
 					powerbareffecttargettarget:SetAlpha(0.8) --might do this
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
-					powerbareffecttargettarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+					powerbareffecttargettarget:SetModel(modelsDB.custommodelpower)
 				else
-					powerbareffecttargettarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+					powerbareffecttargettarget:SetModel(modelsDB.custommodelclassicpower)
 				end
 			end
 
@@ -422,22 +398,12 @@ hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEff
 --add effects to focus
 function ElvUI_EltreumUI:FocusUFEffects()
 	if E.private.unitframe.enable then
-		if not E.private.ElvUI_EltreumUI then
-			return
-		elseif not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif not E.db.ElvUI_EltreumUI then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			return
-		elseif E.Classic then
-			return
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		if not E.private.ElvUI_EltreumUI or not E.private.ElvUI_EltreumUI.install_version then return end
+		local db = E.db.ElvUI_EltreumUI
+		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications or E.Classic then return end
+		local modelsDB = db.unitframes.models
+
+		if modelsDB.unitframe then
 			local focusbar = _G["ElvUF_Focus"]
 			local reactionfocus = UnitReaction("focus", "player")
 			local _, focusclass = UnitClass("focus")
@@ -445,7 +411,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				focusclass = E.myclass
 			end
 
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+			if modelsDB.modeltype == "CLASS" then
 				--focuseffect:ClearModel()
 				if (UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus"))) and focusclass then
 					focuseffect:SetModel(classModels[focusclass])
@@ -475,41 +441,41 @@ function ElvUI_EltreumUI:FocusUFEffects()
 						focuseffect:SetModel(npcModel)
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+			elseif modelsDB.modeltype == "CUSTOM" then
 				--focuseffect:ClearModel()
 				if E.Modern then
-					focuseffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+					focuseffect:SetModel(modelsDB.custommodel)
 				else
-					focuseffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+					focuseffect:SetModel(modelsDB.custommodelclassic)
 				end
 			end
 
 			if focusbar then
-				focuseffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				focuseffect:SetDesaturation(modelsDB.ufdesaturation)
 				focuseffect:SetParent(focusbar.Health)
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+				if db.unitframes.lightmode then
+					if modelsDB.insideHP then
 						focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
 					else
 						focuseffect:SetInside(focusbar.Health, 0, 0)
 					end
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
-					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+					focuseffect:SetAlpha(modelsDB.ufalpha)
+				elseif db.unitframes.darkmode then
+					if modelsDB.insideHP then
 						focuseffect:SetInside(focusbar.Health.bg, 0, 0)
 					else
 						focuseffect:SetInside(focusbar.Health, 0, 0)
 					end
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
-					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+					focuseffect:SetAlpha(modelsDB.ufalphadark)
 				end
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+		if modelsDB.powerbar then
 			local focuspowerbar = _G["ElvUF_Focus_PowerBar"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectfocus:SetModel(1715069)
 					powerbareffectfocus:MakeCurrentCameraCustom()
@@ -521,11 +487,11 @@ function ElvUI_EltreumUI:FocusUFEffects()
 					powerbareffectfocus:SetPosition(1.2, 0, -0.5)
 					powerbareffectfocus:SetAlpha(0.8) --might do this
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
-					powerbareffectfocus:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+					powerbareffectfocus:SetModel(modelsDB.custommodelpower)
 				else
-					powerbareffectfocus:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+					powerbareffectfocus:SetModel(modelsDB.custommodelclassicpower)
 				end
 			end
 			if focuspowerbar then
@@ -547,24 +513,16 @@ end
 --add effects to pet
 function ElvUI_EltreumUI:PetUFEffects()
 	if E.private.unitframe.enable then
-		if not E.private.ElvUI_EltreumUI then
-			return
-		elseif not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif not E.db.ElvUI_EltreumUI then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			return
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		if not E.private.ElvUI_EltreumUI or not E.private.ElvUI_EltreumUI.install_version then return end
+		local db = E.db.ElvUI_EltreumUI
+		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
+		local modelsDB = db.unitframes.models
+
+		if modelsDB.unitframe then
 			local petbar = _G["ElvUF_Pet"]
 			local reactionpet = UnitReaction("pet", "player")
 
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+			if modelsDB.modeltype == "CLASS" then
 				--peteffect:ClearModel()
 				if reactionpet then
 					if reactionpet >= 5 then
@@ -577,41 +535,41 @@ function ElvUI_EltreumUI:PetUFEffects()
 						peteffect:SetModel(classModels["NPCHOSTILE"])
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+			elseif modelsDB.modeltype == "CUSTOM" then
 				--peteffect:ClearModel()
 				if E.Modern then
-					peteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+					peteffect:SetModel(modelsDB.custommodel)
 				else
-					peteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+					peteffect:SetModel(modelsDB.custommodelclassic)
 				end
 			end
 
 			if petbar then
-				peteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				peteffect:SetDesaturation(modelsDB.ufdesaturation)
 				peteffect:SetParent(petbar.Health)
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+				if db.unitframes.lightmode then
+					if modelsDB.insideHP then
 						peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
 					else
 						peteffect:SetInside(petbar.Health, 0, 0)
 					end
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
-					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+					peteffect:SetAlpha(modelsDB.ufalpha)
+				elseif db.unitframes.darkmode then
+					if modelsDB.insideHP then
 						peteffect:SetInside(petbar.Health.bg, 0, 0)
 					else
 						peteffect:SetInside(petbar.Health, 0, 0)
 					end
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
-					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+					peteffect:SetAlpha(modelsDB.ufalphadark)
 				end
 
 			end
 		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+		if modelsDB.powerbar then
 			local petpowerbar = _G["ElvUF_Pet_PowerBar"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectpet:SetModel(1715069)
 					powerbareffectpet:MakeCurrentCameraCustom()
@@ -623,11 +581,11 @@ function ElvUI_EltreumUI:PetUFEffects()
 					powerbareffectpet:SetPosition(1.2, 0, -0.5)
 					powerbareffectpet:SetAlpha(0.6) --might do this
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
-					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+					powerbareffectpet:SetModel(modelsDB.custommodelpower)
 				else
-					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+					powerbareffectpet:SetModel(modelsDB.custommodelclassicpower)
 				end
 			end
 			if petpowerbar then
@@ -652,24 +610,16 @@ local targetcastbar
 --add effect to castbar
 function ElvUI_EltreumUI:CastbarEffects()
 	if E.private.unitframe.enable then
-		if not E.private.ElvUI_EltreumUI then
-			return
-		elseif not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif not E.db.ElvUI_EltreumUI then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
-			return
-		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			return
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.models.castbar then
+		if not E.private.ElvUI_EltreumUI or not E.private.ElvUI_EltreumUI.install_version then return end
+		local db = E.db.ElvUI_EltreumUI
+		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
+		local modelsDB = db.unitframes.models
+
+		if modelsDB.castbar then
 			castbar = _G["ElvUF_Player_CastBar"]
 			targetcastbar = _G["ElvUF_Target_CastBar"]
 
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" then
+			if modelsDB.modeltypecast == "DEFAULT" then
 				if E.Modern then
 					castbareffectplayer:SetModel(165821)
 					castbareffecttarget:SetModel(165821)
@@ -681,13 +631,13 @@ function ElvUI_EltreumUI:CastbarEffects()
 				castbareffectplayer:SetFacing(rad(180))
 				castbareffecttarget:SetPosition(0, -0.85, 1.65)
 				castbareffecttarget:SetFacing(rad(180))
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "CUSTOM" then
+			elseif modelsDB.modeltypecast == "CUSTOM" then
 				if E.Modern then
-					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
-					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
+					castbareffectplayer:SetModel(modelsDB.custommodelcast)
+					castbareffecttarget:SetModel(modelsDB.custommodelcast)
 				else
-					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
-					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
+					castbareffectplayer:SetModel(modelsDB.custommodelclassiccast)
+					castbareffecttarget:SetModel(modelsDB.custommodelclassiccast)
 				end
 			end
 
