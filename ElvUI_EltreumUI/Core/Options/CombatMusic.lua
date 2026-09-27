@@ -5,7 +5,7 @@ local _G = _G
 -- Eltruism combat music options
 local isPlayingMusic = false
 function ElvUI_EltreumUI:CombatMusicOptions()
-	ElvUI_EltreumUI.Options.args.combatmusic = E.Libs.ACH:Group(E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play custom music during fights and boss fights"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.combatmusic = E.Libs.ACH:Group(E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play custom music during fights and boss fights"], 5, 'tab')
 	ElvUI_EltreumUI.Options.args.combatmusic.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music'
 	ElvUI_EltreumUI.Options.args.combatmusic.args.combat = E.Libs.ACH:Group(L["Combat Music"], nil, 1)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.enable = E.Libs.ACH:Toggle(L["Enable Combat Music"], L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.enable end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end)

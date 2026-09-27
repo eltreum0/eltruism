@@ -4,7 +4,7 @@ local _G = _G
 
 -- Eltruism chat options
 function ElvUI_EltreumUI:ChatOptions()
-	ElvUI_EltreumUI.Options.args.chat = E.Libs.ACH:Group(E:TextGradient(_G.CHAT_LABEL or L["Chat"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Enhance Chat Functionality"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.chat = E.Libs.ACH:Group(E:TextGradient(_G.CHAT_LABEL or L["Chat"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Enhance Chat Functionality"], 7, 'tab')
 	ElvUI_EltreumUI.Options.args.chat.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat'
 	ElvUI_EltreumUI.Options.args.chat.args.enablechatmods = E.Libs.ACH:Toggle(L["Enable ElvUI Chat modifications"], L["Enable adding more functions to ElvUI Chat"], 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.chat.enable end,function(_, value) E.db.ElvUI_EltreumUI.chat.enable = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.chat.args.general = E.Libs.ACH:Group(L["General"], nil, 2)

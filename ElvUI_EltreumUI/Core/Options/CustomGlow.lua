@@ -4,7 +4,7 @@ local _G = _G
 
 -- Eltruism Custom Glow options
 function ElvUI_EltreumUI:CustomGlowOptions()
-	ElvUI_EltreumUI.Options.args.customglow = E.Libs.ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.customglow = E.Libs.ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 3, 'tab')
 	ElvUI_EltreumUI.Options.args.customglow.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow'
 	ElvUI_EltreumUI.Options.args.customglow.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description1 = E.Libs.ACH:Description(L["Replace Blizzards Default Glow with a Custom Glow"], 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)

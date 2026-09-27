@@ -4,7 +4,7 @@ local _G = _G
 
 -- Eltruism media options
 function ElvUI_EltreumUI:MediaOptions()
-	ElvUI_EltreumUI.Options.args.media = E.Libs.ACH:Group(E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Change Fonts, Font Outlines and Action Paging"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.media = E.Libs.ACH:Group(E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Change Fonts, Font Outlines and Action Paging"], 9, 'tab')
 	ElvUI_EltreumUI.Options.args.media.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media'
 	ElvUI_EltreumUI.Options.args.media.args.general = E.Libs.ACH:Group(L["Setup Media"], nil, 1)
 	ElvUI_EltreumUI.Options.args.media.args.general.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

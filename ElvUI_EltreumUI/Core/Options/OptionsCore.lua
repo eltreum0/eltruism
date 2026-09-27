@@ -34,11 +34,11 @@ local THANKYOU = {
 	'Pat',
 	'|cff00c0faBenik|r',
 	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r',
-	'|TInterface/AddOns/ElvUI/Core/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
+	'|TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/releaf:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0AReleaf|r for the alternate class icons',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/tukuidiscord:15:15:0:0:64:64:5:59:5:59|t Tukui Community for all the help and motivation',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/addonsdiscord:15:15:0:0:64:64:5:59:5:59|t WoW AddOns; for answering a lot of questions',
-	'AcidWeb |TInterface/AddOns/ElvUI/Core/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
+	'AcidWeb |TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
 	'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r',
 	'|cff960000Atwood|r - for some of the role icons',
 	'|cffB50909Dlarge|r - for the German localization',
@@ -156,95 +156,24 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options = E.Libs.ACH:Group("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t" .. ElvUI_EltreumUI.Name, nil, 6)
 	ElvUI_EltreumUI.Options.args.logo = E.Libs.ACH:Description(nil, 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', nil, 320, 80)
 
-	--line break so these non options are not with the others
-	ElvUI_EltreumUI.Options.args.linebreak = E.Libs.ACH:Group(" ", nil, 86)
-	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
+	--line breaks so these non options are not with the others
+	ElvUI_EltreumUI.Options.args.linebreak1 = E.Libs.ACH:Group(" ", nil, 2)
+	ElvUI_EltreumUI.Options.args.linebreak1.disabled = true
 
-	--weakauras anchor
-	if not E.Modern then
-		ElvUI_EltreumUI.Options.args.weakauras = E.Libs.ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
-		ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
-		ElvUI_EltreumUI.Options.args.weakauras.args.description1 = E.Libs.ACH:Description(L["WeakAuras"], 2, nil)
-		ElvUI_EltreumUI.Options.args.weakauras.args.description2 = E.Libs.ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
-		ElvUI_EltreumUI.Options.args.weakauras.args.description3 = E.Libs.ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
-		ElvUI_EltreumUI.Options.args.weakauras.args.description4 = E.Libs.ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
-		ElvUI_EltreumUI.Options.args.weakauras.args.image = E.Libs.ACH:Group(L["How to use the Anchors"], nil, 6)
-		ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
-		ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = E.Libs.ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
-		ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
-	end
+	ElvUI_EltreumUI.Options.args.linebreak2 = E.Libs.ACH:Group(" ", nil, 4)
+	ElvUI_EltreumUI.Options.args.linebreak2.disabled = true
 
-	--credits
-	ElvUI_EltreumUI.Options.args.credits = E.Libs.ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 98)
-	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
-	ElvUI_EltreumUI.Options.args.credits.args.author = E.Libs.ACH:Group(L["Author"], nil, 1)
-	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.author.args.description1 = E.Libs.ACH:Description(AUTHORS_STRING, 2, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.thankyous = E.Libs.ACH:Group(L["Credits and Thank yous"], nil, 3)
-	ElvUI_EltreumUI.Options.args.credits.args.thankyous.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.thankyous.args.description1 = E.Libs.ACH:Description(THANKYOU_STRING, 4, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.donators = E.Libs.ACH:Group(L["Donators"], nil, 5)
-	ElvUI_EltreumUI.Options.args.credits.args.donators.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description1 = E.Libs.ACH:Description(DONATORS_STRING1, 6,"MEDIUM",nil,nil,nil,nil,"fill")
-	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description2 = E.Libs.ACH:Description(DONATORS_STRING2, 7,"MEDIUM",nil,nil,nil,nil,"fill")
-	ElvUI_EltreumUI.Options.args.credits.args.translators = E.Libs.ACH:Group(L["Translators"], nil, 17)
-	ElvUI_EltreumUI.Options.args.credits.args.translators.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = E.Libs.ACH:Description(TRANSLATORS_STRING, 18, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.licenses = E.Libs.ACH:Group(L["License"], nil, 19)
-	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = E.Libs.ACH:Description(
-			E.Modern and [[
-Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
-FreeVector (www.freevector.com) for some of the icons. List in license.txt
-Icons8 (www.icons8.com) for some of the icons. List in license.txt
-Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
-LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
-Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
-Rogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3
-]] or [[
-Cooldown is a fork of discoteq's Doom Cooldown Pulse which is licensed under MIT License
-Cursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain
-Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
-FreeVector (www.freevector.com) for some of the icons. List in license.txt
-Icons8 (www.icons8.com) for some of the icons. List in license.txt
-Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
-LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
-Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
-Sockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain
-The Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD
-]], 10, "small", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.linebreak3 = E.Libs.ACH:Group(" ", nil, 6)
+	ElvUI_EltreumUI.Options.args.linebreak3.disabled = true
 
-	--support
-	ElvUI_EltreumUI.Options.args.support = E.Libs.ACH:Group(E:TextGradient(_G.GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
-	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
-	ElvUI_EltreumUI.Options.args.support.args.debug = E.Libs.ACH:Execute(L["Debug"], nil, 1, function()
-		if next(ElvDB.EltruismDisabledAddOns) then
-			ElvUI_EltreumUI:DebugMode("off")
-		else
-			ElvUI_EltreumUI:DebugMode("on")
-		end
-	end)
-	ElvUI_EltreumUI.Options.args.support.args.issues = E.Libs.ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
-	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = E.Libs.ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
-		if E.Modern then
-			return 'https://www.tukui.org/addons.php?id=209'
-		elseif E.Cata then
-			return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
-		elseif E.Classic then
-			return 'https://www.tukui.org/classic-addons.php?id=49'
-		end
-	end)]]
-	ElvUI_EltreumUI.Options.args.support.args.site = E.Libs.ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
-	ElvUI_EltreumUI.Options.args.support.args.curse = E.Libs.ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
-	ElvUI_EltreumUI.Options.args.support.args.wago = E.Libs.ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
-	ElvUI_EltreumUI.Options.args.support.args.discord = E.Libs.ACH:Description(" ", 42, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
-	ElvUI_EltreumUI.Options.args.support.args.discord2 = E.Libs.ACH:Description(L["Join the Discord for faster support and to report any issues you might encounter"], 43, nil)
-	ElvUI_EltreumUI.Options.args.support.args.discord3 = E.Libs.ACH:Description(L["Join the Discord if you have any questions or issues"], 44, nil)
-	ElvUI_EltreumUI.Options.args.support.args.discord4 = E.Libs.ACH:Description(L["Keep in mind the discord is in English"], 45, nil)
-	ElvUI_EltreumUI.Options.args.support.args.discordlink = E.Libs.ACH:Input("", "", 46, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
+	ElvUI_EltreumUI.Options.args.linebreak4 = E.Libs.ACH:Group(" ", nil, 8)
+	ElvUI_EltreumUI.Options.args.linebreak4.disabled = true
+
+	ElvUI_EltreumUI.Options.args.linebreak5 = E.Libs.ACH:Group(" ", nil, 10)
+	ElvUI_EltreumUI.Options.args.linebreak5.disabled = true
 
 	--faq
-	ElvUI_EltreumUI.Options.args.faq = E.Libs.ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Frequently Asked Questions"], 88, 'tab')
+	ElvUI_EltreumUI.Options.args.faq = E.Libs.ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Frequently Asked Questions"], 12, 'tab')
 	ElvUI_EltreumUI.Options.args.faq.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\faq'
 	ElvUI_EltreumUI.Options.args.faq.args.faq = E.Libs.ACH:Group(E:TextGradient(L["Frequently Asked Questions"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 20)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.inline = true
@@ -293,6 +222,91 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the class color texture at the bottom of the screen?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14.args.answer = E.Libs.ACH:Description(L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"])
+
+	--support
+	ElvUI_EltreumUI.Options.args.support = E.Libs.ACH:Group(E:TextGradient(_G.GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 13, 'tab')
+	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
+	ElvUI_EltreumUI.Options.args.support.args.debug = E.Libs.ACH:Execute(L["Debug"], nil, 1, function()
+		if next(ElvDB.EltruismDisabledAddOns) then
+			ElvUI_EltreumUI:DebugMode("off")
+		else
+			ElvUI_EltreumUI:DebugMode("on")
+		end
+	end)
+	ElvUI_EltreumUI.Options.args.support.args.issues = E.Libs.ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
+	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = E.Libs.ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
+		if E.Modern then
+			return 'https://www.tukui.org/addons.php?id=209'
+		elseif E.Cata then
+			return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
+		elseif E.Classic then
+			return 'https://www.tukui.org/classic-addons.php?id=49'
+		end
+	end)]]
+	ElvUI_EltreumUI.Options.args.support.args.site = E.Libs.ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
+	ElvUI_EltreumUI.Options.args.support.args.curse = E.Libs.ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
+	ElvUI_EltreumUI.Options.args.support.args.wago = E.Libs.ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
+	ElvUI_EltreumUI.Options.args.support.args.discord = E.Libs.ACH:Description(" ", 42, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
+	ElvUI_EltreumUI.Options.args.support.args.discord2 = E.Libs.ACH:Description(L["Join the Discord for faster support and to report any issues you might encounter"], 43, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discord3 = E.Libs.ACH:Description(L["Join the Discord if you have any questions or issues"], 44, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discord4 = E.Libs.ACH:Description(L["Keep in mind the discord is in English"], 45, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discordlink = E.Libs.ACH:Input("", "", 46, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
+
+	--weakauras anchor
+	if not E.Modern then
+		ElvUI_EltreumUI.Options.args.weakauras = E.Libs.ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 14)
+		ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
+		ElvUI_EltreumUI.Options.args.weakauras.args.description1 = E.Libs.ACH:Description(L["WeakAuras"], 2, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.description2 = E.Libs.ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.description3 = E.Libs.ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.description4 = E.Libs.ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.image = E.Libs.ACH:Group(L["How to use the Anchors"], nil, 6)
+		ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
+		ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = E.Libs.ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
+		ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
+	end
+
+	--credits
+	ElvUI_EltreumUI.Options.args.credits = E.Libs.ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 15)
+	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
+	ElvUI_EltreumUI.Options.args.credits.args.author = E.Libs.ACH:Group(L["Author"], nil, 1)
+	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.author.args.description1 = E.Libs.ACH:Description(AUTHORS_STRING, 2, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous = E.Libs.ACH:Group(L["Credits and Thank yous"], nil, 3)
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous.args.description1 = E.Libs.ACH:Description(THANKYOU_STRING, 4, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.donators = E.Libs.ACH:Group(L["Donators"], nil, 5)
+	ElvUI_EltreumUI.Options.args.credits.args.donators.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description1 = E.Libs.ACH:Description(DONATORS_STRING1, 6,"MEDIUM",nil,nil,nil,nil,"fill")
+	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description2 = E.Libs.ACH:Description(DONATORS_STRING2, 7,"MEDIUM",nil,nil,nil,nil,"fill")
+	ElvUI_EltreumUI.Options.args.credits.args.translators = E.Libs.ACH:Group(L["Translators"], nil, 17)
+	ElvUI_EltreumUI.Options.args.credits.args.translators.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = E.Libs.ACH:Description(TRANSLATORS_STRING, 18, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.licenses = E.Libs.ACH:Group(L["License"], nil, 19)
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = E.Libs.ACH:Description(
+			E.Modern and [[
+Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
+FreeVector (www.freevector.com) for some of the icons. List in license.txt
+Icons8 (www.icons8.com) for some of the icons. List in license.txt
+Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
+LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
+Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
+Rogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3
+]] or [[
+Cooldown is a fork of discoteq's Doom Cooldown Pulse which is licensed under MIT License
+Cursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain
+Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
+FreeVector (www.freevector.com) for some of the icons. List in license.txt
+Icons8 (www.icons8.com) for some of the icons. List in license.txt
+Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
+LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
+Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
+Sockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain
+The Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD
+]], 10, "small", nil, nil, nil, nil, "full")
+
+
 
 	--[[
 	E.Libs.ACH:Header(name, order, get, set, hidden)

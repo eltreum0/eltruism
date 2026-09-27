@@ -6,7 +6,7 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 -- Eltruism cursor options
 function ElvUI_EltreumUI:CursorOptions()
-	ElvUI_EltreumUI.Options.args.cursor = E.Libs.ACH:Group(E:TextGradient(L["CURSOR"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.cursor = E.Libs.ACH:Group(E:TextGradient(L["Cursor"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"], 7, 'tab')
 	ElvUI_EltreumUI.Options.args.cursor.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor'
 	ElvUI_EltreumUI.Options.args.cursor.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.cursor.args.general.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

@@ -12,7 +12,7 @@ local SHOW_IN_GAME_NAVIGATION = _G.SHOW_IN_GAME_NAVIGATION or " "
 
 -- Eltruism CVar options
 function ElvUI_EltreumUI:CVarOptions()
-	ElvUI_EltreumUI.Options.args.cvars = E.Libs.ACH:Group(E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Customize Blizzard's Hidden Settings"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.cvars = E.Libs.ACH:Group(E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Customize Blizzard's Hidden Settings"], 9, 'tab')
 	ElvUI_EltreumUI.Options.args.cvars.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar'
 	ElvUI_EltreumUI.Options.args.cvars.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.cvars.args.general.args.description1 = E.Libs.ACH:Description(L["Setup CVars"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

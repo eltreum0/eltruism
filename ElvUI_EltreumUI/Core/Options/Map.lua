@@ -5,7 +5,7 @@ local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 
 -- Eltruism map options
 function ElvUI_EltreumUI:MapOptions()
-	ElvUI_EltreumUI.Options.args.map = E.Libs.ACH:Group(E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1), E.Modern and L["Add a time to arrive to waypoints, cardinal directions and more"] or L["Add cardinal directions, change map scale and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.map = E.Libs.ACH:Group(E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1), E.Modern and L["Add a time to arrive to waypoints, cardinal directions and more"] or L["Add cardinal directions, change map scale and more"], 7, 'tab')
 	ElvUI_EltreumUI.Options.args.map.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map'
 	ElvUI_EltreumUI.Options.args.map.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.description1 = E.Libs.ACH:Description(L["Flight Frame"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

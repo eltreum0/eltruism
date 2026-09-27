@@ -22,7 +22,7 @@ end
 
 -- Eltruism other options
 function ElvUI_EltreumUI:MiscOptions()
-	ElvUI_EltreumUI.Options.args.misc = E.Libs.ACH:Group(E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.misc = E.Libs.ACH:Group(E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"], 9, 'tab')
 	ElvUI_EltreumUI.Options.args.misc.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc'
 	ElvUI_EltreumUI.Options.args.misc.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.description1 = E.Libs.ACH:Description(L["Show Eltruism Game Menu Button"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

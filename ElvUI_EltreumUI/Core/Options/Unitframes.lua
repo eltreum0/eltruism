@@ -8,7 +8,7 @@ local OKAY = _G.OKAY
 
 -- Eltruism unitframe options
 function ElvUI_EltreumUI:UnitframeOptions()
-	ElvUI_EltreumUI.Options.args.unitframes = E.Libs.ACH:Group(E:TextGradient(L["UnitFrames"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Gradient, Custom Textures, Models, change fill orientation and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.unitframes = E.Libs.ACH:Group(E:TextGradient(L["UnitFrames"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Gradient, Custom Textures, Models, change fill orientation and more"], 3, 'tab')
 	ElvUI_EltreumUI.Options.args.unitframes.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes'
 	ElvUI_EltreumUI.Options.args.unitframes.args.enableufmods = E.Libs.ACH:Toggle(L["Enable Unitframe Modifications"], L["Enable changing textures and gradients for ElvUI unitframes"], 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,function(_, value) E.db.ElvUI_EltreumUI.unitframes.UFmodifications = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general = E.Libs.ACH:Group(L["General"], nil, 2, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)

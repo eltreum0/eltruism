@@ -4,7 +4,7 @@ local _G = _G
 
 -- Eltruism party options
 function ElvUI_EltreumUI:PartyOptions()
-	ElvUI_EltreumUI.Options.args.party = E.Libs.ACH:Group(E:TextGradient(L["Party/Raid"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play sounds when party members die, show resurrection timers and change instance texts"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.party = E.Libs.ACH:Group(E:TextGradient(L["Instances"] or "Instances", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play sounds when party members die, show resurrection timers and change instance texts"], 5, 'tab')
 	ElvUI_EltreumUI.Options.args.party.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party'
 	ElvUI_EltreumUI.Options.args.party.args.general = E.Libs.ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.party.args.general.args.description1 = E.Libs.ACH:Description(L["Play a sound when someone dies in Party or Raid"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
@@ -29,8 +29,7 @@ function ElvUI_EltreumUI:PartyOptions()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderIconStyle.style = "radio"
 
-	ElvUI_EltreumUI.Options.args.party.args.instances = E.Libs.ACH:Group(L["Instances"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.party.args.instances.args.description1 = E.Libs.ACH:Description(L["Instance Texts"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.party.args.instances = E.Libs.ACH:Group(L["Instance Texts"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.instances.enable end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.enable = value end)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.classcolor = E.Libs.ACH:Toggle(L["Use Class Colors"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.instances.classcolor end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.classcolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.unifycolor = E.Libs.ACH:Toggle(L["Difficulty Specific Colors"], L["Use different colors per Difficulty"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.instances.difficultycolors end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.difficultycolors = value E:StaticPopup_Show('CONFIG_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable or E.db.ElvUI_EltreumUI.skins.instances.classcolor) end)

@@ -4,7 +4,7 @@ local _G = _G
 
 -- Eltruism nameplate options
 function ElvUI_EltreumUI:NameplateOptions()
-	ElvUI_EltreumUI.Options.args.nameplates = E.Libs.ACH:Group(E:TextGradient(L["Nameplates"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Enhance ElvUI Nameplates with options for gradient, size, textures, models, behavior and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.nameplates = E.Libs.ACH:Group(E:TextGradient(L["Nameplates"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Enhance ElvUI Nameplates with options for gradient, size, textures, models, behavior and more"], 3, 'tab')
 	ElvUI_EltreumUI.Options.args.nameplates.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate'
 	ElvUI_EltreumUI.Options.args.nameplates.args.general = E.Libs.ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.description1 = E.Libs.ACH:Description(L["Smart Classbar"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

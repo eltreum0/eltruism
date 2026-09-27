@@ -4,7 +4,7 @@ local _G = _G
 
 -- Eltruism gradient options
 function ElvUI_EltreumUI:GradientOptions()
-	ElvUI_EltreumUI.Options.args.gradient = E.Libs.ACH:Group(E:TextGradient(L["Gradient"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add gradients to Unitframes and Nameplates"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.gradient = E.Libs.ACH:Group(E:TextGradient(L["Gradient"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add gradients to Unitframes and Nameplates"], 3, 'tab')
 	ElvUI_EltreumUI.Options.args.gradient.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient'
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes = E.Libs.ACH:Group(L["UnitFrames"], nil, 2, "tab", nil, nil, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes = E.Libs.ACH:Group(L["Frames"], nil, 1, "tab")

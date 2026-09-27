@@ -8,7 +8,7 @@ local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
 
 -- Eltruism installer options
 function ElvUI_EltreumUI:InstallerOptions()
-	ElvUI_EltreumUI.Options.args.installer = E.Libs.ACH:Group(E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install, Reinstall or Update various parts of Eltruism"], 2, 'tab')
+	ElvUI_EltreumUI.Options.args.installer = E.Libs.ACH:Group(E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install, Reinstall or Update various parts of Eltruism"], 1, 'tab')
 	ElvUI_EltreumUI.Options.args.installer.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install'
 	ElvUI_EltreumUI.Options.args.installer.args.tab1 = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.description1 = E.Libs.ACH:Description(L["Eltruism Installer"], 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)

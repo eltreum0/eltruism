@@ -5,7 +5,7 @@ local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 
 -- Eltruism quest options
 function ElvUI_EltreumUI:QuestOptions()
-	ElvUI_EltreumUI.Options.args.quests = E.Libs.ACH:Group(E:TextGradient(_G.QUESTS_LABEL or "", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.quests = E.Libs.ACH:Group(E:TextGradient(_G.QUESTS_LABEL or "", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"], 7, 'tab')
 	ElvUI_EltreumUI.Options.args.quests.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest'
 	ElvUI_EltreumUI.Options.args.quests.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

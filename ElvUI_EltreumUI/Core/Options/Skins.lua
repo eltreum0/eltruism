@@ -11,7 +11,7 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 -- Eltruism skins options
 function ElvUI_EltreumUI:SkinsOptions()
-	ElvUI_EltreumUI.Options.args.skins = E.Libs.ACH:Group(E:TextGradient(L["Skins"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add several skins to World of Warcraft, such as Quests, Character Frame, Shadows, other Addons, Role Icons and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.skins = E.Libs.ACH:Group(E:TextGradient(L["Skins"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add several skins to World of Warcraft, such as Quests, Character Frame, Shadows, other Addons, Role Icons and more"], 3, 'tab')
 	ElvUI_EltreumUI.Options.args.skins.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint'
 	ElvUI_EltreumUI.Options.args.skins.args.general = E.Libs.ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons = E.Libs.ACH:Group(L["Role Icon"], nil, 1, "tab")
