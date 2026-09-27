@@ -23,6 +23,14 @@ local EltreumPowerAnchor
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 local powerbareffect = CreateFrame("PlayerModel", "EltruismPowerBarEffect")
 powerbareffect:Hide()
+powerbareffect.isShownStatus = false
+
+EltreumPowerBar:SetValue(0)
+EltreumPowerBar:Hide() --hide at the start before events
+EltreumPowerBar.isShownStatus = false
+EltreumPowerBar.currentPoint = nil
+EltreumPowerBar.currentAnchor = nil
+EltreumPowerBar.currentY = nil
 
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:Hide() --hide at the start before events
@@ -41,9 +49,11 @@ EltreumPowerBar.Text:SetJustifyV("MIDDLE")
 --setup the prediction and incoming prediction
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
 EltreumPowerPrediction:Hide()
+EltreumPowerPrediction.isShownStatus = false
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerPrediction:SetValue(0)
 EltreumPowerPredictionIncoming:Hide()
+EltreumPowerPredictionIncoming.isShownStatus = false
 EltreumPowerPredictionIncoming:SetValue(0)
 local druidwrath = 6
 local druidstarfire = 8
@@ -58,10 +68,16 @@ local incResource = 0 -- reset
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		EltreumPowerPrediction:Hide() --hide at the start before events
+		if EltreumPowerPrediction.isShownStatus then
+			EltreumPowerPrediction:Hide() --hide at the start before events
+			EltreumPowerPrediction.isShownStatus = false
+		end
 		EltreumPowerPrediction:SetValue(0)
 		EltreumPowerPredictionIncoming:SetValue(0)
-		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
+		if EltreumPowerPredictionIncoming.isShownStatus then
+			EltreumPowerPredictionIncoming:Hide() --hide at the start before events
+			EltreumPowerPredictionIncoming.isShownStatus = false
+		end
 		local predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 		local nameplatePowerDB = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
 		local playerPower = UnitPower("player")
@@ -194,14 +210,26 @@ function ElvUI_EltreumUI:PowerPrediction()
 				end
 			end
 
-			EltreumPowerPrediction:Show()
+			if not EltreumPowerPrediction.isShownStatus then
+				EltreumPowerPrediction:Show()
+				EltreumPowerPrediction.isShownStatus = true
+			end
 			EltreumPowerPredictionIncoming:SetValue(incResource)
-			EltreumPowerPredictionIncoming:Show()
+			if not EltreumPowerPredictionIncoming.isShownStatus then
+				EltreumPowerPredictionIncoming:Show()
+				EltreumPowerPredictionIncoming.isShownStatus = true
+			end
 		else
 			EltreumPowerPrediction:SetValue(0)
-			EltreumPowerPrediction:Hide()
+			if EltreumPowerPrediction.isShownStatus then
+				EltreumPowerPrediction:Hide()
+				EltreumPowerPrediction.isShownStatus = false
+			end
 			EltreumPowerPredictionIncoming:SetValue(0)
-			EltreumPowerPredictionIncoming:Hide()
+			if EltreumPowerPredictionIncoming.isShownStatus then
+				EltreumPowerPredictionIncoming:Hide()
+				EltreumPowerPredictionIncoming.isShownStatus = false
+			end
 		end
 	end
 end
@@ -210,8 +238,14 @@ end
 function ElvUI_EltreumUI:NameplatePower(nameplate)
 	--print("nameplate power spam "..math.random(1,99))
 	if not nameplate then
-		EltreumPowerBar:Hide()
-		powerbareffect:Hide()
+		if EltreumPowerBar.isShownStatus then
+			EltreumPowerBar:Hide()
+			EltreumPowerBar.isShownStatus = false
+		end
+		if powerbareffect.isShownStatus then
+			powerbareffect:Hide()
+			powerbareffect.isShownStatus = false
+		end
 		EltreumPowerAnchor = nil
 	end
 	if not E.private.ElvUI_EltreumUI then return end
