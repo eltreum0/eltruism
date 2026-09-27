@@ -10,3 +10,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# tsm's lua
+.wowluarc.json
