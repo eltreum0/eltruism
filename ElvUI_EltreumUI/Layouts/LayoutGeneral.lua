@@ -2195,6 +2195,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
+	--SetCVar('nameplateShowFriendlyNpcs',0) --this is npcs, specially inside instances, call in the other function
 
 	--[[12.1.0 new cvars
 	nameplateCheckDistanceForTarget --ignores distance to display target np
