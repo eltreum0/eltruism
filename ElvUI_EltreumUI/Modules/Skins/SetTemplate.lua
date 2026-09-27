@@ -365,7 +365,8 @@ local function EltruisAce3(frame)
 	if E.db.ElvUI_EltreumUI.skins.ace3.enable then
 		if not frame.EltruismAce3HooksSetup then
 			E:Delay(0,function()
-				if not _G.InCombatLockdown() and ElvUI_EltreumUI:IsThisASafeSecret(frame) and ElvUI_EltreumUI:IsThisASafeSecret(frame:GetParent()) then
+				if frame.IsForbidden and frame:IsForbidden() then return end
+				if not _G.InCombatLockdown() and ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and ElvUI_EltreumUI:IsThisASafeSecret(frame:GetParent(),true) then
 					if frame:GetParent() then
 						if frame:GetParent().obj then
 							if frame:GetParent().obj.SetValue then
@@ -453,7 +454,8 @@ local function EltruisAce3(frame)
 			frame.EltruismAce3HooksSetup = true
 		end
 		E:Delay(0,function()
-			if not _G.InCombatLockdown() and ElvUI_EltreumUI:IsThisASafeSecret(frame) and ElvUI_EltreumUI:IsThisASafeSecret(frame:GetParent()) then
+			if frame.IsForbidden and frame:IsForbidden() then return end
+			if not _G.InCombatLockdown() and ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and ElvUI_EltreumUI:IsThisASafeSecret(frame:GetParent(),true) then
 				if frame:GetParent() then
 					if frame:GetParent().obj then
 						if frame:GetParent().obj.label and frame:GetParent().obj.label.SetTextColor then
