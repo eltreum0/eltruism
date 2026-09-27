@@ -10,13 +10,6 @@ local rad = _G.rad
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
 local targetNameplate
 
-local function DelayedNameplateModelSettings()
-	if UnitExists("target") and targetNameplate then
-		SetNameplateModelSettings(targetNameplate)
-		target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
-	end
-end
-
 --function to set model settings
 local function SetNameplateModelSettings(nameplate)
 	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then
@@ -51,6 +44,13 @@ local function SetNameplateModelSettings(nameplate)
 	--target3d:SetFogFar(10)
 	--or light (dont use with fog)
 	--target3d:SetLight(enabled, omni, dirX,dirY,dirZ, ambIntensity,ambR,ambG,ambB, dirIntensity,dirR,dirG,dirB)
+end
+
+local function DelayedNameplateModelSettings()
+	if UnitExists("target") and targetNameplate then
+		SetNameplateModelSettings(targetNameplate)
+		target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
+	end
 end
 
 function ElvUI_EltreumUI:NameplateModel(nameplate)
