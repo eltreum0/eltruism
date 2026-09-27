@@ -101,9 +101,10 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		local modelsDB = db.unitframes.models
 
 		local playerbar = _G["ElvUF_Player"]
-		local playerAlpha = playerbar and playerbar:GetAlpha() or 1
+		if not playerbar then return end
+		local playerAlpha = playerbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			if playerbar and not playerbar.EltruismModelAlphaHooked then
+			if not playerbar.EltruismModelAlphaHooked then
 				hooksecurefunc(playerbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if playereffect then playereffect:SetAlpha(alpha * baseAlpha) end
@@ -124,30 +125,29 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				end
 			end
 
-			if playerbar then
-				playereffect:SetDesaturation(modelsDB.ufdesaturation)
-				playereffect:SetParent(playerbar.Health)
-				if db.unitframes.lightmode then
-					if modelsDB.insideHP then
-						playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
-					else
-						playereffect:SetInside(playerbar.Health, 0, 0)
-					end
-					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
-					playereffect:SetAlpha(modelsDB.ufalpha * (playerAlpha))
-				elseif db.unitframes.darkmode then
-					if modelsDB.insideHP then
-						playereffect:SetInside(playerbar.Health.bg, 0, 0)
-					else
-						playereffect:SetInside(playerbar.Health, 0, 0)
-					end
-					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
-					playereffect:SetAlpha(modelsDB.ufalphadark * (playerAlpha))
+			playereffect:SetDesaturation(modelsDB.ufdesaturation)
+			playereffect:SetParent(playerbar.Health)
+			if db.unitframes.lightmode then
+				if modelsDB.insideHP then
+					playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
+				else
+					playereffect:SetInside(playerbar.Health, 0, 0)
 				end
+				playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
+				playereffect:SetAlpha(modelsDB.ufalpha * (playerAlpha))
+			elseif db.unitframes.darkmode then
+				if modelsDB.insideHP then
+					playereffect:SetInside(playerbar.Health.bg, 0, 0)
+				else
+					playereffect:SetInside(playerbar.Health, 0, 0)
+				end
+				playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
+				playereffect:SetAlpha(modelsDB.ufalphadark * (playerAlpha))
 			end
 		end
 		if modelsDB.powerbar then
 			local powerbar = _G["ElvUF_Player_PowerBar"]
+			if not powerbar then return end
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectplayer:SetModel(1715069)
@@ -168,14 +168,12 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				end
 			end
 
-			if powerbar then
-				--powerbareffectplayer:SetAlpha(1)
-				--powerbareffectplayer:ClearAllPoints()
-				--powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
-				powerbareffectplayer:SetFrameLevel(powerbar:GetFrameLevel())
-				powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
-				powerbareffectplayer:SetParent(powerbar)
-			end
+			--powerbareffectplayer:SetAlpha(1)
+			--powerbareffectplayer:ClearAllPoints()
+			--powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
+			powerbareffectplayer:SetFrameLevel(powerbar:GetFrameLevel())
+			powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
+			powerbareffectplayer:SetParent(powerbar)
 		end
 	end
 end
@@ -191,9 +189,10 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		local modelsDB = db.unitframes.models
 
 		local targetbar = _G["ElvUF_Target"]
-		local targetAlpha = targetbar and targetbar:GetAlpha() or 1
+		if not targetbar then return end
+		local targetAlpha = targetbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			if targetbar and not targetbar.EltruismModelAlphaHooked then
+			if not targetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targetbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if targeteffect then targeteffect:SetAlpha(alpha * baseAlpha) end
@@ -246,32 +245,31 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				end
 			end
 
-			if targetbar then
-				targeteffect:SetDesaturation(modelsDB.ufdesaturation)
-				targeteffect:SetParent(targetbar.Health)
-				if db.unitframes.lightmode then
-					if modelsDB.insideHP then
-						targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
-					else
-						targeteffect:SetInside(targetbar.Health, 0, 0)
-					end
-					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
-					targeteffect:SetAlpha(modelsDB.ufalpha * (targetAlpha))
-				elseif db.unitframes.darkmode then
-					if modelsDB.insideHP then
-						targeteffect:SetInside(targetbar.Health.bg, 0, 0)
-					else
-						targeteffect:SetInside(targetbar.Health, 0, 0)
-					end
-					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
-					targeteffect:SetAlpha(modelsDB.ufalphadark * (targetAlpha))
+			targeteffect:SetDesaturation(modelsDB.ufdesaturation)
+			targeteffect:SetParent(targetbar.Health)
+			if db.unitframes.lightmode then
+				if modelsDB.insideHP then
+					targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
+				else
+					targeteffect:SetInside(targetbar.Health, 0, 0)
 				end
-				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
+				targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
+				targeteffect:SetAlpha(modelsDB.ufalpha * (targetAlpha))
+			elseif db.unitframes.darkmode then
+				if modelsDB.insideHP then
+					targeteffect:SetInside(targetbar.Health.bg, 0, 0)
+				else
+					targeteffect:SetInside(targetbar.Health, 0, 0)
+				end
+				targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
+				targeteffect:SetAlpha(modelsDB.ufalphadark * (targetAlpha))
 			end
+			--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 		end
 
 		if modelsDB.powerbar then
 			local targetpowerbar = _G["ElvUF_Target_PowerBar"]
+			if not targetpowerbar then return end
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffecttarget:SetModel(1715069)
@@ -291,14 +289,12 @@ function ElvUI_EltreumUI:TargetUFEffects()
 					powerbareffecttarget:SetModel(modelsDB.custommodelclassicpower)
 				end
 			end
-			if targetpowerbar then
-				--powerbareffecttarget:SetAlpha(1)
-				--powerbareffecttarget:ClearAllPoints()
-				--powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
-				powerbareffecttarget:SetFrameLevel(targetpowerbar:GetFrameLevel())
-				powerbareffecttarget:SetInside(targetpowerbar:GetStatusBarTexture(), 0, 0)
-				powerbareffecttarget:SetParent(targetpowerbar)
-			end
+			--powerbareffecttarget:SetAlpha(1)
+			--powerbareffecttarget:ClearAllPoints()
+			--powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
+			powerbareffecttarget:SetFrameLevel(targetpowerbar:GetFrameLevel())
+			powerbareffecttarget:SetInside(targetpowerbar:GetStatusBarTexture(), 0, 0)
+			powerbareffecttarget:SetParent(targetpowerbar)
 		end
 	end
 end
@@ -314,9 +310,10 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		local modelsDB = db.unitframes.models
 
 		local targettargetbar = _G["ElvUF_TargetTarget"]
-		local targettargetAlpha = targettargetbar and targettargetbar:GetAlpha() or 1
+		if not targettargetbar then return end
+		local targettargetAlpha = targettargetbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			if targettargetbar and not targettargetbar.EltruismModelAlphaHooked then
+			if not targettargetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targettargetbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if targettargeteffect then targettargeteffect:SetAlpha(alpha * baseAlpha) end
@@ -367,31 +364,30 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				end
 			end
 
-			if targettargetbar then
-				targettargeteffect:SetDesaturation(modelsDB.ufdesaturation)
-				targettargeteffect:SetParent(targettargetbar.Health)
-				if db.unitframes.lightmode then
-					if modelsDB.insideHP then
-						targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
-					else
-						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
-					end
-					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
-					targettargeteffect:SetAlpha(modelsDB.ufalpha * (targettargetAlpha))
-				elseif db.unitframes.darkmode then
-					if modelsDB.insideHP then
-						targettargeteffect:SetInside(targettargetbar.Health.bg, 0, 0)
-					else
-						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
-					end
-					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
-					targettargeteffect:SetAlpha(modelsDB.ufalphadark * (targettargetAlpha))
+			targettargeteffect:SetDesaturation(modelsDB.ufdesaturation)
+			targettargeteffect:SetParent(targettargetbar.Health)
+			if db.unitframes.lightmode then
+				if modelsDB.insideHP then
+					targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
+				else
+					targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
 				end
+				targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
+				targettargeteffect:SetAlpha(modelsDB.ufalpha * (targettargetAlpha))
+			elseif db.unitframes.darkmode then
+				if modelsDB.insideHP then
+					targettargeteffect:SetInside(targettargetbar.Health.bg, 0, 0)
+				else
+					targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
+				end
+				targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
+				targettargeteffect:SetAlpha(modelsDB.ufalphadark * (targettargetAlpha))
 			end
 		end
 
 		if modelsDB.powerbar then
 			local targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
+			if not targettargetpowerbar then return end
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffecttargettarget:SetModel(1715069)
@@ -412,14 +408,12 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				end
 			end
 
-			if targettargetpowerbar then
-				--powerbareffecttargettarget:SetAlpha(1)
-				--powerbareffecttargettarget:ClearAllPoints()
-				--powerbareffecttargettarget:SetAllPoints(targettargetpowerbar:GetStatusBarTexture())
-				powerbareffecttargettarget:SetFrameLevel(targettargetpowerbar:GetFrameLevel())
-				powerbareffecttargettarget:SetInside(targettargetpowerbar:GetStatusBarTexture(), 0, 0)
-				powerbareffecttargettarget:SetParent(targettargetpowerbar)
-			end
+			--powerbareffecttargettarget:SetAlpha(1)
+			--powerbareffecttargettarget:ClearAllPoints()
+			--powerbareffecttargettarget:SetAllPoints(targettargetpowerbar:GetStatusBarTexture())
+			powerbareffecttargettarget:SetFrameLevel(targettargetpowerbar:GetFrameLevel())
+			powerbareffecttargettarget:SetInside(targettargetpowerbar:GetStatusBarTexture(), 0, 0)
+			powerbareffecttargettarget:SetParent(targettargetpowerbar)
 		end
 	end
 end
@@ -435,9 +429,10 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		local modelsDB = db.unitframes.models
 
 		local focusbar = _G["ElvUF_Focus"]
+		if not focusbar then return end
 		local focusAlpha = focusbar and focusbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			if focusbar and not focusbar.EltruismModelAlphaHooked then
+			if not focusbar.EltruismModelAlphaHooked then
 				hooksecurefunc(focusbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if focuseffect then focuseffect:SetAlpha(alpha * baseAlpha) end
@@ -490,26 +485,24 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				end
 			end
 
-			if focusbar then
-				focuseffect:SetDesaturation(modelsDB.ufdesaturation)
-				focuseffect:SetParent(focusbar.Health)
-				if db.unitframes.lightmode then
-					if modelsDB.insideHP then
-						focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
-					else
-						focuseffect:SetInside(focusbar.Health, 0, 0)
-					end
-					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
-					focuseffect:SetAlpha(modelsDB.ufalpha * (focusAlpha))
-				elseif db.unitframes.darkmode then
-					if modelsDB.insideHP then
-						focuseffect:SetInside(focusbar.Health.bg, 0, 0)
-					else
-						focuseffect:SetInside(focusbar.Health, 0, 0)
-					end
-					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
-					focuseffect:SetAlpha(modelsDB.ufalphadark * (focusAlpha))
+			focuseffect:SetDesaturation(modelsDB.ufdesaturation)
+			focuseffect:SetParent(focusbar.Health)
+			if db.unitframes.lightmode then
+				if modelsDB.insideHP then
+					focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
+				else
+					focuseffect:SetInside(focusbar.Health, 0, 0)
 				end
+				focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
+				focuseffect:SetAlpha(modelsDB.ufalpha * (focusAlpha))
+			elseif db.unitframes.darkmode then
+				if modelsDB.insideHP then
+					focuseffect:SetInside(focusbar.Health.bg, 0, 0)
+				else
+					focuseffect:SetInside(focusbar.Health, 0, 0)
+				end
+				focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
+				focuseffect:SetAlpha(modelsDB.ufalphadark * (focusAlpha))
 			end
 		end
 
@@ -559,9 +552,10 @@ function ElvUI_EltreumUI:PetUFEffects()
 		local modelsDB = db.unitframes.models
 
 		local petbar = _G["ElvUF_Pet"]
+		if not petbar then return end
 		local petAlpha = petbar and petbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			if petbar and not petbar.EltruismModelAlphaHooked then
+			if not petbar.EltruismModelAlphaHooked then
 				hooksecurefunc(petbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
 					if peteffect then peteffect:SetAlpha(alpha * baseAlpha) end
@@ -593,27 +587,24 @@ function ElvUI_EltreumUI:PetUFEffects()
 				end
 			end
 
-			if petbar then
-				peteffect:SetDesaturation(modelsDB.ufdesaturation)
-				peteffect:SetParent(petbar.Health)
-				if db.unitframes.lightmode then
-					if modelsDB.insideHP then
-						peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
-					else
-						peteffect:SetInside(petbar.Health, 0, 0)
-					end
-					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
-					peteffect:SetAlpha(modelsDB.ufalpha * (petAlpha))
-				elseif db.unitframes.darkmode then
-					if modelsDB.insideHP then
-						peteffect:SetInside(petbar.Health.bg, 0, 0)
-					else
-						peteffect:SetInside(petbar.Health, 0, 0)
-					end
-					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
-					peteffect:SetAlpha(modelsDB.ufalphadark * (petAlpha))
+			peteffect:SetDesaturation(modelsDB.ufdesaturation)
+			peteffect:SetParent(petbar.Health)
+			if db.unitframes.lightmode then
+				if modelsDB.insideHP then
+					peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
+				else
+					peteffect:SetInside(petbar.Health, 0, 0)
 				end
-
+				peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
+				peteffect:SetAlpha(modelsDB.ufalpha * (petAlpha))
+			elseif db.unitframes.darkmode then
+				if modelsDB.insideHP then
+					peteffect:SetInside(petbar.Health.bg, 0, 0)
+				else
+					peteffect:SetInside(petbar.Health, 0, 0)
+				end
+				peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
+				peteffect:SetAlpha(modelsDB.ufalphadark * (petAlpha))
 			end
 		end
 		if modelsDB.powerbar then
