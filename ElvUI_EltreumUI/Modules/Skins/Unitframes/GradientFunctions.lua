@@ -602,15 +602,15 @@ local function SetCachedColors(cache, minColor, maxColor, unitclass, invert, alp
 	local healthKey = isHealth or false
 
 	local c1 = cache[unitclass]
-	if not c1 then c1 = {}; cache[unitclass] = c1 end
+	if not c1 then c1 = {} cache[unitclass] = c1 end
 	local c2 = c1[invKey]
-	if not c2 then c2 = {}; c1[invKey] = c2 end
+	if not c2 then c2 = {} c1[invKey] = c2 end
 	local c3 = c2[alphaKey]
-	if not c3 then c3 = {}; c2[alphaKey] = c3 end
+	if not c3 then c3 = {} c2[alphaKey] = c3 end
 	local c4 = c3[bgKey]
-	if not c4 then c4 = {}; c3[bgKey] = c4 end
+	if not c4 then c4 = {} c3[bgKey] = c4 end
 	local c5 = c4[custAlphaKey]
-	if not c5 then c5 = {}; c4[custAlphaKey] = c5 end
+	if not c5 then c5 = {} c4[custAlphaKey] = c5 end
 	c5[healthKey] = { minColor, maxColor }
 end
 
