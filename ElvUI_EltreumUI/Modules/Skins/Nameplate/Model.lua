@@ -8,6 +8,15 @@ local rad = _G.rad
 
 --Adds a model of the Target to the Target nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
+local targetNameplate
+
+local function DelayedNameplateModelSettings()
+	if UnitExists("target") and targetNameplate then
+		SetNameplateModelSettings(targetNameplate)
+		target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
+	end
+end
+
 --function to set model settings
 local function SetNameplateModelSettings(nameplate)
 	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then
@@ -57,21 +66,13 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					--original, but can have wrong camera
 					SetNameplateModelSettings(nameplate)
 
+					targetNameplate = nameplate
+
 					--first delay, for selecting a target and fixing camera
-					E:Delay(0.098, function()
-						if UnitExists("target") then
-							SetNameplateModelSettings(nameplate)
-							target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
-						end
-					end)
+					E:Delay(0.098, DelayedNameplateModelSettings)
 
 					--second delay, for when swapping targets too fast can cause it to incorrectly set the previous target
-					E:Delay(0.150, function()
-						if UnitExists("target") then
-							SetNameplateModelSettings(nameplate)
-							target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
-						end
-					end)
+					E:Delay(0.150, DelayedNameplateModelSettings)
 
 				else
 					target3d:ClearAllPoints()

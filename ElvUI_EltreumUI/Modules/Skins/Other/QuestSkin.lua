@@ -1279,29 +1279,31 @@ function ElvUI_EltreumUI:SkinQuests()
 					--C_QuestLog.SortQuestWatches()
 				end)
 
-				hooksecurefunc(C_QuestLog, "AddQuestWatch", function()
-					E:Delay(0, function()
-						for _, k in pairs(questmodules) do
-							if k.ContentsFrame then
-								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
-									if v then
-										v:UnregisterEvent("ADDON_ACTION_BLOCKED")
-										v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
-										blockskin(v)
-										if v.NormalBG then
-											v.NormalBG:Hide()
-											v.NormalBG:SetTexture()
-										end
-										if v.FinalBG then
-											v.FinalBG:Hide()
-											v.FinalBG:SetTexture()
-										end
+				local function UpdateQuestWatchModules()
+					for _, k in pairs(questmodules) do
+						if k.ContentsFrame then
+							for _, v in pairs({k.ContentsFrame:GetChildren()}) do
+								if v then
+									v:UnregisterEvent("ADDON_ACTION_BLOCKED")
+									v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
+									blockskin(v)
+									if v.NormalBG then
+										v.NormalBG:Hide()
+										v.NormalBG:SetTexture()
+									end
+									if v.FinalBG then
+										v.FinalBG:Hide()
+										v.FinalBG:SetTexture()
 									end
 								end
 							end
 						end
-						--C_QuestLog.SortQuestWatches()
-					end)
+					end
+					--C_QuestLog.SortQuestWatches()
+				end
+
+				hooksecurefunc(C_QuestLog, "AddQuestWatch", function()
+					E:Delay(0, UpdateQuestWatchModules)
 				end)
 			end
 		elseif E.Classic or E.TBC then
@@ -1838,13 +1840,15 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
 			end)
 
+			local function UpdateWatchFrameCollapseButton()
+				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+			end
+
 			_G["WatchFrameCollapseExpandButton"]:HookScript("OnShow", function()
-				E:Delay(0, function()
-					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
-					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
-				end)
+				E:Delay(0, UpdateWatchFrameCollapseButton)
 			end)
 
 			--highlight

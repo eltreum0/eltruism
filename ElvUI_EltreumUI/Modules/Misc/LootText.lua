@@ -87,6 +87,11 @@ _G.hooksecurefunc(EltruismCombatText, "InitializeFontString", function(_, fontSt
 	fontString:SetShadowColor(0, 0, 0, 0)
 end)
 
+local skillMsg = ""
+local function printSkillMsg()
+	EltruismCombatText:AddMessage(skillMsg, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
+end
+
 function ElvUI_EltreumUI:LootText()
 	EltruismCombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale)
 	EltruismCombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata)
@@ -149,12 +154,16 @@ function ElvUI_EltreumUI:LootText()
 			end
 		end
 
+		local function resetErrorThrottle()
+			errorthrottle = false
+		end
+
 		LootTextframe:SetScript("OnEvent",function(_, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 				if not errorthrottle then
 					EltruismCombatText:AddMessage(INVENTORY_FULL, _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true) --apparently it spams for some people
 					errorthrottle = true
-					E:Delay(3, function() errorthrottle = false end)
+					E:Delay(3, resetErrorThrottle)
 				end
 			end
 			if (event == "CHAT_MSG_LOOT") then
@@ -248,9 +257,8 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if E.db.ElvUI_EltreumUI.loot.loottext.skill then
 				if event == 'CHAT_MSG_SKILL' and arg2 == "" then
-					E:Delay(0.5, function()
-						EltruismCombatText:AddMessage(arg1, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
-					end)
+					skillMsg = arg1
+					E:Delay(0.5, printSkillMsg)
 				end
 			end
 		end)
