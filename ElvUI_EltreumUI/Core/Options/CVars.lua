@@ -5,7 +5,7 @@ local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local LOW_LATENCY_MODE = _G.LOW_LATENCY_MODE or "Low Latency Mode"
 local OPTION_TOOLTIP_LOW_LATENCY_MODE = _G.OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency"
-local VIDEO_OPTIONS_DISABLED = _G.VIDEO_OPTIONS_DISABLED or "Disabled"
+local VIDEO_OPTIONS_DISABLED = _G.VIDEO_OPTIONS_DISABLED or L["Disabled"]
 local VIDEO_OPTIONS_BUILTIN = _G.VIDEO_OPTIONS_BUILTIN or "Built-in"
 local VIDEO_OPTIONS_NVIDIA_REFLEX = _G.VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex"
 local SHOW_IN_GAME_NAVIGATION = _G.SHOW_IN_GAME_NAVIGATION or " "
@@ -192,7 +192,7 @@ WorldTextMinSize 6
 			E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 0
 		end
 	end, nil, not E.Modern)
-	ElvUI_EltreumUI.Options.args.cvars.args.graphics = E.Libs.ACH:Group(L["Graphics"], nil, 2)
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics = E.Libs.ACH:Group(_G.GRAPHICS_LABEL, nil, 2)
 	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description1 = E.Libs.ACH:Description(L["AMD FSR"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.forceFSRon = E.Libs.ACH:Toggle(L["Enable AMD FSR even if not scaling"], L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"], 2, nil, false,'full',
 		function()
@@ -217,7 +217,7 @@ WorldTextMinSize 6
 		--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
 	}, false, nil, function() return GetCVar('LowLatencyMode') end, function(_, value) local number = _G.tonumber(value) SetCVar('LowLatencyMode', number) end, nil)
 	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.lowlatencycvar.style = "radio"
-	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description3 = E.Libs.ACH:Description(L["Dynamic Render Scale"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description3 = E.Libs.ACH:Description(_G.DYNAMIC_RENDER_SCALE or "Dynamic Render Scale", 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.dynamicrenderscaleenable = E.Libs.ACH:Toggle(L["Lowers render scale if GPU bound to hit Target FPS."], L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."], 7, nil, false,'full',
 		function()
 			if GetCVar('DynamicRenderScale') == '0' then

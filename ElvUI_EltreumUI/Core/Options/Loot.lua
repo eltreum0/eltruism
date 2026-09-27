@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:LootOptions()
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.types.args.currency = E.Libs.ACH:Toggle(_G.CURRENCY, nil, 1, nil, false, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.types.args.pet = E.Libs.ACH:Toggle(L["Pets"], nil, 1, nil, false, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.types.args.skill = E.Libs.ACH:Toggle(_G.SKILL, nil, 1, nil, false, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.skill end,function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.skill = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
-	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.filter = E.Libs.ACH:Group(L["Filter"], nil, 1, "tab")
+	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.filter = E.Libs.ACH:Group(L["Filters"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.filter.args.quality = E.Libs.ACH:Select(L["Minimum Loot Quality Filter"], L["Only items of this quality or better will be displayed"], 10, {
 		["0"] = ITEM_QUALITY0_DESC,
 		["1"] = ITEM_QUALITY1_DESC,
@@ -38,11 +38,11 @@ function ElvUI_EltreumUI:LootOptions()
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.strata = E.Libs.ACH:Group(L["Strata"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.strata.args.description1 = E.Libs.ACH:Description(L["Change the strata of the Loot Text"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.strata.args.lootstrata = E.Libs.ACH:Select(" ", L["Set the level that LootText will be drawn to this"], 2, {
-		["BACKGROUND"] = L["Background"],
+		["BACKGROUND"] = L["BACKGROUND"],
 		["LOW"] = L["Low"],
 		["MEDIUM"] = L["Medium"],
 		["HIGH"] = L["High"],
-		["DIALOG"] = L["Dialog"],
+		["DIALOG"] = L["DIALOG"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.strata end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.strata = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.strata.args.lootstrata.style = "radio"
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.position = E.Libs.ACH:Group(L["Position"], nil, 1, "tab")

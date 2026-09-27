@@ -940,7 +940,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--extra stats
 			if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-				CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
+				CharacterFrame.EltruismExtraStatsFont:SetText(_G.OTHER)
 				CharacterFrame.EltruismSpeedDesc:SetText(_G.STAT_MOVEMENT_SPEED)
 				if not E.db.ElvUI_EltreumUI.skins.statcolors and not E.db.ElvUI_EltreumUI.skins.characterskingradients then
 					CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
@@ -1114,7 +1114,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--add gradient text to some texts
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 			if E.db.ElvUI_EltreumUI.skins.classicarmory and E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-				CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom))
+				CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(_G.OTHER, E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom))
 			end
 			--CharacterStatsPane.ItemLevelCategory.Title:SetText("Gegenstandsstufe")
 			CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
@@ -2018,8 +2018,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--gradient colors to categories other
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 			CharacterFrame.EltruismText:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---ilvl
-			CharacterFrame.EltruismText3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---attributes
-			CharacterFrame.EltruismText4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---specialization
+			CharacterFrame.EltruismText3:SetText(ElvUI_EltreumUI:GradientName(_G.STAT_CATEGORY_ATTRIBUTES, E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---attributes
+			CharacterFrame.EltruismText4:SetText(ElvUI_EltreumUI:GradientName(_G.SPECIALIZATION, E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---specialization
 		end
 
 		--color stats with a class gradient
@@ -2273,9 +2273,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
 				CharacterFrame.EltruismText:SetText(L["Item Level"]) ---ilvl
 				CharacterFrame.EltruismText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				CharacterFrame.EltruismText3:SetText(L["Attributes"]) ---attributes
+				CharacterFrame.EltruismText3:SetText(_G.STAT_CATEGORY_ATTRIBUTES) ---attributes
 				CharacterFrame.EltruismText3:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				CharacterFrame.EltruismText4:SetText(L["Specialization"]) ---specialization
+				CharacterFrame.EltruismText4:SetText(_G.SPECIALIZATION) ---specialization
 				CharacterFrame.EltruismText4:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
 
@@ -2470,9 +2470,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismText4:SetTextColor(1, 1, 1)
 			CharacterFrame.EltruismText4:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-				CharacterFrame.EltruismText4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---specialization
+				CharacterFrame.EltruismText4:SetText(ElvUI_EltreumUI:GradientName(_G.SPECIALIZATION, E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---specialization
 			else
-				CharacterFrame.EltruismText4:SetText(L["Specialization"])
+				CharacterFrame.EltruismText4:SetText(_G.SPECIALIZATION)
 				CharacterFrame.EltruismText4:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
 			CharacterFrame.StatusLine4:SetSize(170, 3)
@@ -2525,9 +2525,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismText3:SetTextColor(1, 1, 1)
 			CharacterFrame.EltruismText3:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-				CharacterFrame.EltruismText3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---attributes
+				CharacterFrame.EltruismText3:SetText(ElvUI_EltreumUI:GradientName(_G.STAT_CATEGORY_ATTRIBUTES, E.myclass,nil,nil,E.db.ElvUI_EltreumUI.skins.characterskingradientscustom)) ---attributes
 			else
-				CharacterFrame.EltruismText3:SetText(L["Attributes"])
+				CharacterFrame.EltruismText3:SetText(_G.STAT_CATEGORY_ATTRIBUTES)
 				CharacterFrame.EltruismText3:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
 			CharacterFrame.StatusLine3:SetSize(170, 3)

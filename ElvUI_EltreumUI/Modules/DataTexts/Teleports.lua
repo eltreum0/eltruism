@@ -545,7 +545,7 @@ local function EltruismTeleportsOnEnter()
 					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 				end
 			elseif cooldown <= 0 then
-				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00"..L["Ready"].."|r")
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00".._G.READY.."|r")
 			end
 		end
 	end
@@ -568,7 +568,7 @@ local function EltruismTeleportsOnEnter()
 						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 					end
 				elseif cooldown <= 0 then
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00"..L["Ready"].."|r")
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00".._G.READY.."|r")
 				end
 			end
 		end
@@ -648,7 +648,7 @@ local function EltruismTeleportsOnEnter()
 							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 						end
 					elseif cooldown2 <= 0 then
-						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00"..L["Ready"].."|r")
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00".._G.READY.."|r")
 					end
 				end
 			end
@@ -670,7 +670,7 @@ local function EltruismTeleportsOnEnter()
 							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 						end
 					elseif cooldown3 <= 0 then
-						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00"..L["Ready"].."|r")
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00".._G.READY.."|r")
 					end
 				end
 			end

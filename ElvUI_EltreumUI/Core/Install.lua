@@ -378,7 +378,7 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 
-			_G.PluginInstallFrame.SubTitle:SetText(L["Layouts"])
+			_G.PluginInstallFrame.SubTitle:SetText(L["Layout"])
 			_G.PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
 			--_G.PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"].." ("..((math.floor(E:PixelBestSize()*100))/100)..")")
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclas == 'EVOKER' then
@@ -535,7 +535,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:CheckBackground() end)
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("backgroundcolors","ENTERING") end)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
+			_G.PluginInstallFrame.Option4:SetText(L["BACKGROUND"].."\n"..L["COLOR"])
 		end,
 		[4] = function()
 			ElvUI_EltreumUI:ResizeInstall()
@@ -967,7 +967,7 @@ ElvUI_EltreumUI.InstallerData = {
 	},
 	StepTitles = {
 		[1] = L["Welcome"],
-		[2] = L["Layouts"],
+		[2] = L["Layout"],
 		[3] = L["Eltruism Modes"],
 		[4] = L["Fonts"],
 		[5] = CHAT_LABEL,

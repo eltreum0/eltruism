@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:MiscOptions()
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicator = E.Libs.ACH:Toggle(L["Enable Entering/Leaving Combat Indicator Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end, nil)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicatorcustom = E.Libs.ACH:Toggle(L["Custom Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 9, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextenter = E.Libs.ACH:Input(_G.ENTERING_COMBAT or "", nil, 10, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter = _G.tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextentercolor = E.Libs.ACH:Color(L["Color"], nil, 11, false, nil, function()
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextentercolor = E.Libs.ACH:Color(L["COLOR"], nil, 11, false, nil, function()
 		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
 		local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
 		return color.r, color.g, color.b, 1, d.r, d.g, d.b,1
@@ -87,7 +87,7 @@ function ElvUI_EltreumUI:MiscOptions()
 		color.r, color.g, color.b = r, g, b
 	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleave = E.Libs.ACH:Input(_G.LEAVING_COMBAT or "", nil, 12, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave = _G.tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
-	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleavecolor = E.Libs.ACH:Color(L["Color"], nil, 13, false, nil, function()
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleavecolor = E.Libs.ACH:Color(L["COLOR"], nil, 13, false, nil, function()
 		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
 		local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
 		return color.r, color.g, color.b, 1, d.r, d.g, d.b, 1

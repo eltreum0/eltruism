@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:QuestOptions()
 		["VERTICAL"] = L["Vertical"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.quests.questorientation end, function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
 	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation.style = "radio"
-	ElvUI_EltreumUI.Options.args.quests.args.autoaccept = E.Libs.ACH:Group(L["Auto Accept"], nil, 2)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept = E.Libs.ACH:Group(_G.LFG_LIST_AUTO_ACCEPT, nil, 2)
 	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoaccept = E.Libs.ACH:Toggle(L["Enable Automatically accepting/turning in Quests when not holding CTRL/SHIFT/ALT"], L["You will automatically accept and turn in quests that do not require gold, are not weekly and are not daily"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.autoaccept end,function(_, value) E.db.ElvUI_EltreumUI.quests.autoaccept = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoacceptdaily = E.Libs.ACH:Toggle(L["Accept Daily and Weekly quests"], L["You will also automatically accept Daily and Weekly Quests"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.acceptdaily end,function(_, value) E.db.ElvUI_EltreumUI.quests.acceptdaily = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.autoaccept end)

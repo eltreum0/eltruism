@@ -6,7 +6,7 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 -- Eltruism cursor options
 function ElvUI_EltreumUI:CursorOptions()
-	ElvUI_EltreumUI.Options.args.cursor = E.Libs.ACH:Group(E:TextGradient(L["Cursor"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.cursor = E.Libs.ACH:Group(E:TextGradient(L["CURSOR"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.cursor.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor'
 	ElvUI_EltreumUI.Options.args.cursor.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.cursor.args.general.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -29,7 +29,7 @@ function ElvUI_EltreumUI:CursorOptions()
 	ElvUI_EltreumUI.Options.args.cursor.args.general.args.description4 = E.Libs.ACH:Description(L["Attempt to fix Cursor Lag"], 11, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cursor.args.general.args.fixlag = E.Libs.ACH:Select(" ", L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"], 12, {
 		["0"] = L["Software Cursor"],
-		["1"] = L["Hardware Cursor"],
+		["1"] = _G.HARDWARE_CURSOR,
 	}, false, nil, function() return GetCVar('HardwareCursor') end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.fixlag = value SetCVar('HardwareCursor', value) end)
 	ElvUI_EltreumUI.Options.args.cursor.args.general.args.fixlag.style = "radio"
 	ElvUI_EltreumUI.Options.args.cursor.args.size = E.Libs.ACH:Group(L["Cursor Sizes"], nil, 2, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end)
