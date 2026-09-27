@@ -15,6 +15,8 @@ local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetPowerBarE
 local powerbareffecttargettarget = CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
 local powerbareffectfocus = CreateFrame("PlayerModel", "EltruismFocusPowerBarEffect")
 local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
+local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
+local castbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
 local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
 local UnitReaction = _G.UnitReaction
@@ -100,6 +102,15 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 
 		if modelsDB.unitframe then
 			local playerbar = _G["ElvUF_Player"]
+			if playerbar and not playerbar.EltruismModelAlphaHooked then
+				hooksecurefunc(playerbar, "SetAlpha", function(_, alpha)
+					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
+					if playereffect then playereffect:SetAlpha(alpha * baseAlpha) end
+					if powerbareffectplayer then powerbareffectplayer:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
+					if castbareffectplayer then castbareffectplayer:SetAlpha(alpha) end
+				end)
+				playerbar.EltruismModelAlphaHooked = true
+			end
 			if modelsDB.modeltype == "CLASS" then
 				--playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
@@ -122,7 +133,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 						playereffect:SetInside(playerbar.Health, 0, 0)
 					end
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
-					playereffect:SetAlpha(modelsDB.ufalpha)
+					playereffect:SetAlpha(modelsDB.ufalpha * (playerbar:GetAlpha() or 1))
 				elseif db.unitframes.darkmode then
 					if modelsDB.insideHP then
 						playereffect:SetInside(playerbar.Health.bg, 0, 0)
@@ -130,7 +141,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 						playereffect:SetInside(playerbar.Health, 0, 0)
 					end
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
-					playereffect:SetAlpha(modelsDB.ufalphadark)
+					playereffect:SetAlpha(modelsDB.ufalphadark * (playerbar:GetAlpha() or 1))
 				end
 			end
 		end
@@ -142,11 +153,11 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 					powerbareffectplayer:MakeCurrentCameraCustom()
 					powerbareffectplayer:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.785)
 					powerbareffectplayer:SetPortraitZoom(1)
-					powerbareffectplayer:SetAlpha(0.4) --might do this
+					powerbareffectplayer:SetAlpha(0.4 * (_G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() or 1)) --might do this
 				else
 					powerbareffectplayer:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffectplayer:SetPosition(1.2, 0, -0.5)
-					powerbareffectplayer:SetAlpha(0.8) --might do this
+					powerbareffectplayer:SetAlpha(0.8 * (_G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() or 1)) --might do this
 				end
 			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
@@ -180,6 +191,15 @@ function ElvUI_EltreumUI:TargetUFEffects()
 
 		if modelsDB.unitframe then
 			local targetbar = _G["ElvUF_Target"]
+			if targetbar and not targetbar.EltruismModelAlphaHooked then
+				hooksecurefunc(targetbar, "SetAlpha", function(_, alpha)
+					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
+					if targeteffect then targeteffect:SetAlpha(alpha * baseAlpha) end
+					if powerbareffecttarget then powerbareffecttarget:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
+					if castbareffecttarget then castbareffecttarget:SetAlpha(alpha) end
+				end)
+				targetbar.EltruismModelAlphaHooked = true
+			end
 			local reactiontarget = UnitReaction("target", "player")
 			local _, targetclass = UnitClass("target")
 			if not E:NotSecretValue(targetclass) or not targetclass then
@@ -234,7 +254,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 						targeteffect:SetInside(targetbar.Health, 0, 0)
 					end
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
-					targeteffect:SetAlpha(modelsDB.ufalpha)
+					targeteffect:SetAlpha(modelsDB.ufalpha * (targetbar:GetAlpha() or 1))
 				elseif db.unitframes.darkmode then
 					if modelsDB.insideHP then
 						targeteffect:SetInside(targetbar.Health.bg, 0, 0)
@@ -242,7 +262,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 						targeteffect:SetInside(targetbar.Health, 0, 0)
 					end
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
-					targeteffect:SetAlpha(modelsDB.ufalphadark)
+					targeteffect:SetAlpha(modelsDB.ufalphadark * (targetbar:GetAlpha() or 1))
 				end
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			end
@@ -256,11 +276,11 @@ function ElvUI_EltreumUI:TargetUFEffects()
 					powerbareffecttarget:MakeCurrentCameraCustom()
 					powerbareffecttarget:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
 					powerbareffecttarget:SetPortraitZoom(1)
-					powerbareffecttarget:SetAlpha(0.4) --might do this
+					powerbareffecttarget:SetAlpha(0.4 * (_G["ElvUF_Target"] and _G["ElvUF_Target"]:GetAlpha() or 1)) --might do this
 				else
 					powerbareffecttarget:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffecttarget:SetPosition(1.2, 0, -0.5)
-					powerbareffecttarget:SetAlpha(0.8) --might do this
+					powerbareffecttarget:SetAlpha(0.8 * (_G["ElvUF_Target"] and _G["ElvUF_Target"]:GetAlpha() or 1)) --might do this
 				end
 			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
@@ -293,6 +313,14 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 
 		if modelsDB.unitframe then
 			local targettargetbar = _G["ElvUF_TargetTarget"]
+			if targettargetbar and not targettargetbar.EltruismModelAlphaHooked then
+				hooksecurefunc(targettargetbar, "SetAlpha", function(_, alpha)
+					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
+					if targettargeteffect then targettargeteffect:SetAlpha(alpha * baseAlpha) end
+					if powerbareffecttargettarget then powerbareffecttargettarget:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
+				end)
+				targettargetbar.EltruismModelAlphaHooked = true
+			end
 			local reactiontargettarget = UnitReaction("targettarget", "player")
 			local _, targettargetclass = UnitClass("targettarget")
 			if not E:NotSecretValue(targettargetclass) or not targettargetclass then
@@ -346,7 +374,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
 					end
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
-					targettargeteffect:SetAlpha(modelsDB.ufalpha)
+					targettargeteffect:SetAlpha(modelsDB.ufalpha * (targettargetbar:GetAlpha() or 1))
 				elseif db.unitframes.darkmode then
 					if modelsDB.insideHP then
 						targettargeteffect:SetInside(targettargetbar.Health.bg, 0, 0)
@@ -354,7 +382,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
 					end
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
-					targettargeteffect:SetAlpha(modelsDB.ufalphadark)
+					targettargeteffect:SetAlpha(modelsDB.ufalphadark * (targettargetbar:GetAlpha() or 1))
 				end
 			end
 		end
@@ -367,11 +395,11 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 					powerbareffecttargettarget:MakeCurrentCameraCustom()
 					powerbareffecttargettarget:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
 					powerbareffecttargettarget:SetPortraitZoom(1)
-					powerbareffecttargettarget:SetAlpha(0.4) --might do this
+					powerbareffecttargettarget:SetAlpha(0.4 * (_G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"]:GetAlpha() or 1)) --might do this
 				else
 					powerbareffecttargettarget:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffecttargettarget:SetPosition(1.2, 0, -0.5)
-					powerbareffecttargettarget:SetAlpha(0.8) --might do this
+					powerbareffecttargettarget:SetAlpha(0.8 * (_G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"]:GetAlpha() or 1)) --might do this
 				end
 			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
@@ -405,6 +433,14 @@ function ElvUI_EltreumUI:FocusUFEffects()
 
 		if modelsDB.unitframe then
 			local focusbar = _G["ElvUF_Focus"]
+			if focusbar and not focusbar.EltruismModelAlphaHooked then
+				hooksecurefunc(focusbar, "SetAlpha", function(_, alpha)
+					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
+					if focuseffect then focuseffect:SetAlpha(alpha * baseAlpha) end
+					if powerbareffectfocus then powerbareffectfocus:SetAlpha(alpha * (E.Modern and 0.4 or 0.8)) end
+				end)
+				focusbar.EltruismModelAlphaHooked = true
+			end
 			local reactionfocus = UnitReaction("focus", "player")
 			local _, focusclass = UnitClass("focus")
 			if not E:NotSecretValue(focusclass) or not focusclass then
@@ -460,7 +496,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 						focuseffect:SetInside(focusbar.Health, 0, 0)
 					end
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
-					focuseffect:SetAlpha(modelsDB.ufalpha)
+					focuseffect:SetAlpha(modelsDB.ufalpha * (focusbar:GetAlpha() or 1))
 				elseif db.unitframes.darkmode then
 					if modelsDB.insideHP then
 						focuseffect:SetInside(focusbar.Health.bg, 0, 0)
@@ -468,7 +504,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 						focuseffect:SetInside(focusbar.Health, 0, 0)
 					end
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
-					focuseffect:SetAlpha(modelsDB.ufalphadark)
+					focuseffect:SetAlpha(modelsDB.ufalphadark * (focusbar:GetAlpha() or 1))
 				end
 			end
 		end
@@ -481,11 +517,11 @@ function ElvUI_EltreumUI:FocusUFEffects()
 					powerbareffectfocus:MakeCurrentCameraCustom()
 					powerbareffectfocus:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
 					powerbareffectfocus:SetPortraitZoom(1)
-					powerbareffectfocus:SetAlpha(0.4) --might do this
+					powerbareffectfocus:SetAlpha(0.4 * (_G["ElvUF_Focus"] and _G["ElvUF_Focus"]:GetAlpha() or 1)) --might do this
 				else
 					powerbareffectfocus:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffectfocus:SetPosition(1.2, 0, -0.5)
-					powerbareffectfocus:SetAlpha(0.8) --might do this
+					powerbareffectfocus:SetAlpha(0.8 * (_G["ElvUF_Focus"] and _G["ElvUF_Focus"]:GetAlpha() or 1)) --might do this
 				end
 			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
@@ -520,6 +556,14 @@ function ElvUI_EltreumUI:PetUFEffects()
 
 		if modelsDB.unitframe then
 			local petbar = _G["ElvUF_Pet"]
+			if petbar and not petbar.EltruismModelAlphaHooked then
+				hooksecurefunc(petbar, "SetAlpha", function(_, alpha)
+					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
+					if peteffect then peteffect:SetAlpha(alpha * baseAlpha) end
+					if powerbareffectpet then powerbareffectpet:SetAlpha(alpha * (E.Modern and 0.8 or 0.6)) end
+				end)
+				petbar.EltruismModelAlphaHooked = true
+			end
 			local reactionpet = UnitReaction("pet", "player")
 
 			if modelsDB.modeltype == "CLASS" then
@@ -554,7 +598,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 						peteffect:SetInside(petbar.Health, 0, 0)
 					end
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
-					peteffect:SetAlpha(modelsDB.ufalpha)
+					peteffect:SetAlpha(modelsDB.ufalpha * (petbar:GetAlpha() or 1))
 				elseif db.unitframes.darkmode then
 					if modelsDB.insideHP then
 						peteffect:SetInside(petbar.Health.bg, 0, 0)
@@ -562,7 +606,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 						peteffect:SetInside(petbar.Health, 0, 0)
 					end
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
-					peteffect:SetAlpha(modelsDB.ufalphadark)
+					peteffect:SetAlpha(modelsDB.ufalphadark * (petbar:GetAlpha() or 1))
 				end
 
 			end
@@ -575,11 +619,11 @@ function ElvUI_EltreumUI:PetUFEffects()
 					powerbareffectpet:MakeCurrentCameraCustom()
 					powerbareffectpet:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
 					powerbareffectpet:SetPortraitZoom(1)
-					powerbareffectpet:SetAlpha(0.8) --might do this
+					powerbareffectpet:SetAlpha(0.8 * (_G["ElvUF_Pet"] and _G["ElvUF_Pet"]:GetAlpha() or 1)) --might do this
 				else
 					powerbareffectpet:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffectpet:SetPosition(1.2, 0, -0.5)
-					powerbareffectpet:SetAlpha(0.6) --might do this
+					powerbareffectpet:SetAlpha(0.6 * (_G["ElvUF_Pet"] and _G["ElvUF_Pet"]:GetAlpha() or 1)) --might do this
 				end
 			elseif modelsDB.modeltypepower == "CUSTOM" then
 				if E.Modern then
@@ -602,8 +646,6 @@ hooksecurefunc(UF, "Construct_PetFrame", ElvUI_EltreumUI.PetUFEffects)
 hooksecurefunc(UF, "Update_PetFrame", ElvUI_EltreumUI.PetUFEffects)
 
 --castbar model effect
-local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
-local castbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
 local castbar
 local targetcastbar
 
