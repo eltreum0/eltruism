@@ -351,6 +351,7 @@ L["Country Style"] = "Estilo do País"
 L["Credits and Licenses"] = "Créditos e Licenças"
 L["Credits and Thank yous"] = "Créditos e Gratificações"
 L["Currently selected cursor: "] = "Cursor selecionado atualmente: "
+L["Cursor"] = true
 L["Cursor Colors"] = "Cores do Cursor"
 L["Cursor Position"] = "Posição do Cursor"
 L["Cursor Sizes"] = "Tamanho do Cursor"

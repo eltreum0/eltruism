@@ -351,6 +351,7 @@ L["Country Style"] = true
 L["Credits and Licenses"] = true
 L["Credits and Thank yous"] = true
 L["Currently selected cursor: "] = true
+L["Cursor"] = true
 L["Cursor Colors"] = true
 L["Cursor Position"] = true
 L["Cursor Sizes"] = true
