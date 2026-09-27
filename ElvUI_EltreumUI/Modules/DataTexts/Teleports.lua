@@ -516,6 +516,111 @@ local function EltruismTeleportsOnEvent(self)
 	self.text:SetText(displayStringEltruismTeleports)
 end
 
+local function EltruismTeleportsOnUpdate(_, elapsed)
+	--print("onupdate spam"..math.random(1,99))
+	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+		TimeSinceLastUpdate = 0
+		DT.tooltip:ClearLines()
+		for _,v in pairs(TeleportsItems) do
+			local texture = GetItemIcon(v)
+			local nameitems = GetItemInfo(v)
+			local hasItem = GetItemCount(v)
+			if v == 180817 then --hide cypher if outside the maw
+				local mapID = not E.Modern and tostring(_G.WorldMapFrame:GetMapID()) or tostring(C_Map.GetBestMapForUnit("player"))
+				if not mawIDs[mapID] then
+					hasItem = 0
+				end
+			end
+			if texture and nameitems and (hasItem > 0 or (not E.Classic and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
+				local startcd, durationcd = GetItemCooldown(v)
+				local cooldown2 = startcd + durationcd - GetTime()
+				if cooldown2 >= 2 then
+					local hours = mathfloor(cooldown2 /3600)
+					local minutes = mathfloor(cooldown2 / 60)
+					local seconds = stringformat("%02.f", mathfloor(cooldown2 - minutes * 60))
+					if hours >= 1 then
+						minutes = mathfloor(mod(cooldown2,3600)/60)
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+					else
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+					end
+				elseif cooldown2 <= 0 then
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00".._G.READY.."|r")
+				end
+			end
+		end
+		for _,v in pairs(TeleportsSpells) do
+			local texture = GetSpellTexture(v)
+			local namespells = ElvUI_EltreumUI:EltruismSpellInfo(v)
+			local hasSpell = IsSpellKnown(v)
+			if texture and namespells and hasSpell then
+				local startcd2, durationcd2 = SpellCooldown(v)
+				local cooldown3 = startcd2 + durationcd2 - GetTime()
+				if cooldown3 >= 2 then
+					local hours = mathfloor(cooldown3 /3600)
+					local minutes = mathfloor(cooldown3 / 60)
+					local seconds = stringformat("%02.f", mathfloor(cooldown3 - minutes * 60))
+					if hours >= 1 then
+						minutes = mathfloor(mod(cooldown3,3600)/60)
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+					else
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+					end
+				elseif cooldown3 <= 0 then
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00".._G.READY.."|r")
+				end
+			end
+		end
+		local startcd3, durationcd3 = GetItemCooldown(6948)
+		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+			startcd3, durationcd3 = SpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
+		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
+			local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			if itemLink then
+				local itemid = itemLink:match("item:(%d+)")
+				startcd3, durationcd3 = GetItemCooldown(itemid)
+			end
+		end
+		if startcd3 and durationcd3 then
+			local cooldown4 = startcd3 + durationcd3 - GetTime()
+			if cooldown4 >= 2 then
+				if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
+						displayStringEltruismTeleports = "|cffdb3030"..GetBindLocation().."|r"
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..GetBindLocation().."|r"
+					end
+				else
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
+						displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
+				end
+				hsIsReady = false
+			else
+				if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
+						displayStringEltruismTeleports = GetBindLocation()
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation().."|r"
+					end
+				else
+					if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
+						displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					else
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
+					end
+				end
+				hsIsReady = true
+			end
+		end
+		DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+		DT.tooltip:Show()
+	end
+end
+
 local function EltruismTeleportsOnEnter()
 	DT.tooltip:ClearLines()
 	for _,v in pairs(TeleportsItems) do
@@ -618,110 +723,7 @@ local function EltruismTeleportsOnEnter()
 	DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
 	DT.tooltip:Show()
 
-	teleportupdate:SetScript("OnUpdate", function(_, elapsed)
-		--print("onupdate spam"..math.random(1,99))
-		TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-		if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-			TimeSinceLastUpdate = 0
-			DT.tooltip:ClearLines()
-			for _,v in pairs(TeleportsItems) do
-				local texture = GetItemIcon(v)
-				local nameitems = GetItemInfo(v)
-				local hasItem = GetItemCount(v)
-				if v == 180817 then --hide cypher if outside the maw
-					local mapID = not E.Modern and tostring(_G.WorldMapFrame:GetMapID()) or tostring(C_Map.GetBestMapForUnit("player"))
-					if not mawIDs[mapID] then
-						hasItem = 0
-					end
-				end
-				if texture and nameitems and (hasItem > 0 or (not E.Classic and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
-					local startcd, durationcd = GetItemCooldown(v)
-					local cooldown2 = startcd + durationcd - GetTime()
-					if cooldown2 >= 2 then
-						local hours = mathfloor(cooldown2 /3600)
-						local minutes = mathfloor(cooldown2 / 60)
-						local seconds = stringformat("%02.f", mathfloor(cooldown2 - minutes * 60))
-						if hours >= 1 then
-							minutes = mathfloor(mod(cooldown2,3600)/60)
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
-						else
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
-						end
-					elseif cooldown2 <= 0 then
-						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00".._G.READY.."|r")
-					end
-				end
-			end
-			for _,v in pairs(TeleportsSpells) do
-				local texture = GetSpellTexture(v)
-				local namespells = ElvUI_EltreumUI:EltruismSpellInfo(v)
-				local hasSpell = IsSpellKnown(v)
-				if texture and namespells and hasSpell then
-					local startcd2, durationcd2 = SpellCooldown(v)
-					local cooldown3 = startcd2 + durationcd2 - GetTime()
-					if cooldown3 >= 2 then
-						local hours = mathfloor(cooldown3 /3600)
-						local minutes = mathfloor(cooldown3 / 60)
-						local seconds = stringformat("%02.f", mathfloor(cooldown3 - minutes * 60))
-						if hours >= 1 then
-							minutes = mathfloor(mod(cooldown3,3600)/60)
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
-						else
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
-						end
-					elseif cooldown3 <= 0 then
-						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00".._G.READY.."|r")
-					end
-				end
-			end
-			local startcd3, durationcd3 = GetItemCooldown(6948)
-			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-				startcd3, durationcd3 = SpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
-			elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
-				local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-				if itemLink then
-					local itemid = itemLink:match("item:(%d+)")
-					startcd3, durationcd3 = GetItemCooldown(itemid)
-				end
-			end
-			if startcd3 and durationcd3 then
-				local cooldown4 = startcd3 + durationcd3 - GetTime()
-				if cooldown4 >= 2 then
-					if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
-						if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-							displayStringEltruismTeleports = "|cffdb3030"..GetBindLocation().."|r"
-						else
-							displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..GetBindLocation().."|r"
-						end
-					else
-						if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-							displayStringEltruismTeleports = "|cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
-						else
-							displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
-						end
-					end
-					hsIsReady = false
-				else
-					if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
-						if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-							displayStringEltruismTeleports = GetBindLocation()
-						else
-							displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation().."|r"
-						end
-					else
-						if E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel then
-							displayStringEltruismTeleports = ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
-						else
-							displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
-						end
-					end
-					hsIsReady = true
-				end
-			end
-			DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-			DT.tooltip:Show()
-		end
-	end)
+	teleportupdate:SetScript("OnUpdate", EltruismTeleportsOnUpdate)
 end
 
 local function EltruismTeleportsOnLeave()

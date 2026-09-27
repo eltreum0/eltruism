@@ -52,6 +52,99 @@ if E.Modern then
 	--set the throttle
 	local ONUPDATE_INTERVAL = 1
 	local TimeSinceLastUpdate = 0
+
+	function ElvUI_EltreumUI:SpeedCheckDelayed()
+		local previousdistance = C_Navigation.GetDistance()
+		local speed = mathabs(EltruismTimeToArrive.SavedDistance - previousdistance)
+		local seconds = 0
+		local minutes = 0
+		if speed and speed > 0 then
+			local eta= mathabs(EltruismTimeToArrive.SavedDistance / speed)
+			if eta > 600 then
+				minutes = stringformat("%02.f", mathfloor(eta/60 ))
+				seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
+			elseif eta < 600 and eta > 10 then
+				minutes = stringformat("%01.f", mathfloor(eta/60))
+				seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
+			elseif eta < 10 then
+				minutes = stringformat("%01.f", mathfloor(eta/60))
+				seconds = stringformat("%1.d", mathfloor(eta - minutes *60))
+			else
+				minutes = stringformat("%02.f", mathfloor(eta/60))
+				seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
+			end
+		end
+		--set the time to arrive to the frame's text
+		if minutes == 0 and seconds == 0 then
+			EltruismTimeToArrive.TimeText:SetText("***")
+		elseif minutes < "01" and seconds > "0" then
+			EltruismTimeToArrive.TimeText:SetText(seconds.."s")
+		else
+			EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+		end
+	end
+
+	--use throttled onupdate to udpate the text (once per second)
+	function ElvUI_EltreumUI:TimeToArriveOnUpdate(elapsed)
+		TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+		if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+			TimeSinceLastUpdate = 0
+
+			local notsafe
+			local speed = 0
+
+			--player speed can be secret, so protect in case there is a waypoint when it is
+			if ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then
+				notsafe = false
+				speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
+				if not speed or speed == 0 then
+					local _,_,flyspeed = GetUnitSpeed('player')
+					speed = flyspeed
+				end
+			else
+				notsafe = true
+			end
+
+			--calculate time to arrive
+			local distance = C_Navigation.GetDistance()
+			EltruismTimeToArrive.SavedDistance = distance
+			local seconds = 0
+			local minutes = 0
+			if IsPlayerMoving() or _G.UnitOnTaxi("player") then
+				if (not speed or speed == 0) or notsafe then --might be dragonflying or secret, calculate based on delta distance
+					E:Delay(1, ElvUI_EltreumUI.SpeedCheckDelayed)
+				else
+					if speed and speed > 0 then
+						local eta= mathabs(distance / speed)
+						if eta > 600 then
+							minutes = stringformat("%02.f", mathfloor(eta/60 ))
+							seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
+						elseif eta < 600 and eta > 10 then
+							minutes = stringformat("%01.f", mathfloor(eta/60))
+							seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
+						elseif eta < 10 then
+							minutes = stringformat("%01.f", mathfloor(eta/60))
+							seconds = stringformat("%1.d", mathfloor(eta - minutes *60))
+						else
+							minutes = stringformat("%02.f", mathfloor(eta/60))
+							seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
+						end
+					end
+					--set the time to arrive to the frame's text
+					if minutes == 0 and seconds == 0 then
+						EltruismTimeToArrive.TimeText:SetText("***")
+					elseif minutes < "01" and seconds > "0" then
+						EltruismTimeToArrive.TimeText:SetText(seconds.."s")
+					else
+						EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+					end
+				end
+			else --not moving at all
+				EltruismTimeToArrive.TimeText:SetText("***")
+			end
+		end
+	end
+
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
@@ -81,7 +174,6 @@ if E.Modern then
 			end
 
 			--try to fix issue where the MapCanvasPinMixin:SetPassThroughButtons() will throw a taint
-
 
 			--[[WorldMapMixin.SetPassThroughButtons = E.noop
 			WorldMapMixin.CheckMouseButtonPassthrough = E.noop
@@ -165,94 +257,7 @@ if E.Modern then
 				local _, instanceType = IsInInstance()
 				--print(instanceType,event,"waypoint")
 				if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
-					--use throttled onupdate to udpate the text (once per second)
-					EltruismTimeToArrive:SetScript("OnUpdate", function(_, elapsed)
-						--print("onupdate spam"..math.random(1,99))
-						TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-						if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-							TimeSinceLastUpdate = 0
-
-							local notsafe
-							local speed = 0
-
-							--player speed can be secret, so protect in case there is a waypoint when it is
-							if ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then
-								notsafe = false
-								speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
-								if not speed or speed == 0 then
-									local _,_,flyspeed = GetUnitSpeed('player')
-									speed = flyspeed
-								end
-							else
-								notsafe = true
-							end
-
-							--calculate time to arrive
-							local distance = C_Navigation.GetDistance()
-							local seconds = 0
-							local minutes = 0
-							if IsPlayerMoving() or _G.UnitOnTaxi("player") then
-								if (not speed or speed == 0) or notsafe then --might be dragonflying or secret, calculate based on delta distance
-									E:Delay(1, function()
-										local previousdistance = C_Navigation.GetDistance()
-										speed = mathabs(distance - previousdistance)
-										--print(distance,previousdistance, speed)
-										if speed and speed > 0 then
-											local eta= mathabs(distance / speed)
-											if eta > 600 then
-												minutes = stringformat("%02.f", mathfloor(eta/60 ))
-												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
-											elseif eta < 600 and eta > 10 then
-												minutes = stringformat("%01.f", mathfloor(eta/60))
-												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
-											elseif eta < 10 then
-												minutes = stringformat("%01.f", mathfloor(eta/60))
-												seconds = stringformat("%1.d", mathfloor(eta - minutes *60))
-											else
-												minutes = stringformat("%02.f", mathfloor(eta/60))
-												seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
-											end
-										end
-										--set the time to arrive to the frame's text
-										if minutes == 0 and seconds == 0 then
-											EltruismTimeToArrive.TimeText:SetText("***")
-										elseif minutes < "01" and seconds > "0" then
-											EltruismTimeToArrive.TimeText:SetText(seconds.."s")
-										else
-											EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
-										end
-									end)
-								else
-									if speed and speed > 0 then
-										local eta= mathabs(distance / speed)
-										if eta > 600 then
-											minutes = stringformat("%02.f", mathfloor(eta/60 ))
-											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
-										elseif eta < 600 and eta > 10 then
-											minutes = stringformat("%01.f", mathfloor(eta/60))
-											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
-										elseif eta < 10 then
-											minutes = stringformat("%01.f", mathfloor(eta/60))
-											seconds = stringformat("%1.d", mathfloor(eta - minutes *60))
-										else
-											minutes = stringformat("%02.f", mathfloor(eta/60))
-											seconds = stringformat("%02.f", mathfloor(eta - minutes *60))
-										end
-									end
-									--set the time to arrive to the frame's text
-									if minutes == 0 and seconds == 0 then
-										EltruismTimeToArrive.TimeText:SetText("***")
-									elseif minutes < "01" and seconds > "0" then
-										EltruismTimeToArrive.TimeText:SetText(seconds.."s")
-									else
-										EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
-									end
-								end
-							else --not moving at all
-								EltruismTimeToArrive.TimeText:SetText("***")
-							end
-						end
-					end)
+					EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
 				else
 					EltruismTimeToArrive:SetScript("OnUpdate", nil)
 				end

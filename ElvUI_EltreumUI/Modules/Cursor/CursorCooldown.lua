@@ -138,6 +138,83 @@ function ElvUI_EltreumUI:CooldownEnable()
 	--self:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player") --this triggers every single time a spell fails like when out of resources or on cd
 end
 
+local function EltruismCursorCooldownOnUpdate(_, elapsed)
+	updateDelay = NormalUpdateDelay
+	ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, elapsed)
+	lastUpdate = lastUpdate + elapsed
+	if lastUpdate < updateDelay then
+		return
+	else
+		lastUpdate = 0
+		if not isActive then
+			return
+		else
+			if needUpdate then
+				needUpdate = false
+				local cooldownData = currGetCooldown(currArg)
+				local startstamp, durationstamp
+				if type(cooldownData) =="table" then
+					startstamp, durationstamp = cooldownData.startTime, cooldownData.duration
+				else --likely item due to 11.0
+					startstamp, durationstamp = currGetCooldown(currArg)
+				end
+				if currStart ~= startstamp or currDuration ~= durationstamp then
+					ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, false)
+				end
+			end
+			now = GetTime()
+			if now > finishStamp then
+				EltruismCooldownFrame:SetScript("OnUpdate", nil)
+				isActive = false
+				EltruismCooldownText:SetText(nil)
+				EltruismCooldownIcon:SetTexture(nil)
+				ElvUI_EltreumUI:updateCooldown() -- check lastGetCooldown, lastArg
+				return
+			elseif now >= endStamp then
+				if not isReady then
+					isReady = true
+					EltruismCooldownText:SetText("")
+					ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
+				end
+			else
+				cd = endStamp - now
+				if cd <= db.readyTime and not isAlmostReady then
+					isAlmostReady = true
+					ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
+				end
+				if cd > 60 then
+					EltruismCooldownText:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
+					EltruismCooldownText:SetTextColor(1, 1, 1)
+				elseif cd > 1 and cd < 60 then
+					EltruismCooldownText:SetFormattedText("%01.f", mathfloor(cd))
+					EltruismCooldownText:SetTextColor(1, 1, 1)
+				elseif cd > 0 and cd < 1 then
+					EltruismCooldownText:SetFormattedText("%.1f", cd)
+					EltruismCooldownText:SetTextColor(1, 0, 0)
+				end
+			end
+			if fadeStamp == nil then --error fix attempt
+				fadeStamp = 0
+			end
+			if now == nil then
+				now = 0
+			end
+			if isHidden then
+				return
+			elseif now > fadeStamp then --error?
+				getEltruismCooldownFrameAlpha = EltruismCooldownFrame:GetAlpha()
+				isHidden = true
+				UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
+				if getEltruismCooldownFrameAlpha <= 0 then
+					updateDelay = NormalUpdateDelay
+				else
+					updateDelay = FadingUpdateDelay
+				end
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidden)
 	if not startstamp then
 		return
@@ -170,81 +247,7 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 			EltruismCooldownFrame:SetAlpha(1)
 			ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, 0, true)
 			--EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
-			EltruismCooldownFrame:SetScript("OnUpdate", function(_, elapsed) --if frame is removed, then pet cooldowns can have issues
-				updateDelay = NormalUpdateDelay
-				ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, elapsed)
-				lastUpdate = lastUpdate + elapsed
-				if lastUpdate < updateDelay then
-					return
-				else
-					lastUpdate = 0
-					if not isActive then
-						return
-					else
-						if needUpdate then
-							needUpdate = false
-							local cooldownData = currGetCooldown(currArg)
-							if type(cooldownData) =="table" then
-								startstamp, durationstamp = cooldownData.startTime, cooldownData.duration
-							else --likely item due to 11.0
-								startstamp, durationstamp = currGetCooldown(currArg)
-							end
-							if currStart ~= startstamp or currDuration ~= durationstamp then
-								ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, false)
-							end
-						end
-						now = GetTime()
-						if now > finishStamp then
-							EltruismCooldownFrame:SetScript("OnUpdate", nil)
-							isActive = false
-							EltruismCooldownText:SetText(nil)
-							EltruismCooldownIcon:SetTexture(nil)
-							ElvUI_EltreumUI:updateCooldown() -- check lastGetCooldown, lastArg
-							return
-						elseif now >= endStamp then
-							if not isReady then
-								isReady = true
-								EltruismCooldownText:SetText("")
-								ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
-							end
-						else
-							cd = endStamp - now
-							if cd <= db.readyTime and not isAlmostReady then
-								isAlmostReady = true
-								ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
-							end
-							if cd > 60 then
-								EltruismCooldownText:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
-								EltruismCooldownText:SetTextColor(1, 1, 1)
-							elseif cd > 1 and cd < 60 then
-								EltruismCooldownText:SetFormattedText("%01.f", mathfloor(cd))
-								EltruismCooldownText:SetTextColor(1, 1, 1)
-							elseif cd > 0 and cd < 1 then
-								EltruismCooldownText:SetFormattedText("%.1f", cd)
-								EltruismCooldownText:SetTextColor(1, 0, 0)
-							end
-						end
-						if fadeStamp == nil then --error fix attempt
-							fadeStamp = 0
-						end
-						if now == nil then
-							now = 0
-						end
-						if isHidden then
-							return
-						elseif now > fadeStamp then --error?
-							getEltruismCooldownFrameAlpha = EltruismCooldownFrame:GetAlpha()
-							isHidden = true
-							UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
-							if getEltruismCooldownFrameAlpha <= 0 then
-								updateDelay = NormalUpdateDelay
-							else
-								updateDelay = FadingUpdateDelay
-							end
-						end
-					end
-				end
-			end)
+			EltruismCooldownFrame:SetScript("OnUpdate", EltruismCursorCooldownOnUpdate)
 		end
 	end
 end

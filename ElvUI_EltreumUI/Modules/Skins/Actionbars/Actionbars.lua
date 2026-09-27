@@ -184,152 +184,154 @@ function ElvUI_EltreumUI:SkillGlow()
 					totem4glowcolor = {E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.r, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.g, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.b, 1}
 				end
 
-				totemglowcombatdetect:SetScript("OnEvent", function(_, event)
-					if event == 'PLAYER_REGEN_DISABLED' then
-						local ONUPDATE_INTERVAL = 1
-						local TimeSinceLastUpdate = 0
-						totemglowholder:SetScript("OnUpdate", function(_, elapsed)
-							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-							if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-								TimeSinceLastUpdate = 0
-								if E.db.ElvUI_EltreumUI.glow.totem1 then
-									if not _G["ElvUF_PlayerTotem2"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow1._PixelGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow1._AutoCastGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-											totemglow1._ButtonGlow.outerGlow:SetScale(1.15)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
-													--local totem1glowcolor = {0.58, 0.23, 0.10, 1}
-													totemglow1._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem1Min, totem1Max)
-												else
-													SetGlowGradient(totemglow1._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor)
-												end
-											end
-										end
-									elseif _G["ElvUF_PlayerTotem2"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Stop(totemglow1)
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Stop(totemglow1)
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Stop(totemglow1)
+				local ONUPDATE_INTERVAL = 1
+				local TimeSinceLastUpdate = 0
+				local function EltruismTotemGlowOnUpdate(_, elapsed)
+					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+						TimeSinceLastUpdate = 0
+						if E.db.ElvUI_EltreumUI.glow.totem1 then
+							if not _G["ElvUF_PlayerTotem2"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow1._PixelGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow1._AutoCastGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+									totemglow1._ButtonGlow.outerGlow:SetScale(1.15)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
+											--local totem1glowcolor = {0.58, 0.23, 0.10, 1}
+											totemglow1._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem1Min, totem1Max)
+										else
+											SetGlowGradient(totemglow1._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor)
 										end
 									end
 								end
-								if E.db.ElvUI_EltreumUI.glow.totem2 then
-									if not _G["ElvUF_PlayerTotem1"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow2._PixelGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow2._AutoCastGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-											totemglow2._ButtonGlow.outerGlow:SetScale(1.15)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
-													--local totem2glowcolor = {0.23,0.45,0.13, 1}
-													totemglow2._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem2Min, totem2Max)
-												else
-													SetGlowGradient(totemglow2._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor)
-												end
-											end
-										end
-									elseif _G["ElvUF_PlayerTotem1"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Stop(totemglow2)
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Stop(totemglow2)
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Stop(totemglow2)
-										end
-									end
-								end
-								if E.db.ElvUI_EltreumUI.glow.totem3 then
-									if not _G["ElvUF_PlayerTotem3"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow3._PixelGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow3._AutoCastGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-											totemglow3._ButtonGlow.outerGlow:SetScale(1.15)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
-													--local totem3glowcolor = {0.19,0.48,0.60, 1}
-													totemglow3._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem3Min, totem3Max)
-												else
-													SetGlowGradient(totemglow3._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor)
-												end
-											end
-										end
-									elseif _G["ElvUF_PlayerTotem3"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Stop(totemglow3)
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Stop(totemglow3)
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Stop(totemglow3)
-										end
-									end
-								end
-								if E.db.ElvUI_EltreumUI.glow.totem4 then
-									if not _G["ElvUF_PlayerTotem4"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow4._PixelGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(totemglow4._AutoCastGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-											totemglow4._ButtonGlow.outerGlow:SetScale(1.15)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
-													--local totem4glowcolor = {0.42,0.18,0.74, 1}
-													totemglow4._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem4Min, totem4Max)
-												else
-													SetGlowGradient(totemglow4._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor)
-												end
-											end
-										end
-									elseif _G["ElvUF_PlayerTotem4"]:IsShown() then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Stop(totemglow4)
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Stop(totemglow4)
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Stop(totemglow4)
-										end
-									end
+							elseif _G["ElvUF_PlayerTotem2"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Stop(totemglow1)
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Stop(totemglow1)
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Stop(totemglow1)
 								end
 							end
-						end)
+						end
+						if E.db.ElvUI_EltreumUI.glow.totem2 then
+							if not _G["ElvUF_PlayerTotem1"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow2._PixelGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow2._AutoCastGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+									totemglow2._ButtonGlow.outerGlow:SetScale(1.15)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
+											--local totem2glowcolor = {0.23,0.45,0.13, 1}
+											totemglow2._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem2Min, totem2Max)
+										else
+											SetGlowGradient(totemglow2._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor)
+										end
+									end
+								end
+							elseif _G["ElvUF_PlayerTotem1"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Stop(totemglow2)
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Stop(totemglow2)
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Stop(totemglow2)
+								end
+							end
+						end
+						if E.db.ElvUI_EltreumUI.glow.totem3 then
+							if not _G["ElvUF_PlayerTotem3"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow3._PixelGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow3._AutoCastGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+									totemglow3._ButtonGlow.outerGlow:SetScale(1.15)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
+											--local totem3glowcolor = {0.19,0.48,0.60, 1}
+											totemglow3._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem3Min, totem3Max)
+										else
+											SetGlowGradient(totemglow3._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor)
+										end
+									end
+								end
+							elseif _G["ElvUF_PlayerTotem3"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Stop(totemglow3)
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Stop(totemglow3)
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Stop(totemglow3)
+								end
+							end
+						end
+						if E.db.ElvUI_EltreumUI.glow.totem4 then
+							if not _G["ElvUF_PlayerTotem4"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow4._PixelGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										ElvUI_EltreumUI:ApplyGlowGradient(totemglow4._AutoCastGlow, r, g, b)
+									end
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+									totemglow4._ButtonGlow.outerGlow:SetScale(1.15)
+									if E.db.ElvUI_EltreumUI.glow.gradient then
+										if E.db.ElvUI_EltreumUI.glow.totemtypecolor then
+											--local totem4glowcolor = {0.42,0.18,0.74, 1}
+											totemglow4._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", totem4Min, totem4Max)
+										else
+											SetGlowGradient(totemglow4._ButtonGlow.outerGlow, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor)
+										end
+									end
+								end
+							elseif _G["ElvUF_PlayerTotem4"]:IsShown() then
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Stop(totemglow4)
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Stop(totemglow4)
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Stop(totemglow4)
+								end
+							end
+						end
+					end
+				end
+
+				totemglowcombatdetect:SetScript("OnEvent", function(_, event)
+					if event == 'PLAYER_REGEN_DISABLED' then
+						totemglowholder:SetScript("OnUpdate", EltruismTotemGlowOnUpdate)
 					elseif event == 'PLAYER_REGEN_ENABLED' then
 						totemglowholder:SetScript("OnUpdate", nil)
 						if E.db.ElvUI_EltreumUI.glow.pixel then

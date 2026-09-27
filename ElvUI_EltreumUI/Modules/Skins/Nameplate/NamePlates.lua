@@ -43,6 +43,111 @@ local glowMax = CreateColor(1, 1, 1, 1)
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
+
+local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
+	buttonCooldown.EltruismTimeSinceLastUpdate = (buttonCooldown.EltruismTimeSinceLastUpdate or 0) + elapsed
+	if buttonCooldown.EltruismTimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+		buttonCooldown.EltruismTimeSinceLastUpdate = 0
+		local button = buttonCooldown:GetParent()
+		local unit = button.EltruismUnit or ""
+		local glowcolor = button.EltruismGlowcolor
+		local r = button.EltruismR
+		local g = button.EltruismG
+		local b = button.EltruismB
+
+		--hide debuffs if they are not target
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
+			if not E:UnitIsUnit(unit,"target") then
+				button:Hide()
+			else
+				button:Show()
+			end
+		end
+
+		--hide debuffs if they are not in combat
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
+			if not UnitAffectingCombat(unit) then
+				button:Hide()
+			else
+				button:Show()
+			end
+		end
+
+		--print("np button spam "..math.random(1,99))
+		if buttonCooldown.timer then
+			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
+				buttonCooldown:SetSwipeColor(0, 0, 0, 0)
+				buttonCooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
+			end
+			if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+				buttonCooldown.timer.text:ClearAllPoints()
+				buttonCooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+			end
+			local debufftime = tonumber(buttonCooldown.timer.text:GetText())
+			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
+				if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
+					if button.aura.sourceUnit and E:UnitIsUnit(button.aura.sourceUnit, "player") then
+						if E.db.ElvUI_EltreumUI.glow.pixel then
+							LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+							if E.db.ElvUI_EltreumUI.glow.gradient then
+								ElvUI_EltreumUI:ApplyGlowGradient(button._PixelGlow, r, g, b)
+							end
+						elseif E.db.ElvUI_EltreumUI.glow.autocast then
+							--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+							LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
+							if E.db.ElvUI_EltreumUI.glow.gradient then
+								ElvUI_EltreumUI:ApplyGlowGradient(button._AutoCastGlow, r, g, b)
+							end
+						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+							LCG.ButtonGlow_Start(button, glowcolor, 0.5)
+							button._ButtonGlow.outerGlow:SetScale(1.15)
+							if E.db.ElvUI_EltreumUI.glow.gradient then
+								if E.db.ElvUI_EltreumUI.glow.colorclass then
+									button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+								else
+									local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
+									glowMin:SetRGBA(clamp(c.r - 0.2), clamp(c.g - 0.2), clamp(c.b - 0.2), 1)
+									glowMax:SetRGBA(clamp(c.r + 0.2), clamp(c.g + 0.2), clamp(c.b + 0.2), 1)
+									button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
+								end
+							end
+						elseif E.db.ElvUI_EltreumUI.glow.procglow then
+							proc.color = glowcolor
+							proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+							proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+							proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+							proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+							proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+							LCG.ProcGlow_Start(button, proc)
+						end
+					end
+				else
+					if E.db.ElvUI_EltreumUI.glow.pixel then
+						LCG.PixelGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.autocast then
+						LCG.AutoCastGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+						LCG.ButtonGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.procglow then
+						LCG.ProcGlow_Stop(button)
+					end
+				end
+			end
+		else
+			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and (buttonCooldown == nil or buttonCooldown.timer == nil or not buttonCooldown:IsShown()) then
+				if E.db.ElvUI_EltreumUI.glow.pixel then
+					LCG.PixelGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.autocast then
+					LCG.AutoCastGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+					LCG.ButtonGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.procglow then
+					LCG.ProcGlow_Stop(button)
+				end
+			end
+		end
+	end
+end
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	local glowcolor
 	if E.db.ElvUI_EltreumUI.glow.colorclassnp then
@@ -79,104 +184,12 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			else
-				button.Cooldown:SetScript('OnUpdate', function(buttonCooldown, elapsed)
-					buttonCooldown.EltruismTimeSinceLastUpdate = (buttonCooldown.EltruismTimeSinceLastUpdate or 0) + elapsed
-					if buttonCooldown.EltruismTimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-						buttonCooldown.EltruismTimeSinceLastUpdate = 0
-
-						--hide debuffs if they are not target
-						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
-							if not E:UnitIsUnit(unit,"target") then
-								button:Hide()
-							else
-								button:Show()
-							end
-						end
-
-						--hide debuffs if they are not in combat
-						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
-							if not UnitAffectingCombat(unit) then
-								button:Hide()
-							else
-								button:Show()
-							end
-						end
-
-						--print("np button spam "..math.random(1,99))
-						if button.Cooldown.timer then
-							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
-								button.Cooldown:SetSwipeColor(0, 0, 0, 0)
-								button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
-							end
-							if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
-								button.Cooldown.timer.text:ClearAllPoints()
-								button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
-							end
-							local debufftime = tonumber(button.Cooldown.timer.text:GetText())
-							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
-								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-									if button.aura.sourceUnit and E:UnitIsUnit(button.aura.sourceUnit, "player") then
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(button._PixelGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-											LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												ElvUI_EltreumUI:ApplyGlowGradient(button._AutoCastGlow, r, g, b)
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Start(button, glowcolor, 0.5)
-											button._ButtonGlow.outerGlow:SetScale(1.15)
-											if E.db.ElvUI_EltreumUI.glow.gradient then
-												if E.db.ElvUI_EltreumUI.glow.colorclass then
-													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
-												else
-													local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
-													glowMin:SetRGBA(clamp(c.r - 0.2), clamp(c.g - 0.2), clamp(c.b - 0.2), 1)
-													glowMax:SetRGBA(clamp(c.r + 0.2), clamp(c.g + 0.2), clamp(c.b + 0.2), 1)
-													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
-												end
-											end
-										elseif E.db.ElvUI_EltreumUI.glow.procglow then
-											proc.color = glowcolor
-											proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
-											proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
-											proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
-											proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
-											proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
-											LCG.ProcGlow_Start(button, proc)
-										end
-									end
-								else
-									if E.db.ElvUI_EltreumUI.glow.pixel then
-										LCG.PixelGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.autocast then
-										LCG.AutoCastGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-										LCG.ButtonGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.procglow then
-										LCG.ProcGlow_Stop(button)
-									end
-								end
-							end
-						else
-							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and (button.Cooldown == nil or button.Cooldown.timer == nil or not button.Cooldown:IsShown()) then
-								if E.db.ElvUI_EltreumUI.glow.pixel then
-									LCG.PixelGlow_Stop(button)
-								elseif E.db.ElvUI_EltreumUI.glow.autocast then
-									LCG.AutoCastGlow_Stop(button)
-								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-									LCG.ButtonGlow_Stop(button)
-								elseif E.db.ElvUI_EltreumUI.glow.procglow then
-									LCG.ProcGlow_Stop(button)
-								end
-							end
-						end
-					end
-				end)
+				button.EltruismUnit = unit
+				button.EltruismGlowcolor = glowcolor
+				button.EltruismR = r
+				button.EltruismG = g
+				button.EltruismB = b
+				button.Cooldown:SetScript('OnUpdate', EltruismDebuffOnUpdate)
 			end
 			button.Count:SetParent(button.Cooldown)
 		end
@@ -186,41 +199,45 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	end
 end
 
+local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
+	buttonCooldown2.EltruismTimeSinceLastUpdate = (buttonCooldown2.EltruismTimeSinceLastUpdate or 0) + elapsed
+	if buttonCooldown2.EltruismTimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+		buttonCooldown2.EltruismTimeSinceLastUpdate = 0
+		local button = buttonCooldown2:GetParent()
+		local unit = button.EltruismUnit or ""
+
+		--hide buffs if they are not in combat
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
+			if not UnitAffectingCombat(unit) then
+				button:Hide()
+			else
+				button:Show()
+			end
+		end
+
+		if buttonCooldown2.timer then
+			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
+				buttonCooldown2:SetSwipeColor(0, 0, 0, 0)
+				buttonCooldown2:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
+			end
+			buttonCooldown2:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
+			if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+				buttonCooldown2.timer.text:ClearAllPoints()
+				buttonCooldown2.timer.text:SetDrawLayer('OVERLAY',1)
+				buttonCooldown2.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	if button and button.spellID then
 		if not stringfind(unit, "nameplate") then
 			return
 		else
+			button.EltruismUnit = unit
 			button.Cooldown.EltruismTimeSinceLastUpdate = 0
-			button.Cooldown:SetScript('OnUpdate', function(buttonCooldown2, elapsed)
-				buttonCooldown2.EltruismTimeSinceLastUpdate = (buttonCooldown2.EltruismTimeSinceLastUpdate or 0) + elapsed
-				if buttonCooldown2.EltruismTimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-					buttonCooldown2.EltruismTimeSinceLastUpdate = 0
-
-					--hide buffs if they are not in combat
-					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
-						if not UnitAffectingCombat(unit) then
-							button:Hide()
-						else
-							button:Show()
-						end
-					end
-
-					if button.Cooldown.timer then
-						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
-							button.Cooldown:SetSwipeColor(0, 0, 0, 0)
-							button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
-						end
-						button.Cooldown:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
-						if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
-							button.Cooldown.timer.text:ClearAllPoints()
-							button.Cooldown.timer.text:SetDrawLayer('OVERLAY',1)
-							button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
-						end
-
-					end
-				end
-			end)
+			button.Cooldown:SetScript('OnUpdate', EltruismBuffOnUpdate)
 			button.Count:SetParent(button.Cooldown)
 		end
 	end

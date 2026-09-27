@@ -120,6 +120,7 @@ S:HandleFrame(bresframe)
 
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
+
 local workingIDs = {
 	[3] = true, --10man
 	[4] = true, --25 man
@@ -141,6 +142,43 @@ local workingIDs = {
 }
 local difficultyok = false
 local instanceok = false
+
+function ElvUI_EltreumUI:BattleResOnUpdate(elapsed)
+	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+		TimeSinceLastUpdate = 0
+		--currentCharges, maxCharges, cooldownStart, cooldownDuration, chargeModRate = GetSpellCharges(spellId or spellName)
+		local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
+		if currentCharges ~= nil and cooldownStart ~= nil and cooldownDuration ~= nil then
+			bresframe:SetAlpha(1)
+			local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
+			if cooldown <= 0 then
+				spellcd:SetText(_G.READY)
+			else
+				if cooldown > 60 then
+					--from https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFGList.lua#L2551, https://www.wowinterface.com/forums/showthread.php?t=36884
+					spellcd:SetFormattedText("%d:%.2d", cooldown/60, cooldown%60)
+				elseif cooldown < 60 then
+					spellcd:SetText(cooldown)
+				end
+			end
+			spellcount:SetText(currentCharges)
+			if currentCharges == 0 then
+				spellcount:SetTextColor(1, 0, 0)
+				spellicon:SetDesaturated(true)
+			else
+				spellcount:SetTextColor(1, 1, 1)
+				spellicon:SetDesaturated(false)
+			end
+		elseif currentCharges == nil then
+			bresframe:SetAlpha(0)
+			--spellcd:SetText(READY)
+			--spellicon:SetDesaturated(true)
+		end
+	end
+end
+
+
 function ElvUI_EltreumUI:BattleRes()
 	if E.Modern and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		local _, instanceType = IsInInstance()
@@ -183,40 +221,7 @@ function ElvUI_EltreumUI:BattleRes()
 
 		if IsInGroup() and instanceok and difficultyok then
 			bresframe:SetAlpha(1)
-			bresframe:SetScript('OnUpdate', function(_, elapsed)
-				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-					TimeSinceLastUpdate = 0
-					--currentCharges, maxCharges, cooldownStart, cooldownDuration, chargeModRate = GetSpellCharges(spellId or spellName)
-					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
-					if currentCharges ~= nil and cooldownStart ~= nil and cooldownDuration ~= nil then
-						bresframe:SetAlpha(1)
-						local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
-						if cooldown <= 0 then
-							spellcd:SetText(_G.READY)
-						else
-							if cooldown > 60 then
-								--from https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFGList.lua#L2551, https://www.wowinterface.com/forums/showthread.php?t=36884
-								spellcd:SetFormattedText("%d:%.2d", cooldown/60, cooldown%60)
-							elseif cooldown < 60 then
-								spellcd:SetText(cooldown)
-							end
-						end
-						spellcount:SetText(currentCharges)
-						if currentCharges == 0 then
-							spellcount:SetTextColor(1, 0, 0)
-							spellicon:SetDesaturated(true)
-						else
-							spellcount:SetTextColor(1, 1, 1)
-							spellicon:SetDesaturated(false)
-						end
-					elseif currentCharges == nil then
-						bresframe:SetAlpha(0)
-						--spellcd:SetText(READY)
-						--spellicon:SetDesaturated(true)
-					end
-				end
-			end)
+			bresframe:SetScript('OnUpdate', ElvUI_EltreumUI.BattleResOnUpdate)
 		else
 			bresframe:SetScript('OnUpdate', nil)
 		end
