@@ -551,9 +551,12 @@ do
 					end
 					embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-					if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
-						E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
-					end
+					--now cause a problem since its delayed
+					E:Delay(10, function()
+						if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
+							E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhidden = false
+						end
+					end)
 
 					embedpanel:SetScript("OnEvent", function(_,event)
 						if event == "PLAYER_REGEN_DISABLED" then
