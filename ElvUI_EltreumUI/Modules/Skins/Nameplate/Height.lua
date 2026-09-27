@@ -10,8 +10,10 @@ local mathabs = _G.math.abs
 local string_match = _G.string.match
 local C_NamePlate_GetNamePlateForUnit = _G.C_NamePlate and _G.C_NamePlate.GetNamePlateForUnit
 local C_NamePlate_GetNamePlates = _G.C_NamePlate and _G.C_NamePlate.GetNamePlates
+local wipe = _G.wipe
 
 local previousTargetPlate
+local cachedElvUIHeights = {}
 
 --np custom health height
 function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
@@ -57,8 +59,11 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 	local targetHeight
 	if isActive then
 		if opts.useelvuinpheight and frame.frameType then
-			local plateDB = NP:PlateDB(frame)
-			targetHeight = (plateDB and plateDB.health and plateDB.health.height) or 30
+			if not cachedElvUIHeights[frame.frameType] then
+				local plateDB = NP:PlateDB(frame)
+				cachedElvUIHeights[frame.frameType] = (plateDB and plateDB.health and plateDB.health.height) or 30
+			end
+			targetHeight = cachedElvUIHeights[frame.frameType]
 		else
 			targetHeight = opts.incombatHeight or 14
 		end
@@ -98,25 +103,35 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	end
 
 	if backdropOpt.backdroptexture then
-		backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", backdropOpt.backdroptexture))
+		local newTex = E.LSM:Fetch("statusbar", backdropOpt.backdroptexture)
+		if unit.EltruismBackdropTexture ~= newTex then
+			backdrop.Center:SetTexture(newTex)
+			unit.EltruismBackdropTexture = newTex
+		end
 	end
 	if backdropOpt.backdroptexturestaticsize then
-		backdrop.Center:SetAllPoints(health)
+		if not unit.EltruismBackdropPointsSet then
+			backdrop.Center:SetAllPoints(health)
+			unit.EltruismBackdropPointsSet = true
+		end
 	end
 	if backdropOpt.backdrophidden then
-		backdrop.LeftEdge:Hide()
-		backdrop.BottomLeftCorner:Hide()
-		backdrop.TopLeftCorner:Hide()
-		backdrop.RightEdge:Hide()
-		backdrop.BottomRightCorner:Hide()
-		backdrop.TopRightCorner:Hide()
-		backdrop.TopEdge:Hide()
-		backdrop.BottomEdge:Hide()
+		if backdrop.LeftEdge:IsShown() then
+			backdrop.LeftEdge:Hide()
+			backdrop.BottomLeftCorner:Hide()
+			backdrop.TopLeftCorner:Hide()
+			backdrop.RightEdge:Hide()
+			backdrop.BottomRightCorner:Hide()
+			backdrop.TopRightCorner:Hide()
+			backdrop.TopEdge:Hide()
+			backdrop.BottomEdge:Hide()
+		end
 	end
 end
 
 --update all visible nameplates
 function ElvUI_EltreumUI:UpdateAllNameplateHeights()
+	wipe(cachedElvUIHeights)
 	if not C_NamePlate_GetNamePlates then return end
 	local plates = C_NamePlate_GetNamePlates()
 	if plates then
@@ -139,11 +154,8 @@ local function OnTargetChanged(opts)
 		return
 	end
 
-	local targetFrame
-	if C_NamePlate_GetNamePlateForUnit("target") then
-		local targetPlate = C_NamePlate_GetNamePlateForUnit("target")
-		targetFrame = targetPlate and targetPlate.unitFrame
-	end
+	local targetPlate = C_NamePlate_GetNamePlateForUnit and C_NamePlate_GetNamePlateForUnit("target")
+	local targetFrame = targetPlate and targetPlate.unitFrame
 
 	-- Restore previous target plate if it was different and is still visible
 	if previousTargetPlate and previousTargetPlate ~= targetFrame and previousTargetPlate.Health and previousTargetPlate:IsShown() then
