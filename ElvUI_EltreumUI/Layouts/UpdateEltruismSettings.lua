@@ -96,7 +96,6 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = "ElvUI Norm1"
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbar = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarnoninterruptible = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarnoninterruptible = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablecastbarinterrupted = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.castbarreactioninterruptable = false
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
