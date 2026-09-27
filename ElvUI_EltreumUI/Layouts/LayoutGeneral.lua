@@ -74,6 +74,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["tooltip"]["targetInfo"] = false --was true
 	E.db["tooltip"]["showMount"] = false --was true
 
+	--modern show class colors
+	E.db["nameplates"]["classColorNames"] = true
+
 	--to make sure its correct height
 	E.db["unitframe"]["units"]["player"]["height"] = 54
 	E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] = false

@@ -34,6 +34,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["enable"] = false
 
+				--enable np class colors
+				E.db["nameplates"]["classColorNames"] = true
+
 				--fix power prediction color overlapping some other colors
 				E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["a"] = 0.7
 				E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["b"] = 1
@@ -274,6 +277,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["tooltip"]["role"] = false --was true
 		E.db["tooltip"]["targetInfo"] = false --was true
 		E.db["tooltip"]["showMount"] = false --was true
+
+		--enable np class colors
+		E.db["nameplates"]["classColorNames"] = true
 
 		--disable rarity color, so that items color by lowest ilvl > highest
 		E.db["general"]["itemLevel"]["itemLevelRarity"] = false
