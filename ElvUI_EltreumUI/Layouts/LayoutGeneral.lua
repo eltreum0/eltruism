@@ -1199,25 +1199,26 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["datatexts"]["noCombatHover"] = true
 	E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 	E.db["datatexts"]["panels"]["MinimapPanel"]["border"] = false
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
 	if E.Retail then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Missions"
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "System"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "Orderhall"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "BfA Missions"
-		E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-		E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["datatexts"]["panels"]["MinimapPanel"][2] = "S&L Friends"
 		else
 			E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 		end
-	elseif E.Classic or E.Mists or E.TBC or E.Wrath then
-		if E.Mists or E.TBC or E.Wrath then
+	else
+		if not E.Classic then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "DualSpecialization"
 		else
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
@@ -1230,17 +1231,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		else
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
 		end
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "Guild"
 		E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Coords"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat"
-		E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "System"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "Combat Time"
-		E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
-		E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
 	end
 
 	-- Tooltip
@@ -2018,8 +2013,11 @@ function ElvUI_EltreumUI:SetupDataText()
 		if E.Classic and (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') then
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Ammo"
 		else
-			--E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
-			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
+			if E.Forever then --todo replace with dual once the lib is updated for it
+				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
+			else
+				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
+			end
 		end
 	end
 	E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] = true
