@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 					unitframe.Health.backdrop:SetAlpha(backdropAlpha)
 					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 						unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-						if unitframe.Health.backdrop.Center then
+						if unitframe.Health.backdrop.Center and unitframe.Health.backdrop.Center:IsShown() then
 							unitframe.Health.backdrop.Center:Hide()
 						end
 						if unitframe.Health.bg then
@@ -86,7 +86,9 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 					else
 						unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 						if unitframe.Health.backdrop.Center then
-							unitframe.Health.backdrop.Center:Show()
+							if not unitframe.Health.backdrop.Center:IsShown() then
+								unitframe.Health.backdrop.Center:Show()
+							end
 							unitframe.Health.backdrop.Center:SetAlpha(backdropAlpha)
 						end
 					end
@@ -259,7 +261,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 				button.Health.backdrop:SetAlpha(backdropAlpha)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					button.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-					if button.Health.backdrop.Center then
+					if button.Health.backdrop.Center and button.Health.backdrop.Center:IsShown() then
 						button.Health.backdrop.Center:Hide()
 					end
 					if button.Health.bg then
@@ -273,7 +275,9 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 				else
 					button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 					if button.Health.backdrop.Center then
-						button.Health.backdrop.Center:Show()
+						if not button.Health.backdrop.Center:IsShown() then
+							button.Health.backdrop.Center:Show()
+						end
 						button.Health.backdrop.Center:SetAlpha(backdropAlpha)
 					end
 				end
@@ -521,7 +525,51 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 	end
 end
-hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --WAS causing "blinking"/"flashing" issues in 10.0
+local function Eltreum_PostUpdateHealthColorTexture(self)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		local frame = self and self:GetParent()
+		if frame and frame.unitframeType then
+			if frame.unitframeType == "player" and E.db.unitframe.units.player.enable then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Player","player")
+			elseif frame.unitframeType == "target" and E.db.unitframe.units.target.enable then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("target", "Target","target")
+			elseif frame.unitframeType == "targettarget" and E.db.unitframe.units.targettarget.enable then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("targettarget", "TargetTarget","targettarget")
+			elseif frame.unitframeType == "targettargettarget" and E.db.unitframe.units.targettargettarget.enable then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("targettargettarget", "TargetTargetTarget","targettargettarget")
+			elseif frame.unitframeType == "pet" then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("pet", "Pet","pet")
+			elseif frame.unitframeType == "focus" and not E.Classic then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("focus", "Focus", "focus")
+			elseif frame.unitframeType == "focustarget" and not E.Classic then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("focustarget", "FocusTarget", "focus")
+			elseif frame.unitframeType == "boss" and (E.Retail or E.Mists or E.TBC or E.Wrath) then
+				local id = frame.unit and frame.unit:match("boss(%d+)")
+				if id then
+					ElvUI_EltreumUI:ApplyUnitCustomTexture("boss"..id, "Boss"..id, "boss",true)
+				end
+			elseif frame.unitframeType == "arena" and not E.Classic then
+				local id = frame.unit and frame.unit:match("arena(%d+)")
+				if id then
+					ElvUI_EltreumUI:ApplyUnitCustomTexture("arena"..id, "Arena"..id, "arena",true)
+				end
+			elseif frame.unitframeType == "party" then
+				local isPet = frame.unit and frame.unit:match("pet")
+				if not isPet then
+					ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"party")
+				else
+					ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
+				end
+			elseif frame.unitframeType == "raid" or frame.unitframeType == "raid1" or frame.unitframeType == "raid2" or frame.unitframeType == "raid3" then
+				ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
+			elseif frame.unitframeType == "tank" or frame.unitframeType == "assist" or frame.unitframeType == "raidpet" then
+				ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
+			end
+		end
+	end
+end
+hooksecurefunc(UF, "PostUpdateHealthColor", Eltreum_PostUpdateHealthColorTexture) --WAS causing "blinking"/"flashing" issues in 10.0
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
 
 -- replace absorb texture with unitframe texture
