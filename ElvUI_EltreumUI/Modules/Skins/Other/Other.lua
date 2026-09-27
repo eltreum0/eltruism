@@ -574,56 +574,73 @@ tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	end
 end)
 
-function ElvUI_EltreumUI:ZoneTextFrame_OnUpdate()
-	--_G.ZoneTextString:SetWidth(512)
-	--_G.ZoneTextString:SetMaxLines(1)
-	--_G.ZoneTextString:SetWordWrap(false)
-	--_G.ZoneTextString:SetText("Putricide's Laboratory of Alchemical Horrors and Fun") --debug for length
-	if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
-		local r,g,b = _G.ZoneTextString:GetTextColor()
-		local r2 = r-0.3
-		if r2 < 0 then r2 = 0 end
-		local g2 = g-0.3
-		if g2 < 0 then g2 = 0 end
-		local b2 = b-0.3
-		if b2 < 0 then b2 = 0 end
-		_G.ZoneTextString:SetText(E:TextGradient(_G.ZoneTextString:GetText(), r, g, b, r2, g2, b2))
-	end
-	if _G.PVPInfoTextString:GetText() ~= nil and not _G.PVPInfoTextString:GetText():match("|r|c") then
-		local r,g,b = _G.PVPInfoTextString:GetTextColor()
-		local r2 = r-0.3
-		if r2 < 0 then r2 = 0 end
-		local g2 = g-0.3
-		if g2 < 0 then g2 = 0 end
-		local b2 = b-0.3
-		if b2 < 0 then b2 = 0 end
-		_G.PVPInfoTextString:SetText(E:TextGradient(_G.PVPInfoTextString:GetText(), r, g, b, r2, g2, b2))
+local lastZoneText = ""
+local lastPVPInfoText = ""
+local ONUPDATE_INTERVAL = 0.016 --if 1 then the text changes too slow
+local TimeSinceLastUpdate = 0
+function ElvUI_EltreumUI.ZoneTextFrame_OnUpdate(_,elapsed)
+	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+		TimeSinceLastUpdate = 0
+		local zoneText = _G.ZoneTextString:GetText()
+		if zoneText and zoneText ~= lastZoneText and not zoneText:match("|r|c") then
+			local r,g,b = _G.ZoneTextString:GetTextColor()
+			local r2 = r-0.3
+			if r2 < 0 then r2 = 0 end
+			local g2 = g-0.3
+			if g2 < 0 then g2 = 0 end
+			local b2 = b-0.3
+			if b2 < 0 then b2 = 0 end
+			lastZoneText = E:TextGradient(zoneText, r, g, b, r2, g2, b2)
+			_G.ZoneTextString:SetText(lastZoneText)
+		end
+
+		local pvpText = _G.PVPInfoTextString:GetText()
+		if pvpText and pvpText ~= lastPVPInfoText and not pvpText:match("|r|c") then
+			local r,g,b = _G.PVPInfoTextString:GetTextColor()
+			local r2 = r-0.3
+			if r2 < 0 then r2 = 0 end
+			local g2 = g-0.3
+			if g2 < 0 then g2 = 0 end
+			local b2 = b-0.3
+			if b2 < 0 then b2 = 0 end
+			lastPVPInfoText = E:TextGradient(pvpText, r, g, b, r2, g2, b2)
+			_G.PVPInfoTextString:SetText(lastPVPInfoText)
+		end
 	end
 end
 
-function ElvUI_EltreumUI:SubZoneTextFrame_OnUpdate()
-	--_G.SubZoneTextString:SetWidth(512)
-	--_G.SubZoneTextString:SetMaxLines(1)
-	--_G.SubZoneTextString:SetWordWrap(false)
-	if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
-		local r,g,b = _G.SubZoneTextString:GetTextColor()
-		local r2 = r-0.3
-		if r2 < 0 then r2 = 0 end
-		local g2 = g-0.3
-		if g2 < 0 then g2 = 0 end
-		local b2 = b-0.3
-		if b2 < 0 then b2 = 0 end
-		_G.SubZoneTextString:SetText(E:TextGradient(_G.SubZoneTextString:GetText(), r, g, b, r2, g2, b2))
-	end
-	if _G.PVPArenaTextString:GetText() ~= nil and not _G.PVPArenaTextString:GetText():match("|r|c") then
-		local r,g,b = _G.PVPArenaTextString:GetTextColor()
-		local r2 = r-0.3
-		if r2 < 0 then r2 = 0 end
-		local g2 = g-0.3
-		if g2 < 0 then g2 = 0 end
-		local b2 = b-0.3
-		if b2 < 0 then b2 = 0 end
-		_G.PVPArenaTextString:SetText(E:TextGradient(_G.PVPArenaTextString:GetText(), r, g, b, r2, g2, b2))
+local lastSubZoneText = ""
+local lastPVPArenaText = ""
+function ElvUI_EltreumUI.SubZoneTextFrame_OnUpdate(_,elapsed)
+	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+		TimeSinceLastUpdate = 0
+		local subZoneText = _G.SubZoneTextString:GetText()
+		if subZoneText and subZoneText ~= lastSubZoneText and not subZoneText:match("|r|c") then
+			local r,g,b = _G.SubZoneTextString:GetTextColor()
+			local r2 = r-0.3
+			if r2 < 0 then r2 = 0 end
+			local g2 = g-0.3
+			if g2 < 0 then g2 = 0 end
+			local b2 = b-0.3
+			if b2 < 0 then b2 = 0 end
+			lastSubZoneText = E:TextGradient(subZoneText, r, g, b, r2, g2, b2)
+			_G.SubZoneTextString:SetText(lastSubZoneText)
+		end
+
+		local pvpArenaText = _G.PVPArenaTextString:GetText()
+		if pvpArenaText and pvpArenaText ~= lastPVPArenaText and not pvpArenaText:match("|r|c") then
+			local r,g,b = _G.PVPArenaTextString:GetTextColor()
+			local r2 = r-0.3
+			if r2 < 0 then r2 = 0 end
+			local g2 = g-0.3
+			if g2 < 0 then g2 = 0 end
+			local b2 = b-0.3
+			if b2 < 0 then b2 = 0 end
+			lastPVPArenaText = E:TextGradient(pvpArenaText, r, g, b, r2, g2, b2)
+			_G.PVPArenaTextString:SetText(lastPVPArenaText)
+		end
 	end
 end
 
