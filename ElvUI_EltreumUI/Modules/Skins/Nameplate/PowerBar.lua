@@ -16,7 +16,7 @@ local C_NamePlate = _G.C_NamePlate
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local CreateVector3D = _G.CreateVector3D
 local UnitIsDead = _G.UnitIsDead
-local tostring = _G.tostring
+local Enum = _G.Enum
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
@@ -47,10 +47,16 @@ EltreumPowerBar.Text:SetJustifyH("CENTER")
 EltreumPowerBar.Text:SetJustifyV("MIDDLE")
 
 --setup the prediction and incoming prediction
-local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
+local EltreumPowerBarClipFrame = CreateFrame("Frame", "EltruismPowerBarClipFrame", EltreumPowerBar)
+EltreumPowerBarClipFrame:SetClipsChildren(true)
+EltreumPowerBarClipFrame:SetAllPoints()
+EltreumPowerBarClipFrame:EnableMouse(false)
+EltreumPowerBar.ClipFrame = EltreumPowerBarClipFrame
+
+local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBarClipFrame)
 EltreumPowerPrediction:Hide()
 EltreumPowerPrediction.isShownStatus = false
-local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
+local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBarClipFrame)
 EltreumPowerPrediction:SetValue(0)
 EltreumPowerPredictionIncoming:Hide()
 EltreumPowerPredictionIncoming.isShownStatus = false
@@ -67,157 +73,181 @@ local incResource = 0 -- reset
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
-	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
+	if not UnitExists("target") or not EltreumPowerBar:IsShown() then
+		EltreumPowerPrediction:SetValue(0)
 		if EltreumPowerPrediction.isShownStatus then
 			EltreumPowerPrediction:Hide() --hide at the start before events
 			EltreumPowerPrediction.isShownStatus = false
 		end
-		EltreumPowerPrediction:SetValue(0)
 		EltreumPowerPredictionIncoming:SetValue(0)
 		if EltreumPowerPredictionIncoming.isShownStatus then
 			EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 			EltreumPowerPredictionIncoming.isShownStatus = false
 		end
-		local predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
-		local nameplatePowerDB = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
-		local playerPower = UnitPower("player")
-		local playerPowerMax = UnitPowerMax("player")
+		return
+	end
 
-		if not EltreumPowerBar.isSetupprediction then
-			EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", nameplatePowerDB.texture))
-			EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", nameplatePowerDB.texture))
-			--make them behave nicely since i had to split them
-			EltreumPowerPrediction:SetReverseFill(true)
-			EltreumPowerPredictionIncoming:SetReverseFill(false)
-			EltreumPowerPrediction:SetSize(nameplatePowerDB.sizex, nameplatePowerDB.sizey)
-			EltreumPowerPredictionIncoming:SetSize(nameplatePowerDB.sizex, nameplatePowerDB.sizey)
-			EltreumPowerBar.isSetupprediction = true
+	local nameplatePowerDB = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
+	if not EltreumPowerBar.isSetupprediction then
+		local barTexture = E.LSM:Fetch("statusbar", nameplatePowerDB.texture)
+		--make them behave nicely since i had to split them
+		EltreumPowerPrediction:SetStatusBarTexture(barTexture)
+		EltreumPowerPredictionIncoming:SetStatusBarTexture(barTexture)
+		EltreumPowerPrediction:ClearAllPoints()
+		EltreumPowerPrediction:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
+		EltreumPowerPrediction:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
+		EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+		EltreumPowerPrediction:SetReverseFill(true)
+		EltreumPowerPrediction:SetWidth(nameplatePowerDB.sizex)
+		EltreumPowerPrediction:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 2)
+
+		EltreumPowerPredictionIncoming:ClearAllPoints()
+		EltreumPowerPredictionIncoming:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
+		EltreumPowerPredictionIncoming:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
+		EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+		EltreumPowerPredictionIncoming:SetReverseFill(false)
+		EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
+		EltreumPowerPredictionIncoming:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 1)
+		EltreumPowerBar.isSetupprediction = true
+	end
+
+	local predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
+	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
+	EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
+
+	if E.Modern then
+		local druideclipse = GetPlayerAuraBySpellID(48517)
+		if IsPlayerSpell(114107) and druideclipse ~= nil then
+			druidwrath = 10
+			druidstarfire = 10
+		else
+			druidwrath = 6
+			druidstarfire = 8
+		end
+		if IsPlayerSpell(321018) then --improved steady shot
+			huntersteadyshot = 20
+		else
+			huntersteadyshot = 10
+		end
+		if IsPlayerSpell(385923) then --shaman flow of power
+			shamanbolt = 8
+			shamanlavaburst = 10
+		else
+			shamanbolt = 6
+			shamanlavaburst = 8
+		end
+		if IsPlayerSpell(378776) and _G.InCombatLockdown() then --shaman inundate
+			shamanhex = 8
+		else
+			shamanhex = 0
+		end
+	end
+
+	--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
+	local spellGenerators = {
+
+		-- Balance Druid
+		[190984] = druidwrath, --wrath
+		[194153] = druidstarfire, -- StarFire
+		--[214281] = 10, -- New Moon --might finally have become 1
+		[274281] = 10, -- New Moon
+		--[214282] = 20, -- Half Moon --might finally have become 1
+		[274282] = 20, -- Half Moon
+		[274283] = 40, -- Full Moon
+		[202347] = 12, -- Stellar Flare
+
+		-- Shadow Priest
+		[8092] = 6, -- mind blast
+		[34914] = 4, -- vampiric touch
+		--[15407] = 12, -- mind flay, but is a channel so idc
+		--[48045] = 6, -- per target, but is a channel so idc
+		--[263165] = 60, -- void torrent, but is a channel so idc
+		[263346] = 15, --dark void
+		[73510] = 4, --mind spike
+		[391109] = 30, --dark ascension
+		[407466] = 12, --mind spike: insanity
+		--[391403] = 12, --mind flay: insanity, but its a channel so idc
+		[375901] = 10, --mindgames
+		[120644] = 10, -- halo
+		--[263165] = 24, --void torrent, but its a channel so idc
+		[450983] = 6, --void blast
+
+		-- Elemental Shaman
+		[188196] = shamanbolt, --lightning bolt
+		[51505] = shamanlavaburst, --lava burst
+		[114074] = 2, --lava beam
+		[210714] = 25, --icefury
+		[188443] = 4, --chain lightning (per target hit)
+		[51514] = shamanhex, --hex can have maelstrom if they have inundate
+		[210873] = shamanhex, --hex can have maelstrom if they have inundate
+		[211004] = shamanhex, --hex can have maelstrom if they have inundate
+		[211010] = shamanhex, --hex can have maelstrom if they have inundate
+		[211015] = shamanhex, --hex can have maelstrom if they have inundate
+		[269352] = shamanhex, --hex can have maelstrom if they have inundate
+		[277778] = shamanhex, --hex can have maelstrom if they have inundate
+		[277784] = shamanhex, --hex can have maelstrom if they have inundate
+		[309328] = shamanhex, --hex can have maelstrom if they have inundate
+
+		--Hunter
+		[56641] = huntersteadyshot, --steady shot gives bonus focus with a talent
+	}
+
+	mainCost = 0 --reset
+	incResource = 0 --reset
+
+	local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+	local isSecretStart = E:IsSecretValue(startTime)
+	local isSecretSpell = E:IsSecretValue(spellID)
+	local isCasting = startTime and endTime and (isSecretStart or startTime ~= endTime)
+
+	if isCasting then
+		local powerType = UnitPowerType("player") or 0
+		local playerPowerMax = UnitPowerMax("player", powerType)
+		local costTable = not isSecretSpell and spellID and GetSpellPowerCost(spellID)
+		if costTable then --if nil then cost = 0
+			local checkRequiredAura = #costTable > 1
+			for _, costInfo in next, costTable do
+				--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID
+				local cost, ctype, cperc = costInfo.cost, costInfo.type, costInfo.costPercent
+				local checkSpec = not checkRequiredAura or costInfo.hasRequiredAura
+				if checkSpec and (ctype == powerType) then  --sanity check for being the same type
+					if cost and cost > 0 then
+						mainCost = cost
+					elseif cperc and cperc > 0 and not (E.IsSecretValue and E:IsSecretValue(playerPowerMax)) and playerPowerMax and playerPowerMax > 0 then
+						mainCost = (playerPowerMax * cperc) / 100
+					end
+					break
+				end
+			end
 		end
 
-		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
-		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
+		--because priest/shaman/druid have a secondary power AND mana they need to be checked against
+		if not isSecretSpell and spellID and spellGenerators[spellID] then
+			local isGeneratorForPowerType = false
+			if E.myclass == "DRUID" and powerType == (Enum.PowerType.LunarPower or 8) then
+				isGeneratorForPowerType = true
+			elseif E.myclass == "PRIEST" and powerType == (Enum.PowerType.Insanity or 13) then
+				isGeneratorForPowerType = true
+			elseif E.myclass == "SHAMAN" and powerType == (Enum.PowerType.Maelstrom or 11) then
+				isGeneratorForPowerType = true
+			elseif E.myclass == "HUNTER" and powerType == (Enum.PowerType.Focus or 2) then
+				isGeneratorForPowerType = true
+			end
 
-		if E.Modern then
-			local druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
-			if IsPlayerSpell(114107) and druideclipse ~= nil then
-				druidwrath = 10
-				druidstarfire = 10
-			end
-			if IsPlayerSpell(321018) then --improved steady shot
-				huntersteadyshot = 20
-			end
-			if IsPlayerSpell(385923) then --shaman flow of power
-				shamanbolt = 8
-				shamanlavaburst = 10
-			end
-			if IsPlayerSpell(378776) and _G.InCombatLockdown() then --shaman inundate
-				shamanhex = 8
+			if isGeneratorForPowerType then
+				incResource = spellGenerators[spellID] or 0
 			end
 		end
 
-		--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
-		local spellGenerators = {
+		EltreumPowerPrediction:SetMinMaxValues(0, playerPowerMax or 1)
+		EltreumPowerPredictionIncoming:SetMinMaxValues(0, playerPowerMax or 1)
 
-			-- Balance Druid
-			[190984] = druidwrath, --wrath
-			[194153] = druidstarfire, -- StarFire
-			--[214281] = 10, -- New Moon --might finally have become 1
-			[274281] = 10, -- New Moon
-			--[214282] = 20, -- Half Moon --might finally have become 1
-			[274282] = 20, -- Half Moon
-			[274283] = 40, -- Full Moon
-			[202347] = 12, -- Stellar Flare
-
-			-- Shadow Priest
-			[8092] = 6, -- mind blast
-			[34914] = 4, -- vampiric touch
-			--[15407] = 12, -- mind flay, but is a channel so idc
-			--[48045] = 6, -- per target, but is a channel so idc
-			--[263165] = 60, -- void torrent, but is a channel so idc
-			[263346] = 15, --dark void
-			[73510] = 4, --mind spike
-			[391109] = 30, --dark ascension
-			[407466] = 12, --mind spike: insanity
-			--[391403] = 12, --mind flay: insanity, but its a channel so idc
-			[375901] = 10, --mindgames
-			[120644] = 10, -- halo
-			--[263165] = 24, --void torrent, but its a channel so idc
-			[450983] = 6, --void blast
-
-			-- Elemental Shaman
-			[188196] = shamanbolt, --lightning bolt
-			[51505] = shamanlavaburst, --lava burst
-			[114074] = 2, --lava beam
-			[210714] = 25, --icefury
-			[188443] = 4, --chain lightning (per target hit)
-			[51514] = shamanhex, --hex can have maelstrom if they have inundate
-			[210873] = shamanhex, --hex can have maelstrom if they have inundate
-			[211004] = shamanhex, --hex can have maelstrom if they have inundate
-			[211010] = shamanhex, --hex can have maelstrom if they have inundate
-			[211015] = shamanhex, --hex can have maelstrom if they have inundate
-			[269352] = shamanhex, --hex can have maelstrom if they have inundate
-			[277778] = shamanhex, --hex can have maelstrom if they have inundate
-			[277784] = shamanhex, --hex can have maelstrom if they have inundate
-			[309328] = shamanhex, --hex can have maelstrom if they have inundate
-
-			--Hunter
-			[56641] = huntersteadyshot, --steady shot gives bonus focus with a talent
-		}
-
-		mainCost = 0 --reset
-		incResource = 0 -- reset
-
-		local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-		if startTime ~= endTime then
-			local costTable = GetSpellPowerCost(spellID)
-			if costTable then --if nil then cost = 0
-				for _, v in next, costTable do
-					--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID
-					if tostring(v.type) == tostring(UnitPowerType("player")) then --sanity check for being the same type
-						mainCost = v.cost
-					else
-						mainCost = 0
-					end
-				end
-			else
-				mainCost = 0
-			end
-
-			--because priest/shaman/druid have a secondary power AND mana they need to be checked against
-			if spellGenerators[spellID] and (E.myclass ~= "HUNTER") then
-				incResource = spellGenerators[spellID]
-				--readjust if the incoming would go over max
-				if (incResource + EltreumPowerBar:GetValue()) >= playerPowerMax then
-					incResource = (playerPowerMax - EltreumPowerBar:GetValue())
-				elseif EltreumPowerBar:GetValue() == UnitPowerMax("player") then
-					incResource = 0
-				end
-			else
-				incResource = 0
-			end
-
-			if playerPower == 0 then
-				EltreumPowerPrediction:SetValue(0)
-				EltreumPowerPredictionIncoming:SetValue(0)
-			elseif playerPower ~= 0 then
-				if mainCost >= UnitPowerMax("player") or mainCost >= playerPower then
-					if E.db.ElvUI_EltreumUI.dev then
-						ElvUI_EltreumUI:Print("Couldn't Calculate your power properly, please report in Discord")
-					end
-					EltreumPowerPrediction:SetValue(0)
-				else
-					EltreumPowerPrediction:SetValue(mainCost)
-				end
-			end
-
+		if mainCost and mainCost > 0 then
+			EltreumPowerPrediction:SetValue(mainCost)
 			if not EltreumPowerPrediction.isShownStatus then
 				EltreumPowerPrediction:Show()
 				EltreumPowerPrediction.isShownStatus = true
-			end
-			EltreumPowerPredictionIncoming:SetValue(incResource)
-			if not EltreumPowerPredictionIncoming.isShownStatus then
-				EltreumPowerPredictionIncoming:Show()
-				EltreumPowerPredictionIncoming.isShownStatus = true
 			end
 		else
 			EltreumPowerPrediction:SetValue(0)
@@ -225,11 +255,31 @@ function ElvUI_EltreumUI:PowerPrediction()
 				EltreumPowerPrediction:Hide()
 				EltreumPowerPrediction.isShownStatus = false
 			end
+		end
+
+		if incResource and incResource > 0 then
+			EltreumPowerPredictionIncoming:SetValue(incResource)
+			if not EltreumPowerPredictionIncoming.isShownStatus then
+				EltreumPowerPredictionIncoming:Show()
+				EltreumPowerPredictionIncoming.isShownStatus = true
+			end
+		else
 			EltreumPowerPredictionIncoming:SetValue(0)
 			if EltreumPowerPredictionIncoming.isShownStatus then
 				EltreumPowerPredictionIncoming:Hide()
 				EltreumPowerPredictionIncoming.isShownStatus = false
 			end
+		end
+	else
+		EltreumPowerPrediction:SetValue(0)
+		if EltreumPowerPrediction.isShownStatus then
+			EltreumPowerPrediction:Hide()
+			EltreumPowerPrediction.isShownStatus = false
+		end
+		EltreumPowerPredictionIncoming:SetValue(0)
+		if EltreumPowerPredictionIncoming.isShownStatus then
+			EltreumPowerPredictionIncoming:Hide()
+			EltreumPowerPredictionIncoming.isShownStatus = false
 		end
 	end
 end
@@ -294,10 +344,21 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.backdrop:SetBackdropColor(nameplatePowerDB.r, nameplatePowerDB.g, nameplatePowerDB.b)
 				EltreumPowerBar.backdrop:SetAlpha(nameplatePowerDB.a)
 				EltreumPowerBar:SetFrameStrata("MEDIUM")
-				EltreumPowerPrediction:SetFrameStrata("HIGH")
-				EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
+				EltreumPowerPrediction:ClearAllPoints()
+				EltreumPowerPrediction:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
+				EltreumPowerPrediction:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
 				EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+				EltreumPowerPrediction:SetReverseFill(true)
+				EltreumPowerPrediction:SetWidth(nameplatePowerDB.sizex)
+				EltreumPowerPrediction:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 2)
+
+				EltreumPowerPredictionIncoming:ClearAllPoints()
+				EltreumPowerPredictionIncoming:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
+				EltreumPowerPredictionIncoming:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
 				EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+				EltreumPowerPredictionIncoming:SetReverseFill(false)
+				EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
+				EltreumPowerPredictionIncoming:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 1)
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
 					nameplatePowerDB.autoadjustposition = false
 				end
@@ -323,16 +384,17 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			--check if max power has changed, update then
-			if playerPowerMax ~= maxpower then
-				maxpower = playerPowerMax
+			local isSecretMax = E.IsSecretValue and E:IsSecretValue(playerPowerMax)
+			if isSecretMax or (playerPowerMax ~= maxpower) then
+				if not isSecretMax then maxpower = playerPowerMax end
 				--update power prediction
-				EltreumPowerPrediction:SetMinMaxValues(0, playerPowerMax)
+				EltreumPowerPrediction:SetMinMaxValues(0, playerPowerMax or 1)
 
 				--update power prediction incoming
-				EltreumPowerPredictionIncoming:SetMinMaxValues(0, playerPowerMax)
+				EltreumPowerPredictionIncoming:SetMinMaxValues(0, playerPowerMax or 1)
 
 				--update power bar itself
-				EltreumPowerBar:SetMinMaxValues(0, playerPowerMax)
+				EltreumPowerBar:SetMinMaxValues(0, playerPowerMax or 1)
 			end
 
 			local _, powertype = UnitPowerType("player")
@@ -868,10 +930,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				powerbareffect:SetInside(EltreumPowerBar:GetStatusBarTexture(), 0, 0)
 				powerbareffect:SetParent(EltreumPowerBar)
 			end
+			ElvUI_EltreumUI:PowerPrediction()
 		else
 			powerbareffect:Hide()
 			EltreumPowerBar:Hide()
 			EltreumPowerAnchor = nil
+			ElvUI_EltreumUI:PowerPrediction()
 		end
 	end
 end
@@ -880,19 +944,11 @@ end
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		local playerPower = UnitPower("player")
-		local playerPowerMax = UnitPowerMax("player")
 		EltreumPowerBar:SetValue(playerPower)
 		if E.Modern then
-			EltreumPowerBar.Text:SetText(_G.AbbreviateNumbers(playerPower, E.Abbreviate.short))
+			EltreumPowerBar.Text:SetText(E:AbbreviateNumbers(playerPower, E.Abbreviate.short))
 		else
 			EltreumPowerBar.Text:SetText(E:ShortValue(playerPower))
-
-			--fix if incoming would be higher than the max
-			if playerPower >= playerPowerMax then
-				EltreumPowerPredictionIncoming:SetValue(0)
-			elseif (playerPower + EltreumPowerPredictionIncoming:GetValue()) >= playerPowerMax then
-				EltreumPowerPredictionIncoming:SetValue(playerPowerMax - playerPower)
-			end
 		end
 	end
 end
@@ -912,11 +968,14 @@ end)
 local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+--check events further
+--EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
+--EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
+--EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
+--EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
 	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
-	if UnitExists("target") and not E.Modern then
-		ElvUI_EltreumUI:PowerPrediction()
-	end
+	ElvUI_EltreumUI:PowerPrediction()
 end)
 
 --nameplate events for classic since nameplate range is so small
@@ -942,9 +1001,7 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 	if UnitExists("target") then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		ElvUI_EltreumUI:NameplatePower()
-		if not E.Modern then
-			ElvUI_EltreumUI:PowerPrediction()
-		end
+		ElvUI_EltreumUI:PowerPrediction()
 	end
 end)
 

@@ -100,9 +100,9 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
 
+		local playerbar = _G["ElvUF_Player"]
+		local playerAlpha = playerbar and playerbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			local playerbar = _G["ElvUF_Player"]
-			local playerAlpha = playerbar and playerbar:GetAlpha() or 1
 			if playerbar and not playerbar.EltruismModelAlphaHooked then
 				hooksecurefunc(playerbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
@@ -190,9 +190,9 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
 
+		local targetbar = _G["ElvUF_Target"]
+		local targetAlpha = targetbar and targetbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			local targetbar = _G["ElvUF_Target"]
-			local targetAlpha = targetbar and targetbar:GetAlpha() or 1
 			if targetbar and not targetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targetbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
@@ -313,9 +313,9 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
 
+		local targettargetbar = _G["ElvUF_TargetTarget"]
+		local targettargetAlpha = targettargetbar and targettargetbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			local targettargetbar = _G["ElvUF_TargetTarget"]
-			local targettargetAlpha = targettargetbar and targettargetbar:GetAlpha() or 1
 			if targettargetbar and not targettargetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targettargetbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
@@ -434,9 +434,9 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications or E.Classic then return end
 		local modelsDB = db.unitframes.models
 
+		local focusbar = _G["ElvUF_Focus"]
+		local focusAlpha = focusbar and focusbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			local focusbar = _G["ElvUF_Focus"]
-			local focusAlpha = focusbar and focusbar:GetAlpha() or 1
 			if focusbar and not focusbar.EltruismModelAlphaHooked then
 				hooksecurefunc(focusbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
@@ -558,9 +558,9 @@ function ElvUI_EltreumUI:PetUFEffects()
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
 
+		local petbar = _G["ElvUF_Pet"]
+		local petAlpha = petbar and petbar:GetAlpha() or 1
 		if modelsDB.unitframe then
-			local petbar = _G["ElvUF_Pet"]
-			local petAlpha = petbar and petbar:GetAlpha() or 1
 			if petbar and not petbar.EltruismModelAlphaHooked then
 				hooksecurefunc(petbar, "SetAlpha", function(_, alpha)
 					local baseAlpha = (E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.models.ufalpha) or E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark or 1
