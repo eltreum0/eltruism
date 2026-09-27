@@ -5,7 +5,7 @@ local _G = _G
 -- Eltruism party options
 function ElvUI_EltreumUI:PartyOptions()
 	ElvUI_EltreumUI.Options.args.party = E.Libs.ACH:Group(E:TextGradient(L["Instances"] or "Instances", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play sounds when party members die, show resurrection timers and change instance texts"], 5, 'tab')
-	ElvUI_EltreumUI.Options.args.party.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party'
+	ElvUI_EltreumUI.Options.args.party.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\instances'
 	ElvUI_EltreumUI.Options.args.party.args.general = E.Libs.ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.party.args.general.args.description1 = E.Libs.ACH:Description(L["Play a sound when someone dies in Party or Raid"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.deathssound = E.Libs.ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = value end)
