@@ -16,6 +16,8 @@ local customBackdropGradients = { normal = {}, invert = {} }
 local defaultPowerGradients = { normal = {}, invert = {}, backdrop = {} }
 local customPowerGradients = { normal = {}, invert = {}, backdrop = {} }
 local cachedCastbars = {}
+local gradientNameCache = {}
+local gradientNameDefaultCache = {}
 local deadColorMin, deadColorMax
 local discColorMin, discColorMax
 local tappedColorMin, tappedColorMax
@@ -167,6 +169,8 @@ function ElvUI_EltreumUI:CacheGradients()
 	wipe(customPowerGradients.invert)
 	wipe(customPowerGradients.backdrop)
 	wipe(cachedCastbars)
+	wipe(gradientNameCache)
+	wipe(gradientNameDefaultCache)
 
 	PopulateGradients(unitframegradients, defaultHealthGradients, defaultBackdropGradients, defaultPowerGradients, healthAlpha, backdropAlpha, bgOffset)
 	PopulateGradients(unitframecustomgradients, customHealthGradients, customBackdropGradients, customPowerGradients, healthAlpha, backdropAlpha, bgOffset)
@@ -685,23 +689,29 @@ function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget,isUnit,isCustom)
 		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass,3)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
+		local key = name .. (unitclass or "nil") .. (isTarget and "T" or "F") .. (isCustom and "T" or "F")
+		if gradientNameCache[key] then return gradientNameCache[key] end
+
 		local db = E.db and E.db.ElvUI_EltreumUI
 		local gm = db and db.unitframes and db.unitframes.gradientmode
+		local result
 		if (gm and (gm.customcolor or gm.npcustomcolor)) or isCustom then
 			local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
 			if not isTarget then
-				return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+				result = E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 			else
-				return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
+				result = E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 			end
 		else
 			local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
 			if not isTarget then
-				return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+				result = E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 			else
-				return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
+				result = E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 			end
 		end
+		gradientNameCache[key] = result
+		return result
 	end
 end
 
@@ -712,12 +722,18 @@ function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget,isU
 		local cs = ElvUI_EltreumUI:GetClassColorsRGB(unitclass,3)
 		return E:RGBToHex(cs.r,cs.g,cs.b) .. name
 	else
+		local key = name .. (unitclass or "nil") .. (isTarget and "T" or "F")
+		if gradientNameDefaultCache[key] then return gradientNameDefaultCache[key] end
+
+		local result
 		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
 		if not isTarget then
-			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+			result = E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 		else
-			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
+			result = E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 		end
+		gradientNameDefaultCache[key] = result
+		return result
 	end
 end
 
