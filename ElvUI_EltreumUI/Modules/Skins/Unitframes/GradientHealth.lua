@@ -179,7 +179,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				frame.Health.backdrop:SetAlpha(backdropAlpha)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					frame.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-					if frame.Health.backdrop.Center then
+					if frame.Health.backdrop.Center and frame.Health.backdrop.Center:IsShown() then
 						frame.Health.backdrop.Center:Hide()
 					end
 					if frame.Health.bg then
@@ -195,7 +195,9 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				else
 					frame.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 					if frame.Health.backdrop.Center then
-						frame.Health.backdrop.Center:Show()
+						if not frame.Health.backdrop.Center:IsShown() then
+							frame.Health.backdrop.Center:Show()
+						end
 						frame.Health.backdrop.Center:SetAlpha(backdropAlpha)
 					end
 				end
@@ -388,7 +390,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 				if unitframe.Health.backdrop then
 					unitframe.Health.backdrop:SetAlpha(backdropAlpha)
 					unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-					if unitframe.Health.backdrop.Center then
+					if unitframe.Health.backdrop.Center and unitframe.Health.backdrop.Center:IsShown() then
 						unitframe.Health.backdrop.Center:Hide()
 					end
 				end
@@ -419,7 +421,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-				if unitframe.Health.backdrop and unitframe.Health.backdrop.Center then
+				if unitframe.Health.backdrop and unitframe.Health.backdrop.Center and not unitframe.Health.backdrop.Center:IsShown() then
 					unitframe.Health.backdrop.Center:Show()
 				end
 				if unitframe.Health.backdropTex and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unitDB] then
@@ -495,7 +497,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 			if button.Health.backdrop then
 				button.Health.backdrop:SetAlpha(backdropAlpha)
 				button.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-				if button.Health.backdrop.Center then
+				if button.Health.backdrop.Center and button.Health.backdrop.Center:IsShown() then
 					button.Health.backdrop.Center:Hide()
 				end
 			end
@@ -534,7 +536,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-			if button.Health.backdrop and button.Health.backdrop.Center then
+			if button.Health.backdrop and button.Health.backdrop.Center and not button.Health.backdrop.Center:IsShown() then
 				button.Health.backdrop.Center:Show()
 			end
 			if button.Health.backdropTex then
