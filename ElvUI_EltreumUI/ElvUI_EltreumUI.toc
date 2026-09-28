@@ -27,9 +27,9 @@
 
 Init.lua
 Settings\load_settings.xml
-Localization\Load_localization.xml
+Localization\load_localization.xml
 Core\load_core.xml
-Libs\Load_Libs.xml
+Libs\load_libs.xml
 Media\load_media.xml
 Modules\load_modules.xml [AllowLoadGameType standard]
 Modules\load_modules_Forever.xml [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]

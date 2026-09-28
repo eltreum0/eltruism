@@ -10,6 +10,6 @@
 	<Script file='NameplateSCT.lua'/>
 	<Script file='Questie.lua'/>
 	<Script file='ShadowAndLight.lua'/>
-	<Script file='Warpdeplete.lua'/>
+	<Script file='WarpDeplete.lua'/>
 	<Script file='WindTools.lua'/>
 </Ui>
