@@ -19,30 +19,32 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 		local statusbarname = statusBar.GetName and statusBar:GetName()
 		local isHealthBar = statusbarname and statusbarname:match("HealthBar")
 		local isAuraBar = statusbarname and statusbarname:match("AuraBar")
+		local db = E.db.ElvUI_EltreumUI.unitframes
+		local gm = db.gradientmode
 
 		if isHealthBar then
-			if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
+			if not db.ufcustomtexture.backdrophidden then
 				if backdropTex then
-					backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-					if E.db.unitframe.colors.transparentHealth or E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
-						if backdropAlpha == 1 and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha < 1 then
-							backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha
+					backdropTex:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture))
+					if E.db.unitframe.colors.transparentHealth or db.lightmode then
+						local backdropAlpha = db.ufcustomtexture.backdropalpha or 1
+						if backdropAlpha == 1 and db.ufcustomtexture.healthalpha and db.ufcustomtexture.healthalpha < 1 then
+							backdropAlpha = db.ufcustomtexture.healthalpha
 						end
 						backdropTex:SetAlpha(backdropAlpha)
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+						if db.lightmode then
 							backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
 						end
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			elseif db.ufcustomtexture.backdrophidden then
+				if db.lightmode then
 					if backdropTex and backdropTex.SetAlpha then
 						backdropTex:SetAlpha(0)
 					end
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if (E.db.unitframe.colors.transparentHealth or E.db.ElvUI_EltreumUI.unitframes.lightmode) and backdropTex and backdropTex.SetAlpha then
-						backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				elseif db.darkmode then
+					if (E.db.unitframe.colors.transparentHealth or db.lightmode) and backdropTex and backdropTex.SetAlpha then
+						backdropTex:SetAlpha(db.ufcustomtexture.backdropalpha)
 					end
 				end
 				if statusBar and statusBar.backdrop and isHealthBar then
@@ -67,7 +69,7 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 
 		local orientation = statusBar:GetOrientation()
 
-		if E.db.ElvUI_EltreumUI.unitframes.UForientation == "VERTICAL" and isHealthBar and not forbiddenframe then
+		if db.UForientation == "VERTICAL" and isHealthBar and not forbiddenframe then
 			orientation = "VERTICAL"
 		end
 		--from elvui
@@ -79,28 +81,28 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 				local texture = E.LSM:Fetch('statusbar', UF.db.statusbar)
 				statusBar:SetStatusBarTexture(texture)
 				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
-				--statusBar:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				--statusBar:SetAlpha(db.ufcustomtexture.backdropalpha)
 			elseif isHealthBar then
 				statusBar:SetStatusBarTexture(0, 0, 0, 0)
 				local targetTex
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-					targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and E.db.unitframe.statusbar or E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
-				elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-					targetTex = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture
+				if gm.enable then
+					targetTex = gm.useUFtexture and E.db.unitframe.statusbar or gm.texture
+				elseif db.ufcustomtexture.enable then
+					targetTex = db.ufcustomtexture.backdroptexture
 				else
-					targetTex = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture
+					targetTex = db.ufcustomtexture.backdroptexture
 				end
 				local fetchedTex = E.LSM:Fetch("statusbar", targetTex or UF.db.statusbar or E.db.unitframe.statusbar)
 				UF:Update_StatusBar(statusBar.bg or statusBar.BG or backdropTex, fetchedTex)
 				if backdropTex then
 					backdropTex:SetTexture(fetchedTex)
 				end
-				local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
-				if backdropAlpha == 1 and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha < 1 then
-					backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha
+				local backdropAlpha = db.ufcustomtexture.backdropalpha or 1
+				if backdropAlpha == 1 and db.ufcustomtexture.healthalpha and db.ufcustomtexture.healthalpha < 1 then
+					backdropAlpha = db.ufcustomtexture.healthalpha
 				end
 				local bg = statusBar.bg or statusBar.BG
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				if db.lightmode then
 					if bg then
 						if bg.SetAlpha then bg:SetAlpha(backdropAlpha) end
 						if bg.SetVertexColor then bg:SetVertexColor(0, 0, 0, backdropAlpha) end
@@ -118,7 +120,7 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 							backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+				elseif db.darkmode then
 					if bg and bg.SetAlpha then
 						bg:SetAlpha(backdropAlpha)
 					end
@@ -134,18 +136,16 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 				end
 			else
 				local targetTex
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
-					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-						targetTex = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-					elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+				if gm.enable then
+					if gm.useUFtexture then
 						targetTex = E.db.unitframe.statusbar
 					else
-						targetTex = E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture
+						targetTex = gm.texture
 					end
 				else
-					targetTex = UF.db.statusbar
+					targetTex = E.db.unitframe.statusbar
 				end
-				local fetchedTex = E.LSM:Fetch("statusbar", targetTex or UF.db.statusbar or E.db.unitframe.statusbar)
+				local fetchedTex = E.LSM:Fetch("statusbar", targetTex or E.db.unitframe.statusbar or UF.db.statusbar)
 				statusBar:SetStatusBarTexture(fetchedTex)
 				UF:Update_StatusBar(statusBar.bg or statusBar.BG or backdropTex, fetchedTex)
 				if backdropTex then
@@ -155,16 +155,16 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 
 			UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 		else
-			local texture = E.LSM:Fetch('statusbar', UF.db.statusbar)
+			local texture = E.LSM:Fetch('statusbar', E.db.unitframe.statusbar or UF.db.statusbar)
 			statusBar:SetStatusBarTexture(texture)
 			UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
 			if isHealthBar then
-				local backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1
-				if backdropAlpha == 1 and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha < 1 then
-					backdropAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha
+				local backdropAlpha = db.ufcustomtexture.backdropalpha or 1
+				if backdropAlpha == 1 and db.ufcustomtexture.healthalpha and db.ufcustomtexture.healthalpha < 1 then
+					backdropAlpha = db.ufcustomtexture.healthalpha
 				end
 				local bg = statusBar.bg or statusBar.BG
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				if db.lightmode then
 					if bg then
 						if bg.SetAlpha then bg:SetAlpha(backdropAlpha) end
 						if bg.SetVertexColor then bg:SetVertexColor(0, 0, 0, backdropAlpha) end
@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 							backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+				elseif db.darkmode then
 					if bg and bg.SetAlpha then
 						bg:SetAlpha(backdropAlpha)
 					end
