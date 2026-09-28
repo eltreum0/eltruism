@@ -148,14 +148,6 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\ElvUIFCT.jpg")
 			elseif installtype == "Immersion" then
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\Immersion.jpg")
-			elseif installtype == "OmniCD" then
-				if ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-					_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD.jpg")
-				elseif ElvDB.profileKeys[E.mynameRealm] and ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-					_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD2.jpg")
-				else
-					_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD.jpg")
-				end
 			end
 
 			if mode == "ENTERING" then
@@ -803,34 +795,11 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:Show()
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				end
-				--[[
-				if IsAddOnLoaded("OmniCD") then
-					_G.PluginInstallFrame.Desc4:SetText(L["Import OmniCD profile"])
-					_G.PluginInstallFrame.Option4:Enable()
-					_G.PluginInstallFrame.Option4:Show()
-					_G.PluginInstallFrame.Option4:SetScript('OnClick', function()
-						if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-							ElvUI_EltreumUI:GetOmniCDProfile("dps")
-						elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-							ElvUI_EltreumUI:GetOmniCDProfile("healer")
-						else
-							ElvUI_EltreumUI:GetOmniCDProfile("dps")
-						end
-					end)
-					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("OmniCD","ENTERING") end)
-					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-					_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
-				else
-					_G.PluginInstallFrame.Desc4:SetText(L["OmniCD is not installed or enabled"])
-					_G.PluginInstallFrame.Option4:Disable()
-					_G.PluginInstallFrame.Option4:Show()
-					_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
-				end]]
 			else
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			end
-			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("OmniCD") ) then
+			if not (IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping")) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			--else
 				--_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')

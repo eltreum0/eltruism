@@ -76,8 +76,8 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["addons"]["bugSack"] = false
 		E.private["WT"]["skins"]["addons"]["hekili"] = false
 		E.private["WT"]["skins"]["addons"]["immersion"] = false
-		E.private["WT"]["skins"]["addons"]["omniCD"] = false
-		E.private["WT"]["skins"]["addons"]["omniCDStatusBar"] = false
+		--E.private["WT"]["skins"]["addons"]["omniCD"] = false
+		--E.private["WT"]["skins"]["addons"]["omniCDStatusBar"] = false
 		E.private["WT"]["skins"]["addons"]["rareScanner"] = false
 		E.private["WT"]["skins"]["addons"]["simulationcraft"] = false
 		E.private["WT"]["skins"]["addons"]["warpDeplete"] = false
