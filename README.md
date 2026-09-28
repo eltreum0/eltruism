@@ -13,7 +13,7 @@ ___
 ### Addon Profiles
 > The installation will offer profiles for several following addons, including:\
  \
-**[Bigwigs](https://www.curseforge.com/wow/addons/big-wigs)**, **[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)**, **[Details](https://www.curseforge.com/wow/addons/details)**, **[Dynamic Cam](https://www.curseforge.com/wow/addons/dynamiccam)**, **[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)**, **[Gladius](https://www.curseforge.com/wow/addons/gladius-v3)**, **[GladiusEx](https://www.curseforge.com/wow/addons/gladiusex)**, **[Gladdy](https://www.curseforge.com/wow/addons/gladdy-tbc)**, **[Immersion](https://www.curseforge.com/wow/addons/immersion)**, **[Method Raid Tools](https://www.curseforge.com/wow/addons/method-raid-tools)**, **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)**, **[Questie](https://www.curseforge.com/wow/addons/questie)**\
+**[Bigwigs](https://www.curseforge.com/wow/addons/big-wigs)**, **[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)**, **[Details](https://www.curseforge.com/wow/addons/details)**, **[Dynamic Cam](https://www.curseforge.com/wow/addons/dynamiccam)**, **[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)**, **[Gladdy](https://www.curseforge.com/wow/addons/gladdy-classic)**, **[Immersion](https://www.curseforge.com/wow/addons/immersion)**, **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)**, **[Questie](https://www.curseforge.com/wow/addons/questie)**\
  \
 > And the following addons are highly recommended:\
  \

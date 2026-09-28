@@ -61,26 +61,6 @@ function ElvUI_EltreumUI:AddonSetupDynamicCam()
 	end
 end
 
--- GladiusEx Profile
-function ElvUI_EltreumUI:AddonSetupGladiusEx()
-	if IsAddOnLoaded("GladiusEx") then
-		ElvUI_EltreumUI:GetGladiusExProfile()
-		ElvUI_EltreumUI:Print(L["GladiusEx profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("GladiusEx is not loaded")
-	end
-end
-
--- MRT Profile
-function ElvUI_EltreumUI:AddonSetupMRT()
-	if IsAddOnLoaded("MRT") then
-		ElvUI_EltreumUI:GetMRTProfile()
-		ElvUI_EltreumUI:Print(L["Method Raid Tools profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("Method Raid Tools is not loaded")
-	end
-end
-
 -- Questie Profile
 function ElvUI_EltreumUI:AddonSetupQuestie()
 	if IsAddOnLoaded("Questie") then
@@ -113,16 +93,6 @@ function ElvUI_EltreumUI:AddonSetupCombatText(addon)
 		else
 			ElvUI_EltreumUI:Print("Floating Combat Text is not loaded")
 		end
-	end
-end
-
--- Gladius Profile
-function ElvUI_EltreumUI:SetupGladius()
-	if IsAddOnLoaded("Gladius") then
-		ElvUI_EltreumUI:GetGladiusProfile()
-		ElvUI_EltreumUI:Print(L["Gladius profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("Gladius is not loaded")
 	end
 end
 

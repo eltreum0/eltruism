@@ -119,32 +119,6 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if _G["CappingFrame"] then
 			_G["CappingFrame"]:Hide()
 		end
-		if IsAddOnLoaded("GladiusEx") then
-			_G.GladiusEx:HideFrames()
-		end
-		if IsAddOnLoaded("Gladius") then
-			if _G["GladiusButtonFramearena1"] then
-				_G["GladiusButtonFramearena1"]:Hide()
-			end
-			if _G["GladiusButtonFramearena2"] then
-				_G["GladiusButtonFramearena2"]:Hide()
-			end
-			if _G["GladiusButtonFramearena3"] then
-				_G["GladiusButtonFramearena3"]:Hide()
-			end
-			if _G["GladiusButtonFramearena4"] then
-				_G["GladiusButtonFramearena4"]:Hide()
-			end
-			if _G["GladiusButtonFramearena5"] then
-				_G["GladiusButtonFramearena5"]:Hide()
-			end
-			if _G["GladiusButtonAnchor"] then
-				_G["GladiusButtonAnchor"]:Hide()
-			end
-			if _G["GladiusButtonBackground"] then
-				_G["GladiusButtonBackground"]:Hide()
-			end
-		end
 		if _G["BasicMessageDialog"] then
 			_G["BasicMessageDialog"]:Hide()
 		end
