@@ -2016,7 +2016,7 @@ function ElvUI_EltreumUI:SetupDataText()
 		if E.Classic and (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') then
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Ammo"
 		else
-			if E.Forever then --todo replace with dual once the lib is updated for it
+			if E.Forever or (E.Classic and not E.ClassicSOD) then --todo replace with dual once the lib is updated for it
 				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
 			else
 				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
