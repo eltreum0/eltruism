@@ -138,8 +138,6 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DBM.jpg")
 			elseif installtype == "BigWigs" then
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\BigWigs.jpg")
-			elseif installtype == "BattlegroundEnemies" then
-				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\BattlegroundEnemies.jpg")
 			elseif installtype == "Capping" then
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\Capping.jpg")
 			elseif installtype == "WarpDeplete" then
@@ -776,22 +774,6 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
-			if not E.Retail then
-				if IsAddOnLoaded("BattleGroundEnemies") then
-					_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
-					_G.PluginInstallFrame.Option1:Enable()
-					_G.PluginInstallFrame.Option1:Show()
-					_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
-					_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
-					_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-					_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
-				else
-					_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
-					_G.PluginInstallFrame.Option1:Disable()
-					_G.PluginInstallFrame.Option1:Show()
-					_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
-				end
-			end
 			if IsAddOnLoaded("Capping") then
 				_G.PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
 				_G.PluginInstallFrame.Option2:Enable()
@@ -848,7 +830,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			end
-			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") or IsAddOnLoaded("OmniCD") ) then
+			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("OmniCD") ) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			--else
 				--_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')

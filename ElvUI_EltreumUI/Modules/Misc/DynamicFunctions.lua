@@ -109,7 +109,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 				E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 				E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
 				E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
-				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes or IsAddOnLoaded("BattleGroundEnemies") then
+				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
 					E.db["unitframe"]["units"]["arena"]["enable"] = true
 				end
 			end
@@ -124,7 +124,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 				_G["ElvUF_Arena3"]:Hide()
 				_G["ElvUF_Arena4"]:Hide()
 				_G["ElvUF_Arena5"]:Hide()
-			elseif (instanceType == "pvp" and IsAddOnLoaded("BattleGroundEnemies")) then
+			elseif (instanceType == "pvp") then
 				_G["ElvUF_Arena1"]:Hide()
 				_G["ElvUF_Arena2"]:Hide()
 				_G["ElvUF_Arena3"]:Hide()
