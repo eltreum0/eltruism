@@ -1,5 +1,5 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">\
-	<Script file='OptionsCore.lua'/>
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Main.lua'/>
 	<Script file='Installer.lua'/>
 	<Script file='Unitframes.lua'/>
 	<Script file='Misc.lua'/>

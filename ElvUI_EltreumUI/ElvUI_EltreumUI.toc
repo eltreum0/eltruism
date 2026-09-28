@@ -35,4 +35,3 @@ Modules\load_modules.xml [AllowLoadGameType standard]
 Modules\load_modules_Forever.xml [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 Modules\load_modules_Classic.xml [AllowLoadGameType vanilla, tbc, wrath, mists]
 Profiles\load_profiles.xml
-Layouts\load_layouts.xml

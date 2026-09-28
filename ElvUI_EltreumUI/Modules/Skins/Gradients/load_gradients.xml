@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Functions.lua'/>
+	<Script file='Unitframes/Health.lua'/>
+	<Script file='Unitframes/Power.lua'/>
+	<Script file='Unitframes/Castbar.lua'/>
+	<Script file='Unitframes/Aurabars.lua'/>
+	<Script file='Nameplates/Health.lua'/>
+	<Script file='Nameplates/Power.lua'/>
+	<Script file='Nameplates/Castbar.lua'/>
+</Ui>

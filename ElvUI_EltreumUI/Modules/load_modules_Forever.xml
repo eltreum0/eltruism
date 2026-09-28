@@ -31,5 +31,5 @@
 	<Script file='SetupMedia/OutlineDefault.lua'/>
 	<Script file='SetupMedia/OutlineCustom.lua'/>
 	<Script file='SetupMedia/SetupTextures.lua'/>
-	<Include file='Skins\load_skins_forever.xml'/>
+	<Include file='Skins/load_skins_forever.xml'/>
 </Ui>

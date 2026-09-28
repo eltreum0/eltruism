@@ -6,9 +6,14 @@
 	<Script file='Performance.lua'/>
 	<Script file='AddonSetup.lua'/>
 	<Script file='Install.lua'/>
-	<Include file='Tags\load_tags.xml'/>
+	<Include file='Tags/load_tags.xml'/>
 	<Script file='VersionCheck.lua'/>
 	<Script file='DatabaseConverter.lua'/>
 	<Script file='Changelog.lua'/>
-	<Include file='Options\load_options.xml'/>
+	<Script file='Auras.lua'/>
+	<Script file='SetupNameplates.lua'/>
+	<Script file='UpdateElvUISettings.lua'/>
+	<Script file='UpdateEltruismSettings.lua'/>
+	<Include file='Options/load_options.xml'/>
+	<Include file='Layouts/load_layouts.xml'/>
 </Ui>
