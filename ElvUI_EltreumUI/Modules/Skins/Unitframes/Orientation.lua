@@ -136,7 +136,7 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 				local targetTex
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-						targetTex = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+						targetTex = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
 					elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 						targetTex = E.db.unitframe.statusbar
 					else
