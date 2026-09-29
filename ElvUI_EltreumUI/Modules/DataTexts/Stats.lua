@@ -107,7 +107,12 @@ local function EltruismStatsDatatextOnEnter()
 
 	if E.Retail then
 		local retailhaste = GetHaste()
-		local retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
+		local retailcrit
+		if E:NotSecretValue(GetCritChance()) then
+			retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
+		else
+			retailcrit = GetCritChance()
+		end
 		local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
 		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
 		local avoidance = GetAvoidance()
@@ -148,8 +153,18 @@ local function EltruismStatsDatatextOnEnter()
 		else
 			totalmelee = meleebasepower
 		end
-		local spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
-		local spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+		local spellpower
+		if E:NotSecretValue(GetSpellBonusDamage(2)) then
+			spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
+		else
+			spellpower = GetSpellBonusDamage(2)
+		end
+		local spellcrit
+		if E:NotSecretValue(GetSpellCritChance(2)) then
+			spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+		else
+			spellcrit = GetSpellCritChance(2)
+		end
 		if E.Mists or E.TBC or E.Wrath then
 			spellcrit = GetCritChance()
 		end
@@ -286,7 +301,13 @@ local function EltruismStatsDatatext1(dt)
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCritChance(),true) then return end
 		if not ElvUI_EltreumUI:IsThisASafeSecret(GetSpellCritChance(),true) then return end
 		local retailhaste = GetHaste()
-		local retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
+		local retailcrit
+		if E:NotSecretValue(GetCritChance()) then
+			retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
+		else
+			retailcrit = GetCritChance()
+		end
+
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", retailhaste).."|r"
 		local crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", retailcrit).."|r"
 
@@ -362,8 +383,12 @@ local function EltruismStatsDatatext2(dt)
 		else
 			totalmelee = meleebasepower
 		end
-
-		local spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
+		local spellpower
+		if not E:NotSecretValue(GetSpellBonusDamage(2)) then
+			spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
+		else
+			spellpower = GetSpellBonusDamage(2)
+		end
 
 		local tmeleepower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..totalmelee.."|r"
 		local trangedpower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..totalranged.."|r"
