@@ -1016,14 +1016,14 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			if E.Retail then
 				if E.myclass == 'MONK' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'DRUID' or E.myclass == 'EVOKER' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
 				elseif E.myclass == "MAGE" and ElvUI_EltreumUI.Spec == 62 then --62 is arcane --E.myclass== 'MAGE' or
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
 				else
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 27
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 27
 				end
 			elseif E.Forever then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
