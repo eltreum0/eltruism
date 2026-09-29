@@ -25,26 +25,26 @@ local function EltruismSpellHasteDatatext(dt)
 	local spellhastepc = ((mathceil(spellhaste*100))/100)..'%'
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], E.media.hexvaluecolor, spellhastepc)
 end
-if not E.Modern then
+if not E.Retail then
 	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_SPELL_HASTE"}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext
 local function EltruismHonorDatatext(dt)
 	local arg2 = E.Retail and COMBAT_HONOR_GAIN or HONOR
 
-	local honorCurrencyID = (not E.Retail and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID) or (E.Retail and 1792)
+	local honorCurrencyID = (not E.Modern and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID) or (E.Modern and 1792)
 	local arg4 = (not E.Classic and C_CurrencyInfo_GetCurrencyInfo(honorCurrencyID).quantity) or select(2, _G.GetPVPThisWeekStats())
 
-	local arg5 = (E.Retail and PVP_CONQUEST) or (not E.Retail and ARENA) or _G.RANK
+	local arg5 = (E.Retail and PVP_CONQUEST) or (not E.Modern and ARENA) or _G.RANK
 
-	local classicRank = E.Classic and _G.UnitPVPRank('player')-4
+	local classicRank = E.Classic and _G.UnitPVPRank('player')-4 or E.Forever and _G.UnitHonorLevel("player")
 	if classicRank and classicRank < 0 then classicRank = 0 end
 	local arenaCurrencyID = (not E.Retail and Constants.CurrencyConsts.CLASSIC_CONQUEST_CURRENCY_ID) or (E.Retail and 1602)
-	local arg7 = (not E.Classic and C_CurrencyInfo_GetCurrencyInfo(arenaCurrencyID).quantity) or classicRank
+	local arg7 = ((not E.Classic and not E.Forever) and C_CurrencyInfo_GetCurrencyInfo(arenaCurrencyID).quantity) or classicRank
 
 	dt.text:SetFormattedText('%s: %s%s|r %s: %s%s|r', arg2, E.media.hexvaluecolor, arg4, arg5, E.media.hexvaluecolor, arg7)
 end
-DT:RegisterDatatext(format('Eltruism Honor/%s Points', E.Retail and 'Conquest' or 'Arena'), CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE', 'PLAYER_PVP_KILLS_CHANGED'}, EltruismHonorDatatext, nil, nil, nil, nil, E.Retail and L["Eltruism Honor/Conquest Points"] or L["Eltruism Honor/Arena Points"])
+DT:RegisterDatatext(format('Eltruism Honor/%s Points', (E.Retail and 'Conquest') or (E.Classic or E.Forever and _G.RANK) or 'Arena'), CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE', 'PLAYER_PVP_KILLS_CHANGED'}, EltruismHonorDatatext, nil, nil, nil, nil, E.Retail and L["Eltruism Honor/Conquest Points"] or L["Eltruism Honor/Arena Points"])
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext
 local function EltruismLootMethod(dt)
 	--these locales use different words for the method and for loot in general, so grab their method words
