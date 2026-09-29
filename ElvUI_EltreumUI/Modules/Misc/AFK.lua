@@ -212,7 +212,13 @@ function ElvUI_EltreumUI:AFKLogo()
 		EltruismAFKClassTexture:SetTexture(classIcons[E.myclass])
 
 		--name
-		_G.ElvUIAFKFrame.bottom.name:SetText(ElvUI_EltreumUI:GradientName(E.myname, E.myclass))
+		if E.Forever then
+			local name,surname = _G.UnitName("player")
+			_G.ElvUIAFKFrame.bottom.name:SetText(ElvUI_EltreumUI:GradientName(name.." "..surname, E.myclass))
+		else
+			_G.ElvUIAFKFrame.bottom.name:SetText(ElvUI_EltreumUI:GradientName(E.myname, E.myclass))
+		end
+
 		_G.ElvUIAFKFrame.bottom.name:ClearAllPoints()
 		_G.ElvUIAFKFrame.bottom.name:Point('TOPLEFT', EltruismAFKClassTexture, 'TOPRIGHT', 10, -2)
 
