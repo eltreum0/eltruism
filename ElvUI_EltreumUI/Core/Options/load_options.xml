@@ -15,7 +15,7 @@
 	<Script file='Cursor.lua'/>
 	<Script file='Loot.lua'/>
 	<Script file='Party.lua'/>
-	<Script file='CombatMusic.lua'/>
+	<Script file='Combat.lua'/>
 	<Script file='Cooldown.lua'/>
 	<Script file='Quests.lua'/>
 	<Script file='Portraits.lua'/>
