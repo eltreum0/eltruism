@@ -9,6 +9,7 @@ local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local instanceType = "none"
 local CreateColor = _G.CreateColor
+local ipairs = _G.ipairs
 local function clamp(v)
 	if v < 0 then return 0 elseif v > 1 then return 1 end
 	return v
@@ -365,10 +366,44 @@ do
 		end)
 	end
 
+	local function UpdateBarBackground(bar)
+		if not bar then return end
+		if bar.StatusBar then
+			if bar.StatusBar.Background then
+				bar.StatusBar.Background:ClearAllPoints()
+				bar.StatusBar.Background:SetAllPoints(bar.StatusBar)
+				--bar.StatusBar.Background:SetAlpha(0)
+				--bar.StatusBar.Background:Hide()
+			end
+			if bar.StatusBar.BackgroundEdge then
+				bar.StatusBar.BackgroundEdge:SetAlpha(0)
+				bar.StatusBar.BackgroundEdge:Hide()
+			end
+		end
+		if bar.Background then
+			bar.Background:ClearAllPoints()
+			bar.Background:SetAllPoints(bar.StatusBar)
+			--bar.Background:SetAlpha(0)
+			--bar.Background:Hide()
+		end
+	end
+
 	local function SkinDamageMeter(bar)
 		if instanceType == "pvp" or instanceType == "arena" then return end
 		if not bar then return end
 		if not bar.StatusBar then return end
+
+		UpdateBarBackground(bar)
+
+		if bar.SetupSharedStyleBackground and not bar.SetupSharedStyleBackgroundEltruismHook then
+			hooksecurefunc(bar, "SetupSharedStyleBackground", UpdateBarBackground)
+			bar.SetupSharedStyleBackgroundEltruismHook = true
+		end
+		if bar.UpdateBackground and not bar.UpdateBackgroundEltruismHook then
+			hooksecurefunc(bar, "UpdateBackground", UpdateBarBackground)
+			bar.UpdateBackgroundEltruismHook = true
+		end
+
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.replaceIcon then
 			if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
 				hooksecurefunc(bar, "UpdateIcon", function(icon)
@@ -440,16 +475,17 @@ do
 					end
 				end)
 
-				if bar.StatusBar.Background then
-					bar.StatusBar.Background:ClearAllPoints()
-					bar.StatusBar.Background:SetAllPoints(bar.StatusBar)
-					bar.StatusBar.Background:Hide()
-				end
-				if bar.Background then
-
-					bar.Background:ClearAllPoints()
-					bar.Background:SetAllPoints(bar.StatusBar)
-					bar.Background:Hide()
+				if bar.UpdateName and not bar.UpdateNameEltruismHook then
+					hooksecurefunc(bar, "UpdateName", function()
+						if bar.StatusBar and bar.StatusBar.Name and bar.StatusBar.Name.GetText and E:NotSecretValue(bar.StatusBar.Name:GetText()) then
+							local name = bar.StatusBar.Name:GetText()
+							if name and E:NotSecretValue(name) and bar.classFilename then
+								local nameStripped = E:StripString(name)
+								bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+							end
+						end
+					end)
+					bar.UpdateNameEltruismHook = true
 				end
 
 				--set it outside as well, so that on PEW it gets gradient as well
