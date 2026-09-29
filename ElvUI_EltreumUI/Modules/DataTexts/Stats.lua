@@ -485,7 +485,7 @@ local function EltruismStatsDatatext3(dt)
 		if E:NotSecretValue(dodgeChance) then
 			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(dodgeChance*100)/100).."%".."|r"
 		else
-			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(E:AbbreviateNumbers(dodgeChance, E.Abbreviate.short)).."%".."|r"
+			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(E:AbbreviateNumbers(dodgeChance, 1)).."%".."|r"
 		end
 		--armor
 		local _, effectiveArmor = UnitArmor("player")
