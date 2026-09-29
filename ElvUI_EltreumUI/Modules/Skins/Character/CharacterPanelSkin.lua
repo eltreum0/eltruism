@@ -86,6 +86,7 @@ end
 
 if E.Forever then
 	CharacterFrame.EltruismText2 = CharacterFrame:CreateFontString("EltruismIlvlText", "OVERLAY", "GameFontNormal")
+	CharacterFrame.EltruismText5 = CharacterFrame:CreateFontString("EltruismSpec", "OVERLAY", "GameFontNormal")
 end
 
 if E.TBC or E.Wrath then
@@ -319,19 +320,51 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	return total/16
 end
 
+local ClassID = {
+	["WARRIOR"] = 1,
+	["PALADIN"] = 2,
+	["HUNTER"] = 3,
+	["ROGUE"] = 4,
+	["PRIEST"] = 5,
+	["DEATHKNIGHT"] = 6,
+	["SHAMAN"] = 7,
+	["MAGE"] = 8,
+	["WARLOCK"] = 9,
+	["MONK"] = 10,
+	["DRUID"] = 11,
+	["DEMONHUNTER"] = 12,
+	["EVOKER"] = 13,
+}
+local GetNumSpecializationsForClassID  = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetNumSpecializationsForClassID
+local GetSpecializationInfo  = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetSpecializationInfo
+
 --turns out classic has the functions to get number of points on talent trees
 function ElvUI_EltreumUI:GetPlayerSpec()
 	--reset variables
 	local points = 0
 	local spec = ""
+	local _, spent1, spent2,spent3
 
-	local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
-	local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
-	local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
-	for i=1, _G.GetNumTalentTabs() do
-		local _, name, _, _, spent = _G.GetTalentTabInfo(i)
-		if spent > 0 and (not points or spent > points) then
-			spec, points = name, spent
+	if E.Forever then
+		--specId, name, description, icon, role, primaryStat, pointsSpent, background, previewPointsSpent, isUnlocked = C_SpecializationInfo.GetSpecializationInfo(specializationIndex [, isInspect [, isPet [, inspectTarget [, sex [, groupIndex [, classID]]]]]])
+		_, _, _, _, _, _, spent1 = GetSpecializationInfo(1)
+		_, _, _, _, _, _, spent2 = GetSpecializationInfo(2)
+		_, _, _, _, _, _, spent3 = GetSpecializationInfo(3)
+		for i=1, GetNumSpecializationsForClassID(ClassID[E.myclass]) do
+			local _, name, _, _, _, _, spent = GetSpecializationInfo(i)
+			if spent > 0 and (not points or spent > points) then
+				spec, points = name, spent
+			end
+		end
+	else
+		_, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+		_, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+		_, _, _, _, spent3 = _G.GetTalentTabInfo(3)
+		for i=1, _G.GetNumTalentTabs() do
+			local _, name, _, _, spent = _G.GetTalentTabInfo(i)
+			if spent > 0 and (not points or spent > points) then
+				spec, points = name, spent
+			end
 		end
 	end
 	if spec ~= nil and not ( (spent1 == spent2) or (spent2 == spent3) or (spent1 == spent3) ) then
@@ -362,7 +395,7 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 		else
 			return spec
 		end
-	else
+	elseif not E.Forever then --forever is just text so dont show this
 		return _G.NONE
 	end
 end
@@ -395,11 +428,11 @@ if not E.Retail then
 	end)
 
 	if E.Forever or E.Mists or E.TBC or E.Wrath then
-		local mistsdualspec = CreateFrame("FRAME")
-		mistsdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-		mistsdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
-		--mistsdualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
-		mistsdualspec:SetScript("OnEvent", function()
+		local dualspec = CreateFrame("FRAME")
+		dualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		dualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
+		--dualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
+		dualspec:SetScript("OnEvent", function()
 			E:Delay(2, function()
 				if CharacterFrame.EltruismText5 and CharacterFrame.EltruismText5:GetText() ~= nil then
 					CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
@@ -1700,6 +1733,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
 				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+
+
+				if _G.CharacterFrameTitleText then
+					CharacterFrame.EltruismText5:SetPoint("BOTTOM", _G.CharacterFrameTitleText, "BOTTOM", 0, -20)
+					CharacterFrame.EltruismText5:SetParent(_G.CharacterFrame)
+				else
+					CharacterFrame.EltruismText5:SetPoint("TOP", _G.CharacterModelScene, "TOP", 0, 20)
+					CharacterFrame.EltruismText5:SetParent(_G.CharacterFrame)
+				end
+				--CharacterFrame.EltruismText5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				CharacterFrame.EltruismText5:SetTextColor(1, 1, 1, 1)
+				CharacterFrame.EltruismText5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
 			end
 		end
 
