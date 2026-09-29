@@ -33,7 +33,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 
 					["nameplateX"] = 146,
 					["nameplateY"] = 0,
-					["nameplateTargetFrameEnabled"] = true,
+					["nameplateTargetFrameEnabled"] = E.Forever and false or true,
 
 					["alwaysGlowMinimap"] = true,
 					["questObjectiveColors"] = true,
