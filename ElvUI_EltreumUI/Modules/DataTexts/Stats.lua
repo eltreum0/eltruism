@@ -133,14 +133,21 @@ local function EltruismStatsDatatextOnEnter()
 		DT.tooltip:AddDoubleLine(STAT_SPEED..":", ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", speed).."|r",1,1,1)
 		DT.tooltip:Show()
 	else
-
 		--power
 		local rangedbasepower, rangedbuff, rangednerf = UnitRangedAttackPower('player')
-		local totalranged = rangedbasepower+rangedbuff+rangednerf
-
+		local totalranged
+		if E:NotSecretValue(rangedbasepower) then
+			totalranged = rangedbasepower+rangedbuff+rangednerf
+		else
+			totalranged = rangedbasepower
+		end
 		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
-		local totalmelee = meleebasepower+meleebuff+meleenerf
-
+		local totalmelee
+		if E:NotSecretValue(rangedbasepower) then
+			totalmelee = meleebasepower+meleebuff+meleenerf
+		else
+			totalmelee = meleebasepower
+		end
 		local spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 		local spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
 		if E.Mists or E.TBC or E.Wrath then
@@ -342,10 +349,19 @@ local function EltruismStatsDatatext2(dt)
 	else
 		--power
 		local rangedbasepower, rangedbuff, rangednerf = UnitRangedAttackPower('player')
-		local totalranged = rangedbasepower+rangedbuff+rangednerf
-
+		local totalranged
+		if E:NotSecretValue(rangedbasepower) then
+			totalranged = rangedbasepower+rangedbuff+rangednerf
+		else
+			totalranged = rangedbasepower
+		end
 		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
-		local totalmelee = meleebasepower+meleebuff+meleenerf
+		local totalmelee
+		if E:NotSecretValue(rangedbasepower) then
+			totalmelee = meleebasepower+meleebuff+meleenerf
+		else
+			totalmelee = meleebasepower
+		end
 
 		local spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 
