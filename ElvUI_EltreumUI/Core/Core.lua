@@ -677,29 +677,26 @@ EltruismGameMenu:SetScript("OnEvent", function()
 						if EditModeButton then
 							ElvUI_EltreumUI:MacroClick(EditModeButton)
 
-							if not EditModeButton.EltruismClickHooks then
-								EditModeButton:SetScript("OnClick", function(_, button)
-									if not InCombatLockdown() then
-										if button == "LeftButton" then
-											E:ToggleMoveMode()
-											HideUIPanel(_G["GameMenuFrame"])
-										else
-											PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-											ShowUIPanel(EditModeManagerFrame)
-										end
+							EditModeButton:SetScript("OnClick", function(_, button)
+								if not InCombatLockdown() then
+									if button == "LeftButton" then
+										E:ToggleMoveMode()
+										HideUIPanel(_G["GameMenuFrame"])
+									else
+										PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+										ShowUIPanel(EditModeManagerFrame)
 									end
-								end)
-								EditModeButton:HookScript("OnEnter", function()
-									_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
-									_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
-									_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
-									_G["GameTooltip"]:Show()
-								end)
-								EditModeButton:HookScript("OnLeave", function()
-									_G["GameTooltip"]:Hide()
-								end)
-								EditModeButton.EltruismClickHooks = true
-							end
+								end
+							end)
+							EditModeButton:HookScript("OnEnter", function()
+								_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
+								_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
+								_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
+								_G["GameTooltip"]:Show()
+							end)
+							EditModeButton:HookScript("OnLeave", function()
+								_G["GameTooltip"]:Hide()
+							end)
 						end
 					end)
 					GameMenuFrame.EltruismHook = true
