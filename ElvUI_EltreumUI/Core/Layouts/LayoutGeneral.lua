@@ -681,6 +681,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-8,-5"
 	E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
+	E.db["movers"]["MoverEltruismLootText"] = "BOTTOM,UIParent,BOTTOM,0,277"
 	if not E.Modern then
 		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
 	end

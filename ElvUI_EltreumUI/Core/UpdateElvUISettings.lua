@@ -30,6 +30,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 					ElvUI_EltreumUI:SetupStyleFilters()
 				end]]
 
+				E.db["movers"]["MoverEltruismLootText"] = "BOTTOM,UIParent,BOTTOM,0,277"
+
 				--disable the custom auras on target and enemy npc
 				E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["enable"] = false
