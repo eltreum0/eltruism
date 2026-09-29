@@ -16,6 +16,17 @@ end
 local dmMin = CreateColor(1, 1, 1, 1)
 local dmMax = CreateColor(1, 1, 1, 1)
 
+--skins change requires checking the table, then using that to actually skin like before
+local ElvUIDamageMeterData
+if S.addonsToLoad and S.addonsToLoad['Blizzard_DamageMeter'] then
+	for _, skin in ipairs(S.addonsToLoad['Blizzard_DamageMeter']) do
+		if skin.data and skin.data.HandleStatusBar then
+			ElvUIDamageMeterData = skin.data
+			break
+		end
+	end
+end
+
 --pretty much copied from elvui and edited to look more like details
 do
 
@@ -387,6 +398,9 @@ do
 					end
 				end)
 				bar.UpdateIconEltruismHook = true
+				if bar.UpdateIcon then
+					bar:UpdateIcon()
+				end
 			end
 		end
 
@@ -418,9 +432,10 @@ do
 
 					--even though its supposed to not be secret we will get the secret error
 					if bar.StatusBar.Name and bar.StatusBar.Name.GetText and E:NotSecretValue(bar.StatusBar.Name:GetText()) then
-						local name = E:StripString(bar.StatusBar.Name:GetText())
-						if name and bar.classFilename and E:NotSecretValue(bar.classFilename) then
-							bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), bar.classFilename))
+						local name = bar.StatusBar.Name:GetText()
+						if name and E:NotSecretValue(name) and bar.classFilename then
+							local nameStripped = E:StripString(name)
+							bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
 						end
 					end
 				end)
@@ -443,6 +458,14 @@ do
 						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
 					else
 						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
+					end
+				end
+
+				if bar.StatusBar.Name and bar.StatusBar.Name.GetText and E:NotSecretValue(bar.StatusBar.Name:GetText()) then
+					local name = bar.StatusBar.Name:GetText()
+					if name and E:NotSecretValue(name) and bar.classFilename then
+						local nameStripped = E:StripString(name)
+						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
 					end
 				end
 
@@ -484,7 +507,21 @@ do
 					_G.DamageMeterSessionWindow1:SetClampedToScreen(false)
 					_G.DamageMeterSessionWindow1:SetClampRectInsets(-2000, -2000, -2000, -2000)
 
-					hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
+					--skins change requires checking the table, then using that to actually skin like before
+					--hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
+					if not ElvUIDamageMeterData and S.addonsToLoad and S.addonsToLoad['Blizzard_DamageMeter'] then
+						for _, skin in ipairs(S.addonsToLoad['Blizzard_DamageMeter']) do
+							if skin.data and skin.data.HandleStatusBar then
+								ElvUIDamageMeterData = skin.data
+								break
+							end
+						end
+					end
+
+					if ElvUIDamageMeterData and not _G.DamageMeter.EltruismStatusBarHook then
+						hooksecurefunc(ElvUIDamageMeterData, "HandleStatusBar", SkinDamageMeter)
+						_G.DamageMeter.EltruismStatusBarHook = true
+					end
 
 					if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.mouseOverTop then
 						hooksecurefunc(_G.DamageMeter, 'SetupSessionWindow', function()
@@ -492,7 +529,21 @@ do
 						end)
 						_G.DamageMeter:ForEachSessionWindow(SkinDamageMeterWindow)
 					end
+
+					--use blizz function to skin
+					_G.DamageMeter:ForEachSessionWindow(function(window)
+						local scrollBox = window:GetScrollBox()
+						if scrollBox then
+							scrollBox:ForEachFrame(SkinDamageMeter)
+						end
+						if window.MinimizeContainer and window.MinimizeContainer.LocalPlayerEntry then
+							SkinDamageMeter(window.MinimizeContainer.LocalPlayerEntry)
+						end
+					end)
+
 					_G.DamageMeter.EltruismHook = true
+
+
 
 					--if no refresh then turns out the specicons are nil because it seems they are loaded later
 					--because of blizzard being blizzard we need to run the refresh more than once as it turns out
