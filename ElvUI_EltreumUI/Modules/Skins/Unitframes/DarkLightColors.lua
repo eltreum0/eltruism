@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
+local valuecolors = E.myClassColor
 
 function ElvUI_EltreumUI:DarkMode()
 	if E.private.unitframe.enable then
@@ -220,7 +221,7 @@ function ElvUI_EltreumUI:DarkMode()
 		_G.RightChatToggleButton:SetAlpha(1)
 		_G.RightChatToggleButton:Show()
 
-		ElvUI_EltreumUI:Print("Unitframes set to Dark Mode")
+		ElvUI_EltreumUI:Print("Unitframes set to Dark Mode".." |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\DarkMode.tga:14:128:0:0:256:32:0:256:0:32:"..(valuecolors.r* 255)..":"..(valuecolors.g* 255)..":"..(valuecolors.b* 255).."|t")
 	end
 end
 
@@ -383,7 +384,7 @@ function ElvUI_EltreumUI:LightMode()
 		_G.RightChatToggleButton:SetAlpha(1)
 		_G.RightChatToggleButton:Show()
 
-		ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
+		ElvUI_EltreumUI:Print("Unitframes set to Light Mode".." |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\LightMode.tga:14:128:0:0:256:32:0:256:0:32:"..(valuecolors.r* 255)..":"..(valuecolors.g* 255)..":"..(valuecolors.b* 255).."|t")
 	end
 end
 
