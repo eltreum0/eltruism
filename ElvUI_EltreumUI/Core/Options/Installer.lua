@@ -178,7 +178,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.import.args.input.focusSelect = true
 
 	ElvUI_EltreumUI.Options.args.installer.args.tab6 = E.Libs.ACH:Group(L["Addons"], L["Install or update other Addon profiles"], 4, 'tab')
-	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.elvuiplugins = E.Libs.ACH:Group(L["PVP/PVE Addons"], nil, 4)
+	--ElvUI_EltreumUI.Options.args.installer.args.tab6.args.elvuiplugins = E.Libs.ACH:Description(L["PVP/PVE Addons"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.description1 = E.Libs.ACH:Description(L["BossMods Profiles"], 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.bigwigs = E.Libs.ACH:Execute('BigWigs', L["Reset to Eltruism defaults."], 3, function() ElvUI_EltreumUI:AddonSetupBW() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("BigWigs") end)
 	ElvUI_EltreumUI.Options.args.installer.args.tab6.args.description2 = E.Libs.ACH:Description(nil, 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
