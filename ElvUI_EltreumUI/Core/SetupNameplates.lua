@@ -35,6 +35,11 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--Nameplates
 		E.db["nameplates"]["fadeIn"] = false --disable fading animation
 		E.db["nameplates"]["clampToScreen"] = true
+
+		-- Cooldown Text (nameplates)
+		E.db["cooldown"]["nameplates"]["offsetY"] = 0
+		E.db["cooldown"]["nameplates"]["position"] = "TOP"
+
 		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.86666476726532
 		E.db["nameplates"]["colors"]["glowColor"]["g"] = 0.4392147064209
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = 0

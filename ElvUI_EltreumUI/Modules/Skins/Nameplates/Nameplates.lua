@@ -81,7 +81,7 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 				buttonCooldown:SetSwipeColor(0, 0, 0, 0)
 				buttonCooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 			end
-			if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+			if not E.Modern and E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
 				if not buttonCooldown.EltruismPointSet then
 					buttonCooldown.timer.text:ClearAllPoints()
 					buttonCooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
@@ -228,7 +228,7 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 				buttonCooldown2:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 			end
 			buttonCooldown2:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
-			if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+			if not E.Modern and E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
 				if not buttonCooldown2.EltruismPointSet then
 					buttonCooldown2.timer.text:ClearAllPoints()
 					buttonCooldown2.timer.text:SetDrawLayer('OVERLAY',1)
