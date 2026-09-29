@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:SkinQuests()
 		S:HandleButton(wowheadbutton)
 		--get the wowhead region based on game language region
 		local wowheadregion
-		if E.Modern then
+		if E.Retail then
 			if E.locale == "deDE" then
 				wowheadregion = "de.wowhead.com"
 			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
