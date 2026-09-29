@@ -877,19 +877,28 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame.EltruismSpeed:SetText(mathceil(speed).."%")
 						end
 
-						local _, combat = _G.GetManaRegen()
-						combat = mathfloor(combat * 5.0)
-						local combatText = _G.BreakUpLargeNumbers(combat)
+						local _, manaRegen = _G.GetManaRegen()
+						local powerRegen = _G.GetPowerRegen()
+						local manaText,powerText
+						if not E:NotSecretValue(manaRegen) and not E:NotSecretValue(powerRegen) then
+							manaRegen = mathfloor(manaRegen * 5.0)
+							manaText = _G.BreakUpLargeNumbers(manaRegen)
+							powerText = _G.BreakUpLargeNumbers(_G.GetPowerRegen())
+						else
+							manaText = manaRegen
+							powerText = powerRegen
+						end
+
 						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
+							CharacterFrame.EltruismClassResource:SetText(powerText)
 						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-							CharacterFrame.EltruismClassResource:SetText(combatText)
+							CharacterFrame.EltruismClassResource:SetText(manaText)
 						elseif E.myclass == 'DEATHKNIGHT' then
 							local _, regenRate = _G.GetRuneCooldown(1)
 							local regenRateText = (format(_G.STAT_RUNE_REGEN_FORMAT, regenRate))
 							CharacterFrame.EltruismClassResource:SetText(regenRateText)
 						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							CharacterFrame.EltruismClassResource2:SetText(combatText)
+							CharacterFrame.EltruismClassResource2:SetText(manaText)
 						end
 
 						local number = CharacterStatsPane.statsFramePool:GetNumActive()
