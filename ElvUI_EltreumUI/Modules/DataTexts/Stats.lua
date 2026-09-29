@@ -113,8 +113,14 @@ local function EltruismStatsDatatextOnEnter()
 		else
 			retailcrit = GetCritChance()
 		end
-		local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
-		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
+		local versdmg,versdef,maxvers
+		if E:NotSecretValue(GetCombatRatingBonus(29)) then
+			versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
+			versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
+			maxvers = mathmax(versdef,versdmg)
+		else
+			maxvers = GetVersatilityBonus(31)
+		end
 		local avoidance = GetAvoidance()
 		local leech = GetLifesteal()
 		local speed = GetSpeed()
@@ -128,7 +134,7 @@ local function EltruismStatsDatatextOnEnter()
 		DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", retailcrit).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", retailhaste).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", GetMasteryEffect()).."|r",1,1,1)
-		DT.tooltip:AddDoubleLine(STAT_VERSATILITY..":", ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", mathmax(versdef,versdmg)).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_VERSATILITY..":", ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", maxvers).."|r",1,1,1)
 
 		--add line here
 		DT.tooltip:AddLine(' ')
@@ -307,7 +313,6 @@ local function EltruismStatsDatatext1(dt)
 		else
 			retailcrit = GetCritChance()
 		end
-
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", retailhaste).."|r"
 		local crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", retailcrit).."|r"
 
@@ -315,7 +320,13 @@ local function EltruismStatsDatatext1(dt)
 	else
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", GetHaste()).."|r" --GetCombatRatingBonus(CR_HASTE_SPELL)
 		local crit
-		local spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+		local spellcrit, maxspell
+		if E:NotSecretValue(GetSpellCritChance(2)) then
+			spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+			maxspell = mathmax(GetCritChance(),spellcrit)
+		else
+			maxspell = GetSpellCritChance(2)
+		end
 		if E.Mists or E.TBC or E.Wrath then
 			spellcrit = GetCritChance()
 		end
@@ -346,7 +357,7 @@ local function EltruismStatsDatatext1(dt)
 				crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", spellcrit).."|r"
 			end
 		else
-			crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", mathmax(GetCritChance(),spellcrit)).."|r"
+			crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", maxspell).."|r"
 		end
 		dt.text:SetFormattedText('%s %s|r',crit,haste)
 	end
