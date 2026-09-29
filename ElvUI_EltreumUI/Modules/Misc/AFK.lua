@@ -15,7 +15,7 @@ local tonumber = _G.tonumber
 local classicMusic = E.Classic or E.Forever or E.TBC or E.Wrath
 local racialMusic = {
 	["Human"] = 53210,
-	["Gnome"] = classicMusic and 53189 or 369055,
+	["Gnome"] = E.Modern and 369055 or 53189,--forever has this
 	["NightElf"] = classicMusic and 53187 or 441709,
 	["KulTiran"] = 1781897,
 	["Dwarf"] = classicMusic and 53192 or 298910,
@@ -26,9 +26,9 @@ local racialMusic = {
 	["DarkIronDwarf"] = 441566,
 	["Mechagnome"] = 3028751,
 	["Orc"] = classicMusic and 53201 or 441713,
-	["Scourge"] = classicMusic and 53519 or 53217,
+	["Scourge"] = E.Modern and 53217 or 53519, --forever has this
 	["Tauren"] = classicMusic and 53215 or 441788,
-	["Troll"] = classicMusic and 53254 or 371378,
+	["Troll"] = E.Modern and 371378 or 53254, --forever has this
 	["Goblin"] = 441627,
 	["BloodElf"] = 53473,
 	["Pandaren"] = 642246,
@@ -43,7 +43,7 @@ local racialMusic = {
 	["Skyborne"] = 8246686, --forever
 }
 local classMusic = {
-	["WARRIOR"] = 1417334,
+	["WARRIOR"] = 1417334, --exists in forever
 	["PALADIN"] = 1417342, --443289
 	["HUNTER"] = 1417326,
 	["ROGUE"] = 1417273,
@@ -52,10 +52,10 @@ local classMusic = {
 	--/script PlaySound(14960)
 	["SHAMAN"] = 528163,
 	["MAGE"] = 1417264,
-	["WARLOCK"] = 1417356,
-	["MONK"] = 642138,
+	["WARLOCK"] = 1417356, --exists in forever
+	["MONK"] = 642138, --exists in forever
 	["DRUID"] = 1417312,
-	["DEMONHUNTER"] = 1417290,
+	["DEMONHUNTER"] = 1417290, --exists in forever
 	["EVOKER"] = 4887975, --test
 }
 
