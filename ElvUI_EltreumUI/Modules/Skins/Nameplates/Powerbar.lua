@@ -1025,7 +1025,15 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
-			elseif E.Classic or E.Forever then
+			elseif E.Forever then
+				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
+				else
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 27
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 27
+				end
+			elseif E.Classic then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26

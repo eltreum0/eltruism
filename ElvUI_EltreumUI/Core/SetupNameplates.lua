@@ -215,7 +215,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["sourceText"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["spacing"] = 2
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["xOffset"] = 4
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["yOffset"] = -2
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["yOffset"] = 25
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
@@ -335,7 +335,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["sourceText"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["spacing"] = 2
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["xOffset"] = 4
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["yOffset"] = -2
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["yOffset"] = 25
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
