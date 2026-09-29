@@ -1,4 +1,4 @@
-local E = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
 local CreateFrame = _G.CreateFrame
@@ -27,56 +27,64 @@ local CURRENCY_GAINED_MULTIPLE = _G.CURRENCY_GAINED_MULTIPLE
 local CURRENCY_GAINED = _G.CURRENCY_GAINED
 local C_CurrencyInfo = _G.C_CurrencyInfo
 local tonumber = _G.tonumber
-local CombatTextMixin = _G.CombatTextMixin
-
--- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
--- SLoTE uses GNU GPLv3 and as such this module of Eltruism also uses GNU GPLv3
+local ipairs = _G.ipairs
+local math = _G.math
+local table = _G.table
 
 --Create the loottext frame
 local LootTextframe = CreateFrame("Frame", "EltruismLoot")
-LootTextframe:RegisterEvent("UI_ERROR_MESSAGE")
-LootTextframe:RegisterEvent("CHAT_MSG_LOOT")
-LootTextframe:RegisterEvent("CHAT_MSG_MONEY")
-LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
-LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
-LootTextframe:RegisterEvent("CHAT_MSG_SKILL") --profession level up
---LootTextframe:RegisterEvent("CHAT_MSG_TRADESKILLS")
-LootTextframe:RegisterEvent("LOOT_OPENED")
-
 local combatindicatorframe = CreateFrame("Frame")
-combatindicatorframe:RegisterEvent("PLAYER_REGEN_ENABLED")
-combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 local errorthrottle = false
 
 --recreate blizzard combat text (somewhat) to get it working again
 local EltruismCombatText = CreateFrame("Frame", "EltruismCombatText", _G.UIParent)
-_G.Mixin(EltruismCombatText, CombatTextMixin)
-EltruismCombatText:SetScript("OnUpdate", EltruismCombatText.OnUpdate)
-_G.hooksecurefunc(EltruismCombatText, "AddMessage", function(self)
-	if not self:GetScript("OnUpdate") then
-		self:SetScript("OnUpdate", self.OnUpdate)
-	end
-end)
-_G.hooksecurefunc(EltruismCombatText, "ReleaseFontString", function(self)
-	if #self.activeFontStrings == 0 then
-		self:SetScript("OnUpdate", nil)
-	end
-end)
+EltruismCombatText:SetSize(250, 40)
+EltruismCombatText:SetPoint("CENTER", _G.UIParent, "CENTER", 0, 200)
 EltruismCombatText.fontStringPool = _G.CreateFontStringPool(EltruismCombatText, "ARTWORK", 0, "CombatTextFont")
 EltruismCombatText.activeFontStrings = {}
 EltruismCombatText.textLocations = {
 	startX = 0,
-	startY = 400,
+	startY = 0,
 	endX = 0,
-	endY = 650
+	endY = 160
 }
 EltruismCombatText.xDir = 1
 EltruismCombatText.textSpacing = 10
-EltruismCombatText.textOffsetAdjustment = 130
-EltruismCombatText.textOffsetMax = 130
+EltruismCombatText.textOffsetAdjustment = 40
+EltruismCombatText.textOffsetMax = 60
 
---use elvui general font
-_G.hooksecurefunc(EltruismCombatText, "InitializeFontString", function(_, fontString)
+local function EltruismScroll(frame, value)
+	local scrollSpeed = (_G.CombatTextConstants and _G.CombatTextConstants.MessageScrollSpeed) or 1.9
+	local textLocations = frame.textLocations or { startX = 0, startY = 0, endX = 0, endY = 160 }
+	local xPos = value.startX + (((textLocations.endX or 0) - (textLocations.startX or 0)) * value.scrollTime / scrollSpeed)
+	local yPos = value.startY + (((value.endY or 160) - (textLocations.startY or 0)) * value.scrollTime / scrollSpeed)
+	return xPos, yPos
+end
+
+--CombatTextMixin:EnumerateActiveFontStrings()
+function EltruismCombatText:EnumerateActiveFontStrings()
+	return ipairs(self.activeFontStrings)
+end
+
+--CombatTextMixin:ReleaseFontString(fontString)
+function EltruismCombatText:ReleaseFontString(fontString)
+	local index = _G.tIndexOf(self.activeFontStrings, fontString)
+	if index then
+		self.fontStringPool:Release(fontString)
+		table.remove(self.activeFontStrings, index)
+	end
+	if #self.activeFontStrings == 0 then
+		self:SetScript("OnUpdate", nil)
+	end
+end
+
+--CombatTextMixin:AcquireFontString() but with my font options
+function EltruismCombatText:InitializeFontString(fontString)
+	fontString:SetFontObject(_G.CombatTextFont or "CombatTextFont")
+	fontString:SetAlpha(0)
+	fontString:ClearAllPoints()
+	fontString:SetPoint("CENTER", self, "CENTER", self.textLocations.startX or 0, self.textLocations.startY or 0)
+
 	if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
 		fontString:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
@@ -85,24 +93,158 @@ _G.hooksecurefunc(EltruismCombatText, "InitializeFontString", function(_, fontSt
 		fontString:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	end
 	fontString:SetShadowColor(0, 0, 0, 0)
-end)
+end
+
+--CombatTextMixin:AcquireFontString()
+function EltruismCombatText:AcquireFontString()
+	local fontString = self.fontStringPool:Acquire()
+	if fontString then
+		self:InitializeFontString(fontString)
+		return fontString
+	end
+end
+
+--CombatTextMixin:ClearAnimationList()
+function EltruismCombatText:ClearAnimationList()
+	for _, fontString in self:EnumerateActiveFontStrings() do
+		fontString:SetAlpha(0)
+		fontString:Hide()
+		fontString:ClearAllPoints()
+		fontString:SetPoint("CENTER", self, "CENTER", self.textLocations.startX or 0, self.textLocations.startY or 0)
+	end
+end
+
+--CombatTextMixin:UpdateDisplayedMessages
+function EltruismCombatText:UpdateDisplayedMessages()
+	-- do nothing so blizzard doesnt change stuff
+end
+
+--CombatTextMixin:OnUpdate
+function EltruismCombatText:OnUpdate(elapsed)
+	local alpha, xPos, yPos
+	local scrollSpeed = (_G.CombatTextConstants and _G.CombatTextConstants.MessageScrollSpeed) or 1.9
+	local fadeOutTime = (_G.CombatTextConstants and _G.CombatTextConstants.MessageFadeOutTime) or 1.3
+
+	for _, value in self:EnumerateActiveFontStrings() do
+		if value.scrollTime >= scrollSpeed then
+			self:ReleaseFontString(value)
+		else
+			value.scrollTime = value.scrollTime + elapsed
+			xPos, yPos = (value.scrollFunction or EltruismScroll)(self, value)
+			value.yPos = yPos
+
+			value:ClearAllPoints()
+			value:SetPoint("CENTER", self, "CENTER", xPos, yPos)
+
+			if value.scrollTime >= fadeOutTime then
+				alpha = 1 - ((value.scrollTime - fadeOutTime) / (scrollSpeed - fadeOutTime))
+				alpha = math.max(alpha, 0)
+				value:SetAlpha(alpha)
+			end
+		end
+	end
+end
+
+--Blizzard_CombatText, but with custom stuff
+function EltruismCombatText:AddMessage(message, scrollFunction, r, g, b, _, isStaggered)
+	local fontString = self:AcquireFontString()
+	if not fontString then return end
+
+	--update fonts
+	if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
+		fontString:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
+		fontString:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
+		fontString:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	end
+	fontString:SetShadowColor(0, 0, 0, 0)
+
+	fontString:SetText(message)
+	fontString:SetTextColor(r or 1, g or 1, b or 1)
+	fontString.scrollTime = 0
+	if scrollFunction and scrollFunction ~= _G.CombatTextUtil.StandardScroll then
+		fontString.scrollFunction = scrollFunction
+	else
+		fontString.scrollFunction = EltruismScroll
+	end
+
+	local lowestMessage = self.textLocations.startY or 0
+	for _, value in self:EnumerateActiveFontStrings() do
+		if value ~= fontString and value.yPos and (lowestMessage >= value.yPos - 16 - self.textSpacing) then
+			lowestMessage = value.yPos - 16 - self.textSpacing
+		end
+	end
+
+	local useXadjustment = 0
+	if lowestMessage < ((self.textLocations.startY or 0) - self.textOffsetMax) then
+		self.textOffsetAdjustment = self.textOffsetAdjustment * -1
+		useXadjustment = 1
+		lowestMessage = (self.textLocations.startY or 0) - self.textOffsetMax
+	end
+
+	fontString.endY = self.textLocations.endY or 160
+
+	-- Stagger the text if flagged
+	local staggerRange = (_G.CombatTextConstants and _G.CombatTextConstants.StaggerRange) or 20
+	local staggerAmount = 0
+	if isStaggered then
+		local fastrandom = _G.fastrandom or math.random
+		staggerAmount = fastrandom(0, staggerRange) - staggerRange / 2
+	end
+
+	-- Alternate x direction
+	self.xDir = (self.xDir or 1) * -1
+	if useXadjustment == 1 then
+		if self.textOffsetAdjustment > 0 then
+			self.xDir = -1
+		else
+			self.xDir = 1
+		end
+	end
+	fontString.xDir = self.xDir
+	fontString.startX = (self.textLocations.startX or 0) + staggerAmount + (useXadjustment * self.textOffsetAdjustment)
+	fontString.startY = lowestMessage
+	fontString.yPos = lowestMessage
+	fontString:ClearAllPoints()
+	fontString:SetPoint("CENTER", self, "CENTER", fontString.startX, lowestMessage)
+	fontString:SetAlpha(1)
+	fontString:Show()
+	table.insert(self.activeFontStrings, fontString)
+
+	if not self:GetScript("OnUpdate") then
+		self:SetScript("OnUpdate", self.OnUpdate)
+	end
+end
 
 local skillMsg = ""
 local function printSkillMsg()
 	EltruismCombatText:AddMessage(skillMsg, _G.CombatTextUtil.StandardScroll, 255, 255, 255, nil, true)
 end
 
+function ElvUI_EltreumUI:UpdateLootText()
+	if not EltruismCombatText then return end
+	EltruismCombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale or 0.65)
+	EltruismCombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata or "BACKGROUND")
+end
+
 function ElvUI_EltreumUI:LootText()
-	EltruismCombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale)
-	EltruismCombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata)
+
 	--moving the combat text
+	if not EltruismCombatText.IsInitialized then
+		E:CreateMover(EltruismCombatText, "MoverEltruismLootText", L["LootText"] or "LootText", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,loot,loottext')
+		EltruismCombatText.IsInitialized = true
+	end
+
+	ElvUI_EltreumUI:UpdateLootText()
+
 	local itemLink = nil
 	local amount = 0
 
-	--_G.CombatText:AddMessage(message, scrollFunction, r, g, b, displayType, isStaggered)
-
-	combatindicatorframe:SetScript("OnEvent", function(_,event)
-		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
+	if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
+		combatindicatorframe:RegisterEvent("PLAYER_REGEN_ENABLED")
+		combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
+		combatindicatorframe:SetScript("OnEvent", function(_,event)
 			if event == "PLAYER_REGEN_DISABLED" then
 				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
 					EltruismCombatText:AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter, _G.CombatTextUtil.StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.b, nil, true)
@@ -117,10 +259,21 @@ function ElvUI_EltreumUI:LootText()
 					EltruismCombatText:AddMessage("|cffFFFFFF-"..stringupper(COMBAT).."|r", _G.CombatTextUtil.StandardScroll, 1, 0, 0, nil, true)
 				end
 			end
-		end
-	end)
+		end)
+	else
+		combatindicatorframe:UnregisterAllEvents()
+		combatindicatorframe:SetScript("OnEvent", nil)
+	end
 
 	if E.db.ElvUI_EltreumUI.loot.loottext.enable then
+		LootTextframe:RegisterEvent("UI_ERROR_MESSAGE")
+		LootTextframe:RegisterEvent("CHAT_MSG_LOOT")
+		LootTextframe:RegisterEvent("CHAT_MSG_MONEY")
+		LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
+		LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
+		LootTextframe:RegisterEvent("CHAT_MSG_SKILL") --profession level up
+		--LootTextframe:RegisterEvent("CHAT_MSG_TRADESKILLS")
+		LootTextframe:RegisterEvent("LOOT_OPENED")
 
 		local function getLoot(chatmsg)
 			-- check for multiple-item-loot
@@ -262,5 +415,8 @@ function ElvUI_EltreumUI:LootText()
 				end
 			end
 		end)
+	else
+		LootTextframe:UnregisterAllEvents()
+		LootTextframe:SetScript("OnEvent", nil)
 	end
 end
