@@ -15,8 +15,10 @@ local forbiddenKeywords = {
 
 local function ApplyBackdropAlphas(db, bg, backdrop, tex)
 	local backdropAlpha = db.ufcustomtexture.backdropalpha or 1
-	if backdropAlpha == 1 and (db.ufcustomtexture.healthalpha and db.ufcustomtexture.healthalpha < 1) then
-		backdropAlpha = db.ufcustomtexture.healthalpha
+	local transparentHealth = E.db.unitframe.colors.transparentHealth or db.lightmode
+	local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
+	if backdropAlpha == 1 and healthAlpha < 1 then
+		backdropAlpha = healthAlpha
 	end
 
 	if db.lightmode then
@@ -39,7 +41,9 @@ local function ApplyBackdropAlphas(db, bg, backdrop, tex)
 			if E.db.unitframe.thinBorders then
 				backdrop:SetAlpha(backdropAlpha)
 			elseif backdrop.Center then
-				backdrop.Center:Show()
+				if not backdrop.Center:IsShown() then
+					backdrop.Center:Show()
+				end
 				backdrop.Center:SetAlpha(backdropAlpha)
 			end
 			backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
