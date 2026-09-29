@@ -39,7 +39,7 @@ local errorthrottle = false
 --recreate blizzard combat text (somewhat) to get it working again
 local EltruismCombatText = CreateFrame("Frame", "EltruismCombatText", _G.UIParent)
 EltruismCombatText:SetSize(250, 40)
-EltruismCombatText:SetPoint("CENTER", _G.UIParent, "CENTER", 0, 200)
+EltruismCombatText:SetPoint("BOTTOM", _G.UIParent, "BOTTOM", 0, 277)
 EltruismCombatText.fontStringPool = _G.CreateFontStringPool(EltruismCombatText, "ARTWORK", 0, "CombatTextFont")
 EltruismCombatText.activeFontStrings = {}
 EltruismCombatText.textLocations = {
