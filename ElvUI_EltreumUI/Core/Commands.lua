@@ -117,9 +117,11 @@ function ElvUI_EltreumUI:RunCommands(message)
 		if E.db.unitframe.colors.transparentHealth then
 			E.db.unitframe.colors.transparentHealth = false
 			UF:Update_AllFrames()
+			ElvUI_EltreumUI:Print("Unitframes transparent health disabled")
 		else
 			E.db.unitframe.colors.transparentHealth = true
 			UF:Update_AllFrames()
+			ElvUI_EltreumUI:Print("Unitframes transparent health enabled")
 		end
 	elseif message == 'color' then
 		if not InCombatLockdown() then
