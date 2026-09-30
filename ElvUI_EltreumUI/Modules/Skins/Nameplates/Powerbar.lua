@@ -18,43 +18,6 @@ local CreateVector3D = _G.CreateVector3D
 local UnitIsDead = _G.UnitIsDead
 local Enum = _G.Enum
 
-
---update buff/debuff position automatically
-function ElvUI_EltreumUI:UpdateNPwithoutBar(targetClassPowerShown,targetStaggerShown,targetRunesShown)
-	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
-	if nameplatePowerPrivateDB.enable then
-		if nameplatePowerPrivateDB.adjust then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-
-			--local targetClassPower = _G.ElvNP_TargetClassPowerClassPower
-			--local targetStagger = _G.ElvNP_TargetClassPowerStagger
-			--local targetRunes = _G.ElvNP_TargetClassPowerRunes
-			--local targetClassPowerShown = targetClassPower and targetClassPower:IsShown()
-			--local targetStaggerShown = targetStagger and targetStagger:IsShown()
-			--local targetRunesShown = targetRunes and targetRunes:IsShown()
-
-			if targetClassPowerShown then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
-			elseif targetRunesShown then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
-			elseif targetStaggerShown then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
-			else
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
-			end
-		end
-	end
-end
-
-
-
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
@@ -452,12 +415,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 23)
 				elseif targetStagger and targetStaggerShown then
 					EltreumPowerBar:SetPoint("TOP", targetStagger, "TOP", 0, 23)
-				elseif targetClassPower and not targetClassPowerShown then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 14)
 				else
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 14)
 				end
-				ElvUI_EltreumUI:UpdateNPwithoutBar(targetClassPowerShown,targetStaggerShown,targetRunesShown)
 			else
 				EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 			end
@@ -781,3 +741,40 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 		ElvUI_EltreumUI:PowerPrediction()
 	end
 end)
+
+local hasCOMBO = {
+	["DEATHKNIGHT"]	= true,
+	["DEMONHUNTER"]	= false,
+	["DRUID"] = true,
+	["HUNTER"] = false,
+	["MAGE"] = (ElvUI_EltreumUI.Spec == 62) and true or false,
+	["MONK"] = true,
+	["PALADIN"]	= (E.Retail or E.Mists) and true or false,
+	["PRIEST"] = false,
+	["ROGUE"] = true,
+	["SHAMAN"] = (E.Retail or E.Mists) and true or false,
+	["WARLOCK"] = (E.Retail or E.Mists) and true or false,
+	["WARRIOR"] = false,
+	["EVOKER"] = true,
+}
+
+--update buff/debuff position automatically
+function ElvUI_EltreumUI:UpdateNPwithoutBar()
+	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
+	if nameplatePowerPrivateDB.enable then
+		if nameplatePowerPrivateDB.adjust then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+
+			if hasCOMBO[E.myclass] then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
+			else
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+			end
+		end
+	end
+end
