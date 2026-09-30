@@ -12,6 +12,7 @@ local UnitClassification = _G.UnitClassification
 local UnitLevel = _G.UnitLevel
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
+local strsplit = _G.strsplit
 local string = _G.string
 local stringformat = string.format
 
@@ -2017,6 +2018,21 @@ local textureDB64 = {
 	["TYPE25"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull13.tga",
 }
 
+ local unitDB = {
+	["worldboss"] = "boss",
+	["elite"] = "elite",
+	["rareelite"] = "rareelite",
+	["rare"] = "rare",
+}
+
+local function getTexturePath(db, key)
+	local iconType = db["icontype" .. key]
+	if iconType == "CUSTOM" then
+		return [[Interface\AddOns\]] .. db["custom" .. key]
+	end
+	return textureDB[iconType]
+end
+
 function ElvUI_EltreumUI:GetBossIconTextureAndID(textureType,isbossID,bossID,resolution)
 	if textureType then
 		if resolution then
@@ -2042,43 +2058,14 @@ local function Update(self)
 
 	local classification = self.classification
 	local frameType = self.frameType
-	if frameType then
-	--if frameType and frameType == 'ENEMY_NPC' then
-		if classification == 'worldboss' or bossIDs[self.npcID] then
-			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss)
-			else
-				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss])
-			end
-			-- color
-			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1)
-			element:Show()
-		elseif classification == 'elite' then
-			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
-				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite)
-			else
-				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite])
-			end
-			-- color
-			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1)
-			element:Show()
-		elseif classification == 'rareelite' then
-			if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
-				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite)
-			else
-				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite])
-			end
-			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1)
-			--element:SetAtlas('nameplates-icon-elite-silver')
-			element:Show()
-		elseif classification == 'rare' then
-			if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
-				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare)
-			else
-				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare])
-			end
 
-			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1)
+	if frameType then
+		--if frameType and frameType == 'ENEMY_NPC' then
+		local key = (classification == 'worldboss' or bossIDs[self.npcID]) and "boss" or unitDB[classification]
+		if key then
+			local db = E.db.ElvUI_EltreumUI.nameplates.classification
+			element:SetTexture(getTexturePath(db, key))
+			element:SetVertexColor(db[key .. "R"], db[key .. "G"], db[key .. "B"], 1)
 			element:Show()
 		else
 			element:Hide()
@@ -2088,7 +2075,7 @@ local function Update(self)
 	end
 
 	if E.db.ElvUI_EltreumUI.dev then
-		ElvUI_EltreumUI:Print("npcID: "..self.npcID..","..classification..","..frameType)
+		ElvUI_EltreumUI:Print("npcID: " .. (self.npcID or "nil") .. "," .. (classification or "nil") .. "," .. (frameType or "nil"))
 	end
 
 	if element.PostUpdate then
@@ -2139,7 +2126,7 @@ local function Update_ClassificationIndicator(_, nameplate)
 	 -- add your settings here
 	local db = plateDB.eliteIcon
 	if db and db.enable and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
-	--if db and (nameplate.frameType == 'ENEMY_NPC') then
+		--if db and (nameplate.frameType == 'ENEMY_NPC') then
 		if not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 			nameplate:EnableElement('EltruismClassificationIndicator')
 		end
@@ -2183,13 +2170,6 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 end
 
 --Difficulty Icon for npcs
- local unitDB = {
-	["worldboss"] = "boss",
-	["elite"] = "elite",
-	["rareelite"] = "rareelite",
-	["rare"] = "rare",
-}
-
 local function returnIcon(classification, isBoss)
 	local key = isBoss and "boss" or unitDB[classification]
 	if not key then return end
@@ -2198,10 +2178,8 @@ local function returnIcon(classification, isBoss)
 	local r = mathfloor(db[key .. "R"] * 255)
 	local g = mathfloor(db[key .. "G"] * 255)
 	local b = mathfloor(db[key .. "B"] * 255)
-	local iconType = db["icontype" .. key]
-	local texturePath = (iconType == "CUSTOM") and ([[Interface\AddOns\]] .. db["custom" .. key]) or textureDB[iconType]
 
-	return stringformat("|T%s:0:0:0:2:32:32:0:32:0:32:%d:%d:%d|t", texturePath, r, g, b)
+	return stringformat("|T%s:0:0:0:2:32:32:0:32:0:32:%d:%d:%d|t", getTexturePath(db, key), r, g, b)
 end
 
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
@@ -2211,7 +2189,7 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 		return returnIcon(classification, UnitLevel(unit) == -1)
 	end
 	if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
-		local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
+		local unitID = select(6, strsplit('-', UnitGUID(unit)))
 		return returnIcon(classification, bossIDs[unitID])
 	end
 end)
