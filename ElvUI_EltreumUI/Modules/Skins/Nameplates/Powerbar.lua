@@ -18,6 +18,43 @@ local CreateVector3D = _G.CreateVector3D
 local UnitIsDead = _G.UnitIsDead
 local Enum = _G.Enum
 
+
+--update buff/debuff position automatically
+function ElvUI_EltreumUI:UpdateNPwithoutBar(targetClassPowerShown,targetStaggerShown,targetRunesShown)
+	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
+	if nameplatePowerPrivateDB.enable then
+		if nameplatePowerPrivateDB.adjust then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+
+			--local targetClassPower = _G.ElvNP_TargetClassPowerClassPower
+			--local targetStagger = _G.ElvNP_TargetClassPowerStagger
+			--local targetRunes = _G.ElvNP_TargetClassPowerRunes
+			--local targetClassPowerShown = targetClassPower and targetClassPower:IsShown()
+			--local targetStaggerShown = targetStagger and targetStagger:IsShown()
+			--local targetRunesShown = targetRunes and targetRunes:IsShown()
+
+			if targetClassPowerShown then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
+			elseif targetRunesShown then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
+			elseif targetStaggerShown then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
+			else
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+			end
+		end
+	end
+end
+
+
+
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
@@ -317,7 +354,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			local nameplatePowerDB = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
 			local npGradient = nameplatePowerDB.gradient
 			local gradientDB = E.db.ElvUI_EltreumUI.unitframes.gradientmode
-			local shadowDB = E.db.ElvUI_EltreumUI.skins.shadow
 			local PowerColorDB = E.db.unitframe.colors.power
 			local playerPower = UnitPower("player")
 			local playerPowerMax = UnitPowerMax("player")
@@ -359,26 +395,14 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerPredictionIncoming:SetReverseFill(false)
 				EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
 				EltreumPowerPredictionIncoming:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 1)
+
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
 					nameplatePowerDB.autoadjustposition = false
 				end
-				if E.Modern then
-					if nameplatePowerDB.autoadjustposition then
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-					end
-				else
-					if nameplatePowerDB.autoadjustposition then
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-					end
-				end
+
 				EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 
 				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", nameplatePowerDB.texture))
-
 
 				EltreumPowerBar.isSetup = true
 			end
@@ -420,45 +444,30 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.Text:SetText(E:ShortValue(playerPower))
 			end
 
+			--update position based on class bar (or not)
+			if nameplatePowerDB.autoadjustposition then
+				if targetClassPower and targetClassPowerShown then
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
+				elseif targetRunes and targetRunesShown then
+					EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 23)
+				elseif targetStagger and targetStaggerShown then
+					EltreumPowerBar:SetPoint("TOP", targetStagger, "TOP", 0, 23)
+				elseif targetClassPower and not targetClassPowerShown then
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 14)
+				else
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 14)
+				end
+				ElvUI_EltreumUI:UpdateNPwithoutBar(targetClassPowerShown,targetStaggerShown,targetRunesShown)
+			else
+				EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
+			end
+
 			--adjust position, show/hide, show colors depending on powertype if not gradient
 			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 				if nameplatePowerPrivateDB.mana then
 					EltreumPowerBar:Show()
 					if not npGradient then
 						EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-					end
-					if E.Modern then
-						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' or (E.myclass == 'MAGE' and ElvUI_EltreumUI.Spec == 62) then
-							if nameplatePowerDB.autoadjustposition then
-								if shadowDB.nppower then
-									if targetClassPower and targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 24)
-									elseif targetClassPower and not targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-									else
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-									end
-								else
-									if targetClassPower and targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-									elseif targetClassPower and not targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-									else
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-									end
-								end
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-							end
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-						end
-					else
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-						end
 					end
 				end
 			elseif E.myclass == 'DRUID' then
@@ -492,15 +501,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 						end
-						if nameplatePowerDB.autoadjustposition then
-							if E.Modern then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							end
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-						end
 					end
 				elseif stance == 1 then --bear
 					if nameplatePowerPrivateDB.rage then
@@ -508,42 +508,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.RAGE.r, PowerColorDB.RAGE.g, PowerColorDB.RAGE.b) --its rage so color it like rage
 						end
-						if nameplatePowerDB.autoadjustposition then
-							if E.Modern then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							end
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-						end
 					end
 				elseif stance == 2 then --cat for retail, aquatic for classic
 					if nameplatePowerPrivateDB.energy then
 						EltreumPowerBar:Show()
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
-						end
-						if nameplatePowerDB.autoadjustposition then
-							if E.Modern then
-								if shadowDB.nppower then
-									if targetClassPower and targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 22)
-									elseif targetClassPower and not targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-									end
-								else
-									if targetClassPower and targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-									elseif targetClassPower and not targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-									end
-								end
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							end
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 						end
 					end
 				elseif stance == 3 then --travel for retail, cat for classic
@@ -553,11 +523,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-							end
 						end
 					else
 						if nameplatePowerPrivateDB.energy then
@@ -565,37 +530,15 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
 							end
-							if nameplatePowerDB.autoadjustposition then
-								if shadowDB.nppower then
-									if targetClassPower and targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-									elseif targetClassPower and not targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-									end
-								else
-									if targetClassPower and targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 18)
-									elseif targetClassPower and not targetClassPowerShown then
-										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 19)
-									end
-								end
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-							end
 						end
 					end
 				elseif stance == 4 then
-					if E.Modern then --this is where it gets tricky due to talents and specs 4 is either moonkin OR tree of life if resto and not talented into moonkin affinity
+					if E.Retail then --this is where it gets tricky due to talents and specs 4 is either moonkin OR tree of life if resto and not talented into moonkin affinity
 						if ElvUI_EltreumUI.Spec == 103 then --moonkin
 							if nameplatePowerPrivateDB.astral then
 								EltreumPowerBar:Show()
 								if not npGradient then
 									EltreumPowerBar:SetStatusBarColor(PowerColorDB.LUNAR_POWER.r, PowerColorDB.LUNAR_POWER.g, PowerColorDB.LUNAR_POWER.b) --its astral/lunar power
-								end
-								if nameplatePowerDB.autoadjustposition then
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-								else
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 								end
 							end
 						else --resto druid or other druid
@@ -603,11 +546,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 								EltreumPowerBar:Show()
 								if not npGradient then
 									EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-								end
-								if nameplatePowerDB.autoadjustposition then
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-								else
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 								end
 							end
 						end
@@ -617,11 +555,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-							end
 						end
 					end
 				elseif stance == 5 or stance == 6 then
@@ -629,11 +562,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:Show()
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 						end
 					end
 				end
@@ -643,54 +571,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if not npGradient then
 						EltreumPowerBar:SetStatusBarColor(PowerColorDB.RAGE.r, PowerColorDB.RAGE.g, PowerColorDB.RAGE.b) --its rage so color it like rage
 					end
-					if nameplatePowerDB.autoadjustposition then
-						if E.Modern then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-						end
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-					end
 				end
 			elseif E.myclass == 'ROGUE' then
 				if nameplatePowerPrivateDB.energy then
 					EltreumPowerBar:Show()
 					if not npGradient then
 						EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
-					end
-					if nameplatePowerDB.autoadjustposition then
-						if shadowDB.nppower then
-							if targetClassPower and targetClassPowerShown then
-								if E.Modern then
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 24)
-								else
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 18)
-								end
-							elseif targetClassPower and not targetClassPowerShown then
-								if E.Modern then
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-								else
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 11)
-								end
-							end
-						else
-							if targetClassPower and targetClassPowerShown then
-								if E.Modern then
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-								else
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-								end
-							elseif targetClassPower and not targetClassPowerShown then
-								if E.Modern then
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-								else
-									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-								end
-							end
-						end
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 					end
 				end
 			elseif E.myclass == 'MONK' then
@@ -699,23 +585,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if not npGradient then
 						EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
 					end
-					if nameplatePowerDB.autoadjustposition then
-						if shadowDB.nppower then
-							if (targetClassPower and targetClassPowerShown) or (targetStagger and targetStaggerShown) then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 24)
-							elseif (targetClassPower and not targetClassPowerShown) or ((targetStagger and not targetStaggerShown)) then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-							end
-						else
-							if (targetClassPower and targetClassPowerShown) or (targetStagger and targetStaggerShown) then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-							elseif (targetClassPower and not targetClassPowerShown) or ((targetStagger and not targetStaggerShown)) then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							end
-						end
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-					end
 				end
 			elseif E.myclass == 'DEATHKNIGHT' then
 				if nameplatePowerPrivateDB.runic then
@@ -723,35 +592,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if not npGradient then
 						EltreumPowerBar:SetStatusBarColor(PowerColorDB.RUNIC_POWER.r, PowerColorDB.RUNIC_POWER.g, PowerColorDB.RUNIC_POWER.b) --its runic power
 					end
-					if nameplatePowerDB.autoadjustposition then
-						if shadowDB.nppower then
-							if targetRunes and targetRunesShown then
-								EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 28)
-							elseif targetRunes and not targetRunesShown then
-								EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 17)
-							end
-						else
-							if targetRunes and targetRunesShown then
-								EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 27)
-							elseif targetRunes and not targetRunesShown then
-								EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 16)
-							end
-						end
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-					end
 				end
 			elseif E.myclass == 'HUNTER' then
-				if E.Modern then
+				if E.Retail then
 					if nameplatePowerPrivateDB.focus then
 						EltreumPowerBar:Show()
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.FOCUS.r, PowerColorDB.FOCUS.g, PowerColorDB.FOCUS.b) --its focus so color it like focus
-						end
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 						end
 					end
 				else
@@ -759,11 +606,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:Show()
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 						end
 					end
 				end
@@ -773,24 +615,14 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if not npGradient then
 						EltreumPowerBar:SetStatusBarColor(PowerColorDB.FURY.r, PowerColorDB.FURY.g, PowerColorDB.FURY.b) --its fury
 					end
-					if nameplatePowerDB.autoadjustposition then
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-					end
 				end
 			elseif E.myclass == 'PRIEST' then
-				if E.Modern then
+				if E.Retail then
 					if ElvUI_EltreumUI.Spec == 258 then
 						if nameplatePowerPrivateDB.insanity then
 							EltreumPowerBar:Show()
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.INSANITY.r, PowerColorDB.INSANITY.g, PowerColorDB.INSANITY.b) --its insanity
-							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 							end
 						end
 					elseif ElvUI_EltreumUI.Spec == 256 or ElvUI_EltreumUI.Spec == 257 then
@@ -799,21 +631,11 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-							end
 						end
 					else --its a low level priest
 						EltreumPowerBar:Show()
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 						end
 					end
 				else
@@ -822,25 +644,15 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 						end
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-						end
 					end
 				end
 			elseif E.myclass == 'SHAMAN' then
-				if E.Modern then
+				if E.Retail then
 					if ElvUI_EltreumUI.Spec == 262 or ElvUI_EltreumUI.Spec == 263 then
 						if nameplatePowerPrivateDB.maelstrom then
 							EltreumPowerBar:Show()
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MAELSTROM.r, PowerColorDB.MAELSTROM.g, PowerColorDB.MAELSTROM.b) --its maelstrom
-							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 							end
 						end
 					elseif ElvUI_EltreumUI.Spec == 264 then
@@ -849,22 +661,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-							end
 						end
 					else --its a low level shaman
 						if nameplatePowerPrivateDB.mana then
 							EltreumPowerBar:Show()
 							if not npGradient then
 								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-							end
-							if nameplatePowerDB.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
 							end
 						end
 					end
@@ -874,31 +676,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						if not npGradient then
 							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
 						end
-						if nameplatePowerDB.autoadjustposition then
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-						else
-							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
-						end
-					end
-				end
-			end
-
-			if nameplatePowerDB.autoadjustposition then
-				if shadowDB.nppower then
-					if targetRunes and targetRunesShown then
-						EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 8)
-					elseif targetClassPower and targetClassPowerShown then
-						EltreumPowerBar:SetPoint("TOP", targetClassPower, "TOP", 0, 8)
-					elseif targetStagger and targetStaggerShown then
-						EltreumPowerBar:SetPoint("TOP", targetStagger, "TOP", 0, 8)
-					end
-				else
-					if targetRunes and targetRunesShown then
-						EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 7)
-					elseif targetClassPower and targetClassPowerShown then
-						EltreumPowerBar:SetPoint("TOP", targetClassPower, "TOP", 0, 7)
-					elseif targetStagger and targetStaggerShown then
-						EltreumPowerBar:SetPoint("TOP", targetStagger, "TOP", 0, 7)
 					end
 				end
 			end
@@ -1004,116 +781,3 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 		ElvUI_EltreumUI:PowerPrediction()
 	end
 end)
-
---update buff/debuff position automatically
-function ElvUI_EltreumUI:UpdateNPwithoutBar()
-	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
-	if nameplatePowerPrivateDB.enable then
-		if nameplatePowerPrivateDB.adjust then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			if E.Retail then
-				if E.myclass == 'MONK' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'DRUID' or E.myclass == 'EVOKER' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
-				elseif E.myclass == "MAGE" and ElvUI_EltreumUI.Spec == 62 then --62 is arcane --E.myclass== 'MAGE' or
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
-				else
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 27
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 27
-				end
-			elseif E.Forever then
-				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 36
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 36
-				else
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 27
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 27
-				end
-			elseif E.Classic then
-				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
-				else
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-				end
-			elseif E.Mists or E.TBC or E.Wrath then
-				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'DEATHKNIGHT' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 25
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 25
-				else
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 20
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 20
-				end
-			end
-			if not nameplatePowerPrivateDB.energy then
-				if E.myclass == 'MONK' or E.myclass == 'ROGUE' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-				end
-			end
-			if not nameplatePowerPrivateDB.runic then
-				if E.myclass == 'DEATHKNIGHT' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-				end
-			end
-			if not nameplatePowerPrivateDB.mana then
-				if not E.Modern then
-					if E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'PRIEST' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					end
-				elseif E.Modern then
-					if ElvUI_EltreumUI.Spec == 64 or ElvUI_EltreumUI.Spec == 63 or ElvUI_EltreumUI.Spec == 270 or ElvUI_EltreumUI.Spec == 256 or ElvUI_EltreumUI.Spec == 257 or ElvUI_EltreumUI.Spec == 264 then
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					elseif ElvUI_EltreumUI.Spec == 65 or ElvUI_EltreumUI.Spec == 66 or ElvUI_EltreumUI.Spec == 70 or ElvUI_EltreumUI.Spec == 265 or ElvUI_EltreumUI.Spec == 266 or ElvUI_EltreumUI.Spec == 267 or E.myclass == 'EVOKER' then --paladin specs bc of holy power and warlocks bc of soul shards
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-					end
-				end
-			end
-			if not nameplatePowerPrivateDB.focus then
-				if E.Modern then
-					if E.myclass == 'HUNTER' then
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					end
-				end
-			end
-			if not nameplatePowerPrivateDB.fury then
-				if E.myclass == 'DEMONHUNTER' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-				end
-			end
-			if not nameplatePowerPrivateDB.rage then
-				if E.myclass == 'WARRIOR' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-				end
-			end
-			if not nameplatePowerPrivateDB.insanity then
-				if E.Modern then
-					if ElvUI_EltreumUI.Spec == 258 then
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					end
-				end
-			end
-			if not nameplatePowerPrivateDB.maelstrom then
-				if E.Modern then
-					if ElvUI_EltreumUI.Spec == 262 or ElvUI_EltreumUI.Spec == 263 then
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					end
-				end
-			end
-		end
-	end
-end
