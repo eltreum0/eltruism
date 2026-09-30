@@ -173,7 +173,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			frame.EltruismBackdropDebuffA = frame.EltruismDebuffa
 		end
 
-		if E.db.unitframe.colors.transparentHealth or UFdb.lightmode then
+		if E.db.unitframe.colors.transparentHealth then
 			if frame.Health and frame.Health.backdrop then
 				local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
 				local transparentHealth = E.db.unitframe.colors.transparentHealth or UFdb.lightmode
