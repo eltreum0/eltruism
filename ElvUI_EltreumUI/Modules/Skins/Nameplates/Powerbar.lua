@@ -751,7 +751,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			local hasCOMBO = {
 				["DEATHKNIGHT"]	= true,
 				["DEMONHUNTER"]	= false,
-				["DRUID"] = (_G.GetShapeshiftForm() == 2) and true or false,
+				["DRUID"] = true, --(_G.GetShapeshiftForm() == 2) and true or false,
 				["HUNTER"] = false,
 				["MAGE"] = ((ElvUI_EltreumUI.Spec == 1) or (ElvUI_EltreumUI.Spec == 62)) and true or false,
 				["MONK"] = ((ElvUI_EltreumUI.Spec == 1) or (ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268)) and true or false,
