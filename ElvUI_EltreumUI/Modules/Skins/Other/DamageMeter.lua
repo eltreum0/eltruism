@@ -17,17 +17,6 @@ end
 local dmMin = CreateColor(1, 1, 1, 1)
 local dmMax = CreateColor(1, 1, 1, 1)
 
---skins change requires checking the table, then using that to actually skin like before
-local ElvUIDamageMeterData
-if S.addonsToLoad and S.addonsToLoad['Blizzard_DamageMeter'] then
-	for _, skin in ipairs(S.addonsToLoad['Blizzard_DamageMeter']) do
-		if skin.data and skin.data.HandleStatusBar then
-			ElvUIDamageMeterData = skin.data
-			break
-		end
-	end
-end
-
 --pretty much copied from elvui and edited to look more like details
 do
 
@@ -544,16 +533,7 @@ do
 					_G.DamageMeterSessionWindow1:SetClampRectInsets(-2000, -2000, -2000, -2000)
 
 					--skins change requires checking the table, then using that to actually skin like before
-					--hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinDamageMeter)
-					if not ElvUIDamageMeterData and S.addonsToLoad and S.addonsToLoad['Blizzard_DamageMeter'] then
-						for _, skin in ipairs(S.addonsToLoad['Blizzard_DamageMeter']) do
-							if skin.data and skin.data.HandleStatusBar then
-								ElvUIDamageMeterData = skin.data
-								break
-							end
-						end
-					end
-
+					local ElvUIDamageMeterData = S.addonStorage.Blizzard_DamageMeter.data
 					if ElvUIDamageMeterData and not _G.DamageMeter.EltruismStatusBarHook then
 						hooksecurefunc(ElvUIDamageMeterData, "HandleStatusBar", SkinDamageMeter)
 						_G.DamageMeter.EltruismStatusBarHook = true
