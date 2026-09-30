@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 	if db.enablebackdrop then
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
 		local backdropAlpha = transparentHealth and (UFdb.ufcustomtexture.backdropalpha or 1) or 1
-		local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
+		local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
 		if backdropAlpha == 1 and healthAlpha < 1 then
 			backdropAlpha = healthAlpha
 		end
