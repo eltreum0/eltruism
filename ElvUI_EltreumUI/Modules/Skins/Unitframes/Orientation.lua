@@ -15,7 +15,7 @@ local forbiddenKeywords = {
 
 local function ApplyBackdropAlphas(db, bg, backdrop, tex)
 	local transparentHealth = E.db.unitframe.colors.transparentHealth
-	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+	local backdropAlpha = transparentHealth and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1) or 1
 	local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
 	if backdropAlpha == 1 and healthAlpha < 1 then
 		backdropAlpha = healthAlpha
@@ -64,8 +64,8 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 	local gm = db.gradientmode
 
 	local transparentHealth = E.db.unitframe.colors.transparentHealth
-	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
-	local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
+	local backdropAlpha = transparentHealth and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha or 1) or 1
+	local healthAlpha = transparentHealth and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha or 1) or 1
 	if backdropAlpha == 1 and healthAlpha < 1 then
 		backdropAlpha = healthAlpha
 	end

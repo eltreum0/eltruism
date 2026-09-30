@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 	if not db then return end
 	if db.enablebackdrop then
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
-		local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+		local backdropAlpha = transparentHealth and (UFdb.ufcustomtexture.backdropalpha or 1) or 1
 		local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
 		if backdropAlpha == 1 and healthAlpha < 1 then
 			backdropAlpha = healthAlpha
@@ -295,7 +295,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 		local unitframe = _G["ElvUF_"..name]
 		local orientation = db.orientation or "HORIZONTAL"
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
-		local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+		local backdropAlpha = transparentHealth and (UFdb.ufcustomtexture.backdropalpha or 1) or 1
 
 		if issecretvalue(classunit) and issecretvalue(reaction) then return end --both are secret
 		if issecretvalue(classunit) and isPlayer then return end --is player and is secret
@@ -503,7 +503,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		buttonclass = "NPCFRIENDLY"
 	end
 	local transparentHealth = E.db.unitframe.colors.transparentHealth
-	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+	local backdropAlpha = transparentHealth and (UFdb.ufcustomtexture.backdropalpha or 1) or 1
 
 	if buttonclass and button.Health then
 		local targetUFOrientation = UFdb.UForientation
