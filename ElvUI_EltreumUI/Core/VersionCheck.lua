@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 
 	--elvui check
 	if E.version < 99999 then
-		if E.version < GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI') then
+		if E.version < (tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI'))) then
 			E:StaticPopup_Show('ELVUIVERSIONCHECK')
 			ElvUI_EltreumUI:Print(L["Your ElvUI version is out of date, please update to avoid issues!"])
 		elseif E.version > (tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI')) + 0.03) then
