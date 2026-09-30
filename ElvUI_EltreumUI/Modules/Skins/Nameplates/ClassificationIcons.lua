@@ -9,6 +9,7 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitGUID = _G.UnitGUID
 local UnitClassification = _G.UnitClassification
+local UnitLevel = _G.UnitLevel
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 
@@ -2186,73 +2187,84 @@ local unitisnotboss = {
 	["rareelite"] = true,
 	["rare"] = true,
 }
-E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
+
+local function returnIcon(classification,isBoss)
 	local red,green,blue
 	local icon
-	if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
-	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
-	if unitisnotboss[classification] then
-		if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
-			if classification == 'worldboss' then
-				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
-				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
-				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
-				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				else
-					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				end
-			elseif classification == 'elite' then
-				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR*255)
-				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
-				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
-				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
-					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				else
-					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				end
-			elseif classification == 'rareelite' then
-				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR*255)
-				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
-				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
-				if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
-					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				else
-					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				end
-			elseif classification == 'rare' then
-				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR*255)
-				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
-				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
-				if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
-					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				else
-					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				end
-			end
+	if isBoss then
+		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
+		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
+		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
+		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
+			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		else
+			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
 		end
-	elseif not E.Modern then
+	elseif classification == 'worldboss' then
+		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
+		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
+		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
+		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
+			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		else
+			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		end
+	elseif classification == 'elite' then
+		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR*255)
+		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
+		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
+		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
+			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		else
+			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		end
+	elseif classification == 'rareelite' then
+		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR*255)
+		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
+		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
+		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		else
+			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		end
+	elseif classification == 'rare' then
+		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR*255)
+		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
+		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
+		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
+			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		else
+			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+			return icon
+		end
+	end
+end
+
+E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
+	--if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
+	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
+	if E.Modern then
+		if UnitLevel(unit) == -1 then
+			return returnIcon(classification, true)
+		elseif unitisnotboss[classification] then
+			return returnIcon(classification, false)
+		end
+	else
 		if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 			local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
 			if bossIDs[unitID] then
-				red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
-				blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
-				green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
-				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				else
-					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-					return icon
-				end
+				return returnIcon(classification, true)
+			elseif unitisnotboss[classification] then
+				return returnIcon(classification, false)
 			end
 		end
 	end
