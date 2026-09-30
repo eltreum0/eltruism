@@ -69,6 +69,13 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 	local db = UFdb.gradientmode
 	if not db then return end
 	if db.enablebackdrop then
+		local transparentHealth = E.db.unitframe.colors.transparentHealth
+		local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+		local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
+		if backdropAlpha == 1 and healthAlpha < 1 then
+			backdropAlpha = healthAlpha
+		end
+
 		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		if isPlayer and (not E:NotSecretValue(englishClass) or not englishClass) then
 			englishClass = "ELTRUISM"
@@ -175,15 +182,9 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 
 		if E.db.unitframe.colors.transparentHealth then
 			if frame.Health and frame.Health.backdrop then
-				local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-				local transparentHealth = E.db.unitframe.colors.transparentHealth or UFdb.lightmode
-				local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-				if backdropAlpha == 1 and healthAlpha < 1 then
-					backdropAlpha = healthAlpha
-				end
 				frame.Health.backdrop:SetAlpha(backdropAlpha)
 				if UFdb.lightmode then
-					frame.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
+					frame.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 					if frame.Health.backdrop.Center and frame.Health.backdrop.Center:IsShown() then
 						frame.Health.backdrop.Center:Hide()
 					end
@@ -220,7 +221,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 
 			if UFdb.lightmode then
 				if frame.Health.backdropTex then
-					frame.Health.backdropTex:SetAlpha(UFdb.ufcustomtexture.backdropalpha)
+					--frame.Health.backdropTex:SetAlpha(UFdb.ufcustomtexture.backdropalpha)
 					frame.Health.backdropTex:SetGradient(orientation, minColor, maxColor)
 				end
 				if frame.Health.bg then
@@ -293,6 +294,8 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		local unitframe = _G["ElvUF_"..name]
 		local orientation = db.orientation or "HORIZONTAL"
+		local transparentHealth = E.db.unitframe.colors.transparentHealth
+		local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
 
 		if issecretvalue(classunit) and issecretvalue(reaction) then return end --both are secret
 		if issecretvalue(classunit) and isPlayer then return end --is player and is secret
@@ -398,17 +401,13 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 			isDisconnected = isPlayer and not (E:NotSecretValue(isDisconnected) and isDisconnected)
 
 			if UFdb.lightmode then
-				local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-				if backdropAlpha == 1 and UFdb.ufcustomtexture.healthalpha and UFdb.ufcustomtexture.healthalpha < 1 then
-					backdropAlpha = UFdb.ufcustomtexture.healthalpha
-				end
 				if unitframe.Health.bg then
 					unitframe.Health.bg:SetAlpha(backdropAlpha)
 					unitframe.Health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
 				end
 				if unitframe.Health.backdrop then
 					unitframe.Health.backdrop:SetAlpha(backdropAlpha)
-					unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
+					unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 					if unitframe.Health.backdrop.Center and unitframe.Health.backdrop.Center:IsShown() then
 						unitframe.Health.backdrop.Center:Hide()
 					end
@@ -440,12 +439,6 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 					end
 				end
 			elseif UFdb.darkmode then
-				local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-				local transparentHealth = E.db.unitframe.colors.transparentHealth or UFdb.lightmode
-				local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-				if backdropAlpha == 1 and healthAlpha < 1 then
-					backdropAlpha = healthAlpha
-				end
 				if unitframe.Health.backdrop then
 					unitframe.Health.backdrop:SetAlpha(backdropAlpha)
 					unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
@@ -484,7 +477,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 			if not db.enable and not UFdb.ufcustomtexture.enable then
 				if UFdb.darkmode and unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture))
-					unitframe.Health.backdropTex:SetAlpha(UFdb.ufcustomtexture.backdropalpha)
+					unitframe.Health.backdropTex:SetAlpha(backdropAlpha)
 				end
 			end
 		end
@@ -509,6 +502,9 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	else
 		buttonclass = "NPCFRIENDLY"
 	end
+	local transparentHealth = E.db.unitframe.colors.transparentHealth
+	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+
 	if buttonclass and button.Health then
 		local targetUFOrientation = UFdb.UForientation
 		if not noOrientation and targetUFOrientation and button.Health.EltruismOrientation ~= targetUFOrientation then
@@ -527,17 +523,13 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		isDisconnected = isPlayer and not (E:NotSecretValue(isDisconnected) and isDisconnected)
 
 		if UFdb.lightmode then
-			local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-			if backdropAlpha == 1 and UFdb.ufcustomtexture.healthalpha and UFdb.ufcustomtexture.healthalpha < 1 then
-				backdropAlpha = UFdb.ufcustomtexture.healthalpha
-			end
 			if button.Health.bg then
 				button.Health.bg:SetAlpha(backdropAlpha)
 				button.Health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
 			end
 			if button.Health.backdrop then
 				button.Health.backdrop:SetAlpha(backdropAlpha)
-				button.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
+				button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 				if button.Health.backdrop.Center and button.Health.backdrop.Center:IsShown() then
 					button.Health.backdrop.Center:Hide()
 				end
@@ -577,12 +569,6 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				end
 			end
 		elseif UFdb.darkmode then
-			local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-			local transparentHealth = E.db.unitframe.colors.transparentHealth or UFdb.lightmode
-			local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-			if backdropAlpha == 1 and healthAlpha < 1 then
-				backdropAlpha = healthAlpha
-			end
 			if button.Health.backdrop then
 				button.Health.backdrop:SetAlpha(backdropAlpha)
 				button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)

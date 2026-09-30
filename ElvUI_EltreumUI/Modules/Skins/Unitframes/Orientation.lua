@@ -14,8 +14,8 @@ local forbiddenKeywords = {
 }
 
 local function ApplyBackdropAlphas(db, bg, backdrop, tex)
-	local backdropAlpha = db.ufcustomtexture.backdropalpha or 1
-	local transparentHealth = E.db.unitframe.colors.transparentHealth or db.lightmode
+	local transparentHealth = E.db.unitframe.colors.transparentHealth
+	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
 	local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
 	if backdropAlpha == 1 and healthAlpha < 1 then
 		backdropAlpha = healthAlpha
@@ -28,8 +28,8 @@ local function ApplyBackdropAlphas(db, bg, backdrop, tex)
 		end
 		if backdrop then
 			backdrop:SetAlpha(backdropAlpha)
-			backdrop:SetBackdropColor(0, 0, 0, 0)
-			if backdrop.Center then backdrop.Center:Hide() end
+			backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+			if transparentHealth and backdrop.Center then backdrop.Center:Hide() end
 		end
 		if tex then
 			tex:SetAlpha(backdropAlpha)
@@ -63,15 +63,18 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 	local db = E.db.ElvUI_EltreumUI.unitframes
 	local gm = db.gradientmode
 
+	local transparentHealth = E.db.unitframe.colors.transparentHealth
+	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
+	local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
+	if backdropAlpha == 1 and healthAlpha < 1 then
+		backdropAlpha = healthAlpha
+	end
+
 	if isHealthBar then
 		if not db.ufcustomtexture.backdrophidden then
 			if backdropTex then
 				backdropTex:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture))
 				if E.db.unitframe.colors.transparentHealth then
-					local backdropAlpha = db.ufcustomtexture.backdropalpha or 1
-					if backdropAlpha == 1 and db.ufcustomtexture.healthalpha and db.ufcustomtexture.healthalpha < 1 then
-						backdropAlpha = db.ufcustomtexture.healthalpha
-					end
 					if db.lightmode then
 						backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
 					elseif db.darkmode then
@@ -79,9 +82,9 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 					end
 				end
 			end
-		else
+		elseif E.db.unitframe.colors.transparentHealth then
 			if backdropTex then
-				backdropTex:SetAlpha(0)
+				backdropTex:SetAlpha(backdropAlpha)
 			end
 			if statusBar.backdrop then
 				if E.db.unitframe.thinBorders then
