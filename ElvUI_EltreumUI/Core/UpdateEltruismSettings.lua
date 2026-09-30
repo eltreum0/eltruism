@@ -21,11 +21,6 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 
-		--fix retail/forever power bar size, its actually the same size as the health bar width
-		if E.Modern then
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 150
-		end
-
 		--dmg meter skin
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
@@ -63,14 +58,6 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
 		E.db.ElvUI_EltreumUI.nameplates.classification.enable = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
-
-		--power bar scaling issues
-		--fix retail/forever power bar size, its actually the same size as the health bar width
-		if E.Modern then
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 150
-		else
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.5
-		end
 
 		--nameplate shadows
 		E.db.ElvUI_EltreumUI.skins.shadow.nameplates = true
