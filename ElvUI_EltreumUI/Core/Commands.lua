@@ -112,6 +112,15 @@ function ElvUI_EltreumUI:RunCommands(message)
 				ElvUI_EltreumUI:TransparentChat()
 			end
 		end
+	elseif message == 'transparent' then
+		local UF = E:GetModule('UnitFrames')
+		if E.db.unitframe.colors.transparentHealth then
+			E.db.unitframe.colors.transparentHealth = false
+			UF:Update_AllFrames()
+		else
+			E.db.unitframe.colors.transparentHealth = true
+			UF:Update_AllFrames()
+		end
 	elseif message == 'color' then
 		if not InCombatLockdown() then
 			ElvUI_EltreumUI:ColorModes()
