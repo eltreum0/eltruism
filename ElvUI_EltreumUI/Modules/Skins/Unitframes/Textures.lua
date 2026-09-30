@@ -15,232 +15,192 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitCanAttack = _G.UnitCanAttack
 local UnitIsEnemy = _G.UnitIsEnemy
 local UnitIsFriend = _G.UnitIsFriend
+local UnitInParty = _G.UnitInParty
+local UnitInRaid = _G.UnitInRaid
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	if not UFdb then return end
+	local elvDB = E.db.unitframe
+	if not UnitExists(unit) then return end
+
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
-	local isCharmed = E:NotSecretValue(UnitIsCharmed(unit)) and UnitIsCharmed(unit) or false
-	local namebar
-	if UnitExists(unit) then
-		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-			if not E:NotSecretValue(classunit) or not classunit then
-				classunit = E.myclass
+	local isCharmed = UnitIsCharmed(unit)
+	isCharmed = E:NotSecretValue(isCharmed) and isCharmed or false
+
+	local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+	local isActualPlayer = false
+
+	local unitframe = _G["ElvUF_"..name]
+	if not (unitframe and unitframe.Health and unitframe.Health:GetStatusBarTexture() ~= nil) then return end
+
+	if unitframe.realUnit then
+		if name == "Player" and unitframe.__unit == "vehicle" then
+			isPlayer = false
+			isActualPlayer = false
+		end
+		if name == "Pet" and unitframe.__unit == "player" then
+			isPlayer = true
+			isActualPlayer = true
+			classunit = E.myclass
+		end
+	end
+
+	local targetUFOrientation = UFdb.UForientation
+	if not noOrientation and targetUFOrientation and unitframe.Health.EltruismOrientation ~= targetUFOrientation then
+		unitframe.Health:SetOrientation(targetUFOrientation)
+		unitframe.Health.EltruismOrientation = targetUFOrientation
+	end
+
+	local healthTexture
+	if (isPlayer and not isCharmed) or isActualPlayer then
+		if not E:NotSecretValue(classunit) or not classunit then
+			classunit = E.myclass or "ELTRUISM"
+		end
+		if UFdb.ufcustomtexture.enable then
+			if UFdb.ufcustomtexture.classdetect then
+				healthTexture = ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit)
+			else
+				local customTex = UFdb.ufcustomtexture[unittexture.."texture"]
+				healthTexture = E.LSM:Fetch("statusbar", customTex or elvDB.statusbar or UF.db.statusbar)
 			end
-			namebar = ElvUI_EltreumUI:UnitframeClassTexture(classunit)
+		elseif UFdb.gradientmode.enable and (UFdb.gradientmode["enable"..unit] or UFdb.gradientmode["enable"..unittexture]) then
+			if UFdb.gradientmode.useUFtexture then
+				healthTexture = E.LSM:Fetch("statusbar", elvDB.statusbar or UF.db.statusbar)
+			else
+				healthTexture = E.LSM:Fetch("statusbar", UFdb.gradientmode.texture or elvDB.statusbar or UF.db.statusbar)
+			end
+		elseif UFdb.uftextureversion and UFdb.uftextureversion ~= "NONE" then
+			healthTexture = ElvUI_EltreumUI:UnitframeClassTexture(classunit)
 		else
-			local isTap = E:NotSecretValue(UnitIsTapDenied(unit)) and UnitIsTapDenied(unit)
-			local isPlayerControlled = E:NotSecretValue(UnitPlayerControlled(unit)) and UnitPlayerControlled(unit)
-			if isTap and not isPlayerControlled then
-				namebar = ElvUI_EltreumUI:UnitframeClassTexture("TAPPED")
-			else
-				local npcClass
-				if reaction and E:NotSecretValue(reaction) then
-					if reaction >= 5 then
-						npcClass = "NPCFRIENDLY"
-					elseif reaction == 4 then
-						npcClass = "NPCNEUTRAL"
-					elseif reaction == 3 then
-						npcClass = "NPCUNFRIENDLY"
-					elseif reaction <= 2 then
-						npcClass = "NPCHOSTILE"
-					end
+			healthTexture = E.LSM:Fetch("statusbar", elvDB.statusbar or UF.db.statusbar)
+		end
+	else
+		local isTap = UnitIsTapDenied(unit)
+		isTap = E:NotSecretValue(isTap) and isTap
+		local isPlayerControlled = UnitPlayerControlled(unit)
+		isPlayerControlled = E:NotSecretValue(isPlayerControlled) and isPlayerControlled
+
+		local customNpcTexture
+		local defaultNpcTexture
+		if isTap and not isPlayerControlled then
+			customNpcTexture = ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED")
+			defaultNpcTexture = ElvUI_EltreumUI:UnitframeClassTexture("TAPPED")
+		else
+			local npcClass
+			if reaction and E:NotSecretValue(reaction) then
+				if reaction >= 5 then
+					npcClass = "NPCFRIENDLY"
+				elseif reaction == 4 then
+					npcClass = "NPCNEUTRAL"
+				elseif reaction == 3 then
+					npcClass = "NPCUNFRIENDLY"
+				elseif reaction <= 2 then
+					npcClass = "NPCHOSTILE"
 				end
-				if not npcClass then
-					if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", unit)) and UnitCanAttack("player", unit)) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", unit)) and UnitIsEnemy("player", unit)) then
+			end
+			if not npcClass then
+				local canAttack = UnitCanAttack("player", unit)
+				if E:NotSecretValue(canAttack) and canAttack then
+					npcClass = "NPCHOSTILE"
+				else
+					local isEnemy = UnitIsEnemy("player", unit)
+					if E:NotSecretValue(isEnemy) and isEnemy then
 						npcClass = "NPCHOSTILE"
-					elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", unit)) and UnitIsFriend("player", unit) then
-						npcClass = "NPCFRIENDLY"
 					else
-						npcClass = "NPCHOSTILE"
+						local isFriend = UnitIsFriend("player", unit)
+						if E:NotSecretValue(isFriend) and isFriend then
+							npcClass = "NPCFRIENDLY"
+						else
+							npcClass = "NPCHOSTILE"
+						end
 					end
 				end
-				namebar = ElvUI_EltreumUI:UnitframeClassTexture(npcClass)
+			end
+			customNpcTexture = ElvUI_EltreumUI:UnitframeClassTextureCustom(npcClass)
+			defaultNpcTexture = ElvUI_EltreumUI:UnitframeClassTexture(npcClass)
+		end
+
+		if UFdb.ufcustomtexture.enable then
+			if UFdb.ufcustomtexture.classdetect then
+				healthTexture = customNpcTexture
+			else
+				local customTex = UFdb.ufcustomtexture[unittexture.."texture"]
+				healthTexture = E.LSM:Fetch("statusbar", customTex or elvDB.statusbar or UF.db.statusbar)
+			end
+		elseif UFdb.gradientmode.enable and (UFdb.gradientmode["enable"..unit] or UFdb.gradientmode["enable"..unittexture]) then
+			if UFdb.gradientmode.useUFtexture then
+				healthTexture = E.LSM:Fetch("statusbar", elvDB.statusbar or UF.db.statusbar)
+			else
+				healthTexture = E.LSM:Fetch("statusbar", UFdb.gradientmode.texture or elvDB.statusbar or UF.db.statusbar)
+			end
+		elseif UFdb.uftextureversion and UFdb.uftextureversion ~= "NONE" then
+			healthTexture = defaultNpcTexture
+		else
+			healthTexture = E.LSM:Fetch("statusbar", elvDB.statusbar or UF.db.statusbar)
+		end
+	end
+
+	local isTransparent = (unitframe.Health.isTransparent ~= nil and unitframe.Health.isTransparent) or elvDB.colors.transparentHealth
+	local barTex = unitframe.Health:GetStatusBarTexture()
+	local backdropTex = unitframe.Health.backdropTex or unitframe.Health.bg
+	local backdropTexture = UFdb.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture) or (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar))
+
+	if not isTransparent then
+		if UFdb.darkmode then
+			local defaultTex = (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar)) or (UF.db.statusbar and E.LSM:Fetch("statusbar", UF.db.statusbar))
+			if barTex and defaultTex then
+				barTex:SetTexture(defaultTex)
+			end
+			if backdropTex and healthTexture then
+				backdropTex:SetTexture(healthTexture)
+			end
+		elseif UFdb.lightmode then
+			if barTex and healthTexture then
+				barTex:SetTexture(healthTexture)
+			end
+			if backdropTex and backdropTexture then
+				backdropTex:SetTexture(backdropTexture)
 			end
 		end
-		local unitframe = _G["ElvUF_"..name]
-		if unitframe and unitframe.Health and unitframe.Health:GetStatusBarTexture() ~= nil then
-			if not noOrientation then
-				unitframe.Health:SetOrientation(UFdb.UForientation)
-			end
-			if (E.db.unitframe.colors.transparentHealth or UFdb.lightmode) and not UFdb.gradientmode.enablebackdrop then
-				if unitframe.Health and unitframe.Health.backdrop then
-					local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-					local transparentHealth = E.db.unitframe.colors.transparentHealth or UFdb.lightmode
-					local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-					if backdropAlpha == 1 and healthAlpha < 1 then
-						backdropAlpha = healthAlpha
-					end
-					unitframe.Health.backdrop:SetAlpha(backdropAlpha)
-					if UFdb.lightmode then
-						unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-						if unitframe.Health.backdrop.Center and unitframe.Health.backdrop.Center:IsShown() then
-							unitframe.Health.backdrop.Center:Hide()
-						end
-						if unitframe.Health.bg then
-							unitframe.Health.bg:SetAlpha(backdropAlpha)
-							unitframe.Health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
-						end
-						if unitframe.Health.backdropTex and not unitframe.EltruismDebuffExists then
-							unitframe.Health.backdropTex:SetAlpha(backdropAlpha)
-							unitframe.Health.backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
-						end
-					else
-						unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-						if unitframe.Health.backdrop.Center then
-							if not unitframe.Health.backdrop.Center:IsShown() then
-								unitframe.Health.backdrop.Center:Show()
-							end
-							unitframe.Health.backdrop.Center:SetAlpha(backdropAlpha)
-						end
-						if unitframe.Health.bg then
-							unitframe.Health.bg:SetAlpha(backdropAlpha)
-						end
-						if unitframe.Health.backdropTex and not unitframe.EltruismDebuffExists then
-							unitframe.Health.backdropTex:SetAlpha(backdropAlpha)
-						end
-					end
-				end
-			end
-			if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and not isCharmed then
-				if UFdb.lightmode then
-					if UFdb.ufcustomtexture.enable then
-						if UFdb.ufcustomtexture.classdetect then
-							unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-						else
-							unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture[unittexture.."texture"]))
-						end
-					end
-					if UFdb.gradientmode.enable and (UFdb.gradientmode["enable"..unit] or UFdb.gradientmode["enable"..unittexture]) then
-						if not UFdb.ufcustomtexture.enable then
-							if not UFdb.gradientmode.useUFtexture then
-								unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", UFdb.gradientmode.texture))
-							end
-						end
-					end
-				elseif UFdb.darkmode then
-					if unitframe.Health.backdropTex then
-						if UFdb.ufcustomtexture.enable then
-							if UFdb.ufcustomtexture.classdetect then
-								unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-							else
-								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb["ufcustomtexture"][unittexture.."texture"]))
-							end
-						end
-						if UFdb.gradientmode.enable and (UFdb.gradientmode["enable"..unit] or UFdb.gradientmode["enable"..unittexture]) then
-							if not UFdb.ufcustomtexture.enable then
-								if not UFdb.gradientmode.useUFtexture then
-									unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb.gradientmode.texture))
-								end
-							end
-						end
-					end
-				end
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+			backdropTex:SetAllPoints(unitframe.Health)
+			if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+				backdropTex:SetTexCoord(1, 0, 0, 1)
 			else
-				if UFdb.lightmode then
-					if UFdb.ufcustomtexture.enable then
-						if UFdb.ufcustomtexture.classdetect then
-							local isTap = E:NotSecretValue(UnitIsTapDenied(unit)) and UnitIsTapDenied(unit)
-							local isPlayerControlled = E:NotSecretValue(UnitPlayerControlled(unit)) and UnitPlayerControlled(unit)
-							if isTap and not isPlayerControlled then
-								unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
-							else
-								local npcClass
-								if reaction and E:NotSecretValue(reaction) then
-									if reaction >= 5 then
-										npcClass = "NPCFRIENDLY"
-									elseif reaction == 4 then
-										npcClass = "NPCNEUTRAL"
-									elseif reaction == 3 then
-										npcClass = "NPCUNFRIENDLY"
-									elseif reaction <= 2 then
-										npcClass = "NPCHOSTILE"
-									end
-								end
-								if not npcClass then
-									if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", unit)) and UnitCanAttack("player", unit)) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", unit)) and UnitIsEnemy("player", unit)) then
-										npcClass = "NPCHOSTILE"
-									elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", unit)) and UnitIsFriend("player", unit) then
-										npcClass = "NPCFRIENDLY"
-									else
-										npcClass = "NPCHOSTILE"
-									end
-								end
-								unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(npcClass))
-							end
-						else
-							unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", UFdb["ufcustomtexture"][unittexture.."texture"]))
-						end
-					end
-					if UFdb.gradientmode.enable and (UFdb.gradientmode["enable"..unit] or UFdb.gradientmode["enable"..unittexture]) then
-						if not UFdb.ufcustomtexture.enable then
-							if not UFdb.gradientmode.useUFtexture then
-								unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", UFdb.gradientmode.texture))
-							end
-						end
-					end
-				elseif UFdb.darkmode then
-					if UFdb.ufcustomtexture.enable then
-						if unitframe.Health.backdropTex then
-							if UFdb.ufcustomtexture.classdetect then
-								local isTap = E:NotSecretValue(UnitIsTapDenied(unit)) and UnitIsTapDenied(unit)
-								local isPlayerControlled = E:NotSecretValue(UnitPlayerControlled(unit)) and UnitPlayerControlled(unit)
-								if isTap and not isPlayerControlled then
-									unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
-								else
-									local npcClass
-									if reaction and E:NotSecretValue(reaction) then
-										if reaction >= 5 then
-											npcClass = "NPCFRIENDLY"
-										elseif reaction == 4 then
-											npcClass = "NPCNEUTRAL"
-										elseif reaction == 3 then
-											npcClass = "NPCUNFRIENDLY"
-										elseif reaction <= 2 then
-											npcClass = "NPCHOSTILE"
-										end
-									end
-									if not npcClass then
-										if (UnitCanAttack and E:NotSecretValue(UnitCanAttack("player", unit)) and UnitCanAttack("player", unit)) or (UnitIsEnemy and E:NotSecretValue(UnitIsEnemy("player", unit)) and UnitIsEnemy("player", unit)) then
-											npcClass = "NPCHOSTILE"
-										elseif UnitIsFriend and E:NotSecretValue(UnitIsFriend("player", unit)) and UnitIsFriend("player", unit) then
-											npcClass = "NPCFRIENDLY"
-										else
-											npcClass = "NPCHOSTILE"
-										end
-									end
-									unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(npcClass))
-								end
-							else
-								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb["ufcustomtexture"][unittexture.."texture"]))
-							end
-						end
-					end
-					if UFdb.gradientmode.enable and (UFdb.gradientmode["enable"..unit] or UFdb.gradientmode["enable"..unittexture]) then
-						if unitframe.Health.backdropTex then
-							if not UFdb.ufcustomtexture.enable then
-								if not UFdb.gradientmode.useUFtexture then
-									unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb.gradientmode.texture))
-								end
-							end
-						end
-					end
-				end
-			end
-			if not UFdb.gradientmode.enable and not UFdb.ufcustomtexture.enable then
-				if UFdb.lightmode then
-					if UFdb.uftextureversion ~= "NONE" then
-						unitframe.Health:GetStatusBarTexture():SetTexture(namebar)
-					end
-					unitframe.Health.backdrop:SetBackdropColor(0,0,0,UFdb.ufcustomtexture.backdropalpha) --after 11.0.5 it seems like the backdrop gets class colored
-				elseif UFdb.darkmode and unitframe.Health.backdropTex then
-					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture))
-					unitframe.Health.backdropTex:SetAlpha(UFdb.ufcustomtexture.backdropalpha)
-				end
+				backdropTex:SetTexCoord(0, 1, 0, 1)
 			end
 		end
+	else
+		if UFdb.darkmode then
+			if barTex and barTex.SetColorTexture then
+				barTex:SetColorTexture(0, 0, 0, 0)
+			end
+			if backdropTex and healthTexture then
+				backdropTex:SetTexture(healthTexture)
+			end
+		elseif UFdb.lightmode then
+			if barTex and healthTexture then
+				barTex:SetTexture(healthTexture)
+			end
+			if backdropTex and backdropTexture then
+				backdropTex:SetTexture(backdropTexture)
+			end
+		end
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+			backdropTex:SetAllPoints(unitframe.Health)
+			if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+				backdropTex:SetTexCoord(1, 0, 0, 1)
+			else
+				backdropTex:SetTexCoord(0, 1, 0, 1)
+			end
+		end
+	end
+
+	if ElvUI_EltreumUI.ApplyBackdropAlphas then
+		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, unitframe.Health.bg, unitframe.Health.backdrop, backdropTex, isTransparent, barTex)
 	end
 end
 
@@ -248,11 +208,15 @@ end
 function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	if not UFdb then return end
+	local elvDB = E.db.unitframe
+	local unit = button.__unit or button.unit
+	if not unit then return end
+	if not button.Health then return end
 
 	--due to raid pet, check if is player
 	local buttonclass
-	if UnitIsPlayer(button.__unit) or (E.Retail and UnitInPartyIsAI(button.__unit)) then
-		buttonclass = select(2, UnitClass(button.__unit))
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
+		buttonclass = select(2, UnitClass(unit))
 		if not E:NotSecretValue(buttonclass) or not buttonclass then
 			buttonclass = "NPCFRIENDLY"
 		end
@@ -260,99 +224,85 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 		buttonclass = "NPCFRIENDLY"
 	end
 
-	if buttonclass and button.Health then
-		if not noOrientation then
-			button.Health:SetOrientation(UFdb.UForientation)
-		end
-		if (E.db.unitframe.colors.transparentHealth or UFdb.lightmode) and not UFdb.gradientmode.enablebackdrop then
-			if button.Health and button.Health.backdrop then
-				local backdropAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-				local transparentHealth = E.db.unitframe.colors.transparentHealth or UFdb.lightmode
-				local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-				if backdropAlpha == 1 and healthAlpha < 1 then
-					backdropAlpha = healthAlpha
-				end
-				button.Health.backdrop:SetAlpha(backdropAlpha)
-				if UFdb.lightmode then
-					button.Health.backdrop:SetBackdropColor(0, 0, 0, 0)
-					if button.Health.backdrop.Center and button.Health.backdrop.Center:IsShown() then
-						button.Health.backdrop.Center:Hide()
-					end
-					if button.Health.bg then
-						button.Health.bg:SetAlpha(backdropAlpha)
-						button.Health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
-					end
-					if button.Health.backdropTex and not button.EltruismDebuffExists then
-						button.Health.backdropTex:SetAlpha(backdropAlpha)
-						button.Health.backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
-					end
-				else
-					button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-					if button.Health.backdrop.Center then
-						if not button.Health.backdrop.Center:IsShown() then
-							button.Health.backdrop.Center:Show()
-						end
-						button.Health.backdrop.Center:SetAlpha(backdropAlpha)
-					end
-					if button.Health.bg then
-						button.Health.bg:SetAlpha(backdropAlpha)
-					end
-					if button.Health.backdropTex and not button.EltruismDebuffExists then
-						button.Health.backdropTex:SetAlpha(backdropAlpha)
-					end
-				end
-			end
-		end
+	local targetUFOrientation = UFdb.UForientation
+	if not noOrientation and targetUFOrientation and button.Health.EltruismOrientation ~= targetUFOrientation then
+		button.Health:SetOrientation(targetUFOrientation)
+		button.Health.EltruismOrientation = targetUFOrientation
+	end
 
-		local groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
-		if UFdb.lightmode then
-			button.Health.backdrop:SetAlpha(UFdb.ufcustomtexture.backdropalpha)
-			if UFdb.ufcustomtexture.enable then
-				if not UFdb.ufcustomtexture.noclasstexture then
-					button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-				else
-					if frametype then
-						if frametype == "raid" then
-							button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("RAID"))
-						elseif frametype == "party" then
-							button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("PARTY"))
-						end
-					else
-						button.Health:GetStatusBarTexture():SetTexture(groupbar)
-					end
-				end
+	local healthTexture
+	if UFdb.ufcustomtexture.enable then
+		if not UFdb.ufcustomtexture.noclasstexture then
+			healthTexture = ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass)
+		else
+			if frametype == "raid" then
+				healthTexture = ElvUI_EltreumUI:UnitframeClassTextureCustom("RAID")
+			elseif frametype == "party" then
+				healthTexture = ElvUI_EltreumUI:UnitframeClassTextureCustom("PARTY")
 			else
-				if UFdb.gradientmode.enable then
-					if UFdb.gradientmode.enablegroupunits and not UFdb.gradientmode.useUFtexture then
-						button.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", UFdb.gradientmode.texture))
-					end
-				else
-					if UFdb.uftextureversion ~= "NONE" then
-						button.Health:GetStatusBarTexture():SetTexture(groupbar)
-					end
-				end
-			end
-		elseif UFdb.darkmode then
-			if button.Health.backdropTex then
-				if UFdb.ufcustomtexture.enable then
-					if not UFdb.ufcustomtexture.noclasstexture then
-						button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-					else
-						button.Health.backdropTex:SetTexture(groupbar)
-					end
-				else
-					if UFdb.gradientmode.enable then
-						if UFdb.gradientmode.enablegroupunits and not UFdb.gradientmode.useUFtexture then
-							button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", UFdb.gradientmode.texture))
-						end
-					else
-						if UFdb.uftextureversion ~= "NONE" then
-							button.Health.backdropTex:SetTexture(groupbar)
-						end
-					end
-				end
+				healthTexture = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 			end
 		end
+	elseif UFdb.gradientmode.enable and UFdb.gradientmode.enablegroupunits then
+		if UFdb.gradientmode.useUFtexture then
+			healthTexture = E.LSM:Fetch("statusbar", elvDB.statusbar or UF.db.statusbar)
+		else
+			healthTexture = E.LSM:Fetch("statusbar", UFdb.gradientmode.texture or elvDB.statusbar or UF.db.statusbar)
+		end
+	elseif UFdb.uftextureversion and UFdb.uftextureversion ~= "NONE" then
+		healthTexture = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
+	else
+		healthTexture = E.LSM:Fetch("statusbar", elvDB.statusbar or UF.db.statusbar)
+	end
+
+	local isTransparent = (button.Health.isTransparent ~= nil and button.Health.isTransparent) or elvDB.colors.transparentHealth
+	local barTex = button.Health:GetStatusBarTexture()
+	local backdropTex = button.Health.backdropTex or button.Health.bg
+	local backdropTexture = UFdb.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture) or (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar))
+
+	if not isTransparent then
+		if UFdb.darkmode then
+			local defaultTex = (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar)) or (UF.db.statusbar and E.LSM:Fetch("statusbar", UF.db.statusbar))
+			if barTex and defaultTex then
+				barTex:SetTexture(defaultTex)
+			end
+			if backdropTex and healthTexture then
+				backdropTex:SetTexture(healthTexture)
+			end
+		elseif UFdb.lightmode then
+			if barTex and healthTexture then
+				barTex:SetTexture(healthTexture)
+			end
+			if backdropTex and backdropTexture then
+				backdropTex:SetTexture(backdropTexture)
+			end
+		end
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+			backdropTex:SetAllPoints(button.Health)
+		end
+	else
+		if UFdb.darkmode then
+			if barTex and barTex.SetColorTexture then
+				barTex:SetColorTexture(0, 0, 0, 0)
+			end
+			if backdropTex and healthTexture then
+				backdropTex:SetTexture(healthTexture)
+			end
+		elseif UFdb.lightmode then
+			if barTex and healthTexture then
+				barTex:SetTexture(healthTexture)
+			end
+			if backdropTex and backdropTexture then
+				backdropTex:SetTexture(backdropTexture)
+			end
+		end
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+			backdropTex:SetAllPoints(button.Health)
+		end
+	end
+
+	if ElvUI_EltreumUI.ApplyBackdropAlphas then
+		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, button.Health.bg, button.Health.backdrop, backdropTex, isTransparent, barTex)
 	end
 end
 
@@ -424,7 +374,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 
 		--group/raid unitframes
-		if (UnitExists(unit) or forced) then
+		if (UnitExists(unit) or UnitInParty("player") or UnitInRaid("player") or forced) then
 
 			--party/raid
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then
@@ -547,53 +497,92 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 	end
 end
-local function Eltreum_PostUpdateHealthColorTexture(self)
+local individualUnits = {
+	player = { name = "Player", db = "player" },
+	target = { name = "Target", db = "target" },
+	targettarget = { name = "TargetTarget", db = "targettarget" },
+	targettargettarget = { name = "TargetTargetTarget", db = "targettargettarget" },
+	pet = { name = "Pet", db = "pet" },
+	focus = { name = "Focus", db = "focus" },
+	focustarget = { name = "FocusTarget", db = "focustarget" },
+}
+
+function ElvUI_EltreumUI.PostUpdateHealth(self, healthBar, unit)
+	local bar = (self ~= ElvUI_EltreumUI and self) or healthBar
+	local u = (self ~= ElvUI_EltreumUI and healthBar) or unit
+	if not bar or type(bar) ~= "table" or not bar.GetParent then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
-	if not UFdb then return end
-	if E.private.unitframe.enable and UFdb.UFmodifications then
-		local frame = self and self:GetParent()
-		if frame and frame.unitframeType then
-			if frame.unitframeType == "player" and E.db.unitframe.units.player.enable then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Player","player")
-			elseif frame.unitframeType == "target" and E.db.unitframe.units.target.enable then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("target", "Target","target")
-			elseif frame.unitframeType == "targettarget" and E.db.unitframe.units.targettarget.enable then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("targettarget", "TargetTarget","targettarget")
-			elseif frame.unitframeType == "targettargettarget" and E.db.unitframe.units.targettargettarget.enable then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("targettargettarget", "TargetTargetTarget","targettargettarget")
-			elseif frame.unitframeType == "pet" then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("pet", "Pet","pet")
-			elseif frame.unitframeType == "focus" and not E.Classic then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("focus", "Focus", "focus")
-			elseif frame.unitframeType == "focustarget" and not E.Classic then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("focustarget", "FocusTarget", "focus")
-			elseif frame.unitframeType == "boss" and (E.Retail or E.Mists or E.TBC or E.Wrath) then
-				local id = frame.unit and frame.unit:match("boss(%d+)")
-				if id then
-					ElvUI_EltreumUI:ApplyUnitCustomTexture("boss"..id, "Boss"..id, "boss",true)
-				end
-			elseif frame.unitframeType == "arena" and not E.Classic then
-				local id = frame.unit and frame.unit:match("arena(%d+)")
-				if id then
-					ElvUI_EltreumUI:ApplyUnitCustomTexture("arena"..id, "Arena"..id, "arena",true)
-				end
-			elseif frame.unitframeType == "party" then
-				local isPet = frame.unit and frame.unit:match("pet")
-				if not isPet then
-					ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"party")
-				else
-					ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
-				end
-			elseif frame.unitframeType == "raid" or frame.unitframeType == "raid1" or frame.unitframeType == "raid2" or frame.unitframeType == "raid3" then
-				ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
-			elseif frame.unitframeType == "tank" or frame.unitframeType == "assist" or frame.unitframeType == "raidpet" then
-				ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true)
+	if not UFdb or not UFdb.UFmodifications or not E.private.unitframe.enable then return end
+	local elvDB = E.db.unitframe
+
+	local parent = bar.origParent or bar:GetParent()
+	if not parent then return end
+
+	local frameType = parent.unitframeType
+	if not frameType then
+		local fUnit = parent.__unit or parent.unit or u
+		if fUnit then
+			parent.__unit = fUnit
+			ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true)
+			if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+				ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
 			end
+		end
+		return
+	end
+
+	local info = individualUnits[frameType]
+	if info then
+		if elvDB.units[frameType] and not elvDB.units[frameType].enable then return end
+		local unitID = u or frameType
+		ElvUI_EltreumUI:ApplyUnitCustomTexture(unitID, info.name, info.db)
+		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+			ElvUI_EltreumUI:ApplyUnitGradient(unitID, info.name, info.db)
+		end
+	elseif frameType == "boss" and (E.Retail or E.Mists or E.TBC or E.Wrath) then
+		local frameName = parent:GetName()
+		local bossName = frameName and frameName:sub(7)
+		local bossUnit = parent.unit or parent.__unit or (bossName and bossName:lower())
+		if bossName and bossUnit then
+			ElvUI_EltreumUI:ApplyUnitCustomTexture(bossUnit, bossName, "boss", true)
+			if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+				ElvUI_EltreumUI:ApplyUnitGradient(bossUnit, bossName, "boss", true)
+			end
+		end
+	elseif frameType == "arena" and not E.Classic then
+		local frameName = parent:GetName()
+		local arenaName = frameName and frameName:sub(7)
+		local arenaUnit = parent.unit or parent.__unit or (arenaName and arenaName:lower())
+		if arenaName and arenaUnit then
+			ElvUI_EltreumUI:ApplyUnitCustomTexture(arenaUnit, arenaName, "arena", true)
+			if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+				ElvUI_EltreumUI:ApplyUnitGradient(arenaUnit, arenaName, "arena", true)
+			end
+		end
+	elseif frameType == "party" then
+		local isPet = parent.unit and parent.unit:match("pet")
+		if not isPet then
+			ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true, "party")
+		else
+			ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true)
+		end
+		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+			ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
+		end
+	elseif frameType == "raid" or frameType == "raid1" or frameType == "raid2" or frameType == "raid3" then
+		ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true, "raid")
+		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+			ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
+		end
+	elseif frameType == "tank" or frameType == "assist" or frameType == "raidpet" then
+		ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true)
+		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+			ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
 		end
 	end
 end
-hooksecurefunc(UF, "PostUpdateHealthColor", Eltreum_PostUpdateHealthColorTexture) --WAS causing "blinking"/"flashing" issues in 10.0
+hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.PostUpdateHealth)
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
 
 -- replace absorb texture with unitframe texture

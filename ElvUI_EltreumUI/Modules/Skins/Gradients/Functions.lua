@@ -140,15 +140,19 @@ end
 
 --save the colors instead of recreating them
 function ElvUI_EltreumUI:CacheGradients()
-	local db = E.db and E.db.ElvUI_EltreumUI
-	local uf = db and db.unitframes
-	local customTexture = uf and uf.ufcustomtexture
-	local gm = uf and uf.gradientmode
-	local colors = E.db and E.db.unitframe and E.db.unitframe.colors
+	local db = E.db.ElvUI_EltreumUI
+	if not db then return end
+	local uf = db.unitframes
+	if not uf then return end
+	local customTexture = uf.ufcustomtexture
+	if not customTexture then return end
+	local gm = uf.gradientmode
+	local ufDB = E.db.unitframe
+	local colors = ufDB.colors
 
-	local transparentHealth = (colors and colors.transparentHealth) or (uf and uf.lightmode)
+	local transparentHealth = colors and colors.transparentHealth
 	local healthAlpha = transparentHealth and (customTexture and customTexture.healthalpha or 1) or 1
-	local backdropAlpha = (customTexture and customTexture.backdropalpha) or 1
+	local backdropAlpha = transparentHealth and ((customTexture and customTexture.backdropalpha) or 1) or 1
 	if backdropAlpha == 1 and healthAlpha < 1 then
 		backdropAlpha = healthAlpha
 	end
@@ -210,12 +214,14 @@ end
 
 local unitframeclasscustom = unitframeclass
 function ElvUI_EltreumUI:GradientColorTableUpdate()
-	local db = E.db and E.db.ElvUI_EltreumUI
-	local uf = db and db.unitframes
+	local db = E.db.ElvUI_EltreumUI
+	if not db then return end
+	local uf = db.unitframes
 	if not uf then return end
 	local customTex = uf.ufcustomtexture
 	local gm = uf.gradientmode
 	if not customTex or not gm then return end
+	local ufDB = E.db.unitframe
 
 	unitframeclasscustom = {
 		["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", customTex.warriortexture)),
@@ -392,21 +398,21 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	ElvUI_EltreumUI:CacheGradients()
 	ElvUI_EltreumUI:IncrementHealthBackdropEpoch()
 
-	if E.db and E.db.unitframe and E.db.unitframe.colors then
-		local dead = E.db.unitframe.colors.health_backdrop_dead
+	if E.db and ufDB and ufDB.colors then
+		local dead = ufDB.colors.health_backdrop_dead
 		local alpha = customTex.backdropalpha or 1
 		if dead then
 			deadColorMin = CreateColor(clamp(dead.r - 0.3), clamp(dead.g - 0.3), clamp(dead.b - 0.3), alpha)
 			deadColorMax = CreateColor(dead.r, dead.g, dead.b, alpha)
 		end
 
-		local disc = E.db.unitframe.colors.disconnected
+		local disc = ufDB.colors.disconnected
 		if disc then
 			discColorMin = CreateColor(clamp(disc.r - 0.3), clamp(disc.g - 0.3), clamp(disc.b - 0.3), alpha)
 			discColorMax = CreateColor(disc.r, disc.g, disc.b, alpha)
 		end
 
-		local tapped = E.db.unitframe.colors.tapped
+		local tapped = ufDB.colors.tapped
 		if tapped then
 			tappedColorMin = CreateColor(clamp(tapped.r - 0.3), clamp(tapped.g - 0.3), clamp(tapped.b - 0.3), alpha)
 			tappedColorMax = CreateColor(tapped.r, tapped.g, tapped.b, alpha)

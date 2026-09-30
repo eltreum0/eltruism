@@ -280,6 +280,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		end
 	end
 end
+local issecretvalue =_G.issecretvalue
 
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
@@ -289,10 +290,14 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 	if UnitExists(unit) then
 		local _, classunit = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
+		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		local unitframe = _G["ElvUF_"..name]
 		local orientation = db.orientation or "HORIZONTAL"
 
-		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+		if issecretvalue(classunit) and issecretvalue(reaction) then return end --both are secret
+		if issecretvalue(classunit) and isPlayer then return end --is player and is secret
+		if issecretvalue(reaction) and not isPlayer then return end --not player and reaction is secret
+
 		local isCharmed = UnitIsCharmed(unit)
 		isCharmed = E:NotSecretValue(isCharmed) and isCharmed or false
 
@@ -331,7 +336,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 
 			local colorClass = "BACKDROP"
 			if (isPlayer and not isCharmed) or isActualPlayer then
-				if not E:NotSecretValue(classunit) or not classunit then
+				if not classunit then
 					classunit = E.myclass or "ELTRUISM"
 				end
 				colorClass = classunit
