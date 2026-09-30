@@ -33,6 +33,7 @@ if stringfind(rawVersion, 'project%-version') then
 	ElvUI_EltreumUI.DevRelease = true
 elseif extra and extra ~= "" then
 	ElvUI_EltreumUI.DevRelease = true
+	ElvUI_EltreumUI.Version = extra
 else
 	ElvUI_EltreumUI.Version = stringgsub(rawVersion, "^v", "")
 	ElvUI_EltreumUI.DevRelease = false
