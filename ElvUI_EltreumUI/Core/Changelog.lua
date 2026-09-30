@@ -35,11 +35,13 @@ Updated options layout and moved combat settings into a dedicated section
 Updated Gradient functions to cache values and improve performance
 Updated Castbars to better handle interrupts in Retail and Forever
 Updated Aura Filters to once again work in non Modern versions
+Updated [eltruism:classification] to once again work in Retail
 Updated DataTexts to better support Forever and Classic Era
 Updated Nameplate threat scaling to avoid scaling issues
 Updated Group Power gradient textures and color updates
 Updated Castbars to unify player and target castbars
 Updated Nameplate borders to use threat colors
+Updated Nameplate Power Bar autopositioning
 Updated Glows to optimize execution
 Updated localizations
 ]], 5, "small", nil, nil, nil, nil, "full")
