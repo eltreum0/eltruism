@@ -12,6 +12,8 @@ local UnitClassification = _G.UnitClassification
 local UnitLevel = _G.UnitLevel
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
+local string = _G.string
+local stringformat = string.format
 
 --based on blinkii's idea
 local bossIDs = {
@@ -2181,92 +2183,37 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 end
 
 --Difficulty Icon for npcs
-local unitisnotboss = {
-	["worldboss"] = true,
-	["elite"] = true,
-	["rareelite"] = true,
-	["rare"] = true,
+ local unitDB = {
+	["worldboss"] = "boss",
+	["elite"] = "elite",
+	["rareelite"] = "rareelite",
+	["rare"] = "rare",
 }
 
-local function returnIcon(classification,isBoss)
-	local red,green,blue
-	local icon
-	if isBoss then
-		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
-		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
-		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		else
-			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		end
-	elseif classification == 'worldboss' then
-		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
-		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
-		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		else
-			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		end
-	elseif classification == 'elite' then
-		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR*255)
-		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
-		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
-			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		else
-			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		end
-	elseif classification == 'rareelite' then
-		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR*255)
-		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
-		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
-			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		else
-			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		end
-	elseif classification == 'rare' then
-		red = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR*255)
-		blue = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
-		green = mathfloor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
-			icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		else
-			icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
-			return icon
-		end
-	end
+local function returnIcon(classification, isBoss)
+	local key = isBoss and "boss" or unitDB[classification]
+	if not key then return end
+
+	local db = E.db.ElvUI_EltreumUI.nameplates.classification
+	local r = mathfloor(db[key .. "R"] * 255)
+	local g = mathfloor(db[key .. "G"] * 255)
+	local b = mathfloor(db[key .. "B"] * 255)
+	local iconType = db["icontype" .. key]
+	local texturePath = (iconType == "CUSTOM") and ([[Interface\AddOns\]] .. db["custom" .. key]) or textureDB[iconType]
+
+	return stringformat("|T%s:0:0:0:2:32:32:0:32:0:32:%d:%d:%d|t", texturePath, r, g, b)
 end
 
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
-	--if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
+	-- if not ElvUI_EltreumUI:IsThisASafeSecret() then return end
 	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	if E.Modern then
-		if UnitLevel(unit) == -1 then
-			return returnIcon(classification, true)
-		elseif unitisnotboss[classification] then
-			return returnIcon(classification, false)
-		end
-	else
-		if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
-			local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
-			if bossIDs[unitID] then
-				return returnIcon(classification, true)
-			elseif unitisnotboss[classification] then
-				return returnIcon(classification, false)
-			end
-		end
+		return returnIcon(classification, UnitLevel(unit) == -1)
+	end
+	if UnitGUID(unit) and not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
+		local unitID = select(6, _G.strsplit('-', UnitGUID(unit)))
+		return returnIcon(classification, bossIDs[unitID])
 	end
 end)
-E:AddTagInfo('eltruism:classification', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows an Icon for the classification of the unit"])
+
+E:AddTagInfo('eltruism:classification', ElvUI_EltreumUI.Name .. " " .. L["Miscellaneous"], L["Shows an Icon for the classification of the unit"])
