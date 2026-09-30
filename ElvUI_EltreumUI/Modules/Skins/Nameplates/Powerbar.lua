@@ -742,27 +742,28 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 	end
 end)
 
-local hasCOMBO = {
-	["DEATHKNIGHT"]	= true,
-	["DEMONHUNTER"]	= false,
-	["DRUID"] = true,
-	["HUNTER"] = false,
-	["MAGE"] = (ElvUI_EltreumUI.Spec == 62) and true or false,
-	["MONK"] = true,
-	["PALADIN"]	= (E.Retail or E.Mists) and true or false,
-	["PRIEST"] = false,
-	["ROGUE"] = true,
-	["SHAMAN"] = (E.Retail or E.Mists) and true or false,
-	["WARLOCK"] = (E.Retail or E.Mists) and true or false,
-	["WARRIOR"] = false,
-	["EVOKER"] = true,
-}
 
 --update buff/debuff position automatically
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
 	if nameplatePowerPrivateDB.enable then
 		if nameplatePowerPrivateDB.adjust then
+			local hasCOMBO = {
+				["DEATHKNIGHT"]	= true,
+				["DEMONHUNTER"]	= false,
+				["DRUID"] = (_G.GetShapeshiftForm() == 2) and true or false,
+				["HUNTER"] = false,
+				["MAGE"] = ((ElvUI_EltreumUI.Spec == 1) or (ElvUI_EltreumUI.Spec == 62)) and true or false,
+				["MONK"] = ((ElvUI_EltreumUI.Spec == 1) or (ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268)) and true or false,
+				["PALADIN"]	= (E.Retail or E.Mists) and true or false,
+				["PRIEST"] = false,
+				["ROGUE"] = true,
+				["SHAMAN"] = (E.Retail or E.Mists) and true or false,
+				["WARLOCK"] = (E.Retail or E.Mists) and true or false,
+				["WARRIOR"] = false,
+				["EVOKER"] = true,
+			}
+
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
