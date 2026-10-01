@@ -25,6 +25,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = false
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed = true
 
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
 	else
@@ -35,6 +36,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = false
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed = true
 
 		-- Chat
 		E.db.ElvUI_EltreumUI.chat.enable = true
