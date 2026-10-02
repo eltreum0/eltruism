@@ -70,6 +70,8 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 		if not powertype and pTypeNum then
 			powertype = powerTypeNumToToken[pTypeNum]
 		end
+		local UFdb = E.db.unitframe
+		local colorDB = UFdb.colors
 
 		local unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Power and powertype then
@@ -77,7 +79,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 			local ufCustom = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture
 			local orientation = gm.orientationpower or "HORIZONTAL"
 			local alpha = ufCustom.backdropalpha or 1
-			local transparent = E.db.unitframe.colors.transparentPower
+			local transparent = colorDB.transparentPower
 			local isCustom = gm.enablepowercustom
 			local isTarget = (unit == "target")
 			local invert = isTarget and (orientation == "HORIZONTAL")
@@ -87,24 +89,27 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 			if ufCustom.enable then
 				textureToUse = E.LSM:Fetch("statusbar", ufCustom.powertexture)
 			elseif gm.useUFtexture then
-				textureToUse = E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)
+				textureToUse = E.LSM:Fetch("statusbar", UFdb.statusbar)
 			else
 				textureToUse = E.LSM:Fetch("statusbar", gm.texture)
 			end
 			unitframe.Power:SetStatusBarTexture(textureToUse)
 			if unitframe.Power.bg then
 				unitframe.Power.bg:SetTexture(textureToUse)
-				unitframe.Power.bg:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+				unitframe.Power.bg:SetVertexColor(colorDB.power_backdrop.r,colorDB.power_backdrop.g,colorDB.power_backdrop.b,E.db.general.backdropfadecolor.a)
 			end
 
-			if transparent and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+			if transparent and colorDB.custompowerbackdrop then --fix transparent power custom backdrop
 				if unitframe.Power.backdrop and unitframe.Power.backdrop.Center then
-					unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-					unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.power_backdrop.r, E.db.unitframe.colors.power_backdrop.g, E.db.unitframe.colors.power_backdrop.b, E.db.general.backdropfadecolor.a)
+					unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", UFdb.statusbar))
+					unitframe.Power.backdrop.Center:SetVertexColor(colorDB.power_backdrop.r, colorDB.power_backdrop.g, colorDB.power_backdrop.b, E.db.general.backdropfadecolor.a)
 					local bgA = unitframe.Power.backdrop.Center:GetAlpha()
 					if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= alpha then
 						unitframe.Power.backdrop.Center:SetAlpha(alpha)
 					end
+				end
+				if unitframe.Power.bg then
+					unitframe.Power.bg:SetAlpha(E.db.general.backdropfadecolor.a * UFdb.multiplier)
 				end
 			end
 
@@ -116,7 +121,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 					tex:SetVertexColor(1, 1, 1, E.db.general.backdropfadecolor.a)
 					tex:SetGradient(orientation, minC, maxC)
 				end
-				if not E.db.unitframe.colors.custompowerbackdrop and gm.enablebackdrop and unitframe.Power.bg then
+				if not colorDB.custompowerbackdrop and gm.enablebackdrop and unitframe.Power.bg then
 					local bgMin, bgMax = GetGradient(powertype, invert, false, true, isCustom)
 					if bgMin and bgMax then
 						unitframe.Power.bg:SetGradient(orientation, bgMin, bgMax)
@@ -143,7 +148,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 							unitframe.Power.backdrop.Center:SetGradient(orientation, fallbackMin, fallbackMax)
 						end
 
-						if not E.db.unitframe.colors.custompowerbackdrop and gm.enablebackdrop and unitframe.Power.bg then
+						if not colorDB.custompowerbackdrop and gm.enablebackdrop and unitframe.Power.bg then
 							local bgfade = gm.bgfade or 0
 							if invert then
 								fallbackMin:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
@@ -172,13 +177,15 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 	if not powertype and pTypeNum then
 		powertype = powerTypeNumToToken[pTypeNum]
 	end
+	local UFdb = E.db.unitframe
+	local colorDB = UFdb.colors
 
 	if groupunitframe.Power and powertype then
 		local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
 		local ufCustom = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture
 		local orientation = gm.orientationpower or "HORIZONTAL"
 		local alpha = ufCustom.backdropalpha or 1
-		local transparent = E.db.unitframe.colors.transparentPower
+		local transparent = colorDB.transparentPower
 		local isCustom = gm.enablepowercustom
 
 		--texture
@@ -186,24 +193,27 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 		if ufCustom.enable then
 			textureToUse = E.LSM:Fetch("statusbar", ufCustom.powertexture)
 		elseif gm.useUFtexture then
-			textureToUse = E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)
+			textureToUse = E.LSM:Fetch("statusbar", UFdb.statusbar)
 		else
 			textureToUse = E.LSM:Fetch("statusbar", gm.texture)
 		end
 		groupunitframe.Power:SetStatusBarTexture(textureToUse)
 		if groupunitframe.Power.bg then
 			groupunitframe.Power.bg:SetTexture(textureToUse)
-			groupunitframe.Power.bg:SetVertexColor(E.db.unitframe.colors.power_backdrop.r, E.db.unitframe.colors.power_backdrop.g, E.db.unitframe.colors.power_backdrop.b, E.db.general.backdropfadecolor.a)
+			groupunitframe.Power.bg:SetVertexColor(colorDB.power_backdrop.r, colorDB.power_backdrop.g, colorDB.power_backdrop.b, E.db.general.backdropfadecolor.a)
 		end
 
-		if transparent and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+		if transparent and colorDB.custompowerbackdrop then --fix transparent power custom backdrop
 			if groupunitframe.Power.backdrop and groupunitframe.Power.backdrop.Center then
-				groupunitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-				groupunitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.power_backdrop.r, E.db.unitframe.colors.power_backdrop.g, E.db.unitframe.colors.power_backdrop.b, E.db.general.backdropfadecolor.a)
+				groupunitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", UFdb.statusbar))
+				groupunitframe.Power.backdrop.Center:SetVertexColor(colorDB.power_backdrop.r, colorDB.power_backdrop.g, colorDB.power_backdrop.b, E.db.general.backdropfadecolor.a)
 				local bgA = groupunitframe.Power.backdrop.Center:GetAlpha()
 				if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= alpha then
 					groupunitframe.Power.backdrop.Center:SetAlpha(alpha)
 				end
+			end
+			if groupunitframe.Power.bg then
+				groupunitframe.Power.bg:SetAlpha(E.db.general.backdropfadecolor.a * UFdb.multiplier)
 			end
 		end
 
@@ -215,7 +225,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 				tex:SetVertexColor(1, 1, 1, E.db.general.backdropfadecolor.a)
 				tex:SetGradient(orientation, minC, maxC)
 			end
-			if not E.db.unitframe.colors.custompowerbackdrop and gm.enablebackdrop and groupunitframe.Power.bg then
+			if not colorDB.custompowerbackdrop and gm.enablebackdrop and groupunitframe.Power.bg then
 				local bgMin, bgMax = GetGradient(powertype, false, false, true, isCustom)
 				if bgMin and bgMax then
 					groupunitframe.Power.bg:SetGradient(orientation, bgMin, bgMax)
@@ -238,7 +248,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 						groupunitframe.Power.backdrop.Center:SetGradient(orientation, fallbackMin, fallbackMax)
 					end
 
-					if not E.db.unitframe.colors.custompowerbackdrop and gm.enablebackdrop and groupunitframe.Power.bg then
+					if not colorDB.custompowerbackdrop and gm.enablebackdrop and groupunitframe.Power.bg then
 						local bgfade = gm.bgfade or 0
 						fallbackMin:SetRGBA(clamp((r - 0.4) - bgfade), clamp((g - 0.4) - bgfade), clamp((b - 0.4) - bgfade), 1)
 						fallbackMax:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
@@ -260,7 +270,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 				if ufCustom.enable then
 					textureToUse = E.LSM:Fetch("statusbar", ufCustom.powertexture)
 				elseif gm.useUFtexture then
-					textureToUse = E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)
+					textureToUse = E.LSM:Fetch("statusbar", UFdb.statusbar)
 				else
 					textureToUse = E.LSM:Fetch("statusbar", gm.texture)
 				end
@@ -272,7 +282,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 					altTex:SetVertexColor(1, 1, 1, E.db.general.backdropfadecolor.a)
 					altTex:SetGradient(orientation, fallbackMin, fallbackMax)
 				end
-				if not E.db.unitframe.colors.custompowerbackdrop and gm.enablebackdrop and groupunitframe.AlternativePower.bg then
+				if not colorDB.custompowerbackdrop and gm.enablebackdrop and groupunitframe.AlternativePower.bg then
 					local bgfade = gm.bgfade or 0
 					fallbackMin:SetRGBA(clamp((r - 0.4) - bgfade), clamp((g - 0.4) - bgfade), clamp((b - 0.4) - bgfade), 1)
 					fallbackMax:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
@@ -297,16 +307,18 @@ local function gradientclassbar(powerbar,powerType)
 					color = fallback
 				end
 			end
+			local UFdb = E.db.unitframe
+			local colorDB = UFdb.colors
 			fallbackMin:SetRGBA(clamp(color.r - 0.3), clamp(color.g - 0.3), clamp(color.b - 0.3), 1)
 			fallbackMax:SetRGBA(clamp(color.r), clamp(color.g), clamp(color.b), 1)
 			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
-			if E.db.unitframe.units.player.classbar.fill == "spaced" then
+			if UFdb.units.player.classbar.fill == "spaced" then
 				local bgA = bar.bg:GetAlpha()
 				if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= 0 then
 					bar.bg:SetAlpha(0)
 				end
-				if E.db.unitframe.colors.customclasspowerbackdrop then
-					bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
+				if colorDB.customclasspowerbackdrop then
+					bar.backdrop.Center:SetVertexColor(colorDB.classpower_backdrop.r, colorDB.classpower_backdrop.g, colorDB.classpower_backdrop.b)
 				end
 			else
 				local bgA = bar.bg:GetAlpha()
@@ -395,7 +407,9 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 	end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local forced = false
-	local transparent = E.db.unitframe.colors.transparentPower
+	local UFdb = E.db.unitframe
+	local colorDB = UFdb.colors
+	local transparent = colorDB.transparentPower
 
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Player")
@@ -451,7 +465,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 
 		--group/raid unitframes
 		if IsInGroup() or UnitInParty("player") or UnitInRaid("player") or forced then
-			if _G["ElvUF_Party"] and (_G["ElvUF_Party"]:IsVisible() or _G["ElvUF_Party"]:IsShown()) and E.db.unitframe.units.party.power and E.db.unitframe.units.party.power.enable then
+			if _G["ElvUF_Party"] and (_G["ElvUF_Party"]:IsVisible() or _G["ElvUF_Party"]:IsShown()) and UFdb.units.party.power and UFdb.units.party.power.enable then
 				local party = _G["ElvUF_PartyGroup1"]
 				if party then
 					for i = 1, select("#", party:GetChildren()) do
@@ -461,7 +475,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 						end
 					end
 				end
-				if E.db.unitframe.units.party.petsGroup and E.db.unitframe.units.party.petsGroup.enable then
+				if UFdb.units.party.petsGroup and UFdb.units.party.petsGroup.enable then
 					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and (_G["ElvUF_PartyGroup1UnitButton1Pet"]:IsVisible() or _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsShown()) then
 						for i = 1, 5 do
 							local partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
@@ -474,7 +488,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 			end
 			for raidNum = 1, 3 do
 				local raid = _G["ElvUF_Raid"..raidNum]
-				if raid and (raid:IsVisible() or raid:IsShown()) and E.db.unitframe.units["raid"..raidNum].power and E.db.unitframe.units["raid"..raidNum].power.enable then
+				if raid and (raid:IsVisible() or raid:IsShown()) and UFdb.units["raid"..raidNum].power and UFdb.units["raid"..raidNum].power.enable then
 					for i = 1, 8 do
 						local group = _G["ElvUF_Raid"..raidNum.."Group"..i]
 						if group then
@@ -579,7 +593,9 @@ hooksecurefunc(UF, "Construct_Stagger", ElvUI_EltreumUI.GradientStagger)
 function ElvUI_EltreumUI:GradientEclipse()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if _G["ElvUF_Player_EclipsePowerBar"] then
-			if E.db.unitframe.colors.transparentPower then --make eclipse follow power transparency
+			local UFdb = E.db.unitframe
+			local colorDB = UFdb.colors
+			if colorDB.transparentPower then --make eclipse follow power transparency
 				local lA = _G["ElvUF_Player_EclipsePowerBar"].LunarBar:GetAlpha()
 				if ElvUI_EltreumUI:IsThisASafeSecret(lA, true) and lA ~= E.db.general.backdropfadecolor.a then
 					_G["ElvUF_Player_EclipsePowerBar"].LunarBar:SetAlpha(E.db.general.backdropfadecolor.a)
