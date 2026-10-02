@@ -756,7 +756,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
 			end
 			local ehp = UnitHealthMax("player")/(1-dr)
-			local effective = mathfloor((ehp*100)/100)
+			local effective = mathfloor(ehp)
 			return effective
 		end)
 		E:AddTagInfo("eltruism:effectivehp", ElvUI_EltreumUI.Name.." "..L["Health"], L["Shows Effective Health"])

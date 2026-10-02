@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 
 	if E.db.ElvUI_EltreumUI.skins.doom.maxAlpha > 1 then --fix alpha values
-		E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = (E.db.ElvUI_EltreumUI.skins.doom.maxAlpha/100)
+		E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = (E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * 0.01)
 	end
 
 	--remove entries no longer used

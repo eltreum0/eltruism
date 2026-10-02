@@ -176,7 +176,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		end]]
 		--local ilevel = E:GetUnitItemLevel() --GetAverageItemLevel() doesnt exist in tbc/classic
 		if _G.CharacterFrame.EltruismText2 then
-			_G.CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+			_G.CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100)) * 0.01)
 		end
 	end
 end

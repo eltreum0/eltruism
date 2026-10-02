@@ -563,7 +563,7 @@ local function EltruismStatsDatatext3(dt)
 		local dodgeChance = GetDodgeChance()
 		local dodge
 		if E:CanAccessValue(dodgeChance) then
-			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(dodgeChance*100)/100).."%".."|r"
+			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(dodgeChance*100) * 0.01).."%".."|r"
 		else
 			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..E:AbbreviateNumbers(dodgeChance, 1).."%".."|r"
 		end
@@ -578,7 +578,7 @@ local function EltruismStatsDatatext3(dt)
 		--avoidance
 		local miss = 5 + (((select(1, UnitDefense("player"))) + (select(2, UnitDefense("player"))) - (UnitLevel("player") * 5)) * 0.04)
 		local avoid = miss+GetBlockChance()+GetParryChance()+GetDodgeChance()
-		local avoidance = E:ShortenString(STAT_AVOIDANCE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(avoid*100)/100).."%".."|r"
+		local avoidance = E:ShortenString(STAT_AVOIDANCE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(avoid*100) * 0.01).."%".."|r"
 
 		dt.text:SetFormattedText('%s %s|r',avoidance,defense)
 	end

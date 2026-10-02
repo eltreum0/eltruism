@@ -423,7 +423,7 @@ if not E.Retail then
 	avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	avgilvl:SetScript("OnEvent", function()
 		if CharacterFrame.EltruismText2 then
-			CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+			CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100)) * 0.01)
 		end
 	end)
 
@@ -832,7 +832,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							else
 								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 							end
-							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 						end
 					end
 				end
@@ -871,7 +871,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							else
 								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 							end
-							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 						end
 					end
 
@@ -1341,7 +1341,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								else
 									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 								end
-								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 							end
 						end
 					end
@@ -1389,7 +1389,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								else
 									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 								end
-								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 							end
 						end
 					end
@@ -1456,7 +1456,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 						--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 					end
 				else
 					local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
@@ -1470,7 +1470,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 						--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100))/100).."|r")
+						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100)) * 0.01).."|r")
 					end
 				end
 			end
@@ -1571,7 +1571,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								end
 								local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
 								if itemLevelText and E.db.general.itemLevel.displayCharacterInfo then
-									itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+									itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 								end
 							else
 								local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
@@ -1585,7 +1585,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 										end
 									end
 									--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100))/100).."|r")
+									itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100)) * 0.01).."|r")
 								end
 							end
 						end
@@ -1977,7 +1977,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 					local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
 					if itemLevelText and E.db.general.itemLevel.displayCharacterInfo then
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 					end
 				else
 					local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
@@ -1991,7 +1991,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 						--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100))/100).."|r")
+						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100)) * 0.01).."|r")
 					end
 				end
 			end
@@ -2039,7 +2039,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 						--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100))/100).."|r ("..((mathfloor(bagilvl*100))/100)..")|r")
+						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 					end
 				else
 					local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
@@ -2055,7 +2055,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						local itemLevelText2 = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
 						if itemLevelText2 then
-							itemLevelText2:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100))/100).."|r")
+							itemLevelText2:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100)) * 0.01).."|r")
 						end
 					end
 				end
@@ -2346,7 +2346,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--set ilvl on char panel
 			hooksecurefunc("ToggleCharacter", function()
-				CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+				CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100)) * 0.01)
 			end)
 
 			if _G.PlayerTitleDropdown then
@@ -3266,7 +3266,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 							_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
 							--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
-							--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+							--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100)) * 0.01)
 							_G.InspectFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.itemLevel.totalLevelFont), 12, E.db.general.itemLevel.totalLevelFontOutline)
 						end
 
@@ -3279,7 +3279,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										if ilvl then
 											_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..ilvl)
 										else
-											ilvl = (mathfloor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100
+											ilvl = (mathfloor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100)) * 0.01
 											_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..ilvl)
 										end
 									end
@@ -3386,9 +3386,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						if _G.InspectFrame and _G.InspectFrame.unit then
-							E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(mathfloor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100) end)
+							E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(mathfloor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100)) * 0.01) end)
 						else
-							E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100) end)
+							E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100)) * 0.01) end)
 						end
 					end
 
@@ -3577,9 +3577,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									if _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
 										local _, _, _, hex = GetItemQualityColor(maxquality)
 										if _G.InspectFrame and _G.InspectFrame.unit then
-											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100).."|r")
+											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100)) * 0.01).."|r")
 										else
-											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
+											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100)) * 0.01).."|r")
 										end
 									end
 								end

@@ -22,7 +22,7 @@ local IsInGroup = _G.IsInGroup
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
-	local spellhastepc = ((mathceil(spellhaste*100))/100)..'%'
+	local spellhastepc = ((mathceil(spellhaste*100)) * 0.01)..'%'
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], E.media.hexvaluecolor, spellhastepc)
 end
 if not E.Retail and not E.Classic then
