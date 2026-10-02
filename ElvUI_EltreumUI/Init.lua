@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
 		end
 		if E.Retail then
-			ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+			ElvUI_EltreumUI.Spec = (E:NotSecretValue(GetSpecialization()) and GetSpecializationInfo(GetSpecialization())) or 0
 		else
 			if ElvUI_EltreumUI:CheckForeverSpec() then --returns nil if no value
 				ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckForeverSpec()
@@ -355,7 +355,7 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local cnewtalentmists = E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
 	if E.Retail then
-		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+		ElvUI_EltreumUI.Spec = (E:NotSecretValue(GetSpecialization()) and GetSpecializationInfo(GetSpecialization())) or 0
 	elseif E.Forever then
 		if ElvUI_EltreumUI:CheckForeverSpec() then --returns nil if no value
 			ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckForeverSpec()
