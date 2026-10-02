@@ -21,6 +21,9 @@ local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups or 
 local FCF_SetWindowName = _G.FCF_SetWindowName
 local FCFTab_UpdateColors = _G.FCFTab_UpdateColors
 local FCFDock_SelectWindow = _G.FCFDock_SelectWindow
+local W
+local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn
+local unpack = _G.unpack
 
 local installPreviews = {
 	dps = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DPS.jpg",
@@ -155,6 +158,67 @@ local function FadeElements(mode, maxAlpha)
 			UIFrameFadeIn(frame.SubTitle, 0.5, 0, 1)
 		end
 	end
+end
+
+--hide popups during install
+function ElvUI_EltreumUI:HidePopups(delay)
+	if E:IsAddOnEnabled("ElvUI_WindTools") then
+		W = unpack(_G.WindTools)
+		local function WindtoolsCompatHideWhileInstall()
+			_G["WTCompatibilityFrame"]:Kill()
+		end
+		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
+	end
+	if IsAddOnLoaded("Details_Streamer") then
+		DisableAddOn("Details_Streamer",E.myguid)
+	end
+	E:Delay(delay, function()
+		if IsAddOnLoaded("Details") and _G['_detalhes'] then
+			_G['_detalhes'].is_first_run = false
+			_G['_detalhes']:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
+			_G['_detalhes']:DisablePlugin ("Details_Streamer")
+			_G['_detalhes']:SetTutorialCVar ("STREAMER_PLUGIN_FIRSTRUN", true)
+			if _G["DetailsWelcomeWindow"] then
+				_G["DetailsWelcomeWindow"]:Hide()
+			end
+			if _G["DetailsNewsWindow"] then
+				_G["DetailsNewsWindow"]:Hide()
+			end
+			if _G["StreamOverlayWelcomeWindow"] then
+				_G["StreamOverlayWelcomeWindow"]:Hide()
+			end
+			if _G["DetailsBaseFrame1"] then
+				_G["DetailsBaseFrame1"]:Hide()
+			end
+			if _G["DetailsProfilerProfileConfirmButton"] then
+				local a = _G["DetailsProfilerProfileConfirmButton"]:GetParent()
+				a:Hide()
+			end
+		end
+		for i = 1, 4 do
+			if _G["StaticPopup"..i] then
+				_G["StaticPopup"..i]:Hide()
+			end
+			if _G["ElvUI_StaticPopup"..i] then
+				_G["ElvUI_StaticPopup"..i]:Hide()
+			end
+		end
+		if _G["CappingFrame"] then
+			_G["CappingFrame"]:Hide()
+		end
+		if _G["BasicMessageDialog"] then
+			_G["BasicMessageDialog"]:Hide()
+		end
+		if IsAddOnLoaded("Gladdy") then
+			LibStub("AceConfigDialog-3.0"):Close("Gladdy") --using E.Libs seems delayed
+		end
+		if _G["SubscriptionInterstitialFrame"] then --hide the f2p popup during install
+			--_G["SubscriptionInterstitialFrame"]:Hide()
+			_G["SubscriptionInterstitialFrame"].ClosePanelButton:Click() --click instead since hide does some weird things
+		end
+		--hide elvui config
+		E.Libs.AceConfigDialog:Close("ElvUI")
+	end)
 end
 
 --add some stuff to the installer

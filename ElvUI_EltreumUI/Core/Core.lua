@@ -6,7 +6,6 @@ local print = _G.print
 local unpack = _G.unpack
 local hooksecurefunc = _G.hooksecurefunc
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
-local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn
 local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
@@ -27,7 +26,6 @@ local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local tostring = _G.tostring
 local PlaySound = _G.PlaySound
-local W
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local format = _G.format
@@ -66,80 +64,6 @@ function ElvUI_EltreumUI:MacroClick(button)
 	if E.Modern or E.TBC then
 		button:SetAttribute('useOnKeyDown', keydown)
 	end
-end
-
---set gradient using vertex color of regions of a frame
-function ElvUI_EltreumUI:ApplyGlowGradient(glowFrame, r, g, b)
-	if not glowFrame then return end
-	local numRegions = glowFrame:GetNumRegions()
-	for k = 1, numRegions do
-		local region = select(k, glowFrame:GetRegions())
-		if region and region.SetVertexColor then
-			local percentage = 1 - (k / (numRegions + 1))
-			region:SetVertexColor((r * percentage), (g * percentage), (b * percentage), 1)
-		end
-	end
-end
-
---hide popups during install
-function ElvUI_EltreumUI:HidePopups(delay)
-	if E:IsAddOnEnabled("ElvUI_WindTools") then
-		W = unpack(_G.WindTools)
-		local function WindtoolsCompatHideWhileInstall()
-			_G["WTCompatibilityFrame"]:Kill()
-		end
-		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
-	end
-	if IsAddOnLoaded("Details_Streamer") then
-		DisableAddOn("Details_Streamer",E.myguid)
-	end
-	E:Delay(delay, function()
-		if IsAddOnLoaded("Details") and _G['_detalhes'] then
-			_G['_detalhes'].is_first_run = false
-			_G['_detalhes']:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
-			_G['_detalhes']:DisablePlugin ("Details_Streamer")
-			_G['_detalhes']:SetTutorialCVar ("STREAMER_PLUGIN_FIRSTRUN", true)
-			if _G["DetailsWelcomeWindow"] then
-				_G["DetailsWelcomeWindow"]:Hide()
-			end
-			if _G["DetailsNewsWindow"] then
-				_G["DetailsNewsWindow"]:Hide()
-			end
-			if _G["StreamOverlayWelcomeWindow"] then
-				_G["StreamOverlayWelcomeWindow"]:Hide()
-			end
-			if _G["DetailsBaseFrame1"] then
-				_G["DetailsBaseFrame1"]:Hide()
-			end
-			if _G["DetailsProfilerProfileConfirmButton"] then
-				local a = _G["DetailsProfilerProfileConfirmButton"]:GetParent()
-				a:Hide()
-			end
-		end
-		for i = 1, 4 do
-			if _G["StaticPopup"..i] then
-				_G["StaticPopup"..i]:Hide()
-			end
-			if _G["ElvUI_StaticPopup"..i] then
-				_G["ElvUI_StaticPopup"..i]:Hide()
-			end
-		end
-		if _G["CappingFrame"] then
-			_G["CappingFrame"]:Hide()
-		end
-		if _G["BasicMessageDialog"] then
-			_G["BasicMessageDialog"]:Hide()
-		end
-		if IsAddOnLoaded("Gladdy") then
-			LibStub("AceConfigDialog-3.0"):Close("Gladdy") --using E.Libs seems delayed
-		end
-		if _G["SubscriptionInterstitialFrame"] then --hide the f2p popup during install
-			--_G["SubscriptionInterstitialFrame"]:Hide()
-			_G["SubscriptionInterstitialFrame"].ClosePanelButton:Click() --click instead since hide does some weird things
-		end
-		--hide elvui config
-		E.Libs.AceConfigDialog:Close("ElvUI")
-	end)
 end
 
 --Resolution check for font outline
@@ -982,7 +906,7 @@ end
 --from oUF
 local GenerateTextColorCode = _G.C_ColorUtil and _G.C_ColorUtil.GenerateTextColorCode
 function ElvUI_EltreumUI:Hex(r, g, b)
-	if not r or type(r) == 'string' then -- wtf?
+	if not r or type(r) == 'string' then
 		return '|cffFFFFFF'
 	elseif type(r) == 'table' then
 		if E.Modern then

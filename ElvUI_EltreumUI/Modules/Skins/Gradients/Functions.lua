@@ -791,3 +791,16 @@ function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
 		return ElvUI_EltreumUI:GetClassColorsRGB(unitclass,2)
 	end
 end
+
+--set gradient using vertex color of regions of a frame
+function ElvUI_EltreumUI:ApplyGlowGradient(glowFrame, r, g, b)
+	if not glowFrame then return end
+	local numRegions = glowFrame:GetNumRegions()
+	for k = 1, numRegions do
+		local region = select(k, glowFrame:GetRegions())
+		if region and region.SetVertexColor then
+			local percentage = 1 - (k / (numRegions + 1))
+			region:SetVertexColor((r * percentage), (g * percentage), (b * percentage), 1)
+		end
+	end
+end
