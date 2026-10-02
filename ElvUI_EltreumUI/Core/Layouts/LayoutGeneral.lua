@@ -738,7 +738,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["backdropfadecolor"]["b"] = 0
 	E.db["general"]["backdropfadecolor"]["g"] = 0
 	E.db["general"]["backdropfadecolor"]["r"] = 0
-	E.db["general"]["bonusObjectivePosition"] = "RIGHT"
 	E.db["general"]["bottomPanel"] = false
 	E.db["general"]["cropIcon"] = 2
 	E.db["general"]["font"] = "Kimberley"
@@ -808,7 +807,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["valuecolor"]["b"] = valuecolors.b
 	E.db["general"]["valuecolor"]["g"] = valuecolors.g
 	E.db["general"]["valuecolor"]["r"] = valuecolors.r
-	E.db["general"]["vehicleSeatIndicatorSize"] = 76
 	E.db["general"]["taintLog"] = false
 
 	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
