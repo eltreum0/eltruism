@@ -97,6 +97,17 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 				unitframe.Power.bg:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
 			end
 
+			if transparent and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+				if unitframe.Power.backdrop and unitframe.Power.backdrop.Center then
+					unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+					unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.power_backdrop.r, E.db.unitframe.colors.power_backdrop.g, E.db.unitframe.colors.power_backdrop.b, E.db.general.backdropfadecolor.a)
+					local bgA = unitframe.Power.backdrop.Center:GetAlpha()
+					if ElvUI_EltreumUI:IsThisASafeSecret(bgA, true) and bgA ~= alpha then
+						unitframe.Power.backdrop.Center:SetAlpha(alpha)
+					end
+				end
+			end
+
 			--gradients
 			if powertypes[powertype] then
 				local minC, maxC = GetGradient(powertype, invert, transparent, false, isCustom)
