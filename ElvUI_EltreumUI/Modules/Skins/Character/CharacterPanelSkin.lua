@@ -435,7 +435,12 @@ if not E.Retail then
 		dualspec:SetScript("OnEvent", function()
 			E:Delay(2, function()
 				if CharacterFrame.EltruismText5 and CharacterFrame.EltruismText5:GetText() ~= nil then
-					CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+					if E.Forever then
+						local _, specName = ElvUI_EltreumUI:CheckForeverSpec()
+						CharacterFrame.EltruismText5:SetText(specName)
+					else
+						CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+					end
 				end
 			end)
 		end)
@@ -1754,7 +1759,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--CharacterFrame.EltruismText5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.EltruismText5:SetTextColor(1, 1, 1, 1)
 				CharacterFrame.EltruismText5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+				if E.Forever then
+					local _, specName = ElvUI_EltreumUI:CheckForeverSpec()
+					CharacterFrame.EltruismText5:SetText(specName)
+				else
+					CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+				end
 			end
 		end
 
@@ -2542,7 +2552,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--CharacterFrame.EltruismText5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			CharacterFrame.EltruismText5:SetTextColor(1, 1, 1, 1)
 			CharacterFrame.EltruismText5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+			if E.Forever then
+				local _, specName = ElvUI_EltreumUI:CheckForeverSpec()
+				CharacterFrame.EltruismText5:SetText(specName)
+			else
+				CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+			end
 
 			CharacterFrame.EltruismText:SetSize(418, 72)
 			CharacterFrame.EltruismText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -25)
