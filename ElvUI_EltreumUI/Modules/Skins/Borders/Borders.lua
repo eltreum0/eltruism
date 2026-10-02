@@ -2058,6 +2058,8 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	local auraType = isDebuff and "debuffs" or "buffs"
 	local edgeSize, strata, level, sizeX, sizeY = ElvUI_EltreumUI:GetBorderDB(isUF, isNP, auraType)
 
+	--in 12.1.5 throws this when swapping profiles, but not on PEW or aura created (even in combat)
+	--Blizzard_SharedXML/Backdrop.lua:226: attempt to perform arithmetic on local 'width' (a secret number value, while execution tainted by 'ElvUI_EltreumUI')
 	if not auraborder then
 		if E.Modern then
 			button.EltruismAuraBorder = CreateFrame("Frame", nil, button, BackdropTemplateMixin and "BackdropTemplate")
