@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 		ElvUI_EltreumUI:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
 	end
 
-	if E.Modern or E.Mists or E.TBC or E.Wrath then
+	if _G.C_Item and _G.C_Item.UseItemByName then
 		if not ElvUI_EltreumUI:IsHooked(_G.C_Item,"UseItemByName", "checkItemCooldown") then
 			ElvUI_EltreumUI:SecureHook(_G.C_Item,"UseItemByName", "checkItemCooldown")
 		end
