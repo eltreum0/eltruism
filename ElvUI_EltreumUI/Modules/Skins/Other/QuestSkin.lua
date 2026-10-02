@@ -267,6 +267,7 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 
 		if E.Modern then
+			local numMAX_QUESTS = E.Forever and 40 or 35 --MAX_QUESTS in retail returns 25
 			--[[
 			--previous quest addons
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
@@ -960,13 +961,11 @@ function ElvUI_EltreumUI:SkinQuests()
 									--13 seemed correct but managed to hit 38/35
 									--turns out some quests count as more, as finishing a battle pet quest changed the total return by more than 1
 									--maybe some quests are returning higher values to reserve slots for following quests
-									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 15
+									local NumQuests = math.ceil(select(2, _G.C_QuestLog.GetNumQuestLogEntries())*0.5)
 									if NumQuests < 0 then NumQuests = 0 end
-
-									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
 									if (NumQuests >= 30) then
 										--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
-										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, _G.QUESTS_LABEL))
+										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, numMAX_QUESTS, _G.QUESTS_LABEL))
 									else
 										_G.QuestObjectiveTracker.Header.Text:SetText(_G.QUESTS_LABEL)
 									end
@@ -1040,11 +1039,11 @@ function ElvUI_EltreumUI:SkinQuests()
 
 							--add quest count
 							if _G.QuestObjectiveTracker and _G.QuestObjectiveTracker.Header and _G.QuestObjectiveTracker.Header.Text then
-								local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
-								--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
+								local NumQuests = math.ceil(select(2, _G.C_QuestLog.GetNumQuestLogEntries())*0.5)
+								if NumQuests < 0 then NumQuests = 0 end
 								if (NumQuests >= 30) then
 									--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
-									_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, _G.QUESTS_LABEL))
+									_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, numMAX_QUESTS, _G.QUESTS_LABEL))
 								--else
 								--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
 								end
