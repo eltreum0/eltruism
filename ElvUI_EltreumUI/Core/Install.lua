@@ -363,7 +363,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 	if objectivetrackerfix then
 		if not layoutstable.layouts[1] then --they dont have a custom profile, add my own to fix the objective frame anchor
 			layoutstable.layouts[1] = taintpreventlayout
-			layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
+			layoutstable.activeLayout = E.Forever and 4 or 3 --for some reason the 2 default ones count for it
 			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 		end
@@ -374,7 +374,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 				if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
 					alreadyimported = true
 					layoutstable.layouts[i] = taintpreventlayout
-					layoutstable.activeLayout = i + 2
+					layoutstable.activeLayout = (E.Forever and (i + 3)) or (i + 2)
 					C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 					ElvUI_EltreumUI:Print(stringformat(_G.HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
 					break
@@ -386,14 +386,14 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 				--tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
 				layoutstable.layouts[tonumber(numlayouts)] = taintpreventlayout
 				--layoutstable.activeLayout = numlayouts + 1
-				layoutstable.activeLayout = numlayouts + 2
+				layoutstable.activeLayout = numlayouts + (E.Forever and 3 or 2)
 				C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 				C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 				ElvUI_EltreumUI:Print(L["Importing"].." "..layoutGlobalText)
 			end
 		else
 			layoutstable.layouts[1] = taintpreventlayout
-			layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
+			layoutstable.activeLayout = E.Forever and 4 or 3 --for some reason the 2 default ones count for it
 			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 			ElvUI_EltreumUI:Print(L["Importing"].." "..layoutGlobalText)
