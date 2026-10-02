@@ -15,6 +15,7 @@ local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
+local MAP_PIN = _G.MAP_PIN
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Modern then
@@ -45,6 +46,12 @@ if E.Modern then
 	EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, 7)
 	EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	EltruismTimeToArrive.TimeText:SetParent(_G["SuperTrackedFrame"])
+	EltruismTimeToArrive.WaypointText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+	EltruismTimeToArrive.WaypointText:SetJustifyV("TOP")
+	EltruismTimeToArrive.WaypointText:SetSize(0, 26)
+	EltruismTimeToArrive.WaypointText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -9)
+	EltruismTimeToArrive.WaypointText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	EltruismTimeToArrive.WaypointText:SetParent(_G["SuperTrackedFrame"])
 	EltruismTimeToArrive:SetParent(_G["SuperTrackedFrame"])
 	SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
 	SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -103,6 +110,18 @@ if E.Modern then
 				end
 			else
 				notsafe = true
+			end
+
+			--add objective text
+			--name, description = C_SuperTrack.GetSuperTrackedItemName()
+			--questID = C_SuperTrack.GetSuperTrackedQuestID()
+			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.waypointname then
+				local name = C_SuperTrack.GetSuperTrackedItemName()
+				if name == MAP_PIN then
+					EltruismTimeToArrive.WaypointText:SetText("")
+				elseif (name ~= EltruismTimeToArrive.WaypointText:GetText()) then
+					EltruismTimeToArrive.WaypointText:SetText(name)
+				end
 			end
 
 			--calculate time to arrive
@@ -228,12 +247,15 @@ if E.Modern then
 
 			SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			EltruismTimeToArrive.WaypointText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.classcolortext then
 				SuperTrackedFrame.DistanceText:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
 				EltruismTimeToArrive.TimeText:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
+				EltruismTimeToArrive.WaypointText:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
 			else
 				SuperTrackedFrame.DistanceText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 				EltruismTimeToArrive.TimeText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
+				EltruismTimeToArrive.WaypointText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 			end
 
 			--color icon

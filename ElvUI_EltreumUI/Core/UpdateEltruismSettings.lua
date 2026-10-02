@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.sam = true
 		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.playerdeathsound = "Frankly thats a skill issue"
 		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable = true
+		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.waypointname = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
 		E.db.ElvUI_EltreumUI.skins.auctionator = true
 		E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
@@ -211,6 +212,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		-- Waypoints
 		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = true
 		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = true
+		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.waypointname = true
 		E.db.ElvUI_EltreumUI.waypoints.waytext.enable = true
 		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable = true
 
