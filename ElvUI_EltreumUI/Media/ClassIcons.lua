@@ -67,7 +67,7 @@ local path = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\class\\"
 -- style = texture style, textur = path to the texture, table with texture coords for each class, name = optional name to show in dopdown menu
 function ElvUI_EltreumUI:AddClassIcons(style, texture, texCoords, name)
 	if not (style and texture and texCoords) then
-		ElvUI_EltreumUI:Print("|CFFEA1818Error|r:", L["Could not add the texture."])
+		ElvUI_EltreumUI:Print("|CFFEA1818Error|r: "..L["Could not add the texture."])
 		return false, "missingArgs"
 	end
 
@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:AddClassIcons(style, texture, texCoords, name)
 
 	if texCoords ~= "default" then
 		if type(texCoords) ~= "table" then
-			ElvUI_EltreumUI:Print("|CFFEA1818Error|r:", L["The texture coordinates must be passed as a table."])
+			ElvUI_EltreumUI:Print("|CFFEA1818Error|r: "..L["The texture coordinates must be passed as a table."])
 			return false, "invalidCoords"
 		end
 		icon.texCoords = texCoords
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:AddClassIcons(style, texture, texCoords, name)
 		ElvUI_EltreumUI.ClassIcons.mMT[style] = icon
 		return true
 	else
-		ElvUI_EltreumUI:Print("|CFFEA1818Error|r:", L["The style already exists."])
+		ElvUI_EltreumUI:Print("|CFFEA1818Error|r: "..L["The style already exists."])
 		return false, "duplicate"
 	end
 end
