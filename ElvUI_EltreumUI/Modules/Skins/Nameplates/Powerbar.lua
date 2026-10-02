@@ -215,7 +215,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 					if cost and cost > 0 then
 						mainCost = cost
 					elseif cperc and cperc > 0 and not (E.IsSecretValue and E:IsSecretValue(playerPowerMax)) and playerPowerMax and playerPowerMax > 0 then
-						mainCost = (playerPowerMax * cperc) / 100
+						mainCost = (playerPowerMax * cperc) * 0.01
 					end
 					break
 				end
