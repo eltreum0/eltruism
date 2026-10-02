@@ -43,6 +43,14 @@ local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local select = _G.select
 local type = _G.type
+local UnitClass = _G.UnitClass
+local GetActiveSpecGroup = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetActiveSpecGroup
+local GetCombatConfigIDForSpecGroup = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetCombatConfigIDForSpecGroup
+local GetConfigInfo = _G.C_Traits and _G.C_Traits.GetConfigInfo
+local GetGroupDisplayInfoByTreeID = _G.C_Traits and _G.C_Traits.GetGroupDisplayInfoByTreeID
+local GetGroupCurrencyInfo = _G.C_Traits and _G.C_Traits.GetGroupCurrencyInfo
+local ipairs = _G.ipairs
+local table = _G.table
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -1097,6 +1105,102 @@ if pickerWheel and _G.ColorPickerFrame then
 	bettermask:SetPoint("TOPRIGHT", pickerWheel, "TOPRIGHT", 3, 3)
 	bettermask:SetPoint("BOTTOMLEFT", pickerWheel, "BOTTOMLEFT", -2, -2)
 	pickerWheel:AddMaskTexture(bettermask)
+end
+
+--because forever is a bit special with their specs
+local CLASS_TREE_TO_SPEC_ID = {
+	[1]  = { -- Warrior:
+		[1] = 71, --Arms
+		[2] = 72, --Fury
+		[3] = 73, --Protection
+	},
+	[2]  = { -- Paladin:
+		[1] = 65, --Holy
+		[2] = 66, --Protection
+		[3] = 70, --Retribution
+	},
+	[3]  = { -- Hunter:
+		[1] = 253, --Beast Mastery
+		[2] = 254, --Marksmanship
+		[3] = 255, --Survival
+	},
+	[4]  = { -- Rogue
+		[1] = 259, --Assassination
+		[2] = 260, --Combat
+		[3] = 261, --Subtlety
+	},
+	[5]  = { -- Priest
+		[1] = 256, --Discipline
+		[2] = 257, --Holy
+		[3] = 258, --Shadow
+	},
+	[7]  = { -- Shaman
+		[1] = 262, --Elemental
+		[2] = 263, --Enhancement
+		[3] = 264, --Restoration
+	},
+	[8]  = { -- Mage
+		[1] = 62, --Arcane
+		[2] = 63, --Fire
+		[3] = 64, --Frost
+	},
+	[9]  = { -- Warlock
+		[1] = 265, --Affliction
+		[2] = 266, --Demonology
+		[3] = 267, --Destruction
+	},
+	[11] = { -- Druid
+		[1] = 102, --Balance
+		[2] = 103, --Feral
+		[3] = 105, --Restoration
+	},
+}
+function ElvUI_EltreumUI:CheckForeverSpec()
+	local _, _, classID = UnitClass("player")
+	local activeGroup = GetActiveSpecGroup() or 1
+	local configID = GetCombatConfigIDForSpecGroup(activeGroup)
+	if not configID then return nil, nil, 0, 0, 0 end
+
+	local configInfo = GetConfigInfo(configID)
+	local treeID = configInfo and configInfo.treeIDs and configInfo.treeIDs[1]
+	if not treeID then return nil, nil, 0, 0, 0 end
+
+	local displayInfos = GetGroupDisplayInfoByTreeID(treeID)
+	if not displayInfos or #displayInfos == 0 then return nil, nil, 0, 0, 0 end
+
+	local groupIDs = {}
+	for _, info in ipairs(displayInfos) do
+		table.insert(groupIDs, info.groupID)
+	end
+	local groupCurrencyInfos = GetGroupCurrencyInfo(configID, groupIDs)
+	local currencyByGroup = {}
+	if groupCurrencyInfos then
+		for _, curr in ipairs(groupCurrencyInfos) do
+			currencyByGroup[curr.traitNodeGroupID] = curr.currencyInfos[1] and curr.currencyInfos[1].spent or 0
+		end
+	end
+
+	local spent1 = (displayInfos[1] and currencyByGroup[displayInfos[1].groupID]) or 0
+	local spent2 = (displayInfos[2] and currencyByGroup[displayInfos[2].groupID]) or 0
+	local spent3 = (displayInfos[3] and currencyByGroup[displayInfos[3].groupID]) or 0
+	local dominantIndex = 1
+	local dominantName = displayInfos[1] and displayInfos[1].displayName or ""
+
+	if spent2 > spent1 then
+		dominantIndex = 2
+		dominantName = displayInfos[2] and displayInfos[2].displayName or ""
+	end
+	if spent3 > spent2 and spent3 > spent1 then
+		dominantIndex = 3
+		dominantName = displayInfos[3] and displayInfos[3].displayName or ""
+	end
+
+	local specID = 0
+	if CLASS_TREE_TO_SPEC_ID[classID] and CLASS_TREE_TO_SPEC_ID[classID][dominantIndex] then
+		specID = CLASS_TREE_TO_SPEC_ID[classID][dominantIndex]
+	end
+
+	return specID, dominantName, spent1, spent2, spent3
 end
 
 --cursor positioning with 60 FPS throttle

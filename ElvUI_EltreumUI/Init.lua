@@ -127,7 +127,13 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if E.db.ElvUI_EltreumUI.quests.anchor then
 			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
 		end
-		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+		if E.Retail then
+			ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+		else
+			if ElvUI_EltreumUI:CheckForeverSpec() then --returns nil if no value
+				ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckForeverSpec()
+			end
+		end
 		ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
@@ -348,8 +354,12 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Modern and GetSpecialization()
 	local cnewtalentmists = E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
-	if E.Modern then
+	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+	elseif E.Forever then
+		if ElvUI_EltreumUI:CheckForeverSpec() then --returns nil if no value
+			ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckForeverSpec()
+		end
 	elseif E.Mists then
 		ElvUI_EltreumUI.Spec = GetSpecialization()
 	elseif E.ClassicSOD or E.TBC or E.Wrath then
