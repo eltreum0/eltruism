@@ -1,8 +1,6 @@
-local E, L = unpack(ElvUI)
+local E, L, _, P = unpack(ElvUI)
 local _G = _G
 local pairs = _G.pairs
-
---todo update for retail/forever
 
 --apply textured icon on profile import, ty Repooc
 local function doApplyToAll(db, dbEntry, dbValue)
@@ -73,83 +71,122 @@ local minimalBuffs = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
 local minimalDebuffs = 'Blacklist,Whitelist,Personal,CCDebuffs'
 local minimalAura = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
 
+local EltruismModernEverythingBuffs = "HELPFUL"
+local EltruismModernEverythingDebuffs = "HARMFUL"
+
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	if frame == 'player' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["player"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = EltruismPlayerBuffs
+			E.db["unitframe"]["units"]["player"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["player"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'target' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["target"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = EltruismTargetBuffs
+			E.db["unitframe"]["units"]["target"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["target"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'focus' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["focus"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = EltruismFocusBuffs
+			E.db["unitframe"]["units"]["focus"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["focus"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'boss' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["boss"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = EltruismBossBuffs
+			E.db["unitframe"]["units"]["boss"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["boss"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = EltruismEverything
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = EltruismEverything
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = EltruismNameplateEnemyPlayerBuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = EltruismNameplateEnemyNPCBuffs
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.ENEMY_PLAYER.buffs.filterLists.group1.filter
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.ENEMY_NPC.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = minimalBuffs
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = 'Blacklist,Dispellable,TurtleBuffs'
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.ENEMY_PLAYER.buffs.filterLists.group1.filter
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.ENEMY_NPC.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'party' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = EltruismGroupBuffs
+			E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'raid' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = EltruismEverything
 			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = EltruismEverything
 			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = EltruismGroupBuffs
 			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = EltruismGroupBuffs
 			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = EltruismGroupBuffs
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.buffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.buffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.buffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = minimalBuffs
 			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = minimalBuffs
 			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.buffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.buffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.buffs.filterLists.group1.filter
 		end
 	elseif frame == 'aurabar' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+			E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+			E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+			E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = minimalAura
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
+			E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+			E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
 		end
 	end
 	E:UpdateAll()
@@ -160,78 +197,114 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	if frame == 'player' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = EltruismPlayerDebuffs
+			E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'target' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = EltruismTargetDebuffs
+			E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'focus' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = EltruismFocusDebuffs
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'boss' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = EltruismBossDebuffs
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = EltruismEverything
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = EltruismEverything
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = EltruismNameplateEnemyPlayerDebuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = EltruismNameplateEnemyNPCDebuffs
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = minimalDebuffs
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'party' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["party"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = EltruismGroupDebuffs
+			E.db["unitframe"]["units"]["party"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["party"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'raid' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = EltruismEverything
 			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = EltruismEverything
 			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = EltruismGroupDebuffs
 			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = EltruismGroupDebuffs
 			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismGroupDebuffs
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.debuffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.debuffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = minimalDebuffs
 			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = minimalDebuffs
 			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.debuffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.debuffs.filterLists.group1.filter
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.debuffs.filterLists.group1.filter
 		end
 	elseif frame == 'aurabar' then
 		if type == 'Everything' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+			E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+			E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = minimalAura
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
+			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+			E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
 		end
 	end
 	E:UpdateAll()
@@ -264,6 +337,31 @@ function ElvUI_EltreumUI:SetupAllAuras(type)
 		E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismEverything
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
 		E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+
+		E.db["unitframe"]["units"]["player"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["target"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["focus"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["boss"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingBuffs
+		E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+		E.db["unitframe"]["units"]["raid3"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
 	elseif type == 'Eltruism' then
 		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = EltruismPlayerBuffs
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = EltruismTargetBuffs
@@ -289,6 +387,31 @@ function ElvUI_EltreumUI:SetupAllAuras(type)
 		E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismGroupDebuffs
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
 		E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+
+		E.db["unitframe"]["units"]["player"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["target"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["focus"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["boss"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.buffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.buffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+		E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+		E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+		E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+		E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.debuffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid3"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.debuffs.filterLists.group1.filter
 	elseif type == 'Minimal' then
 		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = minimalBuffs
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = minimalBuffs
@@ -314,6 +437,31 @@ function ElvUI_EltreumUI:SetupAllAuras(type)
 		E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = minimalDebuffs
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = minimalAura
 		E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
+
+		E.db["unitframe"]["units"]["player"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["target"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["focus"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["boss"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.buffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.buffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.buffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+		E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+		E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+		E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+		E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.debuffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.debuffs.filterLists.group1.filter
+		E.db["unitframe"]["units"]["raid3"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.debuffs.filterLists.group1.filter
 	end
 	E:UpdateAll()
 	ElvUI_EltreumUI:Print(L["Aura filters were setup"])
