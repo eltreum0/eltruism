@@ -608,7 +608,8 @@ do
 						end
 						if _G["DamageMeterSessionWindow1"] then
 							_G["DamageMeterSessionWindow1"]:ClearAllPoints()
-							_G["DamageMeterSessionWindow1"]:SetPoint("TOPLEFT", embedpanel, "TOPLEFT",0,-20)
+							--_G["DamageMeterSessionWindow1"]:SetPoint("TOPLEFT", embedpanel, "TOPLEFT",0,-20)
+							_G["DamageMeterSessionWindow1"]:SetAllPoints(embedpanel)
 						end
 					end
 
