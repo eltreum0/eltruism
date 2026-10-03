@@ -11,6 +11,11 @@
 ## AddonCompartmentFunc: ElvUI_EltreumUI_OnAddonCompartmentClick
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
+## Notes-esMX: Eltruism es un plugin de ElvUI con perfiles y otras funciones no disponibles en ElvUI
+## Notes-frFR: Eltruism est un plugin ElvUI avec des profils et d'autres fonctionnalités non disponibles dans ElvUI
+## Notes-ptBR: Eltruism é um plugin do ElvUI com perfis e outros recursos não disponíveis no ElvUI
+## Notes-zhCN: Eltruism 是一个具有 ElvUI 所没有的配置文件和其他功能的插件
+## Notes-zhTW: Eltruism 是一個具有 ElvUI 所沒有的設定檔和其他功能的插件
 ## Dependencies: ElvUI
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: ElvUI_SLE, ElvUI_WindTools
