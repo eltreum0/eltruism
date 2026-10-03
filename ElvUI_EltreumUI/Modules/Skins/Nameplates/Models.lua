@@ -60,7 +60,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
 		if UnitExists("target")then
 			if nameplate and nameplate.__unit and E:UnitIsUnit(nameplate.__unit,"target") then --12.0.5 breaks this
-				--ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
+				--ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate) --testing sending unit to other function
 				if nameplate.Health and nameplate.Health:IsVisible() then
 
 					--original, but can have wrong camera

@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 end
 
 --custom backdrop modifications
-function ElvUI_EltreumUI:NameplateCustomOptions(unit)
+function ElvUI_EltreumUI:NameplateCustomBackdrop(unit)
 	local health = unit and unit.Health
 	if not health or not unit.__unit or not health:IsShown() then
 		return
@@ -208,8 +208,14 @@ eventFrame:SetScript("OnEvent", function(_, event, unit)
 end)
 
 local function OnUpdatePlateBase(_, nameplate)
+	local db = E.db and E.db.ElvUI_EltreumUI
+	local opts = db and db.nameplates and db.nameplates.nameplateOptions
+	if not (opts and opts.enableHealthHeight) then
+		return
+	end
+
 	if nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown() then
-		ElvUI_EltreumUI:NameplateCustomOptions(nameplate)
+		ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
 		if E:UnitIsUnit(nameplate.__unit, "target") then
 			previousTargetPlate = nameplate
@@ -227,7 +233,7 @@ local function OnUpdateHealth(self, nameplate)
 
 	local frame = (self and self.__unit and self) or (nameplate and nameplate.__unit and nameplate)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
-		ElvUI_EltreumUI:NameplateCustomOptions(frame)
+		ElvUI_EltreumUI:NameplateCustomBackdrop(frame)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 		if E:UnitIsUnit(frame.__unit, "target") then
 			previousTargetPlate = frame
