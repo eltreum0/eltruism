@@ -887,9 +887,13 @@ do
 end
 
 --10.1 addon compartment
-function ElvUI_EltreumUI_OnAddonCompartmentClick()
-	E:ToggleOptions("ElvUI_EltreumUI") --has msg arg which can be used
-	--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+do
+	function ElvUI_EltreumUI:OnAddonCompartmentClick()
+		E:ToggleOptions("ElvUI_EltreumUI") --has msg arg which can be used
+		--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+	end
+
+	_G.ElvUI_EltreumUI_OnAddonCompartmentClick = ElvUI_EltreumUI.OnAddonCompartmentClick
 end
 
 function ElvUI_EltreumUI:FontFlag(style)
