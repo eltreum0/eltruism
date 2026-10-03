@@ -40,6 +40,8 @@ local function clamp(val)
 end
 local glowMin = CreateColor(1, 1, 1, 1)
 local glowMax = CreateColor(1, 1, 1, 1)
+local classGlowColor = {classcolor.r, classcolor.g, classcolor.b, 1}
+local customGlowColor = {1, 1, 1, 1}
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -75,71 +77,75 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 			end
 		end
 
+		local shouldGlow = false
 		--print("np button spam "..math.random(1,99))
 		if buttonCooldown.timer then
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
-				buttonCooldown:SetSwipeColor(0, 0, 0, 0)
-				buttonCooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
+			if not buttonCooldown.EltruismTextureSet then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
+					buttonCooldown:SetSwipeColor(0, 0, 0, 0)
+					buttonCooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
+				end
+				buttonCooldown.EltruismTextureSet = true
 			end
-			if not E.Modern and E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+
+			if not E.Modern and E.db.ElvUI_EltreumUI.nameplates.auras.enable then
 				if not buttonCooldown.EltruismPointSet then
 					buttonCooldown.timer.text:ClearAllPoints()
 					buttonCooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
 					buttonCooldown.EltruismPointSet = true
 				end
 			end
-			local debufftime = tonumber(buttonCooldown.timer.text:GetText())
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
+
+			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and buttonCooldown.timer.text then
+				local debufftime = tonumber(buttonCooldown.timer.text:GetText())
 				if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-					if button.aura.sourceUnit and E:UnitIsUnit(button.aura.sourceUnit, "player") then
-						if E.db.ElvUI_EltreumUI.glow.pixel then
-							LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-							if E.db.ElvUI_EltreumUI.glow.gradient then
-								ElvUI_EltreumUI:ApplyGlowGradient(button._PixelGlow, r, g, b)
-							end
-						elseif E.db.ElvUI_EltreumUI.glow.autocast then
-							--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-							LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
-							if E.db.ElvUI_EltreumUI.glow.gradient then
-								ElvUI_EltreumUI:ApplyGlowGradient(button._AutoCastGlow, r, g, b)
-							end
-						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-							LCG.ButtonGlow_Start(button, glowcolor, 0.5)
-							button._ButtonGlow.outerGlow:SetScale(1.15)
-							if E.db.ElvUI_EltreumUI.glow.gradient then
-								if E.db.ElvUI_EltreumUI.glow.colorclass then
-									button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
-								else
-									local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
-									glowMin:SetRGBA(clamp(c.r - 0.2), clamp(c.g - 0.2), clamp(c.b - 0.2), 1)
-									glowMax:SetRGBA(clamp(c.r + 0.2), clamp(c.g + 0.2), clamp(c.b + 0.2), 1)
-									button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
-								end
-							end
-						elseif E.db.ElvUI_EltreumUI.glow.procglow then
-							proc.color = glowcolor
-							proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
-							proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
-							proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
-							proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
-							proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
-							LCG.ProcGlow_Start(button, proc)
-						end
-					end
-				else
-					if E.db.ElvUI_EltreumUI.glow.pixel then
-						LCG.PixelGlow_Stop(button)
-					elseif E.db.ElvUI_EltreumUI.glow.autocast then
-						LCG.AutoCastGlow_Stop(button)
-					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-						LCG.ButtonGlow_Stop(button)
-					elseif E.db.ElvUI_EltreumUI.glow.procglow then
-						LCG.ProcGlow_Stop(button)
+					if button.aura and button.aura.sourceUnit and E:UnitIsUnit(button.aura.sourceUnit, "player") then
+						shouldGlow = true
 					end
 				end
 			end
+		end
+
+		if shouldGlow then
+			if not button.EltruismIsGlowing then
+				button.EltruismIsGlowing = true
+				if E.db.ElvUI_EltreumUI.glow.pixel then
+					LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+					if E.db.ElvUI_EltreumUI.glow.gradient then
+						ElvUI_EltreumUI:ApplyGlowGradient(button._PixelGlow, r, g, b)
+					end
+				elseif E.db.ElvUI_EltreumUI.glow.autocast then
+					--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+					LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
+					if E.db.ElvUI_EltreumUI.glow.gradient then
+						ElvUI_EltreumUI:ApplyGlowGradient(button._AutoCastGlow, r, g, b)
+					end
+				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+					LCG.ButtonGlow_Start(button, glowcolor, 0.5)
+					button._ButtonGlow.outerGlow:SetScale(1.15)
+					if E.db.ElvUI_EltreumUI.glow.gradient then
+						if E.db.ElvUI_EltreumUI.glow.colorclass then
+							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+						else
+							local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
+							glowMin:SetRGBA(clamp(c.r - 0.2), clamp(c.g - 0.2), clamp(c.b - 0.2), 1)
+							glowMax:SetRGBA(clamp(c.r + 0.2), clamp(c.g + 0.2), clamp(c.b + 0.2), 1)
+							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
+						end
+					end
+				elseif E.db.ElvUI_EltreumUI.glow.procglow then
+					proc.color = glowcolor
+					proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+					proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+					proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+					proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+					proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+					LCG.ProcGlow_Start(button, proc)
+				end
+			end
 		else
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and (buttonCooldown == nil or buttonCooldown.timer == nil or not buttonCooldown:IsShown()) then
+			if button.EltruismIsGlowing then
+				button.EltruismIsGlowing = false
 				if E.db.ElvUI_EltreumUI.glow.pixel then
 					LCG.PixelGlow_Stop(button)
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -153,12 +159,17 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		end
 	end
 end
+
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	local glowcolor
 	if E.db.ElvUI_EltreumUI.glow.colorclassnp then
-		glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+		glowcolor = classGlowColor
 	else
-		glowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.b, 1}
+		local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
+		customGlowColor[1] = c.r
+		customGlowColor[2] = c.g
+		customGlowColor[3] = c.b
+		glowcolor = customGlowColor
 	end
 	local r,g,b = glowcolor[1],glowcolor[2],glowcolor[3]
 
@@ -178,14 +189,17 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			button.Cooldown.EltruismTimeSinceLastUpdate = 0
 			if not button.Cooldown or not button.Cooldown:IsShown() then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
-					if E.db.ElvUI_EltreumUI.glow.pixel then
-						LCG.PixelGlow_Stop(button)
-					elseif E.db.ElvUI_EltreumUI.glow.autocast then
-						LCG.AutoCastGlow_Stop(button)
-					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-						LCG.ButtonGlow_Stop(button)
-					elseif E.db.ElvUI_EltreumUI.glow.procglow then
-						LCG.ProcGlow_Stop(button)
+					if button.EltruismIsGlowing then
+						button.EltruismIsGlowing = false
+						if E.db.ElvUI_EltreumUI.glow.pixel then
+							LCG.PixelGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.autocast then
+							LCG.AutoCastGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+							LCG.ButtonGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.procglow then
+							LCG.ProcGlow_Stop(button)
+						end
 					end
 				end
 			else
@@ -223,12 +237,17 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 		end
 
 		if buttonCooldown2.timer then
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
-				buttonCooldown2:SetSwipeColor(0, 0, 0, 0)
-				buttonCooldown2:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
+			if not buttonCooldown2.EltruismTextureSet then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
+					buttonCooldown2:SetSwipeColor(0, 0, 0, 0)
+					buttonCooldown2:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
+				else
+					buttonCooldown2:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
+				end
+				buttonCooldown2.EltruismTextureSet = true
 			end
-			buttonCooldown2:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
-			if not E.Modern and E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+
+			if not E.Modern and E.db.ElvUI_EltreumUI.nameplates.auras.enable then  --adjust nameplate buff/debuff position
 				if not buttonCooldown2.EltruismPointSet then
 					buttonCooldown2.timer.text:ClearAllPoints()
 					buttonCooldown2.timer.text:SetDrawLayer('OVERLAY',1)
@@ -252,7 +271,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		end
 	end
 	if UnitExists(unit) then
-		UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
+		UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range (mostly in vehicles)
 	end
 end
 
