@@ -568,10 +568,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.db["WT"]["social"]["friendList"]["infoFont"]["style"] = fontStyle
 		E.db["WT"]["social"]["friendList"]["nameFont"]["style"] = fontStyle
 	end
-	if IsAddOnLoaded("ElvUI_mMediaTag") then
-		E.db["mMediaTag"]["dock"]["font"]["fontFlag"] = fontStyle
-		--E.db["mMT"]["objectivetracker"]["font"]["fontflag"] = fontStyle
-	end
 
 	fontStyle = ElvUI_EltreumUI:FontFlag(fontStyle)
 	if IsAddOnLoaded('NameplateSCT') then
