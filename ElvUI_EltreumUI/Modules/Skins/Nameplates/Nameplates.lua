@@ -915,7 +915,7 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 					end
 					self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else
-					local reaction = UnitReaction(unit.."target", "player")
+					local reaction = UnitReaction(ElvUI_EltreumUI:GetTargetUnit(unit), "player")
 					if reaction >= 5 then
 						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
 					elseif reaction == 4 then
