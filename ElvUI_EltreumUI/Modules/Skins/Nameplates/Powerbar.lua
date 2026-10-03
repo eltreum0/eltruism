@@ -61,15 +61,85 @@ EltreumPowerPrediction:SetValue(0)
 EltreumPowerPredictionIncoming:Hide()
 EltreumPowerPredictionIncoming.isShownStatus = false
 EltreumPowerPredictionIncoming:SetValue(0)
-local druidwrath = 6
-local druidstarfire = 8
-local shamanhex = 0
-local shamanbolt = 6
-local shamanlavaburst = 8
-local huntersteadyshot = 10 --now baseline
+
+local powerEffectTransformVec1 = CreateVector3D(-0.035, 0, 0)
+local powerEffectTransformVec2 = CreateVector3D(4.7123889803847, 0, 0)
 local maxpower = 0
-local mainCost = 0 --reset
-local incResource = 0 -- reset
+
+--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
+local spellGenerators = {
+	-- Balance Druid
+	[190984] = 6, --wrath
+	[194153] = 8, -- StarFire
+	--[214281] = 10, -- New Moon --might finally have become 1
+	[274281] = 10, -- New Moon
+	--[214282] = 20, -- Half Moon --might finally have become 1
+	[274282] = 20, -- Half Moon
+	[274283] = 40, -- Full Moon
+	[202347] = 12, -- Stellar Flare
+
+	-- Shadow Priest
+	[8092] = 6, -- mind blast
+	[34914] = 4, -- vampiric touch
+	--[15407] = 12, -- mind flay, but is a channel so idc
+	--[48045] = 6, -- per target, but is a channel so idc
+	--[263165] = 60, -- void torrent, but is a channel so idc
+	[263346] = 15, --dark void
+	[73510] = 4, --mind spike
+	[391109] = 30, --dark ascension
+	[407466] = 12, --mind spike: insanity
+	--[391403] = 12, --mind flay: insanity, but its a channel so idc
+	[375901] = 10, --mindgames
+	[120644] = 10, -- halo
+	--[263165] = 24, --void torrent, but its a channel so idc
+	[450983] = 6, --void blast
+
+	-- Elemental Shaman
+	[188196] = 6, --lightning bolt
+	[51505] = 8, --lava burst
+	[114074] = 2, --lava beam
+	[210714] = 25, --icefury
+	[188443] = 4, --chain lightning (per target hit)
+	[51514] = 0, --hex can have maelstrom if they have inundate
+	[210873] = 0, --hex can have maelstrom if they have inundate
+	[211004] = 0, --hex can have maelstrom if they have inundate
+	[211010] = 0, --hex can have maelstrom if they have inundate
+	[211015] = 0, --hex can have maelstrom if they have inundate
+	[269352] = 0, --hex can have maelstrom if they have inundate
+	[277778] = 0, --hex can have maelstrom if they have inundate
+	[277784] = 0, --hex can have maelstrom if they have inundate
+	[309328] = 0, --hex can have maelstrom if they have inundate
+
+	--Hunter
+	[56641] = 10, --steady shot gives bonus focus with a talent (now baseline)
+}
+
+--update talents
+local function UpdatePowerTalents()
+	spellGenerators[56641] = IsPlayerSpell(321018) and 20 or 10 --improved steady shot
+
+	if IsPlayerSpell(385923) then --shaman flow of power
+		spellGenerators[188196] = 8
+		spellGenerators[51505] = 10
+	else
+		spellGenerators[188196] = 6
+		spellGenerators[51505] = 8
+	end
+
+	local hexValue = IsPlayerSpell(378776) and 8 or 0 --shaman inundate
+	local hexSpells = {51514, 210873, 211004, 211010, 211015, 269352, 277778, 277784, 309328}
+	for i = 1, #hexSpells do
+		spellGenerators[hexSpells[i]] = hexValue
+	end
+end
+if E.Modern then
+	local TalentUpdateFrame = CreateFrame("FRAME")
+	TalentUpdateFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+	TalentUpdateFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
+	TalentUpdateFrame:RegisterEvent("SPELLS_CHANGED")
+	TalentUpdateFrame:SetScript("OnEvent", UpdatePowerTalents)
+end
+
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -116,85 +186,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 	EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 
-	if E.Modern then
-		local druideclipse = GetPlayerAuraBySpellID(48517)
-		if IsPlayerSpell(114107) and druideclipse ~= nil then
-			druidwrath = 10
-			druidstarfire = 10
-		else
-			druidwrath = 6
-			druidstarfire = 8
-		end
-		if IsPlayerSpell(321018) then --improved steady shot
-			huntersteadyshot = 20
-		else
-			huntersteadyshot = 10
-		end
-		if IsPlayerSpell(385923) then --shaman flow of power
-			shamanbolt = 8
-			shamanlavaburst = 10
-		else
-			shamanbolt = 6
-			shamanlavaburst = 8
-		end
-		if IsPlayerSpell(378776) and _G.InCombatLockdown() then --shaman inundate
-			shamanhex = 8
-		else
-			shamanhex = 0
-		end
-	end
-
-	--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
-	local spellGenerators = {
-
-		-- Balance Druid
-		[190984] = druidwrath, --wrath
-		[194153] = druidstarfire, -- StarFire
-		--[214281] = 10, -- New Moon --might finally have become 1
-		[274281] = 10, -- New Moon
-		--[214282] = 20, -- Half Moon --might finally have become 1
-		[274282] = 20, -- Half Moon
-		[274283] = 40, -- Full Moon
-		[202347] = 12, -- Stellar Flare
-
-		-- Shadow Priest
-		[8092] = 6, -- mind blast
-		[34914] = 4, -- vampiric touch
-		--[15407] = 12, -- mind flay, but is a channel so idc
-		--[48045] = 6, -- per target, but is a channel so idc
-		--[263165] = 60, -- void torrent, but is a channel so idc
-		[263346] = 15, --dark void
-		[73510] = 4, --mind spike
-		[391109] = 30, --dark ascension
-		[407466] = 12, --mind spike: insanity
-		--[391403] = 12, --mind flay: insanity, but its a channel so idc
-		[375901] = 10, --mindgames
-		[120644] = 10, -- halo
-		--[263165] = 24, --void torrent, but its a channel so idc
-		[450983] = 6, --void blast
-
-		-- Elemental Shaman
-		[188196] = shamanbolt, --lightning bolt
-		[51505] = shamanlavaburst, --lava burst
-		[114074] = 2, --lava beam
-		[210714] = 25, --icefury
-		[188443] = 4, --chain lightning (per target hit)
-		[51514] = shamanhex, --hex can have maelstrom if they have inundate
-		[210873] = shamanhex, --hex can have maelstrom if they have inundate
-		[211004] = shamanhex, --hex can have maelstrom if they have inundate
-		[211010] = shamanhex, --hex can have maelstrom if they have inundate
-		[211015] = shamanhex, --hex can have maelstrom if they have inundate
-		[269352] = shamanhex, --hex can have maelstrom if they have inundate
-		[277778] = shamanhex, --hex can have maelstrom if they have inundate
-		[277784] = shamanhex, --hex can have maelstrom if they have inundate
-		[309328] = shamanhex, --hex can have maelstrom if they have inundate
-
-		--Hunter
-		[56641] = huntersteadyshot, --steady shot gives bonus focus with a talent
-	}
-
-	mainCost = 0 --reset
-	incResource = 0 --reset
+	local mainCost = 0 --reset
+	local incResource = 0 --reset
 
 	local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 	local isSecretStart = E:IsSecretValue(startTime)
@@ -237,6 +230,14 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 			if isGeneratorForPowerType then
 				incResource = spellGenerators[spellID] or 0
+				if E.Modern then
+					--druid/shaman
+					if (spellID == 190984 or spellID == 194153) and IsPlayerSpell(114107) and GetPlayerAuraBySpellID(48517) then
+						incResource = 10
+					elseif incResource > 0 and (spellID == 51514 or spellID == 210873 or spellID == 211004 or spellID == 211010 or spellID == 211015 or spellID == 269352 or spellID == 277778 or spellID == 277784 or spellID == 309328) and not _G.InCombatLockdown() then
+						incResource = 0
+					end
+				end
 			end
 		end
 
@@ -364,9 +365,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 
 				EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
-
 				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", nameplatePowerDB.texture))
-
 				EltreumPowerBar.isSetup = true
 			end
 
@@ -649,7 +648,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if E.Modern then
 						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
 						powerbareffect:MakeCurrentCameraCustom()
-						powerbareffect:SetTransform( CreateVector3D(-0.035, 0, 0), CreateVector3D(4.7123889803847, 0, 0), 0.785) --was rad(270) but that started breaking in 10.2.5
+						powerbareffect:SetTransform(powerEffectTransformVec1, powerEffectTransformVec2, 0.785) --was rad(270) but that started breaking in 10.2.5
 						powerbareffect:SetPortraitZoom(1)
 						powerbareffect:SetAlpha(0.4) --might do this
 					else
@@ -690,14 +689,32 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	end
 end
 
---update power itself
-local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
+--update power text only
+local EltruismPowerBarTextFrame = CreateFrame("FRAME")
+EltruismPowerBarTextFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+EltruismPowerBarTextFrame:SetScript("OnEvent", function()
 	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
 	if UnitExists("target") then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	end
+end)
+
+--update power itself
+local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
+EltruismPowerBarEventsFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltruismPowerBarEventsFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
+EltruismPowerBarEventsFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+EltruismPowerBarEventsFrame:SetScript("OnEvent", function(_, event, unit)
+	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
+	if (event == "NAME_PLATE_UNIT_ADDED" or event == "NAME_PLATE_UNIT_REMOVED") and not E:UnitIsUnit(unit, "target") then return end
+	if UnitExists("target") and UnitCanAttack("player", "target") and C_NamePlate.GetNamePlateForUnit("target") ~= nil and not UnitIsDead("target") then
 		ElvUI_EltreumUI:NameplatePower()
+		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	else
+		EltreumPowerBar:Hide()
+		if powerbareffect then
+			powerbareffect:Hide()
+		end
 	end
 end)
 
@@ -741,7 +758,6 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 		ElvUI_EltreumUI:PowerPrediction()
 	end
 end)
-
 
 --update buff/debuff position automatically
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
