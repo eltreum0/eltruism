@@ -78,6 +78,21 @@ local function SetupFrameHooks(frame,isTree)
 		end
 	end)
 
+	frame:HookScript("OnLeave", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		if isTree then
+			if not frame.selected then
+				UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+			end
+		else
+			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+		end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+			frametext:SetTextColor(backupR,backupG,backupB)
+		end
+	end)
+
 	frame:HookScript("OnShow", function()
 		FrameShowedUp(frame)
 	end)
@@ -94,21 +109,6 @@ local function SetupFrameHooks(frame,isTree)
 
 	frame:HookScript("OnDisable", function()
 		FrameInteracted(frame)
-	end)
-
-	frame:HookScript("OnLeave", function()
-		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-		if isTree then
-			if not frame.selected then
-				UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
-			end
-		else
-			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
-		end
-		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-		if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-			frametext:SetTextColor(backupR,backupG,backupB)
-		end
 	end)
 end
 
@@ -481,12 +481,20 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	--from elvui, to fix the buttons on the game menu
-	if E.Retail or E.TBC then
+	if _G.GameMenuFrame and _G.GameMenuFrame.Layout then
 		hooksecurefunc(_G.GameMenuFrame, 'Layout', function()
-			for _,button in pairs(_G.GameMenuFrame.MenuButtons) do
+			for button in GameMenuFrame.buttonPool:EnumerateActive() do
 				CreateFader(button)
 			end
 		end)
+
+		if not _G.GameMenuFrame.EltruismOnShowButtons then
+			_G.GameMenuFrame:HookScript("OnShow",function()
+				for button in GameMenuFrame.buttonPool:EnumerateActive() do
+					CreateFader(button)
+				end
+			end)
+		end
 	end
 end
 
