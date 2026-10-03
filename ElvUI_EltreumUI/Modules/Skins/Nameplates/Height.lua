@@ -219,6 +219,12 @@ end
 hooksecurefunc(NP, "UpdatePlateBase", OnUpdatePlateBase) --fires when elvui updates them
 
 local function OnUpdateHealth(self, nameplate)
+	local db = E.db and E.db.ElvUI_EltreumUI
+	local opts = db and db.nameplates and db.nameplates.nameplateOptions
+	if not (opts and opts.enableHealthHeight) then
+		return
+	end
+
 	local frame = (self and self.__unit and self) or (nameplate and nameplate.__unit and nameplate)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
 		ElvUI_EltreumUI:NameplateCustomOptions(frame)
