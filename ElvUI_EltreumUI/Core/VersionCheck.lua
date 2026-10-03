@@ -90,7 +90,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	--game version check
 	local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
 	if E.Classic then
-		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfaceClassic'))
+		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfaceVanilla'))
 	elseif E.TBC then
 		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfaceTBC'))
 	elseif E.Wrath then
