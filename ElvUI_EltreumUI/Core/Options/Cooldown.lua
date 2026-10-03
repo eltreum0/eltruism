@@ -10,7 +10,7 @@ end
 -- Eltruism cooldown options
 function ElvUI_EltreumUI:CooldownOptions()
 	if E.Modern then return end
-	ElvUI_EltreumUI.Options.args.cooldown = E.Libs.ACH:Group(E:TextGradient(L["Cooldowns"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 22, 'tab')
+	ElvUI_EltreumUI.Options.args.cooldown = E.Libs.ACH:Group(E:TextGradient(L["Cooldowns"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 7, 'tab')
 	ElvUI_EltreumUI.Options.args.cooldown.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown'
 	ElvUI_EltreumUI.Options.args.cooldown.args.description1 = E.Libs.ACH:Description(L["Cooldowns"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cooldown.args.enable = E.Libs.ACH:Toggle(L["Enable Cooldown Pulse"], L["Show a Skill Pulse when its cooldown is ending"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end)
