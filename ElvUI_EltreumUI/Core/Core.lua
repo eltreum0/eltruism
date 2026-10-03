@@ -1111,20 +1111,23 @@ function ElvUI_EltreumUI:CheckForeverSpec()
 	local spent1 = (displayInfos[1] and currencyByGroup[displayInfos[1].groupID]) or 0
 	local spent2 = (displayInfos[2] and currencyByGroup[displayInfos[2].groupID]) or 0
 	local spent3 = (displayInfos[3] and currencyByGroup[displayInfos[3].groupID]) or 0
-	local dominantIndex = 1
-	local dominantName = displayInfos[1] and displayInfos[1].displayName or ""
+	local dominantIndex = 0
+	local dominantName = ""
 
-	if spent2 > spent1 then
+	if spent1 > spent2 and spent1 > spent3 then
+		dominantIndex = 1
+	elseif spent2 > spent1 and spent2 > spent3 then
 		dominantIndex = 2
-		dominantName = displayInfos[2] and displayInfos[2].displayName or ""
-	end
-	if spent3 > spent2 and spent3 > spent1 then
+	elseif spent3 > spent1 and spent3 > spent2 then
 		dominantIndex = 3
-		dominantName = displayInfos[3] and displayInfos[3].displayName or ""
+	end
+
+	if dominantIndex > 0 and displayInfos[dominantIndex] then
+		dominantName = displayInfos[dominantIndex].displayName or ""
 	end
 
 	local specID = 0
-	if CLASS_TREE_TO_SPEC_ID[classID] and CLASS_TREE_TO_SPEC_ID[classID][dominantIndex] then
+	if dominantIndex > 0 and CLASS_TREE_TO_SPEC_ID[classID] and CLASS_TREE_TO_SPEC_ID[classID][dominantIndex] then
 		specID = CLASS_TREE_TO_SPEC_ID[classID][dominantIndex]
 	end
 
