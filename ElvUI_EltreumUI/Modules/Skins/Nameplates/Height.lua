@@ -231,6 +231,12 @@ end
 hooksecurefunc(NP, "Update_Health", OnUpdateHealth) --if they are changing health they are likely in combat
 
 local function OnThreatOrColorUpdate(arg1, arg2)
+	local db = E.db and E.db.ElvUI_EltreumUI
+	local opts = db and db.nameplates and db.nameplates.nameplateOptions
+	if not (opts and opts.enableHealthHeight) then
+		return
+	end
+
 	local frame = (arg1 and arg1.__unit and arg1) or (arg2 and arg2.__unit and arg2)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
