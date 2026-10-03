@@ -9,7 +9,7 @@
 	<Script file='Skins.lua'/>
 	<Script file='CVars.lua'/>
 	<Script file='CustomGlow.lua'/>
-	<Script file='Map.lua'/>
+	<Script file='Maps.lua'/>
 	<Script file='Media.lua'/>
 	<Script file='Chat.lua'/>
 	<Script file='Cursor.lua'/>
