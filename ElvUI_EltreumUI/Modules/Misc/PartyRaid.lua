@@ -3,7 +3,6 @@ local S = E:GetModule('Skins')
 local _G = _G
 local select = _G.select
 local CreateFrame = _G.CreateFrame
-local IsInInstance = _G.IsInInstance
 local IsInGroup = _G.IsInGroup
 local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
@@ -32,7 +31,7 @@ local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
-	local _, instanceType = IsInInstance()
+	local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if IsInGroup() then
 			if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable then --to disable it in arena/bg
@@ -181,7 +180,7 @@ end
 
 function ElvUI_EltreumUI:BattleRes()
 	if E.Modern and E.db.ElvUI_EltreumUI.otherstuff.bres then
-		local _, instanceType = IsInInstance()
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		local DifficultyID = select(3, GetInstanceInfo())
 
 
@@ -340,8 +339,8 @@ end)]]
 --automatic combat logging
 function ElvUI_EltreumUI:AutoCombatLog()
 	if E.db.ElvUI_EltreumUI.cvars.combatlog then
-		local _, instanceType2 = IsInInstance()
-		if instanceType2 == "raid" or instanceType2 == "party" or instanceType2 == "scenario" then
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
 			if not InCombatLockdown() then
 				SetCVar("advancedCombatLogging", 1)
 			end

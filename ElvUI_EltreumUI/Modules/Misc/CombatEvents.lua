@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
-local IsInInstance = _G.IsInInstance
 local PlayMusic = _G.PlayMusic
 local tostring = _G.tostring
 local StopMusic = _G.StopMusic
@@ -47,7 +46,7 @@ function ElvUI_EltreumUI:CombatMusic(event)
 		end
 	elseif event == 'PLAYER_REGEN_DISABLED' then --combat starts
 		if E.private.ElvUI_EltreumUI.combatmusic.enable then
-			local _, instanceType = IsInInstance()
+			local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 			local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
 			if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
 				wipe(list)

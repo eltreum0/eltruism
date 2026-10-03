@@ -5,7 +5,6 @@ local Translit = E.Libs.Translit
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitAffectingCombat = _G.UnitAffectingCombat
-local IsInInstance = _G.IsInInstance
 local GetCVarBool = _G.GetCVarBool
 local strlower = _G.strlower
 local strfind = _G.strfind
@@ -27,7 +26,7 @@ local tonumber = _G.tonumber
 do
 	local function EltruismGetTitleNPC(unit, custom)
 		if not ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then return end
-		if UnitIsPlayer(unit) or ((E.Mists or E.TBC or E.Wrath) and UnitAffectingCombat('player') and IsInInstance()) then return end
+		if UnitIsPlayer(unit) or ((E.Mists or E.TBC or E.Wrath) and UnitAffectingCombat('player') and ElvUI_EltreumUI:IsInInstance(nil,true)) then return end
 
 		-- similar to TT.GetLevelLine
 		local info = E.ScanTooltip:GetUnitInfo(unit)

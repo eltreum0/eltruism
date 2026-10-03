@@ -1,11 +1,8 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsInInstance = _G.IsInInstance
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local InCombatLockdown = _G.InCombatLockdown
-local UnitLevel = _G.UnitLevel
-local level
 local tonumber = _G.tonumber
 
 --12.1.0 changes
@@ -92,7 +89,7 @@ end
 --hide raid/party/arena frames in bgs/arenas bc of battlegroundenemies/gladiusEX or similar
 function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 	if E.private.unitframe.enable then
-		local _, instanceType = IsInInstance()
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		if E.db.ElvUI_EltreumUI.unitframes.bgunitframes then
 			if instanceType == "pvp" then
 				E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
@@ -138,7 +135,7 @@ end
 --show/hide buffs if in arena or not
 function ElvUI_EltreumUI:DynamicBuffs()
 	if E.db.ElvUI_EltreumUI.unitframes.arenabuffs and E.private.unitframe.enable and not InCombatLockdown() then
-		local _, instanceType = IsInInstance()
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		if instanceType == "arena" or instanceType == "pvp" then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["enable"] = true
 			E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true

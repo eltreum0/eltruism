@@ -3,13 +3,11 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
-local select = _G.select
 local embedpanel
 local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local instanceType = "none"
 local CreateColor = _G.CreateColor
-local ipairs = _G.ipairs
 local function clamp(v)
 	if v < 0 then return 0 elseif v > 1 then return 1 end
 	return v
@@ -19,10 +17,6 @@ local dmMax = CreateColor(1, 1, 1, 1)
 
 --pretty much copied from elvui and edited to look more like details
 do
-
-	function ElvUI_EltreumUI:DamageMeterZoneCheck()
-		instanceType = select(2,_G.IsInInstance())
-	end
 
 	local BlizzardTextureIDsForSpecs = {
 		["608952"] = 270,
@@ -517,7 +511,7 @@ do
 	--skin blizzard's dps meter to be similar to my details skin
 	function ElvUI_EltreumUI:BlizzDamageMeter()
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable then
-			ElvUI_EltreumUI:DamageMeterZoneCheck()
+			instanceType = ElvUI_EltreumUI:IsInInstance()
 
 			if instanceType ~= "pvp" and instanceType ~= "arena" then
 

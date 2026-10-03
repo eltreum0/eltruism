@@ -16,7 +16,6 @@ local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitCanAttack = _G.UnitCanAttack
 local GetShapeshiftForm = _G.GetShapeshiftForm
-local IsInInstance = _G.IsInInstance
 local WorldMapFrame = _G.WorldMapFrame
 local tostring = _G.tostring
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
@@ -792,7 +791,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
-	local _, instanceType = IsInInstance()
+	local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 	local mapID = WorldMapFrame:GetMapID()
 	local nameplateShowOnlyNames = (E.Modern and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
 	local showOnlyNamesString = (E.Modern and "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"

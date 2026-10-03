@@ -57,6 +57,34 @@ function ElvUI_EltreumUI:Print(msg)
 	print(ElvUI_EltreumUI.Name..': '..msg)
 end
 
+--check on PEW, should run on all scenarios needed (but not like garrisons)
+local outside = false
+local isPvP = false
+local instanceType = "none"
+local EltruismInstanceCheck = CreateFrame("Frame")
+local cached_isInInstance = false
+EltruismInstanceCheck:RegisterEvent("PLAYER_ENTERING_WORLD")
+EltruismInstanceCheck:SetScript("OnEvent", function()
+	cached_isInInstance, instanceType = IsInInstance()
+	isPvP = (instanceType == "pvp") or (instanceType == "arena")
+	outside = (instanceType == "none")
+end)
+function ElvUI_EltreumUI:IsInInstance(needsisPvP,needsoutside,needsBoth,needsType,blizzard)
+	if needsType then
+		return instanceType
+	elseif needsBoth then
+		return isPvP,outside
+	elseif needsisPvP then
+		return isPvP
+	elseif needsoutside then
+		return outside
+	elseif blizzard then
+		return cached_isInInstance, instanceType
+	else
+		return cached_isInInstance
+	end
+end
+
 --fix macro
 local keydown = _G.C_CVar.GetCVarBool('ActionButtonUseKeyDown')
 function ElvUI_EltreumUI:MacroClick(button)
@@ -927,10 +955,9 @@ end
 --make mage and warlock use their original class colors
 function ElvUI_EltreumUI:OriginalClassColors()
 	--_G.RAID_CLASS_COLORS can cause issues inside instances if friendly nameplates are enabled, so check for that
-	local inInstance = IsInInstance()
 	local canTouchRaidClassColors
 	local mapID = _G.WorldMapFrame:GetMapID()
-	if not inInstance and not (mapID == 1662 or mapID == 582 or mapID == 590) then
+	if not cached_isInInstance and not (mapID == 1662 or mapID == 582 or mapID == 590) then
 		canTouchRaidClassColors = true
 	else
 		if tonumber(GetCVar('nameplateShowFriends')) == 0 then
@@ -941,7 +968,7 @@ function ElvUI_EltreumUI:OriginalClassColors()
 	end
 
 	if E.db.ElvUI_EltreumUI.skins.oldclasscolors then
-		if canTouchRaidClassColors and not inInstance then
+		if canTouchRaidClassColors and not cached_isInInstance then
 			_G.RAID_CLASS_COLORS['MAGE']["r"] = 0.41
 			_G.RAID_CLASS_COLORS['MAGE']["g"] = 0.8
 			_G.RAID_CLASS_COLORS['MAGE']["b"] = 0.94
@@ -954,7 +981,7 @@ function ElvUI_EltreumUI:OriginalClassColors()
 		E.oUF.colors.class['MAGE']["g"] = 0.8
 		E.oUF.colors.class['MAGE']["b"] = 0.94
 
-		if canTouchRaidClassColors and not inInstance then
+		if canTouchRaidClassColors and not cached_isInInstance then
 			_G.RAID_CLASS_COLORS['WARLOCK']["r"] = 0.58
 			_G.RAID_CLASS_COLORS['WARLOCK']["g"] = 0.51
 			_G.RAID_CLASS_COLORS['WARLOCK']["b"] = 0.79
@@ -971,7 +998,7 @@ function ElvUI_EltreumUI:OriginalClassColors()
 	--make shamans blue again in classic
 	if E.Classic then
 		if E.db.ElvUI_EltreumUI.skins.classicblueshaman then
-			if canTouchRaidClassColors and not inInstance then
+			if canTouchRaidClassColors and not cached_isInInstance then
 				_G.RAID_CLASS_COLORS['SHAMAN']["r"] = 0.00
 				_G.RAID_CLASS_COLORS['SHAMAN']["g"] = 0.44
 				_G.RAID_CLASS_COLORS['SHAMAN']["b"] = 0.87
@@ -1183,17 +1210,6 @@ function ElvUI_EltreumUI:GetTargetUnit(unit)
 	end
 	return targetUnitCache[unit]
 end
-
---check on PEW, should run on all scenarios needed (but not like garrisons)
-local outside = "none"
-local isPvP = false
-local EltruismInstanceCheck = CreateFrame("Frame")
-EltruismInstanceCheck:RegisterEvent("PLAYER_ENTERING_WORLD")
-EltruismInstanceCheck:SetScript("OnEvent", function()
-	local _, instanceType = IsInInstance()
-	isPvP = (instanceType == "pvp") or (instanceType == "arena")
-	outside = (instanceType == "none")
-end)
 
 function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
 	if not E.Modern then

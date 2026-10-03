@@ -19,7 +19,6 @@ local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local select = _G.select
-local IsInInstance = _G.IsInInstance
 local wipe = _G.wipe
 local GetActionInfo = _G.GetActionInfo
 local GetActionTexture = _G.GetActionTexture
@@ -369,7 +368,7 @@ function ElvUI_EltreumUI:Doom()
 		end
 
 		function DCP:PLAYER_ENTERING_WORLD()
-			local inInstance,instanceType = IsInInstance()
+			local inInstance,instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,nil,true)
 			if (inInstance and instanceType == "arena") then
 				self:SetScript("OnUpdate", nil)
 				wipe(cooldowns)

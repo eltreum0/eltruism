@@ -4,7 +4,6 @@ local S = E:GetModule('Skins')
 local valuecolors = E.myClassColor
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsInInstance = _G.IsInInstance
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local Minimap = _G.Minimap
 local GetPlayerFacing = _G.GetPlayerFacing
@@ -175,7 +174,7 @@ if E.Modern then
 				EltruismAutopin:SetScript("OnEvent", function()
 					EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
 					if InCombatLockdown() then return end --check for combat due to taint
-					local _, instanceType = IsInInstance()
+					local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 					--print(instanceType,event,"autopin")
 					if instanceType ~= "none" then --clears waypoints inside instances
 						C_Map.ClearUserWaypoint()
@@ -276,7 +275,7 @@ if E.Modern then
 			EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
 			--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
 			EltruismTimeToArriveParent:SetScript("OnEvent", function()
-				local _, instanceType = IsInInstance()
+				local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 				--print(instanceType,event,"waypoint")
 				if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
 					EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
@@ -311,7 +310,7 @@ if E.Modern then
 
 
 				--neighborhoods dont let you set waypoints
-				local _, instanceType = IsInInstance()
+				local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 				if instanceType == "neighborhood" then
 					canSet = false
 				end
@@ -783,7 +782,7 @@ hooksecurefunc(M,"UpdateSettings", ElvUI_EltreumUI.MinimapCardinalDirections)
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	RotateMinimap()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable and E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
-		local _, instanceType = IsInInstance()
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		if instanceType == "none" then
 			if Minimap.EltruismRotate then
 				Minimap.EltruismRotate:Show()

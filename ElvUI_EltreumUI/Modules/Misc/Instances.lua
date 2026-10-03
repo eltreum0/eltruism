@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local Minimap = _G.Minimap
-local IsInInstance = _G.IsInInstance
 local WorldMapFrame = _G.WorldMapFrame
 local select = _G.select
 local GetInstanceInfo = _G.GetInstanceInfo
@@ -53,7 +52,7 @@ instancedifficulty:SetScript("OnEvent", function()
 		instancedifficulty.movercreated = true
 	end
 
-	local _, instanceType = IsInInstance()
+	local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 	local mapID = WorldMapFrame:GetMapID()
 
 	if AllowedInstances[instanceType] and not garrisons[mapID] then
@@ -384,7 +383,7 @@ instancedifficulty:SetScript("OnEvent", function()
 
 	--confirm its instance because once again the zone_changed event is not reliable when changing into and out of places like the garrison
 	E:Delay(5, function()
-		_, instanceType = IsInInstance()
+		instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		mapID = WorldMapFrame:GetMapID()
 		if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 or instanceType == "pvp" or instanceType == "arena" then
 			instancedifficulty:Hide()

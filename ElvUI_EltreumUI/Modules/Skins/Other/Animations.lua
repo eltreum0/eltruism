@@ -3,7 +3,6 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local WorldFrame = _G.WorldFrame
 local UIParent = _G.UIParent
-local IsInInstance = _G.IsInInstance
 local select = _G.select
 local IsEncounterSuppressingRelease = _G.IsEncounterSuppressingRelease
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
@@ -64,7 +63,7 @@ local function PlayDeathAnimation()
 
 	if isAnimationPlaying then return end
 
-	local _, instanceType = IsInInstance()
+	local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 
 	if IsEncounterSuppressingRelease() or instanceType ~= "none" or HasIgnoredDeathSpell() then
 		return

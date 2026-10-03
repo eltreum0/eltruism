@@ -3,7 +3,6 @@ local AB = E:GetModule('ActionBars')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
-local IsInInstance = _G.IsInInstance
 local GetItemClassInfo = _G.C_Item and _G.C_Item.GetItemClassInfo or _G.GetItemClassInfo
 local InCombatLockdown = _G.InCombatLockdown
 local GetBindingKey = _G.GetBindingKey
@@ -669,7 +668,7 @@ end)
 
 function ElvUI_EltreumUI:QuestItem()
 	if E.db.ElvUI_EltreumUI.quests.questitems then
-		local _, instanceType = IsInInstance()
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		if instanceType ~= "none" then
 			EltruismQuestItemFrame:Hide()
 			EltruismQuestItemFrame:UnregisterAllEvents()

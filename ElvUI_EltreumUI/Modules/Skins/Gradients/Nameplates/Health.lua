@@ -8,22 +8,13 @@ local UnitClass = _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitReaction = _G.UnitReaction
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local UnitCanAttack = _G.UnitCanAttack
 local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local CreateColor = _G.CreateColor
 local CreateFrame = _G.CreateFrame
-local IsInInstance = _G.IsInInstance
 
 local whiteColor = CreateColor(1, 1, 1, 1)
-
-local cached_isInInstance = false
-local instanceFrame = CreateFrame("Frame")
-instanceFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-instanceFrame:SetScript("OnEvent", function()
-	cached_isInInstance = IsInInstance()
-end)
 
 local reactionToTargetType = {
 	[1] = "NPCHOSTILE",
@@ -137,7 +128,7 @@ function ElvUI_EltreumUI.GradientNameplates(unit,unit2)
 		end
 
 		local classification = frame.classification
-		frame.isRare = (classification == 'worldboss' or classification == 'rareelite' or classification == 'rare') and not cached_isInInstance
+		frame.isRare = (classification == 'worldboss' or classification == 'rareelite' or classification == 'rare') and not ElvUI_EltreumUI:IsInInstance()
 
 		local orientation = db.unitframes.gradientmode.nporientation or "VERTICAL"
 		local tex = frame.Health:GetStatusBarTexture()
