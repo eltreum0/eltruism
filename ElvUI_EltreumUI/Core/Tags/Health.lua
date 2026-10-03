@@ -13,7 +13,6 @@ local UnitIsGhost = _G.UnitIsGhost
 local UnitHealth = _G.UnitHealth
 local UnitIsConnected = _G.UnitIsConnected
 local UnitClass = _G.UnitClass
-local gsub = _G.gsub
 local format = _G.format
 local UnitReaction = _G.UnitReaction
 local string = _G.string
@@ -28,11 +27,24 @@ local stringlen = string.len
 local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
 
 local deadtexture, dctexture, ghosttexture
+
+local reactionToGradient = {
+	[1] = "NPCHOSTILE",
+	[2] = "NPCHOSTILE",
+	[3] = "NPCUNFRIENDLY",
+	[4] = "NPCNEUTRAL",
+	[5] = "NPCFRIENDLY",
+	[6] = "NPCFRIENDLY",
+	[7] = "NPCFRIENDLY",
+	[8] = "NPCFRIENDLY",
+}
+
 function ElvUI_EltreumUI:UpdateCachedHealthTagTextures()
 	if E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.otherstuff then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga"..escapeSequence.."|t"
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga"..escapeSequence.."|t"
-		ghosttexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+		local hpicons = E.db.ElvUI_EltreumUI.otherstuff
+		deadtexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead%s.tga%s|t", tostring(hpicons.hpstatusdeadicon), escapeSequence)
+		dctexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc%s.tga%s|t", tostring(hpicons.hpstatusdcicon), escapeSequence)
+		ghosttexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost%s.tga%s|t", tostring(hpicons.ghosttagicon), escapeSequence)
 	end
 end
 
@@ -72,7 +84,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local textformat
 		if E.Modern then
-			textformat = format('%s - %.1f%%',E:AbbreviateNumbers(cur, E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
+			textformat = format('%s - %.1f%%', E:AbbreviateNumbers(cur, E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
 		else
 			textformat = E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
 		end
@@ -173,7 +185,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		end
 		local textformat2
 		if E.Modern then
-			textformat2 = format('%.1f%% - %s',UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
+			textformat2 = format('%.1f%% - %s', UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
 		else
 			textformat2 = E:GetFormattedText('CURRENT_PERCENT', maxhp, cur, nil, true)
 		end
@@ -285,7 +297,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
 		local value
 		if E.Modern then
-			value = format('%d', UnitHealthPercent(unit, true, ScaleTo100)).."%"
+			value = format('%d%%', UnitHealthPercent(unit, true, ScaleTo100))
 		else
 			value = mathfloor(((cur / maxhp) * 100) + 0.5)
 		end
@@ -341,31 +353,12 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
 				local reaction = UnitReaction(unit, "player")
-				if reaction then
-					if reaction >= 5 then
-						if not E.Modern and lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 4 then
-						if not E.Modern and lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 3 then
-						if not E.Modern and lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 2 or reaction == 1 then
-						if not E.Modern and lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)
-						else
-							return value
-						end
+				local reactionClass = reaction and reactionToGradient[reaction]
+				if reactionClass then
+					if not E.Modern and lengthOK then
+						return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
+					else
+						return value
 					end
 				end
 			else
@@ -384,7 +377,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 					if not E.Modern and lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
+						return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
 					else
 						return value
 					end
@@ -435,31 +428,12 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
 				local reaction = UnitReaction(unit, "player")
-				if reaction then
-					if reaction >= 5 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 4 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 3 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 2 or reaction == 1 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)
-						else
-							return value
-						end
+				local reactionClass = reaction and reactionToGradient[reaction]
+				if reactionClass then
+					if lengthOK then
+						return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
+					else
+						return value
 					end
 				end
 			else
@@ -478,7 +452,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 					if lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
+						return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
 					else
 						return value
 					end
@@ -522,31 +496,12 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
 				local reaction = UnitReaction(unit, "player")
-				if reaction then
-					if reaction >= 5 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 4 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 3 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)
-						else
-							return value
-						end
-					elseif reaction == 2 or reaction == 1 then
-						if lengthOK then
-							return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)
-						else
-							return value
-						end
+				local reactionClass = reaction and reactionToGradient[reaction]
+				if reactionClass then
+					if lengthOK then
+						return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
+					else
+						return value
 					end
 				end
 			else
@@ -565,7 +520,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			if UnitIsConnected(unit) then
 				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
 					if lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, unitClass,isTarget)
+						return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
 					else
 						return value
 					end
@@ -604,28 +559,24 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			else
 				isTarget = false
 			end
-			local value = "-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', cur, maxhp)
 			if deficit > 0 and cur > 0 then
 				if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 					local reaction = UnitReaction(unit, "player")
-					if reaction then
-						if reaction >= 5 then
-							return gsub(ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget),"_","||")
-						elseif reaction == 4 then
-							return gsub(ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget),"_","||")
-						elseif reaction == 3 then
-							return gsub(ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget),"_","||")
-						elseif reaction == 2 or reaction == 1 then
-							return gsub(ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget),"_","||")
-						end
+					local reactionClass = reaction and reactionToGradient[reaction]
+					if reactionClass then
+						local color1 = ElvUI_EltreumUI:GradientName(format("-%s", E:ShortValue(deficit)), reactionClass, isTarget)
+						local color2 = ElvUI_EltreumUI:GradientName(E:GetFormattedText('PERCENT', cur, maxhp), reactionClass, isTarget)
+						return format("%s || %s", color1, color2)
 					end
 				else
 					local _, unitClass = UnitClass(unit)
 					if not unitClass then return end
 					if not E:NotSecretValue(unitClass) then --secret class so do something else
-						return value
+						return format("-%s || %s", E:ShortValue(deficit), E:GetFormattedText('PERCENT', cur, maxhp))
 					end
-					return gsub(ElvUI_EltreumUI:GradientName(value, unitClass, isTarget),"_","||")
+					local color1 = ElvUI_EltreumUI:GradientName(format("-%s", E:ShortValue(deficit)), unitClass, isTarget)
+					local color2 = ElvUI_EltreumUI:GradientName(E:GetFormattedText('PERCENT', cur, maxhp), unitClass, isTarget)
+					return format("%s || %s", color1, color2)
 				end
 			end
 		end)
@@ -642,27 +593,23 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				isTarget = false
 			end
 			if deficit > 0 and cur > 0 then
-				local value = E:GetFormattedText('PERCENT', cur, maxhp)
 				if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 					local reaction = UnitReaction(unit, "player")
-					if reaction then
-						if reaction >= 5 then
-							return gsub(ElvUI_EltreumUI:GradientName(value.." _ "..E:ShortValue(deficit), "NPCFRIENDLY", isTarget),"_","||")
-						elseif reaction == 4 then
-							return gsub(ElvUI_EltreumUI:GradientName(value.." _ "..E:ShortValue(deficit), "NPCNEUTRAL", isTarget),"_","||")
-						elseif reaction == 3 then
-							return gsub(ElvUI_EltreumUI:GradientName(value.." _ "..E:ShortValue(deficit), "NPCUNFRIENDLY", isTarget),"_","||")
-						elseif reaction == 2 or reaction == 1 then
-							return gsub(ElvUI_EltreumUI:GradientName(value.." _ "..E:ShortValue(deficit), "NPCHOSTILE", isTarget),"_","||")
-						end
+					local reactionClass = reaction and reactionToGradient[reaction]
+					if reactionClass then
+						local color1 = ElvUI_EltreumUI:GradientName(E:GetFormattedText('PERCENT', cur, maxhp), reactionClass, isTarget)
+						local color2 = ElvUI_EltreumUI:GradientName(format("-%s", E:ShortValue(deficit)), reactionClass, isTarget)
+						return format("%s || %s", color1, color2)
 					end
 				else
 					local _, unitClass = UnitClass(unit)
 					if not unitClass then return end
 					if not E:NotSecretValue(unitClass) then --secret class so do something else
-						return gsub(value.." _ "..E:ShortValue(deficit),"_","||")
+						return format("%s || -%s", E:GetFormattedText('PERCENT', cur, maxhp), E:ShortValue(deficit))
 					end
-					return gsub(ElvUI_EltreumUI:GradientName(value.." _ "..E:ShortValue(deficit), unitClass, isTarget),"_","||")
+					local color1 = ElvUI_EltreumUI:GradientName(E:GetFormattedText('PERCENT', cur, maxhp), unitClass, isTarget)
+					local color2 = ElvUI_EltreumUI:GradientName(format("-%s", E:ShortValue(deficit)), unitClass, isTarget)
+					return format("%s || %s", color1, color2)
 				end
 			end
 		end)
@@ -681,7 +628,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 				return status
 			else
 				local _, unitClass = UnitClass(unit)
-				local value,perctext,perc
+				local value, perctext, perc
 				local min = UnitHealth(unit)
 				local max = UnitHealthMax(unit)
 				if min == max then
@@ -689,36 +636,32 @@ function ElvUI_EltreumUI:LoadHealthTags()
 					perctext = ""
 					perc = " "
 				else
-					value = E:ShortValue(min, 0).." - "..E:ShortValue(max, 0)
+					value = format("%s - %s", E:ShortValue(min, 0), E:ShortValue(max, 0))
 					if E:NotSecretValue(unitClass) then --secret class so do something else
-						perctext = "|c"..ElvUI_EltreumUI:classcolorcast(unitClass).." a |r"
+						perctext = format("|c%s || |r", ElvUI_EltreumUI:classcolorcast(unitClass))
 					else
 						local classColor = GetClassColor(unitClass)
 						local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-						perctext = "|c"..hex.." a |r"
+						perctext = format("|c%s || |r", hex)
 					end
-					perctext = gsub(perctext,"a","||")
-					perc = tostring(format("%.1f%%",min / max * 100))
+					perc = format("%.1f%%", min / max * 100)
 				end
 				if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 					local reaction = UnitReaction(unit, "player")
-					if reaction then
-						if reaction >= 5 then
-							return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCFRIENDLY", isTarget)
-						elseif reaction == 4 then
-							return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCNEUTRAL", isTarget)
-						elseif reaction == 3 then
-							return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCUNFRIENDLY", isTarget)
-						elseif reaction == 2 or reaction == 1 then
-							return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCHOSTILE", isTarget)
-						end
+					local reactionClass = reaction and reactionToGradient[reaction]
+					if reactionClass then
+						local vColor = ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
+						local pColor = ElvUI_EltreumUI:GradientName(perc, reactionClass, isTarget)
+						return format("%s%s%s", vColor, perctext, pColor)
 					end
 				else
 					if not unitClass then return end
 					if not E:NotSecretValue(unitClass) then --secret class so do something else
-						return value..perctext
+						return format("%s%s", value, perctext)
 					end
-					return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, unitClass, isTarget)
+					local vColor = ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
+					local pColor = ElvUI_EltreumUI:GradientName(perc, unitClass, isTarget)
+					return format("%s%s%s", vColor, perctext, pColor)
 				end
 			end
 		end)
@@ -730,7 +673,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			local deficit = maxhp - cur
 
 			if deficit > 0 and cur > 0 then
-				return (E:GetFormattedText('PERCENT', cur, maxhp).." | ".."-"..E:ShortValue(deficit))
+				return format("%s | -%s", E:GetFormattedText('PERCENT', cur, maxhp), E:ShortValue(deficit))
 			end
 		end)
 		E:AddTagInfo("eltruism:pchpdeficit", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
@@ -741,7 +684,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			local deficit = maxhp - cur
 
 			if deficit > 0 and cur > 0 then
-				return ("-"..E:ShortValue(deficit).." | "..E:GetFormattedText('PERCENT', cur, maxhp))
+				return format("-%s | %s", E:ShortValue(deficit), E:GetFormattedText('PERCENT', cur, maxhp))
 			end
 		end)
 		E:AddTagInfo("eltruism:hpdeficitpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays health lost in shortvalue and current health percentage"])
@@ -749,13 +692,13 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
 			local dr
 			if UnitExists("target") then
-				dr = (UnitArmor("player")/((UnitLevel("target")*467.5)+UnitArmor("player")-22167.5))
+				dr = (UnitArmor("player") / ((UnitLevel("target") * 467.5) + UnitArmor("player") - 22167.5))
 				--dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitHealthMax("player")-22167.5))
 			else
-				dr = (UnitArmor("player")/((UnitLevel("player")*467.5)+UnitArmor("player")-22167.5))
+				dr = (UnitArmor("player") / ((UnitLevel("player") * 467.5) + UnitArmor("player") - 22167.5))
 				--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
 			end
-			local ehp = UnitHealthMax("player")/(1-dr)
+			local ehp = UnitHealthMax("player") / (1 - dr)
 			local effective = mathfloor(ehp)
 			return effective
 		end)

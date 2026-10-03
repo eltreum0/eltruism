@@ -38,6 +38,7 @@ local GROUP = _G.GROUP
 local TARGET = _G.TARGET
 local ElvUF = _G.ElvUF
 local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.GetClassColor
+local format = _G.format
 
 --ty a lot azilroka
 local stanceID = {
@@ -73,35 +74,11 @@ local stanceID = {
 --because in retail talent changes can occur more freely and change known stances, refresh table
 local function refreshstance()
 	stanceBackup = 0
-	stanceID = {
-		DEATHKNIGHT = {
-			[1] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,1),
-			[2] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,2),
-			[3] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,3),
-		},
-		PALADIN = {
-			[1] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,1),
-			[2] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,2),
-			[3] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,3),
-			[4] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,4),
-			[5] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,5),
-			[6] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,6),
-			[7] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,7),
-		},
-		WARRIOR = {
-			[1] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,1),
-			[2] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,2),
-			[3] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,3),
-			[4] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,4), --gladiator?
-		},
-		HUNTER = {
-			[1] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,1),
-			[2] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,2),
-			[3] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,3),
-			[4] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,4),
-			[5] = ElvUI_EltreumUI:SpellInfoShapeshift(nil,5),
-		},
-	}
+	if not stanceID[E.myclass] then return end
+
+	for i = 1, #stanceID[E.myclass] do
+		stanceID[E.myclass][i] = ElvUI_EltreumUI:SpellInfoShapeshift(nil, i)
+	end
 end
 
 function ElvUI_EltreumUI:LoadOtherTags()
@@ -194,8 +171,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	E:AddTagInfo('eltruism:difficulty:all', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Colors NPC name according to their difficulty compared to the player"])
 
 	E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
-		local targetname = UnitName(unit.."target")
-		local _ , classes = UnitClass(unit.."target")
+		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
+		local targetname = UnitName(targetUnit)
+		local _ , classes = UnitClass(UnitName(targetUnit))
 		if not classes then return end
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
@@ -204,18 +182,18 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 		--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 		--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-		local reaction = UnitReaction(unit.."target", "player")
+		local reaction = UnitReaction(UnitName(targetUnit), "player")
 
 		if spellID and targetname and endTime > startTime then
-			if UnitIsPlayer(unit.."target") then
+			if UnitIsPlayer(UnitName(targetUnit)) then
 				if not E:NotSecretValue(classes) then --secret class so do something else
 					local classColor = GetClassColor(classes)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return hex..targetname.."|r"
+					return format("%s%s|r", hex, targetname)
 				end
 				local color = ElvUI_EltreumUI:classcolorcast(classes)
-				return ("|c"..color..targetname.."|r")
-			elseif not UnitIsPlayer(unit.."target") then
+				return format("|c%s%s|r", color, targetname)
+			elseif not UnitIsPlayer(UnitName(targetUnit)) then
 				if reaction then
 					if reaction >= 5 then
 						return ("|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r")
@@ -233,8 +211,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	E:AddTagInfo('eltruism:targetcast', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows Target of Spellcast, does not work for Mouseover casts"])
 
 	E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
-		local targetname = UnitName(unit.."target")
-		local _ , classes = UnitClass(unit.."target")
+		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
+		local targetname = UnitName(targetUnit)
+		local _ , classes = UnitClass(UnitName(targetUnit))
 		if not classes then return end
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
@@ -243,18 +222,18 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 		--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 		--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-		local reaction = UnitReaction(unit.."target", "player")
+		local reaction = UnitReaction(UnitName(targetUnit), "player")
 
 		if spellID and targetname and endTime > startTime then
-			if UnitIsPlayer(unit.."target") then
+			if UnitIsPlayer(UnitName(targetUnit)) then
 				if not E:NotSecretValue(classes) then --secret class so do something else
 					local classColor = GetClassColor(classes)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return hex..targetname.."|r"
+					return format("%s%s|r", hex, targetname)
 				end
 				local color = ElvUI_EltreumUI:classcolorcast(classes)
-				return (TARGET.." > |c"..color..targetname.."|r")
-			elseif not UnitIsPlayer(unit.."target") then
+				return format("%s > |c%s%s|r", TARGET, color, targetname)
+			elseif not UnitIsPlayer(UnitName(targetUnit)) then
 				if reaction then
 					if reaction >= 5 then
 						return (TARGET.." > |c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r")
@@ -334,21 +313,21 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", function(unit)
 		if IsInRaid() then
 			if unit == "raid1" then
-				return GROUP.." 1"
+				return format("%s 1", GROUP)
 			elseif unit == "raid6" then
-				return GROUP.." 2"
+				return format("%s 2", GROUP)
 			elseif unit == "raid11" then
-				return GROUP.." 3"
+				return format("%s 3", GROUP)
 			elseif unit == "raid16" then
-				return GROUP.." 4"
+				return format("%s 4", GROUP)
 			elseif unit == "raid21" then
-				return GROUP.." 5"
+				return format("%s 5", GROUP)
 			elseif unit == "raid26" then
-				return GROUP.." 6"
+				return format("%s 6", GROUP)
 			elseif unit == "raid31" then
-				return GROUP.." 7"
+				return format("%s 7", GROUP)
 			elseif unit == "raid36" then
-				return GROUP.." 8"
+				return format("%s 8", GROUP)
 			end
 		else
 			return ""
@@ -393,13 +372,16 @@ function ElvUI_EltreumUI:LoadOtherTags()
 					role = UnitGroupRolesAssigned("player")
 				end
 				if role == 'HEALER' or E.Classic then
-					if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
+					local currentFraction = UnitPower("player") / UnitPowerMax("player")
+					local threshold = tonumber(percentage) * 0.01
+
+					if currentFraction < threshold then
 						if not manaspam then
 							DoEmote("OOM")
 							manaspam = true
 						end
 						return ""
-					elseif (UnitPower("player")/UnitPowerMax("player")) > (tonumber(percentage) * 0.01) then
+					elseif currentFraction > threshold then
 						manaspam = false
 						return ""
 					end
@@ -418,13 +400,17 @@ function ElvUI_EltreumUI:LoadOtherTags()
 			end
 			if E:UnitIsUnit("player", unit) then --player
 				if not UnitIsDead("player") then
-					if (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
+					local currentFraction = UnitHealth("player") / UnitHealthMax("player")
+					local threshold = tonumber(percentage) * 0.01
+					if currentFraction < threshold then
 						if not hpspam then
-							DoEmote("HEALME")
+							DoEmote("OOM")
 							hpspam = true
 						end
-					elseif (UnitHealth("player")/UnitHealthMax("player")) > (tonumber(percentage) * 0.01) then
+						return ""
+					elseif currentFraction > threshold then
 						hpspam = false
+						return ""
 					end
 				end
 			end

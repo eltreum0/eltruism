@@ -19,9 +19,30 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitClassification = _G.UnitClassification
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitIsFeignDeath = _G.UnitIsFeignDeath
+local format = _G.format
 local escapeSequence = ":0:0:0:0"
+local cached_deadtexture, cached_ghosttexture, cached_dctexture
+local combatTextureCache = {
+	["DEFAULT"] = "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t",
+	["PLATINUM"] = "|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t",
+	["ATTACK"] = "|TInterface\\CURSOR\\Attack:0:0:0:0|t",
+	["ALERT"] = "|TInterface\\DialogFrame\\UI-Dialog-Icon-AlertNew:0:0:0:0|t",
+	["ALERT2"] = "|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t",
+	["ARTHAS"] = "|TInterface\\LFGFRAME\\UI-LFR-PORTRAIT:0:0:0:0|t",
+	["SKULL"] = "|TInterface\\LootFrame\\LootPanel-Icon:0:0:0:0|t",
+}
+
+local function UpdateIconTagTextures()
+	if E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.otherstuff then
+		local stuff = E.db.ElvUI_EltreumUI.otherstuff
+		cached_deadtexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead%s.tga%s|t", tostring(stuff.deadtagicon), escapeSequence)
+		cached_ghosttexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost%s.tga%s|t", tostring(stuff.ghosttagicon), escapeSequence)
+		cached_dctexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc%s.tga%s|t", tostring(stuff.dctagicon), escapeSequence)
+	end
+end
 
 function ElvUI_EltreumUI:LoadIconTags()
+	UpdateIconTagTextures()
 
 	--show class icons on all targets
 	E:AddTag("eltruism:class:all", "UNIT_NAME_UPDATE", function(unit)
@@ -387,7 +408,7 @@ function ElvUI_EltreumUI:LoadIconTags()
 		local red = math.floor(color.r*255)
 		local blue = math.floor(color.b*255)
 		local green = math.floor(color.g*255)
-		local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+		local releaf = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:%d:%d:%d|t", red, green, blue)
 		--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga"..escapeSequence.."|t"
 		return releaf
 	end)
@@ -459,13 +480,13 @@ function ElvUI_EltreumUI:LoadIconTags()
 	E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit)
 		if UnitIsDead(unit) and UnitIsPlayer(unit) and not UnitIsFeignDeath(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.deadtagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.deadtagicon)..".tga"..escapeSequence.."|t"
+				return cached_deadtexture
 			else
 				return L["Dead"]
 			end
 		elseif UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga"..escapeSequence.."|t"
+				return cached_ghosttexture
 			else
 				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 			end
@@ -477,7 +498,7 @@ function ElvUI_EltreumUI:LoadIconTags()
 	E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit)
 		if not UnitIsConnected(unit) and UnitIsPlayer(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.dctagicon ~= "NONE" then
-				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.dctagicon)..".tga"..escapeSequence.."|t"
+				return cached_dctexture
 			else
 				return L["Dead"]
 			end
@@ -495,15 +516,15 @@ function ElvUI_EltreumUI:LoadIconTags()
 		elseif assist and not leader and not isTank and not isMainAssist then
 			return "|TInterface\\GROUPFRAME\\UI-GROUP-ASSISTANTICON.BLP:0:0:0:0|t"
 		elseif isTank and isMainAssist and not leader and not assist then
-			return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t".."|TInterface\\GROUPFRAME\\UI-GROUP-MAINASSISTICON.BLP:0:0:0:0|t"
+			return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t|TInterface\\GROUPFRAME\\UI-GROUP-MAINASSISTICON.BLP:0:0:0:0|t"
 		elseif isTank and not isMainAssist and not leader and not assist then
 			return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
 		elseif isMainAssist and not isTank and not leader and not assist then
 			return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINASSISTICON.BLP:0:0:0:0|t"
 		elseif leader and isTank then
-			return "|TInterface\\GROUPFRAME\\UI-GROUP-LEADERICON.BLP:0:0:0:0|t".."|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
+			return "|TInterface\\GROUPFRAME\\UI-GROUP-LEADERICON.BLP:0:0:0:0|t|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
 		elseif assist and isTank and not isMainAssist and not leader then
-			return "|TInterface\\GROUPFRAME\\UI-GROUP-ASSISTANTICON.BLP:0:0:0:0|t".."|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
+			return "|TInterface\\GROUPFRAME\\UI-GROUP-ASSISTANTICON.BLP:0:0:0:0|t|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
 		end
 	end)
 	E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\GROUPFRAME\\UI-GROUP-LEADERICON.BLP:0:0:0:0|t "..L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
@@ -519,24 +540,13 @@ function ElvUI_EltreumUI:LoadIconTags()
 	--combat icon idea for other units
 	E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH PLAYER_FLAGS_CHANGED', function(unit)
 		if UnitAffectingCombat(unit) then
-			if E.db.unitframe.units.player.CombatIcon.texture == "DEFAULT" then
-				return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "PLATINUM" then
-				return "|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "ATTACK" then
-				return "|TInterface\\CURSOR\\Attack:0:0:0:0|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "ALERT" then
-				return "|TInterface\\DialogFrame\\UI-Dialog-Icon-AlertNew:0:0:0:0|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "ALERT2" then
-				return "|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "ARTHAS" then
-				return "|TInterface\\LFGFRAME\\UI-LFR-PORTRAIT:0:0:0:0|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "SKULL" then
-				return "|TInterface\\LootFrame\\LootPanel-Icon:0:0:0:0|t"
-			elseif E.db.unitframe.units.player.CombatIcon.texture == "COMBAT" then
-				return "|TInterface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\Combat.tga"..escapeSequence.."|t"
+			local texture = E.db.unitframe.units.player.CombatIcon.texture
+			if texture == "COMBAT" then
+				return format("|TInterface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\Combat.tga%s|t", escapeSequence)
+			elseif combatTextureCache[texture] then
+				return combatTextureCache[texture]
 			else
-				return E:TextureString(E.Media.CombatIcons[E.db.unitframe.units.player.CombatIcon.texture],':20:20')-- "|T"..E.Media.CombatIcons[texture]..":0:0:0|t"
+				return E:TextureString(E.Media.CombatIcons[texture], ':20:20')
 			end
 		end
 	end)

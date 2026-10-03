@@ -1172,6 +1172,15 @@ function ElvUI_EltreumUI:UpdateCursorPosition(frame, elapsed, force)
 	end
 end
 
+--cache unit..'target' to avoid calling it again and again
+local targetUnitCache = {}
+function ElvUI_EltreumUI:GetTargetUnit(unit)
+	if not targetUnitCache[unit] then
+		targetUnitCache[unit] = unit .. 'target'
+	end
+	return targetUnitCache[unit]
+end
+
 --check on PEW, should run on all scenarios needed (but not like garrisons)
 local outside = "none"
 local isPvP = false

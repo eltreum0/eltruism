@@ -83,7 +83,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
@@ -101,7 +101,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
@@ -119,7 +119,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit,_,args)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
@@ -154,7 +154,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -178,7 +178,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		if not name then return end
 		if not args then args = 16 end
@@ -203,7 +203,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -247,7 +247,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -299,7 +299,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -349,7 +349,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -394,7 +394,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -417,7 +417,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
@@ -488,7 +488,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
@@ -502,7 +502,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -526,7 +526,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
@@ -545,7 +545,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -591,9 +591,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
-			return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
+			return format("|c%s%s|r", ElvUI_EltreumUI:classcolorcast(unitClass), name)
 		elseif not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
@@ -637,7 +637,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if not unit then return end
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
@@ -671,9 +671,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 					if not E:NotSecretValue(unitClass) then --secret class so do something else
 						local classColor = GetClassColor(unitClass)
 						local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-						return hex..name.."|r"
+						return format("%s%s|r", hex, name)
 					end
-					return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
+					return format("|c%s%s|r", ElvUI_EltreumUI:classcolorcast(unitClass), name)
 				else
 					if reaction then
 						if reaction >= 5 then
@@ -694,9 +694,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 				if not E:NotSecretValue(unitClass) then --secret class so do something else
 					local classColor = GetClassColor(unitClass)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return hex..name.."|r"
+					return format("%s%s|r", hex, name)
 				end
-				return "|c"..ElvUI_EltreumUI:classcolorcast(unitClass)..name.."|r"
+				return format("|c%s%s|r", ElvUI_EltreumUI:classcolorcast(unitClass), name)
 			else
 				if reaction then
 					if reaction >= 5 then
@@ -718,7 +718,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
@@ -758,7 +758,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 					if not E:NotSecretValue(unitClass) then --secret class so do something else
 						local classColor = GetClassColor(unitClass)
 						local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-						return hex..name.."|r"
+						return format("%s%s|r", hex, name)
 					end
 					return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 				elseif not UnitIsPlayer(unit) then
@@ -781,7 +781,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 				if not E:NotSecretValue(unitClass) then --secret class so do something else
 					local classColor = GetClassColor(unitClass)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return hex..name.."|r"
+					return format("%s%s|r", hex, name)
 				end
 				return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget,true)
 			elseif not UnitIsPlayer(unit) then
@@ -805,7 +805,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_,args)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		if not name then return end
 		if not args then args = 16 end
@@ -834,7 +834,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget,true)
 		elseif not UnitIsPlayer(unit) then
@@ -858,7 +858,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 	E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
 		local name,surname = UnitName(unit)
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		if not name then return end
 		if not args then args = 16 end
@@ -876,7 +876,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--elvui target name abbrev but with args
 	E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
-		local targetName,surname = UnitName(unit..'target')
+		local targetName,surname = UnitName(ElvUI_EltreumUI:GetTargetUnit(unit))
 		if E.Forever and surname then
 			targetName = targetName.." "..surname
 		end
@@ -899,7 +899,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		if not UnitExists("targettarget") then return end
 		local name,surname = UnitName("targettarget")
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		if name then
 			if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
@@ -908,7 +908,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 				if not E:NotSecretValue(unitClass) then --secret class so do something else
 					local classColor = GetClassColor(unitClass)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return hex..name.."|r"
+					return format("%s%s|r", hex, name)
 				end
 				return ElvUI_EltreumUI:GradientName(name, unitClass,nil,true)
 			elseif not UnitIsPlayer("targettarget") then
@@ -931,9 +931,9 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--reversed gradient name
 	E:AddTag("name:eltruism:gradientreverse", "UNIT_NAME_UPDATE", function(unit)
-		local name,surname = UnitName(unit..'target')
+		local name,surname = UnitName(ElvUI_EltreumUI:GetTargetUnit(unit))
 		if E.Forever and surname then
-			name = name.." "..surname
+			name = format("%s %s", name, surname)
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			local _, unitClass = UnitClass(unit)
@@ -941,7 +941,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			if not E:NotSecretValue(unitClass) then --secret class so do something else
 				local classColor = GetClassColor(unitClass)
 				local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-				return hex..name.."|r"
+				return format("%s%s|r", hex, name)
 			end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,true,true)
 		elseif not UnitIsPlayer(unit) then
