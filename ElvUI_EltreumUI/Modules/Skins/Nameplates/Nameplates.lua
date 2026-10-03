@@ -904,13 +904,13 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 	if db.castbar and db.castbar.enable and db.castbar.displayTarget then
 		local frameType = plate.frameType
 		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
-			if UnitExists(unit.."target") then
+			if UnitExists(ElvUI_EltreumUI:GetTargetUnit(unit)) then
 				local spellName = E:ShortenString(self.spellName, 11)
 				local targetname = E:ShortenString(UnitName(ElvUI_EltreumUI:GetTargetUnit(unit)), 12)
 				--local spellName = E:AbbreviateString(self.spellName)
 				--local targetname = E:AbbreviateString(UnitName(ElvUI_EltreumUI:GetTargetUnit(unit)))
-				if UnitIsPlayer(unit.."target") or (E.Retail and UnitInPartyIsAI(unit.."target")) then
-					local _ , classes = UnitClass(unit.."target")
+				if UnitIsPlayer(ElvUI_EltreumUI:GetTargetUnit(unit)) or (E.Retail and UnitInPartyIsAI(ElvUI_EltreumUI:GetTargetUnit(unit))) then
+					local _ , classes = UnitClass(ElvUI_EltreumUI:GetTargetUnit(unit))
 					if not E:NotSecretValue(classes) then --secret class so do something else
 						return targetname
 					end
