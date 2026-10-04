@@ -27,7 +27,7 @@ local function ApplyBackdropAlphas(db, bg, backdrop, tex)
 			if bg.SetVertexColor then bg:SetVertexColor(0, 0, 0, backdropAlpha) end
 		end
 		if backdrop then
-			backdrop:SetAlpha(backdropAlpha)
+			backdrop.customBackdropAlpha = backdropAlpha
 			backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 			if transparentHealth and backdrop.Center then backdrop.Center:Hide() end
 		end
@@ -38,19 +38,19 @@ local function ApplyBackdropAlphas(db, bg, backdrop, tex)
 	elseif db.darkmode then
 		if bg and bg.SetAlpha then bg:SetAlpha(backdropAlpha) end
 		if backdrop then
-			if E.db.unitframe.thinBorders then
-				backdrop:SetAlpha(backdropAlpha)
-			elseif backdrop.Center then
+			if backdrop.Center then
 				if not backdrop.Center:IsShown() then
 					backdrop.Center:Show()
 				end
 				backdrop.Center:SetAlpha(backdropAlpha)
 			end
+			backdrop.customBackdropAlpha = backdropAlpha
 			backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 		end
-		if tex then tex:SetAlpha(backdropAlpha) end
+		if tex and tex.SetAlpha then tex:SetAlpha(backdropAlpha) end
 	end
 end
+ElvUI_EltreumUI.ApplyBackdropAlphas = ApplyBackdropAlphas
 
 -- Unitframe Backdrop Texture/Alpha/Fill Direction
 function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, _, reverseFill)
@@ -71,6 +71,10 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 	end
 
 	if isHealthBar then
+		local parent = statusBar:GetParent()
+		if parent then
+			parent.EltruismBackdropEpoch = nil
+		end
 		if not db.ufcustomtexture.backdrophidden then
 			if backdropTex then
 				backdropTex:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture))

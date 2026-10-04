@@ -153,7 +153,17 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		local isCustom = db.customcolor
 		local orientation = db.orientation or "HORIZONTAL"
 
-		if frame.EltruismBackdropEpoch == backdropEpoch and
+		local backdropNeedsUpdate = false
+		if frame.Health and frame.Health.backdrop then
+			if UFdb.darkmode and frame.Health.backdrop.Center and not frame.Health.backdrop.Center:IsShown() then
+				backdropNeedsUpdate = true
+			elseif frame.Health.backdrop.customBackdropAlpha ~= backdropAlpha then
+				backdropNeedsUpdate = true
+			end
+		end
+
+		if not backdropNeedsUpdate and
+			frame.EltruismBackdropEpoch == backdropEpoch and
 			frame.EltruismBackdropClass == colorClass and
 			frame.EltruismBackdropDead == deadState and
 			frame.EltruismBackdropInvert == invert and
@@ -182,7 +192,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 
 		if E.db.unitframe.colors.transparentHealth then
 			if frame.Health and frame.Health.backdrop then
-				frame.Health.backdrop:SetAlpha(backdropAlpha)
+				frame.Health.backdrop.customBackdropAlpha = backdropAlpha
 				if UFdb.lightmode then
 					frame.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 					if frame.Health.backdrop.Center and frame.Health.backdrop.Center:IsShown() then
@@ -440,7 +450,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 				end
 			elseif UFdb.darkmode then
 				if unitframe.Health.backdrop then
-					unitframe.Health.backdrop:SetAlpha(backdropAlpha)
+					unitframe.Health.backdrop.customBackdropAlpha = backdropAlpha
 					unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 					if unitframe.Health.backdrop.Center then
 						if not unitframe.Health.backdrop.Center:IsShown() then
@@ -570,7 +580,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 			end
 		elseif UFdb.darkmode then
 			if button.Health.backdrop then
-				button.Health.backdrop:SetAlpha(backdropAlpha)
+				button.Health.backdrop.customBackdropAlpha = backdropAlpha
 				button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
 				if button.Health.backdrop.Center then
 					if not button.Health.backdrop.Center:IsShown() then
@@ -784,6 +794,26 @@ function ElvUI_EltreumUI:GradientUF(unit)
 end
 hooksecurefunc(UF, "PostUpdateHealthColor", HealthBar_PostUpdateHealthColor)
 hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.GradientUF)
+
+--player unitframe needs this otherwise the value will be wrong when its transparent
+--since it loads before other frames
+if E.CoroutineCallback then
+	E:CoroutineCallback(UF.Update_UnitFrame, function(_, frame)
+		if frame and frame.Health and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			frame.EltruismBackdropEpoch = nil
+			local frameType = frame.unitframeType
+			if frameType then
+				local info = individualUnits[frameType]
+				if info then
+					ElvUI_EltreumUI:ApplyUnitCustomTexture(frame.__unit or frameType, info.name, info.db)
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.hasMode then
+						ElvUI_EltreumUI:ApplyUnitGradient(frame.__unit or frameType, info.name, info.db)
+					end
+				end
+			end
+		end
+	end)
+end
 
 --allows previews to show custom textures and gradients
 hooksecurefunc(UF, "ToggleForceShowGroupFrames", function()
