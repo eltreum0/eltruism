@@ -247,6 +247,10 @@ local function ApplyAuraBarBackdropRetail(container, button)
 	if button.statusbar.backdrop and button.statusbar.backdrop.Center then
 		button.statusbar.backdrop.Center:Hide()
 	end
+
+	if button.backdrop and button.backdrop.Center then
+		button.backdrop.Center:SetVertexColor(0,0,0,ba)
+	end
 end
 
 local function ApplyAuraBarColorRetail(container, button, auraData)
