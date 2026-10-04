@@ -436,7 +436,7 @@ do
 			if not bar.GradientStatusBarEltruismHook then
 				local sbtexture = bar.StatusBar:GetStatusBarTexture()
 				hooksecurefunc(sbtexture, "SetVertexColor", function(_, r, g, b)
-					if bar.classFilename then
+					if bar.classFilename and E:NotSecretValue(bar.classFilename) then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 							sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(bar.classFilename))
 						else
