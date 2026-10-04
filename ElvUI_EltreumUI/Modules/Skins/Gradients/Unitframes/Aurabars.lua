@@ -404,6 +404,13 @@ local function ApplyThinModeRetail(container, button)
 end
 
 function ElvUI_EltreumUI:UpdateRetailAuraBar(container, button, auraData)
+	local db = E.db.ElvUI_EltreumUI.unitframes
+	if not db then return end
+	local UFmods = E.db.ElvUI_EltreumUI.unitframes.UFmodifications
+	if not UFmods then return end
+	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars
+	if not gm then return end
+
 	if not (button and button.statusbar) then return end
 	if auraData then
 		button.eltruismAuraData = auraData
