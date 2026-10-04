@@ -205,7 +205,7 @@ end
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
 	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
 	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
-	E:Delay(3, function() --delay counting otherwise doesnt work in retail (where coroutines are)
+	E:Delay(0.3, function() --delay counting otherwise doesnt work in retail (where coroutines are)
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			ElvUI_EltreumUI:IncrementHealthBackdropEpoch() --start counting the backdrop
 			ElvUI_EltreumUI:CustomTexture("testunit")
@@ -499,7 +499,7 @@ function ElvUI_EltreumUI:Initialize()
 	if E.Classic then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
-	--ElvUI_EltreumUI:RegisterEvent("FIRST_FRAME_RENDERED")
+	ElvUI_EltreumUI:RegisterEvent("FIRST_FRAME_RENDERED")
 	--because some cvars keep resetting for some reason
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
