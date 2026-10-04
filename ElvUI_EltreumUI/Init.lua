@@ -200,7 +200,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadIconTags()
 	ElvUI_EltreumUI:LoadNameTags()
 	ElvUI_EltreumUI:LoadOtherTags()
-	E:Delay(0.3, function() --delay counting otherwise doesnt work in retail (where coroutines are)
+	E:Delay(3, function() --delay counting otherwise doesnt work in retail (where coroutines are)
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			ElvUI_EltreumUI:IncrementHealthBackdropEpoch() --start counting the backdrop
 			ElvUI_EltreumUI:CustomTexture("testunit")
