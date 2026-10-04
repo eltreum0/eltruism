@@ -34,8 +34,8 @@ EltreumPowerBar:Hide() --hide at the start before events
 
 --Setup the text
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
-EltreumPowerBarText:SetWidth(1)
-EltreumPowerBarText:SetHeight(1)
+EltreumPowerBarText:SetWidth(150)
+EltreumPowerBarText:SetHeight(6)
 EltreumPowerBarText:SetFrameStrata('DIALOG')
 EltreumPowerBar.Text = EltreumPowerBarText:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 EltreumPowerBar.Text:SetTextColor(1, 1, 1)
@@ -47,14 +47,17 @@ EltreumPowerBar.Text:SetJustifyV("MIDDLE")
 local EltreumPowerBarClipFrame = CreateFrame("Frame", "EltruismPowerBarClipFrame", EltreumPowerBar)
 EltreumPowerBarClipFrame:SetClipsChildren(true)
 EltreumPowerBarClipFrame:SetAllPoints(EltreumPowerBar)
+EltreumPowerBarClipFrame:SetParent(EltreumPowerBar)
 EltreumPowerBarClipFrame:EnableMouse(false)
 EltreumPowerBar.ClipFrame = EltreumPowerBarClipFrame
 
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBarClipFrame)
+EltreumPowerPrediction:SetParent(EltreumPowerBar)
 EltreumPowerPrediction:Hide()
 EltreumPowerPrediction.isShownStatus = false
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBarClipFrame)
 EltreumPowerPrediction:SetValue(0)
+EltreumPowerPredictionIncoming:SetParent(EltreumPowerBar)
 EltreumPowerPredictionIncoming:Hide()
 EltreumPowerPredictionIncoming.isShownStatus = false
 EltreumPowerPredictionIncoming:SetValue(0)
@@ -321,6 +324,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			if not EltreumPowerBar.isSetup then
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", nameplatePowerDB.font), nameplatePowerDB.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				EltreumPowerBar:SetSize(nameplatePowerDB.sizex, nameplatePowerDB.sizey)
+				EltreumPowerBarClipFrame:SetSize(nameplatePowerDB.sizex, nameplatePowerDB.sizey)
 				S:HandleStatusBar(EltreumPowerBar)
 				EltreumPowerPrediction:SetValue(0)
 				EltreumPowerPredictionIncoming:SetValue(0)
@@ -340,20 +344,21 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.backdrop:SetBackdropColor(nameplatePowerDB.r, nameplatePowerDB.g, nameplatePowerDB.b)
 				EltreumPowerBar.backdrop:SetAlpha(nameplatePowerDB.a)
 				EltreumPowerBar:SetFrameStrata("MEDIUM")
+
+				EltreumPowerPrediction:SetWidth(nameplatePowerDB.sizex)
 				EltreumPowerPrediction:ClearAllPoints()
 				EltreumPowerPrediction:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
 				EltreumPowerPrediction:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
 				EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 				EltreumPowerPrediction:SetReverseFill(true)
-				EltreumPowerPrediction:SetWidth(nameplatePowerDB.sizex)
 				EltreumPowerPrediction:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 2)
 
+				EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
 				EltreumPowerPredictionIncoming:ClearAllPoints()
 				EltreumPowerPredictionIncoming:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
 				EltreumPowerPredictionIncoming:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
 				EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 				EltreumPowerPredictionIncoming:SetReverseFill(false)
-				EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
 				EltreumPowerPredictionIncoming:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 1)
 
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
@@ -407,9 +412,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if targetClassPower and targetClassPowerShown then
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 				elseif targetRunes and targetRunesShown then
-					EltreumPowerBar:SetPoint("TOP", targetRunes, "TOP", 0, 23)
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 				elseif targetStagger and targetStaggerShown then
-					EltreumPowerBar:SetPoint("TOP", targetStagger, "TOP", 0, 23)
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 				else
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 14)
 				end
