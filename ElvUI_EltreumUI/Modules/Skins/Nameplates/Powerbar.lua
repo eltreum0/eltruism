@@ -28,9 +28,6 @@ powerbareffect.isShownStatus = false
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:Hide() --hide at the start before events
 EltreumPowerBar.isShownStatus = false
-EltreumPowerBar.currentPoint = nil
-EltreumPowerBar.currentAnchor = nil
-EltreumPowerBar.currentY = nil
 
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:Hide() --hide at the start before events
@@ -49,7 +46,7 @@ EltreumPowerBar.Text:SetJustifyV("MIDDLE")
 --setup the prediction and incoming prediction
 local EltreumPowerBarClipFrame = CreateFrame("Frame", "EltruismPowerBarClipFrame", EltreumPowerBar)
 EltreumPowerBarClipFrame:SetClipsChildren(true)
-EltreumPowerBarClipFrame:SetAllPoints()
+EltreumPowerBarClipFrame:SetAllPoints(EltreumPowerBar)
 EltreumPowerBarClipFrame:EnableMouse(false)
 EltreumPowerBar.ClipFrame = EltreumPowerBarClipFrame
 
@@ -140,7 +137,6 @@ if E.Modern then
 	TalentUpdateFrame:SetScript("OnEvent", UpdatePowerTalents)
 end
 
-
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
 	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
@@ -164,20 +160,20 @@ function ElvUI_EltreumUI:PowerPrediction()
 		--make them behave nicely since i had to split them
 		EltreumPowerPrediction:SetStatusBarTexture(barTexture)
 		EltreumPowerPredictionIncoming:SetStatusBarTexture(barTexture)
+		EltreumPowerPrediction:SetWidth(nameplatePowerDB.sizex)
 		EltreumPowerPrediction:ClearAllPoints()
 		EltreumPowerPrediction:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
 		EltreumPowerPrediction:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
 		EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 		EltreumPowerPrediction:SetReverseFill(true)
-		EltreumPowerPrediction:SetWidth(nameplatePowerDB.sizex)
 		EltreumPowerPrediction:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 2)
 
+		EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
 		EltreumPowerPredictionIncoming:ClearAllPoints()
 		EltreumPowerPredictionIncoming:SetPoint("TOP", EltreumPowerBarClipFrame, "TOP")
 		EltreumPowerPredictionIncoming:SetPoint("BOTTOM", EltreumPowerBarClipFrame, "BOTTOM")
 		EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 		EltreumPowerPredictionIncoming:SetReverseFill(false)
-		EltreumPowerPredictionIncoming:SetWidth(nameplatePowerDB.sizex)
 		EltreumPowerPredictionIncoming:SetFrameLevel(EltreumPowerBar:GetFrameLevel() + 1)
 		EltreumPowerBar.isSetupprediction = true
 	end
@@ -642,7 +638,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			--add effect to bar
 			if nameplatePowerDB.modeleffect then
 				powerbareffect:Show()
-				powerbareffect:SetSize(nameplatePowerDB.sizex or 133.5, nameplatePowerDB.sizey or 6)
+				powerbareffect:SetSize(nameplatePowerDB.sizex or 150, nameplatePowerDB.sizey or 6)
 				powerbareffect:SetAllPoints(EltreumPowerBar:GetStatusBarTexture())
 				if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 					if E.Modern then
