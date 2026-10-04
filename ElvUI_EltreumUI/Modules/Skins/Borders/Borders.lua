@@ -53,28 +53,48 @@ local classcolorreaction = {
 	["DEBUG"] = {r = 1, g = 0, b = 0},
 }
 
-function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
-	if E:NotSecretValue(unitclass) and not tableType then
-		if unitclass and classcolorreaction[unitclass] then
-			return classcolorreaction[unitclass]
-		else
-			return classcolorreaction["DEBUG"]
+function ElvUI_EltreumUI:GetClassColorsRGB(unitclass, tableType)
+	--secret
+	if not E:NotSecretValue(unitclass) then
+		local classColor = GetClassColor(unitclass)
+
+		if (tableType == 2 or tableType == 4) and classColor then
+			return classColor, classColor
+		end
+
+		local fallback = classcolorreaction["DEBUG"] or {r = 1, g = 1, b = 1}
+		if tableType == 1 then
+			return {r1 = fallback.r, g1 = fallback.g, b1 = fallback.b}
+		elseif tableType == 3 then
+			return fallback
+		elseif not tableType then
+			return fallback
+		end
+	end
+
+	--normal
+	local c = (unitclass and classcolorreaction[unitclass]) or classcolorreaction["DEBUG"]
+	if not c and unitclass then
+		local blizzColor = GetClassColor(unitclass)
+		if blizzColor and E:NotSecretTable(blizzColor) then
+			c = blizzColor
+		end
+	end
+	c = c or classcolorreaction["DEBUG"]
+
+	if tableType then
+		if tableType == 1 then
+			return {r1 = c.r, g1 = c.g, b1 = c.b}
+		elseif tableType == 2 then
+			return {r = c.r, g = c.g, b = c.b}, {r = c.r, g = c.g, b = c.b}
+		elseif tableType == 3 then
+			return {r = c.r, g = c.g, b = c.b}
+		elseif tableType == 4 then
+			local alpha = ElvUI_EltreumUI:GetCachedBackdropAlpha()
+			return {r = c.r, g = c.g, b = c.b, a = alpha}, {r = c.r, g = c.g, b = c.b, a = alpha}
 		end
 	else
-		local classColor = GetClassColor(unitclass)
-		if tableType then
-			if tableType == 1 then
-				return {r1 = classColor.r, g1 = classColor.g, b1 = classColor.b}
-			elseif tableType == 2 then
-				return {r = classColor.r, g = classColor.g, b = classColor.b}, {r = classColor.r, g = classColor.g, b = classColor.b}
-			elseif tableType == 3 then
-				return {r = classColor.r, g = classColor.g, b = classColor.b}
-			elseif tableType == 4 then
-				return {r = classColor.r, g = classColor.g, b = classColor.b, a = ElvUI_EltreumUI:GetCachedBackdropAlpha()}, {r = classColor.r, g = classColor.g, b = classColor.b, a = ElvUI_EltreumUI:GetCachedBackdropAlpha()}
-			end
-		else
-			return classColor.r, classColor.g, classColor.b
-		end
+		return c
 	end
 end
 
