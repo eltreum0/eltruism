@@ -4293,7 +4293,7 @@ end
 
 --benik's version
 local bordercolor = E.myClassColor
-function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate) --??
+function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 	if not nameplate then return end
 	local bordertexture
 	if E.private.nameplates.enable then
