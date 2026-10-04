@@ -536,6 +536,10 @@ local function bgalpha(alpha, isHealth)
 	return 1
 end
 
+function ElvUI_EltreumUI:GetCachedBackdropAlpha()
+	return cached_backdropalpha
+end
+
 function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
 	if not key or not E:NotSecretValue(key) then
 		key = "ELTRUISM"
@@ -806,7 +810,7 @@ function ElvUI_EltreumUI:GetGradientCustomColor(unitclass)
 			return entry.min, entry.max
 		end
 	end
-	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 2)
+	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 4)
 end
 
 --get the default colors
@@ -817,7 +821,7 @@ function ElvUI_EltreumUI:GetGradientDefaultColor(unitclass)
 			return entry.min, entry.max
 		end
 	end
-	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 2)
+	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 4)
 end
 
 --different for details because bars smaller and different
@@ -828,7 +832,7 @@ function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
 			return entry.min, entry.max
 		end
 	end
-	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 2)
+	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 4)
 end
 
 function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
@@ -838,7 +842,7 @@ function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
 			return entry.min, entry.max
 		end
 	end
-	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 2)
+	return ElvUI_EltreumUI:GetClassColorsRGB(unitclass, 4)
 end
 
 --set gradient using vertex color of regions of a frame

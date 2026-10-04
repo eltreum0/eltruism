@@ -54,7 +54,7 @@ local classcolorreaction = {
 }
 
 function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
-	if E:NotSecretValue(unitclass) then
+	if E:NotSecretValue(unitclass) and not tableType then
 		if unitclass and classcolorreaction[unitclass] then
 			return classcolorreaction[unitclass]
 		else
@@ -63,15 +63,17 @@ function ElvUI_EltreumUI:GetClassColorsRGB(unitclass,tableType)
 	else
 		local classColor = GetClassColor(unitclass)
 		if tableType then
-			return classColor.r, classColor.g, classColor.b
-		else
 			if tableType == 1 then
 				return {r1 = classColor.r, g1 = classColor.g, b1 = classColor.b}
 			elseif tableType == 2 then
 				return {r = classColor.r, g = classColor.g, b = classColor.b}, {r = classColor.r, g = classColor.g, b = classColor.b}
 			elseif tableType == 3 then
 				return {r = classColor.r, g = classColor.g, b = classColor.b}
+			elseif tableType == 4 then
+				return {r = classColor.r, g = classColor.g, b = classColor.b, a = ElvUI_EltreumUI:GetCachedBackdropAlpha()}, {r = classColor.r, g = classColor.g, b = classColor.b, a = ElvUI_EltreumUI:GetCachedBackdropAlpha()}
 			end
+		else
+			return classColor.r, classColor.g, classColor.b
 		end
 	end
 end
