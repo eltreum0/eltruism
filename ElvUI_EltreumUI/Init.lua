@@ -82,7 +82,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 		ElvUI_EltreumUI:GroupBorderColorUpdate()
 	end)
-	ElvUI_EltreumUI:IncrementHealthBackdropEpoch() --start counting the backdrop
 	ElvUI_EltreumUI:SkinVehicleButton() -- re-skin vehicle button like elvui did
 	ElvUI_EltreumUI:CacheGradients()
 	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
@@ -201,6 +200,13 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadIconTags()
 	ElvUI_EltreumUI:LoadNameTags()
 	ElvUI_EltreumUI:LoadOtherTags()
+	E:Delay(0.3, function() --delay counting otherwise doesnt work in retail (where coroutines are)
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			ElvUI_EltreumUI:IncrementHealthBackdropEpoch() --start counting the backdrop
+			ElvUI_EltreumUI:CustomTexture("testunit")
+			ElvUI_EltreumUI:GradientUF("testunit")
+		end
+	end)
 end
 
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
