@@ -798,7 +798,7 @@ hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.GradientUF)
 --player unitframe needs this otherwise the value will be wrong when its transparent
 --since it loads before other frames
 if E.CoroutineCallback then
-	E:CoroutineCallback(UF.Update_UnitFrame, function(_, frame)
+	local function Update_UnitFrameTransparencyFix(frame)
 		if frame and frame.Health and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			frame.EltruismBackdropEpoch = nil
 			local frameType = frame.unitframeType
@@ -812,6 +812,26 @@ if E.CoroutineCallback then
 				end
 			end
 		end
+	end
+	E:CoroutineCallback(UF.Update_UnitFrame, function(_, frame)
+		Update_UnitFrameTransparencyFix(frame)
+	end)
+	E:CoroutineCallback(UF.Update_GroupFrame, function(group)
+	    local header = UF[group]
+	    if not header then return end
+	    for i = 1, header:GetNumChildren() do
+	        local frame = select(i, header:GetChildren())
+	        if frame and frame.Health then
+	            Update_UnitFrameTransparencyFix(frame)
+	        elseif frame and frame.GetNumChildren then
+	            for j = 1, frame:GetNumChildren() do
+	                local subFrame = select(j, frame:GetChildren())
+	                if subFrame and subFrame.Health then
+	                    Update_UnitFrameTransparencyFix(subFrame)
+	                end
+	            end
+	        end
+	    end
 	end)
 end
 
