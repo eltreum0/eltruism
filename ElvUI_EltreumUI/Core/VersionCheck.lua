@@ -89,6 +89,9 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 
 	--game version check
 	local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
+	if _G.PTR_IssueReporter then
+		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfacePTR'))
+	end
 	if E.Classic then
 		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfaceVanilla'))
 	elseif E.TBC then

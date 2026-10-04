@@ -1,4 +1,4 @@
-## Interface: 11509, 16001, 20506, 38002, 50504, 120100
+## Interface: 11509, 16001, 20506, 38002, 50504, 120100, 120105
 ## Author: Eltreum
 ## Version: @project-version@
 ## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff6289B7l|r|cff6C98C1t|r|cff76A7CBr|r|cff81B6D6u|r|cff8BC5E0i|r|cff95D4EAs|r|cff9FE3F4m|r [AllowLoadGameType standard]
@@ -21,6 +21,7 @@
 ## OptionalDeps: ElvUI_SLE, ElvUI_WindTools
 ## DefaultState: enabled
 ## X-Interface: 120100
+## X-InterfacePTR: 120105
 ## X-InterfaceVanilla: 11509
 ## X-InterfaceTBC: 20506
 ## X-InterfaceWrath: 38002
