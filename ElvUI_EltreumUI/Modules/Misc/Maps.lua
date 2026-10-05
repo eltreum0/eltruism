@@ -217,7 +217,7 @@ if E.Modern then
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then
 
-				--in 10.1.7 blizzard restricts waypoints, unrestrict them again
+				--blizzard restricts waypoints, unrestrict them again
 				hooksecurefunc(_G.C_Navigation, "HasValidScreenPosition", function()
 					return true
 				end)

@@ -914,7 +914,7 @@ do
 	end
 end
 
---10.1 addon compartment
+--addon compartment
 do
 	function ElvUI_EltreumUI:OnAddonCompartmentClick()
 		E:ToggleOptions("ElvUI_EltreumUI") --has msg arg which can be used
