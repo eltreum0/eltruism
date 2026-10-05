@@ -453,7 +453,11 @@ do
 						local name = bar.StatusBar.Name:GetText()
 						if name and E:NotSecretValue(name) and bar.classFilename then
 							local nameStripped = E:StripString(name)
-							bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+							if E.Retail then
+								bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+							else
+								bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(nameStripped, bar.classFilename))
+							end
 						end
 					end
 				end)
@@ -464,7 +468,11 @@ do
 							local name = bar.StatusBar.Name:GetText()
 							if name and E:NotSecretValue(name) and bar.classFilename then
 								local nameStripped = E:StripString(name)
-								bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+								if E.Retail then
+									bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+								else
+									bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(nameStripped, bar.classFilename))
+								end
 							end
 						end
 					end)
@@ -484,7 +492,11 @@ do
 					local name = bar.StatusBar.Name:GetText()
 					if name and E:NotSecretValue(name) and bar.classFilename then
 						local nameStripped = E:StripString(name)
-						bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+						if E.Retail then
+							bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(nameStripped, 12, true), bar.classFilename))
+						else
+							bar.StatusBar.Name:SetText(ElvUI_EltreumUI:GradientName(nameStripped, bar.classFilename))
+						end
 					end
 				end
 
