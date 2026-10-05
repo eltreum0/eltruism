@@ -33,8 +33,6 @@ local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local next = _G.next
 local GetUnitSpeed = _G.GetUnitSpeed
 
---GetTalentTabInfo is going to be removed, use C_SpecializationInfo.GetSpecializationInfo instead TODO
-
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture("EltruismCharacterBG")
