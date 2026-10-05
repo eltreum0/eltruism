@@ -36,9 +36,12 @@ Init.lua
 Settings\load_settings.xml
 Localization\load_localization.xml
 Core\load_core.xml
+Tags\load_tags.xml
 Libs\load_libs.xml
 Media\load_media.xml
 Modules\load_modules.xml [AllowLoadGameType standard]
 Modules\load_modules_Forever.xml [AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]
 Modules\load_modules_Classic.xml [AllowLoadGameType vanilla, tbc, wrath, mists]
 Profiles\load_profiles.xml
+Layouts\load_layouts.xml
+Options\load_options.xml
