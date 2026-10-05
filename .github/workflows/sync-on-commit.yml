@@ -76,14 +76,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAGES_PAT }}
         run: |
           ZIP_FILE=$(find .release -name "ElvUI_EltreumUI-*.zip" | head -n 1)
+          STATIC_ZIP=".release/ElvUI_EltreumUI-Dev.zip"
+          mv "$ZIP_FILE" "$STATIC_ZIP"
+
           SHORT_SHA="${GITHUB_SHA::7}"
 
           REPO="eltreum0/eltreum0.github.io"
           TAG_NAME="dev-latest"
 
           if gh release view $TAG_NAME --repo $REPO > /dev/null 2>&1; then
-            gh release upload $TAG_NAME "$ZIP_FILE" --repo $REPO --clobber
+            gh release upload $TAG_NAME "$STATIC_ZIP" --repo $REPO --clobber
             gh release edit $TAG_NAME --repo $REPO --notes "Automated dev build tracking the main branch. SHA: $SHORT_SHA"
           else
-            gh release create $TAG_NAME "$ZIP_FILE" --repo $REPO -t "Latest Dev Build" --prerelease --notes "Automated dev build tracking the main branch. SHA: $SHORT_SHA"
+            gh release create $TAG_NAME "$STATIC_ZIP" --repo $REPO -t "Latest Dev Build" --prerelease --notes "Automated dev build tracking the main branch. SHA: $SHORT_SHA"
           fi
