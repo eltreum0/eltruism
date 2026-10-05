@@ -104,16 +104,19 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 	if E.db["unitframe"]["units"]["player"]["customTexts"] then
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["attachTextTo"] = "Frame"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["yOffset"] = 12
 		end
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["enable"] = false
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["size"] = 14
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["enable"] = true
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["yOffset"] = 12
 		end
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["attachTextTo"] = "Frame"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["yOffset"] = -13
 		end
 	end
