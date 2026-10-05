@@ -30,6 +30,19 @@ local timermonitor = CreateFrame("FRAME")
 	end
 end]]
 
+--simple function to set shadow color
+function ElvUI_EltreumUI:ShadowColor(shadow)
+	if shadow then
+		if E.db.ElvUI_EltreumUI.skins.shadow.classcolor then
+			shadow:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+		elseif E.db.ElvUI_EltreumUI.skins.shadow.customcolor then
+			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a)
+		end
+		shadow:SetFrameLevel(1)
+		--shadow:SetFrameStrata("LOW")
+	end
+end
+
 --split so it can be fired and the IsAddOnLoaded checks work
 local function BlizzShadows(arg)
 	if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then
@@ -1071,17 +1084,6 @@ local function BlizzShadows(arg)
 					end
 				end
 			end
-		end
-	end
-end
-
---simple function to set shadow color
-function ElvUI_EltreumUI:ShadowColor(shadow)
-	if shadow then
-		if E.db.ElvUI_EltreumUI.skins.shadow.classcolor then
-			shadow:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
-		elseif E.db.ElvUI_EltreumUI.skins.shadow.customcolor then
-			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a)
 		end
 	end
 end
