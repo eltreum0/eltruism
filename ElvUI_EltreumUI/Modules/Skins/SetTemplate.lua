@@ -563,6 +563,7 @@ local function EltruismShadow(frame,template)
 			end
 		end
 	else
+		if frame.unitframe and not E.db.ElvUI_EltreumUI.skins.shadow.nameplates then return end --nameplates
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			--saved instances shadow
 			if frame:GetParent() and frame:GetParent().key and frame:GetParent().key == "SavedInstancesTooltip" and not E.db.ElvUI_EltreumUI.borders.universalborders then
