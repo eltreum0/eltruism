@@ -22,10 +22,11 @@ jobs:
 
       - name: Check for New Commits
         id: check-commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_PAT }}
         run: |
           CURRENT_SHA="${{ github.sha }}"
 
-          # check for tag
           TAG=$(git describe --tags --exact-match $CURRENT_SHA 2>/dev/null) || true
           if [ -n "$TAG" ]; then
             echo "Commit is tagged as $TAG. Skipping Dev Build to let the Release workflow handle it."
@@ -33,15 +34,12 @@ jobs:
             exit 0
           fi
 
-          git clone --depth 1 https://x-access-token:${{ secrets.PAGES_PAT }}@github.com/eltreum0/eltreum0.github.io.git /tmp/pages-repo || true
+          REPO="eltreum0/eltreum0.github.io"
+          TAG_NAME="dev-latest"
 
-          if [ ! -d "/tmp/pages-repo/.git" ]; then
-            echo "Pages repo is empty or missing. Proceeding with build."
-            echo "should_run=true" >> $GITHUB_ENV
-            exit 0
-          fi
+          RELEASE_BODY=$(gh release view $TAG_NAME --repo $REPO --json body --jq '.body' 2>/dev/null) || true
 
-          LAST_DEPLOYED_SHA=$(git -C /tmp/pages-repo log -1 --pretty=format:"%s" | grep -oE '[a-f0-9]{7}$') || true
+          LAST_DEPLOYED_SHA=$(echo "$RELEASE_BODY" | grep -oE 'SHA: [a-f0-9]{7}' | awk '{print $2}') || true
 
           echo "Current SHA: $CURRENT_SHA"
           echo "Last Deployed SHA: $LAST_DEPLOYED_SHA"
@@ -72,20 +70,20 @@ jobs:
         env:
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to Static Page Repo
+      - name: Upload to Separate Repo Release
         if: env.should_run == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_PAT }}
         run: |
           ZIP_FILE=$(find .release -name "ElvUI_EltreumUI-*.zip" | head -n 1)
+          SHORT_SHA="${GITHUB_SHA::7}"
 
-          cp "$ZIP_FILE" /tmp/pages-repo/ElvUI_EltreumUI-Dev.zip
+          REPO="eltreum0/eltreum0.github.io"
+          TAG_NAME="dev-latest"
 
-          cd /tmp/pages-repo
-
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-
-          git add ElvUI_EltreumUI-Dev.zip
-
-          git commit --amend -m "Update Dev release to ${GITHUB_SHA::7}" || git commit -m "Update Dev release to ${GITHUB_SHA::7}"
-
-          git push --force
+          if gh release view $TAG_NAME --repo $REPO > /dev/null 2>&1; then
+            gh release upload $TAG_NAME "$ZIP_FILE" --repo $REPO --clobber
+            gh release edit $TAG_NAME --repo $REPO --notes "Automated dev build tracking the main branch. SHA: $SHORT_SHA"
+          else
+            gh release create $TAG_NAME "$ZIP_FILE" --repo $REPO -t "Latest Dev Build" --prerelease --notes "Automated dev build tracking the main branch. SHA: $SHORT_SHA"
+          fi
