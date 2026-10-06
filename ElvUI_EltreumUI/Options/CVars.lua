@@ -27,7 +27,7 @@ alwaysShowActionBars 1
 autoLootDefault 1
 autoLootRate 1
 autoQuestWatch 1
-cameraDistanceMaxZoomFactor 2.6
+cameraDistanceMaxZoomFactor 2.6 or 4
 cameraIndirectOffset 15
 cameraIndirectVisibility 1
 chatBubbles 1
