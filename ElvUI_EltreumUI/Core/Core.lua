@@ -94,6 +94,12 @@ function ElvUI_EltreumUI:MacroClick(button)
 	end
 end
 
+--register for ElvUI_CPU
+if IsAddOnLoaded("ElvUI_CPU") then
+	_G.ElvUI_CPU:RegisterPlugin(ElvUI_EltreumUI)
+	--ElvUIDev:RegisterPluginModule("ElvUI_EltreumUI", moduleName, module)
+end
+
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
 	local width = GetPhysicalScreenSize()

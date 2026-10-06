@@ -513,12 +513,6 @@ local function CallbackInitialize()
 end
 E:RegisterModule(addon, CallbackInitialize)
 
---blizzard removed the cpu functions, rip ElvUI_CPU
---[[if IsAddOnLoaded("ElvUI_CPU") then
-	ElvUI_CPU:RegisterPlugin(ElvUI_EltreumUI)
-	--ElvUIDev:RegisterPluginModule("ElvUI_EltreumUI", moduleName, module)
-end]]
-
 --12.1 event order list
 --[[local eventtester = CreateFrame("FRAME")
 local eventorder = {
