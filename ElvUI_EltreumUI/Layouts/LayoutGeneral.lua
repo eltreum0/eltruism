@@ -2131,7 +2131,11 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('WorldTextMinSize', 6)
 
 	if E.Modern then
-		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+		if E.Retail then
+			SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+		else
+			SetCVar('cameraDistanceMaxZoomFactor', 4.0)
+		end
 
 		--new midnight things
 		SetCVar('damageMeterEnabled', 1)
