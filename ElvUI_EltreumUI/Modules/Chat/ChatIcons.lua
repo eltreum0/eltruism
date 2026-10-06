@@ -11,6 +11,7 @@ local gsub = _G.gsub
 local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
 local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
 local ShouldColorChatByClass = (_G.ChatFrameUtil and _G.ChatFrameUtil.ShouldColorChatByClass) or _G.Chat_ShouldColorChatByClass
+local GetMentorChannelStatus = (_G.ChatFrameUtil and _G.ChatFrameUtil.GetMentorChannelStatus) or _G.ChatFrame_GetMentorChannelStatus
 local IsRecentAllyByGUID = _G.C_RecentAllies and _G.C_RecentAllies.IsRecentAllyByGUID
 local RECENTALLY_ATLAS = '|A:friendslist-recentallies-yellow:%s:%s:0:0|a '
 local RECENTALLY_SMALL = format(RECENTALLY_ATLAS, 11, 11)
@@ -297,7 +298,6 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	local flag = ''
 
 	if specialFlag ~= '' then
-		local GetMentorChannelStatus = (_G.ChatFrameUtil and _G.ChatFrameUtil.GetMentorChannelStatus) or _G.ChatFrame_GetMentorChannelStatus
 		if specialFlag == 'GM' or specialFlag == 'DEV' then
 			-- Add Blizzard Icon if this was sent by a GM/DEV
 			flag = [[|TInterface\ChatFrame\UI-ChatIcon-Blizz:12:20:0:0:32:16:4:28:0:16|t ]]
@@ -316,8 +316,8 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 		end
 	end
 
-	if E.Retail and E:NotSecretValue(unitGUID) and unitGUID then
-		if CH.db.timerunningIcon and IsTimerunningPlayer(unitGUID) then
+	if E.Modern and E:NotSecretValue(unitGUID) and unitGUID then
+		if E.Retail and CH.db.timerunningIcon and IsTimerunningPlayer(unitGUID) then
 			flag = flag .. TIMERUNNING_SMALL
 		end
 
