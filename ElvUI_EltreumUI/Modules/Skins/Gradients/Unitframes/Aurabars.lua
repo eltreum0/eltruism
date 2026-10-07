@@ -9,16 +9,6 @@ local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local DebuffColors = (_G.DebuffTypeColor) or (E.Libs and E.Libs.Dispel and E.Libs.Dispel:GetDebuffTypeColor())
-
-local function clamp(val)
-	if val < 0 then
-		return 0
-	elseif val > 1 then
-		return 1
-	end
-	return val
-end
-
 local aurabarMin = CreateColor(1, 1, 1, 1)
 local aurabarMax = CreateColor(1, 1, 1, 1)
 
@@ -39,11 +29,11 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 				local isTarget = barUnit == "target"
 				local a = E.db.unitframe.colors.transparentAurabars and E.db.general.backdropfadecolor.a or 1
 				if isTarget then
-					aurabarMin:SetRGBA(clamp(r), clamp(g), clamp(b), a)
-					aurabarMax:SetRGBA(clamp(r - 0.5), clamp(g - 0.5), clamp(b - 0.5), a)
+					aurabarMin:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), a)
+					aurabarMax:SetRGBA(E:Clamp(r - 0.5, 0, 1), E:Clamp(g - 0.5, 0, 1), E:Clamp(b - 0.5, 0, 1), a)
 				else
-					aurabarMin:SetRGBA(clamp(r - 0.5), clamp(g - 0.5), clamp(b - 0.5), a)
-					aurabarMax:SetRGBA(clamp(r), clamp(g), clamp(b), a)
+					aurabarMin:SetRGBA(E:Clamp(r - 0.5, 0, 1), E:Clamp(g - 0.5, 0, 1), E:Clamp(b - 0.5, 0, 1), a)
+					aurabarMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), a)
 				end
 				local tex = bar:GetStatusBarTexture()
 				if tex then
@@ -281,11 +271,11 @@ function ElvUI_EltreumUI:ApplyAuraBarColorRetail(container, button, auraData)
 	if gm.enableaurabars then
 		local orientation = gm.orientation or "HORIZONTAL"
 		if unit == "target" then
-			aurabarMin:SetRGBA(clamp(r), clamp(g), clamp(b), a)
-			aurabarMax:SetRGBA(clamp(r - 0.3), clamp(g - 0.3), clamp(b - 0.3), a)
+			aurabarMin:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), a)
+			aurabarMax:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), a)
 		else
-			aurabarMin:SetRGBA(clamp(r - 0.3), clamp(g - 0.3), clamp(b - 0.3), a)
-			aurabarMax:SetRGBA(clamp(r), clamp(g), clamp(b), a)
+			aurabarMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), a)
+			aurabarMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), a)
 		end
 		button.border:SetGradient(orientation, aurabarMin, aurabarMax)
 	else

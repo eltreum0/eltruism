@@ -35,15 +35,6 @@ local discColorMin, discColorMax
 local tappedColorMin, tappedColorMax
 local fallbackWhite = CreateColor(1, 1, 1, 1)
 
-local function clamp(val)
-	if val < 0 then
-		return 0
-	elseif val > 1 then
-		return 1
-	end
-	return val
-end
-
 local unitframegradients = {
 	["WARRIOR"] = {r1 = 0.427, g1 = 0.137, b1 = 0.09, r2 = 0.564, g2 = 0.431, b2 = 0.247},
 	["PALADIN"] = {r1 = 1, g1 = 0.266, b1 = 0.537, r2 = 0.956, g2 = 0.549, b2 = 0.729},
@@ -114,38 +105,38 @@ local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targ
 		local r2, g2, b2 = color.r2 or 1, color.g2 or 1, color.b2 or 1
 
 		targetHealth.normal[k] = {
-			CreateColor(clamp(r1), clamp(g1), clamp(b1), healthAlpha),
-			CreateColor(clamp(r2), clamp(g2), clamp(b2), healthAlpha)
+			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), healthAlpha),
+			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), healthAlpha)
 		}
 
 		targetHealth.invert[k] = {
-			CreateColor(clamp(r2), clamp(g2), clamp(b2), healthAlpha),
-			CreateColor(clamp(r1), clamp(g1), clamp(b1), healthAlpha)
+			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), healthAlpha),
+			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), healthAlpha)
 		}
 
 		targetBackdrop.normal[k] = {
-			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), backdropAlpha),
-			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), backdropAlpha)
+			CreateColor(E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1), backdropAlpha),
+			CreateColor(E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1), backdropAlpha)
 		}
 
 		targetBackdrop.invert[k] = {
-			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), backdropAlpha),
-			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), backdropAlpha)
+			CreateColor(E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1), backdropAlpha),
+			CreateColor(E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1), backdropAlpha)
 		}
 
 		targetPower.normal[k] = {
-			CreateColor(clamp(r1), clamp(g1), clamp(b1), 1),
-			CreateColor(clamp(r2), clamp(g2), clamp(b2), 1)
+			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), 1),
+			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), 1)
 		}
 
 		targetPower.invert[k] = {
-			CreateColor(clamp(r2), clamp(g2), clamp(b2), 1),
-			CreateColor(clamp(r1), clamp(g1), clamp(b1), 1)
+			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), 1),
+			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), 1)
 		}
 
 		targetPower.backdrop[k] = {
-			CreateColor(clamp(r2 - bgOffset), clamp(g2 - bgOffset), clamp(b2 - bgOffset), 1),
-			CreateColor(clamp(r1 - bgOffset), clamp(g1 - bgOffset), clamp(b1 - bgOffset), 1)
+			CreateColor(E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1), 1),
+			CreateColor(E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1), 1)
 		}
 
 		targetTable[k] = {
@@ -230,32 +221,32 @@ function ElvUI_EltreumUI:CacheGradients()
 	--castbar
 	if gm then
 		cachedCastbars.noninterruptible_custom = {
-			CreateColor(clamp(gm.castbarR2noninterruptiblecustom or 1), clamp(gm.castbarG2noninterruptiblecustom or 0), clamp(gm.castbarB2noninterruptiblecustom or 0), 1),
-			CreateColor(clamp(gm.castbarR1noninterruptiblecustom or 1), clamp(gm.castbarG1noninterruptiblecustom or 0), clamp(gm.castbarB1noninterruptiblecustom or 0), 1)
+			CreateColor(E:Clamp(gm.castbarR2noninterruptiblecustom or 1, 0, 1), E:Clamp(gm.castbarG2noninterruptiblecustom or 0, 0, 1), E:Clamp(gm.castbarB2noninterruptiblecustom or 0, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR1noninterruptiblecustom or 1, 0, 1), E:Clamp(gm.castbarG1noninterruptiblecustom or 0, 0, 1), E:Clamp(gm.castbarB1noninterruptiblecustom or 0, 0, 1), 1)
 		}
 		cachedCastbars.noninterruptible_default = {
-			CreateColor(clamp(gm.castbarR2noninterruptible or 1), clamp(gm.castbarG2noninterruptible or 0), clamp(gm.castbarB2noninterruptible or 0), 1),
-			CreateColor(clamp(gm.castbarR1noninterruptible or 1), clamp(gm.castbarG1noninterruptible or 0), clamp(gm.castbarB1noninterruptible or 0), 1)
+			CreateColor(E:Clamp(gm.castbarR2noninterruptible or 1, 0, 1), E:Clamp(gm.castbarG2noninterruptible or 0, 0, 1), E:Clamp(gm.castbarB2noninterruptible or 0, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR1noninterruptible or 1, 0, 1), E:Clamp(gm.castbarG1noninterruptible or 0, 0, 1), E:Clamp(gm.castbarB1noninterruptible or 0, 0, 1), 1)
 		}
 		cachedCastbars.castbar_custom = {
-			CreateColor(clamp(gm.castbarR1custom or 1), clamp(gm.castbarG1custom or 1), clamp(gm.castbarB1custom or 1), 1),
-			CreateColor(clamp(gm.castbarR2custom or 1), clamp(gm.castbarG2custom or 1), clamp(gm.castbarB2custom or 1), 1)
+			CreateColor(E:Clamp(gm.castbarR1custom or 1, 0, 1), E:Clamp(gm.castbarG1custom or 1, 0, 1), E:Clamp(gm.castbarB1custom or 1, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR2custom or 1, 0, 1), E:Clamp(gm.castbarG2custom or 1, 0, 1), E:Clamp(gm.castbarB2custom or 1, 0, 1), 1)
 		}
 		cachedCastbars.interruptible_custom = {
-			CreateColor(clamp(gm.castbarR1interruptablecustom or 1), clamp(gm.castbarG1interruptablecustom or 1), clamp(gm.castbarB1interruptablecustom or 1), 1),
-			CreateColor(clamp(gm.castbarR2interruptablecustom or 1), clamp(gm.castbarG2interruptablecustom or 1), clamp(gm.castbarB2interruptablecustom or 1), 1)
+			CreateColor(E:Clamp(gm.castbarR1interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarG1interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarB1interruptablecustom or 1, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR2interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarG2interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarB2interruptablecustom or 1, 0, 1), 1)
 		}
 		cachedCastbars.interruptible_default = {
-			CreateColor(clamp(gm.castbarR1interruptable or 1), clamp(gm.castbarG1interruptable or 1), clamp(gm.castbarB1interruptable or 1), 1),
-			CreateColor(clamp(gm.castbarR2interruptable or 1), clamp(gm.castbarG2interruptable or 1), clamp(gm.castbarB2interruptable or 1), 1)
+			CreateColor(E:Clamp(gm.castbarR1interruptable or 1, 0, 1), E:Clamp(gm.castbarG1interruptable or 1, 0, 1), E:Clamp(gm.castbarB1interruptable or 1, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR2interruptable or 1, 0, 1), E:Clamp(gm.castbarG2interruptable or 1, 0, 1), E:Clamp(gm.castbarB2interruptable or 1, 0, 1), 1)
 		}
 		cachedCastbars.interrupted_custom = {
-			CreateColor(clamp(gm.castbarR1interruptedcustom or 1), clamp(gm.castbarG1interruptedcustom or 1), clamp(gm.castbarB1interruptedcustom or 1), 1),
-			CreateColor(clamp(gm.castbarR2interruptedcustom or 1), clamp(gm.castbarG2interruptedcustom or 1), clamp(gm.castbarB2interruptedcustom or 1), 1)
+			CreateColor(E:Clamp(gm.castbarR1interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarG1interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarB1interruptedcustom or 1, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR2interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarG2interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarB2interruptedcustom or 1, 0, 1), 1)
 		}
 		cachedCastbars.interrupted_default = {
-			CreateColor(clamp(gm.castbarR1interrupted or 1), clamp(gm.castbarG1interrupted or 1), clamp(gm.castbarB1interrupted or 1), 1),
-			CreateColor(clamp(gm.castbarR2interrupted or 1), clamp(gm.castbarG2interrupted or 1), clamp(gm.castbarB2interrupted or 1), 1)
+			CreateColor(E:Clamp(gm.castbarR1interrupted or 1, 0, 1), E:Clamp(gm.castbarG1interrupted or 1, 0, 1), E:Clamp(gm.castbarB1interrupted or 1, 0, 1), 1),
+			CreateColor(E:Clamp(gm.castbarR2interrupted or 1, 0, 1), E:Clamp(gm.castbarG2interrupted or 1, 0, 1), E:Clamp(gm.castbarB2interrupted or 1, 0, 1), 1)
 		}
 	end
 end
@@ -450,19 +441,19 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		local dead = ufDB.colors.health_backdrop_dead
 		local alpha = customTex.backdropalpha or 1
 		if dead then
-			deadColorMin = CreateColor(clamp(dead.r - 0.3), clamp(dead.g - 0.3), clamp(dead.b - 0.3), alpha)
+			deadColorMin = CreateColor(E:Clamp(dead.r - 0.3, 0, 1), E:Clamp(dead.g - 0.3, 0, 1), E:Clamp(dead.b - 0.3, 0, 1), alpha)
 			deadColorMax = CreateColor(dead.r, dead.g, dead.b, alpha)
 		end
 
 		local disc = ufDB.colors.disconnected
 		if disc then
-			discColorMin = CreateColor(clamp(disc.r - 0.3), clamp(disc.g - 0.3), clamp(disc.b - 0.3), alpha)
+			discColorMin = CreateColor(E:Clamp(disc.r - 0.3, 0, 1), E:Clamp(disc.g - 0.3, 0, 1), E:Clamp(disc.b - 0.3, 0, 1), alpha)
 			discColorMax = CreateColor(disc.r, disc.g, disc.b, alpha)
 		end
 
 		local tapped = ufDB.colors.tapped
 		if tapped then
-			tappedColorMin = CreateColor(clamp(tapped.r - 0.3), clamp(tapped.g - 0.3), clamp(tapped.b - 0.3), alpha)
+			tappedColorMin = CreateColor(E:Clamp(tapped.r - 0.3, 0, 1), E:Clamp(tapped.g - 0.3, 0, 1), E:Clamp(tapped.b - 0.3, 0, 1), alpha)
 			tappedColorMax = CreateColor(tapped.r, tapped.g, tapped.b, alpha)
 		end
 	end
@@ -682,11 +673,11 @@ function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG, customal
 	local minColor, maxColor
 
 	if invert then
-		minColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
-		maxColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
+		minColor = CreateColor(E:Clamp(color.r2 - bgOffset, 0, 1), E:Clamp(color.g2 - bgOffset, 0, 1), E:Clamp(color.b2 - bgOffset, 0, 1), aVal)
+		maxColor = CreateColor(E:Clamp(color.r1 - bgOffset, 0, 1), E:Clamp(color.g1 - bgOffset, 0, 1), E:Clamp(color.b1 - bgOffset, 0, 1), aVal)
 	else
-		minColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
-		maxColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
+		minColor = CreateColor(E:Clamp(color.r1 - bgOffset, 0, 1), E:Clamp(color.g1 - bgOffset, 0, 1), E:Clamp(color.b1 - bgOffset, 0, 1), aVal)
+		maxColor = CreateColor(E:Clamp(color.r2 - bgOffset, 0, 1), E:Clamp(color.g2 - bgOffset, 0, 1), E:Clamp(color.b2 - bgOffset, 0, 1), aVal)
 	end
 
 	SetCachedColors(gradientColorCache, minColor, maxColor, unitclass, invert, alpha, isBG, customalpha, isHealth)
@@ -716,11 +707,11 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, cu
 	local minColor, maxColor
 
 	if invert then
-		minColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
-		maxColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
+		minColor = CreateColor(E:Clamp(color.r2 - bgOffset, 0, 1), E:Clamp(color.g2 - bgOffset, 0, 1), E:Clamp(color.b2 - bgOffset, 0, 1), aVal)
+		maxColor = CreateColor(E:Clamp(color.r1 - bgOffset, 0, 1), E:Clamp(color.g1 - bgOffset, 0, 1), E:Clamp(color.b1 - bgOffset, 0, 1), aVal)
 	else
-		minColor = CreateColor(clamp(color.r1 - bgOffset), clamp(color.g1 - bgOffset), clamp(color.b1 - bgOffset), aVal)
-		maxColor = CreateColor(clamp(color.r2 - bgOffset), clamp(color.g2 - bgOffset), clamp(color.b2 - bgOffset), aVal)
+		minColor = CreateColor(E:Clamp(color.r1 - bgOffset, 0, 1), E:Clamp(color.g1 - bgOffset, 0, 1), E:Clamp(color.b1 - bgOffset, 0, 1), aVal)
+		maxColor = CreateColor(E:Clamp(color.r2 - bgOffset, 0, 1), E:Clamp(color.g2 - bgOffset, 0, 1), E:Clamp(color.b2 - bgOffset, 0, 1), aVal)
 	end
 
 	SetCachedColors(gradientCustomColorCache, minColor, maxColor, unitclass, invert, alpha, isBG, customalpha, isHealth)

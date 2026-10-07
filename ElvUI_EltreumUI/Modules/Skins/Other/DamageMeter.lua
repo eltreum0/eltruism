@@ -8,10 +8,6 @@ local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local instanceType = "none"
 local CreateColor = _G.CreateColor
-local function clamp(v)
-	if v < 0 then return 0 elseif v > 1 then return 1 end
-	return v
-end
 local dmMin = CreateColor(1, 1, 1, 1)
 local dmMax = CreateColor(1, 1, 1, 1)
 
@@ -443,8 +439,8 @@ do
 							sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(bar.classFilename))
 						end
 					else
-						dmMin:SetRGBA(clamp(r - 0.5), clamp(g - 0.5), clamp(b - 0.5), 0.9)
-						dmMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), 0.9)
+						dmMin:SetRGBA(E:Clamp(r - 0.5, 0, 1), E:Clamp(g - 0.5, 0, 1), E:Clamp(b - 0.5, 0, 1), 0.9)
+						dmMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), 0.9)
 						sbtexture:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, dmMin, dmMax)
 					end
 

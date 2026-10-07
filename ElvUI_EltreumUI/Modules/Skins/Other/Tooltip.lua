@@ -15,11 +15,6 @@ local GameTooltip = _G.GameTooltip
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
-local function clamp(v)
-	if v < 0 then return 0 elseif v > 1 then return 1 end
-	return v
-end
-
 --gradient tooltip healthbar
 local function GameTooltipStatusBarGradient(unit, classunit, reaction)
 	local db = E.db.ElvUI_EltreumUI.unitframes.gradientmode
@@ -141,8 +136,8 @@ local function ApplyTooltipItemFormatting(tooltip, tooltipName, isShopping)
 	if db.gradienttooltip and itemQuality then
 		local r2, g2, b2 = GetItemQualityColor(itemQuality)
 		local offset1, offset2 = db.gradienttooltipoffset1, db.gradienttooltipoffset2
-		local r1, g1, b1 = clamp(r2 + offset1), clamp(g2 + offset1), clamp(b2 + offset1)
-		r2, g2, b2 = clamp(r2 + offset2), clamp(g2 + offset2), clamp(b2 + offset2)
+		local r1, g1, b1 = E:Clamp(r2 + offset1, 0, 1), E:Clamp(g2 + offset1, 0, 1), E:Clamp(b2 + offset1, 0, 1)
+		r2, g2, b2 = E:Clamp(r2 + offset2, 0, 1), E:Clamp(g2 + offset2, 0, 1), E:Clamp(b2 + offset2, 0, 1)
 
 		if mainText and ElvUI_EltreumUI:IsThisASafeSecret(mainText, true) then
 			local icon = _G.strmatch(mainText, "^.-|t")

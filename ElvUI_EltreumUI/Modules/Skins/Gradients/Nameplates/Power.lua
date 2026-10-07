@@ -3,15 +3,6 @@ local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local CreateColor = _G.CreateColor
-
-local function clamp(val)
-	if val < 0 then
-		return 0
-	elseif val > 1 then
-		return 1
-	end
-	return val
-end
 local npPowerMin = CreateColor(1, 1, 1, 1)
 local npPowerMax = CreateColor(1, 1, 1, 1)
 
@@ -24,8 +15,8 @@ function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
 				local tex = bar:GetStatusBarTexture()
 				if tex then
 					local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
-					npPowerMin:SetRGBA(clamp(r - 0.3), clamp(g - 0.3), clamp(b - 0.3), 1)
-					npPowerMax:SetRGBA(clamp(r), clamp(g), clamp(b), 1)
+					npPowerMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), 1)
+					npPowerMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
 					tex:SetGradient(orientation, npPowerMin, npPowerMax)
 				end
 			else

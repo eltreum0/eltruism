@@ -14,14 +14,6 @@ local UnitCreatureType = _G.UnitCreatureType
 local InCombatLockdown = _G.InCombatLockdown
 local GetPetActionInfo = _G.GetPetActionInfo
 local CreateColor = _G.CreateColor
-local function clamp(val)
-	if val < 0 then
-		return 0
-	elseif val > 1 then
-		return 1
-	end
-	return val
-end
 local glowMin = CreateColor(1, 1, 1, 1)
 local glowMax = CreateColor(1, 1, 1, 1)
 local totem1Min, totem1Max = CreateColor(0.38, 0.03, 0, 1), CreateColor(0.78, 0.43, 0.3, 1)
@@ -30,8 +22,8 @@ local totem3Min, totem3Max = CreateColor(0, 0.28, 0.40, 1), CreateColor(0.39, 0.
 local totem4Min, totem4Max = CreateColor(0.22, 0, 0.54, 1), CreateColor(0.62, 0.38, 0.94, 1)
 
 local function SetGlowGradient(texture, color)
-	glowMin:SetRGBA(clamp(color.r - 0.2), clamp(color.g - 0.2), clamp(color.b - 0.2), 1)
-	glowMax:SetRGBA(clamp(color.r + 0.2), clamp(color.g + 0.2), clamp(color.b + 0.2), 1)
+	glowMin:SetRGBA(E:Clamp((color.r - 0.2), 0, 1), E:Clamp((color.g - 0.2), 0, 1), E:Clamp((color.b - 0.2), 0, 1), 1)
+	glowMax:SetRGBA(E:Clamp((color.r + 0.2), 0, 1), E:Clamp((color.g + 0.2), 0, 1), E:Clamp((color.b + 0.2), 0, 1), 1)
 	texture:SetGradient("HORIZONTAL", glowMin, glowMax)
 end
 --moving createframes out of the function for some reason breaks it

@@ -29,14 +29,6 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local C_NamePlate = _G.C_NamePlate
 local CreateColor = _G.CreateColor
-local function clamp(val)
-	if val < 0 then
-		return 0
-	elseif val > 1 then
-		return 1
-	end
-	return val
-end
 local glowMin = CreateColor(1, 1, 1, 1)
 local glowMax = CreateColor(1, 1, 1, 1)
 local classGlowColor = {classcolor.r, classcolor.g, classcolor.b, 1}
@@ -127,8 +119,8 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 						else
 							local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
-							glowMin:SetRGBA(clamp(c.r - 0.2), clamp(c.g - 0.2), clamp(c.b - 0.2), 1)
-							glowMax:SetRGBA(clamp(c.r + 0.2), clamp(c.g + 0.2), clamp(c.b + 0.2), 1)
+							glowMin:SetRGBA(E:Clamp(c.r - 0.2, 0, 1), E:Clamp(c.g - 0.2, 0, 1), E:Clamp(c.b - 0.2, 0, 1), 1)
+							glowMax:SetRGBA(E:Clamp(c.r + 0.2, 0, 1), E:Clamp(c.g + 0.2, 0, 1), E:Clamp(c.b + 0.2, 0, 1), 1)
 							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
 						end
 					end

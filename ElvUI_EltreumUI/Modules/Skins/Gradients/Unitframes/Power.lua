@@ -11,14 +11,6 @@ local UnitInParty = _G.UnitInParty
 local UnitInRaid = _G.UnitInRaid
 local ipairs = _G.ipairs
 local CreateColor = _G.CreateColor
-local function clamp(val)
-	if val < 0 then
-		return 0
-	elseif val > 1 then
-		return 1
-	end
-	return val
-end
 local fallbackMin = CreateColor(1, 1, 1, 1)
 local fallbackMax = CreateColor(1, 1, 1, 1)
 
@@ -132,11 +124,11 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 				if r and ElvUI_EltreumUI:IsThisASafeSecret(r, true) then  --check for it not being a secret
 					if r ~= 1 and g ~= 1 and b ~= 1 then
 						if invert then
-							fallbackMin:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), alpha)
-							fallbackMax:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), alpha)
+							fallbackMin:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), alpha)
+							fallbackMax:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), alpha)
 						else
-							fallbackMin:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), alpha)
-							fallbackMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), alpha)
+							fallbackMin:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), alpha)
+							fallbackMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), alpha)
 						end
 
 						local tex = unitframe.Power:GetStatusBarTexture()
@@ -151,11 +143,11 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 						if not colorDB.custompowerbackdrop and gm.enablebackdrop and unitframe.Power.bg then
 							local bgfade = gm.bgfade or 0
 							if invert then
-								fallbackMin:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
-								fallbackMax:SetRGBA(clamp((r - 0.4) - bgfade), clamp((g - 0.4) - bgfade), clamp((b - 0.4) - bgfade), 1)
+								fallbackMin:SetRGBA(E:Clamp((r + 0.2) - bgfade, 0, 1), E:Clamp((g + 0.2) - bgfade, 0, 1), E:Clamp((b + 0.2) - bgfade, 0, 1), 1)
+								fallbackMax:SetRGBA(E:Clamp((r - 0.4) - bgfade, 0, 1), E:Clamp((g - 0.4) - bgfade, 0, 1), E:Clamp((b - 0.4) - bgfade, 0, 1), 1)
 							else
-								fallbackMin:SetRGBA(clamp((r - 0.4) - bgfade), clamp((g - 0.4) - bgfade), clamp((b - 0.4) - bgfade), 1)
-								fallbackMax:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
+								fallbackMin:SetRGBA(E:Clamp((r - 0.4) - bgfade, 0, 1), E:Clamp((g - 0.4) - bgfade, 0, 1), E:Clamp((b - 0.4) - bgfade, 0, 1), 1)
+								fallbackMax:SetRGBA(E:Clamp((r + 0.2) - bgfade, 0, 1), E:Clamp((g + 0.2) - bgfade, 0, 1), E:Clamp((b + 0.2) - bgfade, 0, 1), 1)
 							end
 							unitframe.Power.bg:SetGradient(orientation, fallbackMin, fallbackMax)
 						end
@@ -235,8 +227,8 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 			local r, g, b = groupunitframe.Power:GetStatusBarColor()
 			if r and ElvUI_EltreumUI:IsThisASafeSecret(r, true) then --check for it not being a secret
 				if r ~= 1 and g ~= 1 and b ~= 1 then
-					fallbackMin:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), alpha)
-					fallbackMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), alpha)
+					fallbackMin:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), alpha)
+					fallbackMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), alpha)
 
 					local tex = groupunitframe.Power:GetStatusBarTexture()
 					if tex then
@@ -250,8 +242,8 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 
 					if not colorDB.custompowerbackdrop and gm.enablebackdrop and groupunitframe.Power.bg then
 						local bgfade = gm.bgfade or 0
-						fallbackMin:SetRGBA(clamp((r - 0.4) - bgfade), clamp((g - 0.4) - bgfade), clamp((b - 0.4) - bgfade), 1)
-						fallbackMax:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
+						fallbackMin:SetRGBA(E:Clamp((r - 0.4) - bgfade, 0, 1), E:Clamp((g - 0.4) - bgfade, 0, 1), E:Clamp((b - 0.4) - bgfade, 0, 1), 1)
+						fallbackMax:SetRGBA(E:Clamp((r + 0.2) - bgfade, 0, 1), E:Clamp((g + 0.2) - bgfade, 0, 1), E:Clamp((b + 0.2) - bgfade, 0, 1), 1)
 						groupunitframe.Power.bg:SetGradient(orientation, fallbackMin, fallbackMax)
 					end
 				end
@@ -275,8 +267,8 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 					textureToUse = E.LSM:Fetch("statusbar", gm.texture)
 				end
 				groupunitframe.AlternativePower:SetStatusBarTexture(textureToUse)
-				fallbackMin:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), alpha)
-				fallbackMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), alpha)
+				fallbackMin:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), alpha)
+				fallbackMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), alpha)
 				local altTex = groupunitframe.AlternativePower:GetStatusBarTexture()
 				if altTex then
 					altTex:SetVertexColor(1, 1, 1, E.db.general.backdropfadecolor.a)
@@ -284,8 +276,8 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 				end
 				if not colorDB.custompowerbackdrop and gm.enablebackdrop and groupunitframe.AlternativePower.bg then
 					local bgfade = gm.bgfade or 0
-					fallbackMin:SetRGBA(clamp((r - 0.4) - bgfade), clamp((g - 0.4) - bgfade), clamp((b - 0.4) - bgfade), 1)
-					fallbackMax:SetRGBA(clamp((r + 0.2) - bgfade), clamp((g + 0.2) - bgfade), clamp((b + 0.2) - bgfade), 1)
+					fallbackMin:SetRGBA(E:Clamp((r - 0.4) - bgfade, 0, 1), E:Clamp((g - 0.4) - bgfade, 0, 1), E:Clamp((b - 0.4) - bgfade, 0, 1), 1)
+					fallbackMax:SetRGBA(E:Clamp((r + 0.2) - bgfade, 0, 1), E:Clamp((g + 0.2) - bgfade, 0, 1), E:Clamp((b + 0.2) - bgfade, 0, 1), 1)
 					groupunitframe.AlternativePower.bg:SetGradient(orientation, fallbackMin, fallbackMax)
 				end
 			end
@@ -309,8 +301,8 @@ local function gradientclassbar(powerbar,powerType)
 			end
 			local UFdb = E.db.unitframe
 			local colorDB = UFdb.colors
-			fallbackMin:SetRGBA(clamp(color.r - 0.3), clamp(color.g - 0.3), clamp(color.b - 0.3), 1)
-			fallbackMax:SetRGBA(clamp(color.r), clamp(color.g), clamp(color.b), 1)
+			fallbackMin:SetRGBA(E:Clamp(color.r - 0.3, 0, 1), E:Clamp(color.g - 0.3, 0, 1), E:Clamp(color.b - 0.3, 0, 1), 1)
+			fallbackMax:SetRGBA(E:Clamp(color.r, 0, 1), E:Clamp(color.g, 0, 1), E:Clamp(color.b, 0, 1), 1)
 			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 			if UFdb.units.player.classbar.fill == "spaced" then
 				local bgA = bar.bg:GetAlpha()
@@ -542,8 +534,8 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not _G["ElvUF_Player_AdditionalPowerBar"].isHooked then
 					hooksecurefunc(_G["ElvUF_Player_AdditionalPowerBar"], "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
-						fallbackMin:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), 1)
-						fallbackMax:SetRGBA(clamp(r), clamp(g), clamp(b), 1)
+						fallbackMin:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), 1)
+						fallbackMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
 						_G["ElvUF_Player_AdditionalPowerBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 						if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 							local bgA = _G["ElvUF_Player_AdditionalPowerBar"].bg:GetAlpha()
@@ -571,16 +563,16 @@ function ElvUI_EltreumUI:GradientStagger()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].EltruismHook then
 			hooksecurefunc(_G["ElvUF_Player_Stagger"], "SetStatusBarColor", function(stagger,r,g,b)
-				fallbackMin:SetRGBA(clamp(r - 0.5), clamp(g - 0.5), clamp(b - 0.5), 1)
-				fallbackMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), 1)
+				fallbackMin:SetRGBA(E:Clamp(r - 0.5, 0, 1), E:Clamp(g - 0.5, 0, 1), E:Clamp(b - 0.5, 0, 1), 1)
+				fallbackMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), 1)
 				stagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 			end)
 			_G["ElvUF_Player_Stagger"].EltruismHook = true
 		end
 		if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].EltruismHook then
 			hooksecurefunc(_G["ElvNP_TargetClassPowerStagger"], "SetStatusBarColor", function(npstagger,r,g,b)
-				fallbackMin:SetRGBA(clamp(r - 0.5), clamp(g - 0.5), clamp(b - 0.5), 1)
-				fallbackMax:SetRGBA(clamp(r + 0.2), clamp(g + 0.2), clamp(b + 0.2), 1)
+				fallbackMin:SetRGBA(E:Clamp(r - 0.5, 0, 1), E:Clamp(g - 0.5, 0, 1), E:Clamp(b - 0.5, 0, 1), 1)
+				fallbackMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), 1)
 				npstagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 			end)
 			_G["ElvNP_TargetClassPowerStagger"].EltruismHook = true
@@ -607,13 +599,13 @@ function ElvUI_EltreumUI:GradientEclipse()
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not _G["ElvUF_Player_EclipsePowerBar"].isHooked then
 				hooksecurefunc(_G["ElvUF_Player_EclipsePowerBar"].LunarBar, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
-					fallbackMin:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), 1)
-					fallbackMax:SetRGBA(clamp(r), clamp(g), clamp(b), 1)
+					fallbackMin:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), 1)
+					fallbackMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
 					_G["ElvUF_Player_EclipsePowerBar"].LunarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 				end)
 				hooksecurefunc(_G["ElvUF_Player_EclipsePowerBar"].SolarBar, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
-					fallbackMin:SetRGBA(clamp(r), clamp(g), clamp(b), 1)
-					fallbackMax:SetRGBA(clamp(r - 0.4), clamp(g - 0.4), clamp(b - 0.4), 1)
+					fallbackMin:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
+					fallbackMax:SetRGBA(E:Clamp(r - 0.4, 0, 1), E:Clamp(g - 0.4, 0, 1), E:Clamp(b - 0.4, 0, 1), 1)
 					_G["ElvUF_Player_EclipsePowerBar"].SolarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, fallbackMin, fallbackMax)
 				end)
 				_G["ElvUF_Player_EclipsePowerBar"].isHooked = true
