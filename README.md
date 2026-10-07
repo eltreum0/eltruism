@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://discord.gg/cXfA56gmYW"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://github.com/eltreum0/eltruism/releases"><img src="https://img.shields.io/github/downloads/eltreum0/eltruism/total?color=steelblue&style=flat-square&logo=github&label=Downloads" alt="GitHub Downloads"></a>
-  <a href="https://www.curseforge.com/wow/addons/elvui-eltruism"><img src="https://img.shields.io/curseforge/dt/459835?color=f16436&style=flat-square&logo=curseforge&logoColor=white&label=CurseForge" alt="CurseForge"></a>
+  <a href="https://www.curseforge.com/wow/addons/elvui-eltruism"><img src="https://img.shields.io/curseforge/dt/459494?color=f16436&style=flat-square&logo=curseforge&logoColor=white&label=CurseForge" alt="CurseForge"></a>
   <a href="https://addons.wago.io/addons/elvui-eltruism"><img src="https://img.shields.io/badge/Wago.io-Eltruism-c1272d?style=flat-square" alt="Wago"></a>
   <a href="https://eltruism.com/"><img src="https://img.shields.io/badge/Website-eltruism.com-38bdf8?style=flat-square" alt="Website"></a>
   <a href="https://www.patreon.com/eltreum"><img src="https://img.shields.io/badge/Patreon-Support-f96854?style=flat-square&logo=patreon&logoColor=white" alt="Patreon"></a>
