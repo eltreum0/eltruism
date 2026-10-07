@@ -547,7 +547,7 @@ local function EltruisAce3(frame)
 	end
 end
 
-local function EltruismShadow(frame,template)
+local function EltruismShadow(frame,template,isNamePlateElement)
 	if E.db.ElvUI_EltreumUI.skins.shadow.universalshadows and template ~= "NoBackdrop" then
 		if frame then
 			if frame.backdrop then
@@ -563,7 +563,13 @@ local function EltruismShadow(frame,template)
 			end
 		end
 	else
-		if frame.unitframe and not E.db.ElvUI_EltreumUI.skins.shadow.nameplates then return end --nameplates
+		if not E.db.ElvUI_EltreumUI.skins.shadow.nameplates then --nameplates
+			if frame.unitFrame then return end
+			if isNamePlateElement then return end
+			if frame.__unit then return end
+			if frame:GetParent() and frame:GetParent().__unit then return end
+			if frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().__unit then return end
+		end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			--saved instances shadow
 			if frame:GetParent() and frame:GetParent().key and frame:GetParent().key == "SavedInstancesTooltip" and not E.db.ElvUI_EltreumUI.borders.universalborders then
@@ -646,7 +652,7 @@ local function SkinFrame(object)
 				EltruisAce3(frame)
 			end
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-				EltruismShadow(frame,template)
+				EltruismShadow(frame,template,isNamePlateElement)
 			end
 
 			--widget things
