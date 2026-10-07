@@ -2137,6 +2137,9 @@ function ElvUI_EltreumUI:SetupCVars()
 			SetCVar('cameraDistanceMaxZoomFactor', 4.0)
 		end
 
+		--show loot sparkles in case the user has outline disabled
+		SetCVar("outlineModeShowLootEffectWhenDisabled", 1)
+
 		--new midnight things
 		SetCVar('damageMeterEnabled', 1)
 		SetCVar('floatingCombatTextCombatDamage_v2', 1)
