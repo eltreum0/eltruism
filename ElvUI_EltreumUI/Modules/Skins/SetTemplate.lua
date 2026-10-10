@@ -83,7 +83,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 		})
 		frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
 		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
-		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
+		frame.eltruismuniversalborders:SetFrameStrata(E:NotSecretValue(frame:GetFrameStrata()) and frame:GetFrameStrata() or "MEDIUM")
 		if frame.Center then
 			frame.eltruismuniversalborders:SetOutside(frame.Center, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
 		else

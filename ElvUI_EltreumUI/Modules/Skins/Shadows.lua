@@ -4361,7 +4361,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 				end
 
 				nameplate.Health.EltruismNameplateBorder:SetFrameLevel(nameplate.Health:GetFrameLevel()+1)
-				nameplate.Health.EltruismNameplateBorder:SetFrameStrata(nameplate.Health:GetFrameStrata())
+				nameplate.Health.EltruismNameplateBorder:SetFrameStrata(E:NotSecretValue(nameplate.Health:GetFrameStrata()) and nameplate.Health:GetFrameStrata() or "MEDIUM")
 				nameplate.Health.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Health, "CENTER", 0, 0)
 				nameplate.Health.EltruismNameplateBorder:SetOutside(nameplate.Health, E.db.ElvUI_EltreumUI.borders.nameplatesizex, E.db.ElvUI_EltreumUI.borders.nameplatesizey)
 			end
@@ -4393,7 +4393,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 					end
 				end
 				nameplate.Castbar.EltruismNameplateBorder:SetFrameLevel(nameplate.Castbar:GetFrameLevel()+1)
-				nameplate.Castbar.EltruismNameplateBorder:SetFrameStrata(nameplate.Castbar:GetFrameStrata())
+				nameplate.Castbar.EltruismNameplateBorder:SetFrameStrata(E:NotSecretValue(nameplate.Castbar:GetFrameStrata()) and nameplate.Castbar:GetFrameStrata() or "MEDIUM")
 				nameplate.Castbar.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Castbar, "CENTER", 0, 0)
 				nameplate.Castbar.EltruismNameplateBorder:SetOutside(nameplate.Castbar, E.db.ElvUI_EltreumUI.borders.nameplatecastsizex, E.db.ElvUI_EltreumUI.borders.nameplatecastsizey)
 			end
