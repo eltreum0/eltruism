@@ -103,13 +103,14 @@ function ElvUI_EltreumUI:BagProfessions()
 				[84] = 33359, --tbc cooking
 				--[84] = 61422, --mop/wrath Smelting ?
 				[85] = 51296, --titan reforged cooking
+				--[86] = 131474,--fishing (actually just the cast)
 			}
 			local blockprof = {
-				[4620674] = true,
-				[4620680] = true,
-				[4620675] = true,
-				[4620679] = true,
-				[441139] = true,
+				[4620674] = true, --fishing (panel not skill)
+				[4620680] = true, --skinning
+				[4620675] = true, --herbalism
+				[4620679] = true, --mining
+				[441139] = true, --archaeology
 			}
 			_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
 				if not _G["ElvUI_ContainerFrame"].numButtons then
@@ -338,6 +339,29 @@ function ElvUI_EltreumUI:BagProfessions()
 								end)
 							end
 						end
+
+						--fishing
+						if IsSpellKnown(131474) then
+							if not _G["EltruismProfessionFishingBagButton"] then
+								local _, _, icon = ElvUI_EltreumUI:EltruismSpellInfo(131474)
+								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+								_G["EltruismProfessionFishingBagButton"] = CreateFrame("Button","EltruismProfessionFishingBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
+								_G["EltruismProfessionFishingBagButton"]:SetSize(21,21)
+								--_G["EltruismProfessionFishingBagButton"]:SetTemplate("Transparent")
+								_G["EltruismProfessionFishingBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionFishingBagButton"].backdrop.Center:Hide()
+								S:HandleButton(_G["EltruismProfessionFishingBagButton"])
+								_G["EltruismProfessionFishingBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+								_G["EltruismProfessionFishingBagButton"]:SetAttribute('type', 'spell')
+								_G["EltruismProfessionFishingBagButton"]:SetAttribute('spell', 131474)
+								ElvUI_EltreumUI:MacroClick(_G["EltruismProfessionFishingBagButton"])
+								_G["EltruismProfessionFishingBagButton"].icon = _G["EltruismProfessionFishingBagButton"]:CreateTexture(nil,"ARTWORK")
+								_G["EltruismProfessionFishingBagButton"].icon:SetTexture(icon)
+								_G["EltruismProfessionFishingBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
+								_G["EltruismProfessionFishingBagButton"].icon:SetAllPoints()
+								_G["EltruismProfessionFishingBagButton"].isGlowing = false
+							end
+						end
 					else
 						for k, v in ipairs(proftable) do
 							if IsSpellKnown(v) then
@@ -519,6 +543,29 @@ function ElvUI_EltreumUI:BagProfessions()
 										end
 									end
 								end)
+							end
+						end
+
+						--fishing
+						if IsSpellKnown(7620) then
+							if not _G["EltruismProfessionFishingBagButton"] then
+								local _, _, icon = ElvUI_EltreumUI:EltruismSpellInfo(7620)
+								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+								_G["EltruismProfessionFishingBagButton"] = CreateFrame("Button","EltruismProfessionFishingBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
+								_G["EltruismProfessionFishingBagButton"]:SetSize(21,21)
+								--_G["EltruismProfessionFishingBagButton"]:SetTemplate("Transparent")
+								_G["EltruismProfessionFishingBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionFishingBagButton"].backdrop.Center:Hide()
+								S:HandleButton(_G["EltruismProfessionFishingBagButton"])
+								_G["EltruismProfessionFishingBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+								_G["EltruismProfessionFishingBagButton"]:SetAttribute('type', 'spell')
+								_G["EltruismProfessionFishingBagButton"]:SetAttribute('spell', 7620)
+								ElvUI_EltreumUI:MacroClick(_G["EltruismProfessionFishingBagButton"])
+								_G["EltruismProfessionFishingBagButton"].icon = _G["EltruismProfessionFishingBagButton"]:CreateTexture(nil,"ARTWORK")
+								_G["EltruismProfessionFishingBagButton"].icon:SetTexture(icon)
+								_G["EltruismProfessionFishingBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
+								_G["EltruismProfessionFishingBagButton"].icon:SetAllPoints()
+								_G["EltruismProfessionFishingBagButton"].isGlowing = false
 							end
 						end
 					end
