@@ -392,9 +392,9 @@ local function PowerBar_PostUpdatePowerColor(powerBar, unit)
 end
 
 --Gradient Power Colors
-function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
+function ElvUI_EltreumUI:GradientPower(arg1, arg2)--(unit,r,g,b)
 	if self and type(self) == "table" and self ~= ElvUI_EltreumUI and self.GetParent and self.GetObjectType and self:GetObjectType() == "StatusBar" then
-		PowerBar_PostUpdatePowerColor(self, unit)
+		PowerBar_PostUpdatePowerColor(self, arg1)
 		return
 	end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
@@ -431,7 +431,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 			ElvUI_EltreumUI:ApplyUnitGradientPower("arena5", "Arena5")
 		end
 
-		if unit == "testunit" then
+		if arg1 == "testunit" or arg2 == "testunit" then
 			forced = true
 		end
 
@@ -549,14 +549,17 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_PowerBar", ElvUI_EltreumUI.GradientPower)
+ElvUI_EltreumUI:SecureHook(UF, "Construct_PowerBar", "GradientPower")
 hooksecurefunc(UF, "PostUpdatePowerColor", PowerBar_PostUpdatePowerColor)
-hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.GradientPower)
-hooksecurefunc(UF, "Configure_Power", function(_, frame)
+ElvUI_EltreumUI:SecureHook(UF, "Update_StatusBars", "GradientPower")
+
+function ElvUI_EltreumUI:Configure_Power(arg1, arg2)
+	local frame = (type(arg2) == "table" and arg2.Power and arg2) or (type(arg1) == "table" and arg1.Power and arg1)
 	if frame and frame.Power then
 		PowerBar_PostUpdatePowerColor(frame.Power, frame.__unit or frame.unit)
 	end
-end)
+end
+ElvUI_EltreumUI:SecureHook(UF, "Configure_Power", "Configure_Power")
 
 --gradient stagger because its special
 function ElvUI_EltreumUI:GradientStagger()

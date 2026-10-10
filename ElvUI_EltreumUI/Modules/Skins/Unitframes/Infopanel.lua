@@ -1,8 +1,8 @@
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
+local type = _G.type
 
 --modify the position of the information panel
 local allowedunits = {
@@ -14,7 +14,11 @@ local allowedunits = {
 	['ElvUF_Pet'] = true,
 	['ElvUF_TargetTargetTarget'] = true,
 }
-local function Configure_InfoPanel(_, frame)
+function ElvUI_EltreumUI:Configure_InfoPanel(arg1, arg2)
+	local frame = (type(arg2) == "table" and (arg2.InfoPanel or arg2.db) and arg2)
+		or (type(arg1) == "table" and (arg1.InfoPanel or arg1.db) and arg1)
+	if not frame or not frame.InfoPanel or not frame.db then return end
+
 	local db = frame.db
 	local isShown = frame.USE_INFO_PANEL
 
@@ -27,12 +31,14 @@ local function Configure_InfoPanel(_, frame)
 
 		--print(E.private["general"]["pixelPerfect"],E.db["unitframe"]["thinBorders"])
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowed then
-			local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
-			portrait.db = db.portrait
+			local portrait = db.portrait and ((db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D)
+			if portrait then
+				portrait.db = db.portrait
+			end
 			frame.InfoPanel:ClearAllPoints()
 			frame.InfoPanelOnTop = true
 			if E.db.unitframe.thinBorders then
-				if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
+				if frame.USE_PORTRAIT and portrait and portrait.db and portrait.db.style ~= '3D' then
 					if frame.ORIENTATION == 'LEFT' then
 						--[[frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
@@ -83,7 +89,7 @@ local function Configure_InfoPanel(_, frame)
 					frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
 				end
 			else
-				if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
+				if frame.USE_PORTRAIT and portrait and portrait.db and portrait.db.style ~= '3D' then
 					if frame.ORIENTATION == 'LEFT' then
 						--[[frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
@@ -152,20 +158,27 @@ local function Configure_InfoPanel(_, frame)
 			end
 		end
 
-		if db.infoPanel.transparent then
+		if db.infoPanel and db.infoPanel.transparent then
 			frame.InfoPanel.backdrop:SetTemplate('Transparent', nil, nil, nil, true)
-		else
+		elseif frame.InfoPanel.backdrop then
 			frame.InfoPanel.backdrop:SetTemplate(nil, true, nil, nil, true)
 		end
 	else
 		frame.InfoPanel:Hide()
 	end
 end
-hooksecurefunc(UF, 'Configure_InfoPanel', Configure_InfoPanel)
+ElvUI_EltreumUI:SecureHook(UF, 'Configure_InfoPanel', 'Configure_InfoPanel')
 
-function ElvUI_EltreumUI:SkinPortrait(frame)
+function ElvUI_EltreumUI:SkinPortrait(arg1, arg2)
+	local frame = (type(arg2) == "table" and arg2.db and arg2.db.portrait and arg2)
+		or (type(arg1) == "table" and arg1.db and arg1.db.portrait and arg1)
+		or (type(arg2) == "table" and arg2.db and arg2)
+		or (type(arg1) == "table" and arg1.db and arg1)
+	if not frame or not frame.db or not frame.db.portrait then return end
+
 	local db = frame.db
 	local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
+	if not portrait then return end
 	portrait.db = db.portrait
 	frame.Portrait = portrait
 
@@ -236,4 +249,4 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 		end
 	end
 end
-hooksecurefunc(UF, "Configure_Portrait", ElvUI_EltreumUI.SkinPortrait)
+ElvUI_EltreumUI:SecureHook(UF, "Configure_Portrait", "SkinPortrait")

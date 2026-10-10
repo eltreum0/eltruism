@@ -9,22 +9,33 @@ local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local DebuffColors = (_G.DebuffTypeColor) or (E.Libs and E.Libs.Dispel and E.Libs.Dispel:GetDebuffTypeColor())
+local type = _G.type
 local aurabarMin = CreateColor(1, 1, 1, 1)
 local aurabarMax = CreateColor(1, 1, 1, 1)
 
 --Gradient Aurabars (not retail)
-function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to add a glow or something
+function ElvUI_EltreumUI:AuraBarGradient(arg1, arg2, arg3) --could use isStealable to add a glow or something
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not E.private.unitframe.enable then return end
 	if not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then return end
-	if not (unit and bar) then return end
+
+	local unit, bar
+	if type(arg1) == "string" then
+		unit, bar = arg1, arg2
+	elseif type(arg2) == "string" then
+		unit, bar = arg2, arg3
+	else
+		bar = (arg3 and type(arg3) == "table" and arg3.GetStatusBarTexture and arg3) or (arg2 and type(arg2) == "table" and arg2.GetStatusBarTexture and arg2) or (arg1 and type(arg1) == "table" and arg1.GetStatusBarTexture and arg1)
+		unit = (bar and (bar.__unit or bar.unit)) or (type(arg1) == "string" and arg1) or (type(arg2) == "string" and arg2)
+	end
+	if not (unit and bar and type(bar) == "table") then return end
 
 	local db = E.db.ElvUI_EltreumUI.unitframes
 	local gm = db.gradientmode
 
 	if gm.enableaurabars and not bar.EltruismHook then
 		hooksecurefunc(bar, "SetStatusBarColor", function(_, r, g, b)
-			local barUnit = bar.unit or unit
+			local barUnit = bar.__unit or bar.unit or unit
 			if barUnit and (barUnit == "player" or barUnit == "target") then
 				local isTarget = barUnit == "target"
 				local a = E.db.unitframe.colors.transparentAurabars and E.db.general.backdropfadecolor.a or 1
@@ -508,14 +519,8 @@ function ElvUI_EltreumUI:AuraBarRetail(container, button)
 end
 
 if not E.Modern then
-	hooksecurefunc(UF, "PostUpdateBar_AuraBars", ElvUI_EltreumUI.AuraBarGradient)
+	ElvUI_EltreumUI:SecureHook(UF, "PostUpdateBar_AuraBars", "AuraBarGradient")
 else
-	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button)
-		if container and container.isAuraBar and button and button.statusbar then
-			ElvUI_EltreumUI:AuraBarRetail(container, button)
-		end
-	end)
-
 	local function HookAuraContainerUtil() --use blizzard's util, but it might work for other things
 		if _G.AuraContainerUtil and not ElvUI_EltreumUI.AuraContainerUtilHooked then
 			if _G.AuraContainerUtil.SetSpellNameForAura then

@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CH = E:GetModule("Chat")
-local hooksecurefunc = _G.hooksecurefunc
 local format = _G.string.format
 local strsub = _G.strsub
 local Ambiguate = _G.Ambiguate
@@ -346,7 +345,7 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	return flag
 end
 
-hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
+function ElvUI_EltreumUI:ChatFrame_MessageEventHandler()
 	if E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.chat and E.db.ElvUI_EltreumUI.chat.enable then
 		if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) and CH.GetColoredName ~= ElvUI_EltreumUI.ChatClassIcons then
 			CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
@@ -355,5 +354,5 @@ hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
 			CH.GetPFlag = ElvUI_EltreumUI.GetPFlag
 		end
 	end
-end)
-
+end
+ElvUI_EltreumUI:SecureHook(CH, "ChatFrame_MessageEventHandler", "ChatFrame_MessageEventHandler")

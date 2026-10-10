@@ -13,6 +13,7 @@ local select = _G.select
 local C_ChatBubbles = _G.C_ChatBubbles
 local tostring = _G.tostring
 local ipairs = _G.ipairs
+local type = _G.type
 
 local EltruismBlizzShadows = CreateFrame("Frame")
 local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
@@ -4519,16 +4520,43 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 		end
 	end
 end
+
 if E.Modern then
-	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button) --better way to pass variables
+	function ElvUI_EltreumUI:Auras_UpdateButton(arg1, arg2, arg3)
+		local container, button
+		if arg1 == E then
+			container, button = arg2, arg3
+		else
+			container, button = arg1, arg2
+		end
+		if not button and container and type(container) == "table" and container.GetParent then
+			button = container
+			container = button:GetParent()
+		end
 		ElvUI_EltreumUI:AuraShadows(container, button)
-	end)
-	hooksecurefunc(E, 'Auras_CreateButton', function(_, button) --better way to pass variables
-		local container = button and (button.container or button:GetParent())
+		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
+
+		if type(container) == "table" and container.isAuraBar and type(button) == "table" and button.statusbar then
+			ElvUI_EltreumUI:AuraBarRetail(container, button)
+		end
+	end
+	ElvUI_EltreumUI:SecureHook(E, 'Auras_UpdateButton', 'Auras_UpdateButton')
+
+	function ElvUI_EltreumUI:Auras_CreateButton(arg1, arg2)
+		local button = (arg1 == E and arg2) or (arg2 and type(arg2) == "table" and (arg2.container or arg2.GetParent) and arg2) or arg1
+		if not button or type(button) ~= "table" then return end
+		local container = button.container or (button.GetParent and button:GetParent())
 		ElvUI_EltreumUI:AuraShadows(container, button)
-	end)
+	end
+	ElvUI_EltreumUI:SecureHook(E, 'Auras_CreateButton', 'Auras_CreateButton')
 else
-	hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
+	function ElvUI_EltreumUI:CreateIcon(arg1, arg2)
+		local button = (arg1 == A and arg2) or (arg2 and type(arg2) == "table" and arg2.GetParent and arg2) or arg1
+		if not button or type(button) ~= "table" or not button.GetParent then return end
+		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
+		ElvUI_EltreumUI:AuraShadows(button)
+	end
+	ElvUI_EltreumUI:SecureHook(A, 'CreateIcon', 'CreateIcon')  --aura (minimap)
 end
 
 function ElvUI_EltreumUI:UFAuraShadows(button)

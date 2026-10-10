@@ -576,137 +576,99 @@ do
 end
 
 --from elvui api, add button to game menu
---local EltruismMenuButton = CreateFrame('Button', nil, GameMenuFrame, 'GameMenuButtonTemplate')
---local isMenuExpanded = false
+local offset = E.Modern and 36 or 19
+function ElvUI_EltreumUI:AddGameMenuButton()
+	if E.Modern then
+		GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
+	else
+		GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -35)
+	end
+
+	local EditModeButton
+	if GameMenuFrame.buttonPool then
+		for button in GameMenuFrame.buttonPool:EnumerateActive() do
+			if button.layoutIndex then
+				local point, anchor, point2, x, y = button:GetPoint()
+				if button.layoutIndex == 1 then
+					button:ClearAllPoints()
+					button:SetPoint("TOP", GameMenuFrame.Eltruism, "BOTTOM", 0, 0)
+				else
+					button:SetPoint(point, anchor, point2, x, y - offset)
+				end
+			end
+			if button:GetText() == _G.HUD_EDIT_MODE_MENU then
+				EditModeButton = button
+			end
+		end
+	end
+
+	--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
+	if E.Retail then
+		GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+	elseif E.Forever then
+		GameMenuFrame:Height(456 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+	else
+		GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+	end
+
+	--use elvui moveui instead of blizzard edit mode
+	--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
+	if EditModeButton and not EditModeButton.EltruismHooked then
+		EditModeButton.EltruismHooked = true
+		ElvUI_EltreumUI:MacroClick(EditModeButton)
+
+		EditModeButton:SetScript("OnClick", function(_, button)
+			if not InCombatLockdown() then
+				if button == "LeftButton" then
+					E:ToggleMoveMode()
+					HideUIPanel(_G["GameMenuFrame"])
+				else
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+					ShowUIPanel(EditModeManagerFrame)
+				end
+			end
+		end)
+		EditModeButton:HookScript("OnEnter", function()
+			_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
+			_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
+			_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
+			_G["GameTooltip"]:Show()
+		end)
+		EditModeButton:HookScript("OnLeave", function()
+			_G["GameTooltip"]:Hide()
+		end)
+	end
+end
+
 local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
-		--if not E.Classic then
-			--local EM = E:GetModule('EditorMode')
-			local Menubutton
-			if not _G["EltruismGameMenu"] then
-				Menubutton = CreateFrame('Button', 'EltruismGameMenu', GameMenuFrame, 'MainMenuFrameButtonTemplate')
-				Menubutton:SetScript('OnClick', function()
-					if InCombatLockdown() then return end
-					E:ToggleOptions()
-					E.Libs['AceConfigDialog']:SelectGroup('ElvUI', 'ElvUI_EltreumUI') --if the old way it would always open on load
-					HideUIPanel(_G.GameMenuFrame)
-				end)
-				Menubutton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name)
-				S:HandleButton(Menubutton,nil,nil,nil,true)
+		local Menubutton
+		if not _G["EltruismGameMenu"] then
+			Menubutton = CreateFrame('Button', 'EltruismGameMenu', GameMenuFrame, 'MainMenuFrameButtonTemplate')
+			Menubutton:SetScript('OnClick', function()
+				if InCombatLockdown() then return end
+				E:ToggleOptions()
+				E.Libs['AceConfigDialog']:SelectGroup('ElvUI', 'ElvUI_EltreumUI') --if the old way it would always open on load
+				HideUIPanel(_G.GameMenuFrame)
+			end)
+			Menubutton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name)
+			S:HandleButton(Menubutton,nil,nil,nil,true)
 
-				local offset = E.Modern and 36 or 19
-				local xMenubutton = _G.GameMenuFrame:GetSize()
-				if E.Modern then
-					Menubutton:Size(xMenubutton-62, offset)
-				else
-					Menubutton:Size(xMenubutton-118, offset)
-				end
-				GameMenuFrame.Eltruism = Menubutton
-
-				if not GameMenuFrame.EltruismHook then
-					hooksecurefunc(GameMenuFrame, 'Layout', function()
-						if E.Modern then
-							GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
-						else
-							GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -35)
-						end
-
-						local EditModeButton
-						for button in GameMenuFrame.buttonPool:EnumerateActive() do
-							if button.layoutIndex then
-								local point, anchor, point2, x, y = button:GetPoint()
-								if button.layoutIndex == 1 then
-									button:ClearAllPoints()
-									button:SetPoint("TOP", GameMenuFrame.Eltruism, "BOTTOM", 0, 0)
-								else
-									button:SetPoint(point, anchor, point2, x, y - offset)
-								end
-							end
-							if button:GetText() == _G.HUD_EDIT_MODE_MENU then
-								EditModeButton = button
-							end
-						end
-
-						--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-						if E.Retail then
-							GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-						elseif E.Forever then
-							GameMenuFrame:Height(456 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-						else
-							GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-						end
-
-						--use elvui moveui instead of blizzard edit mode
-						--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
-						if EditModeButton then
-							ElvUI_EltreumUI:MacroClick(EditModeButton)
-
-							EditModeButton:SetScript("OnClick", function(_, button)
-								if not InCombatLockdown() then
-									if button == "LeftButton" then
-										E:ToggleMoveMode()
-										HideUIPanel(_G["GameMenuFrame"])
-									else
-										PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-										ShowUIPanel(EditModeManagerFrame)
-									end
-								end
-							end)
-							EditModeButton:HookScript("OnEnter", function()
-								_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
-								_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
-								_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
-								_G["GameTooltip"]:Show()
-							end)
-							EditModeButton:HookScript("OnLeave", function()
-								_G["GameTooltip"]:Hide()
-							end)
-						end
-					end)
-					GameMenuFrame.EltruismHook = true
-				end
+			local xMenubutton = _G.GameMenuFrame:GetSize()
+			if E.Modern then
+				Menubutton:Size(xMenubutton-62, offset)
+			else
+				Menubutton:Size(xMenubutton-118, offset)
 			end
-		--[[else
-			if not isMenuExpanded then
-				EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
-				S:HandleButton(EltruismMenuButton)
-				local x, y = _G["GameMenuButtonLogout"]:GetSize()
-				EltruismMenuButton:SetSize(x,y)
-				EltruismMenuButton:SetScript("OnClick", function()
-					if not InCombatLockdown() then
-						E:ToggleOptions("ElvUI_EltreumUI")
-						--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
-						HideUIPanel(_G["GameMenuFrame"])
-					end
-				end)
+			GameMenuFrame.Eltruism = Menubutton
 
-				hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
-					if GameMenuFrame.ElvUI then
-						EltruismMenuButton:Point("TOP", GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
-					else
-						EltruismMenuButton:Point("TOP", _G.GameMenuButtonAddons, "BOTTOM", 0, -1)
-					end
-					if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
-						EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)
-					elseif _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
-						EltruismMenuButton:Point("TOP", _G["GameMenuReloadUI"], "BOTTOM", 0, -1)
-					elseif _G.TXUI_GAME_BUTTON then
-						EltruismMenuButton:Point("TOP", _G.TXUI_GAME_BUTTON, "BOTTOM", 0, -1)
-					elseif _G["GameMenuFrame"].GameMenu_TXUI then
-						EltruismMenuButton:Point("TOP", _G["GameMenuFrame"].GameMenu_TXUI, "BOTTOM", 0, -1)
-					end
-				end)
-
-				_G["GameMenuFrame"]:HookScript("OnShow", function()
-					_G["GameMenuButtonLogout"]:ClearAllPoints()
-					_G["GameMenuButtonLogout"]:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
-					_G["GameMenuFrame"]:SetHeight(_G["GameMenuFrame"]:GetHeight() + _G["GameMenuButtonLogout"]:GetHeight() + 4)
-				end)
-				isMenuExpanded = true
+			if GameMenuFrame.Layout and not GameMenuFrame.EltruismHook then
+				ElvUI_EltreumUI:SecureHook(GameMenuFrame, 'Layout', 'AddGameMenuButton')
+				GameMenuFrame.EltruismHook = true
 			end
-		end]]
+		end
 	end
 end)
 

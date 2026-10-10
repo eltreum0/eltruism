@@ -4,7 +4,6 @@ local A = E:GetModule('Auras')
 local UF = E:GetModule('UnitFrames')
 local TT = E:GetModule('Tooltip')
 local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local table = _G.table
 local tinsert = table.insert
@@ -22,6 +21,7 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitPowerType = _G.UnitPowerType
 local classcolor = E.myClassColor
 local ElvUF = _G.ElvUF
+local type = _G.type
 local classcolor2 = {}
 local classcolor2check = false
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder,arenaborder
@@ -2023,6 +2023,8 @@ local raidFrames ={
 
 function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	if not button or not container then return end
+	if button.isAuraBar then return end
+	if container.isAuraBar then return end
 
 	local ufType = container.unitframeType or (container.parent and container.parent.unitframeType)
 	if not ufType and container.GetParent then
@@ -2185,29 +2187,24 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 		end
 	end
 end
-if E.Modern then
-	hooksecurefunc(E, 'Auras_UpdateButton', function(_, container, button) --container auras
-		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
-	end)
-else
-	hooksecurefunc(A, 'CreateIcon', function(_, button)  --aura (minimap)
-		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
-	end)
-	hooksecurefunc(A, 'UpdateAura', function(_, button)  --aura (minimap)
-		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
-	end)
-	hooksecurefunc(UF, 'PostUpdateAura', function(_, _, button) --uf/np aura borders and debuff colors update
-		local container = button and button:GetParent()
-		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
-	end)
-end
 
-function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
-	if not button then return end
-	local container = button.GetParent and button:GetParent()
+function ElvUI_EltreumUI:AuraBordersColorDebuff(arg1, arg2)
+	local button = (arg1 == A and arg2) or (arg2 and type(arg2) == "table" and arg2.GetParent and arg2) or arg1
+	if not button or type(button) ~= "table" or not button.GetParent then return end
+	local container = button:GetParent()
 	ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 end
-hooksecurefunc(A, 'UpdateAura', ElvUI_EltreumUI.AuraBordersColorDebuff) --debuff colors update
+ElvUI_EltreumUI:SecureHook(A, 'UpdateAura', 'AuraBordersColorDebuff') --debuff colors update
+
+if not E.Modern then
+	function ElvUI_EltreumUI:PostUpdateAura(arg1, arg2, arg3) --uf/np aura borders and debuff colors update
+		local button = (arg3 and type(arg3) == "table" and arg3.GetParent and arg3) or (arg2 and type(arg2) == "table" and arg2.GetParent and arg2) or (arg1 and type(arg1) == "table" and arg1.GetParent and arg1)
+		if not button or not button.GetParent then return end
+		local container = button:GetParent()
+		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
+	end
+	ElvUI_EltreumUI:SecureHook(UF, 'PostUpdateAura', 'PostUpdateAura')
+end
 
 local ttx,tty,tthpy
 function ElvUI_EltreumUI:TooltipBorder()

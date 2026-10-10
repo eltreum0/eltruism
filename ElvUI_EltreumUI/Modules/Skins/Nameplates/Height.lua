@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitThreatSituation = _G.UnitThreatSituation
 local UnitCastingInfo = _G.UnitCastingInfo
@@ -14,6 +13,17 @@ local wipe = _G.wipe
 local canaccessvalue = _G.canaccessvalue
 local previousTargetPlate
 local cachedElvUIHeights = {}
+local type = _G.type
+
+local function GetFrame(arg)
+	if type(arg) == "table" then
+		if arg.__unit then
+			return arg
+		elseif arg.__owner and type(arg.__owner) == "table" and arg.__owner.__unit then
+			return arg.__owner
+		end
+	end
+end
 
 --np custom health height
 function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
@@ -207,52 +217,56 @@ eventFrame:SetScript("OnEvent", function(_, event, unit)
 	end
 end)
 
-local function OnUpdatePlateBase(_, nameplate)
+function ElvUI_EltreumUI:OnUpdatePlateBase(arg1, arg2, arg3)
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
+	local nameplate = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3)
 	if nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown() then
 		ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
+		if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then
+			ElvUI_EltreumUI:UpdateNameplateBorders(nameplate)
+		end
 		if E:UnitIsUnit(nameplate.__unit, "target") then
 			previousTargetPlate = nameplate
 		end
 	end
 end
-hooksecurefunc(NP, "UpdatePlateBase", OnUpdatePlateBase) --fires when elvui updates them
+ElvUI_EltreumUI:SecureHook(NP, "UpdatePlateBase", "OnUpdatePlateBase") --fires when elvui updates them
 
-local function OnUpdateHealth(self, nameplate)
+function ElvUI_EltreumUI.OnUpdateHealth(arg1, arg2, arg3) --if they are changing health they are likely in combat
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	local frame = (self and self.__unit and self) or (nameplate and nameplate.__unit and nameplate)
+	local frame = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
 		ElvUI_EltreumUI:NameplateCustomBackdrop(frame)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
+		if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then
+			ElvUI_EltreumUI:UpdateNameplateBorders(frame)
+		end
 		if E:UnitIsUnit(frame.__unit, "target") then
 			previousTargetPlate = frame
 		end
 	end
 end
-hooksecurefunc(NP, "Update_Health", OnUpdateHealth) --if they are changing health they are likely in combat
 
-local function OnThreatOrColorUpdate(arg1, arg2)
+function ElvUI_EltreumUI.OnThreatOrColorUpdate(arg1, arg2, arg3, arg4) --handle threat changes
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	local frame = (arg1 and arg1.__unit and arg1) or (arg2 and arg2.__unit and arg2)
+	local frame = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3) or GetFrame(arg4)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 	end
 end
-hooksecurefunc(NP, "Health_UpdateColor", OnThreatOrColorUpdate) --handle health changes
-hooksecurefunc(NP, "ThreatIndicator_PostUpdate", OnThreatOrColorUpdate) --handle threat changes

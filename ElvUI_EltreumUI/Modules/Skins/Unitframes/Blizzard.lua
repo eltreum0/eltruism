@@ -2,30 +2,22 @@ local E = unpack(ElvUI)
 local _G = _G
 local UnitClass = _G.UnitClass
 local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
-local hooksecurefunc = _G.hooksecurefunc
+
+local function HookCompactUnitFrames()
+	if not ElvUI_EltreumUI.BlizzardRaidFramesHooked then
+		ElvUI_EltreumUI:SecureHook("CompactUnitFrame_UpdateHealthColor", "BlizzardTexturesGradient")
+		ElvUI_EltreumUI:SecureHook("CompactUnitFrame_UpdateAll", "BlizzardTexturesGradient")
+		ElvUI_EltreumUI:SecureHook("CompactUnitFrame_UpdateRoleIcon", "BlizzardTexturesGradient")
+		ElvUI_EltreumUI.BlizzardRaidFramesHooked = true
+	end
+end
 
 --blizzard raid frames custom textures/gradient
 function ElvUI_EltreumUI:BlizzardTexturesGradient()
 	if not E.db.ElvUI_EltreumUI then return end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.blizzardraidframes then
+		HookCompactUnitFrames()
 		if _G["CompactRaidFrameContainer"] and _G["CompactRaidFrameContainer"]:IsVisible() then
-
-			if not _G["CompactRaidFrameContainer"].EltruismHook then
-				hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				hooksecurefunc("CompactUnitFrame_UpdateAll", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				hooksecurefunc("CompactUnitFrame_UpdateRoleIcon", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				_G["CompactRaidFrameContainer"].EltruismHook = true
-			end
-
 			if _G["CompactRaidGroup1Member1"] and _G["CompactRaidGroup1Member1"]:IsVisible() then
 				for k = 1, 8 do
 					for l = 1, 5 do
@@ -152,22 +144,6 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 				end
 			end
 		elseif _G["CompactPartyFrame"] and _G["CompactPartyFrame"]:IsVisible() then
-			if not _G["CompactPartyFrame"].EltruismHook then
-				hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				hooksecurefunc("CompactUnitFrame_UpdateAll", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				hooksecurefunc("CompactUnitFrame_UpdateRoleIcon", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				_G["CompactPartyFrame"].EltruismHook = true
-			end
-
 			if _G["CompactPartyFrameMember1"] and _G["CompactPartyFrameMember1"]:IsVisible() then
 				for l = 1, 5 do
 					if _G["CompactPartyFrameMember"..l] then
@@ -233,22 +209,6 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 						end
 					end
 				end
-			end
-		else
-			if not self.BlizzardRaidFramesHooked then
-				hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				hooksecurefunc("CompactUnitFrame_UpdateAll", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				hooksecurefunc("CompactUnitFrame_UpdateRoleIcon", function()
-					ElvUI_EltreumUI:BlizzardTexturesGradient()
-				end)
-
-				self.BlizzardRaidFramesHooked = true
 			end
 		end
 	end

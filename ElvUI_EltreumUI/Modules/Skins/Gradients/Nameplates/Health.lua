@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local InCombatLockdown = _G.InCombatLockdown
 local UnitClass = _G.UnitClass
@@ -12,10 +11,8 @@ local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local CreateColor = _G.CreateColor
-local CreateFrame = _G.CreateFrame
-
+local type = _G.type
 local whiteColor = CreateColor(1, 1, 1, 1)
-
 local reactionToTargetType = {
 	[1] = "NPCHOSTILE",
 	[2] = "NPCHOSTILE",
@@ -27,72 +24,83 @@ local reactionToTargetType = {
 	[8] = "NPCFRIENDLY",
 }
 
+local function GetFrame(arg)
+	if type(arg) == "table" then
+		if arg.__unit then
+			return arg
+		elseif arg.__owner and type(arg.__owner) == "table" and arg.__owner.__unit then
+			return arg.__owner
+		end
+	end
+end
+
 --style filter gone
 --gradient threat
 function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	--nameplate.threatStatus
 	if ElvUI_EltreumUI:EncounterCheck() then return end
+	local frame = GetFrame(nameplate)
+	if not frame or not frame.Health or not frame.__unit then return end
+
 	local db = NP.db.threat
 	local EltruismDB = E.db.ElvUI_EltreumUI
 
 	if not (status and db.enable and db.useThreatColor and EltruismDB.unitframes.gradientmode.npenable) then return end
-	if not nameplate.Health then return end
 
-	local targetUnit = ElvUI_EltreumUI:GetTargetUnit(nameplate.__unit)
+	local targetUnit = ElvUI_EltreumUI:GetTargetUnit(frame.__unit)
 	local isTank = E.myrole == 'TANK' or E.GroupRoles.player == 'TANK'
-	local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(nameplate.__unit)))
+	local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(frame.__unit)))
 
 	if not InCombatLockdown() or UnitIsDead("player") then
-		nameplate.CurrentlyBeingTanked = nil
+		frame.CurrentlyBeingTanked = nil
 	end
 
-	local tex = nameplate.Health:GetStatusBarTexture()
+	local tex = frame.Health:GetStatusBarTexture()
 	if not tex then return end
 	local orientation = EltruismDB.unitframes.gradientmode.nporientation or "VERTICAL"
 
-	if nameplate.isRare and EltruismDB.nameplates.nameplateOptions.raretexture then
+	if frame.isRare and EltruismDB.nameplates.nameplateOptions.raretexture then
 		local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
-		if nameplate.Health.EltruismRareTex ~= rareTex then
-			nameplate.Health:SetStatusBarTexture(rareTex)
-			nameplate.Health.EltruismRareTex = rareTex
+		if frame.Health.EltruismRareTex ~= rareTex then
+			frame.Health:SetStatusBarTexture(rareTex)
+			frame.Health.EltruismRareTex = rareTex
 		end
 		tex:SetGradient(orientation, whiteColor, whiteColor)
 	else
-		nameplate.Health.EltruismRareTex = nil
+		frame.Health.EltruismRareTex = nil
 		local threatType
 		if status == 3 then -- securely tanking
 			threatType = offTank and "OFFTANK" or (isTank and "GOODTHREAT" or "BADTHREAT")
-			nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
+			frame.CurrentlyBeingTanked = UnitGUID(frame.__unit)
 		elseif status == 2 then -- insecurely tanking
 			threatType = offTank and "OFFTANKBADTHREATTRANSITION" or (isTank and "BADTHREATTRANSITION" or "GOODTHREATTRANSITION")
-			nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
+			frame.CurrentlyBeingTanked = UnitGUID(frame.__unit)
 		elseif status == 1 then -- not tanking but threat higher than tank
 			threatType = offTank and "OFFTANKGOODTHREATTRANSITION" or (isTank and "GOODTHREATTRANSITION" or "BADTHREATTRANSITION")
-			nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
+			frame.CurrentlyBeingTanked = UnitGUID(frame.__unit)
 		else -- not tanking at all
 			threatType = isTank and "BADTHREAT" or "GOODTHREAT"
-			nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.__unit)
+			frame.CurrentlyBeingTanked = UnitGUID(frame.__unit)
 		end
 
 		if threatType then
 			local minC, maxC = ElvUI_EltreumUI:GetHealthGradient(threatType, false, EltruismDB.unitframes.gradientmode.npcustomcolor)
 			tex:SetGradient(orientation, minC, maxC)
 
-			if nameplate.Health.EltruismNameplateBorder then
-				nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(maxC.r,maxC.g,maxC.b, 1)
+			if frame.Health.EltruismNameplateBorder then
+				frame.Health.EltruismNameplateBorder:SetBackdropBorderColor(maxC.r,maxC.g,maxC.b, 1)
 			end
 		end
 	end
 end
-hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator_PostUpdate)
 
 --gradient nameplates
-function ElvUI_EltreumUI.GradientNameplates(unit,unit2)
+function ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3, arg4)
 	local db = E.db.ElvUI_EltreumUI
 	if not db then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 
-	local frame = (unit and unit.__unit and unit) or (unit2 and unit2.__unit and unit2)
+	local frame = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3) or GetFrame(arg4)
 	if not frame or not frame.__unit or not frame.Health or not frame.Health:IsShown() then
 		return
 	end
@@ -185,6 +193,26 @@ function ElvUI_EltreumUI.GradientNameplates(unit,unit2)
 		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(frame, frame.threatStatus) --send to threat color
 	end
 end
-hooksecurefunc(NP, "Health_UpdateColor", ElvUI_EltreumUI.GradientNameplates)
-hooksecurefunc(NP, "StylePlate", ElvUI_EltreumUI.GradientNameplates)
-hooksecurefunc(NP, "Update_Health", ElvUI_EltreumUI.GradientNameplates)
+function ElvUI_EltreumUI:NP_Update_Health(arg1, arg2, arg3)
+	ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3)
+	ElvUI_EltreumUI.OnUpdateHealth(arg1, arg2, arg3)
+end
+
+function ElvUI_EltreumUI:NP_ThreatIndicator_PostUpdate(arg1, arg2, arg3, arg4)
+	local status = (type(arg4) == "number" and arg4) or (type(arg3) == "number" and arg3) or (type(arg2) == "number" and arg2) or (arg1 and type(arg1) == "table" and arg1.threatStatus)
+	local nameplate = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3) or GetFrame(arg4)
+	if nameplate then
+		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
+	end
+	ElvUI_EltreumUI.OnThreatOrColorUpdate(arg1, arg2, arg3, arg4)
+end
+
+function ElvUI_EltreumUI:Health_UpdateColor(arg1, arg2, arg3, arg4)
+	ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3, arg4)
+	ElvUI_EltreumUI.OnThreatOrColorUpdate(arg1, arg2, arg3, arg4)
+end
+
+ElvUI_EltreumUI:SecureHook(NP, "StylePlate", "GradientNameplates")
+ElvUI_EltreumUI:SecureHook(NP, "Update_Health", "NP_Update_Health")
+ElvUI_EltreumUI:SecureHook(NP, "Health_UpdateColor", "Health_UpdateColor")
+ElvUI_EltreumUI:SecureHook(NP, "ThreatIndicator_PostUpdate", "NP_ThreatIndicator_PostUpdate")
