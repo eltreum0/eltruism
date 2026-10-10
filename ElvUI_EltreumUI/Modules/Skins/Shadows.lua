@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:ShadowColor(shadow)
 			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a)
 		end
 		shadow:SetFrameLevel(1)
-		--shadow:SetFrameStrata("LOW")
+		shadow:SetFrameStrata("LOW")
 	end
 end
 
