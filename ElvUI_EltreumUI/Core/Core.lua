@@ -1217,22 +1217,16 @@ function ElvUI_EltreumUI:GetTargetUnit(unit)
 	return targetUnitCache[unit]
 end
 
-function ElvUI_EltreumUI:IsThisASafeSecret(value,hasValue,isBG)
-	if not E.Modern then
-		return true
-	end
-
-	if hasValue then
-		return E:CanAccessValue(value) --new api to check if value is secret
-	else
-		if isBG then
-			if isPvP then
-				return false
-			end
+local canaccessvalue = _G.canaccessvalue
+function ElvUI_EltreumUI:IsThisASafeSecret(value, hasValue, isBG)
+	if E.Modern then
+		if hasValue then
+			return canaccessvalue(value) --new api to check if value is secret
+		elseif isBG then
+			return not isPvP
 		else
-			if outside then
-				return true
-			end
+			return outside
 		end
 	end
+	return true
 end
