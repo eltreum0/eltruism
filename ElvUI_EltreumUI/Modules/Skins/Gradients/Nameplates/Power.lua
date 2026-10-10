@@ -1,14 +1,15 @@
 local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local CreateColor = _G.CreateColor
 local npPowerMin = CreateColor(1, 1, 1, 1)
 local npPowerMax = CreateColor(1, 1, 1, 1)
+local type = _G.type
 
 --power gradient/combo/runes
-function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
+function ElvUI_EltreumUI:NPClassPower_SetBarColor(_, bar, r, g, b)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
+	if not bar or type(bar) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 			if bar.classPowerID or bar.token then --use somechecking for classpower and power bars
@@ -20,17 +21,17 @@ function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
 					tex:SetGradient(orientation, npPowerMin, npPowerMax)
 				end
 			else
-				local parent = bar:GetParent()
+				local parent = bar.GetParent and bar:GetParent()
 				ElvUI_EltreumUI.GradientNameplates(parent or bar)
 			end
 			--bar.bg:SetAlpha(0)
 		else
-			local parent = bar:GetParent()
+			local parent = bar.GetParent and bar:GetParent()
 			ElvUI_EltreumUI.GradientNameplates(parent or bar)
 		end
 	end
 end
-hooksecurefunc(NP, "SetStatusBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
+ElvUI_EltreumUI:SecureHook(NP, "SetStatusBarColor", "NPClassPower_SetBarColor")
 --will need to likely hook ClassPower_UpdateColor AND Power_UpdateColor
 
 --style filters were removed

@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local pairs = _G.pairs
-local hooksecurefunc = _G.hooksecurefunc
 
 local forbiddenKeywords = {
 	["Tank"] = true,
@@ -53,7 +52,7 @@ end
 ElvUI_EltreumUI.ApplyBackdropAlphas = ApplyBackdropAlphas
 
 -- Unitframe Backdrop Texture/Alpha/Fill Direction
-function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, _, reverseFill)
+function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar, backdropTex, adjustBackdropPoints, _, reverseFill)
 	if not statusBar then return end
 	if not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then return end
 
@@ -169,4 +168,4 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 		end
 	end
 end
-hooksecurefunc(UF, "ToggleTransparentStatusBar", ElvUI_EltreumUI.ToggleTransparentStatusBar)
+ElvUI_EltreumUI:SecureHook(UF, "ToggleTransparentStatusBar", "ToggleTransparentStatusBar")

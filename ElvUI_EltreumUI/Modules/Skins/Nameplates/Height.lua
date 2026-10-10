@@ -217,14 +217,14 @@ eventFrame:SetScript("OnEvent", function(_, event, unit)
 	end
 end)
 
-function ElvUI_EltreumUI:OnUpdatePlateBase(arg1, arg2, arg3)
+function ElvUI_EltreumUI:OnUpdatePlateBase(_, nameplate)
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	local nameplate = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3)
+	nameplate = GetFrame(nameplate)
 	if nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown() then
 		ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
@@ -238,14 +238,14 @@ function ElvUI_EltreumUI:OnUpdatePlateBase(arg1, arg2, arg3)
 end
 ElvUI_EltreumUI:SecureHook(NP, "UpdatePlateBase", "OnUpdatePlateBase") --fires when elvui updates them
 
-function ElvUI_EltreumUI.OnUpdateHealth(arg1, arg2, arg3) --if they are changing health they are likely in combat
+function ElvUI_EltreumUI.OnUpdateHealth(nameplate) --if they are changing health they are likely in combat
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	local frame = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3)
+	local frame = GetFrame(nameplate)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
 		ElvUI_EltreumUI:NameplateCustomBackdrop(frame)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
@@ -258,14 +258,14 @@ function ElvUI_EltreumUI.OnUpdateHealth(arg1, arg2, arg3) --if they are changing
 	end
 end
 
-function ElvUI_EltreumUI.OnThreatOrColorUpdate(arg1, arg2, arg3, arg4) --handle threat changes
+function ElvUI_EltreumUI.OnThreatOrColorUpdate(nameplate) --handle threat changes
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	local frame = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3) or GetFrame(arg4)
+	local frame = GetFrame(nameplate)
 	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 	end

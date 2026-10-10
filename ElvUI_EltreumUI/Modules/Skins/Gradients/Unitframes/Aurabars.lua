@@ -14,20 +14,10 @@ local aurabarMin = CreateColor(1, 1, 1, 1)
 local aurabarMax = CreateColor(1, 1, 1, 1)
 
 --Gradient Aurabars (not retail)
-function ElvUI_EltreumUI:AuraBarGradient(arg1, arg2, arg3) --could use isStealable to add a glow or something
+function ElvUI_EltreumUI:AuraBarGradient(_, unit, bar) --could use isStealable to add a glow or something
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not E.private.unitframe.enable then return end
 	if not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then return end
-
-	local unit, bar
-	if type(arg1) == "string" then
-		unit, bar = arg1, arg2
-	elseif type(arg2) == "string" then
-		unit, bar = arg2, arg3
-	else
-		bar = (arg3 and type(arg3) == "table" and arg3.GetStatusBarTexture and arg3) or (arg2 and type(arg2) == "table" and arg2.GetStatusBarTexture and arg2) or (arg1 and type(arg1) == "table" and arg1.GetStatusBarTexture and arg1)
-		unit = (bar and (bar.__unit or bar.unit)) or (type(arg1) == "string" and arg1) or (type(arg2) == "string" and arg2)
-	end
 	if not (unit and bar and type(bar) == "table") then return end
 
 	local db = E.db.ElvUI_EltreumUI.unitframes
@@ -157,10 +147,6 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 		end
 	end)
 	frame.AuraBarHook = true
-end
-if not E.Modern then
-	hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.AuraBarTexture)
-	hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.AuraBarTexture)
 end
 
 --Retail Aurabars

@@ -1,10 +1,10 @@
 local E, _, _, P = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local UnitExists = _G.UnitExists
 local rad = _G.rad
+local type = _G.type
 
 --Adds a model of the Target to the Target nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
@@ -53,10 +53,9 @@ local function DelayedNameplateModelSettings()
 	end
 end
 
-function ElvUI_EltreumUI:NameplateModel(nameplate)
-	if not E.db.ElvUI_EltreumUI then return end
-	if not E.db.ElvUI_EltreumUI.nameplates then return end
-	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
+function ElvUI_EltreumUI:NameplateModel(_, nameplate)
+	if not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.nameplates or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
+	if not nameplate or type(nameplate) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
 		if UnitExists("target")then
 			if nameplate and nameplate.__unit and E:UnitIsUnit(nameplate.__unit,"target") then --12.0.5 breaks this
@@ -88,4 +87,4 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 		end
 	end
 end
-hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
+ElvUI_EltreumUI:SecureHook(NP, "SetupTarget", "NameplateModel")

@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:GradientDatabarXP()
 		_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPdirection, { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
 	end
 end
-hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabarXP)
+ElvUI_EltreumUI:SecureHook(DB, 'ExperienceBar_Update', 'GradientDatabarXP')
 
 --gradient rep
 function ElvUI_EltreumUI:GradientDatabarRep()
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 		end
 	end
 end
-hooksecurefunc(DB, 'ReputationBar_Update', ElvUI_EltreumUI.GradientDatabarRep)
+ElvUI_EltreumUI:SecureHook(DB, 'ReputationBar_Update', 'GradientDatabarRep')
 
 --gradient honor
 function ElvUI_EltreumUI:GradientDatabarHonor()
@@ -62,7 +62,7 @@ function ElvUI_EltreumUI:GradientDatabarHonor()
 	end
 end
 if E.Retail then
-	hooksecurefunc(DB, 'HonorBar_Update', ElvUI_EltreumUI.GradientDatabarHonor)
+	ElvUI_EltreumUI:SecureHook(DB, 'HonorBar_Update', 'GradientDatabarHonor')
 end
 
 --gradient digsite and custom font stuff
@@ -110,8 +110,8 @@ function ElvUI_EltreumUI:BlizzardAltPower()
 end
 
 if E.Retail then
-	hooksecurefunc(B, 'UpdateAltPowerBarColors', ElvUI_EltreumUI.BlizzardAltPower)
-	hooksecurefunc(B, 'UpdateAltPowerBar', ElvUI_EltreumUI.BlizzardAltPower)
+	ElvUI_EltreumUI:SecureHook(B, 'UpdateAltPowerBarColors', 'BlizzardAltPower')
+	ElvUI_EltreumUI:SecureHook(B, 'UpdateAltPowerBar', 'BlizzardAltPower')
 end
 
 --add class color bar on the bottom

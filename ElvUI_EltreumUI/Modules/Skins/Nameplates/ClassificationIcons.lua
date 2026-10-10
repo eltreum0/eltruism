@@ -10,7 +10,6 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitGUID = _G.UnitGUID
 local UnitClassification = _G.UnitClassification
 local UnitLevel = _G.UnitLevel
-local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local strsplit = _G.strsplit
 local string = _G.string
@@ -2151,15 +2150,25 @@ local function Update_ClassificationIndicator(_, nameplate)
 	end
 end
 
-local function StylePlate(_, nameplate)
-	nameplate.EltruismClassificationIndicator = Construct_ClassificationIndicator(nameplate.RaisedElement)
+function ElvUI_EltreumUI:NP_StylePlate_Classification(nameplate)
+	if not E.db.ElvUI_EltreumUI.nameplates.classification.enable then return end
+	local plate = (type(nameplate) == "table" and nameplate) or (type(self) == "table" and self ~= ElvUI_EltreumUI and self)
+	if plate and plate.RaisedElement and not plate.EltruismClassificationIndicator then
+		plate.EltruismClassificationIndicator = Construct_ClassificationIndicator(plate.RaisedElement)
+	end
+end
+
+function ElvUI_EltreumUI:NP_Update_ClassificationIndicator(_, nameplate)
+	Update_ClassificationIndicator(nameplate)
 end
 
 function ElvUI_EltreumUI:NPClassificatioNIcon()
 	if E.db.ElvUI_EltreumUI.nameplates.classification.enable then
 		-- hook to create the icon
-		hooksecurefunc(NP, "Update_ClassificationIndicator", Update_ClassificationIndicator)
-		hooksecurefunc(NP, "StylePlate", StylePlate)
+		if not self.NPClassificationHooked then
+			ElvUI_EltreumUI:SecureHook(NP, "Update_ClassificationIndicator", "NP_Update_ClassificationIndicator")
+			self.NPClassificationHooked = true
+		end
 
 		-- add it to ouf
 		if not elementAdded then

@@ -95,12 +95,12 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 end
 
 --gradient nameplates
-function ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3, arg4)
+function ElvUI_EltreumUI.GradientNameplates(nameplate)
 	local db = E.db.ElvUI_EltreumUI
 	if not db then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 
-	local frame = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3) or GetFrame(arg4)
+	local frame = GetFrame(nameplate)
 	if not frame or not frame.__unit or not frame.Health or not frame.Health:IsShown() then
 		return
 	end
@@ -193,26 +193,43 @@ function ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3, arg4)
 		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(frame, frame.threatStatus) --send to threat color
 	end
 end
-function ElvUI_EltreumUI:NP_Update_Health(arg1, arg2, arg3)
-	ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3)
-	ElvUI_EltreumUI.OnUpdateHealth(arg1, arg2, arg3)
+function ElvUI_EltreumUI:NP_Update_Health(_, nameplate)
+	local plate = GetFrame(nameplate)
+	if not plate then return end
+	ElvUI_EltreumUI.GradientNameplates(plate)
+	ElvUI_EltreumUI.OnUpdateHealth(plate)
 end
 
-function ElvUI_EltreumUI:NP_ThreatIndicator_PostUpdate(arg1, arg2, arg3, arg4)
-	local status = (type(arg4) == "number" and arg4) or (type(arg3) == "number" and arg3) or (type(arg2) == "number" and arg2) or (arg1 and type(arg1) == "table" and arg1.threatStatus)
-	local nameplate = GetFrame(arg1) or GetFrame(arg2) or GetFrame(arg3) or GetFrame(arg4)
+function ElvUI_EltreumUI:NP_ThreatIndicator_PostUpdate(indicator, _, status)
+	local nameplate = indicator and (indicator.__owner or GetFrame(indicator))
 	if nameplate then
-		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
+		ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status or nameplate.threatStatus)
+		ElvUI_EltreumUI.OnThreatOrColorUpdate(nameplate)
 	end
-	ElvUI_EltreumUI.OnThreatOrColorUpdate(arg1, arg2, arg3, arg4)
 end
 
-function ElvUI_EltreumUI:Health_UpdateColor(arg1, arg2, arg3, arg4)
-	ElvUI_EltreumUI.GradientNameplates(arg1, arg2, arg3, arg4)
-	ElvUI_EltreumUI.OnThreatOrColorUpdate(arg1, arg2, arg3, arg4)
+function ElvUI_EltreumUI:Health_UpdateColor(healthOrFrame)
+	local plate = GetFrame(healthOrFrame)
+	if not plate then return end
+	ElvUI_EltreumUI.GradientNameplates(plate)
+	ElvUI_EltreumUI.OnThreatOrColorUpdate(plate)
 end
 
-ElvUI_EltreumUI:SecureHook(NP, "StylePlate", "GradientNameplates")
+function ElvUI_EltreumUI:NP_StylePlate(_, nameplate)
+	local plate = GetFrame(nameplate)
+	if not plate then return end
+	if ElvUI_EltreumUI.GradientNameplates then
+		ElvUI_EltreumUI.GradientNameplates(plate)
+	end
+	if ElvUI_EltreumUI.NameplateShadowsAndBorders then
+		ElvUI_EltreumUI:NameplateShadowsAndBorders(plate)
+	end
+	if ElvUI_EltreumUI.NP_StylePlate_Classification then
+		ElvUI_EltreumUI:NP_StylePlate_Classification(plate)
+	end
+end
+
+ElvUI_EltreumUI:SecureHook(NP, "StylePlate", "NP_StylePlate")
 ElvUI_EltreumUI:SecureHook(NP, "Update_Health", "NP_Update_Health")
 ElvUI_EltreumUI:SecureHook(NP, "Health_UpdateColor", "Health_UpdateColor")
 ElvUI_EltreumUI:SecureHook(NP, "ThreatIndicator_PostUpdate", "NP_ThreatIndicator_PostUpdate")

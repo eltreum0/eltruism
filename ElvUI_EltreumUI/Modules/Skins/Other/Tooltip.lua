@@ -1,6 +1,5 @@
 local E = unpack(ElvUI)
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local TT = E:GetModule('Tooltip')
 local string = _G.string
 local format = string.format
@@ -156,14 +155,14 @@ function ElvUI_EltreumUI:Tooltip()
 
 	--gradient
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-		if not self.isHooked then
+		if not ElvUI_EltreumUI.tooltipStatusBarHooked then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				local unittp = TT:GetDisplayedUnit(_G.GameTooltip)
 				if unittp and E:NotSecretValue(unittp) then
 					SetTooltipGradient(unittp)
 				end
 			end)
-			self.isHooked = true
+			ElvUI_EltreumUI.tooltipStatusBarHooked = true
 		end
 
 		local fixunit = TT:GetDisplayedUnit(_G.GameTooltip)
@@ -174,11 +173,11 @@ function ElvUI_EltreumUI:Tooltip()
 
 	--ilvl tooltip & gradient
 	if E.Modern then
-		if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not self.EltruismTooltipHook then
+		if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not ElvUI_EltreumUI.EltruismTooltipHook then
 			_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, function(tt)
 				if tt then ApplyTooltipItemFormatting(GameTooltip, "GameTooltip", false) end
 			end)
-			self.EltruismTooltipHook = true
+			ElvUI_EltreumUI.EltruismTooltipHook = true
 		end
 	else
 		if E.db.ElvUI_EltreumUI.skins.ilvltooltip or E.db.ElvUI_EltreumUI.skins.gradienttooltip then
@@ -205,7 +204,7 @@ function ElvUI_EltreumUI:Tooltip()
 		end
 	end
 end
-hooksecurefunc(TT, 'AddTargetInfo', ElvUI_EltreumUI.Tooltip)
-hooksecurefunc(TT, 'GameTooltip_OnTooltipSetUnit', ElvUI_EltreumUI.Tooltip)
-hooksecurefunc(TT, 'MODIFIER_STATE_CHANGED', ElvUI_EltreumUI.Tooltip)
-hooksecurefunc(TT, 'GameTooltipStatusBar_UpdateUnitHealth', ElvUI_EltreumUI.Tooltip)
+ElvUI_EltreumUI:SecureHook(TT, 'AddTargetInfo', 'Tooltip')
+ElvUI_EltreumUI:SecureHook(TT, 'GameTooltip_OnTooltipSetUnit', 'Tooltip')
+ElvUI_EltreumUI:SecureHook(TT, 'MODIFIER_STATE_CHANGED', 'Tooltip')
+ElvUI_EltreumUI:SecureHook(TT, 'GameTooltipStatusBar_UpdateUnitHealth', 'Tooltip')

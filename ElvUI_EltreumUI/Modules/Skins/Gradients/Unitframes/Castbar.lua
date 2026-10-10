@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
@@ -9,7 +8,7 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --elvui castbar texture/gradient
-function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
+function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not E.private.unitframe.enable then return end
 	if not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then return end
@@ -18,6 +17,7 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 		castbar = _G["ElvUF_Player_CastBar"]
 		unit = "player"
 	end
+	unit = unit or (castbar and castbar.__owner and castbar.__owner.unit)
 	if not unit or not UnitExists(unit) then return end
 
 	local parent = castbar.__owner or castbar:GetParent()
@@ -121,12 +121,31 @@ function ElvUI_EltreumUI.CastBarTextureGradient(castbar, unit)
 		end
 	end
 end
-hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTextureGradient)
-hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTextureGradient)
-hooksecurefunc(UF, 'PostCastInterruptible', ElvUI_EltreumUI.CastBarTextureGradient)
+
+function ElvUI_EltreumUI:UF_Construct_Castbar(_, frame)
+	if ElvUI_EltreumUI.CastBarTextureGradient then
+		ElvUI_EltreumUI:CastBarTextureGradient(frame and frame.Castbar, frame and frame.unit)
+	end
+	if ElvUI_EltreumUI.CastbarEffects then
+		ElvUI_EltreumUI:CastbarEffects()
+	end
+end
+
+function ElvUI_EltreumUI:UF_PostCastStart(castbar, unit)
+	if ElvUI_EltreumUI.CastBarTextureGradient then
+		ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
+	end
+	if ElvUI_EltreumUI.CastbarEffects then
+		ElvUI_EltreumUI:CastbarEffects()
+	end
+end
+
+ElvUI_EltreumUI:SecureHook(UF, 'Construct_Castbar', 'UF_Construct_Castbar')
+ElvUI_EltreumUI:SecureHook(UF, 'PostCastStart', 'UF_PostCastStart')
+ElvUI_EltreumUI:SecureHook(UF, 'PostCastInterruptible', 'CastBarTextureGradient')
 
 --color when interrupted/failed
-function ElvUI_EltreumUI.CastBarTextureGradientFail(castbar)
+function ElvUI_EltreumUI:CastBarTextureGradientFail(castbar)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not castbar or not castbar.GetStatusBarTexture then return end
 
@@ -158,5 +177,5 @@ function ElvUI_EltreumUI.CastBarTextureGradientFail(castbar)
 		end
 	end
 end
-hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTextureGradientFail)
+ElvUI_EltreumUI:SecureHook(UF, 'PostCastFail', 'CastBarTextureGradientFail')
 

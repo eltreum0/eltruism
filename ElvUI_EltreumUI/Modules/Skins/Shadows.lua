@@ -4454,18 +4454,17 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 		end
 	end
 end
-hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadowsAndBorders) --nameplate shadows and borders
 
-function ElvUI_EltreumUI:Construct_AuraIcon(button)
-	if not button then return end
+function ElvUI_EltreumUI:Construct_AuraIcon(_, button)
+	if not button or type(button) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-		if button and not button.shadow then
+		if not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)
 		end
 	end
 end
-hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
+ElvUI_EltreumUI:SecureHook(NP, 'Construct_AuraIcon', 'Construct_AuraIcon') --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
 	if not button then return end
@@ -4522,13 +4521,7 @@ function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container o
 end
 
 if E.Modern then
-	function ElvUI_EltreumUI:Auras_UpdateButton(arg1, arg2, arg3)
-		local container, button
-		if arg1 == E then
-			container, button = arg2, arg3
-		else
-			container, button = arg1, arg2
-		end
+	function ElvUI_EltreumUI:Auras_UpdateButton(_, container, button)
 		if not button and container and type(container) == "table" and container.GetParent then
 			button = container
 			container = button:GetParent()
@@ -4542,16 +4535,14 @@ if E.Modern then
 	end
 	ElvUI_EltreumUI:SecureHook(E, 'Auras_UpdateButton', 'Auras_UpdateButton')
 
-	function ElvUI_EltreumUI:Auras_CreateButton(arg1, arg2)
-		local button = (arg1 == E and arg2) or (arg2 and type(arg2) == "table" and (arg2.container or arg2.GetParent) and arg2) or arg1
+	function ElvUI_EltreumUI:Auras_CreateButton(_, button)
 		if not button or type(button) ~= "table" then return end
 		local container = button.container or (button.GetParent and button:GetParent())
 		ElvUI_EltreumUI:AuraShadows(container, button)
 	end
 	ElvUI_EltreumUI:SecureHook(E, 'Auras_CreateButton', 'Auras_CreateButton')
 else
-	function ElvUI_EltreumUI:CreateIcon(arg1, arg2)
-		local button = (arg1 == A and arg2) or (arg2 and type(arg2) == "table" and arg2.GetParent and arg2) or arg1
+	function ElvUI_EltreumUI:CreateIcon(_, button)
 		if not button or type(button) ~= "table" or not button.GetParent then return end
 		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
 		ElvUI_EltreumUI:AuraShadows(button)
@@ -4559,16 +4550,16 @@ else
 	ElvUI_EltreumUI:SecureHook(A, 'CreateIcon', 'CreateIcon')  --aura (minimap)
 end
 
-function ElvUI_EltreumUI:UFAuraShadows(button)
-	if not button then return end
+function ElvUI_EltreumUI:UFAuraShadows(_, button)
+	if not button or type(button) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf) and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-		if button and not button.shadow then
+		if not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)
 		end
 	end
 end
-hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
+ElvUI_EltreumUI:SecureHook(UF, 'Construct_AuraIcon', 'UFAuraShadows') --uf aura shadows
 
 --from elvui chat bubbles
 local TimeSinceLastUpdate = 0
@@ -4604,12 +4595,13 @@ function ElvUI_EltreumUI:ChatBubblesShadows()
 		self.ChatShadowsHooked = true
 	end
 end
-hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
+ElvUI_EltreumUI:SecureHook(M, "LoadChatBubbles", "ChatBubblesShadows")
 
 --Datatexts
-function ElvUI_EltreumUI:DataTextShadowsAndBorders(name)
+function ElvUI_EltreumUI:DataTextShadowsAndBorders(_, name)
 	if E.db.ElvUI_EltreumUI.borders.universalborders then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then return end
+	if not name or type(name) ~= "string" then return end
 	local panel = DT:FetchFrame(name)
 	if not panel then return end
 
@@ -4626,4 +4618,4 @@ function ElvUI_EltreumUI:DataTextShadowsAndBorders(name)
 		ElvUI_EltreumUI:DataTextBorders(panel)
 	end
 end
-hooksecurefunc(DT,"BuildPanelFrame", ElvUI_EltreumUI.DataTextShadowsAndBorders)
+ElvUI_EltreumUI:SecureHook(DT, "BuildPanelFrame", "DataTextShadowsAndBorders")

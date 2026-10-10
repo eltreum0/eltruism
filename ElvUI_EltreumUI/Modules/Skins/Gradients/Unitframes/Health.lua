@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
@@ -792,17 +791,33 @@ function ElvUI_EltreumUI:GradientUF(unit)
 		end
 	end
 end
-hooksecurefunc(UF, "PostUpdateHealthColor", HealthBar_PostUpdateHealthColor)
-hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.GradientUF)
+
+function ElvUI_EltreumUI:UF_Update_StatusBars()
+	if ElvUI_EltreumUI.GradientUF then
+		ElvUI_EltreumUI:GradientUF()
+	end
+	if ElvUI_EltreumUI.GradientPower then
+		ElvUI_EltreumUI:GradientPower()
+	end
+end
+ElvUI_EltreumUI:SecureHook(UF, "Update_StatusBars", "UF_Update_StatusBars")
+
+function ElvUI_EltreumUI:UF_CreateAndUpdateUF(_, unit)
+	if ElvUI_EltreumUI.CustomTexture then
+		ElvUI_EltreumUI:CustomTexture(unit)
+	end
+	if ElvUI_EltreumUI.GradientUF then
+		ElvUI_EltreumUI:GradientUF(unit)
+	end
+	if ElvUI_EltreumUI.GradientPower then
+		ElvUI_EltreumUI:GradientPower(unit)
+	end
+end
 
 --player unitframe needs this otherwise the value will be wrong when its transparent
 --since it loads before other frames
 if E.CoroutineCallback then
-	hooksecurefunc(UF, "CreateAndUpdateUF", function(_,unit)
-		ElvUI_EltreumUI:CustomTexture(unit)
-		ElvUI_EltreumUI:GradientUF(unit)
-		ElvUI_EltreumUI:GradientPower(unit)
-	end)
+	ElvUI_EltreumUI:SecureHook(UF, "CreateAndUpdateUF", "UF_CreateAndUpdateUF")
 	local function Update_UnitFrameTransparencyFix(frame)
 		if frame and frame.Health and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			frame.EltruismBackdropEpoch = nil
@@ -840,15 +855,33 @@ if E.CoroutineCallback then
 	end)
 end
 
+function ElvUI_EltreumUI:UF_UpdateTestUnitFrames()
+	if ElvUI_EltreumUI.CustomTexture then
+		ElvUI_EltreumUI:CustomTexture("testunit")
+	end
+	if ElvUI_EltreumUI.GradientUF then
+		ElvUI_EltreumUI:GradientUF("testunit")
+	end
+	if ElvUI_EltreumUI.GradientPower then
+		ElvUI_EltreumUI:GradientPower("testunit")
+	end
+end
+
+function ElvUI_EltreumUI:UF_ToggleForceShowGroupFrames(_, group, numGroup)
+	ElvUI_EltreumUI:UF_UpdateTestUnitFrames()
+	if ElvUI_EltreumUI.Blinkii_ToggleForceShowGroupFrames then
+		ElvUI_EltreumUI:Blinkii_ToggleForceShowGroupFrames(group, numGroup)
+	end
+end
+
+function ElvUI_EltreumUI:UF_HeaderConfig(_, header)
+	ElvUI_EltreumUI:UF_UpdateTestUnitFrames()
+	if ElvUI_EltreumUI.Blinkii_HeaderConfig then
+		ElvUI_EltreumUI:Blinkii_HeaderConfig(header)
+	end
+end
+
 --allows previews to show custom textures and gradients
-hooksecurefunc(UF, "ToggleForceShowGroupFrames", function()
-	ElvUI_EltreumUI:CustomTexture("testunit")
-	ElvUI_EltreumUI:GradientUF("testunit")
-	ElvUI_EltreumUI:GradientPower("testunit")
-end)
+ElvUI_EltreumUI:SecureHook(UF, "ToggleForceShowGroupFrames", "UF_ToggleForceShowGroupFrames")
 --omnicd fix
-hooksecurefunc(UF, "HeaderConfig", function()
-	ElvUI_EltreumUI:CustomTexture("testunit")
-	ElvUI_EltreumUI:GradientUF("testunit")
-	ElvUI_EltreumUI:GradientPower("testunit")
-end)
+ElvUI_EltreumUI:SecureHook(UF, "HeaderConfig", "UF_HeaderConfig")

@@ -776,7 +776,16 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		end
 	end
 end
-hooksecurefunc(M,"UpdateSettings", ElvUI_EltreumUI.MinimapCardinalDirections)
+
+function ElvUI_EltreumUI:M_UpdateSettings()
+	if ElvUI_EltreumUI.MinimapCardinalDirections then
+		ElvUI_EltreumUI:MinimapCardinalDirections()
+	end
+	if ElvUI_EltreumUI.ElvUIMailTexture then
+		ElvUI_EltreumUI:ElvUIMailTexture()
+	end
+end
+ElvUI_EltreumUI:SecureHook(M, "UpdateSettings", "M_UpdateSettings")
 
 --setup onupdate and also get rid of it
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()

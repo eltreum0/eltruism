@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local IsInGroup = _G.IsInGroup
@@ -11,7 +10,7 @@ local UnitClassification = _G.UnitClassification
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local SetPortraitTexture = _G.SetPortraitTexture
-
+local type = _G.type
 local notexcoord = {
 	["RELEAF"] = true,
 	["BLIZZARD"] = false,
@@ -451,12 +450,22 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 	end
 end
 local UF = E:GetModule('UnitFrames')
-hooksecurefunc(UF,"PortraitUpdate", ElvUI_EltreumUI.BlizzPortraits)
+
+function ElvUI_EltreumUI:UF_PortraitUpdate(portrait, unit, hasStateChanged)
+	if ElvUI_EltreumUI.BlizzPortraits then
+		ElvUI_EltreumUI:BlizzPortraits(unit, hasStateChanged)
+	end
+	if ElvUI_EltreumUI.PortraitFix then
+		ElvUI_EltreumUI:PortraitFix(portrait, unit)
+	end
+end
+ElvUI_EltreumUI:SecureHook(UF, "PortraitUpdate", "UF_PortraitUpdate")
 
 --hook for party frames and others
-function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
+function ElvUI_EltreumUI:BlizzPortraitsGroup(frameOrUF, maybeFrame)
+	local frame = (frameOrUF == UF and maybeFrame) or frameOrUF
+	if not frame or type(frame) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
-		if not frame then return end
 		if not frame.USE_PORTRAIT then return end
 		if not frame:GetName() then return end
 		if frame:GetName():match("PartyGroup") and not frame:GetName():match("Pet") then
@@ -479,10 +488,9 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 		ElvUI_EltreumUI:PartyBorders()
 	end
 end
-hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
-hooksecurefunc(UF,"Update_PartyFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
-hooksecurefunc(UF,"Update_BossFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
-hooksecurefunc(UF,"UpdateRoleIcon", ElvUI_EltreumUI.BlizzPortraitsGroup) --has trigger for UNIT_CONNECTION
+ElvUI_EltreumUI:SecureHook(UF, "Update_PartyFrames", "BlizzPortraitsGroup")
+ElvUI_EltreumUI:SecureHook(UF, "Update_BossFrames", "BlizzPortraitsGroup")
+ElvUI_EltreumUI:SecureHook(UF, "UpdateRoleIcon", "BlizzPortraitsGroup") --has trigger for UNIT_CONNECTION
 
 --function to update portrait when settings change
 function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)

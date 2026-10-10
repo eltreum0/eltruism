@@ -321,7 +321,8 @@ local function gradientclassbar(powerbar,powerType)
 		end
 	end
 end
-function ElvUI_EltreumUI:UFClassPower_SetBarColor(frame)
+function ElvUI_EltreumUI:UFClassPower_SetBarColor(_, frame)
+	if not frame or type(frame) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if frame and not frame.EltruismHookedGradientClassPower then
 			if frame.ClassPower then
@@ -338,7 +339,7 @@ function ElvUI_EltreumUI:UFClassPower_SetBarColor(frame)
 		end
 	end
 end
-hooksecurefunc(UF, "Configure_ClassBar", ElvUI_EltreumUI.UFClassPower_SetBarColor)
+ElvUI_EltreumUI:SecureHook(UF, "Configure_ClassBar", "UFClassPower_SetBarColor")
 
 local individualPowerUnits = {
 	player = "Player",
@@ -392,11 +393,7 @@ local function PowerBar_PostUpdatePowerColor(powerBar, unit)
 end
 
 --Gradient Power Colors
-function ElvUI_EltreumUI:GradientPower(arg1, arg2)--(unit,r,g,b)
-	if self and type(self) == "table" and self ~= ElvUI_EltreumUI and self.GetParent and self.GetObjectType and self:GetObjectType() == "StatusBar" then
-		PowerBar_PostUpdatePowerColor(self, arg1)
-		return
-	end
+function ElvUI_EltreumUI:GradientPower(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local forced = false
 	local UFdb = E.db.unitframe
@@ -431,7 +428,7 @@ function ElvUI_EltreumUI:GradientPower(arg1, arg2)--(unit,r,g,b)
 			ElvUI_EltreumUI:ApplyUnitGradientPower("arena5", "Arena5")
 		end
 
-		if arg1 == "testunit" or arg2 == "testunit" then
+		if unit == "testunit" then
 			forced = true
 		end
 
@@ -549,12 +546,15 @@ function ElvUI_EltreumUI:GradientPower(arg1, arg2)--(unit,r,g,b)
 		end
 	end
 end
+function ElvUI_EltreumUI:UF_PostUpdatePowerColor(powerBar, unit)
+	if powerBar then
+		PowerBar_PostUpdatePowerColor(powerBar, unit)
+	end
+end
 ElvUI_EltreumUI:SecureHook(UF, "Construct_PowerBar", "GradientPower")
-hooksecurefunc(UF, "PostUpdatePowerColor", PowerBar_PostUpdatePowerColor)
-ElvUI_EltreumUI:SecureHook(UF, "Update_StatusBars", "GradientPower")
+ElvUI_EltreumUI:SecureHook(UF, "PostUpdatePowerColor", "UF_PostUpdatePowerColor")
 
-function ElvUI_EltreumUI:Configure_Power(arg1, arg2)
-	local frame = (type(arg2) == "table" and arg2.Power and arg2) or (type(arg1) == "table" and arg1.Power and arg1)
+function ElvUI_EltreumUI:Configure_Power(_, frame)
 	if frame and frame.Power then
 		PowerBar_PostUpdatePowerColor(frame.Power, frame.__unit or frame.unit)
 	end
@@ -582,7 +582,7 @@ function ElvUI_EltreumUI:GradientStagger()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_Stagger", ElvUI_EltreumUI.GradientStagger)
+ElvUI_EltreumUI:SecureHook(UF, "Construct_Stagger", "GradientStagger")
 
 --gradient eclipse, also special
 function ElvUI_EltreumUI:GradientEclipse()
@@ -618,11 +618,11 @@ function ElvUI_EltreumUI:GradientEclipse()
 	end
 end
 if E.Mists then --this is only cata onwards
-	hooksecurefunc(UF, "Construct_DruidEclipseBar", ElvUI_EltreumUI.GradientEclipse)
+	ElvUI_EltreumUI:SecureHook(UF, "Construct_DruidEclipseBar", "GradientEclipse")
 end
 
 --make power pred use the same texture too
-function ElvUI_EltreumUI:Configure_PowerPrediction(frame)
+function ElvUI_EltreumUI:Configure_PowerPrediction(_, frame)
 	local pred = frame and frame.PowerPrediction
 	if not pred then return end
 	if pred.mainBar then
@@ -633,4 +633,4 @@ function ElvUI_EltreumUI:Configure_PowerPrediction(frame)
 		altBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 	end
 end
-hooksecurefunc(UF, "Configure_PowerPrediction", ElvUI_EltreumUI.Configure_PowerPrediction)
+ElvUI_EltreumUI:SecureHook(UF, "Configure_PowerPrediction", "Configure_PowerPrediction")

@@ -1,6 +1,5 @@
 local E = unpack(ElvUI)
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local valuecolors = E.myClassColor
 
@@ -724,24 +723,30 @@ function ElvUI_EltreumUI:GradientMode()
 	end
 end
 
+function ElvUI_EltreumUI:TotemBackground()
+	local header = _G["ElvUF_Player"]
+	if not header then return end
+	for i = 1, header:GetNumChildren() do
+		local group = select(i, header:GetChildren())
+		if group and group.GetNumChildren then
+			for j = 1, group:GetNumChildren() do
+				local unitbutton = select(j, group:GetChildren())
+				if unitbutton and unitbutton.bg then
+					unitbutton.bg:SetVertexColor(0, 0, 0)
+				end
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:ShamanTextureMode()
 	if (E.Mists or E.TBC or E.Wrath or E.Classic) and E.myclass == 'SHAMAN' then
 		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
-			local function TotemBackground()
-				local header = _G["ElvUF_Player"]
-				for i = 1, header:GetNumChildren() do
-					local group = select(i, header:GetChildren())
-					for j = 1, group:GetNumChildren() do
-						local unitbutton = select(j, group:GetChildren())
-						if unitbutton and unitbutton.bg then
-							unitbutton.bg:SetVertexColor(0, 0, 0)
-						end
-					end
-				end
+			if not self:IsHooked(UF, 'Construct_Totems') then
+				self:SecureHook(UF, 'Construct_Totems', 'TotemBackground')
 			end
-			hooksecurefunc(UF, 'Construct_Totems', TotemBackground)
-			TotemBackground()
+			self:TotemBackground()
 		end
 	end
 end

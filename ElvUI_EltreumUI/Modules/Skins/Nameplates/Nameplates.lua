@@ -3,9 +3,8 @@ local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local LCG = E.Libs.CustomGlow
---local LCG = LibStub('LibCustomGlow-1.0')
+local type = _G.type
 local classcolor = E.myClassColor
-local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local string = _G.string
 local stringfind = string.find
@@ -266,13 +265,18 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	end
 end
 
-function ElvUI_EltreumUI:Construct_Auras(nameplate)
+function ElvUI_EltreumUI:Construct_Auras(_, nameplate)
+	if not nameplate or type(nameplate) ~= "table" then return end
 	if E.private.nameplates.enable and (E.db.ElvUI_EltreumUI.nameplates.auras.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow) then
-		nameplate.Buffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconBuff
-		nameplate.Debuffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconDebuff
+		if nameplate.Buffs then
+			nameplate.Buffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconBuff
+		end
+		if nameplate.Debuffs then
+			nameplate.Debuffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconDebuff
+		end
 	end
 end
-hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
+ElvUI_EltreumUI:SecureHook(NP, "Construct_Auras", "Construct_Auras")
 
 --for general nameplates
 local playerclassversion = {
@@ -887,35 +891,34 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 end
 
 --Class color the target, plus use unit's target directly
-function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
-	--self here is the nameplate castbar, like ElvNP_NamePlate1Castbar
-	--self:CheckInterrupt(unit) --dont need to do this since this is after elvui does it anyway
-	local plate = self.__owner
+function ElvUI_EltreumUI:Castbar_PostCastStart(castbar, unit)
+	if not castbar or not castbar.__owner then return end
+	local plate = castbar.__owner
 	local db = NP:PlateDB(plate)
 	if db.castbar and db.castbar.enable and db.castbar.displayTarget then
 		local frameType = plate.frameType
 		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
 			if UnitExists(ElvUI_EltreumUI:GetTargetUnit(unit)) then
-				local spellName = E:ShortenString(self.spellName, 11)
+				local spellName = E:ShortenString(castbar.spellName, 11)
 				local targetname = E:ShortenString(UnitName(ElvUI_EltreumUI:GetTargetUnit(unit)), 12)
-				--local spellName = E:AbbreviateString(self.spellName)
+				--local spellName = E:AbbreviateString(castbar.spellName)
 				--local targetname = E:AbbreviateString(UnitName(ElvUI_EltreumUI:GetTargetUnit(unit)))
 				if UnitIsPlayer(ElvUI_EltreumUI:GetTargetUnit(unit)) or (E.Retail and UnitInPartyIsAI(ElvUI_EltreumUI:GetTargetUnit(unit))) then
 					local _ , classes = UnitClass(ElvUI_EltreumUI:GetTargetUnit(unit))
 					if not E:NotSecretValue(classes) then --secret class so do something else
 						return targetname
 					end
-					self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
+					castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else
 					local reaction = UnitReaction(ElvUI_EltreumUI:GetTargetUnit(unit), "player")
 					if reaction >= 5 then
-						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
+						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
 					elseif reaction == 4 then
-						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r]")
+						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r]")
 					elseif reaction == 3 then
-						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r]")
+						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r]")
 					elseif reaction == 2 or reaction == 1 then
-						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r]")
+						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r]")
 					end
 				end
 			end
@@ -923,18 +926,15 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 	end
 end
 if not E.Modern then
-	hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
+	ElvUI_EltreumUI:SecureHook(NP, 'Castbar_PostCastStart', 'Castbar_PostCastStart')
 end
 
-hooksecurefunc(NP, 'Initialize', function()
+function ElvUI_EltreumUI:NP_DarkPowerMultiplier()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 		NP.multiplier = 0
 	end
-end)
+end
+ElvUI_EltreumUI:SecureHook(NP, 'Initialize', 'NP_DarkPowerMultiplier')
 if E.Retail or E.Mists or E.Wrath then
-	hooksecurefunc(NP, 'Construct_Runes', function()
-		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
-			NP.multiplier = 0
-		end
-	end)
+	ElvUI_EltreumUI:SecureHook(NP, 'Construct_Runes', 'NP_DarkPowerMultiplier')
 end

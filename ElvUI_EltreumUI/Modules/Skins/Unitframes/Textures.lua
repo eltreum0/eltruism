@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
@@ -17,6 +16,7 @@ local UnitIsEnemy = _G.UnitIsEnemy
 local UnitIsFriend = _G.UnitIsFriend
 local UnitInParty = _G.UnitInParty
 local UnitInRaid = _G.UnitInRaid
+local type = _G.type
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
@@ -374,7 +374,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 
 		--group/raid unitframes
-		if (UnitExists(unit) or UnitInParty("player") or UnitInRaid("player") or forced) then
+		if ((type(unit) == "string" and UnitExists(unit)) or UnitInParty("player") or UnitInRaid("player") or forced) then
 
 			--party/raid
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then
@@ -507,10 +507,9 @@ local individualUnits = {
 	focustarget = { name = "FocusTarget", db = "focustarget" },
 }
 
-function ElvUI_EltreumUI.PostUpdateHealth(self, healthBar, unit)
-	local bar = (self ~= ElvUI_EltreumUI and self) or healthBar
-	local u = (self ~= ElvUI_EltreumUI and healthBar) or unit
+function ElvUI_EltreumUI:PostUpdateHealth(bar, unit)
 	if not bar or type(bar) ~= "table" or not bar.GetParent then return end
+	local u = unit
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	if not UFdb or not UFdb.UFmodifications or not E.private.unitframe.enable then return end
@@ -582,27 +581,37 @@ function ElvUI_EltreumUI.PostUpdateHealth(self, healthBar, unit)
 		end
 	end
 end
-hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.PostUpdateHealth)
-hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
+ElvUI_EltreumUI:SecureHook(UF, "PostUpdateHealthColor", "PostUpdateHealth")
+ElvUI_EltreumUI:SecureHook(UF, "Style", "CustomTexture") --old target of target hook
 
 -- replace absorb texture with unitframe texture
-function ElvUI_EltreumUI:SetTexture_HealComm(obj)
+function ElvUI_EltreumUI:SetTexture_HealComm(_, obj)
+	if not obj or type(obj) ~= "table" then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
-	if not UFdb then return end
-	if UFdb.UFmodifications then
-		if UFdb.ufcustomtexture.enableHealComm then
-			obj.healingPlayer:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-			obj.healingOther:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-			obj.damageAbsorb:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-			obj.healAbsorb:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-		elseif UFdb.ufcustomtexture.enableHealCommCustom then
-			obj.healingPlayer:SetStatusBarTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.enableHealCommTexture))
-			obj.healingOther:SetStatusBarTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.enableHealCommTexture))
-			obj.damageAbsorb:SetStatusBarTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.enableHealCommTexture))
-			obj.healAbsorb:SetStatusBarTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.enableHealCommTexture))
+	if not UFdb or not UFdb.UFmodifications or not UFdb.ufcustomtexture then return end
+
+	local texture
+	if UFdb.ufcustomtexture.enableHealComm then
+		texture = E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)
+	elseif UFdb.ufcustomtexture.enableHealCommCustom then
+		texture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.enableHealCommTexture)
+	end
+
+	if texture then
+		if obj.healingPlayer and obj.healingPlayer.SetStatusBarTexture then
+			obj.healingPlayer:SetStatusBarTexture(texture)
+		end
+		if obj.healingOther and obj.healingOther.SetStatusBarTexture then
+			obj.healingOther:SetStatusBarTexture(texture)
+		end
+		if obj.damageAbsorb and obj.damageAbsorb.SetStatusBarTexture then
+			obj.damageAbsorb:SetStatusBarTexture(texture)
+		end
+		if obj.healAbsorb and obj.healAbsorb.SetStatusBarTexture then
+			obj.healAbsorb:SetStatusBarTexture(texture)
 		end
 	end
 end
-hooksecurefunc(UF, "SetTexture_HealComm", ElvUI_EltreumUI.SetTexture_HealComm)
+ElvUI_EltreumUI:SecureHook(UF, "SetTexture_HealComm", "SetTexture_HealComm")
 

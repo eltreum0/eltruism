@@ -1,13 +1,14 @@
 local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
-local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local LCG = E.Libs.CustomGlow
 --local LCG = LibStub('LibCustomGlow-1.0')
 local proc = {}
 
 --glow dispellable debuffs
-function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
+function ElvUI_EltreumUI:UFGlow(_, frame, _, _, debuffType, _, wasFiltered)
+	if not frame or not frame.GetName then return end
+	local object = frame
+
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.db.ElvUI_EltreumUI.glow.enableUFs then
 			local name = object:GetName()
@@ -75,4 +76,4 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 		object.EltruismDebuffExists = false
 	end
 end
-hooksecurefunc(UF, "PostUpdate_AuraHighlight", ElvUI_EltreumUI.UFGlow)
+ElvUI_EltreumUI:SecureHook(UF, "PostUpdate_AuraHighlight", "UFGlow")

@@ -2188,8 +2188,7 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	end
 end
 
-function ElvUI_EltreumUI:AuraBordersColorDebuff(arg1, arg2)
-	local button = (arg1 == A and arg2) or (arg2 and type(arg2) == "table" and arg2.GetParent and arg2) or arg1
+function ElvUI_EltreumUI:AuraBordersColorDebuff(_, button)
 	if not button or type(button) ~= "table" or not button.GetParent then return end
 	local container = button:GetParent()
 	ElvUI_EltreumUI:UpdateAuraBorder(container, button)
@@ -2197,8 +2196,7 @@ end
 ElvUI_EltreumUI:SecureHook(A, 'UpdateAura', 'AuraBordersColorDebuff') --debuff colors update
 
 if not E.Modern then
-	function ElvUI_EltreumUI:PostUpdateAura(arg1, arg2, arg3) --uf/np aura borders and debuff colors update
-		local button = (arg3 and type(arg3) == "table" and arg3.GetParent and arg3) or (arg2 and type(arg2) == "table" and arg2.GetParent and arg2) or (arg1 and type(arg1) == "table" and arg1.GetParent and arg1)
+	function ElvUI_EltreumUI:PostUpdateAura(_, _, button) --uf/np aura borders and debuff colors update
 		if not button or not button.GetParent then return end
 		local container = button:GetParent()
 		ElvUI_EltreumUI:UpdateAuraBorder(container, button)

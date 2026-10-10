@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local tostring = _G.tostring
-local type = _G.type
 
 --modify the position of the information panel
 local allowedunits = {
@@ -14,9 +13,7 @@ local allowedunits = {
 	['ElvUF_Pet'] = true,
 	['ElvUF_TargetTargetTarget'] = true,
 }
-function ElvUI_EltreumUI:Configure_InfoPanel(arg1, arg2)
-	local frame = (type(arg2) == "table" and (arg2.InfoPanel or arg2.db) and arg2)
-		or (type(arg1) == "table" and (arg1.InfoPanel or arg1.db) and arg1)
+function ElvUI_EltreumUI:Configure_InfoPanel(_, frame)
 	if not frame or not frame.InfoPanel or not frame.db then return end
 
 	local db = frame.db
@@ -169,11 +166,7 @@ function ElvUI_EltreumUI:Configure_InfoPanel(arg1, arg2)
 end
 ElvUI_EltreumUI:SecureHook(UF, 'Configure_InfoPanel', 'Configure_InfoPanel')
 
-function ElvUI_EltreumUI:SkinPortrait(arg1, arg2)
-	local frame = (type(arg2) == "table" and arg2.db and arg2.db.portrait and arg2)
-		or (type(arg1) == "table" and arg1.db and arg1.db.portrait and arg1)
-		or (type(arg2) == "table" and arg2.db and arg2)
-		or (type(arg1) == "table" and arg1.db and arg1)
+function ElvUI_EltreumUI:SkinPortrait(_, frame)
 	if not frame or not frame.db or not frame.db.portrait then return end
 
 	local db = frame.db
@@ -247,6 +240,9 @@ function ElvUI_EltreumUI:SkinPortrait(arg1, arg2)
 				end
 			end
 		end
+	end
+	if ElvUI_EltreumUI.BlizzPortraitsGroup then
+		ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 	end
 end
 ElvUI_EltreumUI:SecureHook(UF, "Configure_Portrait", "SkinPortrait")

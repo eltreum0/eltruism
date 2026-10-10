@@ -179,8 +179,16 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
-hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
+
+function ElvUI_EltreumUI:UF_Construct_PlayerFrame(_, frame)
+	frame = frame or _G["ElvUF_Player"]
+	ElvUI_EltreumUI:PlayerUFEffects()
+	if not E.Modern and frame and ElvUI_EltreumUI.AuraBarTexture then
+		ElvUI_EltreumUI:AuraBarTexture(frame)
+	end
+end
+ElvUI_EltreumUI:SecureHook(UF, "Construct_PlayerFrame", "UF_Construct_PlayerFrame")
+ElvUI_EltreumUI:SecureHook(UF, "Update_PlayerFrame", "PlayerUFEffects")
 
 --add effects to target
 function ElvUI_EltreumUI:TargetUFEffects()
@@ -302,8 +310,16 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
-hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
+
+function ElvUI_EltreumUI:UF_Construct_TargetFrame(_, frame)
+	frame = frame or _G["ElvUF_Target"]
+	ElvUI_EltreumUI:TargetUFEffects()
+	if not E.Modern and frame and ElvUI_EltreumUI.AuraBarTexture then
+		ElvUI_EltreumUI:AuraBarTexture(frame)
+	end
+end
+ElvUI_EltreumUI:SecureHook(UF, "Construct_TargetFrame", "UF_Construct_TargetFrame")
+ElvUI_EltreumUI:SecureHook(UF, "Update_TargetFrame", "TargetUFEffects")
 
 --add effects to target of target
 function ElvUI_EltreumUI:TargetTargetUFEffects()
@@ -423,8 +439,8 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
-hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
+ElvUI_EltreumUI:SecureHook(UF, "Construct_TargetTargetFrame", "TargetTargetUFEffects")
+ElvUI_EltreumUI:SecureHook(UF, "Update_TargetTargetFrame", "TargetTargetUFEffects")
 
 --add effects to focus
 function ElvUI_EltreumUI:FocusUFEffects()
@@ -547,8 +563,8 @@ function ElvUI_EltreumUI:FocusUFEffects()
 	end
 end
 if E.Modern or E.Mists or E.TBC or E.Wrath then
-	hooksecurefunc(UF, "Construct_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
-	hooksecurefunc(UF, "Update_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
+	ElvUI_EltreumUI:SecureHook(UF, "Construct_FocusFrame", "FocusUFEffects")
+	ElvUI_EltreumUI:SecureHook(UF, "Update_FocusFrame", "FocusUFEffects")
 end
 
 --add effects to pet
@@ -648,8 +664,8 @@ function ElvUI_EltreumUI:PetUFEffects()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_PetFrame", ElvUI_EltreumUI.PetUFEffects)
-hooksecurefunc(UF, "Update_PetFrame", ElvUI_EltreumUI.PetUFEffects)
+ElvUI_EltreumUI:SecureHook(UF, "Construct_PetFrame", "PetUFEffects")
+ElvUI_EltreumUI:SecureHook(UF, "Update_PetFrame", "PetUFEffects")
 
 --castbar model effect
 local castbar
@@ -708,8 +724,6 @@ function ElvUI_EltreumUI:CastbarEffects()
 		end
 	end
 end
-hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
-hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
 
 local modelupdater = CreateFrame("FRAME")
 modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target

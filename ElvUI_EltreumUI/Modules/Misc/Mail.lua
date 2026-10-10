@@ -50,7 +50,6 @@ EltruismMailExists.MailExistsFlipBook:SetOrder(1)
 EltruismMailExists:SetAlpha(0)
 
 local mailthrottle = 0
-local M = E:GetModule('Minimap')
 function ElvUI_EltreumUI:BlizzMail()
 	if HasNewMail() then
 
@@ -148,4 +147,3 @@ function ElvUI_EltreumUI:ElvUIMailTexture()
 		end
 	end
 end
-hooksecurefunc(M,"UpdateSettings", ElvUI_EltreumUI.ElvUIMailTexture)

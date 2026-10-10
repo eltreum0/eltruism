@@ -4,7 +4,6 @@ local _G = _G
 local SetPortraitTexture = _G.SetPortraitTexture
 local UnitExists = _G.UnitExists
 local tinsert = _G.tinsert
-local UF = E:GetModule("UnitFrames")
 local UnitGUID = _G.UnitGUID
 local select, strsplit = _G.select, _G.strsplit
 local mathmax = _G.math.max
@@ -20,7 +19,6 @@ local InCombatLockdown = _G.InCombatLockdown
 local UnitCastingInfo = _G.UnitCastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo
 local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
 local unpack = _G.unpack
 local type = _G.type
 local pairs = _G.pairs
@@ -793,7 +791,7 @@ local function CreatePortraits(name, unit, parentFrame, unitSettings, events, un
 	UpdatePortrait(module[name])
 end
 
-local function ToggleForceShowGroupFrames(_, group, numGroup)
+function ElvUI_EltreumUI:Blinkii_ToggleForceShowGroupFrames(group, numGroup)
 	if group == "boss" or group == "arena" then
 		local name = (group == "boss") and "Boss" or "Arena"
 
@@ -803,8 +801,8 @@ local function ToggleForceShowGroupFrames(_, group, numGroup)
 	end
 end
 
-local function HeaderConfig(_, header, configMode)
-	if header.groups and header.groupName == "party" then
+function ElvUI_EltreumUI:Blinkii_HeaderConfig(header)
+	if header and header.groups and header.groupName == "party" then
 		for i = 1, #header.groups[1] do
 			if module["Party" .. i] then UpdatePortrait(module["Party" .. i], true) end
 		end
@@ -887,13 +885,6 @@ function ElvUI_EltreumUI:InitializePortraits(force)
 
 		-- update all portraits, force = update cast events
 		UpdateAllPortraits(force)
-
-		-- for demo frames - party, boss & arena
-		if not module.needReloadUI then
-			hooksecurefunc(UF, "ToggleForceShowGroupFrames", ToggleForceShowGroupFrames)
-			hooksecurefunc(UF, "HeaderConfig", HeaderConfig)
-			module.needReloadUI = true
-		end
 	else
 		for _, unitPortrait in pairs(module) do
 			if type(unitPortrait) == "table" and unitPortrait.portrait then RemovePortrait(unitPortrait) end

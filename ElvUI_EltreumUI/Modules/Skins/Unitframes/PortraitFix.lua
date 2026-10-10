@@ -6,7 +6,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local UnitIsGhost = _G.UnitIsGhost
 local UnitIsFeignDeath = _G.UnitIsFeignDeath
 local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
-local UF = E:GetModule('UnitFrames')
 
 local druidshamanfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",
@@ -517,111 +516,109 @@ end
 
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
-function ElvUI_EltreumUI:PortraitFix(unit)
+function ElvUI_EltreumUI:PortraitFix(portrait, unit)
+	if not portrait or not portrait.playerModel then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	if self.playerModel then
-		if E.db.ElvUI_EltreumUI.unitframes.portraitfix then
-			local model = self:GetModelFileID()
-			if not model then
-				modelcheck:SetUnit(unit) --use a different model to get the file id since the file id is nil when the frame has 0 alpha from fader
-				model = modelcheck:GetModelFileID()
-				modelcheck:ClearModel()
-			end
-			local newrotation = 0
-			local xOffset = 0
+	if E.db.ElvUI_EltreumUI.unitframes.portraitfix then
+		local model = portrait:GetModelFileID()
+		if not model then
+			modelcheck:SetUnit(unit) --use a different model to get the file id since the file id is nil when the frame has 0 alpha from fader
+			model = modelcheck:GetModelFileID()
+			modelcheck:ClearModel()
+		end
+		local newrotation = 0
+		local xOffset = 0
 
-			--pause if dead or ghost
-			if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
-				if UnitIsDeadOrGhost(unit) and not UnitIsFeignDeath(unit) then
-					self:SetPaused(true)
-					self:SetDesaturation(1)
-				else
-					self:SetPaused(false)
-					self:SetDesaturation(0)
-				end
-			end
-
-			if unit == 'player' or playerlike[unit] then
-				if not model then return end
-				if modelsRotate[model]then
-					newrotation = 0
-				elseif model == 926251 then
-					newrotation = 99
-				elseif model == 5091437 then
-					newrotation = 28 --druid qonzu bird
-				elseif catabearform[model] then
-					newrotation = 0
-				else
-					newrotation = 67--3
-				end
-				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-					if model == 1273833 then
-						xOffset = -0.59 --cat
-						if self:GetParent().unitframeType == "party" then
-							xOffset = -1
-						end
-					elseif model == 1505169 or model == 5143717 then
-						xOffset = 0.62 --bear
-					elseif model == 4207724 then
-						xOffset = 0.5 --dracthyr
-					elseif druidshamanfix[model] or model == 926251 then
-						xOffset = -0.39 --other bears
-						if self:GetParent().unitframeType == "party" then
-							xOffset = -1
-						end
-					elseif model == 1043712 then
-						xOffset = -1 --shaman raptor
-						if self:GetParent().unitframeType == "party" then
-							xOffset = -2.3
-						end
-					elseif catabearform[model] then
-						xOffset = 0.62 --cata bears
-					elseif self:GetParent().unitframeType == "pet" then
-						xOffset = -1 --offset the pets because they would be outside
-					end
-				end
-			elseif unit == 'target' or targetlike[unit] then
-				if not model then return end
-				if modelsRotate[model] then
-					newrotation = 291
-				elseif catabearform[model] then
-					newrotation = 270 --cata bears
-				end
-				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-					if model == 5091437 then
-						xOffset = 0 --druid things
-					elseif model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
-						xOffset = -0.59 --druid things
-					elseif model == 1505169 or model == 5143717 then
-						xOffset = 0.25 --bear
-					elseif dracthyrlikefix[model] then
-						xOffset = 0.6 --dracthyr and lightforged
-					elseif catabearform[model] then
-						xOffset = 0.17 --cata bears
-					end
-				end
-			end
-
-			if newrotation ~= 0 then
-				local db = self.db
-				if not db then return end
-				self:SetRotation(_G.rad(newrotation))
-				self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+		--pause if dead or ghost
+		if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
+			if UnitIsDeadOrGhost(unit) and not UnitIsFeignDeath(unit) then
+				portrait:SetPaused(true)
+				portrait:SetDesaturation(1)
 			else
-				--prob couldnt get model bc it was nil from PEW, so reset stuff
-				self:SetRotation(0)
-				if xOffset ~= 0 then
-					local db = self.db
-					if not db then return end
-					self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
-				else
-					self:SetViewTranslation(0, 0)
+				portrait:SetPaused(false)
+				portrait:SetDesaturation(0)
+			end
+		end
+
+		if unit == 'player' or playerlike[unit] then
+			if not model then return end
+			if modelsRotate[model]then
+				newrotation = 0
+			elseif model == 926251 then
+				newrotation = 99
+			elseif model == 5091437 then
+				newrotation = 28 --druid qonzu bird
+			elseif catabearform[model] then
+				newrotation = 0
+			else
+				newrotation = 67--3
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+				if model == 1273833 then
+					xOffset = -0.59 --cat
+					if portrait:GetParent() and portrait:GetParent().unitframeType == "party" then
+						xOffset = -1
+					end
+				elseif model == 1505169 or model == 5143717 then
+					xOffset = 0.62 --bear
+				elseif model == 4207724 then
+					xOffset = 0.5 --dracthyr
+				elseif druidshamanfix[model] or model == 926251 then
+					xOffset = -0.39 --other bears
+					if portrait:GetParent() and portrait:GetParent().unitframeType == "party" then
+						xOffset = -1
+					end
+				elseif model == 1043712 then
+					xOffset = -1 --shaman raptor
+					if portrait:GetParent() and portrait:GetParent().unitframeType == "party" then
+						xOffset = -2.3
+					end
+				elseif catabearform[model] then
+					xOffset = 0.62 --cata bears
+				elseif portrait:GetParent() and portrait:GetParent().unitframeType == "pet" then
+					xOffset = -1 --offset the pets because they would be outside
 				end
+			end
+		elseif unit == 'target' or targetlike[unit] then
+			if not model then return end
+			if modelsRotate[model] then
+				newrotation = 291
+			elseif catabearform[model] then
+				newrotation = 270 --cata bears
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+				if model == 5091437 then
+					xOffset = 0 --druid things
+				elseif model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
+					xOffset = -0.59 --druid things
+				elseif model == 1505169 or model == 5143717 then
+					xOffset = 0.25 --bear
+				elseif dracthyrlikefix[model] then
+					xOffset = 0.6 --dracthyr and lightforged
+				elseif catabearform[model] then
+					xOffset = 0.17 --cata bears
+				end
+			end
+		end
+
+		if newrotation ~= 0 then
+			local db = portrait.db
+			if not db then return end
+			portrait:SetRotation(_G.rad(newrotation))
+			portrait:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+		else
+			--prob couldnt get model bc it was nil from PEW, so reset stuff
+			portrait:SetRotation(0)
+			if xOffset ~= 0 then
+				local db = portrait.db
+				if not db then return end
+				portrait:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+			else
+				portrait:SetViewTranslation(0, 0)
 			end
 		end
 	end
 end
-hooksecurefunc(UF, "PortraitUpdate", ElvUI_EltreumUI.PortraitFix)
 
 --handling player death
 local playerdeath = CreateFrame("FRAME")

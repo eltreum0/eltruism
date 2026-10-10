@@ -21,6 +21,7 @@ local GetTime = _G.GetTime
 local COMBATLOG_OBJECT_TYPE_PLAYER = _G.COMBATLOG_OBJECT_TYPE_PLAYER
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
 local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
+local type = _G.type
 
 --PlaySound(61850)
 --PlaySound(61851)
@@ -270,10 +271,12 @@ end
 
 --replace the leader/assist/master looter icons in frames
 local UF = E:GetModule('UnitFrames')
-function ElvUI_EltreumUI:LeaderIcon()
+function ElvUI_EltreumUI:LeaderIcon(indicator)
 	if not E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons then return end
-	local anchor = self:GetParent()
-	local frame = anchor and anchor:GetParent():GetParent()
+	if not indicator or type(indicator) ~= "table" or not indicator.GetParent then return end
+	local anchor = indicator:GetParent()
+	local frame = anchor and anchor.GetParent and anchor:GetParent()
+	frame = frame and frame.GetParent and frame:GetParent()
 	if not frame then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and frame.LeaderIndicator then
 		frame.LeaderIndicator:SetTexCoord(0,1,0,1)
@@ -309,11 +312,11 @@ function ElvUI_EltreumUI:LeaderIcon()
 		end
 	end
 end
-hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
+ElvUI_EltreumUI:SecureHook(UF,"RaidRoleUpdate", "LeaderIcon")
 
 --use new flipbook animation to recreate the blizzard resting animation
-function ElvUI_EltreumUI:RestIcon(frame)
-	if not frame then return end
+function ElvUI_EltreumUI:RestIcon(_, frame)
+	if not frame or type(frame) ~= "table" then return end
 	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticon then
 		if not frame.RestingIndicator.EltruismHook then
 			if not _G["EltruismPlayerRestLoop"] then
@@ -369,4 +372,4 @@ function ElvUI_EltreumUI:RestIcon(frame)
 		_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/10)
 	end
 end
-hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)
+ElvUI_EltreumUI:SecureHook(UF,"Configure_RestingIndicator", "RestIcon")
