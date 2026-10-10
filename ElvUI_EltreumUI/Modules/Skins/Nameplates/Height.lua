@@ -11,7 +11,7 @@ local string_match = _G.string.match
 local C_NamePlate_GetNamePlateForUnit = _G.C_NamePlate and _G.C_NamePlate.GetNamePlateForUnit
 local C_NamePlate_GetNamePlates = _G.C_NamePlate and _G.C_NamePlate.GetNamePlates
 local wipe = _G.wipe
-
+local canaccessvalue = _G.canaccessvalue
 local previousTargetPlate
 local cachedElvUIHeights = {}
 
@@ -45,7 +45,7 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 
 		if not unitInCombat and UnitThreatSituation then
 			local threat = UnitThreatSituation("player", frameunit)
-			local canAccessThreat = threat and E:CanAccessValue(threat) and E:NotSecretValue(threat)
+			local canAccessThreat = threat and canaccessvalue(threat) and E:NotSecretValue(threat)
 			if canAccessThreat and threat > 0 then
 				unitInCombat = true
 			elseif UnitCastingInfo(frameunit) then
@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 
 	if targetHeight then
 		local currentHeight = health:GetHeight()
-		local canAccessCurrentHeight = not currentHeight or (E:CanAccessValue(currentHeight) and E:NotSecretValue(currentHeight))
+		local canAccessCurrentHeight = not currentHeight or (canaccessvalue(currentHeight) and E:NotSecretValue(currentHeight))
 		if canAccessCurrentHeight then
 			if not currentHeight or mathabs(currentHeight - targetHeight) > 0.05 then
 				health:SetHeight(targetHeight)

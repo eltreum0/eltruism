@@ -66,6 +66,7 @@ local GetDodgeChance = _G.GetDodgeChance
 local UnitArmor = _G.UnitArmor
 local GetSpecializationInfo = _G.C_SpecializationInfo.GetSpecializationInfo and _G.C_SpecializationInfo.GetSpecializationInfo
 local type = _G.type
+local canaccessvalue = _G.canaccessvalue
 
 --because forever is is special (again)
 local SPEC_ID_TO_STAT_TYPE = {
@@ -174,13 +175,13 @@ local function EltruismStatsDatatextOnEnter()
 	if E.Retail then
 		local retailhaste = GetHaste()
 		local retailcrit
-		if E:CanAccessValue(GetCritChance()) then
+		if canaccessvalue(GetCritChance()) then
 			retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
 		else
 			retailcrit = GetCritChance()
 		end
 		local versdmg,versdef,maxvers
-		if E:CanAccessValue(GetCombatRatingBonus(29)) then
+		if canaccessvalue(GetCombatRatingBonus(29)) then
 			versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
 			versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
 			maxvers = mathmax(versdef,versdmg)
@@ -213,20 +214,20 @@ local function EltruismStatsDatatextOnEnter()
 		--power
 		local rangedbasepower, rangedbuff, rangednerf = UnitRangedAttackPower('player')
 		local totalranged
-		if E:CanAccessValue(rangedbasepower) then
+		if canaccessvalue(rangedbasepower) then
 			totalranged = rangedbasepower+rangedbuff+rangednerf
 		else
 			totalranged = rangedbasepower
 		end
 		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
 		local totalmelee
-		if E:CanAccessValue(rangedbasepower) then
+		if canaccessvalue(rangedbasepower) then
 			totalmelee = meleebasepower+meleebuff+meleenerf
 		else
 			totalmelee = meleebasepower
 		end
 		local spellpower
-		if E:CanAccessValue(GetSpellBonusDamage(2)) then
+		if canaccessvalue(GetSpellBonusDamage(2)) then
 			spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 		else
 			local specID = ElvUI_EltreumUI:CheckForeverSpec()
@@ -237,7 +238,7 @@ local function EltruismStatsDatatextOnEnter()
 			end
 		end
 		local spellcrit
-		if E:CanAccessValue(GetSpellCritChance(2)) then
+		if canaccessvalue(GetSpellCritChance(2)) then
 			spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
 		else
 			spellcrit = GetSpellCritChance(2)
@@ -382,7 +383,7 @@ local function EltruismStatsDatatext1(dt)
 		local finalhaste = mathmax(retailhaste,RangedHaste)
 
 		local retailcrit
-		if E:CanAccessValue(GetCritChance()) then
+		if canaccessvalue(GetCritChance()) then
 			retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
 		else
 			retailcrit = GetCritChance()
@@ -395,7 +396,7 @@ local function EltruismStatsDatatext1(dt)
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", GetHaste()).."|r" --GetCombatRatingBonus(CR_HASTE_SPELL)
 		local crit
 		local spellcrit, maxspell
-		if E:CanAccessValue(GetSpellCritChance(2)) then
+		if canaccessvalue(GetSpellCritChance(2)) then
 			spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
 			maxspell = mathmax(GetCritChance(),spellcrit)
 		else
@@ -456,21 +457,21 @@ local function EltruismStatsDatatext2(dt)
 		--power
 		local rangedbasepower, rangedbuff, rangednerf = UnitRangedAttackPower('player')
 		local totalranged
-		if E:CanAccessValue(rangedbasepower) then
+		if canaccessvalue(rangedbasepower) then
 			totalranged = rangedbasepower+rangedbuff+rangednerf
 		else
 			totalranged = rangedbasepower
 		end
 		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
 		local totalmelee
-		if E:CanAccessValue(rangedbasepower) then
+		if canaccessvalue(rangedbasepower) then
 			totalmelee = meleebasepower+meleebuff+meleenerf
 		else
 			totalmelee = meleebasepower
 		end
 
 		local spellpower
-		if E:CanAccessValue(GetSpellBonusDamage(2)) then
+		if canaccessvalue(GetSpellBonusDamage(2)) then
 			spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 		else
 			local specID = ElvUI_EltreumUI:CheckForeverSpec()
@@ -562,7 +563,7 @@ local function EltruismStatsDatatext3(dt)
 		--dodge
 		local dodgeChance = GetDodgeChance()
 		local dodge
-		if E:CanAccessValue(dodgeChance) then
+		if canaccessvalue(dodgeChance) then
 			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(dodgeChance*100) * 0.01).."%".."|r"
 		else
 			dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..E:AbbreviateNumbers(dodgeChance, 1).."%".."|r"
