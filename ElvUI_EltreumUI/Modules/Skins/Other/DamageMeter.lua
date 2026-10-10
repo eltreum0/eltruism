@@ -423,8 +423,8 @@ do
 
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.shadows then
 			if not bar.StatusBar.shadow then
-				bar.StatusBar:CreateShadow() --shadows seem tricky, they dont seem to appear due to the .Background unless they are huge
-				ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
+				bar.StatusBar:CreateShadow(2) --shadows seem tricky, they dont seem to appear due to the .Background unless they are huge
+				--ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
 				--bar.StatusBar.shadow:SetOutside(bar.StatusBar.Background)
 			end
 		end
