@@ -2023,8 +2023,23 @@ local raidFrames ={
 
 function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	if not button or not container then return end
-	if button.isAuraBar then return end
-	if container.isAuraBar then return end
+	if button.isAuraBar or container.isAuraBar then return end
+
+	local bordersDB = E.db.ElvUI_EltreumUI.borders
+	local bordersEnabled = bordersDB and bordersDB.borders
+	if not bordersEnabled then
+		local auraborder
+		if E.Modern then
+			auraborder = button.EltruismAuraBorder
+		else
+			local btnName = button.GetName and button:GetName()
+			if btnName then auraborder = _G["EltruismAuraBorder"..btnName] end
+		end
+		if auraborder then
+			auraborder:Hide()
+		end
+		return
+	end
 
 	local ufType = container.unitframeType or (container.parent and container.parent.unitframeType)
 	if not ufType and container.GetParent then
@@ -2036,9 +2051,6 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	local isNP = container.isNameplate or (ufType == "nameplate") or false
 	local isUF = container.isUnitframe or (ufType and not isNP) or false
 	local isGeneral = not isUF and not isNP -- Minimap Auras
-
-
-	local bordersEnabled = E.db.ElvUI_EltreumUI.borders.borders
 	local shouldEnable = false
 
 	if bordersEnabled then
