@@ -231,8 +231,6 @@ do
 				icon:SetSize(bar:GetWidth()*1.5, bar:GetWidth()*1.5) --icon size
 				bar:Set("bigwigs:restoreicon", tex)
 
-
-
 				--set icon to the statusbar
 				icon:ClearAllPoints()
 				icon:SetPoint("CENTER", bar.candyBarBar:GetStatusBarTexture(), "TOP")

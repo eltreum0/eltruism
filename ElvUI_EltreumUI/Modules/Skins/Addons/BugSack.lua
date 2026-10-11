@@ -43,7 +43,6 @@ function ElvUI_EltreumUI:EltruismBugSack()
 				_G["BugSackTabLast"]:ClearAllPoints()
 				_G["BugSackTabLast"]:Point('RIGHT', _G["BugSackTabSession"], 'LEFT', 5, 0)
 
-
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					local frames = {
 						_G["BugSackFrame"],

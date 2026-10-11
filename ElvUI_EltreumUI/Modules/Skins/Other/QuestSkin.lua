@@ -246,7 +246,6 @@ function ElvUI_EltreumUI:SkinQuests()
 
 	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
 
-
 		--option to change the quest scale
 		if _G["QuestFrame"] then
 			_G["QuestFrame"]:HookScript("OnShow", function()

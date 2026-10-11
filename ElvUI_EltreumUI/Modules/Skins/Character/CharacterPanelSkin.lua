@@ -1630,7 +1630,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							local a,b,c,d,e = _G.PetModelFrame:GetPoint()
 							print(a,b:GetName(),c,d,e)
 
-
 							--_G.PetModelFrame:ClearAllPoints()
 							--_G.PetModelFrame:SetPoint('TOP', _G.CharacterFrameTitleText, 'BOTTOM', 0, -20)
 							--_G.PetModelFrame:SetSize(320,383) --from GetSize()
@@ -1745,7 +1744,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
 				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-
 
 				if _G.CharacterFrameTitleText then
 					CharacterFrame.EltruismText5:SetPoint("BOTTOM", _G.CharacterFrameTitleText, "BOTTOM", 0, -20)
@@ -3138,7 +3136,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBg:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
 						end)
 					end
-
 
 					local classcolorinspect = E:ClassColor(englishClass, true)
 

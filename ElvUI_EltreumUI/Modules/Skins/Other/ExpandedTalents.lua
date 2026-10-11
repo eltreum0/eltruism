@@ -260,7 +260,6 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						end
 					end
 
-
 					_G.PlayerTalentFrame:HookScript("OnShow", function()
 						ClassicTalent()
 					end)

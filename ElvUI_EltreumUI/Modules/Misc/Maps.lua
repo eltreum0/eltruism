@@ -308,7 +308,6 @@ if E.Modern then
 				end
 				local canSet = C_Map.CanSetUserWaypointOnMap(C_Map.GetBestMapForUnit("player"))
 
-
 				--neighborhoods dont let you set waypoints
 				local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 				if instanceType == "neighborhood" then

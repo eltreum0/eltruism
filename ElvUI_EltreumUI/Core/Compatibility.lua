@@ -361,7 +361,6 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools("Ace3", L["Widget"].." "..L["Slider"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.slider.enable")
 	CheckWindTools("Ace3", L["Widget"].." "..L["CheckBox"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.checkBox.enable")
 
-
 	--CheckMerathilisUI("Ace3", L["Widget"].." "..L["Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.button.enable")
 	--CheckMerathilisUI("Ace3", L["Widget"].." ".._G.KEY_TAB, "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.tab.enable")
 	--CheckMerathilisUI("Ace3", L["Widget"].." "..L["Tree Group Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.treeGroupButton.enable")

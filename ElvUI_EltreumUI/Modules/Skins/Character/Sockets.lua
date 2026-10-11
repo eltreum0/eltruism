@@ -1537,7 +1537,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		end
 		self:_Refresh()
 
-
 		--[[self.refreshTimer0 = C_Timer.NewTimer(0.1, function()
 			self:_Refresh()
 		end)

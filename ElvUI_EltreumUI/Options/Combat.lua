@@ -53,10 +53,6 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 	ElvUI_EltreumUI.Options.args.combat.args.combat.args.description11 = E.Libs.ACH:Description(L["Click Casting Button"], 31, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Modern)
 	ElvUI_EltreumUI.Options.args.combat.args.combat.args.ClickCastingShortcut = E.Libs.ACH:Toggle(E.NewSign..L["Add a shortcut to open the Click Casting menu on the Spellbook"], nil, 32, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.ClickCastingShortcut end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ClickCastingShortcut = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Modern)
 
-
-
-
-
 	ElvUI_EltreumUI.Options.args.combat.args.combatmusic = E.Libs.ACH:Group(L["Combat Music"], L["Play custom music during fights and boss fights"], 2)
 	ElvUI_EltreumUI.Options.args.combat.args.combatmusic.args.enable = E.Libs.ACH:Toggle(L["Enable Combat Music"], L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.enable end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end)
 	ElvUI_EltreumUI.Options.args.combat.args.combatmusic.args.disableinstance = E.Libs.ACH:Toggle(L["Disable Combat Music in Instances"], L["Disable music during combat in instances"], 5, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end)

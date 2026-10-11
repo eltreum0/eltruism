@@ -178,13 +178,10 @@ function ElvUI_EltreumUI:BattleResOnUpdate(elapsed)
 	end
 end
 
-
 function ElvUI_EltreumUI:BattleRes()
 	if E.Modern and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		local DifficultyID = select(3, GetInstanceInfo())
-
-
 
 		if workingIDs[DifficultyID] then
 			difficultyok = true

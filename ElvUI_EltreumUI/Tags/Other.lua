@@ -390,7 +390,6 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		end)
 		E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
 
-
 		--emote when low on health
 		local hpspam = false
 		E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,args)

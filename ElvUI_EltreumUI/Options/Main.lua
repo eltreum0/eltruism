@@ -307,8 +307,6 @@ Sockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is license
 The Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD
 ]], 10, "small", nil, nil, nil, nil, "full")
 
-
-
 	--[[
 	E.Libs.ACH:Header(name, order, get, set, hidden)
 	E.Libs.ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)

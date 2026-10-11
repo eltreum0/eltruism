@@ -57,7 +57,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["cooldown"]["unitframe"]["fontOutline"] = "THICKOUTLINE"
 	E.db["cooldown"]["zonebutton"]["fontOutline"] = "THICKOUTLINE"
 
-
 	E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"

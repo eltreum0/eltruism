@@ -558,10 +558,7 @@ do
 							SkinDamageMeter(window.MinimizeContainer.LocalPlayerEntry)
 						end
 					end)
-
 					_G.DamageMeter.EltruismHook = true
-
-
 
 					--if no refresh then turns out the specicons are nil because it seems they are loaded later
 					--because of blizzard being blizzard we need to run the refresh more than once as it turns out

@@ -1077,9 +1077,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["targettarget"]["buffs"]["sourceText"]["font"] = "Kimberley"
 	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["sourceText"]["font"] = "Kimberley"
 
-
-
-
 	E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 	E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
 	E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
@@ -1146,7 +1143,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["databars"]["colors"]["factionColors"][9]["g"] = 0
 	E.db["databars"]["colors"]["factionColors"][9]["r"] = 0.44313725490196
 	E.db["databars"]["colors"]["useCustomFactionColors"] = true
-
 
 	E.db["databars"]["customTexture"] = true
 
