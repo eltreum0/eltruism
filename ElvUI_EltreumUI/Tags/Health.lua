@@ -359,7 +359,7 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		end
 		local value
 		if E.Modern then
-			value = UnitHealth(unit)
+			value = AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
 		else
 			value = E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		end
