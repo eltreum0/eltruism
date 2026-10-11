@@ -82,7 +82,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	local db = NP.db.threat
 	local EltruismDB = E.db.ElvUI_EltreumUI
 
-	if not (status and db.enable and db.useThreatColor and EltruismDB.unitframes.gradientmode.npenable) then
+	if not (status and db.enable and db.useThreatColor and EltruismDB.unitframes.gradientmode.npenable and not UnitIsTapDenied(frame.__unit)) then
 		if EltruismDB and EltruismDB.unitframes and EltruismDB.unitframes.gradientmode and EltruismDB.unitframes.gradientmode.npenable then
 			ElvUI_EltreumUI.GradientNameplates(frame)
 		end
