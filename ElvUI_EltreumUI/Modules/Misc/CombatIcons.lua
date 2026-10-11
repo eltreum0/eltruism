@@ -8,6 +8,7 @@ local UnitClassification = _G.UnitClassification
 local UnitGUID = _G.UnitGUID
 local select = _G.select
 local strsplit = _G.strsplit
+--local UnitPowerType = _G.UnitPowerType
 
 local playericons = {
 	["MAGE"] = "Eltruism21",
@@ -56,6 +57,10 @@ local ranged = {
 	["WARLOCK"] = true,
 	["EVOKER"] = true,
 }
+--[[local rangedPowers = {
+	["MANA"] = true,
+	["FOCUS"] = true,
+}]]
 
 --change target combat icon based on its class
 local UF = E:GetModule('UnitFrames')
@@ -66,9 +71,20 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 			if _G["ElvUF_Target"] and _G["ElvUF_Target"].CombatIndicator then
 				if UnitExists("target") then
 					local _, targetclass = UnitClass("target")
-					if not E:NotSecretValue(targetclass) then --unitclass can be secret so use elvui's setting
-						UF:Configure_CombatIndicator(_G["ElvUF_Target"])
-						return
+					if not E:NotSecretValue(targetclass) then
+						--[[local _, powerTypeToken = UnitPowerType("target") --secret class, try power
+						if powerTypeToken and not E:NotSecretValue(powerTypeToken) then --if power isnt secret, use it
+							if rangedPowers[powerTypeToken] then --ranged
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons["Eltruism15"])
+								_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+							else --melee
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons["Eltruism14"])
+								_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+							end
+						else]] --all secret so use elvui's setting
+							UF:Configure_CombatIndicator(_G["ElvUF_Target"])
+							return
+						--end
 					end
 					if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
 						local texturetarget = targeticons[targetclass]
@@ -134,8 +150,10 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 		if E.db.unitframe.units.player.CombatIcon.enable then
 			if _G["ElvUF_Player"] and _G["ElvUF_Player"].CombatIndicator then
 				local textureplayer = playericons[E.myclass]
+				E.db.unitframe.units.player.CombatIcon.texture = textureplayer
 				_G["ElvUF_Player"].CombatIndicator:SetTexture(E.Media.CombatIcons[textureplayer])
 			end
 		end
 	end
 end
+ElvUI_EltreumUI:SecureHook(UF, "Configure_CombatIndicator", "TargetCombatIconClass")
