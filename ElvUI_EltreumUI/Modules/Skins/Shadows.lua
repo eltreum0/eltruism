@@ -7,7 +7,8 @@ local valuecolors = E.myClassColor
 local _G = _G
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local IsAddOnLoaded = (_G.C_AddOns and _G.C_AddOns.IsAddOnLoaded) or _G.IsAddOnLoaded
+local isMasqueLoaded = (IsAddOnLoaded and IsAddOnLoaded("Masque")) or false
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local C_ChatBubbles = _G.C_ChatBubbles
@@ -34,10 +35,14 @@ end]]
 --simple function to set shadow color
 function ElvUI_EltreumUI:ShadowColor(shadow)
 	if shadow then
-		if E.db.ElvUI_EltreumUI.skins.shadow.classcolor then
-			shadow:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
-		elseif E.db.ElvUI_EltreumUI.skins.shadow.customcolor then
-			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a)
+		local eltreumDB = E.db.ElvUI_EltreumUI
+		local shadowDB = eltreumDB and eltreumDB.skins and eltreumDB.skins.shadow
+		if shadowDB then
+			if shadowDB.classcolor then
+				shadow:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+			elseif shadowDB.customcolor then
+				shadow:SetBackdropBorderColor(shadowDB.r, shadowDB.g, shadowDB.b, shadowDB.a)
+			end
 		end
 		shadow:SetFrameLevel(1)
 		shadow:SetFrameStrata("LOW")
@@ -4457,64 +4462,99 @@ end
 
 function ElvUI_EltreumUI:Construct_AuraIcon(_, button)
 	if not button or type(button) ~= "table" then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-		if not button.shadow then
-			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(button.shadow)
-		end
-	end
+	if button.shadow then return end
+	if isMasqueLoaded then return end
+
+	local eltreumDB = E.db.ElvUI_EltreumUI
+	if not eltreumDB then return end
+	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+	if not shadowDB or not shadowDB.enable or not shadowDB.npauras or shadowDB.universalshadows then return end
+	local bordersDB = eltreumDB.borders
+	if bordersDB and (bordersDB.universalborders or (bordersDB.borders and bordersDB.aurabordernp)) then return end
+
+	if not E:NotSecretValue(button) then return end
+	if not E:NotSecretValue(button:GetFrameStrata()) then return end
+
+	button:CreateShadow(shadowDB.length)
+	ElvUI_EltreumUI:ShadowColor(button.shadow)
 end
 ElvUI_EltreumUI:SecureHook(NP, 'Construct_AuraIcon', 'Construct_AuraIcon') --nameplate buffs/debuffs shadows
 
-function ElvUI_EltreumUI:AuraShadows(button,button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
+function ElvUI_EltreumUI:AuraShadows(button, button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
 	if not button then return end
-	if button2 and E:NotSecretValue(button2) then --likely is container
-		if not E:NotSecretValue(button2:GetFrameStrata()) then return end
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-			if button2 and not button2.shadow then
-				button2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(button2.shadow)
-			end
-			-- with the fixed variables i can check for being an aurabar
-			if button.isAuraBar and button2 then
-				if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then
-					if button2.shadow and button2.statusbar then
-						button2.shadow:ClearAllPoints()
-						button2.shadow:SetPoint("TOPLEFT", button2.statusbar, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-						button2.shadow:SetPoint("BOTTOMRIGHT", button2.statusbar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+
+	local target = button2 or button
+	if not target or type(target) ~= "table" then return end
+
+	local isBar = (button2 and button.isAuraBar) or target.isAuraBar
+	if target.shadow and not isBar then return end
+	if isMasqueLoaded then return end
+
+	local eltreumDB = E.db.ElvUI_EltreumUI
+	if not eltreumDB then return end
+
+	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+	if not shadowDB or not shadowDB.enable or shadowDB.universalshadows then return end
+
+	local bordersDB = eltreumDB.borders
+	if bordersDB and bordersDB.universalborders then return end
+
+	local container = (button2 and button) or target.container or (target.GetParent and target:GetParent())
+	local isNP = (container and (container.isNameplate or (container.parent and (container.parent.nameplateType or container.parent.unitframeType == "nameplate")) or (NP and NP.AuraContainersCreated and NP.AuraContainersCreated[container]))) or target.isNameplate
+	local isUF = (container and (container.isUnitframe or (container.parent and container.parent.unitframeType and container.parent.unitframeType ~= "nameplate") or (container.unitframeType and container.unitframeType ~= "nameplate"))) or target.isUnitframe
+
+	local shadowEnabled
+	if isNP then
+		shadowEnabled = shadowDB.npauras and not (bordersDB and bordersDB.borders and bordersDB.aurabordernp)
+	elseif isUF then
+		shadowEnabled = shadowDB.ufaura and not (bordersDB and bordersDB.borders and bordersDB.auraborderuf)
+	else -- Minimap Auras or Aurabars
+		shadowEnabled = shadowDB.aura and not (bordersDB and bordersDB.borders and bordersDB.auraborder)
+	end
+
+	if not shadowEnabled then return end
+
+	if not E:NotSecretValue(target) then return end
+	if not E:NotSecretValue(target:GetFrameStrata()) then return end
+
+	if not target.shadow then
+		target:CreateShadow(shadowDB.length)
+		ElvUI_EltreumUI:ShadowColor(target.shadow)
+	end
+
+	-- with the fixed variables i can check for being an aurabar
+	if isBar and target.shadow then
+		local barContainer = (button2 and button) or container
+		if barContainer and barContainer.isAuraBar then
+			if eltreumDB.unitframes and eltreumDB.unitframes.thinmodeaurabars then
+				if target.statusbar then
+					target.shadow:ClearAllPoints()
+					target.shadow:SetPoint("TOPLEFT", target.statusbar, "TOPLEFT", -shadowDB.length, shadowDB.length)
+					target.shadow:SetPoint("BOTTOMRIGHT", target.statusbar, "BOTTOMRIGHT", shadowDB.length, -shadowDB.length)
+				end
+				if target.backdrop then
+					if not target.iconShadow then
+						target.iconShadow = target:CreateShadow(shadowDB.length, true)
+						ElvUI_EltreumUI:ShadowColor(target.iconShadow)
 					end
-					if button2.backdrop then
-						if not button2.iconShadow then
-							button2.iconShadow = button2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length, true)
-							ElvUI_EltreumUI:ShadowColor(button2.iconShadow)
-						end
-						if button2.iconShadow then
-							local level = button2:GetFrameLevel()
-							button2.iconShadow:SetFrameLevel(level > 1 and (level - 1) or 1)
-							button2.iconShadow:Show()
-							button2.iconShadow:ClearAllPoints()
-							button2.iconShadow:SetPoint("TOPLEFT", button2.backdrop, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-							button2.iconShadow:SetPoint("BOTTOMRIGHT", button2.backdrop, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-						end
-					end
-				else
-					if button2.iconShadow then
-						button2.iconShadow:Hide()
-					end
-					if button2.shadow and button2.backdrop and button2.statusbar then
-						button2.shadow:ClearAllPoints()
-						button2.shadow:SetPoint("TOPLEFT", button2.backdrop, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-						button2.shadow:SetPoint("BOTTOMRIGHT", button2.statusbar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if target.iconShadow then
+						local level = target:GetFrameLevel()
+						target.iconShadow:SetFrameLevel(level > 1 and (level - 1) or 1)
+						target.iconShadow:Show()
+						target.iconShadow:ClearAllPoints()
+						target.iconShadow:SetPoint("TOPLEFT", target.backdrop, "TOPLEFT", -shadowDB.length, shadowDB.length)
+						target.iconShadow:SetPoint("BOTTOMRIGHT", target.backdrop, "BOTTOMRIGHT", shadowDB.length, -shadowDB.length)
 					end
 				end
-			end
-		end
-	elseif E:NotSecretValue(button) then
-		if not E:NotSecretValue(button:GetFrameStrata()) then return end
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-			if button and not button.shadow then
-				button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(button.shadow)
+			else
+				if target.iconShadow then
+					target.iconShadow:Hide()
+				end
+				if target.backdrop and target.statusbar then
+					target.shadow:ClearAllPoints()
+					target.shadow:SetPoint("TOPLEFT", target.backdrop, "TOPLEFT", -shadowDB.length, shadowDB.length)
+					target.shadow:SetPoint("BOTTOMRIGHT", target.statusbar, "BOTTOMRIGHT", shadowDB.length, -shadowDB.length)
+				end
 			end
 		end
 	end
@@ -4526,10 +4566,14 @@ if E.Modern then
 			button = container
 			container = button:GetParent()
 		end
-		ElvUI_EltreumUI:AuraShadows(container, button)
+
+		local isAuraBar = type(container) == "table" and container.isAuraBar
+		if isAuraBar or not (button and button.shadow) then
+			ElvUI_EltreumUI:AuraShadows(container, button)
+		end
 		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 
-		if type(container) == "table" and container.isAuraBar and type(button) == "table" and button.statusbar then
+		if isAuraBar and type(button) == "table" and button.statusbar then
 			ElvUI_EltreumUI:AuraBarRetail(container, button)
 		end
 	end
@@ -4537,6 +4581,16 @@ if E.Modern then
 
 	function ElvUI_EltreumUI:Auras_CreateButton(_, button)
 		if not button or type(button) ~= "table" then return end
+		if button.shadow then return end
+		if isMasqueLoaded then return end
+
+		local eltreumDB = E.db.ElvUI_EltreumUI
+		if not eltreumDB then return end
+		local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+		if not shadowDB or not shadowDB.enable or shadowDB.universalshadows then return end
+		local bordersDB = eltreumDB.borders
+		if bordersDB and bordersDB.universalborders then return end
+
 		local container = button.container or (button.GetParent and button:GetParent())
 		ElvUI_EltreumUI:AuraShadows(container, button)
 	end
@@ -4552,12 +4606,21 @@ end
 
 function ElvUI_EltreumUI:UFAuraShadows(_, button)
 	if not button or type(button) ~= "table" then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf) and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-		if not button.shadow then
-			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(button.shadow)
-		end
-	end
+	if button.shadow then return end
+	if isMasqueLoaded then return end
+
+	local eltreumDB = E.db.ElvUI_EltreumUI
+	if not eltreumDB then return end
+	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+	if not shadowDB or not shadowDB.enable or not shadowDB.ufaura or shadowDB.universalshadows then return end
+	local bordersDB = eltreumDB.borders
+	if bordersDB and (bordersDB.universalborders or (bordersDB.borders and bordersDB.auraborderuf)) then return end
+
+	if not E:NotSecretValue(button) then return end
+	if not E:NotSecretValue(button:GetFrameStrata()) then return end
+
+	button:CreateShadow(shadowDB.length)
+	ElvUI_EltreumUI:ShadowColor(button.shadow)
 end
 ElvUI_EltreumUI:SecureHook(UF, 'Construct_AuraIcon', 'UFAuraShadows') --uf aura shadows
 
