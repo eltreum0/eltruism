@@ -55,7 +55,9 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 					else
 						if gm.castbarreactioninterruptable then
 							local reactionKey
-							if reactionUnit then
+							if ElvUI_EltreumUI.GetNameplateTargetType then
+								reactionKey = ElvUI_EltreumUI:GetNameplateTargetType(castbar.__owner, unitActual)
+							elseif reactionUnit then
 								if reactionUnit >= 5 then
 									reactionKey = "NPCFRIENDLY"
 								elseif reactionUnit == 4 then
