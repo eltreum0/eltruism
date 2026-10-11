@@ -1179,9 +1179,10 @@ function ElvUI_EltreumUI:GetTargetUnit(unit)
 	return targetUnitCache[unit]
 end
 
+local isModern = E.Modern
 local canaccessvalue = _G.canaccessvalue
 function ElvUI_EltreumUI:IsThisASafeSecret(value, hasValue, isBG)
-	if E.Modern then
+	if isModern then
 		if hasValue then
 			return canaccessvalue(value) --new api to check if value is secret
 		elseif isBG then
