@@ -454,7 +454,7 @@ L["Each Button in the Quest Item Bar will appear only if the cursor is over it"]
 L["Edge"] = "Rahmen"
 L["Effect"] = "Effekt"
 L["Elite Color"] = "Elite Farbe"
-L["Eltruism Ammo"] = "Eltruism Rüstung"
+L["Eltruism Ammo"] = "Eltruism Munition"
 L["Eltruism Boss Buffs"] = "Eltruism Boss Stärkungszauber"
 L["Eltruism Boss Debuffs"] = "Eltruism Boss Schwächungszauber"
 L["Eltruism Config"] = true -- no need to translate
