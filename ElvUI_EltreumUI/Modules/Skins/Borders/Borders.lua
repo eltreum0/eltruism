@@ -2218,6 +2218,7 @@ end
 
 local ttx,tty,tthpy
 function ElvUI_EltreumUI:TooltipBorder()
+	if E.db.ElvUI_EltreumUI.borders.universalborders then return end
 	if not _G["EltruismTooltipBorder"] then
 		tooltipborder = CreateFrame("Frame", "EltruismTooltipBorder", _G.GameTooltip, BackdropTemplateMixin and "BackdropTemplate")
 	else
