@@ -263,22 +263,27 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	if not isTransparent then
 		if UFdb.darkmode then
 			local defaultTex = (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar)) or (UF.db.statusbar and E.LSM:Fetch("statusbar", UF.db.statusbar))
-			if barTex and defaultTex then
+			if barTex and defaultTex and barTex.EltruismLastTex ~= defaultTex then
 				barTex:SetTexture(defaultTex)
+				barTex.EltruismLastTex = defaultTex
 			end
-			if backdropTex and healthTexture then
+			if backdropTex and healthTexture and backdropTex.EltruismLastTex ~= healthTexture then
 				backdropTex:SetTexture(healthTexture)
+				backdropTex.EltruismLastTex = healthTexture
 			end
 		elseif UFdb.lightmode then
-			if barTex and healthTexture then
+			if barTex and healthTexture and barTex.EltruismLastTex ~= healthTexture then
 				barTex:SetTexture(healthTexture)
+				barTex.EltruismLastTex = healthTexture
 			end
-			if backdropTex and backdropTexture then
+			if backdropTex and backdropTexture and backdropTex.EltruismLastTex ~= backdropTexture then
 				backdropTex:SetTexture(backdropTexture)
+				backdropTex.EltruismLastTex = backdropTexture
 			end
 		end
-		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize and not backdropTex.EltruismStaticSizeSet then
 			backdropTex:SetAllPoints(button.Health)
+			backdropTex.EltruismStaticSizeSet = true
 		end
 	else
 		if UFdb.darkmode then
