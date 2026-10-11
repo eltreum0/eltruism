@@ -49,14 +49,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not ElvDB.EltruismDisabledAddOns then
 		ElvDB.EltruismDisabledAddOns = {}
 	end
-	if E.db.ElvUI_EltreumUI.deepLwarning then
-		if E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
-			ElvUI_EltreumUI:Print("La traducción al español es de DeepL y está en pruebas, los comentarios son bienvenidos.\n Escribe /eltruism translate para desactivar este mensaje")
-		elseif E.global.general.locale == "frFR" then
-			ElvUI_EltreumUI:Print("La traduction française provient de DeepL et est en cours de test, les commentaires sont les bienvenus.\n Tapez /eltruism translate pour désactiver ce message.")
-		end
-	end
-
 	if E.Modern then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
 		E.private.skins.blizzard.bgscore = false
 	end

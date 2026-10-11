@@ -4,7 +4,6 @@ local E, _, _, P = unpack(ElvUI)
 P.ElvUI_EltreumUI = {
 
 	dev = false,
-	deepLwarning = true,
 	autoupdate = false,
 	encountercheck = false,
 	disabledmodels = false,
