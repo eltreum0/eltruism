@@ -796,6 +796,7 @@ local frametypes = {
 }
 
 function ElvUI_EltreumUI:SetTemplateSkin()
+	if self.SetTemplateSkinHooked then return end
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate or E.db.ElvUI_EltreumUI.skins.ace3.enable or E.db.ElvUI_EltreumUI.skins.shadow.enable or E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not E.db.ElvUI_EltreumUI.borders.classcolor then --set the variable here so its not spamming
 			colorsborders = {
@@ -808,6 +809,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			local dummyFrame = CreateFrame(objtype)
 			SkinFrame(dummyFrame)
 		end
+		self.SetTemplateSkinHooked = true
 		E:UpdateAll()
 
 		E:Delay(10, function()
