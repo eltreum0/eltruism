@@ -187,6 +187,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customTimeFont"]["fontStyle"] = fontStyle
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customTextFont"]["fontStyle"] = fontStyle
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["countFontOutline"] = fontStyle
+	E.db["unitframe"]["units"]["player"]["aurabar"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["player"]["auras"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["player"]["auras"]["sourceText"]["fontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["player"]["buffs"]["sourceText"]["fontOutline"] = fontStyle
@@ -196,6 +197,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["unitframe"]["units"]["player"]["buffIndicator"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["player"]["buffs"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["player"]["debuffs"]["countFontOutline"] = fontStyle
+	E.db["unitframe"]["units"]["target"]["aurabar"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["target"]["auras"]["countFontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["target"]["auras"]["sourceText"]["fontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["target"]["buffs"]["sourceText"]["fontOutline"] = fontStyle

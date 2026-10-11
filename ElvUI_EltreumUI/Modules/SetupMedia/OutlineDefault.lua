@@ -28,6 +28,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["player"]["aurabar"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	if E.Modern then
@@ -111,6 +112,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["target"]["aurabar"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	--E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"

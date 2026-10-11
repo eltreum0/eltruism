@@ -232,6 +232,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["unitframe"]["units"]["party"]["castbar"]["customTimeFont"]["font"] = fontvalue
 	E.db["unitframe"]["units"]["party"]["buffIndicator"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["buffIndicator"]["countFont"] = fontvalue
+	E.db["unitframe"]["units"]["player"]["aurabar"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["player"]["auras"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["player"]["auras"]["sourceText"]["font"] = fontvalue
 	E.db["unitframe"]["units"]["player"]["buffs"]["sourceText"]["font"] = fontvalue
@@ -273,6 +274,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["font"] = fontvalue
 	E.db["unitframe"]["units"]["tank"]["buffIndicator"]["countFont"] = fontvalue
+	E.db["unitframe"]["units"]["target"]["aurabar"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["target"]["auras"]["countFont"] = fontvalue
 	E.db["unitframe"]["units"]["target"]["auras"]["sourceText"]["font"] = fontvalue
 	E.db["unitframe"]["units"]["target"]["buffs"]["sourceText"]["font"] = fontvalue
