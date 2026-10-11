@@ -388,7 +388,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 
 			--set gradient if enabled
 			if powertype and npGradient then
-				local orient = gradientDB.orientationpower
+				local orient = gradientDB.orientationpower or "HORIZONTAL"
 				local custom = gradientDB.enablepowercustom
 				local gradKey = powertype .. orient .. (custom and "1" or "0")
 				if EltreumPowerBar.EltruismLastPowerGradKey ~= gradKey then
