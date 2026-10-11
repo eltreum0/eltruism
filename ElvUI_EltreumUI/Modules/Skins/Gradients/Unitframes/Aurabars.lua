@@ -536,8 +536,8 @@ else
 
 	local retailAuraEventFrame = _G.CreateFrame("Frame")
 	retailAuraEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-	retailAuraEventFrame:SetScript("OnEvent", function(self, event)
+	retailAuraEventFrame:SetScript("OnEvent", function(_, event)
 		HookAuraContainerUtil()
-		self:UnregisterEvent(event)
+		retailAuraEventFrame:UnregisterEvent(event)
 	end)
 end
