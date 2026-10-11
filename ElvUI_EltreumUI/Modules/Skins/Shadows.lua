@@ -4315,16 +4315,20 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 				if isPlayer then
 					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
 				else
-					local reaction = _G.UnitReaction(nameplate.__unit, "player")
 					local targettype
-					if reaction and reaction >= 5 then
-						targettype = "NPCFRIENDLY"
-					elseif reaction and reaction == 4 then
-						targettype = "NPCNEUTRAL"
-					elseif reaction and reaction == 3 then
-						targettype = "NPCUNFRIENDLY"
-					elseif reaction and reaction <= 2 then
-						targettype = "NPCHOSTILE"
+					if ElvUI_EltreumUI.GetNameplateTargetType then
+						targettype = ElvUI_EltreumUI:GetNameplateTargetType(nameplate, nameplate.__unit)
+					else
+						local reaction = _G.UnitReaction(nameplate.__unit, "player")
+						if reaction and reaction >= 5 then
+							targettype = "NPCFRIENDLY"
+						elseif reaction and reaction == 4 then
+							targettype = "NPCNEUTRAL"
+						elseif reaction and reaction == 3 then
+							targettype = "NPCUNFRIENDLY"
+						elseif reaction and reaction <= 2 then
+							targettype = "NPCHOSTILE"
+						end
 					end
 					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
 				end

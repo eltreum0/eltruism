@@ -6,6 +6,51 @@ local hooksecurefunc = _G.hooksecurefunc
 local UnitIsGhost = _G.UnitIsGhost
 local UnitIsFeignDeath = _G.UnitIsFeignDeath
 local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
+local UnitExists = _G.UnitExists
+local UnitHealth = _G.UnitHealth
+
+local function IsUnitDeadHelper(unit)
+	if not unit or not UnitExists(unit) then return false end
+	if UnitIsFeignDeath(unit) then return false end
+	if UnitIsDead(unit) or UnitIsGhost(unit) or UnitIsDeadOrGhost(unit) then return true end
+	local health = UnitHealth(unit)
+	if health and E:NotSecretValue(health) and health <= 0 then return true end
+	return false
+end
+ElvUI_EltreumUI.IsUnitDeadHelper = IsUnitDeadHelper
+
+local function UpdateUnitPortraitDead(frame, unit)
+	if not frame or not E.db.ElvUI_EltreumUI.unitframes.portraitdead then return end
+	local u = unit or frame.__unit or frame.unit
+	if not u then return end
+
+	local isDead = IsUnitDeadHelper(u)
+	local portrait = frame.Portrait3D or (frame.Portrait and frame.Portrait.playerModel and frame.Portrait)
+	if portrait and portrait.SetPaused and portrait.SetDesaturation then
+		if isDead then
+			portrait:SetPaused(true)
+			portrait:SetDesaturation(1)
+		else
+			portrait:SetPaused(false)
+			portrait:SetDesaturation(0)
+		end
+	elseif frame.Portrait then
+		if frame.Portrait.SetDesaturated then
+			frame.Portrait:SetDesaturated(isDead)
+		elseif frame.Portrait.SetDesaturation then
+			frame.Portrait:SetDesaturation(isDead and 1 or 0)
+		end
+	end
+
+	if frame.EltruismPortrait and frame.EltruismPortrait.portrait then
+		if frame.EltruismPortrait.portrait.SetDesaturated then
+			frame.EltruismPortrait.portrait:SetDesaturated(isDead)
+		elseif frame.EltruismPortrait.portrait.SetDesaturation then
+			frame.EltruismPortrait.portrait:SetDesaturation(isDead and 1 or 0)
+		end
+	end
+end
+ElvUI_EltreumUI.UpdateUnitPortraitDead = UpdateUnitPortraitDead
 
 local druidshamanfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",
@@ -531,7 +576,7 @@ function ElvUI_EltreumUI:PortraitFix(portrait, unit)
 
 		--pause if dead or ghost
 		if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
-			if UnitIsDeadOrGhost(unit) and not UnitIsFeignDeath(unit) then
+			if IsUnitDeadHelper(unit) then
 				portrait:SetPaused(true)
 				portrait:SetDesaturation(1)
 			else
@@ -620,31 +665,98 @@ function ElvUI_EltreumUI:PortraitFix(portrait, unit)
 	end
 end
 
---handling player death
-local playerdeath = CreateFrame("FRAME")
-playerdeath:RegisterEvent("PLAYER_DEAD")
-playerdeath:RegisterEvent("PLAYER_UNGHOST")
-playerdeath:RegisterEvent("PLAYER_ALIVE")
-playerdeath:RegisterUnitEvent("UNIT_FLAGS","player")
-local function DeathPortraitUpdate()
-	if UnitIsDead("player") or UnitIsGhost("player") then
-		_G["ElvUF_Player"].Portrait3D:SetPaused(true)
-		_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
-	else
-		_G["ElvUF_Player"].Portrait3D:SetPaused(false)
-		_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
+--handling unit death (player, party/followers, target, focus, boss)
+local singleFrames = {
+	player = "ElvUF_Player",
+	target = "ElvUF_Target",
+	focus = "ElvUF_Focus",
+	pet = "ElvUF_Pet",
+	targettarget = "ElvUF_TargetTarget",
+	focustarget = "ElvUF_FocusTarget",
+}
+
+local partyUnits = {
+	party1 = true,
+	party2 = true,
+	party3 = true,
+	party4 = true,
+	party5 = true,
+}
+
+local unitdeath = CreateFrame("FRAME")
+unitdeath:RegisterEvent("PLAYER_DEAD")
+unitdeath:RegisterEvent("PLAYER_UNGHOST")
+unitdeath:RegisterEvent("PLAYER_ALIVE")
+unitdeath:RegisterEvent("PLAYER_TARGET_CHANGED")
+unitdeath:RegisterEvent("PLAYER_FOCUS_CHANGED")
+unitdeath:RegisterEvent("PARTY_MEMBER_DISABLE")
+unitdeath:RegisterEvent("PARTY_MEMBER_ENABLE")
+unitdeath:RegisterEvent("GROUP_ROSTER_UPDATE")
+unitdeath:RegisterUnitEvent("UNIT_FLAGS","player")
+--unitdeath:RegisterEvent("UNIT_HEALTH")
+
+local function DeathEventDispatch(_, event, unit)
+	if not E.private.unitframe.enable or not E.db.ElvUI_EltreumUI.unitframes.portraitfix or not E.db.ElvUI_EltreumUI.unitframes.portraitdead then return end
+
+	if event == "PLAYER_DEAD" or event == "PLAYER_UNGHOST" or event == "PLAYER_ALIVE" then
+		if _G["ElvUF_Player"] then
+			UpdateUnitPortraitDead(_G["ElvUF_Player"], "player")
+			E:Delay(0, function() UpdateUnitPortraitDead(_G["ElvUF_Player"], "player") end)
+		end
+		return
+	elseif event == "PLAYER_TARGET_CHANGED" then
+		if _G["ElvUF_Target"] then
+			UpdateUnitPortraitDead(_G["ElvUF_Target"], "target")
+		end
+		return
+	elseif event == "PLAYER_FOCUS_CHANGED" then
+		if _G["ElvUF_Focus"] then
+			UpdateUnitPortraitDead(_G["ElvUF_Focus"], "focus")
+		end
+		return
+	elseif event == "PARTY_MEMBER_DISABLE" or event == "PARTY_MEMBER_ENABLE" or event == "GROUP_ROSTER_UPDATE" then
+		for i = 1, 5 do
+			local btn = _G["ElvUF_PartyGroup1UnitButton"..i]
+			if btn and (btn.unit or btn.__unit) then
+				UpdateUnitPortraitDead(btn, btn.unit or btn.__unit)
+			end
+		end
+		return
+	end
+
+	if not unit then return end
+
+	if singleFrames[unit] then
+		local frame = _G[singleFrames[unit]]
+		if frame then
+			UpdateUnitPortraitDead(frame, unit)
+		end
+		if unit == "player" then
+			for i = 1, 5 do
+				local btn = _G["ElvUF_PartyGroup1UnitButton"..i]
+				if btn and (btn.unit == "player" or btn.__unit == "player") then
+					UpdateUnitPortraitDead(btn, "player")
+					break
+				end
+			end
+		end
+	elseif partyUnits[unit] then
+		for i = 1, 5 do
+			local btn = _G["ElvUF_PartyGroup1UnitButton"..i]
+			if btn and (btn.unit == unit or btn.__unit == unit) then
+				UpdateUnitPortraitDead(btn, unit)
+				break
+			end
+		end
+	elseif unit:sub(1, 4) == "boss" then
+		local bossFrame = _G["ElvUF_Boss" .. unit:sub(5)]
+		if bossFrame then
+			UpdateUnitPortraitDead(bossFrame, unit)
+		end
 	end
 end
 
-playerdeath:SetScript("OnEvent", function()
-	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-		if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
-			if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
-				E:Delay(0, DeathPortraitUpdate)
-			end
-		end
-	end
-end)
+unitdeath:SetScript("OnEvent", DeathEventDispatch)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
 

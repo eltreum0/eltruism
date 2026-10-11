@@ -5,7 +5,6 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitThreatSituation = _G.UnitThreatSituation
 local UnitCastingInfo = _G.UnitCastingInfo
 local CreateFrame = _G.CreateFrame
-local mathabs = _G.math.abs
 local string_match = _G.string.match
 local C_NamePlate_GetNamePlateForUnit = _G.C_NamePlate and _G.C_NamePlate.GetNamePlateForUnit
 local C_NamePlate_GetNamePlates = _G.C_NamePlate and _G.C_NamePlate.GetNamePlates
@@ -82,15 +81,11 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 	end
 
 	if targetHeight then
-		local currentHeight = health:GetHeight()
-		local canAccessCurrentHeight = not currentHeight or (canaccessvalue(currentHeight) and E:NotSecretValue(currentHeight))
-		if canAccessCurrentHeight then
-			if not currentHeight or mathabs(currentHeight - targetHeight) > 0.05 then
-				health:SetHeight(targetHeight)
-			end
-		else
-			health:SetHeight(targetHeight)
+		if frame.EltruismHealthHeight == targetHeight then
+			return
 		end
+		frame.EltruismHealthHeight = targetHeight
+		health:SetHeight(targetHeight)
 	end
 end
 
@@ -148,6 +143,7 @@ function ElvUI_EltreumUI:UpdateAllNameplateHeights()
 		for i = 1, #plates do
 			local blizzPlate = plates[i]
 			if blizzPlate and blizzPlate.unitFrame then
+				blizzPlate.unitFrame.EltruismHealthHeight = nil
 				ElvUI_EltreumUI:UpdateNameplateHealthHeight(blizzPlate.unitFrame)
 			end
 		end
@@ -226,6 +222,7 @@ function ElvUI_EltreumUI:OnUpdatePlateBase(_, nameplate)
 
 	nameplate = GetFrame(nameplate)
 	if nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown() then
+		nameplate.EltruismHealthHeight = nil
 		ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate)
 		ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
 		if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then

@@ -263,27 +263,22 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	if not isTransparent then
 		if UFdb.darkmode then
 			local defaultTex = (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar)) or (UF.db.statusbar and E.LSM:Fetch("statusbar", UF.db.statusbar))
-			if barTex and defaultTex and barTex.EltruismLastTex ~= defaultTex then
+			if barTex and defaultTex then
 				barTex:SetTexture(defaultTex)
-				barTex.EltruismLastTex = defaultTex
 			end
-			if backdropTex and healthTexture and backdropTex.EltruismLastTex ~= healthTexture then
+			if backdropTex and healthTexture then
 				backdropTex:SetTexture(healthTexture)
-				backdropTex.EltruismLastTex = healthTexture
 			end
 		elseif UFdb.lightmode then
-			if barTex and healthTexture and barTex.EltruismLastTex ~= healthTexture then
+			if barTex and healthTexture then
 				barTex:SetTexture(healthTexture)
-				barTex.EltruismLastTex = healthTexture
 			end
-			if backdropTex and backdropTexture and backdropTex.EltruismLastTex ~= backdropTexture then
+			if backdropTex and backdropTexture then
 				backdropTex:SetTexture(backdropTexture)
-				backdropTex.EltruismLastTex = backdropTexture
 			end
 		end
-		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize and not backdropTex.EltruismStaticSizeSet then
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
 			backdropTex:SetAllPoints(button.Health)
-			backdropTex.EltruismStaticSizeSet = true
 		end
 	else
 		if UFdb.darkmode then
@@ -516,12 +511,16 @@ function ElvUI_EltreumUI:PostUpdateHealth(bar, unit)
 	if not bar or type(bar) ~= "table" or not bar.GetParent then return end
 	local u = unit
 	if ElvUI_EltreumUI:EncounterCheck() then return end
+	local parent = bar.origParent or bar:GetParent()
+	if not parent then return end
+
+	if E.db.ElvUI_EltreumUI.unitframes.portraitdead and ElvUI_EltreumUI.UpdateUnitPortraitDead and (parent.Portrait or parent.Portrait3D or parent.EltruismPortrait) then
+		ElvUI_EltreumUI.UpdateUnitPortraitDead(parent, u or parent.__unit or parent.unit)
+	end
+
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	if not UFdb or not UFdb.UFmodifications or not E.private.unitframe.enable then return end
 	local elvDB = E.db.unitframe
-
-	local parent = bar.origParent or bar:GetParent()
-	if not parent then return end
 
 	local frameType = parent.unitframeType
 	if not frameType then

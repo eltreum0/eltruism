@@ -10,24 +10,16 @@ local type = _G.type
 function ElvUI_EltreumUI:NPClassPower_SetBarColor(_, bar, r, g, b)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not bar or type(bar) ~= "table" then return end
+	if not (bar.classPowerID or bar.token) then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
-			if bar.classPowerID or bar.token then --use somechecking for classpower and power bars
-				local tex = bar:GetStatusBarTexture()
-				if tex then
-					local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
-					npPowerMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), 1)
-					npPowerMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
-					tex:SetGradient(orientation, npPowerMin, npPowerMax)
-				end
-			else
-				local parent = bar.GetParent and bar:GetParent()
-				ElvUI_EltreumUI.GradientNameplates(parent or bar)
+			local tex = bar:GetStatusBarTexture()
+			if tex then
+				local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
+				npPowerMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), 1)
+				npPowerMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
+				tex:SetGradient(orientation, npPowerMin, npPowerMax)
 			end
-			--bar.bg:SetAlpha(0)
-		else
-			local parent = bar.GetParent and bar:GetParent()
-			ElvUI_EltreumUI.GradientNameplates(parent or bar)
 		end
 	end
 end

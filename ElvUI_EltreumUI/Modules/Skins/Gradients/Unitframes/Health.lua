@@ -75,8 +75,17 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			backdropAlpha = healthAlpha
 		end
 
-		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
-		if isPlayer and (not E:NotSecretValue(englishClass) or not englishClass) then
+		local isPlayer = false
+		local p = UnitIsPlayer(unit)
+		if E:NotSecretValue(p) and p then
+			isPlayer = true
+		elseif E.Retail then
+			local ai = UnitInPartyIsAI(unit)
+			if E:NotSecretValue(ai) and ai then
+				isPlayer = true
+			end
+		end
+		if not E:NotSecretValue(englishClass) or not englishClass then
 			englishClass = "ELTRUISM"
 		end
 		local colorClass = "BACKDROP"
@@ -131,6 +140,10 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
+		if not E:NotSecretValue(colorClass) or not colorClass then
+			colorClass = "BACKDROP"
+		end
+
 		local deadState = 0
 		if db.usedeadbackdrop then
 			local isDead = UnitIsDeadOrGhost(unit)
@@ -138,7 +151,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				deadState = 1
 			elseif isPlayer then
 				local isConnected = UnitIsConnected(unit)
-				if not (E:NotSecretValue(isConnected) and isConnected) then
+				if E:NotSecretValue(isConnected) and not isConnected then
 					deadState = 3
 				end
 			else
@@ -159,6 +172,10 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			elseif frame.Health.backdrop.customBackdropAlpha ~= backdropAlpha then
 				backdropNeedsUpdate = true
 			end
+		end
+
+		if not E:NotSecretValue(frame.EltruismBackdropClass) then
+			frame.EltruismBackdropClass = nil
 		end
 
 		if not backdropNeedsUpdate and
@@ -300,7 +317,16 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 	if UnitExists(unit) then
 		local _, classunit = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
-		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+		local isPlayer = false
+		local p = UnitIsPlayer(unit)
+		if E:NotSecretValue(p) and p then
+			isPlayer = true
+		elseif E.Retail then
+			local ai = UnitInPartyIsAI(unit)
+			if E:NotSecretValue(ai) and ai then
+				isPlayer = true
+			end
+		end
 		local unitframe = _G["ElvUF_"..name]
 		local orientation = db.orientation or "HORIZONTAL"
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
@@ -348,7 +374,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 
 			local colorClass = "BACKDROP"
 			if (isPlayer and not isCharmed) or isActualPlayer then
-				if not classunit then
+				if not classunit or not E:NotSecretValue(classunit) then
 					classunit = E.myclass or "ELTRUISM"
 				end
 				colorClass = classunit
@@ -390,6 +416,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 						end
 					end
 				end
+			end
+
+			if not E:NotSecretValue(colorClass) or not colorClass then
+				colorClass = "BACKDROP"
 			end
 
 			local invert = false
@@ -501,7 +531,16 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	local unit = button.__unit or button.unit
 	if not unit then return end
 	local _, buttonclass
-	local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+	local isPlayer = false
+	local p = UnitIsPlayer(unit)
+	if E:NotSecretValue(p) and p then
+		isPlayer = true
+	elseif E.Retail then
+		local ai = UnitInPartyIsAI(unit)
+		if E:NotSecretValue(ai) and ai then
+			isPlayer = true
+		end
+	end
 	--due to raid pet, check if is player
 	if isPlayer then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
 		_, buttonclass = UnitClass(unit)
