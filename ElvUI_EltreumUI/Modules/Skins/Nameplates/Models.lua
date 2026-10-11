@@ -7,14 +7,29 @@ local rad = _G.rad
 local type = _G.type
 
 --Adds a model of the Target to the Target nameplate
-local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
+local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel", E.HiddenFrame or _G.UIParent)
+target3d:Hide()
 local targetNameplate
+
+--function to clear model when unselected or hidden
+local function ClearTargetModel()
+	targetNameplate = nil
+	target3d:ClearAllPoints()
+	target3d:ClearModel()
+	target3d:SetAlpha(0)
+	target3d:Hide()
+	if E.HiddenFrame then
+		target3d:SetParent(E.HiddenFrame)
+	end
+end
 
 --function to set model settings
 local function SetNameplateModelSettings(nameplate)
 	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then
 		return
 	end
+	target3d:SetParent(nameplate.Health)
+	target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
 	target3d:ClearModel()
 	target3d:SetUnit(nameplate.__unit)
 	target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.desaturation or 0)
@@ -24,8 +39,6 @@ local function SetNameplateModelSettings(nameplate)
 	target3d:SetViewTranslation((E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ViewTranslationx or 0) * 100, (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ViewTranslationy or 0) * 100)
 	target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.Rotation or 0))
 	target3d:SetAlpha(0)
-	target3d:SetParent(nameplate.Health)
-	target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
 	if E.db.nameplates.clickSize and E.db.nameplates.clickSize.enemyWidth then
 		target3d:SetSize(E.db.nameplates.clickSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
 	else
@@ -35,56 +48,57 @@ local function SetNameplateModelSettings(nameplate)
 	target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
 	target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 	target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha or 0.5)
-	--target3d:SetAnimation(3) --stand still
-	--target3d:FreezeAnimation(60, 0, 55) -- Freeze the talking animation at the frame 55
-	--target3d:SetFacing(-(math.pi/2)) --better than rotation?
-	--adds fog
-	--target3d:SetFogColor(r,g,b)
-	--target3d:SetFogNear(0)
-	--target3d:SetFogFar(10)
-	--or light (dont use with fog)
-	--target3d:SetLight(enabled, omni, dirX,dirY,dirZ, ambIntensity,ambR,ambG,ambB, dirIntensity,dirR,dirG,dirB)
+	target3d:Show()
 end
 
 local function DelayedNameplateModelSettings()
-	if UnitExists("target") and targetNameplate then
+	if UnitExists("target") and targetNameplate and targetNameplate.__unit and E:UnitIsUnit(targetNameplate.__unit, "target") then
 		SetNameplateModelSettings(targetNameplate)
-		target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
 	end
 end
 
-function ElvUI_EltreumUI:NameplateModel(_, nameplate)
+function ElvUI_EltreumUI:NameplateModel(_, nameplate, removed)
 	if not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.nameplates or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
+	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
+		ClearTargetModel()
+		return
+	end
+
+	if removed and nameplate and nameplate == targetNameplate then
+		ClearTargetModel()
+		return
+	end
+
+	if not UnitExists("target") then
+		ClearTargetModel()
+		return
+	end
+
 	if not nameplate or type(nameplate) ~= "table" then return end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
-		if UnitExists("target")then
-			if nameplate and nameplate.__unit and E:UnitIsUnit(nameplate.__unit,"target") then --12.0.5 breaks this
-				--ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate) --testing sending unit to other function
-				if nameplate.Health and nameplate.Health:IsVisible() then
 
-					--original, but can have wrong camera
-					SetNameplateModelSettings(nameplate)
+	if nameplate.__unit and E:UnitIsUnit(nameplate.__unit, "target") then
+		if nameplate.Health and nameplate.Health:IsVisible() then
+			targetNameplate = nameplate
+			SetNameplateModelSettings(nameplate)
 
-					targetNameplate = nameplate
+			--first delay, for selecting a target and fixing camera
+			E:Delay(0.098, DelayedNameplateModelSettings)
 
-					--first delay, for selecting a target and fixing camera
-					E:Delay(0.098, DelayedNameplateModelSettings)
-
-					--second delay, for when swapping targets too fast can cause it to incorrectly set the previous target
-					E:Delay(0.150, DelayedNameplateModelSettings)
-
-				else
-					target3d:ClearAllPoints()
-					target3d:SetAlpha(0)
-				end
-			else
-				target3d:ClearAllPoints()
-				target3d:SetAlpha(0)
-			end
+			--second delay, for when swapping targets too fast can cause it to incorrectly set the previous target
+			E:Delay(0.150, DelayedNameplateModelSettings)
 		else
-			target3d:ClearAllPoints()
-			target3d:SetAlpha(0)
+			ClearTargetModel()
 		end
+	elseif targetNameplate == nameplate then
+		ClearTargetModel()
 	end
 end
 ElvUI_EltreumUI:SecureHook(NP, "SetupTarget", "NameplateModel")
+
+local eventFrame = CreateFrame("FRAME")
+eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+eventFrame:SetScript("OnEvent", function()
+	if not UnitExists("target") then
+		ClearTargetModel()
+	end
+end)
