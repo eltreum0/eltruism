@@ -8,9 +8,9 @@ local hooksecurefunc = _G.hooksecurefunc
 local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
-local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local fixedConfig = false
 local ipairs = _G.ipairs
+local abs = _G.math.abs
 
 local widgetAtlas = {
 	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
@@ -22,7 +22,78 @@ local widgetAtlas = {
 	["mixingpool-frame-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 }
 
+local function GetDefaultUniversalBorderColor()
+	if E.db.ElvUI_EltreumUI.borders.classcolor then
+		return E.myClassColor.r, E.myClassColor.g, E.myClassColor.b, 1
+	elseif E.db.ElvUI_EltreumUI.borders.bordercolors then
+		return E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1
+	elseif colorsborders then
+		return colorsborders.r, colorsborders.g, colorsborders.b, 1
+	else
+		return 1, 1, 1, 1
+	end
+end
+
+local function IsDefaultBorderColor(r, g, b)
+	if not r or not g or not b then return true end
+	if E.media then
+		if E.media.bordercolor then
+			local br = E.media.bordercolor[1] or E.media.bordercolor.r
+			local bg = E.media.bordercolor[2] or E.media.bordercolor.g
+			local bb = E.media.bordercolor[3] or E.media.bordercolor.b
+			if br and bg and bb then
+				if abs(r - br) < 0.02 and abs(g - bg) < 0.02 and abs(b - bb) < 0.02 then
+					return true
+				end
+			end
+		end
+		if E.media.unitframeBorderColor then
+			local ubr = E.media.unitframeBorderColor[1] or E.media.unitframeBorderColor.r
+			local ubg = E.media.unitframeBorderColor[2] or E.media.unitframeBorderColor.g
+			local ubb = E.media.unitframeBorderColor[3] or E.media.unitframeBorderColor.b
+			if ubr and ubg and ubb then
+				if abs(r - ubr) < 0.02 and abs(g - ubg) < 0.02 and abs(b - ubb) < 0.02 then
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
+
+local function FrameHasRegularBorder(frame)
+	if not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.universalborderssettings.hideWithBorders) then
+		return false
+	end
+	if frame.EltruismBorder or frame.EltruismRegularBorder then
+		return true
+	end
+	local name = frame:GetName() or (frame.GetDebugName and frame:GetDebugName())
+	if name then
+		if name:match("Eltruism.*Border") then return true end
+		if E.db.ElvUI_EltreumUI.borders.playerborder and (name:match("ElvUF_Player") or (frame:GetParent() and frame:GetParent():GetName() and frame:GetParent():GetName():match("ElvUF_Player"))) then
+			return true
+		end
+		if E.db.ElvUI_EltreumUI.borders.targetborder and (name:match("ElvUF_Target") or (frame:GetParent() and frame:GetParent():GetName() and frame:GetParent():GetName():match("ElvUF_Target"))) then
+			return true
+		end
+		if E.db.ElvUI_EltreumUI.borders.minimapborder and (name:match("Minimap") or name:match("MMHolder")) then
+			return true
+		end
+		if (E.db.ElvUI_EltreumUI.borders.leftchatborder and name:match("LeftChatPanel")) or (E.db.ElvUI_EltreumUI.borders.rightchatborder and name:match("RightChatPanel")) then
+			return true
+		end
+		for i = 1, 6 do
+			if E.db.ElvUI_EltreumUI.borders["bar"..i.."borders"] and (name:match("ElvUI_Bar"..i) or (frame:GetParent() and frame:GetParent():GetName() and frame:GetParent():GetName():match("ElvUI_Bar"..i))) then
+				return true
+			end
+		end
+	end
+	return false
+end
+
 local function togglebackdrop(frame,show)
+	if not frame then return end
 	if frame.TopLeftCorner then
 		if show then
 			frame.TopLeftCorner:Show()
@@ -46,263 +117,278 @@ local function togglebackdrop(frame,show)
 			frame.TopEdge:Hide()
 		end
 	end
-	if frame.backdrop then
+	if frame.iborder then
 		if show then
-			frame.backdrop.TopLeftCorner:Show()
-			frame.backdrop.TopRightCorner:Show()
-			frame.backdrop.BottomLeftCorner:Show()
-			frame.backdrop.BottomRightCorner:Show()
-
-			frame.backdrop.LeftEdge:Show()
-			frame.backdrop.RightEdge:Show()
-			frame.backdrop.BottomEdge:Show()
-			frame.backdrop.TopEdge:Show()
+			frame.iborder:Show()
 		else
-			frame.backdrop.TopLeftCorner:Hide()
-			frame.backdrop.TopRightCorner:Hide()
-			frame.backdrop.BottomLeftCorner:Hide()
-			frame.backdrop.BottomRightCorner:Hide()
-
-			frame.backdrop.LeftEdge:Hide()
-			frame.backdrop.RightEdge:Hide()
-			frame.backdrop.BottomEdge:Hide()
-			frame.backdrop.TopEdge:Hide()
+			frame.iborder:Hide()
+			if frame.iborder.SetBackdropBorderColor then
+				frame.iborder:SetBackdropBorderColor(0, 0, 0, 0)
+			end
 		end
 	end
+	if frame.oborder then
+		if show then
+			frame.oborder:Show()
+		else
+			frame.oborder:Hide()
+			if frame.oborder.SetBackdropBorderColor then
+				frame.oborder:SetBackdropBorderColor(0, 0, 0, 0)
+			end
+		end
+	end
+	if frame.backdrop then
+		togglebackdrop(frame.backdrop, show)
+	end
+end
+
+local function HideElvUIBorders(frame)
+	if not frame then return end
+	togglebackdrop(frame, false)
+	if frame.SetBackdropBorderColor then
+		frame.eltruismSettingBorder = true
+		frame:SetBackdropBorderColor(0, 0, 0, 0)
+		frame.eltruismSettingBorder = nil
+	end
+	frame.ignoreBorderColors = true
+
+	if frame.backdrop then
+		togglebackdrop(frame.backdrop, false)
+		if frame.backdrop.SetBackdropBorderColor then
+			frame.backdrop.eltruismSettingBorder = true
+			frame.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
+			frame.backdrop.eltruismSettingBorder = nil
+		end
+		frame.backdrop.ignoreBorderColors = true
+	end
+	--theres center too, which can show the corners, but hiding or setting alpha causes it to vanish
 end
 
 local function EltruismBorders(frame,isUnitFrameElement)
 	if (isUnitFrameElement and not (frame:GetDebugName() and frame:GetDebugName():match("AuraBar"))) then return end
 	if not E:NotSecretValue(frame) then return end --check for secret frame, avoid it
-	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders and not frame.eltruismuniversalbordersadded then
+	if frame.IsForbidden and frame:IsForbidden() then return end
+	if FrameHasRegularBorder(frame) then
+		if frame.eltruismuniversalborders then
+			frame.eltruismuniversalborders:Hide()
+		end
+		return
+	end
+
+	if not E.db.ElvUI_EltreumUI.borders.universalborders then return end
+
+	local xOffset = E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset
+	local yOffset = E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset
+	local thickness = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness
+	local borderTexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
+	local defR, defG, defB, defA = GetDefaultUniversalBorderColor()
+
+	if not frame.eltruismuniversalborders then
 		frame.eltruismuniversalborders = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
-		frame.eltruismuniversalborders:SetPoint("CENTER", frame, "CENTER", 0, 0)
-		frame.eltruismuniversalborders:SetBackdrop({
-			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-			edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
-		})
-		frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
-		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
+		frame.eltruismuniversalborders:EnableMouse(false)
 		frame.eltruismuniversalborders:SetFrameStrata(E:NotSecretValue(frame:GetFrameStrata()) and frame:GetFrameStrata() or "MEDIUM")
-		if frame.Center then
-			frame.eltruismuniversalborders:SetOutside(frame.Center, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
-		else
-			frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
-		end
-		--if not hiding the config frame border then the buttons become unclickable
-		if not fixedConfig then
-			local configFrame = E:Config_GetWindow()
-			if configFrame and configFrame.eltruismuniversalborders then
-				--configFrame.eltruismuniversalborders:Kill()
-				--configFrame.eltruismuniversalborders = nil
-				configFrame.eltruismuniversalborders:SetFrameStrata("MEDIUM")
-				configFrame.Center:ClearAllPoints()
-				configFrame.Center:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 2, -2)
-				configFrame.Center:SetPoint("BOTTOMRIGHT", configFrame, "BOTTOMRIGHT", -2, 2)
+		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
+	end
 
-				fixedConfig = true
-			end
-		end
+	frame.eltruismuniversalborders:ClearAllPoints()
+	frame.eltruismuniversalborders:SetOutside(frame, xOffset, yOffset)
+	frame.eltruismuniversalborders:SetBackdrop({
+		edgeFile = borderTexture,
+		edgeSize = thickness,
+	})
 
-		if frame.IconBorder then --items are different
-			if frame.rarity then
-				local r,g,b = GetItemQualityColor(frame.rarity)
-				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-				frame.eltruismuniversalborders:Show()
-				togglebackdrop(frame)
-			else
-				--[[frame.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
-				frame.eltruismuniversalborders:Show()
-				togglebackdrop(frame,false)]]
-				frame.eltruismuniversalborders:Hide()
-				togglebackdrop(frame,true)
-			end
-			if frame.caerdonButton then
-				frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+1)
-				frame.caerdonButton:SetFrameLevel(frame:GetFrameLevel()+2)
-			end
-
-			hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
-				frametable.eltruismuniversalborders:SetBackdrop({
-					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-					edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
-				})
-				if frametable.Center then
-					frametable.eltruismuniversalborders:SetOutside(frametable.Center, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
-				else
-					frametable.eltruismuniversalborders:SetOutside(frametable, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
-				end
-				if frametable.rarity then
-					local r,g,b = GetItemQualityColor(frametable.rarity)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-					frametable.eltruismuniversalborders:Show()
-					togglebackdrop(frametable)
-				else
-					--[[frametable.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
-					frametable.eltruismuniversalborders:Show()
-					togglebackdrop(frametable,false)]]
-					frametable.eltruismuniversalborders:Hide()
-					togglebackdrop(frametable,true)
-				end
-				if frametable.caerdonButton then
-					frametable.eltruismuniversalborders:SetFrameLevel(frametable:GetFrameLevel()+1)
-					frametable.caerdonButton:SetFrameLevel(frametable:GetFrameLevel()+2)
-				end
-			end)
-			hooksecurefunc(frame.IconBorder, "SetShown", function(frametable,shown)
-				if shown then
-					local r,g,b = frametable:GetVertexColor()
-					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-					frametable:GetParent().eltruismuniversalborders:Show()
-					togglebackdrop(frametable:GetParent())
-					if frametable:GetParent().caerdonButton then
-						frametable:GetParent().eltruismuniversalborders:SetFrameLevel(frametable:GetParent():GetFrameLevel()+1)
-						frametable:GetParent().caerdonButton:SetFrameLevel(frametable:GetParent():GetFrameLevel()+2)
-					end
-				else
-					--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
-					frametable:GetParent().eltruismuniversalborders:Show()
-					togglebackdrop(frametable:GetParent(),false)]]
-					frametable:GetParent().eltruismuniversalborders:Hide()
-					togglebackdrop(frametable:GetParent(),true)
-				end
-			end)
-			hooksecurefunc(frame.IconBorder, "Show", function(frametable,shown)
-				E:Delay(0, function() --delay until after the vertex color is set
-					if shown then
-						local r,g,b = frametable:GetVertexColor()
-						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-						frametable:GetParent().eltruismuniversalborders:Show()
-						togglebackdrop(frametable:GetParent())
-						if frametable:GetParent().caerdonButton then
-							frametable:GetParent().eltruismuniversalborders:SetFrameLevel(frametable:GetParent():GetFrameLevel()+1)
-							frametable:GetParent().caerdonButton:SetFrameLevel(frametable:GetParent():GetFrameLevel()+2)
-						end
-					else
-						--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
-						frametable:GetParent().eltruismuniversalborders:Show()
-						togglebackdrop(frametable:GetParent(),false)]]
-						frametable:GetParent().eltruismuniversalborders:Hide()
-						togglebackdrop(frametable:GetParent(),true)
-					end
-				end)
-			end)
-			hooksecurefunc(frame.IconBorder, "Hide", function(frametable)
-				--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
-				frametable:GetParent().eltruismuniversalborders:Show()
-				togglebackdrop(frametable:GetParent(),false)]]
-				frametable:GetParent().eltruismuniversalborders:Hide()
-				togglebackdrop(frametable:GetParent(),true)
-			end)
-
-			if frame.shadow then frame.shadow:Hide() end
-		end
-
-		--sharedmedia dropdown preview
-		if frame:GetParent() then
-			if frame:GetParent().displayButton then
-				frame:GetParent().displayButton:SetFrameLevel(frame:GetFrameLevel()+3)
-			end
-			if frame:GetParent().NameBackground then
-				frame:GetParent().artBackdrop:SetOutside(frame.Icon)
-				--frame:GetParent().Icon:SetInside(frame.eltruismuniversalborders)
-			end
-		end
-		if _G.ElvNP_TargetClassPowerClassPower and _G.ElvNP_TargetClassPowerClassPower.backdrop and _G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders then
-			_G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel())
-		end
-		if frame:GetDebugName() then
-			if frame:GetDebugName():match("AuraBar") then
-				frame.eltruismuniversalborders:SetFrameLevel(1)
-				frame.eltruismuniversalborders:SetFrameStrata("BACKGROUND")
-			elseif frame:GetDebugName():match("QuestIcons") then
-				frame.eltruismuniversalborders:Hide()
-			end
-		end
-
-		togglebackdrop(frame)
-		frame.eltruismuniversalbordersadded = true
-
-		--even though shadows shouldnt be made, try to handle possible ones
-		if frame.shadow then
-			frame.shadow:Hide()
-		elseif frame.backdrop and frame.backdrop.shadow then
-			frame.backdrop.shadow:Hide()
-			if frame.backdrop.eltruismuniversalborders then
-				frame.backdrop.eltruismuniversalborders:Hide()
-			end
-		elseif frame:GetParent() and frame:GetParent().shadow then
-			frame:GetParent().shadow:Hide()
-		elseif frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().shadow then
-			frame:GetParent():GetParent().shadow:Hide()
-		end
-
-		--lfg selected issue
-		if frame.SelectedTexture and not frame.SelectedTextureEltruismHook then
-			if frame.TopLeftCorner then
-				hooksecurefunc(frame,"SetBackdropBorderColor", function(_,r)--,a)
-					if r == 1 then
-						frame.eltruismuniversalborders:SetBackdropBorderColor(1, 1, 0, 1)
-					else
-						frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
-					end
-				end)
-			end
-			frame.SelectedTextureEltruismHook = true
-		end
-
-		 --fix pet battle/transmog issue
-		if frame:GetDebugName():match("PetJournalLoadoutPet") and frame:GetDebugName():match("backdrop") and not frame:GetDebugName():match("Spell") then
-			local r,g,b = frame.BottomEdge:GetVertexColor()
-			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r1,g1,b1)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r1, g1, b1, 1)
-				end)
-				frame.FixedPetBattleBorderColorEltruism = true
-			end
-		elseif frame:GetDebugName():match("PetJournal.ScrollBox.ScrollTarget") or frame:GetDebugName():match("PetJournalPetCardPetInfo") then
-			local r,g,b = frame.BottomEdge:GetVertexColor()
-			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r2,g2,b2)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r2, g2, b2, 1)
-				end)
-				frame.FixedPetBattleBorderColorEltruism = true
-			end
-		elseif frame:GetDebugName():match("PetBattleFrame") and (frame:GetDebugName():match("Ally") or frame:GetDebugName():match("Enemy")) then
-			if frame.Icon then
-				frame.eltruismuniversalborders:Hide()
-				return
-			end
-			local r,g,b = frame.BottomEdge:GetVertexColor()
-			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r3,g3,b3)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r3, g3, b3, 1)
-				end)
-				frame.FixedPetBattleBorderColorEltruism = true
-			end
-		elseif frame:GetDebugName():match("WardrobeCollectionFrame.ItemsCollectionFrame.Model") then
-			if frame:GetParent().HideVisual then
-				frame:GetParent().HideVisual:SetFrameLevel(frame:GetFrameLevel()+2)
-			end
-			if frame:GetParent().Favorite then
-				frame:GetParent().Favorite:SetFrameLevel(frame:GetFrameLevel()+2)
-			end
-			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
-					if r == 1 and g == 0.7 and b == 1 then --highlighted
-						frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-					else
-						frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
-					end
-				end)
-				frame.FixedPetBattleBorderColorEltruism = true
+	--find border color
+	local initR, initG, initB, initA = defR, defG, defB, defA
+	if frame.GetBackdropBorderColor then
+		local curR, curG, curB, curA = frame:GetBackdropBorderColor()
+		if curR and curG and curB and not (curR == 0 and curG == 0 and curB == 0 and (not curA or curA == 0)) then
+			if not IsDefaultBorderColor(curR, curG, curB) then
+				initR, initG, initB, initA = curR, curG, curB, curA or 1
 			end
 		end
 	end
+
+	frame.eltruismuniversalborders:SetBackdropBorderColor(initR, initG, initB, initA)
+	frame.eltruismuniversalborders:Show()
+
+	--hide elvui's borders
+	HideElvUIBorders(frame)
+
+	--follow elvui's border color
+	if not frame.EltruismBorderColorHooked then
+		hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable, r, g, b, a)
+			if frametable.eltruismSettingBorder then return end
+			if a == 0 and r == 0 and g == 0 and b == 0 then return end
+
+			local ub = frametable.eltruismuniversalborders
+			if not ub and frametable.backdrop then
+				ub = frametable.backdrop.eltruismuniversalborders
+			end
+			if not ub and frametable:GetParent() then
+				ub = frametable:GetParent().eltruismuniversalborders
+			end
+			if not ub then return end
+
+			if type(r) == "table" then
+				r, g, b, a = r.r, r.g, r.b, r.a
+			end
+
+			if IsDefaultBorderColor(r, g, b) then
+				local dr, dg, db, da = GetDefaultUniversalBorderColor()
+				ub:SetBackdropBorderColor(dr, dg, db, da)
+			else
+				ub:SetBackdropBorderColor(r, g, b, a or 1)
+			end
+			ub:Show()
+
+			HideElvUIBorders(frametable)
+		end)
+		frame.EltruismBorderColorHooked = true
+	end
+
+	--icon border/quality
+	if frame.IconBorder then
+		if not frame.EltruismIconBorderHooked then
+			hooksecurefunc(frame.IconBorder, "SetShown", function(ib, shown)
+				local parent = ib:GetParent()
+				local ub = parent and parent.eltruismuniversalborders
+				if not ub then return end
+				if shown then
+					local ir, ig, ib_b = ib:GetVertexColor()
+					if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+						ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
+					else
+						local dr, dg, db, da = GetDefaultUniversalBorderColor()
+						ub:SetBackdropBorderColor(dr, dg, db, da)
+					end
+				else
+					local dr, dg, db, da = GetDefaultUniversalBorderColor()
+					ub:SetBackdropBorderColor(dr, dg, db, da)
+				end
+				ub:Show()
+				HideElvUIBorders(parent)
+			end)
+			hooksecurefunc(frame.IconBorder, "SetVertexColor", function(ib, ir, ig, ib_b)
+				local parent = ib:GetParent()
+				local ub = parent and parent.eltruismuniversalborders
+				if not ub then return end
+				if ib:IsShown() and ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+					ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
+					ub:Show()
+				end
+			end)
+			hooksecurefunc(frame.IconBorder, "Show", function(ib)
+				E:Delay(0, function()
+					local parent = ib:GetParent()
+					local ub = parent and parent.eltruismuniversalborders
+					if not ub then return end
+					local ir, ig, ib_b = ib:GetVertexColor()
+					if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+						ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
+					else
+						local dr, dg, db, da = GetDefaultUniversalBorderColor()
+						ub:SetBackdropBorderColor(dr, dg, db, da)
+					end
+					ub:Show()
+					HideElvUIBorders(parent)
+				end)
+			end)
+			hooksecurefunc(frame.IconBorder, "Hide", function(ib)
+				local parent = ib:GetParent()
+				local ub = parent and parent.eltruismuniversalborders
+				if not ub then return end
+				local dr, dg, db, da = GetDefaultUniversalBorderColor()
+				ub:SetBackdropBorderColor(dr, dg, db, da)
+				ub:Show()
+				HideElvUIBorders(parent)
+			end)
+			frame.EltruismIconBorderHooked = true
+		end
+
+		if frame.IconBorder:IsShown() then
+			local ir, ig, ib_b = frame.IconBorder:GetVertexColor()
+			if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+				frame.eltruismuniversalborders:SetBackdropBorderColor(ir, ig, ib_b, 1)
+			end
+		end
+
+		if frame.caerdonButton then
+			frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+1)
+			frame.caerdonButton:SetFrameLevel(frame:GetFrameLevel()+2)
+		end
+	end
+
+	--if not hiding the config frame border then the buttons become unclickable
+	if not fixedConfig then
+		local configFrame = E:Config_GetWindow()
+		if configFrame and configFrame.eltruismuniversalborders then
+			--configFrame.eltruismuniversalborders:Kill()
+			--configFrame.eltruismuniversalborders = nil
+			configFrame.eltruismuniversalborders:SetFrameStrata("MEDIUM")
+			configFrame.eltruismuniversalborders:EnableMouse(false)
+			if configFrame.Center then
+				configFrame.Center:ClearAllPoints()
+				configFrame.Center:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 2, -2)
+				configFrame.Center:SetPoint("BOTTOMRIGHT", configFrame, "BOTTOMRIGHT", -2, 2)
+			end
+			fixedConfig = true
+		end
+	end
+
+	-- SharedMedia dropdown preview
+	if frame:GetParent() then
+		if frame:GetParent().displayButton then
+			frame:GetParent().displayButton:SetFrameLevel(frame:GetFrameLevel()+3)
+		end
+		if frame:GetParent().NameBackground and frame:GetParent().artBackdrop then
+			frame:GetParent().artBackdrop:SetOutside(frame.Icon)
+		end
+	end
+	if _G.ElvNP_TargetClassPowerClassPower and _G.ElvNP_TargetClassPowerClassPower.backdrop and _G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders then
+		_G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel())
+	end
+	if frame:GetDebugName() then
+		if frame:GetDebugName():match("AuraBar") then
+			frame.eltruismuniversalborders:SetFrameLevel(1)
+			frame.eltruismuniversalborders:SetFrameStrata("BACKGROUND")
+		elseif frame:GetDebugName():match("QuestIcons") then
+			frame.eltruismuniversalborders:Hide()
+		end
+	end
+
+	--even though shadows shouldnt be made, try to handle possible ones
+	if frame.shadow then
+		frame.shadow:Hide()
+	elseif frame.backdrop and frame.backdrop.shadow then
+		frame.backdrop.shadow:Hide()
+		if frame.backdrop.eltruismuniversalborders and frame.backdrop ~= frame then
+			frame.backdrop.eltruismuniversalborders:Hide()
+		end
+	elseif frame:GetParent() and frame:GetParent().shadow then
+		frame:GetParent().shadow:Hide()
+	elseif frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().shadow then
+		frame:GetParent():GetParent().shadow:Hide()
+	end
+
+	-- PetBattle frame exception
+	if frame:GetDebugName() and frame:GetDebugName():match("PetBattleFrame") and (frame:GetDebugName():match("Ally") or frame:GetDebugName():match("Enemy")) and frame.Icon then
+		frame.eltruismuniversalborders:Hide()
+		return
+	end
+
+	-- Wardrobe collection
+	if frame:GetDebugName() and frame:GetDebugName():match("WardrobeCollectionFrame.ItemsCollectionFrame.Model") and frame:GetParent() then
+		if frame:GetParent().HideVisual then
+			frame:GetParent().HideVisual:SetFrameLevel(frame:GetFrameLevel()+2)
+		end
+		if frame:GetParent().Favorite then
+			frame:GetParent().Favorite:SetFrameLevel(frame:GetFrameLevel()+2)
+		end
+	end
+
+	frame.eltruismuniversalbordersadded = true
 end
+
 
 local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 	if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
@@ -352,7 +438,8 @@ local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 			frame.eltruismbgtexture:SetTexture("")
 		end
 
-		if ElvUI_EltreumUI:IsThisASafeSecret(nil,nil,true) and ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue --has secret
+		 --fix pet battle/transmog issue
+		if ElvUI_EltreumUI:IsThisASafeSecret(nil,nil,true) and ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and frame:GetDebugName():match("PetJournalLoadoutPet") then --has secret
 			if frame.icon and frame.backdrop then frame.backdrop:SetFrameLevel(frame:GetFrameLevel()+2) end
 		end
 
