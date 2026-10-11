@@ -39,6 +39,16 @@ local reactionToGradient = {
 	[8] = "NPCFRIENDLY",
 }
 
+local function IsUnitDeadHelper(unit)
+	if not unit or not UnitExists(unit) then return false end
+	if UnitIsFeignDeath(unit) then return false end
+	if UnitIsDead(unit) or UnitIsGhost(unit) or UnitIsDeadOrGhost(unit) then return true end
+	local health = UnitHealth(unit)
+	if health and E:NotSecretValue(health) and health <= 0 then return true end
+	return false
+end
+ElvUI_EltreumUI.IsUnitDeadHelper = IsUnitDeadHelper
+
 function ElvUI_EltreumUI:UpdateCachedHealthTagTextures()
 	if E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.otherstuff then
 		local hpicons = E.db.ElvUI_EltreumUI.otherstuff
@@ -52,289 +62,231 @@ function ElvUI_EltreumUI:LoadHealthTags()
 	ElvUI_EltreumUI:UpdateCachedHealthTagTextures()
 
 	--tag that only shows the icon, due to secrets
-	E:AddTag("eltruism:status", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		if UnitIsConnected(unit) then
-			if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-				return
-			elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-					return deadtexture
-				else
-					return L["Dead"]
-				end
-			elseif UnitIsGhost(unit) then
+	E:AddTag("eltruism:status", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
 				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 					return ghosttexture
 				else
 					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 				end
-			end
-		else
-			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-				return dctexture
-			else
-				return L["Offline"]
+			elseif IsUnitDeadHelper(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
 			end
 		end
 	end)
 	E:AddTagInfo("eltruism:status", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays a status symbol. Can be customized in Eltruism > Media"])
 
 	--HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-	E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-		local textformat
-		if E.Modern then
-			textformat = format('%s - %.1f%%', E:AbbreviateNumbers(cur, E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
-		else
-			textformat = E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
-		end
-		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				return textformat
+	E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
 			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
 				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 					return deadtexture
 				else
 					return L["Dead"]
 				end
 			end
+		end
+
+		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+		if E.Modern then
+			return format('%s - %.1f%%', E:AbbreviateNumbers(cur, E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
 		else
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					return textformat
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
-			end
+			return E:GetFormattedText('CURRENT_PERCENT', cur, maxhp, nil, true)
 		end
 	end)
 	E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP - % and a status symbol. Can be customized in Eltruism > Media"])
 
 	--same as previous tag but with | instead of -
-	E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-		local textformat
-		if E.Modern then
-			textformat = E:AbbreviateNumbers(cur, E.Abbreviate.short)
-		else
-			local perc = cur / maxhp * 100
-			textformat = format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
-		end
-		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				return textformat
+	E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
 			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
 				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 					return deadtexture
 				else
 					return L["Dead"]
 				end
 			end
+		end
+
+		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+		if E.Modern then
+			return E:AbbreviateNumbers(cur, E.Abbreviate.short)
 		else
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					return textformat
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
-			end
+			local perc = cur / maxhp * 100
+			return format('%s | %.1f%%', E:ShortValue(cur, 0), perc)
 		end
 	end)
 	E:AddTagInfo("eltruism:hpstatus:line", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP | % and a status symbol. Can be customized in Eltruism > Media"])
 
 	--reverse of the hpstatus, uses modified elvui tag code
-	E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-		local textformat
-		if E.Modern then
-			textformat = E:AbbreviateNumbers(cur, E.Abbreviate.short)
-		else
-			textformat = E:ShortValue(cur, nil)
-		end
-		local textformat2
-		if E.Modern then
-			textformat2 = format('%.1f%% - %s', UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
-		else
-			textformat2 = E:GetFormattedText('CURRENT_PERCENT', maxhp, cur, nil, true)
-		end
-		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				if E.Modern then
-					return textformat2
-				else
-					if maxhp == 0 then maxhp = 1 end
-					if cur == maxhp then
-						return textformat
-					else
-						return textformat2
-					end
-				end
+	E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
 			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
 				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 					return deadtexture
 				else
 					return L["Dead"]
 				end
 			end
+		end
+
+		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+		if E.Modern then
+			return format('%.1f%% - %s', UnitHealthPercent(unit, true, ScaleTo100), E:AbbreviateNumbers(cur, E.Abbreviate.short))
 		else
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					if E.Modern then
-						return textformat2
-					else
-						if not maxhp then maxhp = 1 end
-						if maxhp == 0 then maxhp = 1 end
-						if cur == maxhp then
-							return textformat
-						else
-							return textformat2
-						end
-					end
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
+			if not maxhp or maxhp == 0 then maxhp = 1 end
+			if cur == maxhp then
+				return E:ShortValue(cur, nil)
 			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
+				return E:GetFormattedText('CURRENT_PERCENT', maxhp, cur, nil, true)
 			end
 		end
 	end)
 	E:AddTagInfo("eltruism:hpstatus:reverse", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"])
 
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-	E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
-		local textformat
-		if E.Modern then
-			textformat = E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
-		else
-			textformat = E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
-		end
-		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				return textformat
+	E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
 			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
 				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 					return deadtexture
 				else
 					return L["Dead"]
 				end
 			end
+		end
+
+		if E.Modern then
+			return E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
 		else
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					return textformat
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
-			end
+			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		end
 	end)
 	E:AddTagInfo("eltruism:hpstatusnopc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatusnopc{number,number}]"])
 
 	--perhp with status icons
-	E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
-		local value
-		if E.Modern then
-			value = format('%d%%', UnitHealthPercent(unit, true, ScaleTo100))
-		else
-			value = mathfloor(((cur / maxhp) * 100) + 0.5)
-		end
-		if not E.Modern and (maxhp == 0) then
-			return 0
-		else
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then
-					return value
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
+	E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
 			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
 				else
-					return L["Offline"]
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
 				end
+			elseif IsUnitDeadHelper(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			end
+		end
+
+		local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+		if E.Modern then
+			return format('%d%%', UnitHealthPercent(unit, true, ScaleTo100))
+		else
+			if maxhp == 0 then
+				return 0
+			else
+				return mathfloor(((cur / maxhp) * 100) + 0.5)
 			end
 		end
 	end)
 	E:AddTagInfo("eltruism:perhpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays percentage health with status icons"])
 
 	--HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-	E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
+	E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			end
+		end
+
 		local isTarget
-		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		else
 			isTarget = false
@@ -351,72 +303,62 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				local reaction = UnitReaction(unit, "player")
-				local reactionClass = reaction and reactionToGradient[reaction]
-				if reactionClass then
-					if not E.Modern and lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
-					else
-						return value
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-					return deadtexture
+			local reaction = UnitReaction(unit, "player")
+			local reactionClass = reaction and reactionToGradient[reaction]
+			if reactionClass then
+				if not E.Modern and lengthOK then
+					return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
 				else
-					return L["Dead"]
+					return value
 				end
 			end
+			return value
 		else
 			local _, unitClass = UnitClass(unit)
-			if not unitClass then return end
-			if not E:NotSecretValue(unitClass) then --secret class so do something else
+			if not unitClass or not E:NotSecretValue(unitClass) then
 				return value
 			end
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					if not E.Modern and lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
-					else
-						return value
-					end
-					--return gsub(ElvUI_EltreumUI:GradientName(E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true), unitClass,isTarget),"-","||")
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
+			if not E.Modern and lengthOK then
+				return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
 			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
+				return value
 			end
 		end
 	end)
 	E:AddTagInfo("eltruism:hpstatus:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP - % and a status symbol. Can be customized in Eltruism > Media"])
 
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-	E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
+	E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			end
+		end
+
 		local isTarget
-		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		else
 			isTarget = false
 		end
 		local value
 		if E.Modern then
-			--value = E:AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
 			value = UnitHealth(unit)
 		else
 			value = E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
@@ -426,64 +368,56 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				local reaction = UnitReaction(unit, "player")
-				local reactionClass = reaction and reactionToGradient[reaction]
-				if reactionClass then
-					if lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
-					else
-						return value
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-					return deadtexture
+			local reaction = UnitReaction(unit, "player")
+			local reactionClass = reaction and reactionToGradient[reaction]
+			if reactionClass then
+				if lengthOK then
+					return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
 				else
-					return L["Dead"]
+					return value
 				end
 			end
+			return value
 		else
 			local _, unitClass = UnitClass(unit)
-			if not unitClass then return end
-			if not E:NotSecretValue(unitClass) then --secret class so do something else
+			if not unitClass or not E:NotSecretValue(unitClass) then
 				return value
 			end
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					if lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
-					else
-						return value
-					end
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
+			if lengthOK then
+				return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
 			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
+				return value
 			end
 		end
 	end)
 	E:AddTagInfo("eltruism:hpstatusnopc:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatusnopc{number,number}]"])
 
 	--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-	E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET", function(unit)
+	E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif IsUnitDeadHelper(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+					return deadtexture
+				else
+					return L["Dead"]
+				end
+			end
+		end
+
 		local isTarget
-		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
+		if not E.Modern then
 			isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 		else
 			isTarget = false
@@ -494,55 +428,25 @@ function ElvUI_EltreumUI:LoadHealthTags()
 			lengthOK = stringlen(value) > 2 and true or false
 		end
 		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
-			if not UnitIsDead(unit) or UnitIsFeignDeath(unit) then
-				local reaction = UnitReaction(unit, "player")
-				local reactionClass = reaction and reactionToGradient[reaction]
-				if reactionClass then
-					if lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
-					else
-						return value
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-					return deadtexture
+			local reaction = UnitReaction(unit, "player")
+			local reactionClass = reaction and reactionToGradient[reaction]
+			if reactionClass then
+				if lengthOK then
+					return ElvUI_EltreumUI:GradientName(value, reactionClass, isTarget)
 				else
-					return L["Dead"]
+					return value
 				end
 			end
+			return value
 		else
 			local _, unitClass = UnitClass(unit)
-			if not unitClass then return end
-			if not E:NotSecretValue(unitClass) then --secret class so do something else
+			if not unitClass or not E:NotSecretValue(unitClass) then
 				return value
 			end
-			if UnitIsConnected(unit) then
-				if not UnitIsDeadOrGhost(unit) or UnitIsFeignDeath(unit) then --players
-					if lengthOK then
-						return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
-					else
-						return value
-					end
-				elseif UnitIsDead(unit) and not UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
-						return deadtexture
-					else
-						return L["Dead"]
-					end
-				elseif UnitIsGhost(unit) then
-					if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-						return ghosttexture
-					else
-						return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
-					end
-				end
+			if lengthOK then
+				return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)
 			else
-				if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
-					return dctexture
-				else
-					return L["Offline"]
-				end
+				return value
 			end
 		end
 	end)
@@ -616,8 +520,8 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		E:AddTagInfo("eltruism:pchpdeficit:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
 
 		--health:current-max-percent:shortvalue but gradient
-		E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET', function(unit)
-			local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+		E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_NAME_UPDATE UNIT_TARGET UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE', function(unit)
+			local status = not UnitIsConnected(unit) and L["Offline"] or (not UnitIsFeignDeath(unit) and (UnitIsGhost(unit) and L["Ghost"] or IsUnitDeadHelper(unit) and L["Dead"]))
 			local isTarget
 			if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 				isTarget = E:UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
@@ -654,8 +558,9 @@ function ElvUI_EltreumUI:LoadHealthTags()
 						local pColor = ElvUI_EltreumUI:GradientName(perc, reactionClass, isTarget)
 						return format("%s%s%s", vColor, perctext, pColor)
 					end
+					return value
 				else
-					if not unitClass then return end
+					if not unitClass then return value end
 					if not E:NotSecretValue(unitClass) then --secret class so do something else
 						return format("%s%s", value, perctext)
 					end

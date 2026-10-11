@@ -19,6 +19,8 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitClassification = _G.UnitClassification
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitIsFeignDeath = _G.UnitIsFeignDeath
+local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
+local UnitHealth = _G.UnitHealth
 local format = _G.format
 local escapeSequence = ":0:0:0:0"
 local cached_deadtexture, cached_ghosttexture, cached_dctexture
@@ -477,30 +479,32 @@ function ElvUI_EltreumUI:LoadIconTags()
 	E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
 	--Tag for dead based on elvui tag for health with user input
-	E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit)
-		if UnitIsDead(unit) and UnitIsPlayer(unit) and not UnitIsFeignDeath(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.deadtagicon ~= "NONE" then
-				return cached_deadtexture
-			else
-				return L["Dead"]
-			end
-		elseif UnitIsGhost(unit) then
-			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
-				return cached_ghosttexture
-			else
-				return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+	E:AddTag("eltruism:dead", "UNIT_HEALTH UNIT_FLAGS PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and not UnitIsFeignDeath(unit) then
+			if UnitIsGhost(unit) then
+				if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+					return cached_ghosttexture
+				else
+					return ElvUI_EltreumUI:SpellInfoShapeshift(8326)
+				end
+			elseif UnitIsDead(unit) or UnitIsDeadOrGhost(unit) or (UnitHealth(unit) and E:NotSecretValue(UnitHealth(unit)) and UnitHealth(unit) <= 0) then
+				if E.db.ElvUI_EltreumUI.otherstuff.deadtagicon ~= "NONE" then
+					return cached_deadtexture
+				else
+					return L["Dead"]
+				end
 			end
 		end
 	end)
 	E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead1.tga:0:0:0:0|t "..L["Displays a dead symbol when unit is dead. Can be customized in Eltruism > Media"])
 
 	--Tag for dc based on elvui tag for health
-	E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit)
-		if not UnitIsConnected(unit) and UnitIsPlayer(unit) then
+	E:AddTag("eltruism:dc", "UNIT_CONNECTION PARTY_MEMBER_ENABLE PARTY_MEMBER_DISABLE", function(unit)
+		if not UnitIsConnected(unit) and (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) then
 			if E.db.ElvUI_EltreumUI.otherstuff.dctagicon ~= "NONE" then
 				return cached_dctexture
 			else
-				return L["Dead"]
+				return L["Offline"]
 			end
 		end
 	end)
