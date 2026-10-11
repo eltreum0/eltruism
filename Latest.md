@@ -1,14 +1,14 @@
 ### 5.1.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added support for World of Warcraft Forever  
-Added an ElvUI mover for LootText  
 Added option previews for Dark/Light modes, textures, AFK music, and Death animations  
 Added a command (/eltruism transparent) to toggle unitframe transparent health  
 Added cooking profession ID for Titan Reforged (thanks Dongchen Xu)  
-Added Fishing to the Bag Profession Buttons  
 Added Nameplate Custom Height back using different functions  
 Added support for Skyborne Elves in several functions  
 Added a Waypoint Name option to Map Waypoints  
+Added Fishing to the Bag Profession Buttons  
+Added an ElvUI mover for LootText  
 Added several more shadows  
 Updated Shadows to better work with aura containers and adjusted strata to prevent clipping  
 Updated Class Combat Indicator to use default ElvUI indicator when unit class is secret  

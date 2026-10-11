@@ -15,14 +15,14 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
 Added support for World of Warcraft Forever
-Added an ElvUI mover for LootText
 Added option previews for Dark/Light modes, textures, AFK music, and Death animations
 Added a command (/eltruism transparent) to toggle unitframe transparent health
 Added cooking profession ID for Titan Reforged (thanks Dongchen Xu)
-Added Fishing to the Bag Profession Buttons
 Added Nameplate Custom Height back using different functions
 Added support for Skyborne Elves in several functions
 Added a Waypoint Name option to Map Waypoints
+Added Fishing to the Bag Profession Buttons
+Added an ElvUI mover for LootText
 Added several more shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 
