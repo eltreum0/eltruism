@@ -24,6 +24,7 @@ local function UpdateUnitPortraitDead(frame, unit)
 	local u = unit or frame.__unit or frame.unit
 	if not u then return end
 
+	local db = frame.db or (E.db.unitframe.units and (E.db.unitframe.units[u] or (frame.unitframeType and E.db.unitframe.units[frame.unitframeType])))
 	local isDead = IsUnitDeadHelper(u)
 	local portrait = frame.Portrait3D or (frame.Portrait and frame.Portrait.playerModel and frame.Portrait)
 	if portrait and portrait.SetPaused and portrait.SetDesaturation then
@@ -33,6 +34,7 @@ local function UpdateUnitPortraitDead(frame, unit)
 		else
 			portrait:SetPaused(false)
 			portrait:SetDesaturation(0)
+			portrait:SetAlpha(db.portrait.overlayAlpha or 0.3)
 		end
 	elseif frame.Portrait then
 		if frame.Portrait.SetDesaturated then
@@ -576,12 +578,14 @@ function ElvUI_EltreumUI:PortraitFix(portrait, unit)
 
 		--pause if dead or ghost
 		if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
+			local pDb = portrait.db or (portrait:GetParent() and portrait:GetParent().db)
 			if IsUnitDeadHelper(unit) then
 				portrait:SetPaused(true)
 				portrait:SetDesaturation(1)
 			else
 				portrait:SetPaused(false)
 				portrait:SetDesaturation(0)
+				portrait:SetAlpha(pDb.overlayAlpha or 0.3)
 			end
 		end
 
