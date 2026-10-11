@@ -873,9 +873,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["player"]["debuffs"]["height"] = 25
 	E.db["unitframe"]["units"]["player"]["debuffs"]["keepSizeRatio"] = false
 	E.db["unitframe"]["units"]["player"]["debuffs"]["sizeOverride"] = 30
-	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -32
+	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -53
 	E.db["unitframe"]["units"]["player"]["debuffs"]["xOffset"] = -15
-	E.db["unitframe"]["units"]["player"]["debuffs"]["numrows"] = 4
+	E.db["unitframe"]["units"]["player"]["debuffs"]["numrows"] = 1
 	E.db["unitframe"]["units"]["player"]["debuffs"]["perrow"] = 4
 	E.db["unitframe"]["units"]["player"]["debuffs"]["spacing"] = 2
 	E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
@@ -1176,7 +1176,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 15
-	E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -32
+	E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -65
 	E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
