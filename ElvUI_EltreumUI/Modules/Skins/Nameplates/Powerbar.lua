@@ -387,15 +387,16 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			local _, powertype = UnitPowerType("player")
 
 			--set gradient if enabled
-			if powertype then
-				if npGradient then
-					if not gradientDB.orientationpower then --the error on reload is because the db unloads before this apparently, so value returns as nil
-						gradientDB.orientationpower = "HORIZONTAL"
-					end
-					if gradientDB.enablepowercustom then
-						EltreumPowerBar:GetStatusBarTexture():SetGradient(gradientDB.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
+			if powertype and npGradient then
+				local orient = gradientDB.orientationpower
+				local custom = gradientDB.enablepowercustom
+				local gradKey = powertype .. orient .. (custom and "1" or "0")
+				if EltreumPowerBar.EltruismLastPowerGradKey ~= gradKey then
+					EltreumPowerBar.EltruismLastPowerGradKey = gradKey
+					if custom then
+						EltreumPowerBar:GetStatusBarTexture():SetGradient(orient, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
 					else
-						EltreumPowerBar:GetStatusBarTexture():SetGradient(gradientDB.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
+						EltreumPowerBar:GetStatusBarTexture():SetGradient(orient, ElvUI_EltreumUI:GradientColors(powertype, false, false))
 					end
 				end
 			end
@@ -408,18 +409,22 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			--update position based on class bar (or not)
+			local targetPosY
 			if nameplatePowerDB.autoadjustposition then
-				if targetClassPower and targetClassPowerShown then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-				elseif targetRunes and targetRunesShown then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-				elseif targetStagger and targetStaggerShown then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
+				if (targetClassPower and targetClassPowerShown) or (targetRunes and targetRunesShown) or (targetStagger and targetStaggerShown) then
+					targetPosY = 23
 				else
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 14)
+					targetPosY = 14
 				end
 			else
-				EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, nameplatePowerDB.posy)
+				targetPosY = nameplatePowerDB.posy
+			end
+
+			if EltreumPowerBar.EltruismLastAnchor ~= EltreumPowerAnchor or EltreumPowerBar.EltruismLastPosY ~= targetPosY then
+				EltreumPowerBar:ClearAllPoints()
+				EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, targetPosY)
+				EltreumPowerBar.EltruismLastAnchor = EltreumPowerAnchor
+				EltreumPowerBar.EltruismLastPosY = targetPosY
 			end
 
 			--adjust position, show/hide, show colors depending on powertype if not gradient
