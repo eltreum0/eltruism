@@ -45,6 +45,7 @@ Updated DataTexts to better support Forever and Classic Era
 Updated secret checking functions to use new modern APIs
 Updated Nameplate threat scaling to avoid scaling issues
 Updated Group Power gradient textures and color updates
+Updated Universal Borders to improve Size and Coloring
 Updated Castbars to unify player and target castbars
 Updated the Installation process, optimizing it
 Updated Nameplate borders to use threat colors
@@ -53,6 +54,7 @@ Updated several tags to improve performance
 Updated Nameplate Power Bar autopositioning
 Updated Aura Filters to work once again
 Updated Glows to optimize execution
+Updated Thin Mode layout
 Updated localizations
 ]], 5, "small", nil, nil, nil, nil, "full")
 
