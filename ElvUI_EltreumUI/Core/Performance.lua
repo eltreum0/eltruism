@@ -20,7 +20,7 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 
 	E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
 	E.db["auras"]["debuffs"]["seperateOwn"] = 0 -- do not sort auras
-	E.db["auras"]["cooldown"]["override"] = false
+	--E.db["auras"]["cooldown"]["override"] = false
 	E.db["chat"]["fade"] = true -- fade text again
 	E.db["unitframe"]["units"]["assist"]["enable"] = false --disable assist/tank frames
 	E.db["unitframe"]["units"]["tank"]["enable"] = false --disable assist/tank frames
