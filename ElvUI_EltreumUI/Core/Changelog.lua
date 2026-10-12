@@ -30,13 +30,16 @@ Added several more shadows
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
+Updated Quest Objective Tracker progress bars to improve backdrop coloring and dynamic hooks
 Updated Shadows to better work with aura containers and adjusted strata to prevent clipping
 Updated Class Combat Indicator to use default ElvUI indicator when unit class is secret
 Updated hooks across modules to better support ElvUI_CPU and avoid duplicate hooks
 Updated Aurabars to re-add gradients, thin mode, update settings, and fix shadows
+Updated Immersion skin to reliably skin dialogue options and quest reward choices
 Updated Max Camera Distance Zoom to allow up to 4 in World of Warcraft Forever
 Updated CVars to show loot sparkle effects when object outline is disabled
 Updated options layout and moved combat settings into a dedicated section
+Updated Castbars to apply gradient coloring to non-interruptible shields
 Updated Gradient functions to cache values and improve performance
 Updated Castbars to better handle interrupts in Retail and Forever
 Updated Aurabars to also apply custom font and outline settings
@@ -62,14 +65,15 @@ Updated localizations
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
+Fixed texture escape sequences in tags causing classification, role, and class icons to not display
 Fixed health tags in modern WoW when values are secret, restoring short values and status icons
 Fixed aura borders due to container changes and ensured they hide immediately when disabled
 Fixed group borders having forced class colors when class-colored borders were disabled
 Fixed several errors caused by secret values in combat, character stats, and DataTexts
-Fixed shadows appearing on Nameplate elements when Nameplate shadows were disabled
 Fixed a possible issue when applying custom font outlines with mMediaTag enabled
 Fixed Blizzard Damage Meter shortening character names in non-Retail versions
 Fixed unitframe textures and backgrounds when using transparent health
+Fixed a potential error in Border Auto Adjust during combat lockdown
 Fixed aura positioning overlapping with castbars in the DPS layout
 Fixed player and group unitframe transparency on login and reload
 Fixed Nameplate Target Model persisting when having no target
@@ -79,10 +83,10 @@ Fixed Nameplate Power Bar clipping and positioning issues
 Fixed Game Menu buttons animation in the Ace3 skin
 Fixed default Nameplate Power Bar size in Retail
 Fixed Damage Meter skin after ElvUI skin changes
-Fixed Blizzard Damage Meter bar shadow clipping
 Fixed missing gradient on Nameplate Castbars
 Fixed debuff backdrop on Aurabars
 Fixed BugSack skin after updates
+Fixed several shadow issues
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other
