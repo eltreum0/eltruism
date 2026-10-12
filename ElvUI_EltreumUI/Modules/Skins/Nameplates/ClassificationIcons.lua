@@ -2119,30 +2119,35 @@ local function Construct_ClassificationIndicator(nameplate)
 	return nameplate:CreateTexture(nameplate:GetName() .. 'EltruismClassificationIndicator', 'OVERLAY')
 end
 
-local function Update_ClassificationIndicator(_, nameplate)
+local function Update_ClassificationIndicator(nameplate)
+	if not nameplate or type(nameplate) ~= "table" then return end
+
 	local plateDB = NP:PlateDB(nameplate)
 
 	 -- add your settings here
-	local db = plateDB.eliteIcon
+	local db = plateDB and plateDB.eliteIcon
 	if db and db.enable and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
 		--if db and (nameplate.frameType == 'ENEMY_NPC') then
-		if not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
+		if not nameplate.EltruismClassificationIndicator and nameplate.RaisedElement then
+			nameplate.EltruismClassificationIndicator = Construct_ClassificationIndicator(nameplate.RaisedElement)
+		end
+		if nameplate.IsElementEnabled and not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 			nameplate:EnableElement('EltruismClassificationIndicator')
 		end
-		if nameplate.EltruismClassificationIndicator and nameplate:IsElementEnabled('ClassificationIndicator') then
+		if nameplate.EltruismClassificationIndicator and nameplate.IsElementEnabled and nameplate:IsElementEnabled('ClassificationIndicator') then
 			nameplate.EltruismClassificationIndicator:Show()
 			nameplate.EltruismClassificationIndicator:ClearAllPoints()
 			nameplate.EltruismClassificationIndicator:Size(db.size, db.size)
 			nameplate.EltruismClassificationIndicator:Point(E.InversePoints[db.position], nameplate, db.position, db.xOffset, db.yOffset)
 		end
 
-		if nameplate:IsElementEnabled('ClassificationIndicator') then --hide elvui's icon if eltruism's is enabled
+		if nameplate.IsElementEnabled and nameplate:IsElementEnabled('ClassificationIndicator') then --hide elvui's icon if eltruism's is enabled
 			if nameplate.ClassificationIndicator then
 				nameplate.ClassificationIndicator:SetAlpha(0)
 			end
 		end
 
-	elseif nameplate:IsElementEnabled('EltruismClassificationIndicator') then
+	elseif nameplate.IsElementEnabled and nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 		nameplate:DisableElement('EltruismClassificationIndicator')
 		if nameplate.EltruismClassificationIndicator then
 			nameplate.EltruismClassificationIndicator:Hide()
@@ -2159,7 +2164,7 @@ function ElvUI_EltreumUI:NP_StylePlate_Classification(nameplate)
 end
 
 function ElvUI_EltreumUI:NP_Update_ClassificationIndicator(_, nameplate)
-	Update_ClassificationIndicator(nameplate)
+	Update_ClassificationIndicator(nameplate or _)
 end
 
 function ElvUI_EltreumUI:NPClassificatioNIcon()
