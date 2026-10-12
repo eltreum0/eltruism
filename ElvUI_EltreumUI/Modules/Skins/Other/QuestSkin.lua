@@ -377,6 +377,46 @@ function ElvUI_EltreumUI:SkinQuests()
 					local bar = line
 					if not bar then return end
 
+					if not bar.backdrop and bar.CreateBackdrop then
+						bar:CreateBackdrop('Transparent')
+					end
+
+					if bar.backdrop then
+						bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+						if bar.backdrop.SetBackdropColor ~= E.noop then
+							bar.backdrop:SetBackdropColor(0, 0, 0, E.db.general.backdropfadecolor.a)
+							bar.backdrop.SetBackdropColor = E.noop
+						end
+					end
+
+					if bar.BarBG then
+						bar.BarBG:Hide()
+					end
+
+					if bar.GetStatusBarTexture and bar:GetStatusBarTexture() then
+						bar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.queststatusbartexture))
+					end
+
+					if bar.Icon then
+						if bar.Icon.backdrop then
+							bar.Icon.backdrop:SetShown(bar.Icon:IsShown())
+						end
+						if bar.BarFrame and bar.BarFrame.backdrop then
+							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
+						end
+						if not bar.Icon.EltruismHooked then
+							hooksecurefunc(bar.Icon, "Show", function(icon)
+								if icon.backdrop then icon.backdrop:Show() end
+								if bar.BarFrame and bar.BarFrame.backdrop then bar.BarFrame.backdrop:Show() end
+							end)
+							hooksecurefunc(bar.Icon, "Hide", function(icon)
+								if icon.backdrop then icon.backdrop:Hide() end
+								if bar.BarFrame and bar.BarFrame.backdrop then bar.BarFrame.backdrop:Hide() end
+							end)
+							bar.Icon.EltruismHooked = true
+						end
+					end
+
 					if not InCombatLockdown() then
 						if bar.Icon and bar.Icon:IsVisible() then
 							bar.Icon:ClearAllPoints()
@@ -384,60 +424,75 @@ function ElvUI_EltreumUI:SkinQuests()
 							bar.Icon:SetMask('')
 							bar.Icon:SetTexCoord(unpack(E.TexCoords))
 
-							if not bar.BarFrame.backdrop then
-								bar.BarFrame:CreateBackdrop()
-								bar.BarFrame.backdrop:SetOutside(bar.Icon)
-								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-									if not bar.BarFrame.backdrop.shadow then
-										bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
-									end
+							if bar.BarFrame then
+								if not bar.BarFrame.backdrop then
+									bar.BarFrame:CreateBackdrop()
 								end
-								bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
-							else
-								bar.BarFrame.backdrop:SetOutside(bar.Icon)
-								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-									if not bar.BarFrame.backdrop.shadow then
-										bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
+								if bar.BarFrame.backdrop then
+									bar.BarFrame.backdrop:SetOutside(bar.Icon)
+									if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+										if not bar.BarFrame.backdrop.shadow then
+											bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
+										end
 									end
+									bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 								end
-								bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 							end
 						end
 
-						if not bar.EltruismSkin then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
+						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
+							if not bar.shadow then
 								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(bar.shadow)
 							end
-
-							--E:Delay(0, function()
-							bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-							bar.backdrop:SetBackdropColor(0,0,0)
-							bar.backdrop.SetBackdropColor = E.noop
-							--end)
-							bar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.queststatusbartexture))
-							--[[hooksecurefunc(bar, "SetStatusBarColor", function(_, r, g, b)
-								bar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
-								bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-								bar.backdrop:SetBackdropColor(0,0,0)
-							end)]]
-
-							if bar.SetPercent then
-								hooksecurefunc(bar:GetParent(), "SetPercent", function(frame)--,percent)
-									local statusbar = frame.Bar
-									if not statusbar then return end
-									--S:StatusBarColorGradient(statusbar, percent, 100)
-									local r,g,b = statusbar:GetStatusBarColor()
-									statusbar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
-									statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-									statusbar.backdrop:SetBackdropColor(0,0,0)
-								end)
-							end
-							bar.EltruismSkin = true
 						end
 					end
+
+					if not bar.EltruismHookedSetValue and bar.SetValue then
+						hooksecurefunc(bar, "SetValue", function(statusbar)
+							if statusbar and statusbar.backdrop then
+								statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+								if statusbar.backdrop.SetBackdropColor ~= E.noop then
+									statusbar.backdrop:SetBackdropColor(0, 0, 0, E.db.general.backdropfadecolor.a)
+									statusbar.backdrop.SetBackdropColor = E.noop
+								end
+							end
+						end)
+						bar.EltruismHookedSetValue = true
+					end
+
+					local parent = bar:GetParent()
+					if parent and not parent.EltruismHookedProgress then
+						if parent.SetPercent then
+							hooksecurefunc(parent, "SetPercent", function(frame)
+								local statusbar = frame.Bar
+								if statusbar and statusbar.backdrop then
+									statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+									if statusbar.backdrop.SetBackdropColor ~= E.noop then
+										statusbar.backdrop:SetBackdropColor(0, 0, 0, E.db.general.backdropfadecolor.a)
+										statusbar.backdrop.SetBackdropColor = E.noop
+									end
+								end
+							end)
+							parent.EltruismHookedProgress = true
+						end
+						if parent.SetValue then
+							hooksecurefunc(parent, "SetValue", function(frame)
+								local statusbar = frame.Bar
+								if statusbar and statusbar.backdrop then
+									statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+									if statusbar.backdrop.SetBackdropColor ~= E.noop then
+										statusbar.backdrop:SetBackdropColor(0, 0, 0, E.db.general.backdropfadecolor.a)
+										statusbar.backdrop.SetBackdropColor = E.noop
+									end
+								end
+							end)
+							parent.EltruismHookedProgress = true
+						end
+					end
+
+					bar.EltruismSkin = true
 				end
 
 				local function subLines(line)
@@ -778,8 +833,47 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.WorldQuestObjectiveTracker,
 					_G.ObjectiveTrackerFrame,
 					_G.UIWidgetObjectiveTracker,
+					_G.InitiativeTasksObjectiveTracker,
 				}
+
+				local function hookTrackerProgressBars(tracker)
+					if not tracker then return end
+					if tracker.GetProgressBar and not tracker.EltruismProgressBarHook then
+						hooksecurefunc(tracker, "GetProgressBar", function(t, key)
+							local progress = t.usedProgressBars and t.usedProgressBars[key]
+							if progress and progress.Bar then
+								EltreumSkinProgressBars(progress.Bar)
+							end
+						end)
+						tracker.EltruismProgressBarHook = true
+					end
+					if tracker.GetTimerBar and not tracker.EltruismTimerBarHook then
+						hooksecurefunc(tracker, "GetTimerBar", function(t, key)
+							local progress = t.usedTimerBars and t.usedTimerBars[key]
+							if progress and progress.Bar then
+								EltreumSkinProgressBars(progress.Bar)
+							end
+						end)
+						tracker.EltruismTimerBarHook = true
+					end
+					if tracker.usedProgressBars then
+						for _, progress in pairs(tracker.usedProgressBars) do
+							if progress and progress.Bar then
+								EltreumSkinProgressBars(progress.Bar)
+							end
+						end
+					end
+					if tracker.usedTimerBars then
+						for _, progress in pairs(tracker.usedTimerBars) do
+							if progress and progress.Bar then
+								EltreumSkinProgressBars(progress.Bar)
+							end
+						end
+					end
+				end
+
 				for _, module in pairs(questmodules) do
+					hookTrackerProgressBars(module)
 					if module and module.Header then
 
 						--the big type of quest
@@ -897,6 +991,12 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						usedLines(block)
 					end
+					if block.Bar then
+						EltreumSkinProgressBars(block.Bar)
+					end
+					if block.progressBar and block.progressBar.Bar then
+						EltreumSkinProgressBars(block.progressBar.Bar)
+					end
 					if block.lastRegion then
 						lastRegion(block)
 					end
@@ -935,6 +1035,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					k:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 					if k.Bar then
 						EltreumSkinProgressBars(k.Bar)
+					end
+					if k.progressBar and k.progressBar.Bar then
+						EltreumSkinProgressBars(k.progressBar.Bar)
 					end
 					if k.UpdateHighlight and not k.UpdateHighlightHook then
 						hooksecurefunc(k, "UpdateHighlight", function(_, block)
@@ -1194,6 +1297,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								k.SetHeaderHook = true
 							end)
 						end
+						hookTrackerProgressBars(k)
 					end
 				end
 				E:Delay(0,firehooks)
@@ -1233,31 +1337,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									end
 								end
 								if frame.Bar then
-									if not frame.Bar.shadow then
-										frame.Bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(frame.Bar.shadow)
-									end
-									if frame.SetValue then
-										hooksecurefunc(frame, "SetValue", function(framebar)--,percent)
-											local statusbar = framebar.Bar
-											if not statusbar then return end
-											--S:StatusBarColorGradient(statusbar, percent, 100)
-											local r,g,b = statusbar:GetStatusBarColor()
-											statusbar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
-											statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-											statusbar.backdrop:SetBackdropColor(0,0,0)
-										end)
-									elseif frame.Bar.SetValue then
-										hooksecurefunc(frame.Bar, "SetValue", function(bar)--,percent)
-											local statusbar = bar
-											if not statusbar then return end
-											--S:StatusBarColorGradient(statusbar, percent, 100)
-											local r,g,b = statusbar:GetStatusBarColor()
-											statusbar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
-											statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-											statusbar.backdrop:SetBackdropColor(0,0,0)
-										end)
-									end
+									EltreumSkinProgressBars(frame.Bar)
 								end
 							end
 
