@@ -82,8 +82,9 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	end
 
 	--game version check
+	local currentversion = select(4,GetBuildInfo())
 	local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
-	if _G.PTR_IssueReporter then
+	if _G.PTR_IssueReporter and (currentversion == tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfacePTR'))) then
 		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfacePTR'))
 	elseif E.Classic then
 		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfaceVanilla'))
@@ -96,7 +97,6 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	elseif E.Forever then
 		requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-InterfaceForever'))
 	end
-	local currentversion = select(4,GetBuildInfo())
 	if requiredversion < tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKHIGHER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
