@@ -5,7 +5,6 @@ local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
-local UnitCanAttack = _G.UnitCanAttack
 local canaccessvalue = _G.canaccessvalue
 
 --elvui castbar texture/gradient
@@ -25,7 +24,6 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 	end
 	local reactionUnit = unitActual and UnitReaction(unitActual, "player")
 	local notInterruptible = canaccessvalue(castbar.notInterruptible) and castbar.notInterruptible
-	local canAttack = unitActual and UnitCanAttack('player', unitActual)
 
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		local tex = castbar:GetStatusBarTexture()
@@ -34,11 +32,13 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 			local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
 			local c1, c2
 
-			if castbar.Shield then
-				castbar.Shield:SetAlpha(0)
-			end
-
-			if notInterruptible and canAttack then
+			--[[if castbar.Shield then
+				--castbar.Shield:SetAlpha(1)
+				castbar.Shield:SetTexture(E.LSM:Fetch("statusbar",(ufCustom.enable and ufCustom.castbartexture) or (gm.enable and (gm.useUFtexture and E.db.unitframe.statusbar or gm.texture))))
+				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.customcolor and "noninterruptible_custom" or "noninterruptible_default", gm.reverse)
+				castbar.Shield:SetGradient(orientation, c1, c2)
+			end]]
+			if notInterruptible then
 				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "noninterruptible_custom" or "noninterruptible_default")
 				tex:SetGradient(orientation, c1, c2)
 			else
@@ -91,7 +91,7 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 		end
 	end
 	if castbar.EltruismNameplateBorder then
-		local borderType = (notInterruptible and canAttack) and "nointerrupt" or "interrupt"
+		local borderType = notInterruptible and "nointerrupt" or "interrupt"
 		if castbar.EltruismNameplateBorder.EltruismCastBorderKey ~= borderType then
 			castbar.EltruismNameplateBorder.EltruismCastBorderKey = borderType
 			if borderType == "nointerrupt" then
@@ -110,9 +110,9 @@ function ElvUI_EltreumUI:Castbar_PostCastFail(castbar)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		local tex = castbar:GetStatusBarTexture()
 		if tex then
-			if castbar.Shield then
+			--[[if castbar.Shield then
 				castbar.Shield:SetAlpha(0)
-			end
+			end]]
 			local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
 			local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
 			local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interrupted_custom" or "interrupted_default")
