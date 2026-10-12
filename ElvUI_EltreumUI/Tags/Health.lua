@@ -59,9 +59,9 @@ ElvUI_EltreumUI.IsUnitDeadHelper = IsUnitDeadHelper
 function ElvUI_EltreumUI:UpdateCachedHealthTagTextures()
 	if E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.otherstuff then
 		local hpicons = E.db.ElvUI_EltreumUI.otherstuff
-		deadtexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead%s.tga%s|t", tostring(hpicons.hpstatusdeadicon), escapeSequence)
-		dctexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc%s.tga%s|t", tostring(hpicons.hpstatusdcicon), escapeSequence)
-		ghosttexture = format("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost%s.tga%s|t", tostring(hpicons.ghosttagicon), escapeSequence)
+		deadtexture = format([[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\Dead\dead%s%s|t]], tostring(hpicons.hpstatusdeadicon), escapeSequence)
+		dctexture = format([[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\Disconnect\dc%s%s|t]], tostring(hpicons.hpstatusdcicon), escapeSequence)
+		ghosttexture = format([[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\Ghost\ghost%s%s|t]], tostring(hpicons.ghosttagicon), escapeSequence)
 	end
 end
 
