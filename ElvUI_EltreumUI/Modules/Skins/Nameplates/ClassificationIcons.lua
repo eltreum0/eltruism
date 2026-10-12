@@ -2193,7 +2193,7 @@ local function returnIcon(classification, isBoss)
 	local g = mathfloor(db[key .. "G"] * 255)
 	local b = mathfloor(db[key .. "B"] * 255)
 
-	return stringformat("|T%s:0:0:0:2:32:32:0:32:0:32:%d:%d:%d|t", getTexturePath(db, key), r, g, b)
+	return stringformat("|T%s:0:0:0:0:32:32:0:32:0:32:%d:%d:%d|t", getTexturePath(db, key), r, g, b)
 end
 
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
@@ -2207,5 +2207,4 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 		return returnIcon(classification, bossIDs[unitID])
 	end
 end)
-
 E:AddTagInfo('eltruism:classification', ElvUI_EltreumUI.Name .. " " .. L["Miscellaneous"], L["Shows an Icon for the classification of the unit"])
