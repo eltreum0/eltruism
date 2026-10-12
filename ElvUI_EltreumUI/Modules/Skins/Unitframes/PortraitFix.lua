@@ -42,7 +42,8 @@ local function UpdateUnitPortraitDead(frame, unit)
 		else
 			portrait:SetPaused(false)
 			portrait:SetDesaturation(0)
-			portrait:SetAlpha(db.portrait.overlayAlpha or 0.3)
+			local overlayAlpha = (portrait.db and portrait.db.overlayAlpha) or (db.portrait and db.portrait.overlayAlpha) or db.overlayAlpha or 0.3
+			portrait:SetAlpha(overlayAlpha)
 		end
 	elseif frame.Portrait then
 		if frame.Portrait.SetDesaturated then
@@ -593,7 +594,8 @@ function ElvUI_EltreumUI:PortraitFix(portrait, unit)
 			else
 				portrait:SetPaused(false)
 				portrait:SetDesaturation(0)
-				portrait:SetAlpha(pDb.overlayAlpha or 0.3)
+				local overlayAlpha = (portrait.db and portrait.db.overlayAlpha) or (pDb and pDb.overlayAlpha) or (pDb and pDb.portrait and pDb.portrait.overlayAlpha) or 0.3
+				portrait:SetAlpha(overlayAlpha)
 			end
 		end
 
@@ -662,14 +664,14 @@ function ElvUI_EltreumUI:PortraitFix(portrait, unit)
 			local db = portrait.db
 			if not db then return end
 			portrait:SetRotation(_G.rad(newrotation))
-			portrait:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+			portrait:SetViewTranslation(((xOffset ~= 0 and xOffset) or db.xOffset or 0) * 100, (db.yOffset or 0) * 100)
 		else
 			--prob couldnt get model bc it was nil from PEW, so reset stuff
 			portrait:SetRotation(0)
 			if xOffset ~= 0 then
 				local db = portrait.db
 				if not db then return end
-				portrait:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+				portrait:SetViewTranslation(xOffset * 100, (db.yOffset or 0) * 100)
 			else
 				portrait:SetViewTranslation(0, 0)
 			end
