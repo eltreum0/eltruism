@@ -154,16 +154,22 @@ local function SkinBugSack()
 
 	--S:HandleButton(button, strip, isDecline, noStyle, createBackdrop, template, noGlossTex, overrideTex, frameLevel, regionsKill, regionsZero, isFilterButton, filterDirection)
 	S:HandleButton(_G["BugSackNextButton"], nil, nil, nil, true,'Transparent')
+	_G["BugSackNextButton"]:SetHeight(20) --default is 40
 	_G["BugSackNextButton"]:ClearAllPoints()
 	_G["BugSackNextButton"]:Point('BOTTOMRIGHT', _G["BugSackFrame"], 'BOTTOMRIGHT', -12, 6)
+
 	S:HandleButton(_G["BugSackPrevButton"], nil, nil, nil, true,'Transparent')
+	_G["BugSackPrevButton"]:SetHeight(20) --default is 40
 	_G["BugSackPrevButton"]:ClearAllPoints()
 	_G["BugSackPrevButton"]:Point('BOTTOMLEFT', _G["BugSackFrame"], 'BOTTOMLEFT', 12, 6)
+
 	if _G["BugSackSendButton"] then
 		S:HandleButton(_G["BugSackSendButton"], nil, nil, nil, true,'Transparent')
+		_G["BugSackSendButton"]:SetHeight(20) --default is 40
 	end
 	if _G["BugSackWipeButton"] then
 		S:HandleButton(_G["BugSackWipeButton"], nil, nil, nil, true,'Transparent')
+		_G["BugSackWipeButton"]:SetHeight(20) --default is 40
 	end
 
 	if E.Modern then
