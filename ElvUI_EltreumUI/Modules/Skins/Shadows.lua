@@ -229,9 +229,9 @@ local function BlizzShadows(arg)
 			end
 		end
 		if (arg == "Blizzard_AdventureMap") or IsAddOnLoaded("Blizzard_AdventureMap") then
-			if _G.AdventureMapQuestChoiceDialog and not _G.AdventureMapQuestChoiceDialog.shadow then
-				_G.AdventureMapQuestChoiceDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.shadow)
+			if _G.AdventureMapQuestChoiceDialog and _G.AdventureMapQuestChoiceDialog.backdrop and not _G.AdventureMapQuestChoiceDialog.backdrop.shadow then
+				_G.AdventureMapQuestChoiceDialog.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.backdrop.shadow,nil,true)
 			end
 		end
 		if (arg == "Blizzard_BattlefieldMap") or IsAddOnLoaded("Blizzard_BattlefieldMap") then
