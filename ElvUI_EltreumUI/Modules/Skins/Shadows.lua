@@ -33,7 +33,7 @@ local timermonitor = CreateFrame("FRAME")
 end]]
 
 --simple function to set shadow color
-function ElvUI_EltreumUI:ShadowColor(shadow, shadowDB, isNameplate)
+function ElvUI_EltreumUI:ShadowColor(shadow, shadowDB, needsLowering)
 	if shadow then
 		if not shadowDB then
 			local eltreumDB = E.db.ElvUI_EltreumUI
@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:ShadowColor(shadow, shadowDB, isNameplate)
 				shadow:SetBackdropBorderColor(shadowDB.r, shadowDB.g, shadowDB.b, shadowDB.a)
 			end
 		end
-		if isNameplate then
+		if needsLowering then
 			shadow:SetFrameLevel(1)
 			shadow:SetFrameStrata("LOW")
 		end
