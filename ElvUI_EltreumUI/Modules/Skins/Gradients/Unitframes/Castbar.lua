@@ -161,9 +161,9 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail(castbar)
 		else
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", gm.texture))
 		end
+	end
 
-		if not gm.enablecastbarinterrupted then return end
-
+	if gm.enable and gm.enablecastbarinterrupted then
 		local tex = castbar:GetStatusBarTexture()
 		if not tex then return end
 
@@ -179,4 +179,5 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail(castbar)
 	end
 end
 ElvUI_EltreumUI:SecureHook(UF, 'PostCastFail', 'CastBarTextureGradientFail')
+ElvUI_EltreumUI:SecureHook(UF, 'PostCastInterrupted', 'CastBarTextureGradientFail')
 
