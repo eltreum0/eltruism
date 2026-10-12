@@ -64,6 +64,7 @@ local instanceType = "none"
 local EltruismInstanceCheck = CreateFrame("Frame")
 local cached_isInInstance = false
 EltruismInstanceCheck:RegisterEvent("PLAYER_ENTERING_WORLD")
+EltruismInstanceCheck:RegisterEvent("ZONE_CHANGED")
 EltruismInstanceCheck:SetScript("OnEvent", function()
 	cached_isInInstance, instanceType = IsInInstance()
 	isPvP = (instanceType == "pvp") or (instanceType == "arena")
