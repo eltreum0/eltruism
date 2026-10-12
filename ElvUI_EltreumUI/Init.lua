@@ -77,6 +77,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinVehicleButton() -- re-skin vehicle button like elvui did
 	ElvUI_EltreumUI:CacheGradients()
 	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
+	ElvUI_EltreumUI:InitTooltip()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
@@ -192,7 +193,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadIconTags()
 	ElvUI_EltreumUI:LoadNameTags()
 	ElvUI_EltreumUI:LoadOtherTags()
-	ElvUI_EltreumUI:GraidnetNameplatesHooks()
+	ElvUI_EltreumUI:GradientNameplatesHooks()
 end
 
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()

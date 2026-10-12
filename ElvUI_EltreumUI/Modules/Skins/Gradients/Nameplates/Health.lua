@@ -343,11 +343,34 @@ function ElvUI_EltreumUI:NP_StylePlate(_, nameplate)
 	end
 end
 
-function ElvUI_EltreumUI:GraidnetNameplatesHooks()
+function ElvUI_EltreumUI:GradientNameplatesHooks()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		ElvUI_EltreumUI:SecureHook(NP, "StylePlate", "NP_StylePlate")
-		ElvUI_EltreumUI:SecureHook(NP, "Update_Health", "NP_Update_Health")
-		ElvUI_EltreumUI:SecureHook(NP, "Health_UpdateColor", "Health_UpdateColor")
-		ElvUI_EltreumUI:SecureHook(NP, "ThreatIndicator_PostUpdate", "NP_ThreatIndicator_PostUpdate")
+		if not self:IsHooked(NP, "StylePlate") then
+			self:SecureHook(NP, "StylePlate", "NP_StylePlate")
+		end
+		if not self:IsHooked(NP, "Update_Health") then
+			self:SecureHook(NP, "Update_Health", "NP_Update_Health")
+		end
+		if not self:IsHooked(NP, "Health_UpdateColor") then
+			self:SecureHook(NP, "Health_UpdateColor", "Health_UpdateColor")
+		end
+		if not self:IsHooked(NP, "ThreatIndicator_PostUpdate") then
+			self:SecureHook(NP, "ThreatIndicator_PostUpdate", "NP_ThreatIndicator_PostUpdate")
+		end
+	else
+		if self:IsHooked(NP, "StylePlate") then
+			self:Unhook(NP, "StylePlate")
+		end
+		if self:IsHooked(NP, "Update_Health") then
+			self:Unhook(NP, "Update_Health")
+		end
+		if self:IsHooked(NP, "Health_UpdateColor") then
+			self:Unhook(NP, "Health_UpdateColor")
+		end
+		if self:IsHooked(NP, "ThreatIndicator_PostUpdate") then
+			self:Unhook(NP, "ThreatIndicator_PostUpdate")
+		end
 	end
 end
+ElvUI_EltreumUI.GraidnetNameplatesHooks = ElvUI_EltreumUI.GradientNameplatesHooks
+
