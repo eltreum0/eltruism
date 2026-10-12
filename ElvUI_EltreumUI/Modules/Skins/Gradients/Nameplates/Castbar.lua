@@ -32,25 +32,32 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 		if tex then
 			local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
 			local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
+			local c1, c2
+
+			if castbar.Shield then
+				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "noninterruptible_custom" or "noninterruptible_default")
+				castbar.Shield:SetGradient(orientation, c1, c2)
+			end
+
 			if notInterruptible and canAttack then
-				local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "noninterruptible_custom" or "noninterruptible_default")
+				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "noninterruptible_custom" or "noninterruptible_default")
 				tex:SetGradient(orientation, c1, c2)
 			else
 				local isPlayer = unitActual and (UnitIsPlayer(unitActual) or (E.Retail and UnitInPartyIsAI(unitActual)))
 				if isPlayer then
 					if gm.npcustomcolor and not gm.classcolorcastbar then
-						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("castbar_custom")
+						c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("castbar_custom")
 						tex:SetGradient(orientation, c1, c2)
 					elseif gm.classcolorcastbar then
-						local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(unitclass, false, gm.npcustomcolor)
+						c1, c2 = ElvUI_EltreumUI:GetHealthGradient(unitclass, false, gm.npcustomcolor)
 						tex:SetGradient(orientation, c1, c2)
 					else
-						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
+						c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
 						tex:SetGradient(orientation, c1, c2)
 					end
 				else
 					if gm.npcustomcolor and not gm.classcolorcastbar then
-						local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("interruptible_custom")
+						c1, c2 = ElvUI_EltreumUI:GetCastbarGradient("interruptible_custom")
 						tex:SetGradient(orientation, c1, c2)
 					else
 						if gm.castbarreactioninterruptable then
@@ -69,14 +76,14 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 								end
 							end
 							if reactionKey then
-								local c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, false, gm.npcustomcolor and gm.classcolorcastbar)
+								c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, false, gm.npcustomcolor and gm.classcolorcastbar)
 								tex:SetGradient(orientation, c1, c2)
 							else
-								local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
+								c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
 								tex:SetGradient(orientation, c1, c2)
 							end
 						else
-							local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
+							c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interruptible_custom" or "interruptible_default")
 							tex:SetGradient(orientation, c1, c2)
 						end
 					end
