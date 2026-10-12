@@ -192,6 +192,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadIconTags()
 	ElvUI_EltreumUI:LoadNameTags()
 	ElvUI_EltreumUI:LoadOtherTags()
+	ElvUI_EltreumUI:GraidnetNameplatesHooks()
 end
 
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()

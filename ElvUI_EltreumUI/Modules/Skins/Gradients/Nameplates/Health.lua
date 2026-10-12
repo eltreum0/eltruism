@@ -124,14 +124,17 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local frame = GetFrame(nameplate)
 	if not frame or not frame.Health or not frame.__unit then return end
+	if frame.EltruismInThreatUpdate then return end
+	frame.EltruismInThreatUpdate = true
 
 	local db = NP.db.threat
 	local EltruismDB = E.db.ElvUI_EltreumUI
 
 	if not (status and db.enable and db.useThreatColor and EltruismDB.unitframes.gradientmode.npenable and not UnitIsTapDenied(frame.__unit)) then
-		if EltruismDB and ((EltruismDB.unitframes and EltruismDB.unitframes.gradientmode and EltruismDB.unitframes.gradientmode.npenable) or (EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture)) then
+		if not frame.EltruismInGradientUpdate and EltruismDB and ((EltruismDB.unitframes and EltruismDB.unitframes.gradientmode and EltruismDB.unitframes.gradientmode.npenable) or (EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture)) then
 			ElvUI_EltreumUI.GradientNameplates(frame)
 		end
+		frame.EltruismInThreatUpdate = nil
 		return
 	end
 
@@ -142,7 +145,10 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(frame.__unit)))
 
 	local tex = frame.Health:GetStatusBarTexture()
-	if not tex then return end
+	if not tex then
+		frame.EltruismInThreatUpdate = nil
+		return
+	end
 	local orientation = EltruismDB.unitframes.gradientmode.nporientation or "VERTICAL"
 	local isRare = frame.isRare and EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture
 
@@ -180,6 +186,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 			end
 		end
 	end
+	frame.EltruismInThreatUpdate = nil
 end
 
 --gradient nameplates
@@ -193,12 +200,18 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 		return
 	end
 
+	if frame.EltruismInGradientUpdate then return end
+	frame.EltruismInGradientUpdate = true
+
 	local npEnabled = db.unitframes.gradientmode.npenable
 	local borderFrame = frame.Health.EltruismNameplateBorder
 	local bordersEnabled = borderFrame and db.borders and db.borders.bordercolors
 	local rareEnabled = db.nameplates and db.nameplates.nameplateOptions and db.nameplates.nameplateOptions.raretexture
 
-	if not npEnabled and not bordersEnabled and not rareEnabled then return end
+	if not npEnabled and not bordersEnabled and not rareEnabled then
+		frame.EltruismInGradientUpdate = nil
+		return
+	end
 
 	if not npEnabled and not rareEnabled then
 		RestoreDefaultHealthTexture(frame)
@@ -214,7 +227,7 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 	local tapdenied = UnitIsTapDenied(unit)
 	local targettype = ElvUI_EltreumUI:GetNameplateTargetType(frame, unit)
 
-	local hasThreat = frame.threatStatus and not tapdenied and NP.db.threat and NP.db.threat.enable and NP.db.threat.useThreatColor
+	local hasThreat = npEnabled and frame.threatStatus and not tapdenied and NP.db.threat and NP.db.threat.enable and NP.db.threat.useThreatColor
 
 	if npEnabled or rareEnabled then
 		frame.isRare = IsFrameRare(frame)
@@ -231,7 +244,7 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 				RestoreDefaultHealthTexture(frame)
 				tex = frame.Health:GetStatusBarTexture()
 
-				if hasThreat then
+				if hasThreat and not frame.EltruismInThreatUpdate then
 					ElvUI_EltreumUI:ThreatIndicator_PostUpdate(frame, frame.threatStatus)
 				else
 					frame.EltruismLastThreatType = nil
@@ -280,6 +293,7 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 			end
 		end
 	end
+	frame.EltruismInGradientUpdate = nil
 end
 function ElvUI_EltreumUI:NP_Update_Health(_, nameplate)
 	local plate = GetFrame(nameplate)
@@ -329,7 +343,11 @@ function ElvUI_EltreumUI:NP_StylePlate(_, nameplate)
 	end
 end
 
-ElvUI_EltreumUI:SecureHook(NP, "StylePlate", "NP_StylePlate")
-ElvUI_EltreumUI:SecureHook(NP, "Update_Health", "NP_Update_Health")
-ElvUI_EltreumUI:SecureHook(NP, "Health_UpdateColor", "Health_UpdateColor")
-ElvUI_EltreumUI:SecureHook(NP, "ThreatIndicator_PostUpdate", "NP_ThreatIndicator_PostUpdate")
+function ElvUI_EltreumUI:GraidnetNameplatesHooks()
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+		ElvUI_EltreumUI:SecureHook(NP, "StylePlate", "NP_StylePlate")
+		ElvUI_EltreumUI:SecureHook(NP, "Update_Health", "NP_Update_Health")
+		ElvUI_EltreumUI:SecureHook(NP, "Health_UpdateColor", "Health_UpdateColor")
+		ElvUI_EltreumUI:SecureHook(NP, "ThreatIndicator_PostUpdate", "NP_ThreatIndicator_PostUpdate")
+	end
+end
