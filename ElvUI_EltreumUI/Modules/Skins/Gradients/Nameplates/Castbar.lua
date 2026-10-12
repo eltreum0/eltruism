@@ -35,8 +35,7 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 			local c1, c2
 
 			if castbar.Shield then
-				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "noninterruptible_custom" or "noninterruptible_default")
-				castbar.Shield:SetGradient(orientation, c1, c2)
+				castbar.Shield:SetAlpha(0)
 			end
 
 			if notInterruptible and canAttack then
@@ -111,6 +110,9 @@ function ElvUI_EltreumUI:Castbar_PostCastFail(castbar)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		local tex = castbar:GetStatusBarTexture()
 		if tex then
+			if castbar.Shield then
+				castbar.Shield:SetAlpha(0)
+			end
 			local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
 			local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
 			local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.npcustomcolor and "interrupted_custom" or "interrupted_default")

@@ -46,14 +46,14 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 
 	if ufCustom.enable then
 		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture))
-		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture))
+		if castbar.Shield then castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture)) end
 	elseif gm.enable then
 		if gm.useUFtexture then
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-			castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+			if castbar.Shield then castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)) end
 		else
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", gm.texture))
-			castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", gm.texture))
+			if castbar.Shield then castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", gm.texture)) end
 		end
 	end
 
@@ -77,15 +77,13 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 		local notInterruptible = E:NotSecretValue(castbar.notInterruptible) and castbar.notInterruptible
 		local c1, c2
 
-		if castbar.Shield then
-			c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default", isReverse)
-			castbar.Shield:SetGradient(orientation, c1, c2)
-		end
 		if notInterruptible then
 			if gm.enablecastbarnoninterruptible then
+				if castbar.Shield then castbar.Shield:SetAlpha(0) end
 				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default", isReverse)
 			end
 		else
+			if castbar.Shield then castbar.Shield:SetAlpha(0) end
 			if not gm.enablecastbar then return end
 			local isPlayer = (unit == "player") or UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 			local _, unitclass = UnitClass(unit)
@@ -142,7 +140,6 @@ function ElvUI_EltreumUI:UF_PostCastStart(castbar, unit)
 		ElvUI_EltreumUI:CastbarEffects()
 	end
 end
-
 ElvUI_EltreumUI:SecureHook(UF, 'Construct_Castbar', 'UF_Construct_Castbar')
 ElvUI_EltreumUI:SecureHook(UF, 'PostCastStart', 'UF_PostCastStart')
 ElvUI_EltreumUI:SecureHook(UF, 'PostCastInterruptible', 'CastBarTextureGradient')
@@ -176,6 +173,7 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail(castbar)
 
 		local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.customcolor and "interrupted_custom" or "interrupted_default", isReverse)
 		if c1 and c2 then
+			if castbar.Shield then castbar.Shield:SetAlpha(0) end
 			tex:SetGradient(gm.orientation or "HORIZONTAL", c1, c2)
 		end
 	end
