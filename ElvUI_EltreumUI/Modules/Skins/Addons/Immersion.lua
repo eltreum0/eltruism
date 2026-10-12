@@ -10,6 +10,194 @@ local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local GetQuestItemInfo = _G.GetQuestItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
+local hooksecurefunc = _G.hooksecurefunc
+
+local function SkinTitleButton(v)
+	if not v then return end
+
+	if not v.isSkinned then
+		--S:HandleButton(v,true,nil,nil,true,"TRANSPARENT")
+		S:HandleButton(v)
+		--v:CreateBackdrop('Transparent')
+		v.isSkinned = true
+	end
+
+	if v.Hilite then
+		v.Hilite:StripTextures()
+		v.Hilite:Hide()
+	end
+	if v.Overlay then
+		v.Overlay:StripTextures()
+		v.Overlay:Hide()
+	end
+
+	--v:StyleButton()
+	if v.Center then
+		v:SetBackdropColor(0, 0, 0, E.db.general.backdropfadecolor.a)
+		v.Center:Show()
+		if E.db.general and E.db.general.backdropfadecolor then
+			v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+		end
+	end
+	--v.Center.SetAlpha = E.noop
+	--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+	if v.backdrop and v.backdrop.Center then
+		v.backdrop.Center:Show()
+		if E.db.general and E.db.general.backdropfadecolor then
+			v.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+		end
+	end
+
+	--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
+	--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
+
+	if v.Label and E.LSM:Fetch("font", E.db.general.font) then
+		v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize + 3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+		v.Label:SetShadowOffset(1, -1)
+	end
+
+	if v.Counter and E.LSM:Fetch("font", E.db.general.font) then
+		v.Counter:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	end
+
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+		if not v.shadow then
+			v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:ShadowColor(v.shadow)
+		end
+	end
+
+	if not v.EltruismPoint then
+		local point, relativeTo, relativePoint, xOfs, yOfs = v:GetPoint()
+		if point then
+			v:ClearAllPoints()
+			v:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs - 5)
+			v.EltruismPoint = true
+		end
+	end
+end
+
+local function SkinAllTitleButtons()
+	if not E.db.general or not E.db.general.font or not E.LSM:Fetch("font", E.db.general.font) then return end
+
+	local titleButtons = _G["ImmersionFrame"] and _G["ImmersionFrame"].TitleButtons
+	if not titleButtons then return end
+
+	if titleButtons.Buttons then
+		for _, btn in pairs(titleButtons.Buttons) do
+			SkinTitleButton(btn)
+		end
+	end
+
+	for _, child in ipairs({ titleButtons:GetChildren() }) do
+		if child and child.Label then
+			SkinTitleButton(child)
+		end
+	end
+
+	for i = 1, 30 do
+		local btn = _G["ImmersionTitleButton" .. i]
+		if btn then
+			SkinTitleButton(btn)
+		end
+	end
+end
+
+local function SkinRewardItem(item, isProgress)
+	if not item then return end
+
+	if not item.EltruismSkin then
+		if item.NameFrame then
+			item.NameFrame:StripTextures()
+			item.NameFrame:CreateBackdrop('Transparent')
+			if item.NameFrame.backdrop then
+				item.NameFrame.backdrop:ClearAllPoints()
+				item.NameFrame.backdrop:SetPoint("TOPLEFT", item.Name, "TOPLEFT", -3, isProgress and 0 or -1)
+				item.NameFrame.backdrop:SetPoint("BOTTOMRIGHT", item.Name, "BOTTOMRIGHT", -7, 0)
+				--item.NameFrame.backdrop:SetOutside(item.Name)
+				item.NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
+			end
+		end
+		item.EltruismSkin = true
+	else
+		if item.NameFrame and item.NameFrame.backdrop and item.Name then
+			item.NameFrame.backdrop:ClearAllPoints()
+			item.NameFrame.backdrop:SetPoint("TOPLEFT", item.Name, "TOPLEFT", -3, isProgress and 0 or -1)
+			item.NameFrame.backdrop:SetPoint("BOTTOMRIGHT", item.Name, "BOTTOMRIGHT", -7, 0)
+		end
+	end
+
+	if item.Name then
+		if E.LSM:Fetch("font", E.db.general.font) then
+			item.Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+		end
+		if item.objectType and item.objectType == "item" and item.type and item.GetID and item:GetID() then
+			local _, _, _, quality = GetQuestItemInfo(tostring(item.type), tonumber(item:GetID()))
+			if quality then
+				local r, g, b = GetItemQualityColor(quality)
+				if r and g and b then
+					item.Name:SetTextColor(r, g, b)
+					--item.NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+				end
+			end
+		elseif item.objectType and item.objectType == "currency" and item.type and item.GetID and item:GetID() then
+			local currencyInfo = _G.ImmersionAPI and _G.ImmersionAPI.GetQuestCurrencyInfo and _G.ImmersionAPI:GetQuestCurrencyInfo(item.type, item:GetID())
+			if currencyInfo and currencyInfo.quality then
+				local r, g, b = GetItemQualityColor(currencyInfo.quality)
+				if r and g and b then
+					item.Name:SetTextColor(r, g, b)
+				end
+			end
+		end
+	end
+end
+
+local function SkinAllRewardButtons()
+	if not E.db.general or not E.db.general.font or not E.LSM:Fetch("font", E.db.general.font) then return end
+
+	for i = 1, 30 do --button seems to go to 20, but there might be more somewhere
+		local questItem = _G["ImmersionQuestInfoItem" .. i]
+		if questItem then
+			SkinRewardItem(questItem, false)
+		end
+		local progItem = _G["ImmersionProgressItem" .. i]
+		if progItem then
+			SkinRewardItem(progItem, true)
+		end
+	end
+
+	local elements = _G["ImmersionFrame"] and _G["ImmersionFrame"].TalkBox and _G["ImmersionFrame"].TalkBox.Elements
+	if elements then
+		if elements.Content and elements.Content.RewardsFrame and elements.Content.RewardsFrame.Buttons then
+			for _, btn in pairs(elements.Content.RewardsFrame.Buttons) do
+				SkinRewardItem(btn, false)
+			end
+		end
+		if elements.Progress and elements.Progress.Buttons then
+			for _, btn in pairs(elements.Progress.Buttons) do
+				SkinRewardItem(btn, true)
+			end
+		end
+	end
+end
+
+--update buttons on events/show
+local function updatebuttons()
+	if not E.db.general then return end
+	if not E.db.general.font then return end
+	if not E.db.general.fontSize then return end
+	if not E.db.general.fontStyle then return end
+	if not E.LSM:Fetch("font", E.db.general.font) then return end
+
+	--move so it doesnt overlap
+	if not InCombatLockdown() and _G["ImmersionFrame"] and _G["ImmersionFrame"].TalkBox and _G["ImmersionFrame"].TalkBox.Elements then
+		_G["ImmersionFrame"].TalkBox.Elements:ClearAllPoints()
+		_G["ImmersionFrame"].TalkBox.Elements:SetPoint("TOP", _G["ImmersionFrame"].TalkBox, "BOTTOM", 0, -10)
+	end
+
+	SkinAllRewardButtons()
+	SkinAllTitleButtons()
+end
 
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()
@@ -117,121 +305,48 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			end
 		end
 
-		--update buttons on events/show
-		local function updatebuttons()
-			if not E.db.general then return end
-			if not E.db.general.font then return end
-			if not E.db.general.fontSize then return end
-			if not E.db.general.fontStyle then return end
-			if not E.LSM:Fetch("font", E.db.general.font) then return end
-
-			--move so it doesnt overlap
-			if not InCombatLockdown() then
-				_G["ImmersionFrame"].TalkBox.Elements:ClearAllPoints()
-				_G["ImmersionFrame"].TalkBox.Elements:SetPoint("TOP", _G["ImmersionFrame"].TalkBox, "BOTTOM", 0, -10)
-			end
-
-			for i = 1, 30 do --button seems to go to 20, but there might be more somewhere
-				if _G["ImmersionQuestInfoItem" .. i] then
-					if not _G["ImmersionQuestInfoItem" .. i].EltruismSkin then
-						_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
-						_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,-1)
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
-						--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
-						if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" and _G["ImmersionQuestInfoItem" .. i].Name:GetText() ~= nil then
-							local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionQuestInfoItem"..i].type), tonumber(_G["ImmersionQuestInfoItem" .. i]:GetID()))
-							local r,g,b = GetItemQualityColor(quality)
-							_G["ImmersionQuestInfoItem" .. i].Name:SetTextColor(r, g, b)
-							--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
-						end
-						if _G["ImmersionQuestInfoItem" .. i].Name then
-							_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						end
-						_G["ImmersionQuestInfoItem" .. i].EltruismSkin = true
-					else
-						if _G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop then
-							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
-							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,-1)
-							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
-						end
-						if _G["ImmersionQuestInfoItem" .. i].Name then
-							_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						end
-					end
-				end
-				if _G["ImmersionProgressItem" .. i] then
-					if not _G["ImmersionProgressItem" .. i].EltruismSkin then
-						_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
-						_G["ImmersionProgressItem" .. i].NameFrame:CreateBackdrop('Transparent')
-						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
-						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-3,0)
-						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
-						--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionProgressItem" .. i .."Name"])
-						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
-						if _G["ImmersionProgressItem"..i].objectType and _G["ImmersionProgressItem"..i].objectType == "item" then
-							local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionProgressItem"..i].type), tonumber(_G["ImmersionProgressItem" .. i]:GetID()))
-							local r,g,b = GetItemQualityColor(quality)
-							--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
-							_G["ImmersionProgressItem" .. i].Name:SetTextColor(r, g, b)
-						end
-						if _G["ImmersionProgressItem" .. i].Name then
-							_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						end
-						_G["ImmersionProgressItem" .. i].EltruismSkin = true
-					else
-						if _G["ImmersionProgressItem" .. i].NameFrame.backdrop then
-							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
-							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-3,0)
-							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
-						end
-
-						if _G["ImmersionProgressItem" .. i].Name then
-							_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						end
-					end
-				end
-			end
-
-			for _, v in ipairs(_G["ImmersionFrame"].TitleButtons.Buttons) do
-				if v then
-					--S:HandleButton(v,true,nil,nil,true,"TRANSPARENT")
-					S:HandleButton(v)
-					--v:CreateBackdrop('Transparent')
-					v.Hilite:Hide()
-					v.Overlay:Hide()
-					--v:StyleButton()
-					v.Center:Show()
-					v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-					--v.Center.SetAlpha = E.noop
-					--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-
-					--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
-					--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
-					v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-					v.Label:SetShadowOffset(1,-1)
-					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-						if v and not v.shadow then
-							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(v.shadow)
-						end
-					end
-					if not v.EltruismPoint then
-						local point, relativeTo, relativePoint, xOfs, yOfs = v:GetPoint()
-						v:ClearAllPoints()
-						v:SetPoint(point,relativeTo,relativePoint,xOfs,yOfs-5)
-						v.EltruismPoint = true
-					end
-				end
-			end
-		end
-
 		--buttons are created depending on quest, hook frame to update them
 		_G["ImmersionFrame"]:HookScript("OnShow", updatebuttons)
 		_G["ImmersionFrame"]:HookScript("OnEvent", updatebuttons)
-		updatebuttons() --fire before show just in case
+
+		local titleButtons = _G["ImmersionFrame"].TitleButtons
+		if titleButtons then
+			titleButtons:HookScript("OnShow", SkinAllTitleButtons)
+			titleButtons:HookScript("OnEvent", SkinAllTitleButtons)
+			if titleButtons.UpdateActive then
+				hooksecurefunc(titleButtons, "UpdateActive", SkinAllTitleButtons)
+			end
+			if titleButtons.GetButton then
+				hooksecurefunc(titleButtons, "GetButton", function(_, index)
+					local btn = (titleButtons.Buttons and titleButtons.Buttons[index]) or _G["ImmersionTitleButton" .. index]
+					if btn then
+						SkinTitleButton(btn)
+					end
+				end)
+			end
+		end
+
+		local elements = _G["ImmersionFrame"].TalkBox and _G["ImmersionFrame"].TalkBox.Elements
+		if elements then
+			elements:HookScript("OnShow", updatebuttons)
+			if elements.Display then
+				hooksecurefunc(elements, "Display", SkinAllRewardButtons)
+			end
+			if elements.ShowRewards then
+				hooksecurefunc(elements, "ShowRewards", SkinAllRewardButtons)
+			end
+			if elements.ShowProgress then
+				hooksecurefunc(elements, "ShowProgress", SkinAllRewardButtons)
+			end
+			if elements.Content and elements.Content.RewardsFrame then
+				elements.Content.RewardsFrame:HookScript("OnShow", SkinAllRewardButtons)
+			end
+			if elements.Progress then
+				elements.Progress:HookScript("OnShow", SkinAllRewardButtons)
+			end
+		end
+
+		updatebuttons() --fire before it shows just in case
 	end
 end
 S:AddCallbackForAddon('Immersion', "EltruismImmersion", ElvUI_EltreumUI.EltruismImmersion)
