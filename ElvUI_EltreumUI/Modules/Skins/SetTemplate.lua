@@ -640,12 +640,12 @@ local function EltruismShadow(frame,template,isNamePlateElement)
 			if frame.backdrop then
 				if not frame.backdrop.shadow then
 					frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+					ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow,nil,isNamePlateElement)
 				end
 			else
 				if not frame.shadow then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					ElvUI_EltreumUI:ShadowColor(frame.shadow,nil,isNamePlateElement)
 				end
 			end
 		end

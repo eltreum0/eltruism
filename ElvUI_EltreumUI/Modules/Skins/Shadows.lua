@@ -33,7 +33,7 @@ local timermonitor = CreateFrame("FRAME")
 end]]
 
 --simple function to set shadow color
-function ElvUI_EltreumUI:ShadowColor(shadow, shadowDB)
+function ElvUI_EltreumUI:ShadowColor(shadow, shadowDB, isNameplate)
 	if shadow then
 		if not shadowDB then
 			local eltreumDB = E.db.ElvUI_EltreumUI
@@ -46,8 +46,10 @@ function ElvUI_EltreumUI:ShadowColor(shadow, shadowDB)
 				shadow:SetBackdropBorderColor(shadowDB.r, shadowDB.g, shadowDB.b, shadowDB.a)
 			end
 		end
-		shadow:SetFrameLevel(1)
-		shadow:SetFrameStrata("LOW")
+		if isNameplate then
+			shadow:SetFrameLevel(1)
+			shadow:SetFrameStrata("LOW")
+		end
 	end
 end
 
@@ -4414,7 +4416,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 				if not nameplate.Health then return end
 				if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
 					nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow,nil,true)
 				end
 			end
 
@@ -4446,12 +4448,12 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 				if not nameplate.Castbar then return end
 				if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
 					nameplate.Castbar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow,nil,true)
 				end
 
 				if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
 					nameplate.Castbar.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.Button.shadow)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.Button.shadow,nil,true)
 				end
 			end
 
@@ -4459,7 +4461,7 @@ function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 				if not nameplate.Portrait then return end
 				if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
 					nameplate.Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow,nil,true)
 				end
 			end
 		end
