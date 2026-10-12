@@ -1182,10 +1182,10 @@ end
 local isModern = E.Modern
 local canaccessvalue = _G.canaccessvalue
 function ElvUI_EltreumUI:IsThisASafeSecret(value, hasValue, isBG)
-	if isModern then
-		if hasValue then
-			return canaccessvalue(value) --new api to check if value is secret
-		elseif isBG then
+	if hasValue then
+		return canaccessvalue(value)
+	elseif isModern then
+		if isBG then
 			return not isPvP
 		else
 			return outside
