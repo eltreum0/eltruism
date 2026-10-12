@@ -6,7 +6,7 @@ local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitCanAttack = _G.UnitCanAttack
-local issecretvalue = _G.issecretvalue
+local canaccessvalue = _G.canaccessvalue
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
@@ -20,11 +20,11 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(castbar, unit)
 	if unitActual then
 		_, unitclass = UnitClass(unitActual)
 	end
-	if not unitclass or issecretvalue(unitclass) then --secret class so do something else
+	if not unitclass or not canaccessvalue(unitclass) then --secret class so do something else
 		unitclass = E.myclass
 	end
 	local reactionUnit = unitActual and UnitReaction(unitActual, "player")
-	local notInterruptible = E:NotSecretValue(castbar.notInterruptible) and castbar.notInterruptible
+	local notInterruptible = canaccessvalue(castbar.notInterruptible) and castbar.notInterruptible
 	local canAttack = unitActual and UnitCanAttack('player', unitActual)
 
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
