@@ -475,7 +475,12 @@ function ElvUI_EltreumUI:SkinsOptions()
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.elvui.args.ace3.args.TextEnabledcolor = E.Libs.ACH:Color(L["Custom Color"], nil, 81, false, nil, function() local dr = P.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r local dg = P.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g local db = P.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b return E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.a, dr, dg, db end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b = r, g, b E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.ace3.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.tooltip = E.Libs.ACH:Group(L["Tooltip"], nil, 2, "tab", nil, nil, nil, E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.tooltip.args.description2 = E.Libs.ACH:Description(L["Item Level on Tooltip"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
-	ElvUI_EltreumUI.Options.args.skins.args.tooltip.args.tooltipilvl = E.Libs.ACH:Toggle(L["Enable"], L["Shows Item Level on Tooltips"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end, function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltooltip = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.tooltip.args.tooltipilvl = E.Libs.ACH:Toggle(L["Enable"], L["Shows Item Level on Tooltips"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end, function(_, value)
+		E.db.ElvUI_EltreumUI.skins.ilvltooltip = value
+		if ElvUI_EltreumUI.TooltipItemHook then
+			ElvUI_EltreumUI:TooltipItemHook()
+		end
+	end, nil, E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.databars = E.Libs.ACH:Group(L["DataBars"], nil, 2, "tab", nil, nil, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology = E.Libs.ACH:Group(L["Archeology"], nil, 2, "tab", nil, nil, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.width = E.Libs.ACH:Range(L["Width"], nil, 2, { min = 10, max = 600, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex = value E:StaticPopup_Show('CONFIG_RL') end)

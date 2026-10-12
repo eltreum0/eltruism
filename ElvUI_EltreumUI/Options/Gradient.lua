@@ -10,7 +10,13 @@ function ElvUI_EltreumUI:GradientOptions()
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes = E.Libs.ACH:Group(L["Frames"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable = E.Libs.ACH:Group("", nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.inline = true
-	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.gradientenable = E.Libs.ACH:Toggle(L["Enable Gradient (Requires Dark or Light Modes)"], L["Enable Gradient colors for Health"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.gradientenable = E.Libs.ACH:Toggle(L["Enable Gradient (Requires Dark or Light Modes)"], L["Enable Gradient colors for Health"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end, function(_, value)
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value
+		ElvUI_EltreumUI:GradientColorTableUpdate()
+		if ElvUI_EltreumUI.TooltipGradientHook then
+			ElvUI_EltreumUI:TooltipGradientHook()
+		end
+	end, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.powerenable = E.Libs.ACH:Toggle(L["Enable Gradient Power"], L["Enable Gradient Power Colors"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.classbarenable = E.Libs.ACH:Toggle(L["Enable Gradient Class Bar"], nil, 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.aurabarsenable = E.Libs.ACH:Toggle(L["Enable Gradient Aurabars"], nil, 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
@@ -200,7 +206,13 @@ function ElvUI_EltreumUI:GradientOptions()
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.backdrop.args.description3 = E.Libs.ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.backdrop.args.powerbgfade = E.Libs.ACH:Range(L["Gradient Backdrop Fade"], L["Change how much the Gradient Backdrop will Fade"], 8, { min = 0, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.tooltip = E.Libs.ACH:Group(L["Tooltip"], nil, 5, "tab")
-	ElvUI_EltreumUI.Options.args.gradient.args.tooltip.args.tooltipenable = E.Libs.ACH:Toggle(L["Enable Gradient Tooltips"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.skins.gradienttooltip end, function(_, value) E.db.ElvUI_EltreumUI.skins.gradienttooltip = value ElvUI_EltreumUI:GradientColorTableUpdate() end)
+	ElvUI_EltreumUI.Options.args.gradient.args.tooltip.args.tooltipenable = E.Libs.ACH:Toggle(L["Enable Gradient Tooltips"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.skins.gradienttooltip end, function(_, value)
+		E.db.ElvUI_EltreumUI.skins.gradienttooltip = value
+		ElvUI_EltreumUI:GradientColorTableUpdate()
+		if ElvUI_EltreumUI.InitTooltip then
+			ElvUI_EltreumUI:InitTooltip()
+		end
+	end)
 	ElvUI_EltreumUI.Options.args.gradient.args.tooltip.args.description1 = E.Libs.ACH:Description(L["Gradient Item Color Offsets"], 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.gradient.args.tooltip.args.offset1 = E.Libs.ACH:Range(L["Left Offset"], nil, 3, { min = -1, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1 end, function(_, value) E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1 = value end, function() return not E.db.ElvUI_EltreumUI.skins.gradienttooltip end)
 	ElvUI_EltreumUI.Options.args.gradient.args.tooltip.args.offset2 = E.Libs.ACH:Range(L["Right Offset"], nil, 4, { min = -1, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2 end, function(_, value) E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2 = value end, function() return not E.db.ElvUI_EltreumUI.skins.gradienttooltip end)

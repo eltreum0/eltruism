@@ -11,7 +11,6 @@ local UnitReaction = _G.UnitReaction
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GameTooltip = _G.GameTooltip
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --gradient tooltip healthbar
@@ -61,7 +60,7 @@ end
 
 --gradient tooltip text
 local function SetTooltipGradient(unit)
-	if not unit or not E.private.tooltip.enable or not E.db.ElvUI_EltreumUI.skins.gradienttooltip then return end
+	if not unit or not E.private.tooltip.enable or not E.db.ElvUI_EltreumUI.skins.gradienttooltip or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then return end
 	if GameTooltip and GameTooltip:IsForbidden() then return end
 	if not ElvUI_EltreumUI:IsThisASafeSecret() or not ElvUI_EltreumUI:IsThisASafeSecret(unit, true) then return end
 
@@ -148,63 +147,124 @@ local function ApplyTooltipItemFormatting(tooltip, tooltipName, isShopping)
 	end
 end
 
---skin tooltip
-function ElvUI_EltreumUI:Tooltip()
+--gradient tooltip
+function ElvUI_EltreumUI:TooltipGradient()
 	if GameTooltip and GameTooltip:IsForbidden() then return end
-	if not IsAddOnLoaded("ElvUI_EltreumUI") or not E.db.ElvUI_EltreumUI then return end
+	if not E.db.ElvUI_EltreumUI then return end
 
-	--gradient
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-		if not ElvUI_EltreumUI.tooltipStatusBarHooked then
-			_G.GameTooltipStatusBar:HookScript("OnShow", function()
-				local unittp = TT:GetDisplayedUnit(_G.GameTooltip)
-				if unittp and E:NotSecretValue(unittp) then
-					SetTooltipGradient(unittp)
-				end
-			end)
-			ElvUI_EltreumUI.tooltipStatusBarHooked = true
+	local fixunit = TT:GetDisplayedUnit(_G.GameTooltip)
+	if fixunit and E:NotSecretValue(fixunit) then
+		SetTooltipGradient(fixunit)
+	end
+end
+
+--backward compatibility alias
+function ElvUI_EltreumUI:Tooltip()
+	ElvUI_EltreumUI:TooltipGradient()
+end
+
+--hook or unhook unit tooltip gradient
+function ElvUI_EltreumUI:TooltipGradientHook()
+	if not TT or not E.db.ElvUI_EltreumUI then return end
+
+	if E.private.tooltip.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+		if not self:IsHooked(TT, 'AddTargetInfo') then
+			self:SecureHook(TT, 'AddTargetInfo', 'TooltipGradient')
+		end
+		if not self:IsHooked(TT, 'GameTooltip_OnTooltipSetUnit') then
+			self:SecureHook(TT, 'GameTooltip_OnTooltipSetUnit', 'TooltipGradient')
+		end
+		if not self:IsHooked(TT, 'MODIFIER_STATE_CHANGED') then
+			self:SecureHook(TT, 'MODIFIER_STATE_CHANGED', 'TooltipGradient')
+		end
+		if not self:IsHooked(TT, 'GameTooltipStatusBar_UpdateUnitHealth') then
+			self:SecureHook(TT, 'GameTooltipStatusBar_UpdateUnitHealth', 'TooltipGradient')
+		end
+		if _G.GameTooltipStatusBar and not self:IsHooked(_G.GameTooltipStatusBar, 'OnShow') then
+			self:SecureHookScript(_G.GameTooltipStatusBar, 'OnShow', 'TooltipGradient')
 		end
 
 		local fixunit = TT:GetDisplayedUnit(_G.GameTooltip)
 		if fixunit and E:NotSecretValue(fixunit) then
 			SetTooltipGradient(fixunit)
 		end
+	else
+		if self:IsHooked(TT, 'AddTargetInfo') then
+			self:Unhook(TT, 'AddTargetInfo')
+		end
+		if self:IsHooked(TT, 'GameTooltip_OnTooltipSetUnit') then
+			self:Unhook(TT, 'GameTooltip_OnTooltipSetUnit')
+		end
+		if self:IsHooked(TT, 'MODIFIER_STATE_CHANGED') then
+			self:Unhook(TT, 'MODIFIER_STATE_CHANGED')
+		end
+		if self:IsHooked(TT, 'GameTooltipStatusBar_UpdateUnitHealth') then
+			self:Unhook(TT, 'GameTooltipStatusBar_UpdateUnitHealth')
+		end
+		if _G.GameTooltipStatusBar and self:IsHooked(_G.GameTooltipStatusBar, 'OnShow') then
+			self:Unhook(_G.GameTooltipStatusBar, 'OnShow')
+		end
 	end
+end
 
-	--ilvl tooltip & gradient
+--item tooltip hook helpers for non-modern
+local function OnTooltipSetItem_GameTooltip(tooltip)
+	ApplyTooltipItemFormatting(tooltip, "GameTooltip", false)
+end
+
+local function OnTooltipSetItem_Shopping1(tooltip)
+	ApplyTooltipItemFormatting(tooltip, "ShoppingTooltip1", true)
+end
+
+local function OnTooltipSetItem_Shopping2(tooltip)
+	ApplyTooltipItemFormatting(tooltip, "ShoppingTooltip2", true)
+end
+
+--hook or unhook item tooltip formatting
+function ElvUI_EltreumUI:TooltipItemHook()
+	if not E.db.ElvUI_EltreumUI then return end
+
 	if E.Modern then
-		if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not ElvUI_EltreumUI.EltruismTooltipHook then
+		if not ElvUI_EltreumUI.EltruismTooltipItemHooked then
 			_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, function(tt)
-				if tt then ApplyTooltipItemFormatting(GameTooltip, "GameTooltip", false) end
+				if tt and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+					ApplyTooltipItemFormatting(GameTooltip, "GameTooltip", false)
+				end
 			end)
-			ElvUI_EltreumUI.EltruismTooltipHook = true
+			ElvUI_EltreumUI.EltruismTooltipItemHooked = true
 		end
 	else
-		if E.db.ElvUI_EltreumUI.skins.ilvltooltip or E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-			if not GameTooltip.EltruismTooltipHook then
-				GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
-					ApplyTooltipItemFormatting(tooltip, "GameTooltip", false)
-				end)
-				GameTooltip.EltruismTooltipHook = true
+		local enable = E.db.ElvUI_EltreumUI.skins.ilvltooltip or E.db.ElvUI_EltreumUI.skins.gradienttooltip
+		if enable then
+			if GameTooltip and not self:IsHooked(GameTooltip, "OnTooltipSetItem") then
+				self:SecureHookScript(GameTooltip, "OnTooltipSetItem", OnTooltipSetItem_GameTooltip)
 			end
-
-			if not _G.ShoppingTooltip1.EltruismTooltipHook then
-				_G.ShoppingTooltip1:HookScript("OnTooltipSetItem", function(tooltip)
-					ApplyTooltipItemFormatting(tooltip, "ShoppingTooltip1", true)
-				end)
-				_G.ShoppingTooltip1.EltruismTooltipHook = true
+			if _G.ShoppingTooltip1 and not self:IsHooked(_G.ShoppingTooltip1, "OnTooltipSetItem") then
+				self:SecureHookScript(_G.ShoppingTooltip1, "OnTooltipSetItem", OnTooltipSetItem_Shopping1)
 			end
-
-			if not _G.ShoppingTooltip2.EltruismTooltipHook then
-				_G.ShoppingTooltip2:HookScript("OnTooltipSetItem", function(tooltip)
-					ApplyTooltipItemFormatting(tooltip, "ShoppingTooltip2", true)
-				end)
-				_G.ShoppingTooltip2.EltruismTooltipHook = true
+			if _G.ShoppingTooltip2 and not self:IsHooked(_G.ShoppingTooltip2, "OnTooltipSetItem") then
+				self:SecureHookScript(_G.ShoppingTooltip2, "OnTooltipSetItem", OnTooltipSetItem_Shopping2)
+			end
+		else
+			if GameTooltip and self:IsHooked(GameTooltip, "OnTooltipSetItem") then
+				self:Unhook(GameTooltip, "OnTooltipSetItem")
+			end
+			if _G.ShoppingTooltip1 and self:IsHooked(_G.ShoppingTooltip1, "OnTooltipSetItem") then
+				self:Unhook(_G.ShoppingTooltip1, "OnTooltipSetItem")
+			end
+			if _G.ShoppingTooltip2 and self:IsHooked(_G.ShoppingTooltip2, "OnTooltipSetItem") then
+				self:Unhook(_G.ShoppingTooltip2, "OnTooltipSetItem")
 			end
 		end
 	end
 end
-ElvUI_EltreumUI:SecureHook(TT, 'AddTargetInfo', 'Tooltip')
-ElvUI_EltreumUI:SecureHook(TT, 'GameTooltip_OnTooltipSetUnit', 'Tooltip')
-ElvUI_EltreumUI:SecureHook(TT, 'MODIFIER_STATE_CHANGED', 'Tooltip')
-ElvUI_EltreumUI:SecureHook(TT, 'GameTooltipStatusBar_UpdateUnitHealth', 'Tooltip')
+
+--initialize tooltip hooks
+function ElvUI_EltreumUI:InitTooltip()
+	ElvUI_EltreumUI:TooltipGradientHook()
+	ElvUI_EltreumUI:TooltipItemHook()
+end
+
+if E.db and E.db.ElvUI_EltreumUI then
+	ElvUI_EltreumUI:InitTooltip()
+end
