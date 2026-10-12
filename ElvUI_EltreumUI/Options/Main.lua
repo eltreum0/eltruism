@@ -39,12 +39,11 @@ local THANKYOU = {
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/tukuidiscord:15:15:0:0:64:64:5:59:5:59|t Tukui Community for all the help and motivation',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/addonsdiscord:15:15:0:0:64:64:5:59:5:59|t WoW AddOns; for answering a lot of questions',
 	'AcidWeb |TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
-	'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r',
+	'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r', --blinkii's colored name
 	'|cff960000Atwood|r - for some of the role icons',
 	'|cffB50909Dlarge|r - for the German localization',
 	'|cff33937FFang2hou|r - for the compatibility function',
 	E:TextGradient("Meowcactus", 1, 0.49, 0.04, 1, 0.96, 0.41),
-	'Blinkii',
 	'plusmouse'
 }
 
