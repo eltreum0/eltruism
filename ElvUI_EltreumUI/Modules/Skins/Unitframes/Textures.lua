@@ -5,7 +5,6 @@ local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitIsCharmed = _G.UnitIsCharmed
@@ -17,9 +16,12 @@ local UnitIsFriend = _G.UnitIsFriend
 local UnitInParty = _G.UnitInParty
 local UnitInRaid = _G.UnitInRaid
 local type = _G.type
+local string = _G.string
+local strfind = string.find
+local canaccessvalue = _G.canaccessvalue
 
 --set the textures for single units
-function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
+function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation,frame)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	if not UFdb then return end
 	local elvDB = E.db.unitframe
@@ -27,14 +29,23 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
-	local isCharmed = UnitIsCharmed(unit)
-	isCharmed = E:NotSecretValue(isCharmed) and isCharmed or false
+	local hasClass = classunit and canaccessvalue(classunit)
+	local hasReaction = reaction and canaccessvalue(reaction)
+	if not hasClass and not hasReaction then return end
 
-	local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+	local isCharmed = UnitIsCharmed(unit)
+	isCharmed = canaccessvalue(isCharmed) and isCharmed or false
+
+	local isPlayer = UnitIsPlayer(unit)
+	local canAccessIsPlayer = canaccessvalue(isPlayer)
+	isPlayer = (canAccessIsPlayer and isPlayer) or (E.Retail and UnitInPartyIsAI(unit))
 	local isActualPlayer = false
 
-	local unitframe = _G["ElvUF_"..name]
+	local unitframe = frame or _G["ElvUF_"..name]
 	if not (unitframe and unitframe.Health and unitframe.Health:GetStatusBarTexture() ~= nil) then return end
+
+	local health = unitframe.Health
+	local targetUFOrientation = UFdb.UForientation
 
 	if unitframe.realUnit then
 		if name == "Player" and unitframe.__unit == "vehicle" then
@@ -48,15 +59,14 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 		end
 	end
 
-	local targetUFOrientation = UFdb.UForientation
-	if not noOrientation and targetUFOrientation and unitframe.Health.EltruismOrientation ~= targetUFOrientation then
-		unitframe.Health:SetOrientation(targetUFOrientation)
-		unitframe.Health.EltruismOrientation = targetUFOrientation
+	if not noOrientation and targetUFOrientation and health.EltruismOrientation ~= targetUFOrientation then
+		health:SetOrientation(targetUFOrientation)
+		health.EltruismOrientation = targetUFOrientation
 	end
 
 	local healthTexture
 	if (isPlayer and not isCharmed) or isActualPlayer then
-		if not E:NotSecretValue(classunit) or not classunit then
+		if not canaccessvalue(classunit) or not classunit then
 			classunit = E.myclass or "ELTRUISM"
 		end
 		if UFdb.ufcustomtexture.enable then
@@ -79,9 +89,9 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 		end
 	else
 		local isTap = UnitIsTapDenied(unit)
-		isTap = E:NotSecretValue(isTap) and isTap
+		isTap = canaccessvalue(isTap) and isTap
 		local isPlayerControlled = UnitPlayerControlled(unit)
-		isPlayerControlled = E:NotSecretValue(isPlayerControlled) and isPlayerControlled
+		isPlayerControlled = canaccessvalue(isPlayerControlled) and isPlayerControlled
 
 		local customNpcTexture
 		local defaultNpcTexture
@@ -90,7 +100,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			defaultNpcTexture = ElvUI_EltreumUI:UnitframeClassTexture("TAPPED")
 		else
 			local npcClass
-			if reaction and E:NotSecretValue(reaction) then
+			if reaction then
 				if reaction >= 5 then
 					npcClass = "NPCFRIENDLY"
 				elseif reaction == 4 then
@@ -103,15 +113,15 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			end
 			if not npcClass then
 				local canAttack = UnitCanAttack("player", unit)
-				if E:NotSecretValue(canAttack) and canAttack then
+				if canaccessvalue(canAttack) and canAttack then
 					npcClass = "NPCHOSTILE"
 				else
 					local isEnemy = UnitIsEnemy("player", unit)
-					if E:NotSecretValue(isEnemy) and isEnemy then
+					if canaccessvalue(isEnemy) and isEnemy then
 						npcClass = "NPCHOSTILE"
 					else
 						local isFriend = UnitIsFriend("player", unit)
-						if E:NotSecretValue(isFriend) and isFriend then
+						if canaccessvalue(isFriend) and isFriend then
 							npcClass = "NPCFRIENDLY"
 						else
 							npcClass = "NPCHOSTILE"
@@ -213,18 +223,18 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	if not unit then return end
 	if not button.Health then return end
 
+	local targetUFOrientation = UFdb.UForientation
+
 	--due to raid pet, check if is player
-	local buttonclass
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		buttonclass = select(2, UnitClass(unit))
-		if not E:NotSecretValue(buttonclass) or not buttonclass then
-			buttonclass = "NPCFRIENDLY"
+	local buttonclass = "NPCFRIENDLY"
+	local isPlayer = UnitIsPlayer(unit)
+	if (canaccessvalue(isPlayer) and isPlayer) or (E.Retail and UnitInPartyIsAI(unit)) then
+		local _, class = UnitClass(unit)
+		if canaccessvalue(class) and class then
+			buttonclass = class
 		end
-	else
-		buttonclass = "NPCFRIENDLY"
 	end
 
-	local targetUFOrientation = UFdb.UForientation
 	if not noOrientation and targetUFOrientation and button.Health.EltruismOrientation ~= targetUFOrientation then
 		button.Health:SetOrientation(targetUFOrientation)
 		button.Health.EltruismOrientation = targetUFOrientation
@@ -509,18 +519,21 @@ local individualUnits = {
 
 function ElvUI_EltreumUI:PostUpdateHealth(bar, unit)
 	if not bar or type(bar) ~= "table" or not bar.GetParent then return end
-	local u = unit
+	if not E.private.unitframe.enable then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local parent = bar.origParent or bar:GetParent()
 	if not parent then return end
 
-	if E.db.ElvUI_EltreumUI.unitframes.portraitdead and ElvUI_EltreumUI.UpdateUnitPortraitDead and (parent.Portrait or parent.Portrait3D or parent.EltruismPortrait) then
-		ElvUI_EltreumUI.UpdateUnitPortraitDead(parent, u or parent.__unit or parent.unit)
+	local UFdb = E.db.ElvUI_EltreumUI.unitframes
+	if not UFdb or not UFdb.UFmodifications then return end
+
+	local u = unit or parent.__unit or parent.unit
+	if UFdb.portraitdead and ElvUI_EltreumUI.UpdateUnitPortraitDead and (parent.Portrait or parent.Portrait3D or parent.EltruismPortrait) then
+		ElvUI_EltreumUI.UpdateUnitPortraitDead(parent, u)
 	end
 
-	local UFdb = E.db.ElvUI_EltreumUI.unitframes
-	if not UFdb or not UFdb.UFmodifications or not E.private.unitframe.enable then return end
 	local elvDB = E.db.unitframe
+	local hasGradient = UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode
 
 	local frameType = parent.unitframeType
 	if not frameType then
@@ -528,7 +541,7 @@ function ElvUI_EltreumUI:PostUpdateHealth(bar, unit)
 		if fUnit then
 			parent.__unit = fUnit
 			ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true)
-			if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+			if hasGradient then
 				ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
 			end
 		end
@@ -539,48 +552,60 @@ function ElvUI_EltreumUI:PostUpdateHealth(bar, unit)
 	if info then
 		if elvDB.units[frameType] and not elvDB.units[frameType].enable then return end
 		local unitID = u or frameType
-		ElvUI_EltreumUI:ApplyUnitCustomTexture(unitID, info.name, info.db)
-		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
-			ElvUI_EltreumUI:ApplyUnitGradient(unitID, info.name, info.db)
+		ElvUI_EltreumUI:ApplyUnitCustomTexture(unitID, info.name, info.db, nil, parent)
+		if hasGradient then
+			ElvUI_EltreumUI:ApplyUnitGradient(unitID, info.name, info.db, nil, parent)
 		end
 	elseif frameType == "boss" and (E.Retail or E.Mists or E.TBC or E.Wrath) then
-		local frameName = parent:GetName()
-		local bossName = frameName and frameName:sub(7)
-		local bossUnit = parent.unit or parent.__unit or (bossName and bossName:lower())
+		local bossName = parent.eltruismBossName
+		local bossUnit = parent.eltruismBossUnit
+		if not bossName then
+			local frameName = parent:GetName()
+			bossName = frameName and frameName:sub(7)
+			bossUnit = parent.unit or parent.__unit or (bossName and bossName:lower())
+			parent.eltruismBossName = bossName
+			parent.eltruismBossUnit = bossUnit
+		end
 		if bossName and bossUnit then
-			ElvUI_EltreumUI:ApplyUnitCustomTexture(bossUnit, bossName, "boss", true)
-			if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
-				ElvUI_EltreumUI:ApplyUnitGradient(bossUnit, bossName, "boss", true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture(bossUnit, bossName, "boss", true, parent)
+			if hasGradient then
+				ElvUI_EltreumUI:ApplyUnitGradient(bossUnit, bossName, "boss", true, parent)
 			end
 		end
 	elseif frameType == "arena" and not E.Classic then
-		local frameName = parent:GetName()
-		local arenaName = frameName and frameName:sub(7)
-		local arenaUnit = parent.unit or parent.__unit or (arenaName and arenaName:lower())
+		local arenaName = parent.eltruismArenaName
+		local arenaUnit = parent.eltruismArenaUnit
+		if not arenaName then
+			local frameName = parent:GetName()
+			arenaName = frameName and frameName:sub(7)
+			arenaUnit = parent.unit or parent.__unit or (arenaName and arenaName:lower())
+			parent.eltruismArenaName = arenaName
+			parent.eltruismArenaUnit = arenaUnit
+		end
 		if arenaName and arenaUnit then
-			ElvUI_EltreumUI:ApplyUnitCustomTexture(arenaUnit, arenaName, "arena", true)
-			if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
-				ElvUI_EltreumUI:ApplyUnitGradient(arenaUnit, arenaName, "arena", true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture(arenaUnit, arenaName, "arena", true, parent)
+			if hasGradient then
+				ElvUI_EltreumUI:ApplyUnitGradient(arenaUnit, arenaName, "arena", true, parent)
 			end
 		end
 	elseif frameType == "party" then
-		local isPet = parent.unit and parent.unit:match("pet")
+		local isPet = parent.unit and strfind(parent.unit, "pet")
 		if not isPet then
 			ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true, "party")
 		else
 			ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true)
 		end
-		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+		if hasGradient then
 			ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
 		end
 	elseif frameType == "raid" or frameType == "raid1" or frameType == "raid2" or frameType == "raid3" then
 		ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true, "raid")
-		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+		if hasGradient then
 			ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
 		end
 	elseif frameType == "tank" or frameType == "assist" or frameType == "raidpet" then
 		ElvUI_EltreumUI:ApplyGroupCustomTexture(parent, true)
-		if UFdb.gradientmode and UFdb.gradientmode.enable and UFdb.hasMode then
+		if hasGradient then
 			ElvUI_EltreumUI:ApplyGroupGradient(parent, true)
 		end
 	end
