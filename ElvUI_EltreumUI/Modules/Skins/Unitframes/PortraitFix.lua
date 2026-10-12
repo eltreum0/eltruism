@@ -8,13 +8,20 @@ local UnitIsFeignDeath = _G.UnitIsFeignDeath
 local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
 local UnitExists = _G.UnitExists
 local UnitHealth = _G.UnitHealth
+local canaccessvalue = _G.canaccessvalue
 
 local function IsUnitDeadHelper(unit)
 	if not unit or not UnitExists(unit) then return false end
-	if UnitIsFeignDeath(unit) then return false end
-	if UnitIsDead(unit) or UnitIsGhost(unit) or UnitIsDeadOrGhost(unit) then return true end
+	local isFeign = UnitIsFeignDeath(unit)
+	if canaccessvalue(isFeign) and isFeign then return false end
+	local isDead = UnitIsDead(unit)
+	if canaccessvalue(isDead) and isDead then return true end
+	local isGhost = UnitIsGhost(unit)
+	if canaccessvalue(isGhost) and isGhost then return true end
+	local isDeadOrGhost = UnitIsDeadOrGhost(unit)
+	if canaccessvalue(isDeadOrGhost) and isDeadOrGhost then return true end
 	local health = UnitHealth(unit)
-	if health and E:NotSecretValue(health) and health <= 0 then return true end
+	if canaccessvalue(health) and health and health <= 0 then return true end
 	return false
 end
 ElvUI_EltreumUI.IsUnitDeadHelper = IsUnitDeadHelper
@@ -24,8 +31,9 @@ local function UpdateUnitPortraitDead(frame, unit)
 	local u = unit or frame.__unit or frame.unit
 	if not u then return end
 
-	local db = frame.db or (E.db.unitframe.units and (E.db.unitframe.units[u] or (frame.unitframeType and E.db.unitframe.units[frame.unitframeType])))
 	local isDead = IsUnitDeadHelper(u)
+	local db = frame.db or (E.db.unitframe.units and (E.db.unitframe.units[u] or (frame.unitframeType and E.db.unitframe.units[frame.unitframeType])))
+	if not db then return end
 	local portrait = frame.Portrait3D or (frame.Portrait and frame.Portrait.playerModel and frame.Portrait)
 	if portrait and portrait.SetPaused and portrait.SetDesaturation then
 		if isDead then
