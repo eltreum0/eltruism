@@ -12,9 +12,7 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitIsEnemy = _G.UnitIsEnemy
 local UnitIsFriend = _G.UnitIsFriend
 local UnitAffectingCombat = _G.UnitAffectingCombat
-local CreateColor = _G.CreateColor
 local type = _G.type
-local whiteColor = CreateColor(1, 1, 1, 1)
 
 local function GetFrame(arg)
 	if type(arg) == "table" then
@@ -42,6 +40,39 @@ local function IsFrameRare(frame)
 	return classification == 'worldboss' or classification == 'rareelite' or classification == 'rare'
 end
 
+local function UpdateRareHealth(frame)
+	local rareTexName = ElvUI_EltreumUI:GetNameplateRareClassTexture()
+	local rareTex = rareTexName and E.LSM:Fetch("statusbar", rareTexName)
+	if rareTex then
+		if frame.Health.EltruismRareTex ~= rareTex then
+			frame.Health:SetStatusBarTexture(rareTex)
+			frame.Health.EltruismRareTex = rareTex
+		end
+		NP:SetStatusBarColor(frame.Health, 1, 1, 1, 1)
+		local tex = frame.Health:GetStatusBarTexture()
+		if tex then
+			tex:SetVertexColor(1, 1, 1, 1)
+		end
+	end
+	frame.Health.EltruismRareOrient = nil
+	frame.EltruismLastThreatType = nil
+	frame.EltruismLastColorKey = nil
+	frame.EltruismForceGradient = nil
+end
+
+local function RestoreDefaultHealthTexture(frame)
+	local rareTexName = ElvUI_EltreumUI:GetNameplateRareClassTexture()
+	local rareTex = rareTexName and E.LSM:Fetch("statusbar", rareTexName)
+	local curTex = frame.Health:GetStatusBarTexture()
+	if frame.Health.EltruismRareTex or (rareTex and curTex and curTex:GetTexture() == rareTex) then
+		local defaultTex = (NP.db and NP.db.statusbar and E.LSM:Fetch("statusbar", NP.db.statusbar)) or E.media.normTex
+		frame.Health:SetStatusBarTexture(defaultTex)
+		frame.Health.EltruismRareTex = nil
+		frame.Health.EltruismRareOrient = nil
+		frame.EltruismForceGradient = true
+	end
+end
+
 function ElvUI_EltreumUI:GetNameplateTargetType(frame, unit)
 	unit = unit or (frame and frame.__unit)
 	if not unit then return "NPCNEUTRAL" end
@@ -57,11 +88,9 @@ function ElvUI_EltreumUI:GetNameplateTargetType(frame, unit)
 		elseif reaction == 3 then
 			return "NPCUNFRIENDLY"
 		elseif reaction == 4 then
-			local canAttack = UnitCanAttack("player", unit)
-			local isEnemy = UnitIsEnemy("player", unit)
-			local inCombat = UnitAffectingCombat(unit) or UnitAffectingCombat("player")
+			local inCombat = UnitAffectingCombat(unit)
 			local frameIsEnemy = frame and (frame.isEnemy or frame.frameType == "ENEMY_NPC" or frame.frameType == "ENEMY_PLAYER")
-			if ((E:NotSecretValue(canAttack) and canAttack) or (E:NotSecretValue(isEnemy) and isEnemy) or frameIsEnemy) and (inCombat or frameIsEnemy) then
+			if frameIsEnemy and inCombat then
 				return "NPCHOSTILE"
 			else
 				return "NPCNEUTRAL"
@@ -100,7 +129,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	local EltruismDB = E.db.ElvUI_EltreumUI
 
 	if not (status and db.enable and db.useThreatColor and EltruismDB.unitframes.gradientmode.npenable and not UnitIsTapDenied(frame.__unit)) then
-		if EltruismDB and EltruismDB.unitframes and EltruismDB.unitframes.gradientmode and EltruismDB.unitframes.gradientmode.npenable then
+		if EltruismDB and ((EltruismDB.unitframes and EltruismDB.unitframes.gradientmode and EltruismDB.unitframes.gradientmode.npenable) or (EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture)) then
 			ElvUI_EltreumUI.GradientNameplates(frame)
 		end
 		return
@@ -115,31 +144,13 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	local tex = frame.Health:GetStatusBarTexture()
 	if not tex then return end
 	local orientation = EltruismDB.unitframes.gradientmode.nporientation or "VERTICAL"
-	local isRare = frame.isRare and EltruismDB.nameplates.nameplateOptions.raretexture
+	local isRare = frame.isRare and EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture
 
 	if isRare then
-		tex = frame.Health:GetStatusBarTexture()
-		if tex and (frame.Health.EltruismRareOrient ~= orientation or frame.EltruismForceGradient) then
-			tex:SetGradient(orientation, whiteColor, whiteColor)
-			frame.Health.EltruismRareOrient = orientation
-			frame.EltruismForceGradient = nil
-		end
-		local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
-		if frame.Health.EltruismRareTex ~= rareTex then
-			frame.Health:SetStatusBarTexture(rareTex)
-			frame.Health.EltruismRareTex = rareTex
-			frame.EltruismForceGradient = true
-		end
+		UpdateRareHealth(frame)
 	else
-		local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
-		if frame.Health.EltruismRareTex or (rareTex and tex and tex:GetTexture() == rareTex) then
-			local defaultTex = (NP.db and NP.db.statusbar and E.LSM:Fetch("statusbar", NP.db.statusbar)) or E.media.normTex
-			frame.Health:SetStatusBarTexture(defaultTex)
-			frame.Health.EltruismRareTex = nil
-			frame.Health.EltruismRareOrient = nil
-			frame.EltruismForceGradient = true
-			tex = frame.Health:GetStatusBarTexture()
-		end
+		RestoreDefaultHealthTexture(frame)
+		tex = frame.Health:GetStatusBarTexture()
 
 		local threatType
 		if status == 3 then -- securely tanking
@@ -185,15 +196,12 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 	local npEnabled = db.unitframes.gradientmode.npenable
 	local borderFrame = frame.Health.EltruismNameplateBorder
 	local bordersEnabled = borderFrame and db.borders and db.borders.bordercolors
+	local rareEnabled = db.nameplates and db.nameplates.nameplateOptions and db.nameplates.nameplateOptions.raretexture
 
-	if not npEnabled and not bordersEnabled then return end
+	if not npEnabled and not bordersEnabled and not rareEnabled then return end
 
-	if not npEnabled and frame.Health.EltruismRareTex then
-		local defaultTex = (NP.db and NP.db.statusbar and E.LSM:Fetch("statusbar", NP.db.statusbar)) or E.media.normTex
-		frame.Health:SetStatusBarTexture(defaultTex)
-		frame.Health.EltruismRareTex = nil
-		frame.Health.EltruismRareOrient = nil
-		frame.EltruismForceGradient = true
+	if not npEnabled and not rareEnabled then
+		RestoreDefaultHealthTexture(frame)
 	end
 
 	local unit = frame.__unit
@@ -208,37 +216,20 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 
 	local hasThreat = frame.threatStatus and not tapdenied and NP.db.threat and NP.db.threat.enable and NP.db.threat.useThreatColor
 
-	if npEnabled then
+	if npEnabled or rareEnabled then
 		frame.isRare = IsFrameRare(frame)
 
 		local orientation = db.unitframes.gradientmode.nporientation or "VERTICAL"
 		local tex = frame.Health:GetStatusBarTexture()
 
 		if tex then
-			local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
-			local isRare = frame.isRare and db.nameplates.nameplateOptions.raretexture
+			local isRare = frame.isRare and rareEnabled
 
 			if isRare then
-				if frame.Health.EltruismRareTex ~= rareTex then
-					frame.Health:SetStatusBarTexture(rareTex)
-					frame.Health.EltruismRareTex = rareTex
-					frame.EltruismForceGradient = true
-				end
-				tex = frame.Health:GetStatusBarTexture()
-				if tex and (frame.Health.EltruismRareOrient ~= orientation or frame.EltruismForceGradient) then
-					tex:SetGradient(orientation, whiteColor, whiteColor)
-					frame.Health.EltruismRareOrient = orientation
-					frame.EltruismForceGradient = nil
-				end
+				UpdateRareHealth(frame)
 			else
-				if frame.Health.EltruismRareTex or (rareTex and tex:GetTexture() == rareTex) then
-					local defaultTex = (NP.db and NP.db.statusbar and E.LSM:Fetch("statusbar", NP.db.statusbar)) or E.media.normTex
-					frame.Health:SetStatusBarTexture(defaultTex)
-					frame.Health.EltruismRareTex = nil
-					frame.Health.EltruismRareOrient = nil
-					frame.EltruismForceGradient = true
-					tex = frame.Health:GetStatusBarTexture()
-				end
+				RestoreDefaultHealthTexture(frame)
+				tex = frame.Health:GetStatusBarTexture()
 
 				if hasThreat then
 					ElvUI_EltreumUI:ThreatIndicator_PostUpdate(frame, frame.threatStatus)
@@ -321,7 +312,9 @@ function ElvUI_EltreumUI:NP_StylePlate(_, nameplate)
 	plate.EltruismLastThreatType = nil
 	plate.EltruismLastColorKey = nil
 	plate.isRare = nil
-	if plate.Health then
+	if plate.Health and plate.Health.EltruismRareTex then
+		local defaultTex = (NP.db and NP.db.statusbar and E.LSM:Fetch("statusbar", NP.db.statusbar)) or E.media.normTex
+		plate.Health:SetStatusBarTexture(defaultTex)
 		plate.Health.EltruismRareTex = nil
 		plate.Health.EltruismRareOrient = nil
 	end
