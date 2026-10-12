@@ -28,7 +28,6 @@ end
 
 local function IsFrameRare(frame)
 	if not frame or not frame.__unit then return false end
-	if ElvUI_EltreumUI:IsInInstance() then return false end
 
 	local unit = frame.__unit
 	if frame.isPlayer or UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -119,17 +118,17 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	local isRare = frame.isRare and EltruismDB.nameplates.nameplateOptions.raretexture
 
 	if isRare then
-		local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
-		if frame.Health.EltruismRareTex ~= rareTex then
-			frame.Health:SetStatusBarTexture(rareTex)
-			frame.Health.EltruismRareTex = rareTex
-			frame.EltruismForceGradient = true
-		end
 		tex = frame.Health:GetStatusBarTexture()
 		if tex and (frame.Health.EltruismRareOrient ~= orientation or frame.EltruismForceGradient) then
 			tex:SetGradient(orientation, whiteColor, whiteColor)
 			frame.Health.EltruismRareOrient = orientation
 			frame.EltruismForceGradient = nil
+		end
+		local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
+		if frame.Health.EltruismRareTex ~= rareTex then
+			frame.Health:SetStatusBarTexture(rareTex)
+			frame.Health.EltruismRareTex = rareTex
+			frame.EltruismForceGradient = true
 		end
 	else
 		local rareTex = E.LSM:Fetch("statusbar", ElvUI_EltreumUI:GetNameplateRareClassTexture())
