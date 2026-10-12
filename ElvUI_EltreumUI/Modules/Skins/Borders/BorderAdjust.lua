@@ -1,9 +1,11 @@
 local E = unpack(ElvUI)
 local _G = _G
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
+local InCombatLockdown = _G.InCombatLockdown
 
 --automatically adjust things if borders is enabled
 function ElvUI_EltreumUI:BorderAdjust()
+	if InCombatLockdown() then return end
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
 		if E.private.ElvUI_EltreumUI.install_version and ElvDB.profileKeys[E.mynameRealm] and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
