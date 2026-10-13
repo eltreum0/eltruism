@@ -6,6 +6,7 @@ Added option previews for Dark/Light modes, textures, AFK music, and Death anima
 Added a command (/eltruism transparent) to toggle unitframe transparent health  
 Added Nameplate Custom Height back using different functions  
 Added support for Skyborne Elves in several functions  
+Added Rare 2, Boss 1 and Boss 2 textures to Portrait  
 Added a Waypoint Name option to Map Waypoints  
 Added an ElvUI mover for LootText  
 Added several more shadows  
