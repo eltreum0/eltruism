@@ -22,6 +22,7 @@ local Screenshot = _G.Screenshot
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local PlaySoundFile = _G.PlaySoundFile
 local ConfirmLootSlot = _G.ConfirmLootSlot
+local tremove = _G.tremove
 local lootsoundthrottle = 0
 
 --wishlist popup
@@ -97,7 +98,7 @@ local function InstantLoot(_, event,_, arg2)
 				end
 				local id = itemLink:match("item:(%d+)")
 				local itemID = tonumber(id)
-				for k=1, #E.private.ElvUI_EltreumUI.wishlistID do
+				for k = #E.private.ElvUI_EltreumUI.wishlistID, 1, -1 do
 					if itemID == tonumber(E.private.ElvUI_EltreumUI.wishlistID[k]) then
 						WishlistItemFrame.Text2:SetText("")
 						if quality then
@@ -119,6 +120,10 @@ local function InstantLoot(_, event,_, arg2)
 							end)
 						end
 						E:Delay(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
+						tremove(E.private.ElvUI_EltreumUI.wishlistID, k)
+						if E.private.ElvUI_EltreumUI.wishlistName and E.private.ElvUI_EltreumUI.wishlistName[k] then
+							tremove(E.private.ElvUI_EltreumUI.wishlistName, k)
+						end
 					end
 				end
 			end
