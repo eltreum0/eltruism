@@ -18,6 +18,69 @@ local notexcoord = {
 	["ORIGINAL"] = true,
 }
 
+local portraitRare1 = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga"
+local portraitRare2 = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare2.tga"
+local portraitBoss1 = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Boss.tga"
+local portraitBoss2 = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Boss2.tga"
+
+local function GetDragonTexture(frame, db)
+	if db == "player" then
+		local playerStyle = E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare
+		if playerStyle == "BOSS2" then
+			return portraitBoss2
+		elseif playerStyle == "BOSS" then
+			return portraitBoss1
+		elseif playerStyle == "RARE2" then
+			return portraitRare2
+		else
+			return portraitRare1
+		end
+	else
+		local c
+		if frame and frame.__unit then
+			c = UnitClassification(frame.__unit)
+		end
+		if (c == 'rare') or (c == 'rareelite') then
+			if (E.db.ElvUI_EltreumUI.unitframes.portrait.raretexture or 1) == 2 then
+				return portraitRare2
+			else
+				return portraitRare1
+			end
+		elseif (c == 'elite') or (c == 'worldboss') or (db == "boss") then
+			if (E.db.ElvUI_EltreumUI.unitframes.portrait.bosstexture or 1) == 2 then
+				return portraitBoss2
+			else
+				return portraitBoss1
+			end
+		else
+			if (E.db.ElvUI_EltreumUI.unitframes.portrait.raretexture or 1) == 2 then
+				return portraitRare2
+			else
+				return portraitRare1
+			end
+		end
+	end
+end
+
+local function GetDragonOffset(texture, size, invert)
+	local x, y = 0, 0
+	local scale = (size or 92) / 256
+	if texture == portraitRare2 then
+		x = -11 * scale
+		y = 1 * scale
+	elseif texture == portraitBoss1 then
+		x = -40 * scale
+		y = 2 * scale
+	elseif texture == portraitBoss2 then
+		x = -40 * scale
+		y = -5 * scale
+	end
+	if invert then
+		x = -x
+	end
+	return x, y
+end
+
 --create and update the portraits
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
 local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
@@ -46,6 +109,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		end
 	end
 
+	local dragonEnabled = (db == "player" and (E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare and E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare ~= "NONE" and E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare ~= false)) or (db ~= "player" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare)
+
 	if not frame.EltruismPortrait then
 		if frame.Portrait then
 			frame.Portrait:Hide()
@@ -73,7 +138,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		frame.EltruismPortrait.edge:SetAllPoints(frame.EltruismPortrait)
 
 		frame.EltruismPortrait.rare = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitRare", "OVERLAY", nil, 7)
-		frame.EltruismPortrait.rare:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga")
+		frame.EltruismPortrait.rare:SetTexture(portraitRare1)
 		frame.EltruismPortrait.rare:SetAllPoints(frame.EltruismPortrait)
 
 		frame.EltruismPortrait.background = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitBackground", "OVERLAY", nil, -7)
@@ -86,9 +151,23 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 
 	if invert then
 		frame.EltruismPortrait.rare:SetTexCoord(1, 0, 0, 1)
+	else
+		frame.EltruismPortrait.rare:SetTexCoord(0, 1, 0, 1)
 	end
-	if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" then
+	if not dragonEnabled or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" then
 		frame.EltruismPortrait.rare:SetTexture()
+		frame.EltruismPortrait.rare:ClearAllPoints()
+		frame.EltruismPortrait.rare:SetAllPoints(frame.EltruismPortrait)
+	else
+		local texture = GetDragonTexture(frame, db)
+		frame.EltruismPortrait.rare:SetTexture(texture)
+		local xOff, yOff = GetDragonOffset(texture, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, invert)
+		frame.EltruismPortrait.rare:ClearAllPoints()
+		frame.EltruismPortrait.rare:SetPoint("CENTER", frame.EltruismPortrait, "CENTER", xOff, yOff)
+		frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
+		if (texture == portraitBoss1) or (texture == portraitBoss2) then ---??????
+			frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.05, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.05)
+		end
 	end
 	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait[db].edge then
 		frame.EltruismPortrait.edge:SetTexture()
@@ -249,20 +328,31 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 				frame.EltruismPortrait.rare:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.b,1)
 			end
 
-			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
+			if dragonEnabled and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
 				frame.EltruismPortrait.rare:SetAlpha(1)
-				local c = UnitClassification(frame.__unit)
-				if (c == 'rare') or (c == 'rareelite') then
-					frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
-					frame.EltruismPortrait.border:SetVertexColor(1,1,1,1)
-					frame.EltruismPortrait.edge:SetVertexColor(1,1,1,1)
-				elseif(c == 'elite') or (c == 'worldboss') then
-					frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
-					frame.EltruismPortrait.border:SetVertexColor(0.84,0.74,0.35,1)
-					frame.EltruismPortrait.edge:SetVertexColor(0.84,0.74,0.35,1)
-				else
-					if not UnitIsPlayer(frame.__unit) then
-						frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
+				local texture = GetDragonTexture(frame, db)
+				frame.EltruismPortrait.rare:SetTexture(texture)
+				local xOff, yOff = GetDragonOffset(texture, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, invert)
+				frame.EltruismPortrait.rare:ClearAllPoints()
+				frame.EltruismPortrait.rare:SetPoint("CENTER", frame.EltruismPortrait, "CENTER", xOff, yOff)
+				frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
+				if (texture == portraitBoss1) or (texture == portraitBoss2) then ---??????
+					frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.3, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.3)
+				end
+				if db ~= "player" then
+					local c = UnitClassification(frame.__unit)
+					if (c == 'rare') or (c == 'rareelite') then
+						frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
+						frame.EltruismPortrait.border:SetVertexColor(1,1,1,1)
+						frame.EltruismPortrait.edge:SetVertexColor(1,1,1,1)
+					elseif(c == 'elite') or (c == 'worldboss') or (db == "boss") then
+						frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
+						frame.EltruismPortrait.border:SetVertexColor(0.84,0.74,0.35,1)
+						frame.EltruismPortrait.edge:SetVertexColor(0.84,0.74,0.35,1)
+					else
+						if not UnitIsPlayer(frame.__unit) then
+							frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
+						end
 					end
 				end
 			else
@@ -326,10 +416,20 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align), E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size,E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
 
-		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or isPlayerCustom then
+		if not dragonEnabled or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or isPlayerCustom then
 			frame.EltruismPortrait.rare:SetTexture()
+			frame.EltruismPortrait.rare:ClearAllPoints()
+			frame.EltruismPortrait.rare:SetAllPoints(frame.EltruismPortrait)
 		else
-			frame.EltruismPortrait.rare:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga")
+			local texture = GetDragonTexture(frame, db)
+			frame.EltruismPortrait.rare:SetTexture(texture)
+			local xOff, yOff = GetDragonOffset(texture, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, invert)
+			frame.EltruismPortrait.rare:ClearAllPoints()
+			frame.EltruismPortrait.rare:SetPoint("CENTER", frame.EltruismPortrait, "CENTER", xOff, yOff)
+			frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
+			if (texture == portraitBoss1) or (texture == portraitBoss2) then ---??????
+				frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.3, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.3)
+			end
 		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait[db].edge or isPlayerCustom then
@@ -495,6 +595,17 @@ ElvUI_EltreumUI:SecureHook(UF, "UpdateRoleIcon", "BlizzPortraitsGroup") --has tr
 --function to update portrait when settings change
 function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
+		if unit == "all" then
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("pet")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget")
+			ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss")
+			return
+		end
 		if unit == "player" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_Player"],"ElvUF_Player",false,true,"player",true)
 		end

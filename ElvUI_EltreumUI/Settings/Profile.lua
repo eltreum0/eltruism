@@ -1125,6 +1125,8 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			shadow = true,
 			gradient = true,
+			raretexture = 1,
+			bosstexture = 1,
 			player = {
 				enable = true,
 				style = "SYMBOLS",
@@ -1137,7 +1139,7 @@ P.ElvUI_EltreumUI = {
 				},
 				custom = false,
 				edge = true,
-				rare = false,
+				rare = "NONE",
 				scale = -0.15,
 				customcircle = false,
 				reversegradient = false,
