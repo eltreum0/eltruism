@@ -6,6 +6,7 @@ local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local hooksecurefunc = _G.hooksecurefunc
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
@@ -46,14 +47,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 
 	if ufCustom.enable then
 		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture))
-		if castbar.Shield then castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture)) end
 	elseif gm.enable then
 		if gm.useUFtexture then
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-			if castbar.Shield then castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)) end
 		else
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", gm.texture))
-			if castbar.Shield then castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", gm.texture)) end
 		end
 	end
 
@@ -73,24 +71,15 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 
 		local orientation = gm.orientation or "HORIZONTAL"
 		local isReverse = db and db.reverse
-		local isCustom = gm.customcolor
+		local isCustom = gm.customcolor or gm.npcustomcolor
 		local notInterruptible = E:NotSecretValue(castbar.notInterruptible) and castbar.notInterruptible
 		local c1, c2
 
-		--/run local name, _, _, _, _, _, _, notInterruptible = UnitCastingInfo("target"); print(name, notInterruptible)
-		--[[if castbar.Shield then
-			--castbar.Shield:SetAlpha(1)
-			castbar.Shield:SetTexture(E.LSM:Fetch("statusbar",(ufCustom.enable and ufCustom.castbartexture) or (gm.enable and (gm.useUFtexture and E.db.unitframe.statusbar or gm.texture))))
-			c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.customcolor and "noninterruptible_custom" or "noninterruptible_default", gm.reverse)
-			castbar.Shield:SetGradient(orientation, c1, c2)
-		end]]
 		if notInterruptible then
 			if gm.enablecastbarnoninterruptible then
-				--if castbar.Shield then castbar.Shield:SetAlpha(0) end
 				c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default", isReverse)
 			end
 		else
-			--if castbar.Shield then castbar.Shield:SetAlpha(0) end
 			if not gm.enablecastbar then return end
 			local isPlayer = (unit == "player") or UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 			local _, unitclass = UnitClass(unit)
@@ -118,7 +107,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 							reactionKey = "NPCHOSTILE"
 						end
 					end
-					c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, isReverse, isCustom and gm.classcolorcastbar)
+					c1, c2 = ElvUI_EltreumUI:GetHealthGradient(reactionKey, isReverse, isCustom)
 				else
 					c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "interruptible_custom" or "interruptible_default", isReverse)
 				end
@@ -126,6 +115,16 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 		end
 		if c1 and c2 then
 			tex:SetGradient(orientation, c1, c2)
+		end
+
+		if E.Modern and castbar.Shield then
+			local sc1, sc2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default")
+			if sc1 and sc2 then
+				castbar.Shield:SetVertexColor(sc2.r, sc2.g, sc2.b, 1)
+				if castbar.ShieldGradientOverlay then
+					castbar.ShieldGradientOverlay:SetVertexColor(sc1.r, sc1.g, sc1.b, 1)
+				end
+			end
 		end
 	end
 end
@@ -178,13 +177,87 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail(castbar)
 		local db = parent and parent.db and parent.db.castbar
 		local isReverse = db and db.reverse
 
-		local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(gm.customcolor and "interrupted_custom" or "interrupted_default", isReverse)
+		local isCustom = gm.customcolor or gm.npcustomcolor
+		local c1, c2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "interrupted_custom" or "interrupted_default", isReverse)
 		if c1 and c2 then
-			--if castbar.Shield then castbar.Shield:SetAlpha(0) end
 			tex:SetGradient(gm.orientation or "HORIZONTAL", c1, c2)
 		end
 	end
 end
 ElvUI_EltreumUI:SecureHook(UF, 'PostCastFail', 'CastBarTextureGradientFail')
 ElvUI_EltreumUI:SecureHook(UF, 'PostCastInterrupted', 'CastBarTextureGradientFail')
+
+function ElvUI_EltreumUI:UF_Configure_Castbar(arg1, arg2)
+	local targetFrame = (arg1 and arg1.Castbar and arg1) or (arg2 and arg2.Castbar and arg2)
+	if not targetFrame or not targetFrame.Castbar then return end
+	local castbar = targetFrame.Castbar
+	if not (E.Modern and castbar.Shield) then return end
+	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
+	if not (gm and gm.enable and gm.enablecastbarnoninterruptible) then return end
+
+	local ufCustom = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture
+	if ufCustom and ufCustom.enable then
+		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", ufCustom.castbartexture))
+	elseif gm.useUFtexture then
+		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+	else
+		castbar.Shield:SetTexture(E.LSM:Fetch("statusbar", gm.texture))
+	end
+
+	local orientation = gm.orientation or "HORIZONTAL"
+	local isCustom = gm.customcolor or gm.npcustomcolor
+	local isReverse = false
+	if castbar.GetReverseFill then
+		isReverse = castbar:GetReverseFill()
+	end
+	if not isReverse and targetFrame.db and targetFrame.db.castbar then
+		isReverse = targetFrame.db.castbar.reverse
+	end
+	if not isReverse and castbar.reverse then
+		isReverse = true
+	end
+
+	local sc1, sc2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default")
+	if not (sc1 and sc2) then return end
+
+	if not castbar.ShieldGradientOverlay then
+		castbar.ShieldGradientOverlay = castbar:CreateTexture(nil, 'OVERLAY', nil, 3)
+	end
+	castbar.ShieldGradientOverlay:ClearAllPoints()
+	castbar.ShieldGradientOverlay:SetAllPoints(castbar.Shield)
+
+	if orientation == "VERTICAL" then
+		castbar.ShieldGradientOverlay:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
+		if isReverse then
+			castbar.ShieldGradientOverlay:SetTexCoord(0, 1, 1, 0)
+		else
+			castbar.ShieldGradientOverlay:SetTexCoord(1, 0, 0, 1)
+		end
+	else
+		castbar.ShieldGradientOverlay:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade.tga")
+		if isReverse then
+			castbar.ShieldGradientOverlay:SetTexCoord(0, 1, 0, 1)
+		else
+			castbar.ShieldGradientOverlay:SetTexCoord(1, 0, 0, 1)
+		end
+	end
+
+	castbar.Shield:SetVertexColor(sc2.r, sc2.g, sc2.b, 1)
+	castbar.ShieldGradientOverlay:SetVertexColor(sc1.r, sc1.g, sc1.b, 1)
+
+	castbar.Shield.alphaValue = 1
+	castbar.Shield:SetAlpha(0)
+	castbar.ShieldGradientOverlay:SetAlpha(0)
+
+	if not castbar.Shield.EltruismHooked then
+		castbar.Shield.EltruismHooked = true
+		hooksecurefunc(castbar.Shield, "SetAlphaFromBoolean", function(shield, val, aTrue, aFalse)
+			local cb = shield:GetParent()
+			if cb and cb.ShieldGradientOverlay then
+				cb.ShieldGradientOverlay:SetAlphaFromBoolean(val, aTrue or 1, aFalse or 0)
+			end
+		end)
+	end
+end
+ElvUI_EltreumUI:SecureHook(UF, "Configure_Castbar", "UF_Configure_Castbar")
 
