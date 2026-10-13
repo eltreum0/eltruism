@@ -166,6 +166,11 @@ end
 --hook or unhook unit tooltip gradient
 function ElvUI_EltreumUI:TooltipGradientHook()
 	if not TT or not E.db.ElvUI_EltreumUI then return end
+	if not E.private then return end
+	if not E.private.tooltip then return end
+	if not E.db.ElvUI_EltreumUI.unitframes then return end
+	if not E.db.ElvUI_EltreumUI.unitframes.gradientmode then return end
+	if not E.db.ElvUI_EltreumUI.skins then return end
 
 	if E.private.tooltip.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
 		if not self:IsHooked(TT, 'AddTargetInfo') then
