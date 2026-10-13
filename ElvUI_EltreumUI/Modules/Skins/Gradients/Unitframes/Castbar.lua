@@ -116,16 +116,6 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 		if c1 and c2 then
 			tex:SetGradient(orientation, c1, c2)
 		end
-
-		if E.Modern and castbar.Shield then
-			local sc1, sc2 = ElvUI_EltreumUI:GetCastbarGradient(isCustom and "noninterruptible_custom" or "noninterruptible_default")
-			if sc1 and sc2 then
-				castbar.Shield:SetVertexColor(sc2.r, sc2.g, sc2.b, 1)
-				if castbar.ShieldGradientOverlay then
-					castbar.ShieldGradientOverlay:SetVertexColor(sc1.r, sc1.g, sc1.b, 1)
-				end
-			end
-		end
 	end
 end
 
