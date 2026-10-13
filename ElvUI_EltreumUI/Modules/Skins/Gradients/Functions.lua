@@ -548,13 +548,13 @@ function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
 	end
 end
 
-function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom)
-	if not key or not E:NotSecretValue(key) then
-		key = "ELTRUISM"
+function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom, ignoreClass)
+	if ignoreClass or not key or not E:NotSecretValue(key) or key == "ELTRUISM" then
+		key = "BACKDROP"
 	end
 	local tbl = isCustom and customBackdropGradients or defaultBackdropGradients
 	local bucket = invert and tbl.invert or tbl.normal
-	local entry = bucket[key] or bucket["ELTRUISM"]
+	local entry = bucket[key] or bucket["BACKDROP"] or bucket["ELTRUISM"]
 	if entry then
 		return entry[1], entry[2]
 	end

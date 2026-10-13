@@ -71,7 +71,6 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 	if db.enablebackdrop then
 		local hasClass = englishClass and canaccessvalue(englishClass)
 		local hasReaction = reactionunit and canaccessvalue(reactionunit)
-		if not hasClass and not hasReaction then return end
 
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
 		local backdropAlpha = transparentHealth and (UFdb.ufcustomtexture.backdropalpha or 1) or 1
@@ -92,25 +91,11 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		end
 
 		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget")
-		if isTargetTarget then
-			if isPlayer or not hasReaction then
-				return
-			end
-		else
-			if isPlayer and not hasClass then
-				return
-			elseif not isPlayer and not hasReaction then
-				return
-			end
-		end
 
-		if not canaccessvalue(englishClass) or not englishClass then
-			englishClass = "ELTRUISM"
-		end
 		local colorClass = "BACKDROP"
 		local invert = false
 		if isGroupFrame then
-			if db.classcolorbackdrop then
+			if db.classcolorbackdrop and hasClass then
 				colorClass = englishClass
 			end
 		else
@@ -122,11 +107,15 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				invert = true
 			end
 
-			if db.classcolorbackdrop then
+			if db.classcolorbackdrop and not isTargetTarget then
 				if isPlayer then
-					colorClass = englishClass
+					if hasClass then
+						colorClass = englishClass
+					else
+						colorClass = "BACKDROP"
+					end
 				else
-					if reactionunit and canaccessvalue(reactionunit) then
+					if hasReaction then
 						if reactionunit >= 5 then
 							colorClass = "NPCFRIENDLY"
 						elseif reactionunit == 4 then
@@ -159,7 +148,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
-		if not canaccessvalue(colorClass) or not colorClass then
+		if isTargetTarget or not canaccessvalue(colorClass) or not colorClass or colorClass == "ELTRUISM" then
 			colorClass = "BACKDROP"
 		end
 
@@ -184,33 +173,8 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		local isCustom = db.customcolor
 		local orientation = db.orientation or "HORIZONTAL"
 
-		local backdropNeedsUpdate = false
-		if frame.Health and frame.Health.backdrop then
-			if UFdb.darkmode and frame.Health.backdrop.Center and not frame.Health.backdrop.Center:IsShown() then
-				backdropNeedsUpdate = true
-			elseif frame.Health.backdrop.customBackdropAlpha ~= backdropAlpha then
-				backdropNeedsUpdate = true
-			end
-		end
-
 		if not canaccessvalue(frame.EltruismBackdropClass) then
 			frame.EltruismBackdropClass = nil
-		end
-
-		if not backdropNeedsUpdate and
-			frame.EltruismBackdropEpoch == backdropEpoch and
-			frame.EltruismBackdropClass == colorClass and
-			frame.EltruismBackdropDead == deadState and
-			frame.EltruismBackdropInvert == invert and
-			frame.EltruismBackdropDebuff == frame.EltruismDebuffExists and
-			(not frame.EltruismDebuffExists or (
-				frame.EltruismBackdropDebuffR == frame.EltruismDebuffr and
-				frame.EltruismBackdropDebuffG == frame.EltruismDebuffg and
-				frame.EltruismBackdropDebuffB == frame.EltruismDebuffb and
-				frame.EltruismBackdropDebuffA == frame.EltruismDebuffa
-			))
-		then
-			return
 		end
 
 		frame.EltruismBackdropEpoch = backdropEpoch
@@ -262,7 +226,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		end
 
 		if not frame.EltruismDebuffExists then
-			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, isCustom)
+			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, isCustom, isTargetTarget or (not hasClass))
 
 			if UFdb.lightmode then
 				if frame.Health.backdropTex then
@@ -336,7 +300,14 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 		local reaction = UnitReaction(unit, "player")
 		local hasClass = classunit and canaccessvalue(classunit)
 		local hasReaction = reaction and canaccessvalue(reaction)
-		if not hasClass and not hasReaction then return end
+
+		local unitframe = frame or _G["ElvUF_"..name]
+		if not hasClass and not hasReaction then
+			if db.enablebackdrop and unitframe then
+				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
+			end
+			return
+		end
 
 		local isPlayer = false
 		local p = UnitIsPlayer(unit)
@@ -348,7 +319,6 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 				isPlayer = true
 			end
 		end
-		local unitframe = frame or _G["ElvUF_"..name]
 		local orientation = db.orientation or "HORIZONTAL"
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
 		local backdropAlpha = transparentHealth and (UFdb.ufcustomtexture.backdropalpha or 1) or 1
@@ -376,6 +346,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 				unitframe.Health.EltruismOrientation = targetUFOrientation
 			end
 
+			if db.enablebackdrop then
+				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
+			end
+
 			if isTargetTarget then
 				if isPlayer or not hasReaction then
 					if UFdb.darkmode and unitframe.Health.backdropTex then
@@ -389,10 +363,6 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 				elseif not isPlayer and not hasReaction then
 					return
 				end
-			end
-
-			if db.enablebackdrop then
-				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
 			end
 			if UFdb.lightmode and UFdb.ufcustomtexture.backdrophidden then
 				if unitframe.Health.backdropTex then
