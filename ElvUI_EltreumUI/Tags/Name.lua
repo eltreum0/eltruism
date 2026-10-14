@@ -930,7 +930,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--reversed gradient name
 	E:AddTag("name:eltruism:gradientreverse", "UNIT_NAME_UPDATE", function(unit)
-		local name,surname = UnitName(ElvUI_EltreumUI:GetTargetUnit(unit))
+		local name,surname = UnitName(unit)
 		if E.Forever and surname then
 			name = format("%s %s", name, surname)
 		end
