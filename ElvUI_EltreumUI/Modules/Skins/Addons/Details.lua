@@ -2,7 +2,6 @@ local E, L = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local unpack = _G.unpack
 local next = _G.next
 local InCombatLockdown = _G.InCombatLockdown
 local embedpanel

@@ -159,7 +159,7 @@ local function DeadDesaturation(self)
 	end
 end
 
-local function SetPortraits(frame, unit, masking, mirror)
+local function SetPortraits(frame, unit, mirror)
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.classicons and (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) then
 		local class = select(2, UnitClass(unit))
 		if not class then return end
@@ -319,7 +319,7 @@ local function UpdatePortrait(portraitFrame, force)
 	-- Unit Portrait
 	offset = GetOffset(setting.size)
 	UpdateTexture(portraitFrame, "portrait", bg_textures.unknown, 1)
-	SetPortraits(portraitFrame, unit, false, setting.mirror)
+	SetPortraits(portraitFrame, unit, setting.mirror)
 	portraitFrame.portrait:SetPoint("TOPLEFT", 0 + offset, 0 - offset)
 	portraitFrame.portrait:SetPoint("BOTTOMRIGHT", 0 - offset, 0 + offset)
 
@@ -636,7 +636,7 @@ local function UpdatePortraitTexture(self, unit)
 	local isPlayer = UnitIsPlayer(unit)
 	local unitColor = getColor(unit, isPlayer, self.unit_is_dead)
 
-	SetPortraits(self, unit, false, self.settings.mirror)
+	SetPortraits(self, unit, self.settings.mirror)
 	setColor(self.texture, unitColor, self.settings.mirror)
 
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.corner and self.textures.corner then setColor(self.corner, unitColor, self.settings.mirror) end

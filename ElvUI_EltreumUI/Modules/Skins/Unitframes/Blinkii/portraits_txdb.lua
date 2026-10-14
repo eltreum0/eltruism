@@ -1170,16 +1170,6 @@ local old_textures = {
 	},
 }
 
-local bg_textures = {
-	[1] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\bg_1.tga",
-	[2] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\bg_2.tga",
-	[3] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\bg_3.tga",
-	[4] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\bg_4.tga",
-	[5] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\bg_5.tga",
-	empty = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\empty.tga",
-	unknown = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\unknown.tga",
-}
-
 local old = {
 	SQ = true,
 	RO = true,

@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
-local unpack = _G.unpack
 local pairs = _G.pairs
 local next = _G.next
 

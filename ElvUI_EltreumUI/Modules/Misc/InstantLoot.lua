@@ -8,7 +8,6 @@ local GetLootSlotLink = _G.GetLootSlotLink
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
-local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local tonumber = _G.tonumber
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local GetCVarBool = _G.C_CVar and _G.C_CVar.GetCVarBool or _G.GetCVarBool

@@ -26,7 +26,6 @@ local IsResting = _G.IsResting
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
-local C_NamePlate = _G.C_NamePlate
 local CreateColor = _G.CreateColor
 local glowMin = CreateColor(1, 1, 1, 1)
 local glowMax = CreateColor(1, 1, 1, 1)
@@ -858,19 +857,6 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 				E.db["nameplates"]["visibility"]["friendly"]["npcs"] = false
 			end
 		end
-		--[[if E.db.ElvUI_EltreumUI.nameplates.disableFriendlyClick then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
-				C_NamePlate.SetNamePlateFriendlyClickThrough(true)
-			else
-				C_NamePlate.SetNamePlateFriendlyClickThrough(false)
-			end
-		end
-		if E.db.ElvUI_EltreumUI.nameplates.customizeFriendlySize then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
-				SetCVar(showOnlyNamesString, 0)
-				C_NamePlate.SetNamePlateFriendlySize(E.db.ElvUI_EltreumUI.nameplates.customizeFriendlySizeX, 25)
-			end
-		end]]
 	end
 	ElvUI_EltreumUI:OriginalClassColors() --check for friendly
 end

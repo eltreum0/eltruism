@@ -4,6 +4,7 @@ local A = E:GetModule('Auras')
 local UF = E:GetModule('UnitFrames')
 local TT = E:GetModule('Tooltip')
 local NP = E:GetModule('NamePlates')
+local string = _G.string
 local strfind = _G.strfind or string.find
 local CreateFrame = _G.CreateFrame
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
@@ -24,8 +25,8 @@ local UnitPowerType = _G.UnitPowerType
 local classcolor = E.myClassColor
 local ElvUF = _G.ElvUF
 local type = _G.type
-local classcolor2 = {}
-local classcolor2check = false
+--local classcolor2 = {}
+--local classcolor2check = false
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder,arenaborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder, experienceborder, threatborder
 local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
