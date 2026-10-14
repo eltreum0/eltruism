@@ -1,21 +1,22 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CH = E:GetModule("Chat")
-local format = _G.string.format
+local strformat = _G.string.format
 local strsub = _G.strsub
 local Ambiguate = _G.Ambiguate
 local C_ChatInfo = _G.C_ChatInfo
 local Enum = _G.Enum
 local gsub = _G.gsub
 local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
-local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
+local TIMERUNNING_SMALL = strformat(TIMERUNNING_ATLAS, 12, 10)
 local ShouldColorChatByClass = (_G.ChatFrameUtil and _G.ChatFrameUtil.ShouldColorChatByClass) or _G.Chat_ShouldColorChatByClass
 local GetMentorChannelStatus = (_G.ChatFrameUtil and _G.ChatFrameUtil.GetMentorChannelStatus) or _G.ChatFrame_GetMentorChannelStatus
 local IsRecentAllyByGUID = _G.C_RecentAllies and _G.C_RecentAllies.IsRecentAllyByGUID
 local RECENTALLY_ATLAS = '|A:friendslist-recentallies-yellow:%s:%s:0:0|a '
-local RECENTALLY_SMALL = format(RECENTALLY_ATLAS, 11, 11)
+local RECENTALLY_SMALL = strformat(RECENTALLY_ATLAS, 11, 11)
 local C_ClassColor_GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor
 local DiscordDisplayNameType = Enum.DiscordDisplayNameType
+local GetQuestDifficultyColor = _G.GetQuestDifficultyColor
 
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
@@ -274,11 +275,11 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 			if E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.chatgradient then
 				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass,false,"32")..ElvUI_EltreumUI:GradientName(name, data.englishClass)
 			elseif E.db.ElvUI_EltreumUI.chat.chaticonenable and not E.db.ElvUI_EltreumUI.chat.chatgradient then
-				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass,false,"32")..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, name)
+				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass,false,"32")..strformat('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, name)
 			elseif not E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.chatgradient then
 				return ElvUI_EltreumUI:GradientName(name, data.englishClass)
 			else
-				return format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, name)
+				return strformat('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, name)
 			end
 		end
 	end
@@ -327,17 +328,47 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 
 	--get the data to add the race/sex icons and then add it
 	if unitGUID and E:NotSecretValue(unitGUID) then
-		local data = CH:GetPlayerInfoByGUID(unitGUID)
-		--some nil checks
-		if not data then
-			return flag
-		else
-			if not data.englishRace then data.englishRace = "Human" end
-			if not data.sex or data.sex == 1 then data.sex = 2 end
-			if E.Retail then
-				flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Retail\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
-			else
-				flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Classic\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+		local raceIcon = E.db.ElvUI_EltreumUI.chat.chatraceicon
+		local levelEnabled = E.Modern and E.db.ElvUI_EltreumUI.chat.chatlevel
+
+		if raceIcon or levelEnabled then
+			local data = CH:GetPlayerInfoByGUID(unitGUID)
+			--some nil checks
+			if not data then
+				return flag
+			end
+
+			local raceStr = ""
+			local levelStr = ""
+
+			--level
+			if levelEnabled and data.level and data.level > 0 then
+				local diffColor = GetQuestDifficultyColor(data.level)
+				local hex = diffColor and strformat("|cff%02x%02x%02x", diffColor.r * 255, diffColor.g * 255, diffColor.b * 255) or "|cffffffff"
+
+				levelStr = hex .. "L" .. data.level .. "|r"
+			end
+
+			--race/sex
+			if raceIcon then
+				local race = data.englishRace or "Human"
+				local sex = (not data.sex or data.sex == 1) and 2 or data.sex
+				local folder = E.Retail and "Retail" or "Classic"
+
+				raceStr = strformat("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\%s\\%s%d.tga:0:0:0:0|t", folder, race, sex)
+			end
+
+			local tag = ""
+			if levelStr ~= "" and raceStr ~= "" then
+				tag = levelStr .. " " .. raceStr
+			elseif levelStr ~= "" then
+				tag = levelStr .. " "
+			elseif raceStr ~= "" then
+				tag = raceStr
+			end
+
+			if tag ~= "" then
+				flag = (flag ~= "" and (flag .. tag) or tag)
 			end
 		end
 	end
@@ -345,14 +376,22 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	return flag
 end
 
+local GetColoredNameHook = false
+local GetPFlagHook = false
 function ElvUI_EltreumUI:ChatFrame_MessageEventHandler()
-	if E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.chat and E.db.ElvUI_EltreumUI.chat.enable then
-		if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) and CH.GetColoredName ~= ElvUI_EltreumUI.ChatClassIcons then
-			CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
-		end
-		if E.db.ElvUI_EltreumUI.chat.chatraceicon and CH.GetPFlag ~= ElvUI_EltreumUI.GetPFlag then
-			CH.GetPFlag = ElvUI_EltreumUI.GetPFlag
-		end
+	local eDB = E.db.ElvUI_EltreumUI
+	if not eDB then return end
+	local chatDB = eDB.chat
+	if not chatDB then return end
+	if not chatDB.enable then return end
+
+	if not GetColoredNameHook and (chatDB.chaticonenable or chatDB.chatgradient) and CH.GetColoredName ~= ElvUI_EltreumUI.ChatClassIcons then
+		CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
+		GetColoredNameHook = true
+	end
+	if not GetPFlagHook and (chatDB.chatraceicon or (E.Modern and chatDB.chatlevel)) and CH.GetPFlag ~= ElvUI_EltreumUI.GetPFlag then
+		CH.GetPFlag = ElvUI_EltreumUI.GetPFlag
+		GetPFlagHook = true
 	end
 end
 ElvUI_EltreumUI:SecureHook(CH, "ChatFrame_MessageEventHandler", "ChatFrame_MessageEventHandler")
