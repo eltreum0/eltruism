@@ -1655,3 +1655,4 @@ L["Type 15"] = "Type 15"
 L["Types"] = "Types"
 L["Universal Borders Customization:"] = "Personnalisation universelle des bordures :"
 L["You are using Eltruism Dev\nIt is highly recommended to use ElvUI Dev"] = "Vous utilisez Eltruism Dev\nIl est fortement recommandé d\'utiliser ElvUI Dev"
+L["Enable adding Level"] = true
