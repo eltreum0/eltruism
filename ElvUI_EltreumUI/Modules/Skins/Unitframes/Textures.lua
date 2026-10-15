@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 				backdropTex:SetTexture(backdropTexture)
 			end
 		end
-		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize and not UFdb.ufcustomtexture.backdrophidden then
 			backdropTex:SetAllPoints(unitframe.Health)
 			if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
 				backdropTex:SetTexCoord(1, 0, 0, 1)
@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 				backdropTex:SetTexture(backdropTexture)
 			end
 		end
-		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize and not UFdb.ufcustomtexture.backdrophidden then
 			backdropTex:SetAllPoints(unitframe.Health)
 			if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
 				backdropTex:SetTexCoord(1, 0, 0, 1)
@@ -210,7 +210,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 	end
 
 	if ElvUI_EltreumUI.ApplyBackdropAlphas then
-		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, unitframe.Health.bg, unitframe.Health.backdrop, backdropTex, isTransparent, barTex)
+		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, unitframe.Health.bg, unitframe.Health.backdrop, backdropTex, isTransparent, barTex, true)
 	end
 end
 
@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 				backdropTex:SetTexture(backdropTexture)
 			end
 		end
-		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize and not UFdb.ufcustomtexture.backdrophidden then
 			backdropTex:SetAllPoints(button.Health)
 		end
 	else
@@ -306,13 +306,13 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 				backdropTex:SetTexture(backdropTexture)
 			end
 		end
-		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize then
+		if backdropTex and UFdb.ufcustomtexture.backdroptexturestaticsize and not UFdb.ufcustomtexture.backdrophidden then
 			backdropTex:SetAllPoints(button.Health)
 		end
 	end
 
 	if ElvUI_EltreumUI.ApplyBackdropAlphas then
-		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, button.Health.bg, button.Health.backdrop, backdropTex, isTransparent, barTex)
+		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, button.Health.bg, button.Health.backdrop, backdropTex, isTransparent, barTex, true)
 	end
 end
 
