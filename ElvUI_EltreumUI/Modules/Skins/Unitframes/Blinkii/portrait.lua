@@ -851,7 +851,9 @@ function ElvUI_EltreumUI:InitializePortraits(force)
 
 		if _G.ElvUF_PartyGroup1UnitButton1 and E.db.ElvUI_EltreumUI.unitframes.portraits.party.enable then
 			for i = 1, 5 do
-				CreatePortraits("Party" .. i, _G["ElvUF_PartyGroup1UnitButton" .. i].unit, _G["ElvUF_PartyGroup1UnitButton" .. i], E.db.ElvUI_EltreumUI.unitframes.portraits.party)
+				if _G["ElvUF_PartyGroup1UnitButton" .. i] then
+					CreatePortraits("Party" .. i, _G["ElvUF_PartyGroup1UnitButton" .. i].unit, _G["ElvUF_PartyGroup1UnitButton" .. i], E.db.ElvUI_EltreumUI.unitframes.portraits.party)
+				end
 			end
 		elseif module.Party1 then
 			for i = 1, 5 do
