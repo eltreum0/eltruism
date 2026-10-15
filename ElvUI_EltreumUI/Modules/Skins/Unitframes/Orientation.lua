@@ -12,7 +12,7 @@ local forbiddenKeywords = {
 	["Party"] = true,
 }
 
-local function ApplyBackdropAlphas(db, bg, backdrop, tex)
+local function ApplyBackdropAlphas(db, bg, backdrop, tex, isTransparent, barTex, isHealthBar)
 	local transparentHealth = E.db.unitframe.colors.transparentHealth
 	local backdropAlpha = transparentHealth and (db.ufcustomtexture.backdropalpha or 1) or 1
 	local healthAlpha = transparentHealth and (db.ufcustomtexture.healthalpha or 1) or 1
