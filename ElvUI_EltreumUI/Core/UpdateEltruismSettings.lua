@@ -22,6 +22,8 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 
+		E.db.ElvUI_EltreumUI.chat.chatlevel = true
+
 		--dmg meter skin
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
@@ -47,6 +49,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.chat.rollsound = true
 		E.db.ElvUI_EltreumUI.chat.chattoggles = true
 		E.db.ElvUI_EltreumUI.chat.chatraceicon = true
+		E.db.ElvUI_EltreumUI.chat.chatlevel = true
 		E.db.ElvUI_EltreumUI.chat.chaticonenable = true
 
 		-- Nameplates

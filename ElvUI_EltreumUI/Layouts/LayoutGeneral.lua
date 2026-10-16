@@ -2217,6 +2217,13 @@ function ElvUI_EltreumUI:NameplateCVars()
 		SetCVar("nameplateNotSelectedAlpha",0.5)
 	end
 
+	--[[
+	if E.Forever then --not yet implemented it seems
+		nameplateMaxVerticalDistance
+		nameplateMaxVerticalDistanceAtMaxRange
+	end
+	]]
+
 	SetCVar('nameplateMaxAlpha', 1)
 	SetCVar('nameplateMaxAlphaDistance', GetCVarDefault('nameplateMaxAlphaDistance'))
 	SetCVar('nameplateMaxScale', 1)
