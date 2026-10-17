@@ -12,60 +12,6 @@ local forbiddenKeywords = {
 	["Party"] = true,
 }
 
-local borderEdges = {
-	"LeftEdge",
-	"RightEdge",
-	"BottomEdge",
-	"TopEdge",
-	"TopLeftCorner",
-	"TopRightCorner",
-	"BottomLeftCorner",
-	"BottomRightCorner",
-}
-
-local function HideBorders(frame)
-	if not frame then return end
-	if frame.SetBackdropBorderColor then
-		frame:SetBackdropBorderColor(0, 0, 0, 0)
-	end
-	for i = 1, #borderEdges do
-		local edge = frame[borderEdges[i]]
-		if edge then
-			if edge.Hide then edge:Hide() end
-			if edge.SetAlpha then edge:SetAlpha(0) end
-			if edge.SetVertexColor then edge:SetVertexColor(0, 0, 0, 0) end
-		end
-	end
-	if frame.iborder and frame.iborder.Hide then frame.iborder:Hide() end
-	if frame.oborder and frame.oborder.Hide then frame.oborder:Hide() end
-	if frame.backdrop then
-		HideBorders(frame.backdrop)
-	end
-end
-
-local function ShowBorders(frame)
-	if not frame then return end
-	if frame.SetBackdropBorderColor then
-		local borderR, borderG, borderB, borderA = 0, 0, 0, 1
-		if E.db.general and E.db.general.bordercolor then
-			borderR, borderG, borderB, borderA = E.db.general.bordercolor.r, E.db.general.bordercolor.g, E.db.general.bordercolor.b, E.db.general.bordercolor.a or 1
-		end
-		frame:SetBackdropBorderColor(borderR, borderG, borderB, borderA)
-	end
-	for i = 1, #borderEdges do
-		local edge = frame[borderEdges[i]]
-		if edge then
-			if edge.Show then edge:Show() end
-			if edge.SetAlpha then edge:SetAlpha(1) end
-		end
-	end
-	if frame.iborder and frame.iborder.Show then frame.iborder:Show() end
-	if frame.oborder and frame.oborder.Show then frame.oborder:Show() end
-	if frame.backdrop then
-		ShowBorders(frame.backdrop)
-	end
-end
-
 local function ApplyBackdropAlphas(db, bg, backdrop, tex, isTransparent, barTex, isHealthBar, statusbar)
 	if not db then
 		db = E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.unitframes
@@ -73,129 +19,129 @@ local function ApplyBackdropAlphas(db, bg, backdrop, tex, isTransparent, barTex,
 	if not db or not db.UFmodifications then return end
 
 	local isHidden = db.ufcustomtexture and db.ufcustomtexture.backdrophidden
-	local rawAlpha = db.ufcustomtexture and db.ufcustomtexture.backdropalpha or 1
+	local staticSize = db.ufcustomtexture and db.ufcustomtexture.backdroptexturestaticsize
+	local rawAlpha = (db.ufcustomtexture and db.ufcustomtexture.backdropalpha) or 1
 	local backdropAlpha = isHidden and 0 or rawAlpha
-	local transparentHealth = E.db.unitframe.colors.transparentHealth or isTransparent
-	local healthAlpha = transparentHealth and (db.ufcustomtexture and db.ufcustomtexture.healthalpha or 1) or 1
-	if isHealthBar and not isHidden then
-		if not transparentHealth then
-			backdropAlpha = 1
-		elseif healthAlpha < 1 then
-			backdropAlpha = healthAlpha
+
+	if isHealthBar then
+		local transparentHealth = E.db.unitframe.colors.transparentHealth or isTransparent
+		local healthAlpha = transparentHealth and (db.ufcustomtexture and db.ufcustomtexture.healthalpha or 1) or 1
+
+		if db.lightmode then
+			if bg then
+				bg:SetAlpha(backdropAlpha)
+				if not isHidden then
+					bg:SetVertexColor(0, 0, 0, backdropAlpha)
+				end
+			end
+			if backdrop then
+				backdrop.customBackdropAlpha = backdropAlpha
+				backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+				if isHidden then
+					if E.db.unitframe.thinBorders then
+						backdrop:Hide()
+					elseif backdrop.Center then
+						backdrop.Center:Hide()
+					end
+				else
+					if not backdrop:IsShown() then backdrop:Show() end
+					if backdrop.Center and backdrop.Center:IsShown() then
+						backdrop.Center:Hide()
+					end
+				end
+			end
+		elseif db.darkmode then
+			local darkBackdropAlpha = backdropAlpha
+			if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
+				darkBackdropAlpha = healthAlpha
+			end
+			local missingHealthAlpha = (transparentHealth and backdropAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
+
+			if tex then
+				tex:SetAlpha(missingHealthAlpha)
+			end
+			if backdrop then
+				backdrop.customBackdropAlpha = darkBackdropAlpha
+				backdrop:SetBackdropColor(0, 0, 0, darkBackdropAlpha)
+				if isHidden then
+					if E.db.unitframe.thinBorders then
+						backdrop:Hide()
+					elseif backdrop.Center then
+						backdrop.Center:Hide()
+					end
+					if not transparentHealth and barTex then
+						barTex:SetAlpha(0)
+					end
+				else
+					if not backdrop:IsShown() then backdrop:Show() end
+					if backdrop.Center then
+						if not backdrop.Center:IsShown() then backdrop.Center:Show() end
+						backdrop.Center:SetAlpha(darkBackdropAlpha)
+					end
+					if not transparentHealth and barTex then
+						barTex:SetAlpha(darkBackdropAlpha)
+					end
+				end
+			end
 		end
 	else
-		local sbName = statusbar and statusbar.GetName and statusbar:GetName()
-		local isPowerBar = (sbName and (sbName:match("Power") or sbName:match("PowerBar")))
-			or (statusbar and statusbar.GetParent and statusbar:GetParent().Power == statusbar)
-			or (statusbar and statusbar._owner and statusbar._owner.Power == statusbar)
-		if isPowerBar and not isHidden then
-			local transparentPower = E.db.unitframe.colors.transparentPower or isTransparent
-			if not transparentPower then
-				backdropAlpha = 1
-			end
-		end
-	end
-	local hideEdges = isHidden or (rawAlpha ~= 1) or (backdropAlpha < 0.999)
-
-	if db.lightmode then
-		if bg then
-			if isHidden or backdropAlpha == 0 then
-				if bg.SetAlpha then bg:SetAlpha(0) end
-				if bg.SetVertexColor then bg:SetVertexColor(0, 0, 0, 0) end
-			else
-				if bg.SetAlpha then bg:SetAlpha(backdropAlpha) end
-				if bg.SetVertexColor then bg:SetVertexColor(0, 0, 0, backdropAlpha) end
-			end
-		end
-
-		if backdrop then
-			backdrop.customBackdropAlpha = backdropAlpha
-			if isHidden or backdropAlpha == 0 then
-				backdrop:SetAlpha(0)
-				if backdrop.Hide then backdrop:Hide() end
-				HideBorders(backdrop)
-			else
-				if not backdrop:IsShown() then backdrop:Show() end
-				backdrop:SetAlpha(1)
-				backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-
-				if db.ufcustomtexture and db.ufcustomtexture.backdroptexturestaticsize then
-					if backdrop.Center then backdrop.Center:SetAllPoints() end
-				end
-				if backdrop.Center then
-					if not backdrop.Center:IsShown() then backdrop.Center:Show() end
-					backdrop.Center:SetAlpha(backdropAlpha)
-				end
-
-				if hideEdges then
-					HideBorders(backdrop)
-				else
-					ShowBorders(backdrop)
+		if isHidden then
+			if bg then bg:SetAlpha(0) end
+			if tex then tex:SetAlpha(0) end
+			if backdrop then
+				backdrop.customBackdropAlpha = 0
+				backdrop:SetBackdropColor(0, 0, 0, 0)
+				if E.db.unitframe.thinBorders then
+					backdrop:Hide()
+				elseif backdrop.Center then
+					backdrop.Center:Hide()
 				end
 			end
-		end
-
-		if tex then
-			if isHidden or backdropAlpha == 0 then
-				if tex.SetAlpha then tex:SetAlpha(0) end
-				if tex.SetVertexColor then tex:SetVertexColor(0, 0, 0, 0) end
-			else
-				tex:SetAlpha(backdropAlpha)
-				if tex.SetVertexColor then tex:SetVertexColor(0, 0, 0, backdropAlpha) end
-			end
-		end
-
-	elseif db.darkmode then
-		if bg then
-			if isHidden or backdropAlpha == 0 then
-				if bg.SetAlpha then bg:SetAlpha(0) end
-			else
-				if bg.SetAlpha then bg:SetAlpha(backdropAlpha) end
-			end
-		end
-
-		if backdrop then
-			backdrop.customBackdropAlpha = backdropAlpha
-			if isHidden or backdropAlpha == 0 then
-				backdrop:SetAlpha(0)
-				if backdrop.Hide then backdrop:Hide() end
-				HideBorders(backdrop)
-			else
-				if not backdrop:IsShown() then backdrop:Show() end
-				backdrop:SetAlpha(1)
-				backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-				if backdrop.Center then
-					if not backdrop.Center:IsShown() then backdrop.Center:Show() end
-					backdrop.Center:SetAlpha(backdropAlpha)
-				end
-				if hideEdges then
-					HideBorders(backdrop)
-				else
-					ShowBorders(backdrop)
-				end
-			end
-		end
-
-		if tex then
-			if isHidden or backdropAlpha == 0 then
-				if tex.SetAlpha then tex:SetAlpha(0) end
-			else
-				if tex.SetAlpha then tex:SetAlpha(backdropAlpha) end
-			end
-		end
-	end
-
-	if statusbar then
-		if hideEdges then
-			HideBorders(statusbar)
 		else
-			ShowBorders(statusbar)
+			if bg then
+				bg:SetAlpha(backdropAlpha)
+				if statusbar and staticSize then
+					bg:SetAllPoints(statusbar)
+				end
+			end
+			if tex then
+				tex:SetAlpha(backdropAlpha)
+			end
+			if backdrop then
+				backdrop.customBackdropAlpha = backdropAlpha
+				if not backdrop:IsShown() then backdrop:Show() end
+				backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+				if backdrop.Center and backdrop.Center:IsShown() then
+					backdrop.Center:Hide()
+				end
+			end
 		end
 	end
+
+	if isHidden or staticSize then
+		if backdrop and backdrop.LeftEdge and backdrop.LeftEdge:IsShown() then
+			backdrop.LeftEdge:Hide()
+			backdrop.BottomLeftCorner:Hide()
+			backdrop.TopLeftCorner:Hide()
+			backdrop.RightEdge:Hide()
+			backdrop.BottomRightCorner:Hide()
+			backdrop.TopRightCorner:Hide()
+			backdrop.TopEdge:Hide()
+			backdrop.BottomEdge:Hide()
+		end
+	elseif backdrop and backdrop.LeftEdge and not backdrop.LeftEdge:IsShown() then
+		backdrop.LeftEdge:Show()
+		backdrop.BottomLeftCorner:Show()
+		backdrop.TopLeftCorner:Show()
+		backdrop.RightEdge:Show()
+		backdrop.BottomRightCorner:Show()
+		backdrop.TopRightCorner:Show()
+		backdrop.TopEdge:Show()
+		backdrop.BottomEdge:Show()
+	end
+
 end
 ElvUI_EltreumUI.ApplyBackdropAlphas = ApplyBackdropAlphas
-ElvUI_EltreumUI.HideBorders = HideBorders
-ElvUI_EltreumUI.ShowBorders = ShowBorders
 
 -- Unitframe Backdrop Texture/Alpha/Fill Direction
 function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar, backdropTex, adjustBackdropPoints, _, reverseFill)
@@ -212,70 +158,56 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 	local gm = db.gradientmode
 
 	local isHidden = db.ufcustomtexture and db.ufcustomtexture.backdrophidden
-	local rawAlpha = db.ufcustomtexture and db.ufcustomtexture.backdropalpha or 1
-	local backdropAlpha = isHidden and 0 or rawAlpha
-	local transparentHealth = E.db.unitframe.colors.transparentHealth or isTransparent
-	local healthAlpha = transparentHealth and (db.ufcustomtexture and db.ufcustomtexture.healthalpha or 1) or 1
-	if isHealthBar and not isHidden then
-		if not transparentHealth then
-			backdropAlpha = 1
-		elseif healthAlpha < 1 then
-			backdropAlpha = healthAlpha
-		end
-	elseif isPowerBar and not isHidden then
-		local transparentPower = E.db.unitframe.colors.transparentPower or isTransparent
-		if not transparentPower then
-			backdropAlpha = 1
-		end
-	end
+	local backdropAlpha = isHidden and 0 or (db.ufcustomtexture and db.ufcustomtexture.backdropalpha or 1)
+	local bg = statusBar.bg or statusBar.BG
 
-	if isHealthBar or isPowerBar then
+	if isHealthBar then
 		local parent = statusBar.GetParent and statusBar:GetParent()
 		if parent then
 			parent.EltruismBackdropEpoch = nil
 		end
 		if not isHidden then
-			local barBackdropTexture = isHealthBar and db.ufcustomtexture.backdroptexture or (db.ufcustomtexture.powertexture or db.ufcustomtexture.backdroptexture)
-			if db.lightmode and statusBar.backdrop and statusBar.backdrop.Center then
-				statusBar.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", barBackdropTexture))
-			end
-			if backdropTex then
-				backdropTex:SetTexture(E.LSM:Fetch("statusbar", barBackdropTexture))
-				local isBarTransparent = (isHealthBar and transparentHealth) or (isPowerBar and (E.db.unitframe.colors.transparentPower or isTransparent))
-				if isBarTransparent then
-					if db.lightmode then
-						backdropTex:SetVertexColor(0, 0, 0, backdropAlpha)
-					elseif db.darkmode then
-						backdropTex:SetAlpha(backdropAlpha)
-					end
+			if db.lightmode and bg then
+				bg:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture))
+				if E.db.unitframe.colors.transparentHealth then
+					bg:SetVertexColor(0, 0, 0, backdropAlpha)
+				end
+			elseif db.darkmode then
+				if statusBar.backdrop and statusBar.backdrop.Center then
+					statusBar.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture))
+					statusBar.backdrop.Center:SetAlpha(backdropAlpha)
+				end
+				if E.db.unitframe.colors.transparentHealth and backdropTex then
+					backdropTex:SetAlpha(db.ufcustomtexture.backdropalpha or 1)
 				end
 			end
 		else
-			if backdropTex then
-				backdropTex:SetAlpha(0)
+			if db.lightmode and bg then
+				bg:SetAlpha(0)
+			elseif db.darkmode and E.db.unitframe.colors.transparentHealth and backdropTex then
+				backdropTex:SetAlpha(db.ufcustomtexture.backdropalpha or 1)
 			end
 			if statusBar.backdrop then
-				statusBar.backdrop:SetAlpha(0)
 				if E.db.unitframe.thinBorders then
 					statusBar.backdrop:Hide()
-				else
+				elseif statusBar.backdrop.Center then
 					statusBar.backdrop.Center:Hide()
 				end
-				HideBorders(statusBar.backdrop)
 			end
 		end
 	elseif isHidden then
+		if bg then
+			bg:SetAlpha(0)
+		end
 		if backdropTex then
 			backdropTex:SetAlpha(0)
 		end
 		if statusBar.backdrop then
-			statusBar.backdrop:SetAlpha(0)
 			if E.db.unitframe.thinBorders then
 				statusBar.backdrop:Hide()
-			else
+			elseif statusBar.backdrop.Center then
 				statusBar.backdrop.Center:Hide()
 			end
-			HideBorders(statusBar.backdrop)
 		end
 	end
 
@@ -296,37 +228,46 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 	end
 
 	-- from elvui
-	local barTexture = statusBar:GetStatusBarTexture()  -- This fixes Center Pixel offset problem (normally this has > 2 points)
+	local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
 	barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
 
 	if isTransparent then
 		if isAuraBar then
 			local texture = E.LSM:Fetch('statusbar', UF.db.statusbar)
 			statusBar:SetStatusBarTexture(texture)
-			UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
+			UF:Update_StatusBar(bg, texture)
 		elseif isHealthBar then
 			statusBar:SetStatusBarTexture(0, 0, 0, 0)
-			local targetTex = db.ufcustomtexture.backdroptexture
-			if gm.enable then
-				targetTex = gm.useUFtexture and E.db.unitframe.statusbar or gm.texture
-			end
-
-			local fetchedTex = E.LSM:Fetch("statusbar", targetTex or E.db.unitframe.statusbar or UF.db.statusbar)
-			UF:Update_StatusBar(statusBar.bg or statusBar.BG or backdropTex, fetchedTex)
-			if backdropTex then
-				backdropTex:SetTexture(fetchedTex)
+			if db.lightmode then
+				local fetchedTex = E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture or E.db.unitframe.statusbar or UF.db.statusbar)
+				UF:Update_StatusBar(bg, fetchedTex)
+			elseif db.darkmode then
+				local targetTex = E.db.unitframe.statusbar
+				if gm.enable then
+					targetTex = gm.useUFtexture and E.db.unitframe.statusbar or gm.texture
+				end
+				local fetchedTex = E.LSM:Fetch("statusbar", targetTex or E.db.unitframe.statusbar or UF.db.statusbar)
+				if backdropTex then
+					backdropTex:SetTexture(fetchedTex)
+				end
+				if not isHidden and statusBar.backdrop and statusBar.backdrop.Center then
+					statusBar.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture or E.db.unitframe.statusbar or UF.db.statusbar))
+				end
 			end
 		else
 			local targetTex = E.db.unitframe.statusbar
-			if gm.enable then
+			if isPowerBar and db.ufcustomtexture.enable and db.ufcustomtexture.powertexture then
+				targetTex = db.ufcustomtexture.powertexture
+			elseif gm.enable then
 				targetTex = gm.useUFtexture and targetTex or gm.texture
 			end
 
 			local fetchedTex = E.LSM:Fetch("statusbar", targetTex or E.db.unitframe.statusbar or UF.db.statusbar)
 			statusBar:SetStatusBarTexture(fetchedTex)
-			UF:Update_StatusBar(statusBar.bg or statusBar.BG or backdropTex, fetchedTex)
+			local bgTex = (db.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture)) or fetchedTex
+			UF:Update_StatusBar(bg, bgTex)
 			if backdropTex then
-				backdropTex:SetTexture(fetchedTex)
+				backdropTex:SetTexture(bgTex)
 			end
 		end
 
@@ -334,77 +275,14 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 	else --not transparent but texture should be set
 		local texture = E.LSM:Fetch('statusbar', E.db.unitframe.statusbar or UF.db.statusbar)
 		statusBar:SetStatusBarTexture(texture)
-		UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
+		local bgTex = (db.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture)) or texture
+		UF:Update_StatusBar(bg, bgTex)
 
 		if adjustBackdropPoints then
 			UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 		end
 	end
 
-	ApplyBackdropAlphas(db, statusBar.bg or statusBar.BG, statusBar.backdrop, backdropTex, isTransparent, barTexture, isHealthBar, statusBar)
-
-	local parent = statusBar.GetParent and statusBar:GetParent()
-	if parent and parent ~= _G.UIParent and parent ~= _G.ElvUIParent then
-		if parent.backdrop then
-			ApplyBackdropAlphas(db, nil, parent.backdrop, nil, isTransparent, nil, false, parent)
-		end
-		if parent.Power then
-			local powerTrans = E.db.unitframe.colors.transparentPower
-			ApplyBackdropAlphas(db, parent.Power.bg, parent.Power.backdrop, parent.Power.backdropTex, powerTrans, nil, false, parent.Power)
-		end
-		if parent.AdditionalPower then
-			ApplyBackdropAlphas(db, parent.AdditionalPower.bg, parent.AdditionalPower.backdrop, nil, isTransparent, nil, false, parent.AdditionalPower)
-		end
-		if parent.ClassPower then
-			if parent.ClassPower.backdrop then
-				ApplyBackdropAlphas(db, nil, parent.ClassPower.backdrop, nil, isTransparent, nil, false, parent.ClassPower)
-			end
-			for j = 1, 10 do
-				local bar = parent.ClassPower[j]
-				if bar then
-					ApplyBackdropAlphas(db, bar.bg or bar.BG, bar.backdrop, nil, isTransparent, nil, false, bar)
-				end
-			end
-		end
-	end
-
-	local extraFrames = {
-		"ElvUF_Player_PowerBar",
-		"ElvUF_Player_CastBar",
-		"ElvUF_Player_ClassBar",
-		"ElvUF_Player_AdditionalPowerBar",
-		"ElvUF_Player_AltPowerBar",
-		"ElvUF_Player_Stagger",
-		"ElvUF_Target_PowerBar",
-		"ElvUF_Target_CastBar",
-	}
-	for i = 1, #extraFrames do
-		local frame = _G[extraFrames[i]]
-		if frame then
-			local isExtraPower = extraFrames[i]:find("Power") ~= nil
-			local extraTrans = isExtraPower and E.db.unitframe.colors.transparentPower or isTransparent
-			if frame.backdrop then
-				ApplyBackdropAlphas(db, nil, frame.backdrop, nil, extraTrans, nil, false, frame)
-			end
-			if frame.bg or frame.BG then
-				ApplyBackdropAlphas(db, frame.bg or frame.BG, frame.backdrop, nil, extraTrans, nil, false, frame)
-			end
-			for j = 1, 10 do
-				local subBar = frame[j]
-				if subBar then
-					ApplyBackdropAlphas(db, subBar.bg or subBar.BG, subBar.backdrop, nil, extraTrans, nil, false, subBar)
-				end
-			end
-		end
-	end
-
-	if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].EltruismBackdropHook then
-		_G.hooksecurefunc(_G["ElvUF_Player_AdditionalPowerBar"], "SetStatusBarColor", function()
-			if ElvUI_EltreumUI.ApplyBackdropAlphas and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-				ElvUI_EltreumUI.ApplyBackdropAlphas(E.db.ElvUI_EltreumUI.unitframes, _G["ElvUF_Player_AdditionalPowerBar"].bg, _G["ElvUF_Player_AdditionalPowerBar"].backdrop, nil, isTransparent, nil, false, _G["ElvUF_Player_AdditionalPowerBar"])
-			end
-		end)
-		_G["ElvUF_Player_AdditionalPowerBar"].EltruismBackdropHook = true
-	end
+	ApplyBackdropAlphas(db, bg, statusBar.backdrop, backdropTex, isTransparent, barTexture, isHealthBar, statusBar)
 end
 ElvUI_EltreumUI:SecureHook(UF, "ToggleTransparentStatusBar", "ToggleTransparentStatusBar")

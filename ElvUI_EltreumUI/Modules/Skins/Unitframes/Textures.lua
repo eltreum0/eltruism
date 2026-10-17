@@ -155,7 +155,8 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 
 	local isTransparent = (unitframe.Health.isTransparent ~= nil and unitframe.Health.isTransparent) or elvDB.colors.transparentHealth
 	local barTex = unitframe.Health:GetStatusBarTexture()
-	local backdropTex = unitframe.Health.backdropTex or unitframe.Health.bg
+	local backdropTex = unitframe.Health.backdropTex
+	local bg = unitframe.Health.bg
 	local backdropTexture = UFdb.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture) or (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar))
 
 	if not isTransparent then
@@ -166,31 +167,27 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			end
 			if backdropTex and healthTexture then
 				backdropTex:SetTexture(healthTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					backdropTex:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					backdropTex:SetAllPoints(unitframe.Health)
-					if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-						backdropTex:SetTexCoord(1, 0, 0, 1)
-					else
-						backdropTex:SetTexCoord(0, 1, 0, 1)
-					end
+			end
+			if unitframe.Health.backdrop and unitframe.Health.backdrop.Center and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				unitframe.Health.backdrop.Center:SetTexture(backdropTexture)
+				if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+					unitframe.Health.backdrop.Center:SetTexCoord(1, 0, 0, 1)
+				else
+					unitframe.Health.backdrop.Center:SetTexCoord(0, 1, 0, 1)
 				end
 			end
 		elseif UFdb.lightmode then
 			if barTex and healthTexture then
 				barTex:SetTexture(healthTexture)
 			end
-			if unitframe.Health.backdrop and backdropTexture then
-				unitframe.Health.backdrop.Center:SetTexture(backdropTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					unitframe.Health.backdrop:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					unitframe.Health.backdrop.Center:SetAllPoints(unitframe.Health)
+			if bg and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				bg:SetTexture(backdropTexture)
+				if UFdb.ufcustomtexture.backdroptexturestaticsize then
+					bg:SetAllPoints(unitframe.Health)
 					if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-						unitframe.Health.backdrop.Center:SetTexCoord(1, 0, 0, 1)
+						bg:SetTexCoord(1, 0, 0, 1)
 					else
-						unitframe.Health.backdrop.Center:SetTexCoord(0, 1, 0, 1)
+						bg:SetTexCoord(0, 1, 0, 1)
 					end
 				end
 			end
@@ -202,31 +199,27 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			end
 			if backdropTex and healthTexture then
 				backdropTex:SetTexture(healthTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					backdropTex:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					backdropTex:SetAllPoints(unitframe.Health)
-					if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-						backdropTex:SetTexCoord(1, 0, 0, 1)
-					else
-						backdropTex:SetTexCoord(0, 1, 0, 1)
-					end
+			end
+			if unitframe.Health.backdrop and unitframe.Health.backdrop.Center and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				unitframe.Health.backdrop.Center:SetTexture(backdropTexture)
+				if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+					unitframe.Health.backdrop.Center:SetTexCoord(1, 0, 0, 1)
+				else
+					unitframe.Health.backdrop.Center:SetTexCoord(0, 1, 0, 1)
 				end
 			end
 		elseif UFdb.lightmode then
 			if barTex and healthTexture then
 				barTex:SetTexture(healthTexture)
 			end
-			if unitframe.Health.backdrop and backdropTexture then
-				unitframe.Health.backdrop.Center:SetTexture(backdropTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					unitframe.Health.backdrop:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					unitframe.Health.backdrop.Center:SetAllPoints(unitframe.Health)
+			if bg and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				bg:SetTexture(backdropTexture)
+				if UFdb.ufcustomtexture.backdroptexturestaticsize then
+					bg:SetAllPoints(unitframe.Health)
 					if UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
-						unitframe.Health.backdrop.Center:SetTexCoord(1, 0, 0, 1)
+						bg:SetTexCoord(1, 0, 0, 1)
 					else
-						unitframe.Health.backdrop.Center:SetTexCoord(0, 1, 0, 1)
+						bg:SetTexCoord(0, 1, 0, 1)
 					end
 				end
 			end
@@ -234,7 +227,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 	end
 
 	if ElvUI_EltreumUI.ApplyBackdropAlphas then
-		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, unitframe.Health.bg, unitframe.Health.backdrop, backdropTex, isTransparent, barTex, true, unitframe.Health)
+		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, bg, unitframe.Health.backdrop, backdropTex, isTransparent, barTex, true, unitframe.Health)
 	end
 end
 
@@ -291,7 +284,8 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 
 	local isTransparent = (button.Health.isTransparent ~= nil and button.Health.isTransparent) or elvDB.colors.transparentHealth
 	local barTex = button.Health:GetStatusBarTexture()
-	local backdropTex = button.Health.backdropTex or button.Health.bg
+	local backdropTex = button.Health.backdropTex
+	local bg = button.Health.bg
 	local backdropTexture = UFdb.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture) or (elvDB.statusbar and E.LSM:Fetch("statusbar", elvDB.statusbar))
 
 	if not isTransparent then
@@ -302,22 +296,18 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 			end
 			if backdropTex and healthTexture then
 				backdropTex:SetTexture(healthTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					backdropTex:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					backdropTex:SetAllPoints(button.Health)
-				end
+			end
+			if button.Health.backdrop and button.Health.backdrop.Center and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				button.Health.backdrop.Center:SetTexture(backdropTexture)
 			end
 		elseif UFdb.lightmode then
 			if barTex and healthTexture then
 				barTex:SetTexture(healthTexture)
 			end
-			if button.Health.backdrop and backdropTexture then
-				button.Health.backdrop.Center:SetTexture(backdropTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					button.Health.backdrop:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					button.Health.backdrop.Center:SetAllPoints(button.Health)
+			if bg and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				bg:SetTexture(backdropTexture)
+				if UFdb.ufcustomtexture.backdroptexturestaticsize then
+					bg:SetAllPoints(button.Health)
 				end
 			end
 		end
@@ -328,29 +318,25 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 			end
 			if backdropTex and healthTexture then
 				backdropTex:SetTexture(healthTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					backdropTex:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					backdropTex:SetAllPoints(button.Health)
-				end
+			end
+			if button.Health.backdrop and button.Health.backdrop.Center and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				button.Health.backdrop.Center:SetTexture(backdropTexture)
 			end
 		elseif UFdb.lightmode then
 			if barTex and healthTexture then
 				barTex:SetTexture(healthTexture)
 			end
-			if button.Health.backdrop and backdropTexture then
-				button.Health.backdrop.Center:SetTexture(backdropTexture)
-				if UFdb.ufcustomtexture.backdrophidden then
-					button.Health.backdrop:SetAlpha(0)
-				elseif UFdb.ufcustomtexture.backdroptexturestaticsize then
-					button.Health.backdrop.Center:SetAllPoints(button.Health)
+			if bg and backdropTexture and not UFdb.ufcustomtexture.backdrophidden then
+				bg:SetTexture(backdropTexture)
+				if UFdb.ufcustomtexture.backdroptexturestaticsize then
+					bg:SetAllPoints(button.Health)
 				end
 			end
 		end
 	end
 
 	if ElvUI_EltreumUI.ApplyBackdropAlphas then
-		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, button.Health.bg, button.Health.backdrop, backdropTex, isTransparent, barTex, true, button.Health)
+		ElvUI_EltreumUI.ApplyBackdropAlphas(UFdb, bg, button.Health.backdrop, backdropTex, isTransparent, barTex, true, button.Health)
 	end
 end
 

@@ -300,7 +300,6 @@ function ElvUI_EltreumUI:NP_Update_Health(_, nameplate)
 	if not plate then return end
 	plate.EltruismForceGradient = true
 	ElvUI_EltreumUI.GradientNameplates(plate)
-	ElvUI_EltreumUI.OnUpdateHealth(plate)
 end
 
 function ElvUI_EltreumUI:NP_ThreatIndicator_PostUpdate(indicator, _, status)

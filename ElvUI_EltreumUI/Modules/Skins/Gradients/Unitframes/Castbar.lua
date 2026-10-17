@@ -55,17 +55,25 @@ function ElvUI_EltreumUI:CastBarTextureGradient(castbar, unit)
 		end
 	end
 
-	if gm.enable then
-		if E.db.unitframe.colors.transparentCastbar then
-			if castbar.bg then castbar.bg:SetVertexColor(0, 0, 0, 0) end
-			if castbar.backdrop then castbar.backdrop:SetBackdropColor(0, 0, 0, ufCustom.backdropalpha) end
-		end
+	local isHidden = ufCustom.backdrophidden
+	local backdropAlpha = isHidden and 0 or (ufCustom.backdropalpha or 1)
+	if castbar.bg and ufCustom.backdroptexture and not isHidden then
+		castbar.bg:SetTexture(E.LSM:Fetch("statusbar", ufCustom.backdroptexture))
+	end
+	if not isHidden then
 		if E.db.unitframe.colors.customcastbarbackdrop then
 			local cb = E.db.unitframe.colors.castbar_backdrop
-			if castbar.backdrop then castbar.backdrop:SetBackdropColor(cb.r, cb.g, cb.b, cb.a) end
-			if castbar.bg then castbar.bg:SetVertexColor(cb.r, cb.g, cb.b, cb.a) end
+			local a = (ufCustom.backdropalpha and ufCustom.backdropalpha < 1) and ufCustom.backdropalpha or cb.a
+			if castbar.bg then castbar.bg:SetVertexColor(cb.r, cb.g, cb.b, a) end
+		elseif E.db.unitframe.colors.transparentCastbar then
+			if castbar.bg then castbar.bg:SetVertexColor(0, 0, 0, backdropAlpha) end
 		end
+	end
+	if ElvUI_EltreumUI.ApplyBackdropAlphas then
+		ElvUI_EltreumUI.ApplyBackdropAlphas(E.db.ElvUI_EltreumUI.unitframes, castbar.bg, castbar.backdrop, nil, E.db.unitframe.colors.transparentCastbar, nil, false, castbar)
+	end
 
+	if gm.enable then
 		local tex = castbar:GetStatusBarTexture()
 		if not tex then return end
 
@@ -157,6 +165,21 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail(castbar)
 		else
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", gm.texture))
 		end
+	end
+
+	local isHidden = ufCustom.backdrophidden
+	local backdropAlpha = isHidden and 0 or (ufCustom.backdropalpha or 1)
+	if not isHidden then
+		if E.db.unitframe.colors.customcastbarbackdrop then
+			local cb = E.db.unitframe.colors.castbar_backdrop
+			local a = (ufCustom.backdropalpha and ufCustom.backdropalpha < 1) and ufCustom.backdropalpha or cb.a
+			if castbar.bg then castbar.bg:SetVertexColor(cb.r, cb.g, cb.b, a) end
+		elseif E.db.unitframe.colors.transparentCastbar then
+			if castbar.bg then castbar.bg:SetVertexColor(0, 0, 0, backdropAlpha) end
+		end
+	end
+	if ElvUI_EltreumUI.ApplyBackdropAlphas then
+		ElvUI_EltreumUI.ApplyBackdropAlphas(E.db.ElvUI_EltreumUI.unitframes, castbar.bg, castbar.backdrop, nil, E.db.unitframe.colors.transparentCastbar, nil, false, castbar)
 	end
 
 	if gm.enable and gm.enablecastbarinterrupted then

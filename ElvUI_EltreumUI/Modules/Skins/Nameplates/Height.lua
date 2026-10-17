@@ -86,6 +86,7 @@ function ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
 		end
 		frame.EltruismHealthHeight = targetHeight
 		health:SetHeight(targetHeight)
+		ElvUI_EltreumUI:NameplateCustomBackdrop(frame)
 	end
 end
 
@@ -114,13 +115,10 @@ function ElvUI_EltreumUI:NameplateCustomBackdrop(unit)
 			unit.EltruismBackdropTexture = newTex
 		end
 	end
-	if backdropOpt.backdroptexturestaticsize then
-		if not unit.EltruismBackdropPointsSet then
-			backdrop.Center:SetAllPoints(health)
-			unit.EltruismBackdropPointsSet = true
-		end
+	if backdropOpt.backdroptexturestaticsize and backdrop.Center then
+		backdrop.Center:SetAllPoints(health)
 	end
-	if backdropOpt.backdrophidden then
+	if backdropOpt.backdrophidden or backdropOpt.backdroptexturestaticsize then
 		if backdrop.LeftEdge:IsShown() then
 			backdrop.LeftEdge:Hide()
 			backdrop.BottomLeftCorner:Hide()
@@ -214,46 +212,55 @@ eventFrame:SetScript("OnEvent", function(_, event, unit)
 end)
 
 function ElvUI_EltreumUI:OnUpdatePlateBase(_, nameplate)
+	nameplate = GetFrame(nameplate)
+	if not (nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown()) then
+		return
+	end
+
+	ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate)
+
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	nameplate = GetFrame(nameplate)
-	if nameplate and nameplate.__unit and nameplate.Health and nameplate.Health:IsShown() then
-		nameplate.EltruismHealthHeight = nil
-		ElvUI_EltreumUI:NameplateCustomBackdrop(nameplate)
-		ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
-		if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then
-			ElvUI_EltreumUI:UpdateNameplateBorders(nameplate)
-		end
-		if E:UnitIsUnit(nameplate.__unit, "target") then
-			previousTargetPlate = nameplate
-		end
+	nameplate.EltruismHealthHeight = nil
+	ElvUI_EltreumUI:UpdateNameplateHealthHeight(nameplate)
+	if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then
+		ElvUI_EltreumUI:UpdateNameplateBorders(nameplate)
+	end
+	if E:UnitIsUnit(nameplate.__unit, "target") then
+		previousTargetPlate = nameplate
 	end
 end
 ElvUI_EltreumUI:SecureHook(NP, "UpdatePlateBase", "OnUpdatePlateBase") --fires when elvui updates them
 
 function ElvUI_EltreumUI.OnUpdateHealth(nameplate) --if they are changing health they are likely in combat
+	local frame = GetFrame(nameplate)
+	if not (frame and frame.__unit and frame.Health and frame.Health:IsShown()) then
+		return
+	end
+
+	ElvUI_EltreumUI:NameplateCustomBackdrop(frame)
+
 	local db = E.db and E.db.ElvUI_EltreumUI
 	local opts = db and db.nameplates and db.nameplates.nameplateOptions
 	if not (opts and opts.enableHealthHeight) then
 		return
 	end
 
-	local frame = GetFrame(nameplate)
-	if frame and frame.__unit and frame.Health and frame.Health:IsShown() then
-		ElvUI_EltreumUI:NameplateCustomBackdrop(frame)
-		ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
-		if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then
-			ElvUI_EltreumUI:UpdateNameplateBorders(frame)
-		end
-		if E:UnitIsUnit(frame.__unit, "target") then
-			previousTargetPlate = frame
-		end
+	ElvUI_EltreumUI:UpdateNameplateHealthHeight(frame)
+	if opts.nameplateBorderSize and opts.nameplateBorderSize > 0 then
+		ElvUI_EltreumUI:UpdateNameplateBorders(frame)
+	end
+	if E:UnitIsUnit(frame.__unit, "target") then
+		previousTargetPlate = frame
 	end
 end
+_G.hooksecurefunc(NP, "Update_Health", function(_, nameplate)
+	ElvUI_EltreumUI.OnUpdateHealth(nameplate)
+end)
 
 function ElvUI_EltreumUI.OnThreatOrColorUpdate(nameplate) --handle threat changes
 	local db = E.db and E.db.ElvUI_EltreumUI

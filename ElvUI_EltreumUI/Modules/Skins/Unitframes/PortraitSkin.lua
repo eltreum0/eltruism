@@ -165,7 +165,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		frame.EltruismPortrait.rare:ClearAllPoints()
 		frame.EltruismPortrait.rare:SetPoint("CENTER", frame.EltruismPortrait, "CENTER", xOff, yOff)
 		frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
-		if (texture == portraitBoss1) or (texture == portraitBoss2) then ---??????
+		if (texture == portraitBoss1) or (texture == portraitBoss2) then
 			frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.05, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.05)
 		end
 	end
@@ -336,7 +336,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 				frame.EltruismPortrait.rare:ClearAllPoints()
 				frame.EltruismPortrait.rare:SetPoint("CENTER", frame.EltruismPortrait, "CENTER", xOff, yOff)
 				frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
-				if (texture == portraitBoss1) or (texture == portraitBoss2) then ---??????
+				if (texture == portraitBoss1) or (texture == portraitBoss2) then
 					frame.EltruismPortrait.rare:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.3, E.db.ElvUI_EltreumUI.unitframes.portrait[db].size * 1.3)
 				end
 				if db ~= "player" then

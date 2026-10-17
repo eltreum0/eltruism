@@ -171,17 +171,15 @@ function ElvUI_EltreumUI:CacheGradients()
 	local colors = ufDB.colors
 
 	local transparentHealth = colors and colors.transparentHealth
+	local isHidden = customTexture and customTexture.backdrophidden
 	local healthAlpha = transparentHealth and (customTexture and customTexture.healthalpha or 1) or 1
-	local backdropAlpha = transparentHealth and ((customTexture and customTexture.backdropalpha) or 1) or 1
-	if backdropAlpha == 1 and healthAlpha < 1 then
+	local backdropAlpha = isHidden and 0 or ((customTexture and customTexture.backdropalpha) or 1)
+	if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
 		backdropAlpha = healthAlpha
 	end
 	local bgOffset = (gm and gm.bgfade) or 0
-	cached_healthalpha = transparentHealth and (customTexture and customTexture.healthalpha or 1) or 1
-	cached_backdropalpha = transparentHealth and ((customTexture and customTexture.backdropalpha) or 1) or 1
-	if cached_backdropalpha == 1 and cached_healthalpha < 1 then
-		cached_backdropalpha = cached_healthalpha
-	end
+	cached_healthalpha = healthAlpha
+	cached_backdropalpha = backdropAlpha
 	cached_bgfade = (gm and gm.bgfade) or 0
 
 	wipe(defaultHealthGradients.normal)
