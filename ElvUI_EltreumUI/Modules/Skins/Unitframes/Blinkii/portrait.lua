@@ -246,7 +246,7 @@ end
 
 local function GetNPCID(unit)
 	if not ElvUI_EltreumUI:IsThisASafeSecret() then
-		return " "
+		return nil
 	else
 		local guid = UnitGUID(unit)
 		return guid and select(6, strsplit("-", guid))
