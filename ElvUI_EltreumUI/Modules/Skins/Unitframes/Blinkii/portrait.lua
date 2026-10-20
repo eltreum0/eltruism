@@ -246,7 +246,7 @@ end
 
 local function GetNPCID(unit)
 	if not ElvUI_EltreumUI:IsThisASafeSecret() then
-		return nil
+		return
 	else
 		local guid = UnitGUID(unit)
 		return guid and select(6, strsplit("-", guid))
@@ -391,7 +391,9 @@ local function UpdatePortrait(portraitFrame, force)
 			portraitFrame.extraShadow:Hide()
 		end
 
-		CheckRareElite(portraitFrame, unit, unitColor)
+		if not E.Modern then
+			CheckRareElite(portraitFrame, unit, unitColor)
+		end
 	end
 
 	-- Corner
@@ -641,7 +643,7 @@ local function UpdatePortraitTexture(self, unit)
 
 	if E.db.ElvUI_EltreumUI.unitframes.portraits.general.corner and self.textures.corner then setColor(self.corner, unitColor, self.settings.mirror) end
 
-	if self.settings.extraEnable and self.extra and not isPlayer then
+	if not E.Modern and self.settings.extraEnable and self.extra and not isPlayer then
 		CheckRareElite(self, unit, unitColor)
 	elseif self.extra then
 		HideRareElite(self)
