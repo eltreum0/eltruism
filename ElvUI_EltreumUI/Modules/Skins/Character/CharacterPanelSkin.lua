@@ -32,6 +32,7 @@ local format = _G.format
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local next = _G.next
 local GetUnitSpeed = _G.GetUnitSpeed
+local canaccessvalue = _G.canaccessvalue
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -883,7 +884,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						local _, manaRegen = _G.GetManaRegen()
 						local powerRegen = _G.GetPowerRegen()
 						local manaText,powerText
-						if not E:NotSecretValue(manaRegen) and not E:NotSecretValue(powerRegen) then
+						if canaccessvalue(manaRegen) and canaccessvalue(powerRegen) then
 							manaRegen = mathfloor(manaRegen * 5.0)
 							manaText = _G.BreakUpLargeNumbers(manaRegen)
 							powerText = _G.BreakUpLargeNumbers(_G.GetPowerRegen())
