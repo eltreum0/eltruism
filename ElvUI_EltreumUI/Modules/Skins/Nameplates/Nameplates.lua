@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
-local LCG = E.Libs.CustomGlow
 local type = _G.type
 local classcolor = E.myClassColor
 local CreateFrame = _G.CreateFrame
@@ -23,12 +22,8 @@ local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
 --local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
-local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
-local CreateColor = _G.CreateColor
-local glowMin = CreateColor(1, 1, 1, 1)
-local glowMax = CreateColor(1, 1, 1, 1)
 local classGlowColor = {classcolor.r, classcolor.g, classcolor.b, 1}
 local customGlowColor = {1, 1, 1, 1}
 
@@ -42,9 +37,6 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		local button = buttonCooldown:GetParent()
 		local unit = button.EltruismUnit or ""
 		local glowcolor = button.EltruismGlowcolor
-		local r = button.EltruismR
-		local g = button.EltruismG
-		local b = button.EltruismB
 
 		local buttonShownStatus = button:IsShown()
 
@@ -98,52 +90,12 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		if shouldGlow then
 			if not button.EltruismIsGlowing then
 				button.EltruismIsGlowing = true
-				if E.db.ElvUI_EltreumUI.glow.pixel then
-					LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-					if E.db.ElvUI_EltreumUI.glow.gradient then
-						ElvUI_EltreumUI:ApplyGlowGradient(button._PixelGlow, r, g, b)
-					end
-				elseif E.db.ElvUI_EltreumUI.glow.autocast then
-					--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-					LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
-					if E.db.ElvUI_EltreumUI.glow.gradient then
-						ElvUI_EltreumUI:ApplyGlowGradient(button._AutoCastGlow, r, g, b)
-					end
-				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-					LCG.ButtonGlow_Start(button, glowcolor, 0.5)
-					button._ButtonGlow.outerGlow:SetScale(1.15)
-					if E.db.ElvUI_EltreumUI.glow.gradient then
-						if E.db.ElvUI_EltreumUI.glow.colorclass then
-							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
-						else
-							local c = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
-							glowMin:SetRGBA(E:Clamp(c.r - 0.2, 0, 1), E:Clamp(c.g - 0.2, 0, 1), E:Clamp(c.b - 0.2, 0, 1), 1)
-							glowMax:SetRGBA(E:Clamp(c.r + 0.2, 0, 1), E:Clamp(c.g + 0.2, 0, 1), E:Clamp(c.b + 0.2, 0, 1), 1)
-							button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL", glowMin, glowMax)
-						end
-					end
-				elseif E.db.ElvUI_EltreumUI.glow.procglow then
-					proc.color = glowcolor
-					proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
-					proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
-					proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
-					proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
-					proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
-					LCG.ProcGlow_Start(button, proc)
-				end
+				ElvUI_EltreumUI:CustomGlowStart(button, glowcolor)
 			end
 		else
 			if button.EltruismIsGlowing then
 				button.EltruismIsGlowing = false
-				if E.db.ElvUI_EltreumUI.glow.pixel then
-					LCG.PixelGlow_Stop(button)
-				elseif E.db.ElvUI_EltreumUI.glow.autocast then
-					LCG.AutoCastGlow_Stop(button)
-				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-					LCG.ButtonGlow_Stop(button)
-				elseif E.db.ElvUI_EltreumUI.glow.procglow then
-					LCG.ProcGlow_Stop(button)
-				end
+				ElvUI_EltreumUI:CustomGlowStop(button)
 			end
 		end
 	end
@@ -160,8 +112,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 		customGlowColor[3] = c.b
 		glowcolor = customGlowColor
 	end
-	local r,g,b = glowcolor[1],glowcolor[2],glowcolor[3]
-
 	if button and button.spellID then
 		if not stringfind(unit, "nameplate") then
 			return
@@ -180,23 +130,12 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 					if button.EltruismIsGlowing then
 						button.EltruismIsGlowing = false
-						if E.db.ElvUI_EltreumUI.glow.pixel then
-							LCG.PixelGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.autocast then
-							LCG.AutoCastGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-							LCG.ButtonGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.procglow then
-							LCG.ProcGlow_Stop(button)
-						end
+						ElvUI_EltreumUI:CustomGlowStop(button)
 					end
 				end
 			else
 				button.EltruismUnit = unit
 				button.EltruismGlowcolor = glowcolor
-				button.EltruismR = r
-				button.EltruismG = g
-				button.EltruismB = b
 				button.Cooldown:SetScript('OnUpdate', EltruismDebuffOnUpdate)
 			end
 			button.Count:SetParent(button.Cooldown)

@@ -9,6 +9,7 @@ local GetProfessionInfo = _G.GetProfessionInfo
 local IsSpellKnown = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsSpellKnown
 local IsPlayerMoving = _G.IsPlayerMoving
 local CastSpell = _G.CastSpell
+local LCG = _G.LibStub("LibEltreumCustomGlow")
 
 --add profession shortcuts to the ElvUI bags, suggested by Xheno
 function ElvUI_EltreumUI:BagProfessions()
@@ -197,7 +198,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetAllPoints()
 								_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
 
-								local LCG = E.Libs.CustomGlow
+
 								_G["EltruismProfessionDisenchantBagButton"]:HookScript("OnClick",function()
 									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
@@ -278,7 +279,6 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionLockpickBagButton"].icon:SetAllPoints()
 								_G["EltruismProfessionLockpickBagButton"].isGlowing = false
 
-								local LCG = E.Libs.CustomGlow
 								--some event handling to get rid of the glow
 								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
 								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED","player")
@@ -406,8 +406,6 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetAllPoints()
 								_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
-
-								local LCG = E.Libs.CustomGlow
 								_G["EltruismProfessionDisenchantBagButton"]:HookScript("OnClick",function()
 									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
@@ -486,8 +484,6 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionLockpickBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 								_G["EltruismProfessionLockpickBagButton"].icon:SetAllPoints()
 								_G["EltruismProfessionLockpickBagButton"].isGlowing = false
-
-								local LCG = E.Libs.CustomGlow
 								_G["EltruismProfessionLockpickBagButton"]:HookScript("OnClick",function()
 									if _G["EltruismProfessionLockpickBagButton"].isGlowing then
 										LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
