@@ -6,6 +6,8 @@ local _G = _G
 function ElvUI_EltreumUI:CustomGlowOptions()
 	ElvUI_EltreumUI.Options.args.customglow = E.Libs.ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 3, 'tab')
 	ElvUI_EltreumUI.Options.args.customglow.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow'
+	ElvUI_EltreumUI.Options.args.customglow.args.previewdesc = E.Libs.ACH:Description(L["Preview the Glow"], 1)
+	ElvUI_EltreumUI.Options.args.customglow.args.preview = E.Libs.ACH:Execute(_G.PREVIEW or "", L["Preview the Glow, you will need to toggle it off and on to update the glow"], 2, function() ElvUI_EltreumUI:PreviewGlow() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.customglow.args.general = E.Libs.ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description1 = E.Libs.ACH:Description(L["Replace Blizzards Default Glow with a Custom Glow"], 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableab = E.Libs.ACH:Toggle(L["Enable on Action Bars"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.enable end,function(_, value) E.db.ElvUI_EltreumUI.glow.enable = value E:StaticPopup_Show('CONFIG_RL') end)
@@ -56,8 +58,6 @@ function ElvUI_EltreumUI:CustomGlowOptions()
 		E.db.ElvUI_EltreumUI.glow.blingglow = (value == "bling")
 	end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) end)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.customselection.style = "radio"
-	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description4 = E.Libs.ACH:Description(L["Preview the Glow"], 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.customglow.args.general.args.preview = E.Libs.ACH:Execute(_G.PREVIEW or "", L["Preview the Glow, you will need to toggle it off and on to update the glow"], 13, function() ElvUI_EltreumUI:PreviewGlow() end,nil,false,'full')
 
 	local startPoints = {
 		["TOPLEFT"] = L["TOPLEFT"],
