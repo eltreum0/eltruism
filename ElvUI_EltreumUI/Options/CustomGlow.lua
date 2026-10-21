@@ -105,9 +105,10 @@ function ElvUI_EltreumUI:CustomGlowOptions()
 			local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
 			glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 		end, function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
-	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1 = E.Libs.ACH:Description(L["Shaman Fire Totem"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Modern)
-	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totemtypecolor = E.Libs.ACH:Toggle(L["Totem Colors"], L["Toggle Default totem colors"], 11, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Modern)
-	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1customcolor = E.Libs.ACH:Color(L["Custom Color"], nil, 12, false, nil, function()
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totemtypecolordesc = E.Libs.ACH:Description(L["Totem Colors"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Modern)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totemtypecolors = E.Libs.ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 11, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Modern)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1 = E.Libs.ACH:Description(L["Shaman Fire Totem"], 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Modern)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1customcolor = E.Libs.ACH:Color(L["Custom Color"], nil, 13, false, nil, function()
 		local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor
 		local d = P.ElvUI_EltreumUI.glow.glowtotem1customcolor
 		return glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b, glowtotem1customcolor.a, d.r, d.g, d.b, d.a
@@ -116,7 +117,7 @@ function ElvUI_EltreumUI:CustomGlowOptions()
 			local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor
 			glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 		end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Modern)
-	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2 = E.Libs.ACH:Description(L["Shaman Earth Totem"], 13, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Modern)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2 = E.Libs.ACH:Description(L["Shaman Earth Totem"], 14, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Modern)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2customcolor = E.Libs.ACH:Color(L["Custom Color"], nil, 15, false, nil, function()
 		local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor
 		local d = P.ElvUI_EltreumUI.glow.glowtotem2customcolor
