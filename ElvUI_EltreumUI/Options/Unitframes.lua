@@ -283,11 +283,9 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
-
-
-	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap10 = E.Libs.ACH:Description('', 33, nil)
-	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.arena = E.Libs.ACH:SharedMediaStatusbar(E.NewSign..L["Power"], L["Select a Texture"], 32, "double", function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture end, function(_,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.applytoall12 = E.Libs.ACH:Execute(L["Apply To All"], nil, 33, function()
+	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap11 = E.Libs.ACH:Description('', 33, nil)
+	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.powertexture = E.Libs.ACH:SharedMediaStatusbar(E.NewSign..L["Power"], L["Select a Texture"], 32, "double", function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture end, function(_,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.applytoall13 = E.Libs.ACH:Execute(L["Apply To All"], nil, 33, function()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
