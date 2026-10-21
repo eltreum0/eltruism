@@ -44,6 +44,8 @@ V.ElvUI_EltreumUI = {
 		shufflelist = "None",
 		bossmusic = false,
 		bossfile = "None",
+		duelmusic = false,
+		duelfile = "None",
 		disableinstance = false,
 	},
 

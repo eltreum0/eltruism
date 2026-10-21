@@ -46,6 +46,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
+	ElvUI_EltreumUI:CombatMusic('PLAYER_ENTERING_WORLD')
 	if not ElvDB.EltruismDisabledAddOns then
 		ElvDB.EltruismDisabledAddOns = {}
 	end
@@ -244,6 +245,26 @@ end
 function ElvUI_EltreumUI:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:QuestCombat(event)
+end
+
+function ElvUI_EltreumUI:DUEL_REQUESTED(event)
+	ElvUI_EltreumUI:CombatMusic(event)
+end
+
+function ElvUI_EltreumUI:DUEL_TO_THE_DEATH_REQUESTED(event)
+	ElvUI_EltreumUI:CombatMusic(event)
+end
+
+function ElvUI_EltreumUI:DUEL_FINISHED(event)
+	ElvUI_EltreumUI:CombatMusic(event)
+end
+
+function ElvUI_EltreumUI:CHAT_MSG_SYSTEM(event, ...)
+	ElvUI_EltreumUI:CombatMusic(event, ...)
+end
+
+function ElvUI_EltreumUI:PLAYER_DEAD(event)
+	ElvUI_EltreumUI:CombatMusic(event)
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
@@ -461,6 +482,13 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('INSTANCE_ENCOUNTER_ENGAGE_UNIT') ----for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('DUEL_REQUESTED') --for duel music
+	if E.ClassicHC then
+		ElvUI_EltreumUI:RegisterEvent('DUEL_TO_THE_DEATH_REQUESTED') --for makgora duel music
+	end
+	ElvUI_EltreumUI:RegisterEvent('DUEL_FINISHED') --for duel music
+	ElvUI_EltreumUI:RegisterEvent('CHAT_MSG_SYSTEM') --for duel music
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_DEAD') --for duel music
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music

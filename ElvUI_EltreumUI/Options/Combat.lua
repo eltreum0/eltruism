@@ -93,20 +93,39 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 		end
 	end, nil, false, nil, nil, nil, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic or not E.private.ElvUI_EltreumUI.combatmusic.bossfile or E.private.ElvUI_EltreumUI.combatmusic.bossfile == "" end)
 
-	ElvUI_EltreumUI.Options.args.combat.args.chat = E.Libs.ACH:Group(L["Chat"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.chat.enable end)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic = E.Libs.ACH:Group(E.NewSign..(_G.DUEL or "Duel") .. " " .. (_G.ENABLE_MUSIC or "Music"), L["Play custom music during fights and boss fights"], 4)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.enable = E.Libs.ACH:Toggle(L["Enable"] .. " " .. (_G.DUEL or "Duel") .. " " .. (_G.ENABLE_MUSIC or "Music"), L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.duelmusic end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.duelmusic = value E:StaticPopup_Show('PRIVATE_RL') end)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.description1 = E.Libs.ACH:Description((_G.DUEL or "Duel") .. " " .. (_G.ENABLE_MUSIC or "Music"), 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.filepath = E.Libs.ACH:Group(L["Name of file inside Interface\\Addons"], nil, 7)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.filepath.inline = true
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.filepath.args.description1 = E.Libs.ACH:Description(L["Example: "].."mymusic.mp3", 1)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.filepath.args.input = E.Libs.ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.duelfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.duelfile = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.duelmusic end)
+	ElvUI_EltreumUI.Options.args.combat.args.duelmusic.args.filepath.args.playpreview = E.Libs.ACH:Execute(_G.PREVIEW or "", nil, 4, function()
+		if not isPlayingMusic then
+			if E.private.ElvUI_EltreumUI.combatmusic.duelfile and E.private.ElvUI_EltreumUI.combatmusic.duelfile ~= "" and E.private.ElvUI_EltreumUI.combatmusic.duelfile ~= "None" then
+				_G.PlayMusic("Interface\\AddOns\\" .. E.private.ElvUI_EltreumUI.combatmusic.duelfile)
+				isPlayingMusic = true
+			end
+		else
+			_G.StopMusic()
+			isPlayingMusic = false
+		end
+	end, nil, false, nil, nil, nil, function() return not E.private.ElvUI_EltreumUI.combatmusic.duelmusic or not E.private.ElvUI_EltreumUI.combatmusic.duelfile or E.private.ElvUI_EltreumUI.combatmusic.duelfile == "" or E.private.ElvUI_EltreumUI.combatmusic.duelfile == "None" end)
+
+	ElvUI_EltreumUI.Options.args.combat.args.chat = E.Libs.ACH:Group(L["Chat"], nil, 33, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.chat.enable end)
 	ElvUI_EltreumUI.Options.args.combat.args.chat.args.description1 = E.Libs.ACH:Description(L["Combat Hide"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.combat.args.chat.args.leftcombathide = E.Libs.ACH:Toggle(L["Hide Left Chat in Combat"], L["Toggle the option"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.chat.leftcombathide end,function(_, value) E.db.ElvUI_EltreumUI.chat.leftcombathide = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.chat.leftbosshide or not E.db.ElvUI_EltreumUI.chat.enable end)
 	ElvUI_EltreumUI.Options.args.combat.args.chat.args.leftbosshide = E.Libs.ACH:Toggle(L["Hide Left Chat in Boss Encounters"], L["Toggle the option"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.chat.leftbosshide end,function(_, value) E.db.ElvUI_EltreumUI.chat.leftbosshide = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.chat.leftcombathide or not E.db.ElvUI_EltreumUI.chat.enable end)
 	ElvUI_EltreumUI.Options.args.combat.args.chat.args.rightcombathide = E.Libs.ACH:Toggle(L["Hide Right Chat in Combat"], L["Toggle the option"], 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.chat.rightcombathide end,function(_, value) E.db.ElvUI_EltreumUI.chat.rightcombathide = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.chat.rightbosshide or not E.db.ElvUI_EltreumUI.chat.enable end)
 	ElvUI_EltreumUI.Options.args.combat.args.chat.args.rightbosshide = E.Libs.ACH:Toggle(L["Hide Right Chat in Boss Encounters"], L["Toggle the option"], 5, nil, false,'full', function() return E.db.ElvUI_EltreumUI.chat.rightbosshide end,function(_, value) E.db.ElvUI_EltreumUI.chat.rightbosshide = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.chat.rightcombathide or not E.db.ElvUI_EltreumUI.chat.enable end)
 
-	ElvUI_EltreumUI.Options.args.combat.args.maps = E.Libs.ACH:Group(L["Maps"], nil, 3)
+	ElvUI_EltreumUI.Options.args.combat.args.maps = E.Libs.ACH:Group(L["Maps"], nil, 33)
 	ElvUI_EltreumUI.Options.args.combat.args.maps.args.description1 = E.Libs.ACH:Description(L["Minimap"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.combat.args.maps.args.description2 = E.Libs.ACH:Description(L["Hide Minimap while in Combat"], 2, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.combat.args.maps.args.enable = E.Libs.ACH:Toggle(L["Enable"], L["Automatically hide the Minimap in combat"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.combat.args.maps.args.enableauras = E.Libs.ACH:Toggle(L["Adjust Auras Position"], L["Automatically move auras to the Top Right when minimap is hidden"], 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end)
 
-	ElvUI_EltreumUI.Options.args.combat.args.quests = E.Libs.ACH:Group(L["Quests"], nil, 3, "tab")
+	ElvUI_EltreumUI.Options.args.combat.args.quests = E.Libs.ACH:Group(L["Quests"], nil, 33, "tab")
 	ElvUI_EltreumUI.Options.args.combat.args.quests.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.combat.args.quests.args.questboss = E.Libs.ACH:Toggle(L["Collapse Quests during Encounters/Boss Fights"], L["Collapse Quests when the boss fight starts"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.enable end,function(_, value) E.db.ElvUI_EltreumUI.quests.enable = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.combat.args.quests.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -116,7 +135,7 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 	ElvUI_EltreumUI.Options.args.combat.args.quests.args.descriptionmplus = E.Libs.ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.combat.args.quests.args.questmplus = E.Libs.ACH:Toggle(E.NewSign..L["Hide Quests during Mythic Plus"], nil, 8, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.mythicplus end,function(_, value) E.db.ElvUI_EltreumUI.quests.mythicplus = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 
-	ElvUI_EltreumUI.Options.args.combat.args.datatext = E.Libs.ACH:Group(L["DataTexts"], nil, 3, "tab")
+	ElvUI_EltreumUI.Options.args.combat.args.datatext = E.Libs.ACH:Group(L["DataTexts"], nil, 33, "tab")
 	ElvUI_EltreumUI.Options.args.combat.args.datatext.args.description4 = E.Libs.ACH:Description(L["Datatext Hiding"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.combat.args.datatext.args.leftdatatexthide = E.Libs.ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
 	ElvUI_EltreumUI.Options.args.combat.args.datatext.args.rightdatatexthide = E.Libs.ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)
