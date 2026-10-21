@@ -120,6 +120,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap1 = E.Libs.ACH:Description('', 3, nil)
@@ -135,6 +136,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap2 = E.Libs.ACH:Description('', 6, nil)
@@ -150,6 +152,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap3 = E.Libs.ACH:Description('', 9, nil)
@@ -165,6 +168,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap4 = E.Libs.ACH:Description('', 12, nil)
@@ -180,6 +184,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap5 = E.Libs.ACH:Description('', 15, nil)
@@ -195,6 +200,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap6 = E.Libs.ACH:Description('', 18, nil)
@@ -210,6 +216,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap7 = E.Libs.ACH:Description('', 21, nil)
@@ -225,6 +232,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true, nil, nil, nil, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap8 = E.Libs.ACH:Description('', 24, nil)
@@ -240,6 +248,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap9 = E.Libs.ACH:Description('', 27, nil)
@@ -255,6 +264,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap10 = E.Libs.ACH:Description('', 30, nil)
@@ -270,6 +280,25 @@ function ElvUI_EltreumUI:UnitframeOptions()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture
+		ElvUI_EltreumUI:GradientColorTableUpdate()
+	end, nil, true)
+
+
+	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.gap10 = E.Libs.ACH:Description('', 33, nil)
+	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.arena = E.Libs.ACH:SharedMediaStatusbar(E.NewSign..L["Power"], L["Select a Texture"], 32, "double", function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture end, function(_,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.unitframes.args.applytoall12 = E.Libs.ACH:Execute(L["Apply To All"], nil, 33, function()
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.partytexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.raidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.arenatexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.powertexture
 		ElvUI_EltreumUI:GradientColorTableUpdate()
 	end, nil, true)
 	ElvUI_EltreumUI.Options.args.unitframes.args.texture.args.classes = E.Libs.ACH:Group(L["Classes"], nil, 3, "tab")

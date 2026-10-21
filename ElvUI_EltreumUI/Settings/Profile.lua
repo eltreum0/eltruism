@@ -2129,6 +2129,7 @@ P.ElvUI_EltreumUI = {
 			raidtexture = "Eltreum-Blank",
 			partytexture = "Eltreum-Blank",
 			arenatexture = "Eltreum-Blank",
+			powertexture = "Eltreum-Blank",
 
 			enableHealComm = true,
 			enableHealCommCustom = false,
