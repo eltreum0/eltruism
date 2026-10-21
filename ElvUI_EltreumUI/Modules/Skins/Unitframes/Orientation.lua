@@ -258,11 +258,11 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 			local targetTex = E.db.unitframe.statusbar
 			if isPowerBar and db.ufcustomtexture.enable and db.ufcustomtexture.powertexture then
 				targetTex = db.ufcustomtexture.powertexture
-			elseif gm.enable then
+			elseif gm.enable and not db.ufcustomtexture.enable then
 				targetTex = gm.useUFtexture and targetTex or gm.texture
 			end
 
-			local fetchedTex = E.LSM:Fetch("statusbar", targetTex or E.db.unitframe.statusbar or UF.db.statusbar)
+			local fetchedTex = E.LSM:Fetch("statusbar", targetTex or UF.db.statusbar)
 			statusBar:SetStatusBarTexture(fetchedTex)
 			local bgTex = (db.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture)) or fetchedTex
 			UF:Update_StatusBar(bg, bgTex)
@@ -273,8 +273,16 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 
 		UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 	else --not transparent but texture should be set
-		local texture = E.LSM:Fetch('statusbar', E.db.unitframe.statusbar or UF.db.statusbar)
-		statusBar:SetStatusBarTexture(texture)
+		local texture = E.db.unitframe.statusbar
+		if isPowerBar and db.ufcustomtexture.enable and db.ufcustomtexture.powertexture then
+			texture = db.ufcustomtexture.powertexture
+		elseif gm.enable and not db.ufcustomtexture.enable then
+			texture = gm.useUFtexture and texture or gm.texture
+		end
+		print(texture)
+		local fetchedTex = E.LSM:Fetch('statusbar', texture or UF.db.statusbar)
+		statusBar:SetStatusBarTexture(fetchedTex)
+
 		local bgTex = (db.ufcustomtexture.backdroptexture and E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture)) or texture
 		UF:Update_StatusBar(bg, bgTex)
 
