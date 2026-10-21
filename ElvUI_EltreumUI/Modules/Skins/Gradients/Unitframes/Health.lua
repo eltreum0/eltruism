@@ -92,7 +92,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
-		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget")
+		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
 
 		local colorClass = "BACKDROP"
 		local invert = false
@@ -312,7 +312,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 		if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
 			backdropAlpha = healthAlpha
 		end
-		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget")
+		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
 
 		local isCharmed = UnitIsCharmed(unit)
 		isCharmed = canaccessvalue(isCharmed) and isCharmed or false
