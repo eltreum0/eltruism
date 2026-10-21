@@ -233,9 +233,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 					frame.Health.bg:SetGradient(orientation, minColor, maxColor)
 				end
 			elseif UFdb.darkmode then
-				if frame.Health.backdrop.Center then
-					frame.Health.backdrop.Center:SetGradient(orientation, minColor, maxColor)
-				end
+				frame.Health:GetStatusBarTexture():SetGradient(orientation, minColor, maxColor)
 			end
 		else
 			local debuffColor = frame.EltruismDebuffColor
@@ -252,9 +250,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 					frame.Health.bg:SetGradient("HORIZONTAL", debuffColor, debuffColor)
 				end
 			elseif UFdb.darkmode then
-				if frame.Health.backdrop.Center then
-					frame.Health.backdrop.Center:SetGradient("HORIZONTAL", debuffColor, debuffColor)
-				end
+				frame.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", debuffColor, debuffColor)
 			end
 		end
 		if deadState > 0 then
@@ -272,9 +268,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 						frame.Health.bg:SetGradient("HORIZONTAL", stateMin, stateMax)
 					end
 				elseif UFdb.darkmode then
-					if frame.Health.backdrop.Center then
-						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", stateMin, stateMax)
-					end
+					frame.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", stateMin, stateMax)
 				end
 			end
 		end
