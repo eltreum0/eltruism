@@ -279,7 +279,6 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 		elseif gm.enable and not db.ufcustomtexture.enable then
 			texture = gm.useUFtexture and texture or gm.texture
 		end
-		print(texture)
 		local fetchedTex = E.LSM:Fetch('statusbar', texture or UF.db.statusbar)
 		statusBar:SetStatusBarTexture(fetchedTex)
 
