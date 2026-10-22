@@ -211,9 +211,9 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10 = E.Libs.ACH:Group(E:TextGradient(L["Where is my floating combat text?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10.args.answer = E.Libs.ACH:Description(L["It's possible you installed NameplateSCT/FCT and removed it so the floating combat text was not enabled back\nYou can go into Eltruism > CVars > Other CVars > Restore All Combat Text to restore them"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11 = E.Libs.ACH:Group(E:TextGradient(L["My nameplates flash once an enemy is below 20% Health!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.args.answer = E.Libs.ACH:Description(L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"])
+	--ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11 = E.Libs.ACH:Group(E:TextGradient(L["My nameplates flash once an enemy is below 20% Health!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	--ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.inline = true
+	--ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.args.answer = E.Libs.ACH:Description(L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"])
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12 = E.Libs.ACH:Group(E:TextGradient(L["My Unitframes and/or ActionBars keep reverting positions!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12.args.answer = E.Libs.ACH:Description(L["If your actionbars or other frames are moving or resetting after a reload,\ncheck ElvUI > Eltruism > Borders for the Auto Adjust option.\n\nThis option is enabled when you enable Borders, it will not enable otherwise.\n\nAuto Adjust moves frames to a set position due to how borders need\ndifferent settings per layout and need to be changed so that borders don't overlap.\nDisable this option to stop the automatic changes.\n\nYou can also use the /eltruism autoadjust command to toggle it off"])
