@@ -105,6 +105,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				--[84] = 61422, --mop/wrath Smelting ?
 				[85] = 51296, --titan reforged cooking
 				--[86] = 131474,--fishing (actually just the cast)
+				[86] = 2842, --classic rogue poisons
 			}
 			local blockprof = {
 				[4620674] = true, --fishing (panel not skill)
