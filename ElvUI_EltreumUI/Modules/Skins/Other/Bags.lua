@@ -113,6 +113,8 @@ function ElvUI_EltreumUI:BagProfessions()
 				[4620675] = true, --herbalism
 				[4620679] = true, --mining
 				[441139] = true, --archaeology
+				[1278067] = true, --forever bait and tackle
+				[136245] = true, --forever bait and tackle
 			}
 			_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
 				if not _G["ElvUI_ContainerFrame"].numButtons then
@@ -341,10 +343,12 @@ function ElvUI_EltreumUI:BagProfessions()
 							end
 						end
 
+						local fishingSpell = E.Retail and 131474 or 7620
+
 						--fishing
-						if IsSpellKnown(131474) then
+						if IsSpellKnown(fishingSpell) then
 							if not _G["EltruismProfessionFishingBagButton"] then
-								local _, _, icon = ElvUI_EltreumUI:EltruismSpellInfo(131474)
+								local _, _, icon = ElvUI_EltreumUI:EltruismSpellInfo(fishingSpell)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 								_G["EltruismProfessionFishingBagButton"] = CreateFrame("Button","EltruismProfessionFishingBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 								_G["EltruismProfessionFishingBagButton"]:SetSize(21,21)
@@ -354,7 +358,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								S:HandleButton(_G["EltruismProfessionFishingBagButton"])
 								_G["EltruismProfessionFishingBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 								_G["EltruismProfessionFishingBagButton"]:SetAttribute('type', 'spell')
-								_G["EltruismProfessionFishingBagButton"]:SetAttribute('spell', 131474)
+								_G["EltruismProfessionFishingBagButton"]:SetAttribute('spell', fishingSpell)
 								ElvUI_EltreumUI:MacroClick(_G["EltruismProfessionFishingBagButton"])
 								_G["EltruismProfessionFishingBagButton"].icon = _G["EltruismProfessionFishingBagButton"]:CreateTexture(nil,"ARTWORK")
 								_G["EltruismProfessionFishingBagButton"].icon:SetTexture(icon)
