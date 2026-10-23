@@ -254,6 +254,7 @@ P.ElvUI_EltreumUI = {
 		detailsembedhidden = true,
 		detailsdelay = 1,
 		detailsmode = "LIGHT",
+		followthearrow = true,
 
 		blizzdamagemeter = {
 			enable = false,

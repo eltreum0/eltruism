@@ -15,4 +15,5 @@
 	<Script file='SimulationCraft.lua'/>
 	<Script file='WeakAuras.lua'/>
 	<Script file='SAM.lua'/>
+	<Script file='FollowTheArrow.lua'/>
 </Ui>
