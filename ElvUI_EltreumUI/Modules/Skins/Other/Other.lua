@@ -12,9 +12,7 @@ WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
 WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
 local string = _G.string
-local stringformat = string.format
 local stringmatch = string.match
-local mathfloor = _G.math.floor
 local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName
 
 --gradient loot roll/mirror/breath/feigndeath
