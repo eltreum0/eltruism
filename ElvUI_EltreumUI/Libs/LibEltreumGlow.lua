@@ -42,6 +42,7 @@ local tremove = _G.tremove
 local tinsert = _G.tinsert
 local wipe = _G.wipe or _G.table.wipe
 local setmetatable = _G.setmetatable
+local hooksecurefunc = _G.hooksecurefunc
 
 local sqrt = _G.sqrt
 local floor = _G.floor
@@ -154,6 +155,66 @@ local GlowMaskPool = {
 GlowMaskPool:Init(GlowParent)
 lib.GlowMaskPool = GlowMaskPool
 
+local function IsPoolObjectActive(pool, obj)
+	if not pool or not obj then return false end
+	if pool.HasActiveObject then
+		return pool:HasActiveObject(obj)
+	elseif pool.activeObjects then
+		return pool.activeObjects[obj] ~= nil
+	end
+	return false
+end
+
+local function ProtectPoolRelease(pool)
+	if not pool or pool._eltruismProtected then return end
+	pool._eltruismProtected = true
+	local origRelease = pool.Release
+	pool.Release = function(self, obj)
+		if not obj then return false end
+		if IsPoolObjectActive(self, obj) then
+			return origRelease(self, obj)
+		else
+			if obj.Hide then obj:Hide() end
+			if obj.ClearAllPoints then obj:ClearAllPoints() end
+			if obj.SetScript then
+				obj:SetScript("OnUpdate", nil)
+				obj:SetScript("OnHide", nil)
+			end
+			local parent = obj.GetParent and obj:GetParent()
+			if parent and obj.name and parent[obj.name] == obj then
+				parent[obj.name] = nil
+			end
+			return false
+		end
+	end
+end
+
+local function ProtectLCG(lcg)
+	if not lcg then return end
+	if lcg.GlowFramePool then ProtectPoolRelease(lcg.GlowFramePool) end
+	if lcg.GlowTexPool then ProtectPoolRelease(lcg.GlowTexPool) end
+	if lcg.ButtonGlowPool then ProtectPoolRelease(lcg.ButtonGlowPool) end
+	if lcg.ProcGlowPool then ProtectPoolRelease(lcg.ProcGlowPool) end
+end
+lib.ProtectLCG = ProtectLCG
+lib.ProtectPoolRelease = ProtectPoolRelease
+
+local existingLCG = (_G.LibStub and _G.LibStub("LibCustomGlow-1.0", true))
+	or (_G.ElvUI and _G.ElvUI[1] and _G.ElvUI[1].Libs and _G.ElvUI[1].Libs.CustomGlow)
+if existingLCG then
+	ProtectLCG(existingLCG)
+end
+if hooksecurefunc and _G.LibStub and _G.LibStub.NewLibrary then
+	hooksecurefunc(_G.LibStub, "NewLibrary", function(_, major)
+		if major == "LibCustomGlow-1.0" then
+			local lcg = _G.LibStub("LibCustomGlow-1.0", true)
+			if lcg then
+				ProtectLCG(lcg)
+			end
+		end
+	end)
+end
+
 local TexPoolResetter = function(_, tex)
 	if tex.GetNumMaskTextures then
 		local maskNum = tex:GetNumMaskTextures()
@@ -176,17 +237,17 @@ local TexPoolResetter = function(_, tex)
 	end
 	tex:SetBlendMode("BLEND")
 end
-local GlowTexPool = CreateTexturePool(GlowParent, "ARTWORK", 7, nil, TexPoolResetter)
+local GlowTexPool = (existingLCG and existingLCG.GlowTexPool) or CreateTexturePool(GlowParent, "ARTWORK", 7, nil, TexPoolResetter)
 lib.GlowTexPool = GlowTexPool
-
-local function IsPoolObjectActive(pool, obj)
-	if not pool or not obj then return false end
-	if pool.HasActiveObject then
-		return pool:HasActiveObject(obj)
-	elseif pool.activeObjects then
-		return pool.activeObjects[obj] ~= nil
+ProtectPoolRelease(GlowTexPool)
+if existingLCG and existingLCG.GlowTexPool then
+	local origTexResetter = GlowTexPool.resetterFunc
+	GlowTexPool.resetterFunc = function(p, t)
+		TexPoolResetter(p, t)
+		if origTexResetter and origTexResetter ~= TexPoolResetter then
+			origTexResetter(p, t)
+		end
 	end
-	return false
 end
 
 local function SafeReleaseTexture(pool, tex)
@@ -195,6 +256,7 @@ local function SafeReleaseTexture(pool, tex)
 		pool:Release(tex)
 	else
 		tex:Hide()
+		tex:ClearAllPoints()
 	end
 end
 
@@ -207,6 +269,10 @@ local function SafeReleaseFrame(pool, frame)
 		frame:ClearAllPoints()
 		frame:SetScript("OnUpdate", nil)
 		frame:SetScript("OnHide", nil)
+		local parent = frame.GetParent and frame:GetParent()
+		if parent and frame.name and parent[frame.name] == frame then
+			parent[frame.name] = nil
+		end
 	end
 end
 
@@ -216,6 +282,7 @@ local function SafeReleaseMask(pool, mask)
 		pool:Release(mask)
 	else
 		mask:Hide()
+		mask:ClearAllPoints()
 	end
 end
 
@@ -280,8 +347,18 @@ local FramePoolResetter = function(_, frame)
 	frame:Hide()
 	frame:ClearAllPoints()
 end
-local GlowFramePool = CreateFramePool("Frame", GlowParent, nil, FramePoolResetter)
+local GlowFramePool = (existingLCG and existingLCG.GlowFramePool) or CreateFramePool("Frame", GlowParent, nil, FramePoolResetter)
 lib.GlowFramePool = GlowFramePool
+ProtectPoolRelease(GlowFramePool)
+if existingLCG and existingLCG.GlowFramePool then
+	local origFrameResetter = GlowFramePool.resetterFunc
+	GlowFramePool.resetterFunc = function(p, f)
+		FramePoolResetter(p, f)
+		if origFrameResetter and origFrameResetter ~= FramePoolResetter then
+			origFrameResetter(p, f)
+		end
+	end
+end
 
 local function GlowFrame_OnHide(self)
 	if self.inf and self.inf.finish then
@@ -4589,8 +4666,18 @@ local function ButtonGlowResetter(_, frame)
 	frame:Hide()
 	frame:ClearAllPoints()
 end
-local ButtonGlowPool = CreateFramePool("Frame", GlowParent, nil, ButtonGlowResetter)
+local ButtonGlowPool = (existingLCG and existingLCG.ButtonGlowPool) or CreateFramePool("Frame", GlowParent, nil, ButtonGlowResetter)
 lib.ButtonGlowPool = ButtonGlowPool
+ProtectPoolRelease(ButtonGlowPool)
+if existingLCG and existingLCG.ButtonGlowPool then
+	local origButtonResetter = ButtonGlowPool.resetterFunc
+	ButtonGlowPool.resetterFunc = function(p, f)
+		ButtonGlowResetter(p, f)
+		if origButtonResetter and origButtonResetter ~= ButtonGlowResetter then
+			origButtonResetter(p, f)
+		end
+	end
+end
 
 local function CreateScaleAnim(group, target, order, duration, x, y, delay)
 	local scale = group:CreateAnimation("Scale")
@@ -5004,8 +5091,18 @@ local function ProcGlowResetter(_, frame)
 	end
 end
 
-local ProcGlowPool = CreateFramePool("Frame", GlowParent, nil, ProcGlowResetter)
+local ProcGlowPool = (existingLCG and existingLCG.ProcGlowPool) or CreateFramePool("Frame", GlowParent, nil, ProcGlowResetter)
 lib.ProcGlowPool = ProcGlowPool
+ProtectPoolRelease(ProcGlowPool)
+if existingLCG and existingLCG.ProcGlowPool then
+	local origProcResetter = ProcGlowPool.resetterFunc
+	ProcGlowPool.resetterFunc = function(p, f)
+		ProcGlowResetter(p, f)
+		if origProcResetter and origProcResetter ~= ProcGlowResetter then
+			origProcResetter(p, f)
+		end
+	end
+end
 
 local PROC_START_SCALE = (150 / 42) / 1.4
 

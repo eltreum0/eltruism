@@ -338,6 +338,9 @@ function ElvUI_EltreumUI:SkillGlow()
 
 			local ElvUI_LCG = E.Libs.CustomGlow or (_G.LibStub and _G.LibStub("LibCustomGlow-1.0", true))
 			if ElvUI_LCG and ElvUI_LCG ~= LCG then
+				if LCG and LCG.ProtectLCG then
+					LCG.ProtectLCG(ElvUI_LCG)
+				end
 				if ElvUI_LCG.ShowOverlayGlow then
 					hooksecurefunc(ElvUI_LCG, "ShowOverlayGlow", OnGlowStart)
 				end
