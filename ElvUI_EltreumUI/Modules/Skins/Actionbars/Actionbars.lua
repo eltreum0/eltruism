@@ -65,10 +65,16 @@ function ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor, frameLevel, xOf
 		end
 	end
 
+	button._EltruismGlowing = true
+	if button.__LBGoverlay then button.__LBGoverlay:Hide() end
+	if button.overlay then button.overlay:Hide() end
+	if button.SpellActivationAlert then button.SpellActivationAlert:Hide() end
+
 	local gradientTable = ElvUI_EltreumUI:GetGlowGradientColors(skillglowcolor)
 
 	if glowDb.pixel then
 		if button.AutoCastShine then button.AutoCastShine:Hide() end
+		if button._AutoCastGlow then button._AutoCastGlow:Hide() end
 		if button._ButtonGlow then button._ButtonGlow:Hide() end
 		if button._ProcGlow then button._ProcGlow:Hide() end
 		if button._BorderPulse then button._BorderPulse:Hide() end
@@ -207,15 +213,92 @@ end
 
 function ElvUI_EltreumUI:CustomGlowStop(button)
 	if not button then return end
+	button._EltruismGlowing = nil
 	local glowDb = E.db.ElvUI_EltreumUI.glow
 	if LCG.PixelGlow_Stop then LCG.PixelGlow_Stop(button, nil, glowDb.pixelforceStop) end
 	if LCG.AutoCastGlow_Stop then LCG.AutoCastGlow_Stop(button) end
 	if LCG.ButtonGlow_Stop then LCG.ButtonGlow_Stop(button) end
 	if LCG.ProcGlow_Stop then LCG.ProcGlow_Stop(button) end
 	if LCG.BorderPulse_Stop then LCG.BorderPulse_Stop(button, nil, glowDb.borderpulse and glowDb.borderpulse.forceStop) end
-	if button._Bling then
+	if LCG.Bling_Stop then
+		LCG.Bling_Stop(button)
+	elseif button._Bling then
 		button._Bling:Hide()
 		button._Bling = nil
+	end
+end
+
+local function IsButtonGlowing(btn)
+	if not btn then return false end
+	if btn._EltruismGlowing then return true end
+	if btn._PixelGlow and btn._PixelGlow:IsShown() then return true end
+	if btn._BorderPulse and btn._BorderPulse:IsShown() then return true end
+	if btn._Bling and btn._Bling:IsShown() then return true end
+	if btn._AutoCastGlow and btn._AutoCastGlow:IsShown() then return true end
+	if btn.AutoCastShine and btn.AutoCastShine:IsShown() then return true end
+	if btn._ButtonGlow and btn._ButtonGlow:IsShown() then return true end
+	if btn._ProcGlow and btn._ProcGlow:IsShown() then return true end
+	if btn.__LBGoverlay and btn.__LBGoverlay:IsShown() then return true end
+	if btn.overlay and btn.overlay:IsShown() then return true end
+	if btn.EltruismIsGlowing then return true end
+	return false
+end
+
+function ElvUI_EltreumUI:UpdateActiveGlows()
+	if _G.EltruismGlowPreview and _G.EltruismGlowPreview:IsShown() then
+		ElvUI_EltreumUI:CustomGlowStart(_G.EltruismGlowPreview)
+	end
+
+	-- ElvUI ActionBars (Bars 1 to 10, Buttons 1 to 12)
+	for i = 1, 10 do
+		for k = 1, 12 do
+			local btn = _G["ElvUI_Bar"..i..'Button'..k]
+			if IsButtonGlowing(btn) then
+				ElvUI_EltreumUI:CustomGlowStart(btn)
+			end
+		end
+	end
+
+	-- Pet Action Buttons
+	for k = 1, 10 do
+		local btn = _G["PetActionButton"..k] or _G["ElvUI_PetBarButton"..k]
+		if IsButtonGlowing(btn) then
+			local petcolor
+			if E.db.ElvUI_EltreumUI.glow.colorclasspet then
+				petcolor = { classcolor.r, classcolor.g, classcolor.b, 1 }
+			else
+				petcolor = { E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b, 1 }
+			end
+			ElvUI_EltreumUI:CustomGlowStart(btn, petcolor, 6)
+		end
+	end
+
+	-- Stance Bar Buttons
+	for k = 1, 10 do
+		local btn = _G["ElvUI_StanceBarButton"..k]
+		if IsButtonGlowing(btn) then
+			ElvUI_EltreumUI:CustomGlowStart(btn)
+		end
+	end
+
+	-- Standard ActionButtons (fallback)
+	for k = 1, 12 do
+		local btn = _G["ActionButton"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBarBottomLeftButton"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBarBottomRightButton"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBarRightButton"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBarLeftButton"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBar5Button"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBar6Button"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
+		btn = _G["MultiBar7Button"..k]
+		if btn and IsButtonGlowing(btn) then ElvUI_EltreumUI:CustomGlowStart(btn) end
 	end
 end
 
@@ -233,16 +316,41 @@ function ElvUI_EltreumUI:SkillGlow()
 
 	if E.db.ElvUI_EltreumUI.glow.enable and E.private.actionbar.enable then
 		if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-			local ElvUI_LCG = E.Libs.CustomGlow or _G.LibStub("LibCustomGlow-1.0", true)
-			if ElvUI_LCG and ElvUI_LCG.ShowOverlayGlow then
-				hooksecurefunc(ElvUI_LCG, "ShowOverlayGlow", function(button)
-					if button:GetAttribute("type") == "action" then
-						ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor)
-					end
-				end)
-				hooksecurefunc(ElvUI_LCG, "HideOverlayGlow", function(button)
-					ElvUI_EltreumUI:CustomGlowStop(button)
-				end)
+			local function OnGlowStart(button)
+				if not button or button == _G.EltruismGlowPreview then return end
+				ElvUI_EltreumUI:CustomGlowStart(button)
+			end
+
+			local function OnGlowStop(button)
+				if not button or button == _G.EltruismGlowPreview then return end
+				ElvUI_EltreumUI:CustomGlowStop(button)
+			end
+
+			local LBG = _G.LibStub and _G.LibStub("LibButtonGlow-1.0", true)
+			if LBG then
+				if LBG.ShowOverlayGlow then
+					hooksecurefunc(LBG, "ShowOverlayGlow", OnGlowStart)
+				end
+				if LBG.HideOverlayGlow then
+					hooksecurefunc(LBG, "HideOverlayGlow", OnGlowStop)
+				end
+			end
+
+			local ElvUI_LCG = E.Libs.CustomGlow or (_G.LibStub and _G.LibStub("LibCustomGlow-1.0", true))
+			if ElvUI_LCG and ElvUI_LCG ~= LCG then
+				if ElvUI_LCG.ShowOverlayGlow then
+					hooksecurefunc(ElvUI_LCG, "ShowOverlayGlow", OnGlowStart)
+				end
+				if ElvUI_LCG.HideOverlayGlow then
+					hooksecurefunc(ElvUI_LCG, "HideOverlayGlow", OnGlowStop)
+				end
+			end
+
+			if _G.ActionButton_ShowOverlayGlow then
+				hooksecurefunc("ActionButton_ShowOverlayGlow", OnGlowStart)
+			end
+			if _G.ActionButton_HideOverlayGlow then
+				hooksecurefunc("ActionButton_HideOverlayGlow", OnGlowStop)
 			end
 		end
 		if not E.Retail then
