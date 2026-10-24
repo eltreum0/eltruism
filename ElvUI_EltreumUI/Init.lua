@@ -202,7 +202,6 @@ function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
 	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
 	E:Delay(3, function() --delay counting otherwise doesnt work in retail (where coroutines are)
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			ElvUI_EltreumUI:IncrementHealthBackdropEpoch() --start counting the backdrop
 			ElvUI_EltreumUI:CustomTexture("testunit")
 			ElvUI_EltreumUI:GradientUF("testunit")
 		end

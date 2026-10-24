@@ -433,7 +433,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	wipe(gradientCustomColorCache)
 
 	ElvUI_EltreumUI:CacheGradients()
-	ElvUI_EltreumUI:IncrementHealthBackdropEpoch()
 
 	if E.db and ufDB and ufDB.colors then
 		local dead = ufDB.colors.health_backdrop_dead

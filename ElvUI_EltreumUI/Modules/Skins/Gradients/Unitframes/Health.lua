@@ -58,10 +58,6 @@ local invertframes = {
 	["arena"] = true,
 }
 
-local backdropEpoch = 0
-function ElvUI_EltreumUI:IncrementHealthBackdropEpoch()
-	backdropEpoch = backdropEpoch + 1
-end
 
 --set the backdrop gradient
 function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,unitDB)
@@ -179,7 +175,6 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			frame.EltruismBackdropClass = nil
 		end
 
-		frame.EltruismBackdropEpoch = backdropEpoch
 		frame.EltruismBackdropClass = colorClass
 		frame.EltruismBackdropDead = deadState
 		frame.EltruismBackdropInvert = invert
@@ -918,7 +913,6 @@ if E.CoroutineCallback then
 	ElvUI_EltreumUI:SecureHook(UF, "CreateAndUpdateUF", "UF_CreateAndUpdateUF")
 	local function Update_UnitFrameTransparencyFix(frame)
 		if frame and frame.Health and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-			frame.EltruismBackdropEpoch = nil
 			local frameType = frame.unitframeType
 			if frameType then
 				local info = individualUnits[frameType]

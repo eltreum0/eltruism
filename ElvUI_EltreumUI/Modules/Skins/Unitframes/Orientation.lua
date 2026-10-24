@@ -162,10 +162,6 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 	local bg = statusBar.bg or statusBar.BG
 
 	if isHealthBar then
-		local parent = statusBar.GetParent and statusBar:GetParent()
-		if parent then
-			parent.EltruismBackdropEpoch = nil
-		end
 		if not isHidden then
 			if db.lightmode and bg then
 				bg:SetTexture(E.LSM:Fetch("statusbar", db.ufcustomtexture.backdroptexture))
