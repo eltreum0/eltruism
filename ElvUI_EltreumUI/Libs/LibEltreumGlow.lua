@@ -2,11 +2,11 @@
 This library contains work of Hendrick "nevcairiel" Leppkes
 https://www.wowace.com/projects/libbuttonglow-1-0
 ]]
---LibEltreumCustom is a fork of LibCustomGlow, MIT license 2022 Benjamin Staneck, contains work by Dooez (https://github.com/Dooez/LibCustomGlow)
+--LibEltreumGlow is a fork of LibCustomGlow, MIT license 2022 Benjamin Staneck, contains work by Dooez (https://github.com/Dooez/LibCustomGlow)
 
 -- luacheck: globals _G LibStub WOW_PROJECT_ID WOW_PROJECT_MAINLINE UIParent CreateVector2D CreateFrame CreateTexturePool CreateFramePool TextureUtil issecretvalue Masque issecurevariable CreateColor
 local _G = _G
-local MAJOR_VERSION = "LibEltreumCustomGlow"
+local MAJOR_VERSION = "LibEltreumGlow"
 local MINOR_VERSION = 26
 if not LibStub then _G.error(MAJOR_VERSION .. " requires LibStub.") end
 
@@ -17,19 +17,19 @@ local Masque = LibStub("Masque", true)
 local isRetail = (WOW_PROJECT_ID == nil) or (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 local issecretvalue = _G.issecretvalue
 local textureList = {
-    empty = [[Interface\AdventureMap\BrokenIsles\AM_29]],
-    white = [[Interface\BUTTONS\WHITE8X8]],
-    shine = [[Interface\ItemSocketingFrame\UI-ItemSockets]]
+	empty = [[Interface\AdventureMap\BrokenIsles\AM_29]],
+	white = [[Interface\BUTTONS\WHITE8X8]],
+	shine = [[Interface\ItemSocketingFrame\UI-ItemSockets]],
 }
 
-local shineCoords = {0.3984375, 0.4453125, 0.40234375, 0.44921875}
+local shineCoords = { 0.3984375, 0.4453125, 0.40234375, 0.44921875 }
 if isRetail then
-    textureList.shine = [[Interface\Artifacts\Artifacts]]
-    shineCoords = {0.8115234375,0.9169921875,0.8798828125,0.9853515625}
+	textureList.shine = [[Interface\Artifacts\Artifacts]]
+	shineCoords = { 0.8115234375, 0.9169921875, 0.8798828125, 0.9853515625 }
 end
 
 function lib.RegisterTextures(texture, id)
-    textureList[id] = texture
+	textureList[id] = texture
 end
 
 lib.glowList = {}
@@ -40,6 +40,7 @@ local pairs = _G.pairs
 local type = _G.type
 local tremove = _G.tremove
 local tinsert = _G.tinsert
+local wipe = _G.wipe or _G.table.wipe
 local pcall = _G.pcall
 local setmetatable = _G.setmetatable
 
@@ -54,9 +55,10 @@ local CreateColor = _G.CreateColor
 local AnimateTexCoords = (TextureUtil and TextureUtil.AnimateTexCoords) or _G.AnimateTexCoords
 
 local function GetColorRGBA(c)
-	if type(c) == "table" and c.GetRGBA then
-		return c:GetRGBA()
-	elseif type(c) == "table" then
+	if type(c) == "table" then
+		if c.GetRGBA then
+			return c:GetRGBA()
+		end
 		return c[1] or c.r or 1, c[2] or c.g or 1, c[3] or c.b or 1, c[4] or c.a or 1
 	end
 	return 1, 1, 1, 1
@@ -87,7 +89,7 @@ local function SetTextureRotation(tex, radians, cx, cy)
 		if CreateVector2D then
 			tex:SetRotation(radians, CreateVector2D(cx, cy))
 		else
-			local ok = pcall(tex.SetRotation, tex, radians, {x = cx, y = cy})
+			local ok = pcall(tex.SetRotation, tex, radians, { x = cx, y = cy })
 			if not ok then
 				pcall(tex.SetRotation, tex, radians, cx, cy)
 			end
@@ -151,12 +153,12 @@ local GlowMaskPool = {
 		for object in pairs(self.activeObjects) do
 			self:Release(object)
 		end
-	end
+	end,
 }
 GlowMaskPool:Init(GlowParent)
 lib.GlowMaskPool = GlowMaskPool
 
-local TexPoolResetter = function(_,tex)
+local TexPoolResetter = function(_, tex)
 	if tex.GetNumMaskTextures then
 		local maskNum = tex:GetNumMaskTextures()
 		for i = maskNum, 1, -1 do
@@ -172,11 +174,11 @@ local TexPoolResetter = function(_,tex)
 		tex:SetRotation(0)
 	end
 end
-local GlowTexPool = CreateTexturePool(GlowParent ,"ARTWORK",7,nil,TexPoolResetter)
+local GlowTexPool = CreateTexturePool(GlowParent, "ARTWORK", 7, nil, TexPoolResetter)
 lib.GlowTexPool = GlowTexPool
 
-local FramePoolResetter = function(_,frame)
-	frame:SetScript("OnUpdate",nil)
+local FramePoolResetter = function(_, frame)
+	frame:SetScript("OnUpdate", nil)
 	local parent = frame:GetParent()
 	if parent and frame.name and parent[frame.name] then
 		parent[frame.name] = nil
@@ -191,7 +193,7 @@ local FramePoolResetter = function(_,frame)
 		frame.bg = nil
 	end
 	if frame.masks then
-		for _,mask in pairs(frame.masks) do
+		for _, mask in pairs(frame.masks) do
 			GlowMaskPool:Release(mask)
 		end
 		frame.masks = nil
@@ -199,35 +201,36 @@ local FramePoolResetter = function(_,frame)
 	if frame.SetClipsChildren then
 		frame:SetClipsChildren(false)
 	end
-	frame.textures = {}
-	frame.inf = {}
-	frame.info = {}
+	-- reuse the existing tables instead of allocating new ones on every release
+	if frame.textures then wipe(frame.textures) else frame.textures = {} end
+	if frame.inf then wipe(frame.inf) else frame.inf = {} end
+	if frame.info then wipe(frame.info) else frame.info = {} end
 	frame.name = nil
 	frame.timer = nil
 	frame:SetAlpha(1)
 	frame:Hide()
 	frame:ClearAllPoints()
 end
-local GlowFramePool = CreateFramePool("Frame",GlowParent,nil,FramePoolResetter)
+local GlowFramePool = CreateFramePool("Frame", GlowParent, nil, FramePoolResetter)
 lib.GlowFramePool = GlowFramePool
 
-local function addFrameAndTex(r,color,name,key,N,xOffset,yOffset,texture,texCoord,desaturated,frameLevel)
+local function addFrameAndTex(r, color, name, key, N, xOffset, yOffset, texture, texCoord, desaturated, frameLevel)
 	key = key or ""
 	frameLevel = frameLevel or 8
 	xOffset = xOffset or 0
 	yOffset = yOffset or 0
 	local update = true
 
-	if not r[name..key] then
-		r[name..key] = GlowFramePool:Acquire()
-		r[name..key]:SetParent(r)
-		r[name..key].name = name..key
+	if not r[name .. key] then
+		r[name .. key] = GlowFramePool:Acquire()
+		r[name .. key]:SetParent(r)
+		r[name .. key].name = name .. key
 		update = false
 	end
-	local f = r[name..key]
-	f:SetFrameLevel(r:GetFrameLevel()+frameLevel)
-	f:SetPoint("TOPLEFT",r,"TOPLEFT",-xOffset+0.05,yOffset+0.05)
-	f:SetPoint("BOTTOMRIGHT",r,"BOTTOMRIGHT",xOffset,-yOffset+0.05)
+	local f = r[name .. key]
+	f:SetFrameLevel(r:GetFrameLevel() + frameLevel)
+	f:SetPoint("TOPLEFT", r, "TOPLEFT", -xOffset + 0.05, yOffset + 0.05)
+	f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", xOffset, -yOffset + 0.05)
 	f:Show()
 
 	if not f.textures then
@@ -241,14 +244,14 @@ local function addFrameAndTex(r,color,name,key,N,xOffset,yOffset,texture,texCoor
 		rCol, gCol, bCol, aCol = GetColorRGBA(color)
 	end
 
-	for i=1,N do
+	for i = 1, N do
 		if not f.textures[i] then
 			f.textures[i] = GlowTexPool:Acquire()
-			f.textures[i]: SetTexture(texture)
-			f.textures[i]: SetTexCoord(texCoord[1],texCoord[2],texCoord[3],texCoord[4])
-			f.textures[i]: SetDesaturated(desaturated)
-			f.textures[i]: SetParent(f)
-			f.textures[i]: SetDrawLayer("ARTWORK",7)
+			f.textures[i]:SetTexture(texture)
+			f.textures[i]:SetTexCoord(texCoord[1], texCoord[2], texCoord[3], texCoord[4])
+			f.textures[i]:SetDesaturated(desaturated)
+			f.textures[i]:SetParent(f)
+			f.textures[i]:SetDrawLayer("ARTWORK", 7)
 			if not isRetail and name == "_AutoCastGlow" then
 				f.textures[i]:SetBlendMode("ADD")
 			end
@@ -256,7 +259,7 @@ local function addFrameAndTex(r,color,name,key,N,xOffset,yOffset,texture,texCoor
 		f.textures[i]:SetVertexColor(rCol, gCol, bCol, aCol)
 		f.textures[i]:Show()
 	end
-	while #f.textures>N do
+	while #f.textures > N do
 		GlowTexPool:Release(f.textures[#f.textures])
 		tremove(f.textures)
 	end
@@ -328,13 +331,13 @@ local function GetHSVTransition(perc, c1, c2)
 	end
 
 	local h3 = (h1 + perc * diff) % 360
-	local s3 = s1 - ( s1 - s2 ) * perc
-	local v3 = v1 - ( v1 - v2 ) * perc
+	local s3 = s1 - (s1 - s2) * perc
+	local v3 = v1 - (v1 - v2) * perc
 
 	local r, g, b = HSVToRGB(h3, s3, v3)
 
 	--interpolate alpha
-	local a = a1 - ( a1 - a2 ) * perc
+	local a = a1 - (a1 - a2) * perc
 
 	colorPoolIndex = (colorPoolIndex % 64) + 1
 	local col = colorPool[colorPoolIndex]
@@ -381,7 +384,7 @@ local function DeepCopy(original)
 	local copy
 	if type(original) == "table" then
 		copy = {}
-		for k,v in pairs(original) do
+		for k, v in pairs(original) do
 			copy[k] = DeepCopy(v)
 		end
 	else
@@ -392,12 +395,12 @@ end
 
 --Return copy of options table with added missing elements from default--
 local function AcquireOptions(options, default, internal)
-	if not(internal) then
+	if not internal then
 		options = DeepCopy(options) or {}
 	else
 		options = options or {}
 	end
-	for k,v in pairs(default) do
+	for k, v in pairs(default) do
 		if type(v) == "table" then
 			options[k] = AcquireOptions(options[k], v, true)
 		else
@@ -421,43 +424,43 @@ local function BorderGradientCorners(inf, elapsed)
 	local g = inf.gradient
 	local gN = #g
 	local gProgress = inf.gProgress or 0
-	gProgress = (gProgress + elapsed * inf.gradientFrequency)%1
+	gProgress = (gProgress + elapsed * inf.gradientFrequency) % 1
 	inf.gProgress = gProgress
 
-	p1 = (gProgress + 0.001)%1
-	p2 = (gProgress + inf.width / (inf.width + inf.height) / 2)%1
-	p3 = (gProgress + 0.5) %1
-	p4 = (gProgress + 0.5 + inf.width / (inf.width + inf.height) / 2)%1
+	p1 = (gProgress + 0.001) % 1
+	p2 = (gProgress + inf.width / (inf.width + inf.height) / 2) % 1
+	p3 = (gProgress + 0.5) % 1
+	p4 = (gProgress + 0.5 + inf.width / (inf.width + inf.height) / 2) % 1
 
-	c1 = GetHSVTransition ((p1 * gN) % 1 , g[ceil(p1 * gN)], g[ceil(p1 * gN) % gN + 1])
-	c2 = GetHSVTransition ((p2 * gN) % 1 , g[ceil(p2 * gN)], g[ceil(p2 * gN) % gN + 1])
-	c3 = GetHSVTransition ((p3 * gN) % 1 , g[ceil(p3 * gN)], g[ceil(p3 * gN) % gN + 1])
-	c4 = GetHSVTransition ((p4 * gN) % 1 , g[ceil(p4 * gN)], g[ceil(p4 * gN) % gN + 1])
+	c1 = GetHSVTransition((p1 * gN) % 1, g[ceil(p1 * gN)], g[ceil(p1 * gN) % gN + 1])
+	c2 = GetHSVTransition((p2 * gN) % 1, g[ceil(p2 * gN)], g[ceil(p2 * gN) % gN + 1])
+	c3 = GetHSVTransition((p3 * gN) % 1, g[ceil(p3 * gN)], g[ceil(p3 * gN) % gN + 1])
+	c4 = GetHSVTransition((p4 * gN) % 1, g[ceil(p4 * gN)], g[ceil(p4 * gN) % gN + 1])
 	return c1, c2, c3, c4
 end
 
 local function BorderSet4LinesCenter(f, update)
 	local inf = f.inf
 	local tails = inf.tail.list
-	if not(update) then
+	if not update then
 		for _, v in pairs(tails) do
 			v:ClearAllPoints()
 		end
 		if inf.tail.mirror then
-				tails[1]:SetPoint("TOP", f, "TOP")
-				tails[2]:SetPoint("RIGHT", f, "RIGHT")
-				tails[3]:SetPoint("BOTTOM", f, "BOTTOM")
-				tails[4]:SetPoint("LEFT", f, "LEFT")
+			tails[1]:SetPoint("TOP", f, "TOP")
+			tails[2]:SetPoint("RIGHT", f, "RIGHT")
+			tails[3]:SetPoint("BOTTOM", f, "BOTTOM")
+			tails[4]:SetPoint("LEFT", f, "LEFT")
 
-				tails[5]:Hide()
-				tails[6]:Hide()
-				tails[7]:Hide()
-				tails[8]:Hide()
+			tails[5]:Hide()
+			tails[6]:Hide()
+			tails[7]:Hide()
+			tails[8]:Hide()
 
-				tails[1]:SetHeight(inf.th)
-				tails[2]:SetWidth(inf.th)
-				tails[3]:SetHeight(inf.th)
-				tails[4]:SetWidth(inf.th)
+			tails[1]:SetHeight(inf.th)
+			tails[2]:SetWidth(inf.th)
+			tails[3]:SetHeight(inf.th)
+			tails[4]:SetWidth(inf.th)
 		else
 			if inf.tail.clockwise then
 				tails[1]:SetPoint("TOPRIGHT", f, "TOP")
@@ -584,8 +587,8 @@ local function BorderUpdate4LinesCenter(f, progress)
 			BorderSet4LinesCenter(f, true)
 			if progress < cornerP then
 				local stageProg = 1 - progress / cornerP
-				tails[4]:SetWidth(stageProg * (inf.width / 2- inf.th))
-				tails[8]:SetWidth(stageProg * (inf.width / 2- inf.th))
+				tails[4]:SetWidth(stageProg * (inf.width / 2 - inf.th))
+				tails[8]:SetWidth(stageProg * (inf.width / 2 - inf.th))
 			else
 				local stageProg = (1 - progress) / (1 - cornerP)
 				tails[3]:SetHeight(stageProg * (inf.height / 2))
@@ -625,7 +628,6 @@ local function BorderGradient4LinesCenter(f, progress, elapsed)
 		SetGradA(tails[2], "VERTICAL", c2x1, c2x2)
 		SetGradA(tails[3], "HORIZONTAL", c3x1, c3x2)
 		SetGradA(tails[4], "VERTICAL", c4x1, c4x2)
-
 	else
 		local c12 = GetHSVTransition(0.5, c1, c2)
 		local c23 = GetHSVTransition(0.5, c2, c3)
@@ -694,7 +696,7 @@ end
 local function BorderSet4LinesCorner(f, update)
 	local inf = f.inf
 	local tails = inf.tail.list
-	if not(update) then
+	if not update then
 		for _, v in pairs(tails) do
 			v:ClearAllPoints()
 		end
@@ -839,7 +841,7 @@ end
 local function BorderSet2LinesCenter(f, update)
 	local inf = f.inf
 	local tails = inf.tail.list
-	if not(update) then
+	if not update then
 		for _, v in pairs(tails) do
 			v:ClearAllPoints()
 		end
@@ -878,7 +880,7 @@ local function BorderSet2LinesCenter(f, update)
 					tails[1]:SetPoint("TOPLEFT", f, "TOPLEFT", inf.th, 0)
 					tails[2]:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 0, inf.th)
 					tails[3]:SetPoint("BOTTOMRIGHT", f, "BOTTOM")
-					tails[4]:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", - inf.th, 0)
+					tails[4]:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -inf.th, 0)
 					tails[5]:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -inf.th)
 					tails[6]:SetPoint("TOPLEFT", f, "TOP")
 				end
@@ -924,12 +926,12 @@ local function BorderSet2LinesCenter(f, update)
 		inf.tail.Set2(tails[5], inf.tail.size2)
 		inf.tail.Set1(tails[6], inf.tail.size1 / 2 - inf.th)
 	else
-		inf.tail.Set1(tails[1], inf.tail.size1/2 - inf.th)
-		inf.tail.Set2(tails[2], inf.tail.size2- inf.th)
-		inf.tail.Set1(tails[3], inf.tail.size1/2)
-		inf.tail.Set1(tails[4], inf.tail.size1/2 - inf.th)
+		inf.tail.Set1(tails[1], inf.tail.size1 / 2 - inf.th)
+		inf.tail.Set2(tails[2], inf.tail.size2 - inf.th)
+		inf.tail.Set1(tails[3], inf.tail.size1 / 2)
+		inf.tail.Set1(tails[4], inf.tail.size1 / 2 - inf.th)
 		inf.tail.Set2(tails[5], inf.tail.size2 - inf.th)
-		inf.tail.Set1(tails[6], inf.tail.size1/2)
+		inf.tail.Set1(tails[6], inf.tail.size1 / 2)
 	end
 end
 
@@ -942,7 +944,7 @@ local function BorderUpdate2LinesCenter(f, progress)
 		local cornerP = inf.tail.size1 / (inf.tail.size1 + inf.tail.size2)
 		if progress < cornerP then
 			if oldProgress > cornerP or oldProgress <= 0 then
-				for _,v in pairs(tails) do
+				for _, v in pairs(tails) do
 					v:Show()
 				end
 				BorderSet2LinesCenter(f, true)
@@ -967,7 +969,7 @@ local function BorderUpdate2LinesCenter(f, progress)
 			inf.tail.Set2(tails[5], stageProg * inf.tail.size2)
 		end
 	else
-		local cornerP = inf.tail.size1/2/(inf.tail.size1 + inf.tail.size2)
+		local cornerP = inf.tail.size1 / 2 / (inf.tail.size1 + inf.tail.size2)
 		if progress < cornerP then
 			if oldProgress > cornerP or oldProgress <= 0 then
 				for _, v in pairs(tails) do
@@ -988,7 +990,7 @@ local function BorderUpdate2LinesCenter(f, progress)
 				tails[6]:Show()
 				BorderSet2LinesCenter(f, true)
 			end
-			local stageProg = (1 - cornerP - progress) / ( 1 - 2 * cornerP)
+			local stageProg = (1 - cornerP - progress) / (1 - 2 * cornerP)
 			inf.tail.Set2(tails[2], stageProg * (inf.tail.size2 - inf.th))
 			inf.tail.Set2(tails[5], stageProg * (inf.tail.size2 - inf.th))
 		elseif progress < 1 then
@@ -1046,7 +1048,7 @@ local function BorderGradient2LinesCenter(f, progress, elapsed)
 				SetGradA(tails[6], "HORIZONTAL", c6x, c1)
 			end
 		else
-			local stageProg = (progress - cornerP)/ (1 - cornerP) / 2
+			local stageProg = (progress - cornerP) / (1 - cornerP) / 2
 			if inf.tail.startPoint == "LEFT" or inf.tail.startPoint == "RIGHT" then
 				local c2x1 = GetHSVTransition(stageProg, c2, c1)
 				local c2x2 = GetHSVTransition(stageProg, c1, c2)
@@ -1202,7 +1204,7 @@ end
 local function BorderSet2LinesCorner(f, update)
 	local inf = f.inf
 	local tails = inf.tail.list
-	if not(update) then
+	if not update then
 		for _, v in pairs(tails) do
 			v:ClearAllPoints()
 		end
@@ -1269,17 +1271,16 @@ local function BorderSet2LinesCorner(f, update)
 		tails[3]:SetHeight(f:GetHeight())
 		tails[4]:SetWidth(f:GetWidth() - inf.th)
 	else
-		if inf.tail.clockwise and (inf.tail.startPoint == "TOPLEFT" or inf.tail.startPoint == "BOTTOMRIGHT") or
-		not(inf.tail.clockwise) and (inf.tail.startPoint == "BOTTOMLEFT" or inf.tail.startPoint == "TOPRIGHT") then
+		if inf.tail.clockwise and (inf.tail.startPoint == "TOPLEFT" or inf.tail.startPoint == "BOTTOMRIGHT") or not inf.tail.clockwise and (inf.tail.startPoint == "BOTTOMLEFT" or inf.tail.startPoint == "TOPRIGHT") then
 			inf.tail.size1 = f:GetWidth()
 			inf.tail.size2 = f:GetHeight()
 		else
 			inf.tail.size1 = f:GetHeight()
 			inf.tail.size2 = f:GetWidth()
 		end
-		inf.tail.Set1(tails[1], inf.tail.size1 - 2*inf.th)
+		inf.tail.Set1(tails[1], inf.tail.size1 - 2 * inf.th)
 		inf.tail.Set2(tails[2], inf.tail.size2)
-		inf.tail.Set1(tails[3], inf.tail.size1 - 2*inf.th)
+		inf.tail.Set1(tails[3], inf.tail.size1 - 2 * inf.th)
 		inf.tail.Set2(tails[4], inf.tail.size2)
 	end
 end
@@ -1294,7 +1295,7 @@ local function BorderUpdate2LinesCorner(f, progress)
 		tails[3]:SetHeight((1 - progress) * inf.height)
 		tails[4]:SetWidth((1 - progress) * (inf.width - inf.th))
 	else
-		local cornerP = inf.tail.size1/(inf.tail.size1 + inf.tail.size2)
+		local cornerP = inf.tail.size1 / (inf.tail.size1 + inf.tail.size2)
 		if progress < cornerP then
 			if oldProgress > cornerP or oldProgress <= 0 then
 				for _, v in pairs(tails) do
@@ -1303,8 +1304,8 @@ local function BorderUpdate2LinesCorner(f, progress)
 				BorderSet2LinesCorner(f, true)
 			end
 			local stageProg = 1 - progress / cornerP
-			inf.tail.Set1(tails[1], stageProg * (inf.tail.size1 - 2*inf.th))
-			inf.tail.Set1(tails[3], stageProg * (inf.tail.size1 - 2*inf.th))
+			inf.tail.Set1(tails[1], stageProg * (inf.tail.size1 - 2 * inf.th))
+			inf.tail.Set1(tails[3], stageProg * (inf.tail.size1 - 2 * inf.th))
 		else
 			if oldProgress >= 0.99 or oldProgress < cornerP then
 				tails[1]:Hide()
@@ -1349,7 +1350,7 @@ local function BorderGradient2LinesCorner(f, progress, elapsed)
 			SetGradA(tails[4], "HORIZONTAL", c4x, c4)
 		end
 	else
-		local cornerP = inf.tail.size1/(inf.tail.size1 + inf.tail.size2)
+		local cornerP = inf.tail.size1 / (inf.tail.size1 + inf.tail.size2)
 		if inf.tail.clockwise then
 			if progress < cornerP then
 				local stageProg = progress / cornerP
@@ -1429,7 +1430,7 @@ end
 local function BorderSet1LineCenter(f, update)
 	local inf = f.inf
 	local tails = inf.tail.list
-	if not(update) then
+	if not update then
 		for _, v in pairs(tails) do
 			v:ClearAllPoints()
 		end
@@ -1553,17 +1554,17 @@ local function BorderSet1LineCenter(f, update)
 	end
 
 	if inf.tail.mirror then
-		inf.tail.Set1(tails[1], inf.tail.size1/2 - inf.th)
+		inf.tail.Set1(tails[1], inf.tail.size1 / 2 - inf.th)
 		inf.tail.Set2(tails[2], inf.tail.size2 - inf.th)
 		inf.tail.Set1(tails[3], inf.tail.size1)
 		inf.tail.Set2(tails[4], inf.tail.size2 - inf.th)
-		inf.tail.Set1(tails[5], inf.tail.size1/2 - inf.th)
+		inf.tail.Set1(tails[5], inf.tail.size1 / 2 - inf.th)
 	else
-		inf.tail.Set1(tails[1], inf.tail.size1/2 - inf.th)
+		inf.tail.Set1(tails[1], inf.tail.size1 / 2 - inf.th)
 		inf.tail.Set2(tails[2], inf.tail.size2 - inf.th)
 		inf.tail.Set1(tails[3], inf.tail.size1 - inf.th)
 		inf.tail.Set2(tails[4], inf.tail.size2 - inf.th)
-		inf.tail.Set1(tails[5], inf.tail.size1/2)
+		inf.tail.Set1(tails[5], inf.tail.size1 / 2)
 	end
 end
 
@@ -1579,7 +1580,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				for _, v in pairs(tails) do
 					v:Show()
 				end
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = 1 - progress / cornerP
 			inf.tail.Set1(tails[1], stageProg * (inf.tail.size1 / 2 - inf.th))
@@ -1591,7 +1592,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				tails[3]:Show()
 				tails[4]:Show()
 				tails[5]:Hide()
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = (1 - progress - cornerP) / (1 - cornerP * 2)
 			inf.tail.Set2(tails[2], stageProg * (inf.tail.size2 - inf.th))
@@ -1603,7 +1604,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				tails[3]:Show()
 				tails[4]:Hide()
 				tails[5]:Hide()
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = (1 - progress) / cornerP
 			inf.tail.Set1(tails[3], stageProg * inf.tail.size1)
@@ -1615,7 +1616,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				for _, v in pairs(tails) do
 					v:Show()
 				end
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = 1 - progress / cornerP
 			inf.tail.Set1(tails[1], stageProg * (inf.tail.size1 / 2 - inf.th))
@@ -1626,7 +1627,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				tails[3]:Show()
 				tails[4]:Show()
 				tails[5]:Show()
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = (0.5 - cornerP - progress) / (0.5 - cornerP * 2)
 			inf.tail.Set2(tails[2], stageProg * (inf.tail.size2 - inf.th))
@@ -1637,7 +1638,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				tails[3]:Show()
 				tails[4]:Show()
 				tails[5]:Show()
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = (0.5 + cornerP - progress) / cornerP / 2
 			inf.tail.Set1(tails[3], stageProg * (inf.tail.size1 - inf.th))
@@ -1648,7 +1649,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				tails[3]:Hide()
 				tails[4]:Show()
 				tails[5]:Show()
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = (1 - cornerP - progress) / (0.5 - cornerP * 2)
 			inf.tail.Set2(tails[4], stageProg * (inf.tail.size2 - inf.th))
@@ -1659,7 +1660,7 @@ local function BorderUpdate1LineCenter(f, progress)
 				tails[3]:Hide()
 				tails[4]:Hide()
 				tails[5]:Show()
-				BorderSet1LineCenter (f, true)
+				BorderSet1LineCenter(f, true)
 			end
 			local stageProg = (1 - progress) / cornerP
 			inf.tail.Set1(tails[5], stageProg * (inf.tail.size1 / 2))
@@ -2060,7 +2061,7 @@ end
 local function BorderSet1LineCorner(f, update)
 	local inf = f.inf
 	local tails = inf.tail.list
-	if not(update) then
+	if not update then
 		for _, v in pairs(tails) do
 			v:ClearAllPoints()
 		end
@@ -2118,7 +2119,7 @@ local function BorderSet1LineCorner(f, update)
 					inf.tail.Set2 = f.SetHeight
 					tails[1]:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", inf.th, 0)
 					tails[2]:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -inf.th)
-					tails[3]:SetPoint("TOPRIGHT", f, "TOPRIGHT", -inf.th, 0 )
+					tails[3]:SetPoint("TOPRIGHT", f, "TOPRIGHT", -inf.th, 0)
 					tails[4]:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT")
 				end
 			else
@@ -2165,8 +2166,7 @@ local function BorderSet1LineCorner(f, update)
 		tails[3]:SetHeight(f:GetHeight() - 2 * inf.th)
 		tails[4]:SetWidth(f:GetWidth())
 	else
-		if inf.tail.clockwise and (inf.tail.startPoint == "TOPLEFT" or inf.tail.startPoint == "BOTTOMRIGHT")
-			or not(inf.tail.clockwise) and (inf.tail.startPoint == "TOPRIGHT" or inf.tail.startPoint == "BOTTOMLEFT")then
+		if inf.tail.clockwise and (inf.tail.startPoint == "TOPLEFT" or inf.tail.startPoint == "BOTTOMRIGHT") or not inf.tail.clockwise and (inf.tail.startPoint == "TOPRIGHT" or inf.tail.startPoint == "BOTTOMLEFT") then
 			inf.tail.size1 = f:GetWidth()
 			inf.tail.size2 = f:GetHeight()
 		else
@@ -2215,7 +2215,7 @@ local function BorderUpdate1LineCorner(f, progress)
 				updt = true
 			else
 				local stageProg = 1 - progress / (1 - cornerP)
-				tails[3]:SetHeight(stageProg * (inf.height - 2*inf.th))
+				tails[3]:SetHeight(stageProg * (inf.height - 2 * inf.th))
 			end
 		else
 			if oldProgress >= 0.99 or oldProgress < (1 - cornerP) then
@@ -2224,7 +2224,7 @@ local function BorderUpdate1LineCorner(f, progress)
 				updt = true
 			else
 				local stageProg = (1 - progress) / cornerP
-				tails[4]:SetWidth(stageProg * (inf.width))
+				tails[4]:SetWidth(stageProg * inf.width)
 			end
 		end
 
@@ -2239,10 +2239,10 @@ local function BorderUpdate1LineCorner(f, progress)
 			end
 			if progress < (1 - cornerP) then
 				local stageProg = 1 - progress / (1 - cornerP)
-				tails[3]:SetHeight(stageProg * (inf.height - 2*inf.th))
+				tails[3]:SetHeight(stageProg * (inf.height - 2 * inf.th))
 			else
 				local stageProg = (1 - progress) / cornerP
-				tails[4]:SetWidth(stageProg * (inf.width))
+				tails[4]:SetWidth(stageProg * inf.width)
 			end
 		end
 	else
@@ -2252,17 +2252,17 @@ local function BorderUpdate1LineCorner(f, progress)
 				for _, v in pairs(tails) do
 					v:Show()
 				end
-				BorderSet1LineCorner (f, true)
+				BorderSet1LineCorner(f, true)
 			end
 			local stageProg = 1 - progress / cornerP
-			inf.tail.Set1(tails[1], stageProg * (inf.tail.size1 - 2*inf.th))
+			inf.tail.Set1(tails[1], stageProg * (inf.tail.size1 - 2 * inf.th))
 		elseif progress < 0.5 then
 			if oldProgress > 0.5 or oldProgress <= cornerP then
 				tails[1]:Hide()
 				tails[2]:Show()
 				tails[3]:Show()
 				tails[4]:Show()
-				BorderSet1LineCorner (f, true)
+				BorderSet1LineCorner(f, true)
 			end
 			local stageProg = (0.5 - progress) / (0.5 - cornerP)
 			inf.tail.Set2(tails[2], stageProg * (inf.tail.size2 - inf.th))
@@ -2272,7 +2272,7 @@ local function BorderUpdate1LineCorner(f, progress)
 				tails[2]:Hide()
 				tails[3]:Show()
 				tails[4]:Show()
-				BorderSet1LineCorner (f, true)
+				BorderSet1LineCorner(f, true)
 			end
 			local stageProg = (0.5 + cornerP - progress) / cornerP
 			inf.tail.Set1(tails[3], stageProg * (inf.tail.size1 - inf.th))
@@ -2282,9 +2282,9 @@ local function BorderUpdate1LineCorner(f, progress)
 				tails[2]:Hide()
 				tails[3]:Hide()
 				tails[4]:Show()
-				BorderSet1LineCorner (f, true)
+				BorderSet1LineCorner(f, true)
 			end
-			local stageProg = (1 - progress ) / (0.5 - cornerP)
+			local stageProg = (1 - progress) / (0.5 - cornerP)
 			inf.tail.Set2(tails[4], stageProg * inf.tail.size2)
 		end
 	end
@@ -2297,7 +2297,7 @@ local function BorderGradient1LineCorner(f, progress, elapsed)
 	local c1, c2, c3, c4 = BorderGradientCorners(inf, elapsed)
 
 	if inf.tail.mirror then
-		local cornerP = inf.width/(inf.width + inf.height)
+		local cornerP = inf.width / (inf.width + inf.height)
 		if progress < cornerP then
 			local stageProg = progress / cornerP
 			if inf.tail.startPoint == "TOPLEFT" then
@@ -2552,41 +2552,41 @@ local borderF = {
 			Set = BorderSet1LineCorner,
 			Update = BorderUpdate1LineCorner,
 			Gradient = BorderGradient1LineCorner,
-			tailN = 4
+			tailN = 4,
 		},
 		[2] = {
 			Set = BorderSet2LinesCorner,
 			Update = BorderUpdate2LinesCorner,
 			Gradient = BorderGradient2LinesCorner,
-			tailN = 4
+			tailN = 4,
 		},
 		[4] = {
 			Set = BorderSet4LinesCorner,
 			Update = BorderUpdate4LinesCorner,
 			Gradient = BorderGradient4LinesCorner,
-			tailN = 8
-		}
+			tailN = 8,
+		},
 	},
 	TOP = {
 		[1] = {
 			Set = BorderSet1LineCenter,
 			Update = BorderUpdate1LineCenter,
 			Gradient = BorderGradient1LineCenter,
-			tailN = 5
+			tailN = 5,
 		},
 		[2] = {
 			Set = BorderSet2LinesCenter,
 			Update = BorderUpdate2LinesCenter,
 			Gradient = BorderGradient2LinesCenter,
-			tailN = 6
+			tailN = 6,
 		},
 		[4] = {
 			Set = BorderSet4LinesCenter,
 			Update = BorderUpdate4LinesCenter,
 			Gradient = BorderGradient4LinesCenter,
-			tailN = 8
-		}
-	}
+			tailN = 8,
+		},
+	},
 }
 borderF["TOPRIGHT"] = borderF["TOPLEFT"]
 borderF["BOTTOMRIGHT"] = borderF["TOPLEFT"]
@@ -2636,7 +2636,7 @@ end
 ---- Flash Internal Functions ----
 local function FlashSetSplit(f, secondStage)
 	local inf = f.inf
-	for _,tex in pairs(inf.flash.list) do
+	for _, tex in pairs(inf.flash.list) do
 		tex:ClearAllPoints()
 	end
 
@@ -2666,9 +2666,9 @@ local function FlashSetSplit(f, secondStage)
 		end
 	elseif inf.flash.startPoint == "TOPLEFT" or inf.flash.startPoint == "BOTTOMRIGHT" then
 		inf.flash.Set1 = f.SetHeight
-		inf.flash.size1 = (f:GetHeight() + f:GetWidth())/2 * sqrt(2)
-		inf.flash.list[1]:SetWidth((f:GetHeight() + f:GetWidth())/2 * sqrt(2))
-		inf.flash.list[2]:SetWidth((f:GetHeight() + f:GetWidth())/2 * sqrt(2))
+		inf.flash.size1 = (f:GetHeight() + f:GetWidth()) / 2 * sqrt(2)
+		inf.flash.list[1]:SetWidth((f:GetHeight() + f:GetWidth()) / 2 * sqrt(2))
+		inf.flash.list[2]:SetWidth((f:GetHeight() + f:GetWidth()) / 2 * sqrt(2))
 		if secondStage then
 			inf.flash.list[1]:SetPoint("BOTTOM", f, "CENTER")
 			inf.flash.list[2]:SetPoint("TOP", f, "CENTER")
@@ -2682,9 +2682,9 @@ local function FlashSetSplit(f, secondStage)
 		end
 	else
 		inf.flash.Set1 = f.SetHeight
-		inf.flash.size1 = (f:GetHeight() + f:GetWidth())/2 * sqrt(2)
-		inf.flash.list[1]:SetWidth((f:GetHeight() + f:GetWidth())/2 * sqrt(2))
-		inf.flash.list[2]:SetWidth((f:GetHeight() + f:GetWidth())/2 * sqrt(2))
+		inf.flash.size1 = (f:GetHeight() + f:GetWidth()) / 2 * sqrt(2)
+		inf.flash.list[1]:SetWidth((f:GetHeight() + f:GetWidth()) / 2 * sqrt(2))
+		inf.flash.list[2]:SetWidth((f:GetHeight() + f:GetWidth()) / 2 * sqrt(2))
 		if secondStage then
 			inf.flash.list[1]:SetPoint("BOTTOM", f, "CENTER")
 			inf.flash.list[2]:SetPoint("TOP", f, "CENTER")
@@ -2713,15 +2713,15 @@ local function FlashUpdateSplit(f, progress)
 			FlashSetSplit(f, true)
 		end
 		local stageProg = 1 - progress
-		inf.flash.Set1(inf.flash.list[1], (inf.flash.size1) * stageProg)
-		inf.flash.Set1(inf.flash.list[2], (inf.flash.size1) * stageProg)
+		inf.flash.Set1(inf.flash.list[1], inf.flash.size1 * stageProg)
+		inf.flash.Set1(inf.flash.list[2], inf.flash.size1 * stageProg)
 	end
 	inf.flash.old = oldProgress
 end
 
 local function FlashSetShutter(f)
 	local inf = f.inf
-	for _,tex in pairs(inf.flash.list) do
+	for _, tex in pairs(inf.flash.list) do
 		tex:ClearAllPoints()
 	end
 
@@ -2764,7 +2764,7 @@ local function FlashSetShutter(f)
 		inf.flash.list[1]:SetPoint("TOP", f, "TOPLEFT")
 		inf.flash.list[3]:SetPoint("BOTTOM", f, "BOTTOMRIGHT")
 		inf.flash.list[1]:SetHeight(inf.flash.size1 / 3)
-		inf.flash.list[2]:SetHeight(inf.flash.size1 / 3+ 0.1)
+		inf.flash.list[2]:SetHeight(inf.flash.size1 / 3 + 0.1)
 		inf.flash.list[3]:SetHeight(inf.flash.size1 / 3)
 		SetTextureRotation(inf.flash.list[1], 0.785, 0.5, 1)
 		SetTextureRotation(inf.flash.list[2], 0.785, 0.5, 0.5)
@@ -2775,7 +2775,7 @@ local function FlashSetShutter(f)
 		inf.flash.list[1]:SetPoint("TOP", f, "TOPRIGHT")
 		inf.flash.list[3]:SetPoint("BOTTOM", f, "BOTTOMLEFT")
 		inf.flash.list[1]:SetHeight(inf.flash.size1 / 3)
-		inf.flash.list[2]:SetHeight(inf.flash.size1 / 3+ 0.1)
+		inf.flash.list[2]:SetHeight(inf.flash.size1 / 3 + 0.1)
 		inf.flash.list[3]:SetHeight(inf.flash.size1 / 3)
 		SetTextureRotation(inf.flash.list[1], -0.785, 0.5, 1)
 		SetTextureRotation(inf.flash.list[2], -0.785, 0.5, 0.5)
@@ -2786,7 +2786,7 @@ local function FlashSetShutter(f)
 		inf.flash.list[1]:SetPoint("BOTTOM", f, "BOTTOMRIGHT")
 		inf.flash.list[3]:SetPoint("TOP", f, "TOPLEFT")
 		inf.flash.list[1]:SetHeight(inf.flash.size1 / 3)
-		inf.flash.list[2]:SetHeight(inf.flash.size1 / 3+ 0.1)
+		inf.flash.list[2]:SetHeight(inf.flash.size1 / 3 + 0.1)
 		inf.flash.list[3]:SetHeight(inf.flash.size1 / 3)
 		SetTextureRotation(inf.flash.list[1], 0.785, 0.5, 0)
 		SetTextureRotation(inf.flash.list[2], 0.785, 0.5, 0.5)
@@ -2822,7 +2822,7 @@ local function FlashUpdateShutter(f, progress)
 			inf.flash.list[3]:Hide()
 			inf.flash.Set1(inf.flash.list[1], inf.flash.size1)
 		end
-		inf.flash.Set1(inf.flash.list[2], (inf.flash.size1) * (progress - 0.167) * 6)
+		inf.flash.Set1(inf.flash.list[2], inf.flash.size1 * (progress - 0.167) * 6)
 	elseif progress < 0.5 then
 		if oldProgress < 0.333 or oldProgress >= 0.5 then
 			inf.flash.list[1]:Show()
@@ -2831,7 +2831,7 @@ local function FlashUpdateShutter(f, progress)
 			inf.flash.Set1(inf.flash.list[1], inf.flash.size1)
 			inf.flash.Set1(inf.flash.list[2], inf.flash.size1)
 		end
-		inf.flash.Set1(inf.flash.list[3], (inf.flash.size1) * (progress - 0.333) * 6)
+		inf.flash.Set1(inf.flash.list[3], inf.flash.size1 * (progress - 0.333) * 6)
 	elseif progress < 0.667 then
 		if oldProgress < 0.5 or oldProgress >= 0.667 then
 			inf.flash.list[1]:Show()
@@ -2840,7 +2840,7 @@ local function FlashUpdateShutter(f, progress)
 			inf.flash.Set1(inf.flash.list[2], inf.flash.size1)
 			inf.flash.Set1(inf.flash.list[3], inf.flash.size1)
 		end
-		inf.flash.Set1(inf.flash.list[1], (inf.flash.size1) * (1 - (progress - 0.5) * 6))
+		inf.flash.Set1(inf.flash.list[1], inf.flash.size1 * (1 - (progress - 0.5) * 6))
 	elseif progress < 0.833 then
 		if oldProgress < 0.667 or oldProgress >= 0.833 then
 			inf.flash.list[1]:Hide()
@@ -2848,51 +2848,47 @@ local function FlashUpdateShutter(f, progress)
 			inf.flash.list[3]:Show()
 			inf.flash.Set1(inf.flash.list[3], inf.flash.size1)
 		end
-		inf.flash.Set1(inf.flash.list[2], (inf.flash.size1) * (1 - (progress - 0.667) * 6))
+		inf.flash.Set1(inf.flash.list[2], inf.flash.size1 * (1 - (progress - 0.667) * 6))
 	else
 		if oldProgress < 0.833 or oldProgress >= 0.99 then
 			inf.flash.list[1]:Hide()
 			inf.flash.list[2]:Hide()
 			inf.flash.list[3]:Show()
 		end
-		inf.flash.Set1(inf.flash.list[3], (inf.flash.size1) * (1 - progress) * 6)
+		inf.flash.Set1(inf.flash.list[3], inf.flash.size1 * (1 - progress) * 6)
 	end
 	inf.flash.old = oldProgress
 end
 
-local function FlashSetSlide(_)
-end
+local function FlashSetSlide(_) end
 
-local function FlashUpdateSlide(_, _)
-end
+local function FlashUpdateSlide(_, _) end
 
-local function FlashSetSquare(_)
-end
+local function FlashSetSquare(_) end
 
-local function FlashUpdateSquare(_, _)
-end
+local function FlashUpdateSquare(_, _) end
 
 local flashF = {
 	split = {
 		Update = FlashUpdateSplit,
 		Set = FlashSetSplit,
-		flashN = 2
-		},
+		flashN = 2,
+	},
 	shutter = {
 		Update = FlashUpdateShutter,
 		Set = FlashSetShutter,
-		flashN = 3
-		},
+		flashN = 3,
+	},
 	square = {
 		Update = FlashUpdateSquare,
 		Set = FlashSetSquare,
-		flashN = 4
+		flashN = 4,
 	},
 	slide = {
 		Update = FlashUpdateSlide,
 		Set = FlashSetSlide,
-		flashN = 0
-	}
+		flashN = 0,
+	},
 }
 
 ---- Bling ----
@@ -2909,7 +2905,7 @@ local function BlingUpdate(self, elapsed)
 		old = self.timer
 	end
 
-	local width,height = self:GetSize()
+	local width, height = self:GetSize()
 	if self.inf.width ~= width or self.inf.height ~= height then
 		if inf.noTails then
 			inf.FlashSet(self, new > 0.5)
@@ -2938,7 +2934,7 @@ local function BlingUpdate(self, elapsed)
 			if inf.midCallback then
 				inf.midCallback()
 			end
-			for _,v in pairs(inf.tail.list) do
+			for _, v in pairs(inf.tail.list) do
 				v:Hide()
 			end
 		end
@@ -2962,7 +2958,7 @@ local function BlingUpdate(self, elapsed)
 				end
 			end
 			if old <= 0.33 or self.timer >= 1 then
-				for _,v in pairs(inf.tail.list) do
+				for _, v in pairs(inf.tail.list) do
 					v:Show()
 				end
 				inf.BorderSet(self)
@@ -2973,12 +2969,14 @@ local function BlingUpdate(self, elapsed)
 					inf.BorderGradient(self, (new - 0.66) / 0.34, elapsed)
 				end
 			elseif inf.gradient then
-					inf.BorderGradient(self, 0, elapsed)
+				inf.BorderGradient(self, 0, elapsed)
 			end
 		end
 	end
 	if progress > 1 or progress < 0 then
-		if inf.endCallback then inf.endCallback() end
+		if inf.endCallback then
+			inf.endCallback()
+		end
 		if self.SetClipsChildren then
 			self:SetClipsChildren(false)
 		end
@@ -2992,25 +2990,25 @@ local blingTemplates = {
 	default = {
 		flash = "split",
 		startPoint = "TOPLEFT",
-		color = {0.95, 0.95, 0.95, 0.85},
-		gradient = {{1, .75, .75, 1}, {.75, 1, .75, 1}, {.75, .75, 1, 1}},
+		color = { 0.95, 0.95, 0.95, 0.85 },
+		gradient = { { 1, 0.75, 0.75, 1 }, { 0.75, 1, 0.75, 1 }, { 0.75, 0.75, 1, 1 } },
 		gradientFrequency = 0.7,
 		noTails = false,
 		sine = true,
 		tails = {
 			th = 2,
 			N = 1,
-			color = {0.95, 0.95, 0.95, 0.85},
+			color = { 0.95, 0.95, 0.95, 0.85 },
 			startPoint = "BOTTOMLEFT",
 			clockwise = true,
-			mirror = true
+			mirror = true,
 		},
 		reverse = false,
 		duration = 0.65,
 		xOffset = 0,
 		yOffset = 0,
-		frameLevel = 8
-	}
+		frameLevel = 8,
+	},
 }
 
 function lib.Bling(r, options)
@@ -3028,7 +3026,7 @@ function lib.Bling(r, options)
 	local flashN = flashF[options.flash].flashN
 
 	addFrameAndTex(r,options.color,"_Bling",options.key,tailN + flashN,options.xOffset,options.yOffset,textureList.white,{0,1,0,1},nil,options.frameLevel)
-	local f = r["_Bling"..(options.key or "")]
+	local f = r["_Bling" .. (options.key or "")]
 
 	f.timer = options.reverse and 1 or 0.001
 
@@ -3048,15 +3046,15 @@ function lib.Bling(r, options)
 		BorderUpdate = BorderUpdate,
 		BorderGradient = BorderGradient,
 		FlashUpdate = FlashUpdate,
-		FlashSet = FlashSet
+		FlashSet = FlashSet,
 	}
 
 	f.inf.flash = {
 		startPoint = options.startPoint,
 		list = {},
-		old = options.reverse and 1 or 0
-		}
-	for i = 1,flashN do
+		old = options.reverse and 1 or 0,
+	}
+	for i = 1, flashN do
 		f.inf.flash.list[i] = f.textures[i]
 	end
 
@@ -3065,8 +3063,8 @@ function lib.Bling(r, options)
 		startPoint = options.tails.startPoint,
 		mirror = options.tails.mirror,
 		old = options.reverse and 1 or 0,
-		clockwise = options.tails.clockwise
-		}
+		clockwise = options.tails.clockwise,
+	}
 	for i = 1, tailN do
 		f.inf.tail.list[i] = f.textures[i + flashN]
 	end
@@ -3078,7 +3076,7 @@ function lib.Bling(r, options)
 	end
 
 	FlashSet(f, options.reverse)
-	BlingUpdate(f, .001)
+	BlingUpdate(f, 0.001)
 
 	if f.SetClipsChildren then
 		f:SetClipsChildren(true)
@@ -3102,8 +3100,8 @@ local BlingParamters = {
 				["split"] = "split",
 				["shutter"] = "shutter",
 				["square"] = "square",
-				["slide"] = "slide"
-			}
+				["slide"] = "slide",
+			},
 		},
 		startPoint = {
 			name = "Start point",
@@ -3117,29 +3115,31 @@ local BlingParamters = {
 				["BOTTOMRIGHT"] = "BOTTOMRIGHT",
 				["BOTTOM"] = "BOTTOM",
 				["BOTTOMLEFT"] = "BOTTOMLEFT",
-				["LEFT"] = "LEFT"
-			}
+				["LEFT"] = "LEFT",
+			},
 		},
 		color = {
 			name = "Color",
 			desc = "Color of flash",
-			type = "color"
+			type = "color",
 		},
 		gradient = {
 			name = "Gradient",
 			desc = "Gradient of tail lines",
-			type = "gradient"
+			type = "gradient",
 		},
 		gradientFrequency = {
 			name = "Gradient frequency",
 			desc = "Frequency of gradient rotation",
 			type = "range",
-			softMin = -2, softMax = 2, step = 0.05
+			softMin = -2,
+			softMax = 2,
+			step = 0.05,
 		},
 		noTails = {
 			name = "Disable tail lines",
 			desc = "Bling will not show lines, only flash",
-			type = "toggle"
+			type = "toggle",
 		},
 		sine = {
 			name = "Sine",
@@ -3157,7 +3157,7 @@ local BlingParamters = {
 					type = "range",
 					min = 1,
 					softMax = 5,
-					step = 1
+					step = 1,
 				},
 				N = {
 					name = "Tail N",
@@ -3166,13 +3166,13 @@ local BlingParamters = {
 					values = {
 						["1"] = 1,
 						["2"] = 2,
-						["4"] = 4
-					}
+						["4"] = 4,
+					},
 				},
 				color = {
 					name = "Tail color",
 					desc = "Color of tail lines",
-					type = "color"
+					type = "color",
 				},
 				startPoint = {
 					name = "Tail start point",
@@ -3186,48 +3186,58 @@ local BlingParamters = {
 						["BOTTOMRIGHT"] = "BOTTOMRIGHT",
 						["BOTTOM"] = "BOTTOM",
 						["BOTTOMLEFT"] = "BOTTOMLEFT",
-						["LEFT"] = "LEFT"
-					}
+						["LEFT"] = "LEFT",
+					},
 				},
 				clockwise = {
 					name = "Clockwise",
 					desc = "Direction of tail progress if not mirrored",
-					type = "toggle"
+					type = "toggle",
 				},
 				mirror = {
 					name = "Mirror",
 					desc = "Mirror tail line progress",
-					type = "toggle"
-				}
-			}
+					type = "toggle",
+				},
+			},
 		},
 		reverse = {
 			name = "Reverse",
 			desc = "Reverses Bling progress",
-			type = "toggle"
+			type = "toggle",
 		},
 		duration = {
 			name = "Duration",
 			desc = "Bling duration in seconds",
 			type = "range",
-			min = 0.05, softMax = 1, step = 0.05
+			min = 0.05,
+			softMax = 1,
+			step = 0.05,
 		},
 		xOffset = {
 			name = "X offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		yOffset = {
 			name = "Y offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		frameLevel = {
 			name = "Frame level",
 			type = "range",
-			softMin = 1, softMax = 20, min = 0, max = 10000, step = 1
-		}
-	}
+			softMin = 1,
+			softMax = 20,
+			min = 0,
+			max = 10000,
+			step = 1,
+		},
+	},
 }
 GlowList["Bling"] = BlingParamters
 
@@ -3249,7 +3259,7 @@ local function BorderPulseUpdate(self, elapsed)
 		self.inf.annoyProg = annoyProg
 	end
 
-	local width,height = self:GetSize()
+	local width, height = self:GetSize()
 
 	if self.inf.width ~= width or self.inf.height ~= height then
 		self.inf.BorderSet(self, true)
@@ -3259,7 +3269,7 @@ local function BorderPulseUpdate(self, elapsed)
 	if progress < 0 or progress > 1 then
 		self.inf.tail.old = progress
 		self.inf.sign = -self.inf.sign
-		progress = 1 - progress%1
+		progress = 1 - progress % 1
 
 		if self.inf.tail.mirror then
 			self.inf.tail.startPoint = BorderReverse(self.inf.tail.startPoint, self.inf.N)
@@ -3269,7 +3279,7 @@ local function BorderPulseUpdate(self, elapsed)
 				self.inf.BorderGradient = borderF[self.inf.tail.startPoint][self.inf.N].Gradient
 			end
 		else
-			self.inf.tail.clockwise = not(self.inf.tail.clockwise)
+			self.inf.tail.clockwise = not self.inf.tail.clockwise
 		end
 		self.inf.BorderSet(self)
 	end
@@ -3287,8 +3297,8 @@ local borderPulseTemplates = {
 		N = 1,
 		startPoint = "BOTTOMLEFT",
 		th = 2,
-		color = {0.95, 0.95, 0.95, 0.85},
-		gradient = {{1, .75, .75, 1}, {.75, 1, .75, 1}, {.75, .75, 1, 1}},
+		color = { 0.95, 0.95, 0.95, 0.85 },
+		gradient = { { 1, 0.75, 0.75, 1 }, { 0.75, 1, 0.75, 1 }, { 0.75, 0.75, 1, 1 } },
 		gradientFrequency = 0.7,
 		sine = true,
 		clockwise = true,
@@ -3302,8 +3312,8 @@ local borderPulseTemplates = {
 		frequency = 2,
 		xOffset = 0,
 		yOffset = 0,
-		frameLevel = 8
-	}
+		frameLevel = 8,
+	},
 }
 borderPulseTemplates.default.blingOptions.reverse = true
 borderPulseTemplates.default.blingOptions.noTails = true
@@ -3311,8 +3321,11 @@ borderPulseTemplates.default.blingOptions.sine = false
 borderPulseTemplates.default.blingOptions.duration = 0.5
 
 function lib.BorderPulse_Start(r, options)
-	if not r then return end
-	local template = options and options.template and borderPulseTemplates[options.template] or borderPulseTemplates.default
+	if not r then
+		return
+	end
+	local template = options and options.template and borderPulseTemplates[options.template]
+		or borderPulseTemplates.default
 	options = AcquireOptions(options, template)
 
 	local BorderSet = borderF[options.startPoint][options.N].Set
@@ -3321,7 +3334,7 @@ function lib.BorderPulse_Start(r, options)
 	local tailN = borderF[options.startPoint][options.N].tailN
 
 	local update = addFrameAndTex(r,options.color,"_BorderPulse",options.key,tailN,options.xOffset,options.yOffset,textureList.white,{0,1,0,1},nil,options.frameLevel)
-	local f = r["_BorderPulse"..(options.key or "")]
+	local f = r["_BorderPulse" .. (options.key or "")]
 
 	f.timer = f.timer or 0.001
 
@@ -3341,7 +3354,7 @@ function lib.BorderPulse_Start(r, options)
 		width = f:GetWidth(),
 		height = f:GetHeight(),
 		gProgress = f.inf and f.inf.gProgress or 0,
-		sign = f.inf and f.inf.sign or 1
+		sign = f.inf and f.inf.sign or 1,
 	}
 
 	f.inf.tail = {
@@ -3349,7 +3362,7 @@ function lib.BorderPulse_Start(r, options)
 		list = f.textures,
 		startPoint = options.startPoint,
 		mirror = options.mirror,
-		old = f.inf and f.inf.old or 0
+		old = f.inf and f.inf.old or 0,
 	}
 
 	if f.inf.sign == -1 then
@@ -3361,7 +3374,7 @@ function lib.BorderPulse_Start(r, options)
 				f.inf.BorderGradient = borderF[f.inf.tail.startPoint][f.inf.N].Gradient
 			end
 		else
-			f.inf.tail.clockwise = not(f.inf.tail.clockwise)
+			f.inf.tail.clockwise = not f.inf.tail.clockwise
 		end
 	end
 
@@ -3369,19 +3382,19 @@ function lib.BorderPulse_Start(r, options)
 		local flashOptions = AcquireOptions(options.blingOptions, blingTemplates.default)
 		if not flashOptions.noTails then
 			flashOptions.noTails = true
-			flashOptions.duration = flashOptions.duration * .66
+			flashOptions.duration = flashOptions.duration * 0.66
 		end
 		f.inf.flashOptions = flashOptions
 	end
 
 	f.inf.BorderSet(f)
-	BorderPulseUpdate(f, .001)
+	BorderPulseUpdate(f, 0.001)
 
 	if options.startBling then
-		if not(update) then
+		if not update then
 			f:Hide()
 		end
-		if not(update) then
+		if not update then
 			options.blingOptions.midCallback = function() if f.name and f.name == "_BorderPulse"..(options.key or "") then f:Show() end end
 			options.blingOptions.endCallback = function() if f.name and f.name == "_BorderPulse"..(options.key or "") then f:SetScript("OnUpdate", BorderPulseUpdate) end end
 			lib.Bling(r, options.blingOptions)
@@ -3392,13 +3405,13 @@ function lib.BorderPulse_Start(r, options)
 end
 
 function lib.BorderPulse_Stop(r, key, force)
-	if not r or not r["_BorderPulse"..(key or "")] then
+	if not r or not r["_BorderPulse" .. (key or "")] then
 		return
 	end
 	if force then
-		GlowFramePool:Release(r["_BorderPulse"..(key or "")])
+		GlowFramePool:Release(r["_BorderPulse" .. (key or "")])
 	else
-		r["_BorderPulse"..(key or "")].inf.finish = true
+		r["_BorderPulse" .. (key or "")].inf.finish = true
 	end
 end
 
@@ -3417,8 +3430,8 @@ local BorderPulseParamters = {
 			values = {
 				["1"] = 1,
 				["2"] = 2,
-				["4"] = 4
-			}
+				["4"] = 4,
+			},
 		},
 		startPoint = {
 			name = "Start point",
@@ -3432,30 +3445,34 @@ local BorderPulseParamters = {
 				["BOTTOMRIGHT"] = "BOTTOMRIGHT",
 				["BOTTOM"] = "BOTTOM",
 				["BOTTOMLEFT"] = "BOTTOMLEFT",
-				["LEFT"] = "LEFT"
-			}
+				["LEFT"] = "LEFT",
+			},
 		},
 		th = {
 			name = "Tail thickness",
 			desc = "Thickness of tails",
 			type = "range",
-			min = 1, softMax = 5, step = 1
+			min = 1,
+			softMax = 5,
+			step = 1,
 		},
 		color = {
 			name = "Color",
 			desc = "Color of flash",
-			type = "color"
+			type = "color",
 		},
 		gradient = {
 			name = "Gradient",
 			desc = "Gradient of tail lines",
-			type = "gradient"
+			type = "gradient",
 		},
 		gradientFrequency = {
 			name = "Gradient frequency",
 			desc = "Frequency of gradient rotation",
 			type = "range",
-			softMin = -2, softMax = 2, step = 0.05
+			softMin = -2,
+			softMax = 2,
+			step = 0.05,
 		},
 		sine = {
 			name = "Sine",
@@ -3465,12 +3482,12 @@ local BorderPulseParamters = {
 		clockwise = {
 			name = "Clockwise",
 			desc = "Direction of pulses",
-			type = "toggle"
+			type = "toggle",
 		},
 		mirror = {
 			name = "Mirror",
 			desc = "Mirror tail line progress",
-			type = "toggle"
+			type = "toggle",
 		},
 		startBling = {
 			name = "Start Bling",
@@ -3491,7 +3508,10 @@ local BorderPulseParamters = {
 			name = "Annoy frequency",
 			desc = "Frequency of annoy Bling if eenabled",
 			type = "range",
-			min = 0.05, softMin = 0.25, softMax = 2, step = 0.05
+			min = 0.05,
+			softMin = 0.25,
+			softMax = 2,
+			step = 0.05,
 		},
 		blingOptions = BlingParamters,
 		forceStop = {
@@ -3503,24 +3523,34 @@ local BorderPulseParamters = {
 			name = "Glow frequency",
 			desc = "Frequency of glow pulses",
 			type = "range",
-			softMin = -2, softMax = 2, step = 0.05
+			softMin = -2,
+			softMax = 2,
+			step = 0.05,
 		},
 		xOffset = {
 			name = "X offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		yOffset = {
 			name = "Y offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		frameLevel = {
 			name = "Frame level",
 			type = "range",
-			softMin = 1, softMax = 20, min = 0, max = 10000, step = 1
-		}
-	}
+			softMin = 1,
+			softMax = 20,
+			min = 0,
+			max = 10000,
+			step = 1,
+		},
+	},
 }
 
 GlowList["Border Pulse Glow"] = BorderPulseParamters
@@ -3530,9 +3560,9 @@ local pixelTemplates = {
 	default = {
 		N = 2,
 		th = 2,
-		color = {0.95, 0.95, 0.95, 0.85},
-		gradient = {{1, .75, .75, 1}, {.75, 1, .75, 1}, {.75, .75, 1, 1}},
-		gradientFrequency = .75,
+		color = { 0.95, 0.95, 0.95, 0.85 },
+		gradient = { { 1, 0.75, 0.75, 1 }, { 0.75, 1, 0.75, 1 }, { 0.75, 0.75, 1, 1 } },
+		gradientFrequency = 0.75,
 		startBling = true,
 		repeatBling = true,
 		annoy = false,
@@ -3543,25 +3573,25 @@ local pixelTemplates = {
 		frequency = -0.55,
 		xOffset = 0,
 		yOffset = 0,
-		frameLevel = 8
-	}
+		frameLevel = 8,
+	},
 }
 
 local function PixelUpdateInfo(f)
 	local width, height = f:GetSize()
 	if width ~= f.inf.width or height ~= f.inf.height then
 		if (width + height) <= 0 then
-				return false
+			return false
 		end
 		f.inf.length = min(f.inf.defaultLength, width - 2, height - 2)
-		local perimeter = 2*(width + height)
+		local perimeter = 2 * (width + height)
 		local p = f.inf.p or {}
 		p[1] = (width - f.inf.length) / perimeter
 		p[2] = width / perimeter
 		p[3] = (width + height - f.inf.length) / perimeter
 		p[4] = (width + height) / perimeter
-		p[5] = (2*width + height - f.inf.length) / perimeter
-		p[6] = (2*width + height) / perimeter
+		p[5] = (2 * width + height - f.inf.length) / perimeter
+		p[6] = (2 * width + height) / perimeter
 		p[7] = (perimeter - f.inf.length) / perimeter
 		p[8] = 1
 		f.inf.p = p
@@ -3600,8 +3630,8 @@ local function PixelSetLine(f, texN, progress)
 
 	tex:ClearAllPoints()
 	if progress < p[1] then
-		tex: SetWidth(length)
-		tex: SetHeight(th)
+		tex:SetWidth(length)
+		tex:SetHeight(th)
 	elseif progress < p[2] then
 		tex:SetPoint("TOPLEFT", f, "TOPLEFT", 0, 0)
 		tex:SetHeight(th)
@@ -3627,21 +3657,21 @@ local function PixelSetLine(f, texN, progress)
 end
 
 local function PixelUpdateLine(f, texN, addVisible, oldProgress, progress)
-local tex = f.textures[texN]
-local p = f.inf.p
-local width = f.inf.width
-local height = f.inf.height
-local length = f.inf.length
-local th = f.inf.th
+	local tex = f.textures[texN]
+	local p = f.inf.p
+	local width = f.inf.width
+	local height = f.inf.height
+	local length = f.inf.length
+	local th = f.inf.th
 	if progress < p[1] then
 		if oldProgress > p[1] then
-			tex: ClearAllPoints()
-			tex: SetWidth(length)
-			tex: SetHeight(th)
+			tex:ClearAllPoints()
+			tex:SetWidth(length)
+			tex:SetHeight(th)
 		end
 		tex:SetPoint("TOPRIGHT", f, "TOPRIGHT", -progress / p[1] * (width - length), 0)
 	elseif progress < p[2] then
-		if oldProgress > p[2] or oldProgress < p[2] then
+		if oldProgress >= p[2] or oldProgress < p[1] then
 			tex:ClearAllPoints()
 			tex:SetPoint("TOPLEFT", f, "TOPLEFT", 0, 0)
 			tex:SetHeight(th)
@@ -3656,9 +3686,9 @@ local th = f.inf.th
 			tex:SetWidth(th)
 			tex:SetHeight(length)
 		end
-		tex:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -(progress - p[2]) / (p[3] - p[2])*(height - length))
+		tex:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -(progress - p[2]) / (p[3] - p[2]) * (height - length))
 	elseif progress < p[4] then
-		if oldProgress > p[4] or oldProgress > p[3] then
+		if oldProgress >= p[4] or oldProgress < p[3] then
 			tex:ClearAllPoints()
 			tex:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 0, 0)
 			tex:SetWidth(th)
@@ -3675,7 +3705,7 @@ local th = f.inf.th
 		end
 		tex:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", (progress - p[4]) / (p[5] - p[4]) * (width - length), 0)
 	elseif progress < p[6] then
-		if oldProgress > p[6] or oldProgress < p[7] then
+		if oldProgress >= p[6] or oldProgress < p[5] then
 			tex:ClearAllPoints()
 			tex:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 0, 0)
 			tex:SetHeight(th)
@@ -3710,29 +3740,29 @@ local function PixelGradientLine(f, texN, progress, c1, c2)
 	if progress < p[1] then
 		SetGradA(tex, "HORIZONTAL", c2, c1)
 	elseif progress < p[2] then
-		local stageProg = (progress - p[1])/(p[2] - p[1])
-		local c12 = GetHSVTransition ((1-stageProg), c1, c2)
+		local stageProg = (progress - p[1]) / (p[2] - p[1])
+		local c12 = GetHSVTransition((1 - stageProg), c1, c2)
 		SetGradA(tex, "HORIZONTAL", c12, c1)
 		SetGradA(f.inf.add[1], "VERTICAL", c2, c12)
 	elseif progress < p[3] then
 		SetGradA(tex, "VERTICAL", c2, c1)
 	elseif progress < p[4] then
-		local stageProg = (progress - p[3])/(p[4] - p[3])
-		local c12 = GetHSVTransition ((1-stageProg), c1, c2)
+		local stageProg = (progress - p[3]) / (p[4] - p[3])
+		local c12 = GetHSVTransition((1 - stageProg), c1, c2)
 		SetGradA(tex, "VERTICAL", c12, c1)
 		SetGradA(f.inf.add[2], "HORIZONTAL", c12, c2)
 	elseif progress < p[5] then
 		SetGradA(tex, "HORIZONTAL", c1, c2)
 	elseif progress < p[6] then
-		local stageProg = (progress - p[5])/(p[6] - p[5])
-		local c12 = GetHSVTransition ((1-stageProg), c1, c2)
+		local stageProg = (progress - p[5]) / (p[6] - p[5])
+		local c12 = GetHSVTransition((1 - stageProg), c1, c2)
 		SetGradA(tex, "HORIZONTAL", c1, c12)
 		SetGradA(f.inf.add[3], "VERTICAL", c12, c2)
 	elseif progress < p[7] then
 		SetGradA(tex, "VERTICAL", c1, c2)
 	else
-		local stageProg = (progress - p[7])/(1 - p[7])
-		local c12 = GetHSVTransition ((1 - stageProg), c1, c2)
+		local stageProg = (progress - p[7]) / (1 - p[7])
+		local c12 = GetHSVTransition((1 - stageProg), c1, c2)
 		SetGradA(tex, "VERTICAL", c1, c12)
 		SetGradA(f.inf.add[4], "HORIZONTAL", c2, c12)
 	end
@@ -3742,7 +3772,7 @@ local function PixelUpdate(self, elapsed)
 	local oldProgress = self.timer
 	local inf = self.inf
 	self.timer = self.timer + elapsed * inf.frequency
-	self.timer = self.timer%1
+	self.timer = self.timer % 1
 
 	if inf.finish then
 		inf.fading = inf.fading or 0
@@ -3766,33 +3796,43 @@ local function PixelUpdate(self, elapsed)
 	end
 
 	local nonZero, change = PixelUpdateInfo(self)
-	if not(nonZero) then return end
+	if not nonZero then
+		return
+	end
 
 	local addVisible = inf.addVisible
 	local prev1, prev2, prev3, prev4 = addVisible[1], addVisible[2], addVisible[3], addVisible[4]
 	addVisible[1], addVisible[2], addVisible[3], addVisible[4] = nil, nil, nil, nil
 	local g = inf.gradient
+	local N = inf.N
+	local timer = self.timer
 
 	if g then
 		local gN = #g
-		inf.gradientPhase = inf.gradientFrequency * elapsed
-		for i = 1, inf.N do
-			local old = (oldProgress + (i-1)/inf.N)%1
-			local new = (self.timer + (i-1)/inf.N)%1
+		local gradientPhase = inf.gradientFrequency * elapsed
+		inf.gradientPhase = gradientPhase
+		local gradientStep = inf.gradientStep
+		for i = 1, N do
+			local offset = (i - 1) / N
+			local old = (oldProgress + offset) % 1
+			local new = (timer + offset) % 1
 			if change then
 				PixelSetLine(self, i, new)
 			end
 			PixelUpdateLine(self, i, addVisible, old, new)
-			local p1 = (new + inf.gradientPhase + 0.001)%1
-			local p2 = (p1 + inf.gradientStep)%1
-			local c1 = GetHSVTransition ((p1 * gN)%1 , g[ceil(p1 * gN)], g[ceil(p1 * gN)%gN + 1])
-			local c2 = GetHSVTransition ((p2 * gN)%1 , g[ceil(p2 * gN)], g[ceil(p2 * gN)%gN + 1])
+			local p1 = (new + gradientPhase + 0.001) % 1
+			local p2 = (p1 + gradientStep) % 1
+			local p1gN, p2gN = p1 * gN, p2 * gN
+			local i1, i2 = ceil(p1gN), ceil(p2gN)
+			local c1 = GetHSVTransition(p1gN % 1, g[i1], g[i1 % gN + 1])
+			local c2 = GetHSVTransition(p2gN % 1, g[i2], g[i2 % gN + 1])
 			PixelGradientLine(self, i, new, c1, c2)
 		end
 	else
-		for i = 1, inf.N do
-			local old = (oldProgress + (i - 1) / inf.N)%1
-			local new = (self.timer + (i - 1) / inf.N)%1
+		for i = 1, N do
+			local offset = (i - 1) / N
+			local old = (oldProgress + offset) % 1
+			local new = (timer + offset) % 1
 			if change then
 				PixelSetLine(self, i, new)
 			end
@@ -3806,11 +3846,12 @@ local function PixelUpdate(self, elapsed)
 end
 
 function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffset, yOffset, border, key, frameLevel)
-	if not r then return end
+	if not r then
+		return
+	end
 
 	local options
-	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA))
-	   or N ~= nil or frequency ~= nil or length ~= nil or th ~= nil or xOffset ~= nil or yOffset ~= nil or border ~= nil or key ~= nil or frameLevel ~= nil then
+	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA)) or N ~= nil or frequency ~= nil or length ~= nil or th ~= nil or xOffset ~= nil or yOffset ~= nil or border ~= nil or key ~= nil or frameLevel ~= nil then
 		options = {
 			color = colorOrOptions,
 			N = N,
@@ -3831,9 +3872,9 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 	options = AcquireOptions(options, template)
 
 	local update = addFrameAndTex(r,options.color,"_PixelGlow",options.key or "" ,options.N + 4,options.xOffset,options.yOffset,textureList.white,{0,1,0,1},nil,options.frameLevel)
-	local f = r["_PixelGlow"..(options.key or "")]
+	local f = r["_PixelGlow" .. (options.key or "")]
 
-	local width,height = f:GetSize()
+	local width, height = f:GetSize()
 
 	options.length = options.length or min(floor((width + height) / options.N * 1.25))
 	local optLength = min(options.length, width - 2, height - 2)
@@ -3851,18 +3892,18 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 		addVisible = {},
 		gradient = options.gradient,
 		gradientFrequency = options.gradientFrequency,
-		gradientStep = optLength/(width + height),
+		gradientStep = optLength / (width + height),
 		forceStop = options.forceStop,
-		fadeDuration = options.fadeDuration
+		fadeDuration = options.fadeDuration,
 	}
 	PixelUpdateInfo(f)
 	for i = 1, options.N do
-		local new = (f.timer + (i - 1) / options.N)%1
-		local old = (new + 0.5)%1
+		local new = (f.timer + (i - 1) / options.N) % 1
+		local old = (new + 0.5) % 1
 		PixelUpdateLine(f, i, f.inf.addVisible, old, new)
 	end
 
-	for i = 1,4 do
+	for i = 1, 4 do
 		f.inf.add[i]:SetShown(f.inf.addVisible[i])
 	end
 
@@ -3870,19 +3911,19 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 		local flashOptions = AcquireOptions(options.blingOptions, blingTemplates.default)
 		if not flashOptions.noTails then
 			flashOptions.noTails = true
-			flashOptions.duration = flashOptions.duration * .66
+			flashOptions.duration = flashOptions.duration * 0.66
 		end
 		f.inf.flashOptions = flashOptions
 	end
 
-	PixelUpdate(f, .001)
+	PixelUpdate(f, 0.001)
 
-	f:SetScript("OnUpdate",PixelUpdate)
+	f:SetScript("OnUpdate", PixelUpdate)
 	if options.startBling then
-		if not(update) then
+		if not update then
 			f:Hide()
 		end
-		if not(update) then
+		if not update then
 			options.blingOptions.gradient = options.gradient
 			options.blingOptions.midCallback = function() if f.name and f.name == "_PixelGlow"..(options.key or "") then f:Show() end end
 			lib.Bling(r, options.blingOptions)
@@ -3894,15 +3935,15 @@ end
 
 function lib.PixelGlow_Stop(r, key, force)
 	key = key or ""
-	if not r or not r["_PixelGlow"..key] then
+	if not r or not r["_PixelGlow" .. key] then
 		return
 	end
 	if force then
-		GlowFramePool:Release(r["_PixelGlow"..key])
-	elseif r["_PixelGlow"..key].inf then
-		r["_PixelGlow"..key].inf.finish = true
+		GlowFramePool:Release(r["_PixelGlow" .. key])
+	elseif r["_PixelGlow" .. key].inf then
+		r["_PixelGlow" .. key].inf.finish = true
 	else
-		GlowFramePool:Release(r["_PixelGlow"..key])
+		GlowFramePool:Release(r["_PixelGlow" .. key])
 	end
 end
 tinsert(lib.glowList, "Pixel Glow")
@@ -3921,29 +3962,35 @@ local PixelGlowParamters = {
 			name = "Number of lines",
 			desc = "Number of lines",
 			type = "range",
-			min = 1, softMax = 14, step = 1
+			min = 1,
+			softMax = 14,
+			step = 1,
 		},
 		th = {
 			name = "Line thickness",
 			desc = "Thickness of lines",
 			type = "range",
-			min = 1, softMax = 5, step = 1
+			min = 1,
+			softMax = 5,
+			step = 1,
 		},
 		color = {
 			name = "Color",
 			desc = "Color of lines",
-			type = "color"
+			type = "color",
 		},
 		gradient = {
 			name = "Gradient",
 			desc = "Gradient of lines",
-			type = "gradient"
+			type = "gradient",
 		},
 		gradientFrequency = {
 			name = "Gradient frequency",
 			desc = "Frequency of gradient rotation",
 			type = "range",
-			softMin = -2, softMax = 2, step = 0.05
+			softMin = -2,
+			softMax = 2,
+			step = 0.05,
 		},
 		startBling = {
 			name = "Start Bling",
@@ -3964,7 +4011,10 @@ local PixelGlowParamters = {
 			name = "Annoy frequency",
 			desc = "Frequency of annoy Bling if eenabled",
 			type = "range",
-			min = 0.05, softMin = 0.25, softMax = 2, step = 0.05
+			min = 0.05,
+			softMin = 0.25,
+			softMax = 2,
+			step = 0.05,
 		},
 		blingOptions = BlingParamters,
 		forceStop = {
@@ -3976,85 +4026,110 @@ local PixelGlowParamters = {
 			name = "Fade duration",
 			desc = "Duration of fade animation if not forced stop",
 			type = "range",
-			min = 0, softMin = 0.05, softMax = 1, step = 0.05
+			min = 0,
+			softMin = 0.05,
+			softMax = 1,
+			step = 0.05,
 		},
 		frequency = {
 			name = "Glow frequency",
 			type = "range",
-			softMin = -2, softMax = 2, step = 0.05
+			softMin = -2,
+			softMax = 2,
+			step = 0.05,
 		},
 		xOffset = {
 			name = "X offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		yOffset = {
 			name = "Y offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		frameLevel = {
 			name = "Frame level",
 			type = "range",
-			softMin = 1, softMax = 20, min = 0, max = 10000, step = 1
-		}
-	}
+			softMin = 1,
+			softMax = 20,
+			min = 0,
+			max = 10000,
+			step = 1,
+		},
+	},
 }
 GlowList["Pixel Glow"] = PixelGlowParamters
 
 ---- Autocast Glow ----
-local function acUpdate(self,elapsed)
-	local width,height = self:GetSize()
-	if width ~= self.info.width or height ~= self.info.height then
-		if width*height == 0 then return end
-		self.info.width = width
-		self.info.height = height
-		self.info.perimeter = 2*(width+height)
-		self.info.bottomlim = height*2+width
-		self.info.rightlim = height+width
-		self.info.space = self.info.perimeter/self.info.N
+local function acUpdate(self, elapsed)
+	local info = self.info
+	local width, height = self:GetSize()
+	if width ~= info.width or height ~= info.height then
+		if width * height == 0 then
+			return
+		end
+		info.width = width
+		info.height = height
+		info.perimeter = 2 * (width + height)
+		info.bottomlim = height * 2 + width
+		info.rightlim = height + width
+		info.space = info.perimeter / info.N
 	end
 
-	local texIndex = 0;
-	for k=1,4 do
-		self.timer[k] = self.timer[k] + elapsed * self.info.frequency / k
-		if self.timer[k] > 1 or self.timer[k] <-1 then
-			self.timer[k] = self.timer[k]%1
+	local timer, textures = self.timer, self.textures
+	local N, space, perimeter = info.N, info.space, info.perimeter
+	local bottomlim, rightlim, infoHeight = info.bottomlim, info.rightlim, info.height
+	local step = elapsed * info.frequency
+	local texIndex = 0
+	for k = 1, 4 do
+		local t = timer[k] + step / k
+		if t > 1 or t < -1 then
+			t = t % 1
 		end
-		for i = 1,self.info.N do
-			texIndex = texIndex+1
-			local position = (self.info.space*i+self.info.perimeter*self.timer[k])%self.info.perimeter
-			if position>self.info.bottomlim then
-				self.textures[texIndex]: SetPoint("CENTER",self,"BOTTOMRIGHT",-position+self.info.bottomlim,0)
-			elseif position>self.info.rightlim then
-				self.textures[texIndex]: SetPoint("CENTER",self,"TOPRIGHT",0,-position+self.info.rightlim)
-			elseif position>self.info.height then
-				self.textures[texIndex]: SetPoint("CENTER",self,"TOPLEFT",position-self.info.height,0)
+		timer[k] = t
+		local offset = perimeter * t
+		for i = 1, N do
+			texIndex = texIndex + 1
+			local position = (space * i + offset) % perimeter
+			if position > bottomlim then
+				textures[texIndex]:SetPoint("CENTER", self, "BOTTOMRIGHT", -position + bottomlim, 0)
+			elseif position > rightlim then
+				textures[texIndex]:SetPoint("CENTER", self, "TOPRIGHT", 0, -position + rightlim)
+			elseif position > infoHeight then
+				textures[texIndex]:SetPoint("CENTER", self, "TOPLEFT", position - infoHeight, 0)
 			else
-				self.textures[texIndex]: SetPoint("CENTER",self,"BOTTOMLEFT",0,position)
+				textures[texIndex]:SetPoint("CENTER", self, "BOTTOMLEFT", 0, position)
 			end
 		end
 	end
 end
 
+local AUTOCAST_SIZES = { 7, 6, 5, 4 }
+
 local autoCastTemplates = {
 	default = {
-		color = {0.95,0.95,0.32,1},
+		color = { 0.95, 0.95, 0.32, 1 },
 		N = 4,
 		frequency = 0.125,
 		scale = 1,
 		xOffset = 0,
 		yOffset = 0,
-		frameLevel = 8
-	}
+		frameLevel = 8,
+	},
 }
 
 function lib.AutoCastGlow_Start(r, colorOrOptions, N, frequency, scale, xOffset, yOffset, key, frameLevel)
-	if not r then return end
+	if not r then
+		return
+	end
 
 	local options
-	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA))
-	   or N ~= nil or frequency ~= nil or scale ~= nil or xOffset ~= nil or yOffset ~= nil or key ~= nil or frameLevel ~= nil then
+	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA)) or N ~= nil or frequency ~= nil or scale ~= nil or xOffset ~= nil or yOffset ~= nil or key ~= nil or frameLevel ~= nil then
 		options = {
 			color = colorOrOptions,
 			N = N,
@@ -4074,14 +4149,16 @@ function lib.AutoCastGlow_Start(r, colorOrOptions, N, frequency, scale, xOffset,
 	options.key = options.key or ""
 
 	addFrameAndTex(r,options.color,"_AutoCastGlow",options.key,options.N * 4,options.xOffset,options.yOffset,textureList.shine,shineCoords,true, options.frameLevel)
-	local f = r["_AutoCastGlow"..options.key]
-	local sizes = {7,6,5,4}
-	for k,size in pairs(sizes) do
-		for i = 1,options.N do
-			f.textures[i + options.N*(k-1)]:SetSize(size * options.scale,size * options.scale)
+	local f = r["_AutoCastGlow" .. options.key]
+	local sparkScale = options.scale
+	local sparkN = options.N
+	for k = 1, 4 do
+		local size = AUTOCAST_SIZES[k] * sparkScale
+		for i = 1, sparkN do
+			f.textures[i + sparkN * (k - 1)]:SetSize(size, size)
 		end
 	end
-	f.timer = f.timer or {0,0,0,0}
+	f.timer = f.timer or { 0, 0, 0, 0 }
 	if not f.info then
 		f.info = {}
 	end
@@ -4089,17 +4166,19 @@ function lib.AutoCastGlow_Start(r, colorOrOptions, N, frequency, scale, xOffset,
 	f.info.frequency = options.frequency
 	f.info.width = nil
 	f.info.height = nil
-	f:SetScript("OnUpdate",acUpdate)
+	f:SetScript("OnUpdate", acUpdate)
 	acUpdate(f, 0)
 end
 
-function lib.AutoCastGlow_Stop(r,key)
-	if not r then return end
+function lib.AutoCastGlow_Stop(r, key)
+	if not r then
+		return
+	end
 	key = key or ""
-	if not r["_AutoCastGlow"..key] then
+	if not r["_AutoCastGlow" .. key] then
 		return false
 	else
-		GlowFramePool:Release(r["_AutoCastGlow"..key])
+		GlowFramePool:Release(r["_AutoCastGlow" .. key])
 	end
 end
 tinsert(lib.glowList, "Autocast Shine")
@@ -4119,45 +4198,61 @@ local AutoCastParamters = {
 		N = {
 			name = "Number of sparks",
 			type = "range",
-			min = 1, softMax = 15, step = 1
+			min = 1,
+			softMax = 15,
+			step = 1,
 		},
 		scale = {
 			name = "Spark scale",
 			type = "range",
-			min = 0, softMin = 0.25, softMax = 4, step = 0.05
+			min = 0,
+			softMin = 0.25,
+			softMax = 4,
+			step = 0.05,
 		},
 		color = {
 			name = "Color",
-			type = "color"
+			type = "color",
 		},
 		frequency = {
 			name = "Glow frequency",
 			type = "range",
-			min = 0.05, softMin = 0.05, softMax = 2, step = 0.05
+			min = 0.05,
+			softMin = 0.05,
+			softMax = 2,
+			step = 0.05,
 		},
 		xOffset = {
 			name = "X offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		yOffset = {
 			name = "Y offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		frameLevel = {
 			name = "Frame level",
 			desc = "Glow frame level",
 			type = "range",
-			softMin = 1, softMax = 20, min = 0, max = 10000, step = 1
-		}
-	}
+			softMin = 1,
+			softMax = 20,
+			min = 0,
+			max = 10000,
+			step = 1,
+		},
+	},
 }
 GlowList["AutoCast Glow"] = AutoCastParamters
 
 ---- Action Button Glow ----
-local function ButtonGlowResetter(_,frame)
-	frame:SetScript("OnUpdate",nil)
+local function ButtonGlowResetter(_, frame)
+	frame:SetScript("OnUpdate", nil)
 	local parent = frame:GetParent()
 	if parent and parent._ButtonGlow then
 		parent._ButtonGlow = nil
@@ -4165,7 +4260,7 @@ local function ButtonGlowResetter(_,frame)
 	frame:Hide()
 	frame:ClearAllPoints()
 end
-local ButtonGlowPool = CreateFramePool("Frame",GlowParent,nil,ButtonGlowResetter)
+local ButtonGlowPool = CreateFramePool("Frame", GlowParent, nil, ButtonGlowResetter)
 lib.ButtonGlowPool = ButtonGlowPool
 
 local function CreateScaleAnim(group, target, order, duration, x, y, delay)
@@ -4202,13 +4297,13 @@ local function AnimIn_OnPlay(group)
 	local frameWidth, frameHeight = frame:GetSize()
 	local alpha = GetColorAlpha(frame.color)
 	frame.spark:SetSize(frameWidth, frameHeight)
-	frame.spark:SetAlpha(not(frame.color) and 1.0 or 0.3*alpha)
+	frame.spark:SetAlpha(not frame.color and 1.0 or 0.3 * alpha)
 	frame.innerGlow:SetSize(frameWidth / 2, frameHeight / 2)
-	frame.innerGlow:SetAlpha(not(frame.color) and 1.0 or alpha)
-	frame.innerGlowOver:SetAlpha(not(frame.color) and 1.0 or alpha)
+	frame.innerGlow:SetAlpha(not frame.color and 1.0 or alpha)
+	frame.innerGlowOver:SetAlpha(not frame.color and 1.0 or alpha)
 	frame.outerGlow:SetSize(frameWidth * 2, frameHeight * 2)
-	frame.outerGlow:SetAlpha(not(frame.color) and 1.0 or alpha)
-	frame.outerGlowOver:SetAlpha(not(frame.color) and 1.0 or alpha)
+	frame.outerGlow:SetAlpha(not frame.color and 1.0 or alpha)
+	frame.outerGlowOver:SetAlpha(not frame.color and 1.0 or alpha)
 	frame.ants:SetSize(frameWidth * 0.85, frameHeight * 0.85)
 	frame.ants:SetAlpha(0)
 	frame:Show()
@@ -4225,7 +4320,7 @@ local function AnimIn_OnFinished(group)
 	frame.outerGlow:SetSize(frameWidth, frameHeight)
 	frame.outerGlowOver:SetAlpha(0.0)
 	frame.outerGlowOver:SetSize(frameWidth, frameHeight)
-	frame.ants:SetAlpha(not(frame.color) and 1.0 or alpha)
+	frame.ants:SetAlpha(not frame.color and 1.0 or alpha)
 end
 
 local function AnimIn_OnStop(group)
@@ -4244,17 +4339,22 @@ local function bgHide(self)
 end
 
 local function bgUpdate(self, elapsed)
-	AnimateTexCoords(self.ants, 256, 256, 48, 48, 22, elapsed, self.throttle);
-	local cooldown = self:GetParent().cooldown;
+	AnimateTexCoords(self.ants, 256, 256, 48, 48, 22, elapsed, self.throttle)
+	local cooldown = self:GetParent().cooldown
 	local duration = cooldown and cooldown:IsShown() and cooldown:GetCooldownDuration()
-	if((not issecretvalue or not issecretvalue(duration)) and duration and duration > 3000) then
-		self:SetAlpha(0.5);
+	local targetAlpha
+	if (not issecretvalue or not issecretvalue(duration)) and duration and duration > 3000 then
+		targetAlpha = 0.5
 	else
-		self:SetAlpha(1.0);
+		targetAlpha = 1.0
+	end
+	if self._legAlpha ~= targetAlpha then
+		self._legAlpha = targetAlpha
+		self:SetAlpha(targetAlpha)
 	end
 end
 
-local function configureButtonGlow(f,alpha)
+local function configureButtonGlow(f, alpha)
 	f.spark = f:CreateTexture(nil, "BACKGROUND")
 	f.spark:SetPoint("CENTER")
 	f.spark:SetAlpha(0)
@@ -4308,7 +4408,7 @@ local function configureButtonGlow(f,alpha)
 	CreateScaleAnim(f.animIn, "outerGlow", 1, 0.3, 0.5, 0.5)
 	CreateScaleAnim(f.animIn, "outerGlowOver", 1, 0.3, 0.5, 0.5)
 	CreateAlphaAnim(f.animIn, "outerGlowOver", 1, 0.3, alpha, 0, nil, false)
-	CreateScaleAnim(f.animIn, "spark", 1, 0.2, 2/3, 2/3, 0.2)
+	CreateScaleAnim(f.animIn, "spark", 1, 0.2, 2 / 3, 2 / 3, 0.2)
 	CreateAlphaAnim(f.animIn, "spark", 1, 0.2, alpha, 0, 0.2, false)
 	CreateAlphaAnim(f.animIn, "innerGlow", 1, 0.2, alpha, 0, 0.3, false)
 	CreateAlphaAnim(f.animIn, "ants", 1, 0.2, 0, alpha, 0.3, true)
@@ -4323,27 +4423,36 @@ local function configureButtonGlow(f,alpha)
 	CreateAlphaAnim(f.animOut, "ants", 1, 0.2, alpha, 0, nil, false)
 	CreateAlphaAnim(f.animOut, "outerGlowOver", 2, 0.2, alpha, 0, nil, false)
 	CreateAlphaAnim(f.animOut, "outerGlow", 2, 0.2, alpha, 0, nil, false)
-	f.animOut:SetScript("OnFinished", function(self) ButtonGlowPool:Release(self:GetParent()) end)
+	f.animOut:SetScript("OnFinished", function(self)
+		ButtonGlowPool:Release(self:GetParent())
+	end)
 
 	f:SetScript("OnHide", bgHide)
 end
 
-local function updateAlphaAnim(f,alpha)
-	for _,anim in pairs(f.animIn.appear) do
+local function updateAlphaAnim(f, alpha)
+	for _, anim in pairs(f.animIn.appear) do
 		anim:SetToAlpha(alpha)
 	end
-	for _,anim in pairs(f.animIn.fade) do
+	for _, anim in pairs(f.animIn.fade) do
 		anim:SetFromAlpha(alpha)
 	end
-	for _,anim in pairs(f.animOut.appear) do
+	for _, anim in pairs(f.animOut.appear) do
 		anim:SetToAlpha(alpha)
 	end
-	for _,anim in pairs(f.animOut.fade) do
+	for _, anim in pairs(f.animOut.fade) do
 		anim:SetFromAlpha(alpha)
 	end
 end
 
-local ButtonGlowTextures = {["spark"] = true,["innerGlow"] = true,["innerGlowOver"] = true,["outerGlow"] = true,["outerGlowOver"] = true,["ants"] = true}
+local ButtonGlowTextures = {
+	["spark"] = true,
+	["innerGlow"] = true,
+	["innerGlowOver"] = true,
+	["outerGlow"] = true,
+	["outerGlowOver"] = true,
+	["ants"] = true,
+}
 
 local buttonGlowTemplates = {
 	default = {
@@ -4351,16 +4460,17 @@ local buttonGlowTemplates = {
 		frequency = 0.25,
 		xOffset = 0,
 		yOffset = 0,
-		frameLevel = 8
-	}
+		frameLevel = 8,
+	},
 }
 
 function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
-	if not r then return end
+	if not r then
+		return
+	end
 
 	local options
-	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA))
-	   or frequency ~= nil or frameLevel ~= nil then
+	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA)) or frequency ~= nil or frameLevel ~= nil then
 		options = {
 			color = colorOrOptions,
 			frequency = frequency,
@@ -4370,7 +4480,8 @@ function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
 		options = colorOrOptions
 	end
 
-	local template = options and options.template and buttonGlowTemplates[options.template] or buttonGlowTemplates.default
+	local template = options and options.template and buttonGlowTemplates[options.template]
+		or buttonGlowTemplates.default
 	options = AcquireOptions(options, template)
 
 	local throttle
@@ -4385,21 +4496,21 @@ function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
 
 	if r._ButtonGlow then
 		local f = r._ButtonGlow
-		local width,height = r:GetSize()
+		local width, height = r:GetSize()
 		f:SetFrameLevel(r:GetFrameLevel() + options.frameLevel)
-		f:SetSize(width*1.4 , height*1.4)
+		f:SetSize(width * 1.4, height * 1.4)
 		f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
 		f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
-		f.ants:SetSize(width*1.4*0.85, height*1.4*0.85)
+		f.ants:SetSize(width * 1.4 * 0.85, height * 1.4 * 0.85)
 		AnimIn_OnFinished(f.animIn)
 		if f.animOut:IsPlaying() then
 			f.animOut:Stop()
 			f.animIn:Play()
 		end
-		if not(color) then
+		if not color then
 			for texture in pairs(ButtonGlowTextures) do
 				f[texture]:SetDesaturated(nil)
-				f[texture]:SetVertexColor(1,1,1)
+				f[texture]:SetVertexColor(1, 1, 1)
 				local alpha = min(f[texture]:GetAlpha() / noZero(GetColorAlpha(f.color)), 1)
 				f[texture]:SetAlpha(alpha)
 			end
@@ -4425,17 +4536,17 @@ function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
 			updateAlphaAnim(f, color and colorAlpha or 1)
 		end
 		r._ButtonGlow = f
-		local width,height = r:GetSize()
+		local width, height = r:GetSize()
 		f:SetParent(r)
 		f:SetFrameLevel(r:GetFrameLevel() + options.frameLevel)
 		f:SetSize(width * 1.4, height * 1.4)
 		f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
 		f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
-		if not(color) then
+		if not color then
 			f.color = false
 			for texture in pairs(ButtonGlowTextures) do
 				f[texture]:SetDesaturated(nil)
-				f[texture]:SetVertexColor(1,1,1)
+				f[texture]:SetVertexColor(1, 1, 1)
 			end
 		else
 			f.color = color
@@ -4446,6 +4557,7 @@ function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
 			end
 		end
 		f.throttle = throttle
+		f._legAlpha = nil
 		f:SetScript("OnUpdate", bgUpdate)
 
 		f.animIn:Play()
@@ -4481,31 +4593,42 @@ local ButtonGlowParamters = {
 	args = {
 		color = {
 			name = "Color",
-			type = "color"
+			type = "color",
 		},
 		frequency = {
 			name = "Glow frequency",
 			desc = "Frequency of glow",
 			type = "range",
-			min = 0.05, softMin = 0.05, softMax = 2, step = 0.05
+			min = 0.05,
+			softMin = 0.05,
+			softMax = 2,
+			step = 0.05,
 		},
 		xOffset = {
 			name = "X offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		yOffset = {
 			name = "Y offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		frameLevel = {
 			name = "Frame level",
 			desc = "Glow frame level",
 			type = "range",
-			softMin = 1, softMax = 20, min = 0, max = 10000, step = 1
-		}
-	}
+			softMin = 1,
+			softMax = 20,
+			min = 0,
+			max = 10000,
+			step = 1,
+		},
+	},
 }
 GlowList["Action Button Glow"] = ButtonGlowParamters
 GlowList["Button Glow"] = ButtonGlowParamters
@@ -4569,7 +4692,7 @@ local function InitProcGlow(f)
 	alphaRepeat:SetChildKey("ProcLoop")
 	alphaRepeat:SetFromAlpha(1)
 	alphaRepeat:SetToAlpha(1)
-	alphaRepeat:SetDuration(.001)
+	alphaRepeat:SetDuration(0.001)
 	alphaRepeat:SetOrder(0)
 	f.ProcLoopAnim.alphaRepeat = alphaRepeat
 
@@ -4591,7 +4714,7 @@ local function InitProcGlow(f)
 
 	local flipbookStartAlphaIn = f.ProcStartAnim:CreateAnimation("Alpha")
 	flipbookStartAlphaIn:SetChildKey("ProcStart")
-	flipbookStartAlphaIn:SetDuration(.001)
+	flipbookStartAlphaIn:SetDuration(0.001)
 	flipbookStartAlphaIn:SetOrder(0)
 	flipbookStartAlphaIn:SetFromAlpha(1)
 	flipbookStartAlphaIn:SetToAlpha(1)
@@ -4611,7 +4734,7 @@ local function InitProcGlow(f)
 
 	local flipbookStartAlphaOut = f.ProcStartAnim:CreateAnimation("Alpha")
 	flipbookStartAlphaOut:SetChildKey("ProcStart")
-	flipbookStartAlphaOut:SetDuration(.001)
+	flipbookStartAlphaOut:SetDuration(0.001)
 	flipbookStartAlphaOut:SetOrder(2)
 	flipbookStartAlphaOut:SetFromAlpha(1)
 	flipbookStartAlphaOut:SetToAlpha(0)
@@ -4675,15 +4798,16 @@ local ProcGlowDefaults = {
 	xOffset = 0,
 	yOffset = 0,
 	duration = 1,
-	key = ""
+	key = "",
 }
 local procGlowMeta = { __index = ProcGlowDefaults }
 
 function lib.ProcGlow_Start(r, options, duration, startAnim, xOffset, yOffset, frameLevel, key)
-	if not r then return end
+	if not r then
+		return
+	end
 
-	if (options ~= nil and (type(options) ~= "table" or options[1] ~= nil or options.GetRGBA))
-	   or duration ~= nil or startAnim ~= nil or xOffset ~= nil or yOffset ~= nil or frameLevel ~= nil or key ~= nil then
+	if (options ~= nil and (type(options) ~= "table" or options[1] ~= nil or options.GetRGBA)) or duration ~= nil or startAnim ~= nil or xOffset ~= nil or yOffset ~= nil or frameLevel ~= nil or key ~= nil then
 		options = {
 			color = options,
 			duration = duration,
@@ -4740,41 +4864,53 @@ local ProcGlowParamters = {
 	args = {
 		color = {
 			name = "Color",
-			type = "color"
+			type = "color",
 		},
 		duration = {
 			name = "Duration",
 			desc = "Duration of the loop animation",
 			type = "range",
-			min = 0.1, softMin = 0.5, softMax = 3, max = 10, step = 0.1
+			min = 0.1,
+			softMin = 0.5,
+			softMax = 3,
+			max = 10,
+			step = 0.1,
 		},
 		startAnim = {
 			name = "Start Animation",
 			desc = "Play the start intro animation",
-			type = "toggle"
+			type = "toggle",
 		},
 		xOffset = {
 			name = "X offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		yOffset = {
 			name = "Y offset",
 			type = "range",
-			softMin = -5, softMax = 5, step = 1
+			softMin = -5,
+			softMax = 5,
+			step = 1,
 		},
 		frameLevel = {
 			name = "Frame level",
 			desc = "Glow frame level",
 			type = "range",
-			softMin = 1, softMax = 20, min = 0, max = 10000, step = 1
+			softMin = 1,
+			softMax = 20,
+			min = 0,
+			max = 10000,
+			step = 1,
 		},
 		key = {
 			name = "Key",
 			desc = "Key to identify the glow",
-			type = "input"
-		}
-	}
+			type = "input",
+		},
+	},
 }
 GlowList["Proc Glow"] = ProcGlowParamters
 

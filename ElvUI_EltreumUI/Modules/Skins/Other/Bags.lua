@@ -9,7 +9,7 @@ local GetProfessionInfo = _G.GetProfessionInfo
 local IsSpellKnown = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsSpellKnown
 local IsPlayerMoving = _G.IsPlayerMoving
 local CastSpell = _G.CastSpell
-local LCG = _G.LibStub("LibEltreumCustomGlow")
+local LCG = _G.LibStub("LibEltreumGlow")
 
 --add profession shortcuts to the ElvUI bags, suggested by Xheno
 function ElvUI_EltreumUI:BagProfessions()
