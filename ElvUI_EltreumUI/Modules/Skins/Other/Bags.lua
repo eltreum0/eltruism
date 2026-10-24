@@ -200,8 +200,6 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetAllPoints()
 								_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
-
-
 								_G["EltruismProfessionDisenchantBagButton"]:HookScript("OnClick",function()
 									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])

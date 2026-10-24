@@ -219,7 +219,6 @@ function ElvUI_EltreumUI:CustomGlowStop(button)
 	end
 end
 
-
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
 	if not E.private.ElvUI_EltreumUI then

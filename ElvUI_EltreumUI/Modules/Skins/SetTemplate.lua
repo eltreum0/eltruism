@@ -389,7 +389,6 @@ local function EltruismBorders(frame,isUnitFrameElement)
 	frame.eltruismuniversalbordersadded = true
 end
 
-
 local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 	if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
 	if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end

@@ -58,7 +58,6 @@ local invertframes = {
 	["arena"] = true,
 }
 
-
 --set the backdrop gradient
 function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,unitDB)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
