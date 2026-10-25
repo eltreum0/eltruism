@@ -260,6 +260,7 @@ function ElvUI_EltreumUI:CustomGlowOptions()
 		["split"] = L["Split"],
 		["shutter"] = L["Shutter"],
 		["square"] = L["Square"],
+		["slide"] = L["Slide"],
 	}
 	blArgs.flash = E.Libs.ACH:Select(L["Flash"], L["Type of flash"], 2, flashTypes, false, nil, function() return E.db.ElvUI_EltreumUI.glow.bling.flash end, function(_, value) E.db.ElvUI_EltreumUI.glow.bling.flash = value end)
 	blArgs.startPoint = E.Libs.ACH:Select(L["Start Point"], L["Starting point of flash"], 3, startPoints, false, nil, function() return E.db.ElvUI_EltreumUI.glow.bling.startPoint end, function(_, value) E.db.ElvUI_EltreumUI.glow.bling.startPoint = value end)
