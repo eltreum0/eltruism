@@ -14,7 +14,14 @@ function ElvUI_EltreumUI:UFGlow(_, frame, _, _, debuffType, _, wasFiltered)
 					if not wasFiltered then
 						--local canDispel = filtercheck:StyleFilterDispelCheck(object, debuffType)
 						local color = UF.db.colors.debuffHighlight[debuffType]
-						ElvUI_EltreumUI:CustomGlowStart(object, {color.r, color.g, color.b, 1}, 6)
+						local glowColor = object._EltruismDispelColor
+						if not glowColor then
+							glowColor = { color.r, color.g, color.b, 1 }
+							object._EltruismDispelColor = glowColor
+						else
+							glowColor[1], glowColor[2], glowColor[3], glowColor[4] = color.r, color.g, color.b, 1
+						end
+						ElvUI_EltreumUI:CustomGlowStart(object, glowColor, 6)
 					end
 				else
 					ElvUI_EltreumUI:CustomGlowStop(object)
