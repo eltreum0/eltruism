@@ -166,7 +166,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			ElvUI_EltreumUI:UpdateAllNameplateHeights()
 		end
 	end
-	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
+	if E.db.ElvUI_EltreumUI.dev and not E.Modern then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()
 	end
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
