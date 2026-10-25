@@ -36,6 +36,11 @@ function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
 	self:RegisterChatCommand('eltruismdebug', 'DebugMode')
 
+	--prevent unsafe reloads in combat
+	self:RegisterChatCommand('reload', 'BlockCombatReload')
+	self:RegisterChatCommand('reloadui', 'BlockCombatReload')
+	self:RegisterChatCommand('rl', 'BlockCombatReload')
+
 	--add to moveui table
 	if not self.ConfigModeAddedEltruism then
 		E:ConfigMode_AddGroup("ELTREUMUI",ElvUI_EltreumUI.Name)
@@ -401,6 +406,16 @@ function ElvUI_EltreumUI:DebugMode(message)
 	else
 		ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
 	end
+end
+
+function ElvUI_EltreumUI:BlockCombatReload()
+	if InCombatLockdown() then
+		_G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
+		_G.print("|cFFFF0000Cannot reload UI while in combat.|r")
+		return
+	end
+
+	ReloadUI()
 end
 
 --Adapted from Luckyone's +keys as requested by khornan
