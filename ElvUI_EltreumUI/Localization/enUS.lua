@@ -1682,6 +1682,7 @@ L["Mirror line progress"] = true
 L["Number of Lines"] = true
 L["Number of tail lines"] = true
 L["Repeat Bling"] = true
+L["Repeat Bling animation continuously"] = true
 L["Repeat bling periodically while glow is active"] = true
 L["Reverses Bling progress"] = true
 L["Show Bling on first application of glow"] = true
