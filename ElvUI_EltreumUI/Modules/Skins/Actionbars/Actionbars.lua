@@ -1,4 +1,4 @@
-﻿local _G = _G
+local _G = _G
 local unpack = _G.unpack
 local E = unpack(ElvUI)
 local AB = E:GetModule('ActionBars')
@@ -33,6 +33,7 @@ local pixelOpts = {}
 local procOpts = {}
 local bpOpts = {}
 local blOpts = { tails = {} }
+local petActionButtons = {}
 
 local function SetGradientEntry(entry, r, g, b, a)
 	if entry[1] ~= r or entry[2] ~= g or entry[3] ~= b then
@@ -78,9 +79,12 @@ function ElvUI_EltreumUI:GetGlowGradientColors(baseColor, button)
 		else
 			grad = fallbackClassGradientTable
 		end
-		SetGradientEntry(grad[1], E:Clamp(r - 0.2, 0, 1), E:Clamp(g - 0.2, 0, 1), E:Clamp(b - 0.2, 0, 1), 1)
-		SetGradientEntry(grad[2], r, g, b, 1)
-		SetGradientEntry(grad[3], E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), 1)
+		if grad._r ~= r or grad._g ~= g or grad._b ~= b then
+			grad._r, grad._g, grad._b = r, g, b
+			SetGradientEntry(grad[1], E:Clamp(r - 0.2, 0, 1), E:Clamp(g - 0.2, 0, 1), E:Clamp(b - 0.2, 0, 1), 1)
+			SetGradientEntry(grad[2], r, g, b, 1)
+			SetGradientEntry(grad[3], E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), 1)
+		end
 		return grad
 	else
 		local c1 = glowDb.gradientcolor1
@@ -711,7 +715,7 @@ function ElvUI_EltreumUI:SkillGlow()
 						procFrame:SetScript('OnEvent', function()
 							for i=1, _G.NUM_ACTIONBAR_BUTTONS do
 								local button = bar.buttons[i]
-								local btn = _G[button:GetName()]
+								local btn = button
 								local proc = btn.abilityID
 								--[[if btn.GetSpellId and btn:GetSpellId() then
 									proc = btn:GetSpellId()
@@ -783,9 +787,14 @@ function ElvUI_EltreumUI:SkillGlowPet()
 
 		for i = 1, _G.NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
-			local button = _G['PetActionButton'..i]
+			local button = petActionButtons[i]
+			if not button then
+				button = _G['PetActionButton'..i]
+				petActionButtons[i] = button
+			end
 
-			if button.AutoCastOverlay then
+			if button then
+				if button.AutoCastOverlay then
 				button.AutoCastOverlay:Hide()
 				button.AutoCastOverlay:SetAlpha(0)
 			elseif button.AutoCastShine then
@@ -797,11 +806,12 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					button.EltruismIsGlowing = true
 					ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolorpet, 6)
 				end
-			else
-				--AutoCastShine_AutoCastStop(button.AutoCastShine)
-				if button.EltruismIsGlowing then
-					button.EltruismIsGlowing = false
-					ElvUI_EltreumUI:CustomGlowStop(button)
+				else
+					--AutoCastShine_AutoCastStop(button.AutoCastShine)
+					if button.EltruismIsGlowing then
+						button.EltruismIsGlowing = false
+						ElvUI_EltreumUI:CustomGlowStop(button)
+					end
 				end
 			end
 		end
