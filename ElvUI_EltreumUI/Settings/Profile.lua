@@ -1906,9 +1906,9 @@ P.ElvUI_EltreumUI = {
 			monkcustomcolorB1 = 0.368,
 			monkcustomcolorB2 = 0.588,
 
-			evokercustomcolorR1 = 0.196,
+			evokercustomcolorR1 = 0,
 			evokercustomcolorR2 = 0.2,
-			evokercustomcolorG1 = 0.466,
+			evokercustomcolorG1 = 0.321,
 			evokercustomcolorG2 = 0.576,
 			evokercustomcolorB1 = 0.537,
 			evokercustomcolorB2 = 0.498,
