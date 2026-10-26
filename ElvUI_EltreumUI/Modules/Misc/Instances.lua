@@ -16,13 +16,6 @@ instancedifficulty:SetParent(Minimap)
 instancedifficulty:Hide()
 instancedifficulty.Text = instancedifficulty:CreateFontString(nil,"ARTWORK")
 instancedifficulty.Text:SetPoint("CENTER", instancedifficulty)
-instancedifficulty:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-instancedifficulty:RegisterEvent("PLAYER_ENTERING_WORLD")
-if E.Retail then
-	instancedifficulty:RegisterEvent("CHALLENGE_MODE_START")
-	instancedifficulty:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
-	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
-end
 
 local garrisons = {
 	[1662] = true,
@@ -38,7 +31,7 @@ local AllowedInstances = {
 	["scenario"] = true,
 }
 
-instancedifficulty:SetScript("OnEvent", function()
+function ElvUI_EltreumUI:InstanceIndicator()
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.db.ElvUI_EltreumUI then return end
@@ -390,4 +383,4 @@ instancedifficulty:SetScript("OnEvent", function()
 			instancedifficulty.Text:Hide()
 		end
 	end)
-end)
+end

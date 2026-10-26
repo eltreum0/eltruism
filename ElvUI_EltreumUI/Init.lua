@@ -195,6 +195,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadNameTags()
 	ElvUI_EltreumUI:LoadOtherTags()
 	ElvUI_EltreumUI:GradientNameplatesHooks()
+	ElvUI_EltreumUI:InstanceIndicator() --for the instance texts
 end
 
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
@@ -348,6 +349,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
+	ElvUI_EltreumUI:InstanceIndicator()
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
@@ -458,10 +460,20 @@ end
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_START(event)
 	ElvUI_EltreumUI:QuestCombat(event)
+	ElvUI_EltreumUI:InstanceIndicator()
 end
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_RESET(event)
 	ElvUI_EltreumUI:QuestCombat(event)
+	ElvUI_EltreumUI:InstanceIndicator()
+end
+
+function ElvUI_EltreumUI:PLAYER_DIFFICULTY_CHANGED()
+	ElvUI_EltreumUI:InstanceIndicator()
+end
+
+function ElvUI_EltreumUI:GUILD_PARTY_STATE_UPDATED()
+	ElvUI_EltreumUI:InstanceIndicator()
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -527,6 +539,8 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
 	end
+	ElvUI_EltreumUI:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
+	ElvUI_EltreumUI:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
 end
 
 local function CallbackInitialize()
