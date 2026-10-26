@@ -1,10 +1,12 @@
---[[
-This library contains work of Hendrick "nevcairiel" Leppkes
-https://www.wowace.com/projects/libbuttonglow-1-0
-]]
---LibEltreumGlow is a fork of LibCustomGlow, MIT license 2022 Benjamin Staneck, contains work by Dooez (https://github.com/Dooez/LibCustomGlow)
+--LibEltreumGlow is a fork of LibCustomGlow
 
--- luacheck: globals _G LibStub WOW_PROJECT_ID WOW_PROJECT_MAINLINE UIParent CreateVector2D CreateFrame CreateTexturePool CreateFramePool TextureUtil issecretvalue Masque issecurevariable CreateColor
+--[[
+This library contains work of:
+Hendrick "nevcairiel" Leppkes - https://www.wowace.com/projects/libbuttonglow-1-0
+Benjamin Staneck - https://github.com/Stanzilla/LibCustomGlow
+Dooez - https://github.com/Dooez/LibCustomGlow
+]]
+
 local _G = _G
 local MAJOR_VERSION = "LibEltreumGlow"
 local MINOR_VERSION = 1
