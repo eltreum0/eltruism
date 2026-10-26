@@ -522,7 +522,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
 	ElvUI_EltreumUI:RegisterEvent("UPDATE_PENDING_MAIL") --for mail sound/icon
-	if E.Modern then
+	if E.Retail then
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_START") --for m+ hiding objective tracker
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
 		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
