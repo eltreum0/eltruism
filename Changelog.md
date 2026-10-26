@@ -207,7 +207,7 @@ Fixed an issue with the Alternate Power Bar and secrets
 Fixed issues with secrets related to Tooltip borders  
 Fixed an issue with the Sockets in Burning Crusade  
 Fixed an issue when changing Portrait settings  
----
+___
 ### 5.0.0
 Added support for 12.0  
 Added a skin for the Blizzard Damage Meter  
@@ -218,41 +218,41 @@ Fixed an issue where Expanded Talents option wasn't being shown in TBC and Wrath
 Fixed an issue with the Auctionator skin in TBC  
   
 Note: There are too many changes to list here, 12.0 is a huge departure from what the game used to be. Expect tags and more to not work in some scenarios.  
----
+___
 ### 4.4.4
 Added support for Burning Crusade Classic  
 Updated for ElvUI 14.07  
 Fixed undocumented changes in Burning Crusade Anniversary  
 Fixed an issue with classic action bars  
----
+___
 ### 4.4.3.1
 Updated .toc for Mists of Pandaria Classic  
----
+___
 ### 4.4.3
 Added Teleport to Home to the Teleport Datatext (please note you can't return due to taints)  
 Added more shadows  
 Fixed an issue with the Chat where it could error after the Chat changes in 11.2.7  
 Fixed some issues on Wrath Titan with the help of Barney  
 Fixed some issues on TBC PTR  
----
+___
 ### 4.4.2
 Added back support for TBC and Wrath  
 Updated for 11.2.7  
 Fixed an error due to a change on the Windtools database  
----
+___
 ### 4.4.1
 Added a check to prevent possible nameplate filter changes on login  
 Updated German locale by Dlarge  
 Updated for Classic Era 1.15.8  
----
+___
 ### 4.4.0.1
 Fixed version check in Retail  
----
+___
 ### 4.4.0
 Added shadows to the Blizzard Cooldown Viewer  
 Updated Russian locale by ZamestoTV  
 Fixed an issue where the Quest Icon button wouldnt follow the side of the quest  
----
+___
 ### 4.3.9.1
 Updated Nameplate Health and Castbar Border colors to use unit colors and interrupt status  
 Updated text on Item Wishlist to use a global string instead of pure English  
@@ -263,7 +263,7 @@ Fixed an issue where Item Deletion stopped working in Mists of Pandaria due to a
 Fixed an issue where ElvUI Skin was missing on some buttons such as Actionbars and Bags  
 Fixed an issue with a missing Atlas for the Pool of Mixed Monstrosities  
 Fixed an issue while using ElvUI AFK and Eltruism AFK  
----
+___
 ### 4.3.9
 Added EltreumWorldCombatFriendly nameplate stylefilter, which will hide friendly units while in combat in the open world  
 Added the command /eltruism performancecvars, which will change several graphical settings to improve performance  
@@ -295,17 +295,17 @@ Fixed an issue with the Objective Max Height in Retail
 Fixed an issue with the Objective Mover in Retail  
 Fixed a compatibility issue with Reforged Armory  
 Fixed an issue with the Cursor  
----
+___
 ### 4.3.8.2
 Added shadows to Fly outs  
 Updated Portrait function to enable overlay and toggle the 3D models alongside the setting  
 Updated Combat Music to better handle Boss units that don't trigger Encounter Start events  
 Updated the maximum size shadows can be set to  
 Fixed an issue with the Leatrix Maps DB when not using Leatrix Maps  
----
+___
 ### 4.3.8.1
 Fixed an issue with the Bag Profession missing Icons in Mists of Pandaria Classic and Classic Era  
----
+___
 ### 4.3.8
 Added an experimental instant DPS tag [eltruism:unitdps]  
 Added more models to the Portrait Fix  
@@ -320,7 +320,7 @@ Fixed an issue when using Leatrix Maps and having ElvUI world map disabled
 Fixed shadows on unitframes when the infopanel was enabled but not shown  
 Fixed an error with the Item Delete due to a change on Blizzard's API  
 Fixed an error in Classic Era when inspecting units  
----
+___
 ### 4.3.7
 Added an option to hide the icon on the Teleports Datatext  
 Added timer text to the Mirror Timers in Retail  
