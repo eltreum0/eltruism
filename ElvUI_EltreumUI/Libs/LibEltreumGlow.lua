@@ -3801,7 +3801,7 @@ local BlingParamters = {
 }
 GlowList["Bling"] = BlingParamters
 
----- New Glow ----
+---- Border Pulse Glow ----
 local function BorderPulseUpdate(self, elapsed)
 	local inf = self.inf
 	if not inf then
@@ -4927,6 +4927,7 @@ local function acUpdate(self, elapsed)
 	end
 end
 
+---- AutoCast Glow ----
 local AUTOCAST_SIZES = { 7, 6, 5, 4 }
 
 local autoCastTemplates = {
@@ -5304,6 +5305,7 @@ local function updateAlphaAnim(f, alpha)
 	end
 end
 
+---- Blizzard's Button Glow ----
 local ButtonGlowTextureList = { "spark", "innerGlow", "innerGlowOver", "outerGlow", "outerGlowOver", "ants" }
 
 local buttonGlowTemplates = {
@@ -5496,7 +5498,7 @@ tinsert(lib.glowList, "Bling")
 lib.startList["Bling"] = lib.Bling
 lib.stopList["Bling"] = lib.Bling_Stop
 
----- Proc Glow ----
+---- Blizzard's Proc Glow ----
 local function ProcGlowResetter(_, frame)
 	frame:Hide()
 	frame:ClearAllPoints()
