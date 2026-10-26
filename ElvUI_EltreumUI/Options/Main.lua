@@ -291,7 +291,6 @@ Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
 FreeVector (www.freevector.com) for some of the icons. List in license.txt
 Icons8 (www.icons8.com) for some of the icons. List in license.txt
 Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
-LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
 Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
 Rogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3
 ]] or [[
@@ -301,7 +300,6 @@ Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
 FreeVector (www.freevector.com) for some of the icons. List in license.txt
 Icons8 (www.icons8.com) for some of the icons. List in license.txt
 Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
-LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
 Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
 Sockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain
 The Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD

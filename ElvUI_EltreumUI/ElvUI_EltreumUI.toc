@@ -17,8 +17,6 @@
 ## Notes-zhCN: Eltruism 是一个具有 ElvUI 所没有的配置文件和其他功能的插件
 ## Notes-zhTW: Eltruism 是一個具有 ElvUI 所沒有的設定檔和其他功能的插件
 ## Dependencies: ElvUI
-## RequiredDeps: Blizzard_CombatText
-## OptionalDeps: ElvUI_SLE, ElvUI_WindTools
 ## DefaultState: enabled
 ## X-Interface: 120105
 ## X-InterfacePTR: 120105
