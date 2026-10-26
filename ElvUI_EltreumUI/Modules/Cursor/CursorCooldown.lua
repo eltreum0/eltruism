@@ -39,6 +39,7 @@ local isActive = false
 local isAlmostReady = false
 local isReady = false
 local isHidden = false
+local isRedText = false
 
 --gcd things
 local GCD = 1.5
@@ -166,6 +167,10 @@ local function EltruismCursorCooldownOnUpdate(_, elapsed)
 			if now > finishStamp then
 				EltruismCooldownFrame:SetScript("OnUpdate", nil)
 				isActive = false
+				if isRedText then
+					isRedText = false
+					EltruismCooldownText:SetTextColor(1, 1, 1)
+				end
 				EltruismCooldownText:SetText(nil)
 				EltruismCooldownIcon:SetTexture(nil)
 				ElvUI_EltreumUI:updateCooldown() -- check lastGetCooldown, lastArg
@@ -183,14 +188,23 @@ local function EltruismCursorCooldownOnUpdate(_, elapsed)
 					ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
 				end
 				if cd > 60 then
-					EltruismCooldownText:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
-					EltruismCooldownText:SetTextColor(1, 1, 1)
-				elseif cd > 1 and cd < 60 then
+					EltruismCooldownText:SetFormattedText("%01.fm", cd / 60)
+					if isRedText then
+						isRedText = false
+						EltruismCooldownText:SetTextColor(1, 1, 1)
+					end
+				elseif cd >= 1 then
 					EltruismCooldownText:SetFormattedText("%01.f", mathfloor(cd))
-					EltruismCooldownText:SetTextColor(1, 1, 1)
-				elseif cd > 0 and cd < 1 then
+					if isRedText then
+						isRedText = false
+						EltruismCooldownText:SetTextColor(1, 1, 1)
+					end
+				elseif cd > 0 then
 					EltruismCooldownText:SetFormattedText("%.1f", cd)
-					EltruismCooldownText:SetTextColor(1, 0, 0)
+					if not isRedText then
+						isRedText = true
+						EltruismCooldownText:SetTextColor(1, 0, 0)
+					end
 				end
 			end
 			if fadeStamp == nil then --error fix attempt
