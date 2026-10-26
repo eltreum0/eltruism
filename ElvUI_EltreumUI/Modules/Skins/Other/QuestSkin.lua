@@ -930,9 +930,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				local function blockskin(block)
+					if not block or block.isSkinning then return end
 					block:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 					block:UnregisterEvent("ADDON_ACTION_BLOCKED")
-					if not block or block.isSkinning then return end
 					block.isSkinning = true
 					if block.HeaderText then --quest title
 						block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -1060,8 +1060,8 @@ function ElvUI_EltreumUI:SkinQuests()
 					if k.SetHeader and not k.SetHeaderHook then
 						hooksecurefunc(k, "SetHeader", function(block)
 							blockskin(block)
-							k.SetHeaderHook = true
 						end)
+						k.SetHeaderHook = true
 					end
 					if k.AddObjective and not k.AddObjectiveHook then
 						local function updateObjectiveCount()
@@ -1294,8 +1294,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						if k.SetHeader and not k.SetHeaderHook then
 							hooksecurefunc(k, "SetHeader", function(block)
 								blockskin(block)
-								k.SetHeaderHook = true
 							end)
+							k.SetHeaderHook = true
 						end
 						hookTrackerProgressBars(k)
 					end
@@ -2019,6 +2019,7 @@ function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 	_G["ObjectiveFrameHolder"]:SetSize(260,newHeight) --due to nil rect set the size on the holder itself
 	if not InCombatLockdown() then --just for sanity sake keep trying to set the size
 		Enum.EditModeObjectiveTrackerSetting.Height = newHeight
+		ObjectiveTrackerFrame.editModeHeight = newHeight
 		ObjectiveTrackerFrame:SetHeight(newHeight)
 		ObjectiveTrackerFrame:BreakFromFrameManager()
 	end
@@ -2026,49 +2027,54 @@ end
 
 --add objective frame anchor back in
 function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
-	if E.db.ElvUI_EltreumUI.quests.anchor then
-		if not _G["ObjectiveFrameHolder"] then
-			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
-			holder:SetSize(260, 550)
-			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -75,-319)
-			holder:SetClampedToScreen(true)
+	if not E.db.ElvUI_EltreumUI.quests.anchor then return end
+	if InCombatLockdown() then return end
+	if ElvUI_EltreumUI.isAnchoringObjectiveTracker then return end
+	ElvUI_EltreumUI.isAnchoringObjectiveTracker = true
 
-			ObjectiveTrackerFrame:BreakFromFrameManager()
-			ObjectiveTrackerFrame.Selection:Kill()
-			Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
-			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
-			if ObjectiveTrackerFrame.NineSlice then
-				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
-				ObjectiveTrackerFrame.NineSlice:Hide()
-			end
+	if not _G["ObjectiveFrameHolder"] then
+		local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+		holder:SetSize(260, 550)
+		holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -75,-319)
+		holder:SetClampedToScreen(true)
 
-			ObjectiveTrackerFrame:SetClampedToScreen(false)
-			ObjectiveTrackerFrame:SetMovable(true)
-			ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
-			ObjectiveTrackerFrame:ClearAllPoints()
-			ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-			ObjectiveTrackerFrame:SetPoint("BOTTOM", holder, "BOTTOM")
-			E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,GENERAL", nil, 'ElvUI_EltreumUI,quests')
-
-			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
-		else
-			ObjectiveTrackerFrame:BreakFromFrameManager()
-			ObjectiveTrackerFrame.Selection:Kill()
-			Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
-			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
-			if ObjectiveTrackerFrame.NineSlice then
-				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
-				ObjectiveTrackerFrame.NineSlice:Hide()
-			end
-			ObjectiveTrackerFrame:SetClampedToScreen(false)
-			ObjectiveTrackerFrame:SetMovable(true)
-			ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
-			ObjectiveTrackerFrame:ClearAllPoints()
-			ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
-			ObjectiveTrackerFrame:SetPoint("BOTTOM", _G["ObjectiveFrameHolder"], "BOTTOM")
-			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+		ObjectiveTrackerFrame:BreakFromFrameManager()
+		ObjectiveTrackerFrame.Selection:Kill()
+		Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+		ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+		if ObjectiveTrackerFrame.NineSlice then
+			ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+			ObjectiveTrackerFrame.NineSlice:Hide()
 		end
+
+		ObjectiveTrackerFrame:SetClampedToScreen(false)
+		ObjectiveTrackerFrame:SetMovable(true)
+		ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
+		ObjectiveTrackerFrame:ClearAllPoints()
+		ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+		ObjectiveTrackerFrame:SetPoint("BOTTOM", holder, "BOTTOM")
+		E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,GENERAL", nil, 'ElvUI_EltreumUI,quests')
+
+		ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+	else
+		ObjectiveTrackerFrame:BreakFromFrameManager()
+		ObjectiveTrackerFrame.Selection:Kill()
+		Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+		ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+		if ObjectiveTrackerFrame.NineSlice then
+			ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+			ObjectiveTrackerFrame.NineSlice:Hide()
+		end
+		ObjectiveTrackerFrame:SetClampedToScreen(false)
+		ObjectiveTrackerFrame:SetMovable(true)
+		ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
+		ObjectiveTrackerFrame:ClearAllPoints()
+		ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
+		ObjectiveTrackerFrame:SetPoint("BOTTOM", _G["ObjectiveFrameHolder"], "BOTTOM")
+		ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 	end
+
+	ElvUI_EltreumUI.isAnchoringObjectiveTracker = nil
 end
 
 --because the objective is removed from frame manager, when swapping to another layout that isnt it can error when trying to export it, so break it from manager again
