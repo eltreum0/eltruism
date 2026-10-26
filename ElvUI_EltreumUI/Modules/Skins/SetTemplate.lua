@@ -689,7 +689,7 @@ local function EltruismShadow(frame,template,isNamePlateElement)
 				end
 			end
 			--if ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and ElvUI_EltreumUI:IsThisASafeSecret(nil,nil,true) and ElvUI_EltreumUI:IsThisASafeSecret(frame:GetDebugName(),true) then
-			if not E.Retail then
+			if E.Mists then
 				if frame:GetDebugName():match("PetBattleFrame") then
 					if not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
