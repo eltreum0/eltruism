@@ -256,7 +256,8 @@ end
 
 --adapted from libiteminfo to be player only
 function ElvUI_EltreumUI:GetUnitItemLevel(unit)
-	local total, maxlevel, level = 0, 0, 0
+	local total, maxlevel = 0, 0
+	local level
 
 	for i = 1, 15 do
 		if (i ~= 4) then
@@ -1006,7 +1007,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--statusbars
-			local linewidth1 = 10
+			local linewidth1
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth1 = (( 300 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			else
@@ -1035,7 +1036,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
 
-			local linewidth2 = 10
+			local linewidth2
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth2 = (( 300 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
 			else
@@ -1064,7 +1065,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
 
-			local linewidth3 = 10
+			local linewidth3
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			else
@@ -3091,7 +3092,6 @@ end
 local refreshplayer = CreateFrame("FRAME")
 refreshplayer:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 refreshplayer:RegisterUnitEvent("UNIT_FLAGS", "player")
-refreshplayer:RegisterEvent("SPELL_UPDATE_COOLDOWN") --only out of combat
 --refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
 refreshplayer:SetScript("OnEvent", function(_,event)
 	if _G.CharacterFrame:IsShown() then
@@ -3105,7 +3105,11 @@ refreshplayer:SetScript("OnEvent", function(_,event)
 	end
 end)
 _G.CharacterFrame:HookScript("OnShow", function()
+	refreshplayer:RegisterEvent("SPELL_UPDATE_COOLDOWN")
 	ElvUI_EltreumUI:PlayerItemQuality("player")
+end)
+_G.CharacterFrame:HookScript("OnHide", function()
+	refreshplayer:UnregisterEvent("SPELL_UPDATE_COOLDOWN")
 end)
 
 local classsymbolonframe
