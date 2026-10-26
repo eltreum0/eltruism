@@ -51,6 +51,7 @@ local floor = _G.floor
 local min = _G.min
 local sin = _G.math.sin
 local mathmax = _G.math.max
+local abs = _G.math.abs
 local HALF_SQRT2 = sqrt(2) * 0.5
 
 local CreateColor = _G.CreateColor
@@ -58,13 +59,12 @@ local AnimateTexCoords = (TextureUtil and TextureUtil.AnimateTexCoords) or _G.An
 
 local function GetColorRGBA(c)
 	if type(c) == "table" then
-		local r = c[1]
+		local r = c[1] or c.r
 		if r then
-			return r, c[2] or 1, c[3] or 1, c[4] or 1
+			return r, c[2] or c.g or 1, c[3] or c.b or 1, c[4] or c.a or 1
 		elseif c.GetRGBA then
 			return c:GetRGBA()
 		end
-		return c.r or 1, c.g or 1, c.b or 1, c.a or 1
 	end
 	return 1, 1, 1, 1
 end
@@ -83,11 +83,7 @@ local function GetColorAlpha(c)
 end
 
 local function noZero(num)
-	if not num or num == 0 then
-		return 0.001
-	else
-		return num
-	end
+	return (not num or num == 0) and 0.001 or num
 end
 
 local rotationCenter = CreateVector2D and CreateVector2D(0.5, 0.5)
@@ -154,6 +150,9 @@ local GlowMaskPool = {
 	EnumerateActive = function(self)
 		return pairs(self.activeObjects)
 	end,
+	IsActive = function(self, object)
+		return self.activeObjects[object] ~= nil
+	end,
 	ReleaseAll = function(self)
 		for object in pairs(self.activeObjects) do
 			self:Release(object)
@@ -165,10 +164,10 @@ lib.GlowMaskPool = GlowMaskPool
 
 local function IsPoolObjectActive(pool, obj)
 	if not pool or not obj then return false end
-	if pool.HasActiveObject then
-		return pool:HasActiveObject(obj)
-	elseif pool.IsActive then
+	if pool.IsActive then
 		return pool:IsActive(obj)
+	elseif pool.HasActiveObject then
+		return pool:HasActiveObject(obj)
 	elseif pool.activeObjects then
 		return pool.activeObjects[obj] ~= nil
 	end
@@ -188,19 +187,14 @@ end
 
 local function ReleaseToExternalPool(obj)
 	if not obj or not existingLCG then return false end
-	local extPools = {
-		existingLCG.GlowFramePool,
-		existingLCG.ButtonGlowPool,
-		existingLCG.ProcGlowPool,
-		existingLCG.GlowTexPool,
-	}
-	for i = 1, 4 do
-		local p = extPools[i]
-		if p and p ~= GlowFramePool and p ~= ButtonGlowPool and p ~= ProcGlowPool and p ~= GlowTexPool and IsPoolObjectActive(p, obj) then
-			p:Release(obj)
-			return true
-		end
-	end
+	local p = existingLCG.GlowFramePool
+	if p and p ~= GlowFramePool and IsPoolObjectActive(p, obj) then p:Release(obj) return true end
+	p = existingLCG.ButtonGlowPool
+	if p and p ~= ButtonGlowPool and IsPoolObjectActive(p, obj) then p:Release(obj) return true end
+	p = existingLCG.ProcGlowPool
+	if p and p ~= ProcGlowPool and IsPoolObjectActive(p, obj) then p:Release(obj) return true end
+	p = existingLCG.GlowTexPool
+	if p and p ~= GlowTexPool and IsPoolObjectActive(p, obj) then p:Release(obj) return true end
 	return false
 end
 
@@ -447,12 +441,14 @@ local function addFrameAndTex(r, color, name, key, N, xOffset, yOffset, texture,
 	f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", xOffset, -yOffset + 0.05)
 	f.xOffset = xOffset
 	f.yOffset = yOffset
+
 	local rWidth, rHeight = r:GetSize()
-	if rWidth and rHeight and rWidth > 0 and rHeight > 0 then
-		local absX = xOffset < 0 and -xOffset or xOffset
-		local absY = yOffset < 0 and -yOffset or yOffset
-		f:SetSize(rWidth + 2 * absX, rHeight + 2 * absY)
-	end
+	local absX = abs(xOffset)
+	local absY = abs(yOffset)
+	local width = (rWidth and rWidth > 0) and (rWidth + 2 * absX) or 40
+	local height = (rHeight and rHeight > 0) and (rHeight + 2 * absY) or 40
+	f:SetSize(width, height)
+
 	f:SetScript("OnHide", GlowFrame_OnHide)
 	f:SetAlpha(1)
 	f:Show()
@@ -489,7 +485,7 @@ local function addFrameAndTex(r, color, name, key, N, xOffset, yOffset, texture,
 		SafeReleaseTexture(GlowTexPool, textures[i])
 		textures[i] = nil
 	end
-	return update, f
+	return update, f, width, height
 end
 
 local function RGBToHSV(r, g, b)
@@ -497,12 +493,11 @@ local function RGBToHSV(r, g, b)
 	local maxVal = mathmax(r, g, b)
 	local delta = maxVal - minVal
 	local v = maxVal
-	local h, s
-	if maxVal ~= 0 then
-		s = delta / maxVal
-	else
+	if maxVal == 0 then
 		return 0, 0, 0
 	end
+	local s = delta / maxVal
+	local h
 	if delta == 0 then
 		h = 0
 	elseif r == maxVal then
@@ -544,17 +539,28 @@ for i = 1, 64 do
 end
 local colorPoolIndex = 0
 
-local function GetColorHSV(c, r, g, b)
+local function GetColorInfo(c)
 	if type(c) == "table" then
-		if c.h and c._cr == r and c._cg == g and c._cb == b then
-			return c.h, c.s, c.v
+		local r = c[1] or c.r
+		local g = c[2] or c.g or 1
+		local b = c[3] or c.b or 1
+		local a = c[4] or c.a or 1
+		if not r and c.GetRGBA then
+			r, g, b, a = c:GetRGBA()
 		end
-		local h, s, v = RGBToHSV(r, g, b)
+		r = r or 1
+		local h = c.h
+		if h and c._cr == r and c._cg == g and c._cb == b then
+			return r, g, b, a, h, c.s, c.v
+		end
+		local s, v
+		h, s, v = RGBToHSV(r, g, b)
 		c.h, c.s, c.v = h, s, v
 		c._cr, c._cg, c._cb = r, g, b
-		return h, s, v
+		return r, g, b, a, h, s, v
 	end
-	return RGBToHSV(r, g, b)
+	local h, s, v = RGBToHSV(1, 1, 1)
+	return 1, 1, 1, 1, h, s, v
 end
 
 local function PrepareGradient(g)
@@ -562,96 +568,34 @@ local function PrepareGradient(g)
 	for i = 1, #g do
 		local c = g[i]
 		if type(c) == "table" then
-			local r, gr, b, a = GetColorRGBA(c)
+			local r, gr, b, a = GetColorInfo(c)
 			c[1], c[2], c[3], c[4] = r, gr, b, a
-			if not c.h or c._cr ~= r or c._cg ~= gr or c._cb ~= b then
-				local h, s, v = RGBToHSV(r, gr, b)
-				c.h, c.s, c.v = h, s, v
-				c._cr, c._cg, c._cb = r, gr, b
-			end
 		end
 	end
 end
 
--- HSV transition, for a much prettier color transition in many cases
--- see http://www.wowinterface.com/forums/showthread.php?t=48236
 local function GetHSVTransition(perc, c1, c2)
 	colorPoolIndex = (colorPoolIndex % 64) + 1
 	local col = colorPool[colorPoolIndex]
 
+	local r1, g1, b1, a1, h1, s1, v1 = GetColorInfo(c1)
 	if perc <= 0 then
-		local r1, g1, b1, a1, h1, s1, v1
-		if type(c1) == "table" and c1[1] then
-			r1, g1, b1, a1 = c1[1], c1[2] or 1, c1[3] or 1, c1[4] or 1
-			if c1.h and c1._cr == r1 and c1._cg == g1 and c1._cb == b1 then
-				h1, s1, v1 = c1.h, c1.s, c1.v
-			else
-				h1, s1, v1 = RGBToHSV(r1, g1, b1)
-				c1.h, c1.s, c1.v = h1, s1, v1
-				c1._cr, c1._cg, c1._cb = r1, g1, b1
-			end
-		else
-			r1, g1, b1, a1 = GetColorRGBA(c1)
-			h1, s1, v1 = GetColorHSV(c1, r1, g1, b1)
-		end
-		col[1] = r1; col[2] = g1; col[3] = b1; col[4] = a1
-		col.r = r1; col.g = g1; col.b = b1; col.a = a1
-		col.h = h1; col.s = s1; col.v = v1
-		col._cr = r1; col._cg = g1; col._cb = b1
-		return col
-	elseif perc >= 1 then
-		local r2, g2, b2, a2, h2, s2, v2
-		if type(c2) == "table" and c2[1] then
-			r2, g2, b2, a2 = c2[1], c2[2] or 1, c2[3] or 1, c2[4] or 1
-			if c2.h and c2._cr == r2 and c2._cg == g2 and c2._cb == b2 then
-				h2, s2, v2 = c2.h, c2.s, c2.v
-			else
-				h2, s2, v2 = RGBToHSV(r2, g2, b2)
-				c2.h, c2.s, c2.v = h2, s2, v2
-				c2._cr, c2._cg, c2._cb = r2, g2, b2
-			end
-		else
-			r2, g2, b2, a2 = GetColorRGBA(c2)
-			h2, s2, v2 = GetColorHSV(c2, r2, g2, b2)
-		end
-		col[1] = r2; col[2] = g2; col[3] = b2; col[4] = a2
-		col.r = r2; col.g = g2; col.b = b2; col.a = a2
-		col.h = h2; col.s = s2; col.v = v2
-		col._cr = r2; col._cg = g2; col._cb = b2
+		col[1], col[2], col[3], col[4] = r1, g1, b1, a1
+		col.r, col.g, col.b, col.a = r1, g1, b1, a1
+		col.h, col.s, col.v = h1, s1, v1
+		col._cr, col._cg, col._cb = r1, g1, b1
 		return col
 	end
 
-	local r1, g1, b1, a1, h1, s1, v1
-	if type(c1) == "table" and c1[1] then
-		r1, g1, b1, a1 = c1[1], c1[2] or 1, c1[3] or 1, c1[4] or 1
-		if c1.h and c1._cr == r1 and c1._cg == g1 and c1._cb == b1 then
-			h1, s1, v1 = c1.h, c1.s, c1.v
-		else
-			h1, s1, v1 = RGBToHSV(r1, g1, b1)
-			c1.h, c1.s, c1.v = h1, s1, v1
-			c1._cr, c1._cg, c1._cb = r1, g1, b1
-		end
-	else
-		r1, g1, b1, a1 = GetColorRGBA(c1)
-		h1, s1, v1 = GetColorHSV(c1, r1, g1, b1)
+	local r2, g2, b2, a2, h2, s2, v2 = GetColorInfo(c2)
+	if perc >= 1 then
+		col[1], col[2], col[3], col[4] = r2, g2, b2, a2
+		col.r, col.g, col.b, col.a = r2, g2, b2, a2
+		col.h, col.s, col.v = h2, s2, v2
+		col._cr, col._cg, col._cb = r2, g2, b2
+		return col
 	end
 
-	local r2, g2, b2, a2, h2, s2, v2
-	if type(c2) == "table" and c2[1] then
-		r2, g2, b2, a2 = c2[1], c2[2] or 1, c2[3] or 1, c2[4] or 1
-		if c2.h and c2._cr == r2 and c2._cg == g2 and c2._cb == b2 then
-			h2, s2, v2 = c2.h, c2.s, c2.v
-		else
-			h2, s2, v2 = RGBToHSV(r2, g2, b2)
-			c2.h, c2.s, c2.v = h2, s2, v2
-			c2._cr, c2._cg, c2._cb = r2, g2, b2
-		end
-	else
-		r2, g2, b2, a2 = GetColorRGBA(c2)
-		h2, s2, v2 = GetColorHSV(c2, r2, g2, b2)
-	end
-
-	-- find the shortest arc through the color circle, then interpolate
 	local diff = h2 - h1
 	if diff < -180 then
 		diff = diff + 360
@@ -662,26 +606,13 @@ local function GetHSVTransition(perc, c1, c2)
 	local h3 = (h1 + perc * diff) % 360
 	local s3 = s1 - (s1 - s2) * perc
 	local v3 = v1 - (v1 - v2) * perc
-
 	local r, g, b = HSVToRGB(h3, s3, v3)
-
-	--interpolate alpha
 	local a = a1 - (a1 - a2) * perc
 
-	col[1] = r
-	col[2] = g
-	col[3] = b
-	col[4] = a
-	col.r = r
-	col.g = g
-	col.b = b
-	col.a = a
-	col.h = h3
-	col.s = s3
-	col.v = v3
-	col._cr = r
-	col._cg = g
-	col._cb = b
+	col[1], col[2], col[3], col[4] = r, g, b, a
+	col.r, col.g, col.b, col.a = r, g, b, a
+	col.h, col.s, col.v = h3, s3, v3
+	col._cr, col._cg, col._cb = r, g, b
 	return col
 end
 
@@ -692,18 +623,8 @@ local SetGradA
 if gradColor1.SetRGBA then
 	SetGradA = function(texture, direction, c1, c2)
 		if not texture then return end
-		local r1, g1, b1, a1
-		if type(c1) == "table" and c1[1] then
-			r1, g1, b1, a1 = c1[1], c1[2] or 1, c1[3] or 1, c1[4] or 1
-		else
-			r1, g1, b1, a1 = GetColorRGBA(c1)
-		end
-		local r2, g2, b2, a2
-		if type(c2) == "table" and c2[1] then
-			r2, g2, b2, a2 = c2[1], c2[2] or 1, c2[3] or 1, c2[4] or 1
-		else
-			r2, g2, b2, a2 = GetColorRGBA(c2)
-		end
+		local r1, g1, b1, a1 = GetColorRGBA(c1)
+		local r2, g2, b2, a2 = GetColorRGBA(c2)
 		gradColor1:SetRGBA(r1, g1, b1, a1)
 		gradColor2:SetRGBA(r2, g2, b2, a2)
 		texture:SetGradient(direction, gradColor1, gradColor2)
@@ -714,14 +635,8 @@ else
 		local r1, g1, b1, a1 = GetColorRGBA(c1)
 		local r2, g2, b2, a2 = GetColorRGBA(c2)
 		if texture.SetGradient then
-			gradColor1.r = r1
-			gradColor1.g = g1
-			gradColor1.b = b1
-			gradColor1.a = a1
-			gradColor2.r = r2
-			gradColor2.g = g2
-			gradColor2.b = b2
-			gradColor2.a = a2
+			gradColor1.r, gradColor1.g, gradColor1.b, gradColor1.a = r1, g1, b1, a1
+			gradColor2.r, gradColor2.g, gradColor2.b, gradColor2.a = r2, g2, b2, a2
 			texture:SetGradient(direction, gradColor1, gradColor2)
 		elseif texture.SetGradientAlpha then
 			texture:SetGradientAlpha(direction, r1, g1, b1, a1, r2, g2, b2, a2)
@@ -2988,42 +2903,15 @@ borderF["LEFT"] = borderF["TOP"]
 borderF["BOTTOM"] = borderF["TOP"]
 borderF["RIGHT"] = borderF["TOP"]
 
+local BORDER_REVERSE_MAP = {
+	[1] = { TOP = "BOTTOM", BOTTOM = "TOP", LEFT = "RIGHT", RIGHT = "LEFT", TOPLEFT = "BOTTOMRIGHT", BOTTOMRIGHT = "TOPLEFT", TOPRIGHT = "BOTTOMLEFT", BOTTOMLEFT = "TOPRIGHT" },
+	[2] = { TOP = "LEFT", BOTTOM = "LEFT", LEFT = "TOP", RIGHT = "TOP", TOPLEFT = "TOPRIGHT", BOTTOMRIGHT = "TOPRIGHT", BOTTOMLEFT = "TOPLEFT", TOPRIGHT = "TOPLEFT" },
+	[4] = { TOP = "TOPLEFT", BOTTOM = "TOPLEFT", LEFT = "TOPLEFT", RIGHT = "TOPLEFT", TOPLEFT = "TOP", BOTTOMRIGHT = "TOP", BOTTOMLEFT = "TOP", TOPRIGHT = "TOP" },
+}
+
 local function BorderReverse(startPoint, N)
-	if N == 2 then
-		if startPoint == "TOP" or startPoint == "BOTTOM" then
-			return "LEFT"
-		elseif startPoint == "LEFT" or startPoint == "RIGHT" then
-			return "TOP"
-		elseif startPoint == "TOPLEFT" or startPoint == "BOTTOMRIGHT" then
-			return "TOPRIGHT"
-		elseif startPoint == "BOTTOMLEFT" or startPoint == "TOPRIGHT" then
-			return "TOPLEFT"
-		end
-	elseif N == 1 then
-		if startPoint == "TOP" then
-			return "BOTTOM"
-		elseif startPoint == "TOPRIGHT" then
-			return "BOTTOMLEFT"
-		elseif startPoint == "RIGHT" then
-			return "LEFT"
-		elseif startPoint == "BOTTOMRIGHT" then
-			return "TOPLEFT"
-		elseif startPoint == "BOTTOM" then
-			return "TOP"
-		elseif startPoint == "BOTTOMLEFT" then
-			return "TOPRIGHT"
-		elseif startPoint == "LEFT" then
-			return "RIGHT"
-		elseif startPoint == "TOPLEFT" then
-			return "BOTTOMRIGHT"
-		end
-	else
-		if startPoint == "TOP" or startPoint == "BOTTOM" or startPoint == "LEFT" or startPoint == "RIGHT" then
-			return "TOPLEFT"
-		elseif startPoint == "TOPLEFT" or startPoint == "BOTTOMRIGHT" or startPoint == "BOTTOMLEFT" or startPoint == "TOPRIGHT" then
-			return "TOP"
-		end
-	end
+	local map = BORDER_REVERSE_MAP[N] or BORDER_REVERSE_MAP[4]
+	return (map and map[startPoint]) or startPoint
 end
 
 ---- Flash Internal Functions ----
@@ -3520,17 +3408,10 @@ local function BlingUpdate(self, elapsed)
 	end
 
 	if inf.noTails then
-		if new < 0.5 then
-			if old >= 0.5 and inf.midCallback then
-				inf.midCallback(inf.callbackTarget, inf.callbackExpectedName)
-			end
-			inf.FlashUpdate(self, new)
-		else
-			if old <= 0.5 and inf.midCallback then
-				inf.midCallback(inf.callbackTarget, inf.callbackExpectedName)
-			end
-			inf.FlashUpdate(self, new)
+		if ((new < 0.5 and old >= 0.5) or (new >= 0.5 and old <= 0.5)) and inf.midCallback then
+			inf.midCallback(inf.callbackTarget, inf.callbackExpectedName)
 		end
+		inf.FlashUpdate(self, new)
 	else
 		local tailList = inf.tail.list
 		local flashList = inf.flash.list
@@ -3556,10 +3437,8 @@ local function BlingUpdate(self, elapsed)
 			end
 		end
 		if new > 0.33 then
-			if old <= 0.33 then
-				if inf.midCallback then
-					inf.midCallback(inf.callbackTarget, inf.callbackExpectedName)
-				end
+			if old <= 0.33 and inf.midCallback then
+				inf.midCallback(inf.callbackTarget, inf.callbackExpectedName)
 			end
 			if old <= 0.33 or self.timer >= 1 then
 				for i = 1, #tailList do
@@ -3625,10 +3504,9 @@ function lib.Bling(r, options)
 	end
 	local template = options and options.template and blingTemplates[options.template] or blingTemplates.default
 	local opt = options or template
-	local noTails, reverse, sine
-	if opt.noTails == nil then noTails = template.noTails else noTails = opt.noTails end
-	if opt.reverse == nil then reverse = template.reverse else reverse = opt.reverse end
-	if opt.sine == nil then sine = template.sine else sine = opt.sine end
+	local noTails = opt.noTails ~= nil and opt.noTails or template.noTails
+	local reverse = opt.reverse ~= nil and opt.reverse or template.reverse
+	local sine = opt.sine ~= nil and opt.sine or template.sine
 	local flashType = opt.flash or template.flash
 	local flashEntry = flashF[flashType] or flashF.split
 
@@ -3646,9 +3524,9 @@ function lib.Bling(r, options)
 		tailStartPoint = optTails.startPoint or defTails.startPoint
 		tailCount = optTails.N or defTails.N
 		tailTh = optTails.th or defTails.th
-		if optTails.color ~= nil then tailColor = optTails.color else tailColor = defTails.color end
-		if optTails.clockwise == nil then tailClockwise = defTails.clockwise else tailClockwise = optTails.clockwise end
-		if optTails.mirror == nil then tailMirror = defTails.mirror else tailMirror = optTails.mirror end
+		tailColor = optTails.color ~= nil and optTails.color or defTails.color
+		tailClockwise = optTails.clockwise ~= nil and optTails.clockwise or defTails.clockwise
+		tailMirror = optTails.mirror ~= nil and optTails.mirror or defTails.mirror
 
 		local borderEntry = borderF[tailStartPoint][tailCount]
 		BorderSet = borderEntry.Set
@@ -3656,11 +3534,7 @@ function lib.Bling(r, options)
 		BorderGradient = borderEntry.Gradient
 		tailN = borderEntry.tailN
 
-		if opt.gradient ~= nil then
-			gradient = opt.gradient
-		elseif not options then
-			gradient = template.gradient
-		end
+		gradient = opt.gradient ~= nil and opt.gradient or (not options and template.gradient or nil)
 		if gradient then
 			PrepareGradient(gradient)
 		end
@@ -3672,7 +3546,7 @@ function lib.Bling(r, options)
 	local yOffset = opt.yOffset or template.yOffset
 	local frameLevel = opt.frameLevel or template.frameLevel
 
-	local _, f = addFrameAndTex(r, color, "_Bling", key, tailN + flashN, xOffset, yOffset, textureList.white, DEFAULT_TEXCOORD, nil, frameLevel)
+	local _, f, width, height = addFrameAndTex(r, color, "_Bling", key, tailN + flashN, xOffset, yOffset, textureList.white, DEFAULT_TEXCOORD, nil, frameLevel)
 
 	f.timer = reverse and 1 or 0.001
 
@@ -3680,20 +3554,6 @@ function lib.Bling(r, options)
 	if not inf then
 		inf = {}
 		f.inf = inf
-	end
-	local width, height = f:GetSize()
-	if not width or not height or width <= 0 or height <= 0 then
-		local rW, rH = r:GetSize()
-		if rW and rH and rW > 0 and rH > 0 then
-			local absX = xOffset < 0 and -xOffset or xOffset
-			local absY = yOffset < 0 and -yOffset or yOffset
-			width = rW + 2 * absX
-			height = rH + 2 * absY
-			f:SetSize(width, height)
-		else
-			width = 40
-			height = 40
-		end
 	end
 	inf.reverse = reverse
 	inf.th = tailTh
@@ -4058,7 +3918,7 @@ local function CopyBlingOptionsInto(dest, src, def)
 	if s.noTails == nil then dest.noTails = def.noTails else dest.noTails = s.noTails end
 	if s.sine == nil then dest.sine = def.sine else dest.sine = s.sine end
 	dest.tails = s.tails or def.tails
-	if s.reverse == nil then dest.reverse = def.reverse else dest.reverse = s.reverse end
+	dest.reverse = s.reverse ~= nil and s.reverse or def.reverse
 	dest.duration = s.duration or def.duration
 	dest.xOffset = s.xOffset or def.xOffset
 	dest.yOffset = s.yOffset or def.yOffset
@@ -4092,8 +3952,7 @@ function lib.BorderPulse_Start(r, options)
 	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
-	local template = options and options.template and borderPulseTemplates[options.template]
-		or borderPulseTemplates.default
+	local template = options and options.template and borderPulseTemplates[options.template] or borderPulseTemplates.default
 	local opt = options or template
 
 	local startPoint = opt.startPoint or template.startPoint
@@ -4109,17 +3968,12 @@ function lib.BorderPulse_Start(r, options)
 	local xOffset = opt.xOffset or template.xOffset
 	local yOffset = opt.yOffset or template.yOffset
 	local frameLevel = opt.frameLevel or template.frameLevel
-	local gradient
-	if opt.gradient ~= nil then
-		gradient = opt.gradient
-	elseif not options then
-		gradient = template.gradient
-	end
+	local gradient = opt.gradient ~= nil and opt.gradient or (not options and template.gradient or nil)
 	if gradient then
 		PrepareGradient(gradient)
 	end
 
-	local update, f = addFrameAndTex(r, color, "_BorderPulse", key, tailN, xOffset, yOffset, textureList.white, DEFAULT_TEXCOORD, nil, frameLevel)
+	local update, f, width, height = addFrameAndTex(r, color, "_BorderPulse", key, tailN, xOffset, yOffset, textureList.white, DEFAULT_TEXCOORD, nil, frameLevel)
 
 	if type(f.timer) ~= "number" then
 		f.timer = 0.001
@@ -4130,30 +3984,16 @@ function lib.BorderPulse_Start(r, options)
 		inf = {}
 		f.inf = inf
 	end
-	local width, height = f:GetSize()
-	if not width or not height or width <= 0 or height <= 0 then
-		local rW, rH = r:GetSize()
-		if rW and rH and rW > 0 and rH > 0 then
-			local absX = xOffset < 0 and -xOffset or xOffset
-			local absY = yOffset < 0 and -yOffset or yOffset
-			width = rW + 2 * absX
-			height = rH + 2 * absY
-			f:SetSize(width, height)
-		else
-			width = 40
-			height = 40
-		end
-	end
-	local repeatBling, annoy, startBling
-	if opt.repeatBling == nil then repeatBling = template.repeatBling else repeatBling = opt.repeatBling end
-	if opt.annoy == nil then annoy = template.annoy else annoy = opt.annoy end
-	if opt.startBling == nil then startBling = template.startBling else startBling = opt.startBling end
+
+	local repeatBling = opt.repeatBling ~= nil and opt.repeatBling or template.repeatBling
+	local annoy = opt.annoy ~= nil and opt.annoy or template.annoy
+	local startBling = opt.startBling ~= nil and opt.startBling or template.startBling
 
 	inf.N = N
 	inf.th = opt.th or template.th
 	inf.frequency = opt.frequency or template.frequency
-	if opt.sine == nil then inf.sine = template.sine else inf.sine = opt.sine end
-	if opt.forceStop == nil then inf.forceStop = template.forceStop else inf.forceStop = opt.forceStop end
+	inf.sine = opt.sine ~= nil and opt.sine or template.sine
+	inf.forceStop = opt.forceStop ~= nil and opt.forceStop or template.forceStop
 	inf.finish = nil
 	inf.gradient = gradient
 	inf.gradientFrequency = opt.gradientFrequency or template.gradientFrequency
@@ -4173,10 +4013,10 @@ function lib.BorderPulse_Start(r, options)
 		tail = {}
 		inf.tail = tail
 	end
-	if opt.clockwise == nil then tail.clockwise = template.clockwise else tail.clockwise = opt.clockwise end
+	tail.clockwise = opt.clockwise ~= nil and opt.clockwise or template.clockwise
 	tail.list = f.textures
 	tail.startPoint = startPoint
-	if opt.mirror == nil then tail.mirror = template.mirror else tail.mirror = opt.mirror end
+	tail.mirror = opt.mirror ~= nil and opt.mirror or template.mirror
 	tail.old = 0
 
 	if inf.sign == -1 then
@@ -4771,74 +4611,35 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 	end
 
 	local d = pixelTemplates.default
-	local optColor, optN, optFreq, optLengthArg, optTh, optXOff, optYOff, optBorder, optKey, optFrameLevel
-	local optFadeDur, optForceStop, optGrad, optGradFreq, optAnnoy, optAnnoyFreq, optStartBling, optRepeatBling, optBlingOpts
+	local isOpts = type(colorOrOptions) == "table" and not colorOrOptions[1] and not colorOrOptions.r and not colorOrOptions.GetRGBA
+	local template = isOpts and colorOrOptions.template and pixelTemplates[colorOrOptions.template] or d
+	local opt = isOpts and colorOrOptions or template
 
-	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA)) or N ~= nil or frequency ~= nil or length ~= nil or th ~= nil or xOffset ~= nil or yOffset ~= nil or border ~= nil or key ~= nil or frameLevel ~= nil then
-		optColor = colorOrOptions or d.color
-		optN = N or d.N
-		optFreq = frequency or d.frequency
-		optLengthArg = length or d.length
-		optTh = th or d.th
-		optXOff = xOffset or d.xOffset
-		optYOff = yOffset or d.yOffset
-		if border == nil then optBorder = d.border else optBorder = border end
-		optKey = key or d.key
-		optFrameLevel = frameLevel or d.frameLevel
-		optFadeDur = d.fadeDuration
-		optForceStop = d.forceStop or false
-		optGrad = d.gradient
-		optGradFreq = d.gradientFrequency
-		optAnnoy = d.annoy
-		optAnnoyFreq = d.annoyFrequency
-		optStartBling = d.startBling
-		optRepeatBling = d.repeatBling
-		optBlingOpts = d.blingOptions
-	else
-		local template = colorOrOptions and colorOrOptions.template and pixelTemplates[colorOrOptions.template] or d
-		local opt = colorOrOptions or template
-		optColor = opt.color or template.color
-		optN = opt.N or template.N
-		optFreq = opt.frequency or template.frequency
-		optLengthArg = opt.length or template.length
-		optTh = opt.th or template.th
-		optXOff = opt.xOffset or template.xOffset
-		optYOff = opt.yOffset or template.yOffset
-		if opt.border == nil then optBorder = template.border else optBorder = opt.border end
-		optKey = opt.key or template.key
-		optFrameLevel = opt.frameLevel or template.frameLevel
-		optFadeDur = opt.fadeDuration or template.fadeDuration
-		if opt.forceStop == nil then optForceStop = template.forceStop else optForceStop = opt.forceStop end
-		if opt.gradient ~= nil then
-			optGrad = opt.gradient
-		else
-			optGrad = template.gradient
-		end
-		optGradFreq = opt.gradientFrequency or template.gradientFrequency
-		if opt.annoy == nil then optAnnoy = template.annoy else optAnnoy = opt.annoy end
-		optAnnoyFreq = opt.annoyFrequency or template.annoyFrequency
-		if opt.startBling == nil then optStartBling = template.startBling else optStartBling = opt.startBling end
-		if opt.repeatBling == nil then optRepeatBling = template.repeatBling else optRepeatBling = opt.repeatBling end
-		optBlingOpts = opt.blingOptions or template.blingOptions
-	end
+	local optColor = (isOpts and opt.color) or colorOrOptions or template.color
+	local optN = (isOpts and opt.N) or N or template.N
+	local optFreq = (isOpts and opt.frequency) or frequency or template.frequency
+	local optLengthArg = (isOpts and opt.length) or length or template.length
+	local optTh = (isOpts and opt.th) or th or template.th
+	local optXOff = (isOpts and opt.xOffset) or xOffset or template.xOffset
+	local optYOff = (isOpts and opt.yOffset) or yOffset or template.yOffset
+	local optBorder = isOpts and (opt.border ~= nil and opt.border or template.border) or (border ~= nil and border or template.border)
+	local optKey = (isOpts and opt.key) or key or template.key
+	local optFrameLevel = (isOpts and opt.frameLevel) or frameLevel or template.frameLevel
+	local optFadeDur = opt.fadeDuration or template.fadeDuration
+	local optForceStop = opt.forceStop ~= nil and opt.forceStop or template.forceStop or false
+	local optGrad = opt.gradient ~= nil and opt.gradient or template.gradient
+	local optGradFreq = opt.gradientFrequency or template.gradientFrequency
+	local optAnnoy = opt.annoy ~= nil and opt.annoy or template.annoy
+	local optAnnoyFreq = opt.annoyFrequency or template.annoyFrequency
+	local optStartBling = opt.startBling ~= nil and opt.startBling or template.startBling
+	local optRepeatBling = opt.repeatBling ~= nil and opt.repeatBling or template.repeatBling
+	local optBlingOpts = opt.blingOptions or template.blingOptions
 
 	if optGrad then
 		PrepareGradient(optGrad)
 	end
 
-	local update, f = addFrameAndTex(r, optColor, "_PixelGlow", optKey or "", optN + 4, optXOff, optYOff, textureList.white, DEFAULT_TEXCOORD, nil, optFrameLevel)
-
-	local width, height = f:GetSize()
-	if not width or not height or width <= 0 or height <= 0 then
-		local rW, rH = r:GetSize()
-		if rW and rH and rW > 0 and rH > 0 then
-			local absX = optXOff < 0 and -optXOff or optXOff
-			local absY = optYOff < 0 and -optYOff or optYOff
-			width = rW + 2 * absX
-			height = rH + 2 * absY
-			f:SetSize(width, height)
-		end
-	end
+	local update, f, width, height = addFrameAndTex(r, optColor, "_PixelGlow", optKey or "", optN + 4, optXOff, optYOff, textureList.white, DEFAULT_TEXCOORD, nil, optFrameLevel)
 
 	local defaultLength = optLengthArg or floor((width + height) / optN * 1.25)
 	local optLength = min(defaultLength, width - 2, height - 2)
@@ -4914,7 +4715,7 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 
 	if optRepeatBling or optAnnoy then
 		local flashOptions = CopyBlingOptionsInto(inf.flashOptions or {}, optBlingOpts, blingTemplates.default)
-		if not colorOrOptions or not colorOrOptions.blingOptions then
+		if not isOpts or not colorOrOptions.blingOptions then
 			flashOptions.color = optColor
 			flashOptions.gradient = optGrad
 		end
@@ -4933,7 +4734,7 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 			f:Hide()
 			local startOpts = CopyBlingOptionsInto(inf.startBlingOptions or {}, optBlingOpts, borderPulseTemplates.default.blingOptions)
 			inf.startBlingOptions = startOpts
-			if not colorOrOptions or not colorOrOptions.blingOptions then
+			if not isOpts or not colorOrOptions.blingOptions then
 				startOpts.color = optColor
 			end
 			startOpts.gradient = optGrad
@@ -5141,16 +4942,25 @@ local autoCastTemplates = {
 }
 
 function lib.AutoCastGlow_Start(r, colorOrOptions, N, frequency, scale, xOffset, yOffset, key, frameLevel)
-	if not r then
-		return
-	end
+	if not r then return end
 	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
 	local d = autoCastTemplates.default
 	local optColor, optN, optFreq, optScale, optXOff, optYOff, optKey, optFrameLevel
-	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA)) or N ~= nil or frequency ~= nil or scale ~= nil or xOffset ~= nil or yOffset ~= nil or key ~= nil or frameLevel ~= nil then
+	local isOpts = type(colorOrOptions) == "table" and colorOrOptions[1] == nil and not colorOrOptions.GetRGBA
+	if isOpts then
+		local tmpl = colorOrOptions.template and autoCastTemplates[colorOrOptions.template] or d
+		optColor = colorOrOptions.color or tmpl.color
+		optN = colorOrOptions.N or tmpl.N
+		optFreq = colorOrOptions.frequency or tmpl.frequency
+		optScale = colorOrOptions.scale or tmpl.scale
+		optXOff = colorOrOptions.xOffset or tmpl.xOffset
+		optYOff = colorOrOptions.yOffset or tmpl.yOffset
+		optKey = colorOrOptions.key or ""
+		optFrameLevel = colorOrOptions.frameLevel or tmpl.frameLevel
+	else
 		optColor = colorOrOptions or d.color
 		optN = N or d.N
 		optFreq = frequency or d.frequency
@@ -5159,17 +4969,6 @@ function lib.AutoCastGlow_Start(r, colorOrOptions, N, frequency, scale, xOffset,
 		optYOff = yOffset or d.yOffset
 		optKey = key or ""
 		optFrameLevel = frameLevel or d.frameLevel
-	else
-		local template = colorOrOptions and colorOrOptions.template and autoCastTemplates[colorOrOptions.template] or d
-		local opt = colorOrOptions or template
-		optColor = opt.color or template.color
-		optN = opt.N or template.N
-		optFreq = opt.frequency or template.frequency
-		optScale = opt.scale or template.scale
-		optXOff = opt.xOffset or template.xOffset
-		optYOff = opt.yOffset or template.yOffset
-		optKey = opt.key or ""
-		optFrameLevel = opt.frameLevel or template.frameLevel
 	end
 
 	local update, f = addFrameAndTex(r, optColor, "_AutoCastGlow", optKey, optN * 4, optXOff, optYOff, textureList.shine, shineCoords, true, optFrameLevel)
@@ -5518,122 +5317,90 @@ local buttonGlowTemplates = {
 }
 
 function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
-	if not r then
-		return
-	end
+	if not r then return end
 	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
 	local color, optFreq, optFrameLevel
-	if (colorOrOptions ~= nil and (type(colorOrOptions) ~= "table" or colorOrOptions[1] ~= nil or colorOrOptions.GetRGBA)) or frequency ~= nil or frameLevel ~= nil then
+	local isOpts = type(colorOrOptions) == "table" and colorOrOptions[1] == nil and not colorOrOptions.GetRGBA
+	if isOpts then
+		local tmpl = colorOrOptions.template and buttonGlowTemplates[colorOrOptions.template] or buttonGlowTemplates.default
+		color = (colorOrOptions.color ~= nil) and colorOrOptions.color or tmpl.color
+		optFreq = colorOrOptions.frequency or tmpl.frequency
+		optFrameLevel = colorOrOptions.frameLevel or tmpl.frameLevel
+	else
 		color = colorOrOptions
 		optFreq = frequency or 0.25
 		optFrameLevel = frameLevel or 8
-	else
-		local template = colorOrOptions and colorOrOptions.template and buttonGlowTemplates[colorOrOptions.template]
-			or buttonGlowTemplates.default
-		local opt = colorOrOptions or template
-		color = (opt.color ~= nil) and opt.color or template.color
-		optFreq = opt.frequency or template.frequency
-		optFrameLevel = opt.frameLevel or template.frameLevel
 	end
 
-	local throttle
-	if optFreq and optFreq > 0 then
-		throttle = 0.25 / optFreq * 0.01
-	else
-		throttle = 0.01
-	end
-
-	local colorAlpha = GetColorAlpha(color)
+	local throttle = (optFreq and optFreq > 0) and (0.25 / optFreq * 0.01) or 0.01
 
 	local existing = r._ButtonGlow
 	local isValidPoolFrame = existing and IsPoolObjectActive(ButtonGlowPool, existing)
+	local f, new
+
+	local desat = color and 1 or nil
+	local cR, cG, cB, cA = 1, 1, 1, 1
+	if color then
+		cR, cG, cB, cA = GetColorRGBA(color)
+	end
+
+	local width, height = r:GetSize()
+	width = (width and width > 0) and width or 40
+	height = (height and height > 0) and height or 40
+	local glowW, glowH = width * 1.4, height * 1.4
 
 	if isValidPoolFrame then
-		local f = existing
-		f.cooldown = r.cooldown
-		local width, height = r:GetSize()
-		f:SetFrameLevel(r:GetFrameLevel() + optFrameLevel)
-		f:SetSize(width * 1.4, height * 1.4)
-		f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
-		f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
-		f.ants:SetSize(width * 1.4 * 0.85, height * 1.4 * 0.85)
+		f = existing
+		f.ants:SetSize(glowW * 0.85, glowH * 0.85)
 		AnimIn_OnFinished(f.animIn)
 		if f.animOut:IsPlaying() then
 			f.animOut:Stop()
 			f.animIn:Play()
 		end
 		local prevColorAlpha = noZero(GetColorAlpha(f.color))
-		if not color then
-			for i = 1, 6 do
-				local tex = f[ButtonGlowTextureList[i]]
-				tex:SetDesaturated(nil)
-				tex:SetVertexColor(1, 1, 1)
-				local alpha = min(tex:GetAlpha() / prevColorAlpha, 1)
-				tex:SetAlpha(alpha)
-			end
-			updateAlphaAnim(f, 1)
-			f.color = false
-		else
-			local cR, cG, cB, cA = GetColorRGBA(color)
-			for i = 1, 6 do
-				local tex = f[ButtonGlowTextureList[i]]
-				tex:SetDesaturated(1)
-				tex:SetVertexColor(cR, cG, cB)
-				local alpha = min(tex:GetAlpha() / prevColorAlpha * cA, 1)
-				tex:SetAlpha(alpha)
-			end
-			updateAlphaAnim(f, cA)
-			f.color = color
+		for i = 1, 6 do
+			local tex = f[ButtonGlowTextureList[i]]
+			tex:SetDesaturated(desat)
+			tex:SetVertexColor(cR, cG, cB)
+			tex:SetAlpha(min(tex:GetAlpha() / prevColorAlpha * cA, 1))
 		end
-		f.throttle = throttle
+		updateAlphaAnim(f, cA)
 	else
 		if existing then
 			SafeReleaseFrame(ButtonGlowPool, existing)
 		end
-		local f, new = ButtonGlowPool:Acquire()
+		f, new = ButtonGlowPool:Acquire()
 		if new then
-			configureButtonGlow(f, color and colorAlpha or 1)
+			configureButtonGlow(f, cA)
 		else
-			updateAlphaAnim(f, color and colorAlpha or 1)
+			updateAlphaAnim(f, cA)
 		end
 		r._ButtonGlow = f
-		local width, height = r:GetSize()
 		f:SetParent(r)
-		f.cooldown = r.cooldown
-		f:SetFrameLevel(r:GetFrameLevel() + optFrameLevel)
-		f:SetSize(width * 1.4, height * 1.4)
-		f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
-		f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
-		if not color then
-			f.color = false
-			for i = 1, 6 do
-				local tex = f[ButtonGlowTextureList[i]]
-				tex:SetDesaturated(nil)
-				tex:SetVertexColor(1, 1, 1)
-			end
-		else
-			f.color = color
-			local cR, cG, cB = GetColorRGBA(color)
-			for i = 1, 6 do
-				local tex = f[ButtonGlowTextureList[i]]
-				tex:SetDesaturated(1)
-				tex:SetVertexColor(cR, cG, cB)
-			end
+		for i = 1, 6 do
+			local tex = f[ButtonGlowTextureList[i]]
+			tex:SetDesaturated(desat)
+			tex:SetVertexColor(cR, cG, cB)
 		end
-		f.throttle = throttle
 		f._legAlpha = nil
 		f._cdTimer = nil
 		f:SetScript("OnUpdate", bgUpdate)
-
 		f.animIn:Play()
-
 		if Masque and Masque.UpdateSpellAlert then
 			Masque:UpdateSpellAlert(r, f)
 		end
 	end
+
+	f.color = color or false
+	f.cooldown = r.cooldown
+	f:SetFrameLevel(r:GetFrameLevel() + optFrameLevel)
+	f:SetSize(glowW, glowH)
+	f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
+	f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
+	f.throttle = throttle
 end
 
 function lib.ButtonGlow_Stop(r, force)
@@ -5854,18 +5621,15 @@ end
 
 local function SetupProcGlow(f, glowKey, color, duration, startAnim)
 	f.key = glowKey -- for resetter
-	if not color then
-		f.ProcStart:SetDesaturated(nil)
-		f.ProcStart:SetVertexColor(1, 1, 1, 1)
-		f.ProcLoop:SetDesaturated(nil)
-		f.ProcLoop:SetVertexColor(1, 1, 1, 1)
-	else
-		local cR, cG, cB, cA = GetColorRGBA(color)
-		f.ProcStart:SetDesaturated(1)
-		f.ProcStart:SetVertexColor(cR, cG, cB, cA)
-		f.ProcLoop:SetDesaturated(1)
-		f.ProcLoop:SetVertexColor(cR, cG, cB, cA)
+	local desat = color and 1 or nil
+	local cR, cG, cB, cA = 1, 1, 1, 1
+	if color then
+		cR, cG, cB, cA = GetColorRGBA(color)
 	end
+	f.ProcStart:SetDesaturated(desat)
+	f.ProcStart:SetVertexColor(cR, cG, cB, cA)
+	f.ProcLoop:SetDesaturated(desat)
+	f.ProcLoop:SetVertexColor(cR, cG, cB, cA)
 	if f.ProcLoopAnim.flipbookRepeat then
 		f.ProcLoopAnim.flipbookRepeat:SetDuration(duration or 1)
 	end
@@ -6038,31 +5802,30 @@ lib.SyncGlowDefaults = function()
 end
 
 function lib.ProcGlow_Start(r, options, duration, startAnim, xOffset, yOffset, frameLevel, key)
-	if not r then
-		return
-	end
+	if not r then return end
 	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
+	local d = ProcGlowDefaults
 	local optColor, optDur, optStartAnim, optXOff, optYOff, optFrameLevel, optKey
-	if (options ~= nil and (type(options) ~= "table" or options[1] ~= nil or options.GetRGBA)) or duration ~= nil or startAnim ~= nil or xOffset ~= nil or yOffset ~= nil or frameLevel ~= nil or key ~= nil then
-		optColor = options
-		optDur = duration or ProcGlowDefaults.duration
-		if startAnim == nil then optStartAnim = ProcGlowDefaults.startAnim else optStartAnim = startAnim end
-		optXOff = xOffset or ProcGlowDefaults.xOffset
-		optYOff = yOffset or ProcGlowDefaults.yOffset
-		optFrameLevel = frameLevel or ProcGlowDefaults.frameLevel
-		optKey = key or ProcGlowDefaults.key
+	local isOpts = type(options) == "table" and options[1] == nil and not options.GetRGBA
+	if isOpts then
+		optColor = options.color ~= nil and options.color or d.color
+		optDur = options.duration or d.duration
+		optStartAnim = options.startAnim == nil and d.startAnim or options.startAnim
+		optXOff = options.xOffset or d.xOffset
+		optYOff = options.yOffset or d.yOffset
+		optFrameLevel = options.frameLevel or d.frameLevel
+		optKey = options.key or d.key
 	else
-		local opt = options or ProcGlowDefaults
-		if opt.color ~= nil then optColor = opt.color else optColor = ProcGlowDefaults.color end
-		optDur = opt.duration or ProcGlowDefaults.duration
-		if opt.startAnim == nil then optStartAnim = ProcGlowDefaults.startAnim else optStartAnim = opt.startAnim end
-		optXOff = opt.xOffset or ProcGlowDefaults.xOffset
-		optYOff = opt.yOffset or ProcGlowDefaults.yOffset
-		optFrameLevel = opt.frameLevel or ProcGlowDefaults.frameLevel
-		optKey = opt.key or ProcGlowDefaults.key
+		optColor = options
+		optDur = duration or d.duration
+		optStartAnim = startAnim == nil and d.startAnim or startAnim
+		optXOff = xOffset or d.xOffset
+		optYOff = yOffset or d.yOffset
+		optFrameLevel = frameLevel or d.frameLevel
+		optKey = key or d.key
 	end
 
 	local glowKey = (optKey and optKey ~= "") and ("_ProcGlow" .. optKey) or "_ProcGlow"
@@ -6085,6 +5848,8 @@ function lib.ProcGlow_Start(r, options, duration, startAnim, xOffset, yOffset, f
 	f:SetFrameLevel(r:GetFrameLevel() + optFrameLevel)
 
 	local width, height = r:GetSize()
+	width = (width and width > 0) and width or 40
+	height = (height and height > 0) and height or 40
 	local xOff = optXOff + width * 0.2
 	local yOff = optYOff + height * 0.2
 	f:ClearAllPoints()
