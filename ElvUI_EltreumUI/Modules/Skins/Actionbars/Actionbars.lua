@@ -250,7 +250,11 @@ function ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor, frameLevel, xOf
 		blOpts.duration = bl.duration
 		blOpts.sine = bl.sine
 		blOpts.reverse = bl.reverse
+		blOpts.repeatAnim = bl.repeatAnim ~= nil and bl.repeatAnim or (bl["repeat"] ~= nil and bl["repeat"] or true)
+		blOpts["repeat"] = blOpts.repeatAnim
 		blOpts.noTails = bl.noTails
+		blOpts.annoy = bl.annoy
+		blOpts.annoyFrequency = bl.annoyFrequency
 		blOpts.frameLevel = frameLevel or bl.frameLevel
 		blOpts.xOffset = xOffset or bl.xOffset
 		blOpts.yOffset = yOffset or bl.yOffset

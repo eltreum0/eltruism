@@ -3378,11 +3378,158 @@ local flashF = {
 ---- Bling ----
 local function BlingUpdate(self, elapsed)
 	local inf = self.inf
-	if not inf then
+	if not inf or not self:IsVisible() then
+		if inf and inf.endCallback then
+			inf.endCallback(inf.callbackTarget, inf.callbackExpectedName)
+		end
+		if self.SetClipsChildren then
+			self:SetClipsChildren(false)
+		end
 		SafeReleaseFrame(GlowFramePool, self)
 		return
 	end
+
+	-- Repeating edge phase (the center flash / annoy played once during intro and is not repeated)
+	if inf.introDone then
+		if not inf.repeatAnim then
+			if self.SetClipsChildren then
+				self:SetClipsChildren(false)
+			end
+			SafeReleaseFrame(GlowFramePool, self)
+			return
+		end
+
+		local width, height = self:GetSize()
+		if not width or not height or width <= 0 or height <= 0 then
+			return
+		end
+		if inf.width ~= width or inf.height ~= height then
+			inf.BorderSet(self)
+			inf.width = width
+			inf.height = height
+		end
+
+		if inf.annoy then
+			local annoyProg = (inf.annoyProg or 0) + elapsed * (inf.annoyFrequency or 0.5)
+			if annoyProg > 1 then
+				annoyProg = annoyProg % 1
+				inf.annoyActive = true
+				inf.annoyFlashTimer = 0.001
+				if inf.flash then
+					inf.flash.old = 0
+				end
+				local flashList = inf.flash and inf.flash.list
+				if flashList then
+					for i = 1, #flashList do
+						flashList[i]:Show()
+					end
+				end
+			end
+			inf.annoyProg = annoyProg
+
+			if inf.annoyActive then
+				local flashTimer = (inf.annoyFlashTimer or 0) + elapsed / ((inf.duration or 0.65) * 0.66)
+				if flashTimer >= 1 then
+					inf.annoyActive = nil
+					inf.annoyFlashTimer = nil
+					local flashList = inf.flash and inf.flash.list
+					if flashList then
+						for i = 1, #flashList do
+							flashList[i]:Hide()
+						end
+					end
+				else
+					inf.annoyFlashTimer = flashTimer
+					local flashProg = inf.sine and sin(1.5708 * flashTimer) or flashTimer
+					if inf.FlashUpdate then
+						inf.FlashUpdate(self, flashProg)
+					end
+				end
+			end
+		end
+
+		local direction = inf.reverse and -1 or 1
+		local tailTimer = (inf.tailTimer or (inf.reverse and 1 or 0)) + direction * elapsed / (inf.duration or 0.65)
+		if inf.reverse then
+			if tailTimer <= 0 then
+				tailTimer = 1 - ((-tailTimer) % 1)
+				if tailTimer <= 0 or tailTimer >= 1 then tailTimer = 0.999 end
+				local tailList = inf.tail and inf.tail.list
+				if tailList then
+					for i = 1, #tailList do
+						tailList[i]:Show()
+					end
+				end
+				if inf.tail then
+					inf.tail.old = 1
+				end
+				inf.BorderSet(self)
+			end
+		else
+			if tailTimer >= 1 then
+				tailTimer = tailTimer % 1
+				if tailTimer <= 0 or tailTimer >= 1 then tailTimer = 0.001 end
+				local tailList = inf.tail and inf.tail.list
+				if tailList then
+					for i = 1, #tailList do
+						tailList[i]:Show()
+					end
+				end
+				if inf.tail then
+					inf.tail.old = 0
+				end
+				inf.BorderSet(self)
+			end
+		end
+		inf.tailTimer = tailTimer
+		local tailProg = inf.sine and sin(1.5708 * tailTimer) or tailTimer
+		inf.BorderUpdate(self, tailProg)
+		if inf.gradient then
+			inf.BorderGradient(self, tailProg, elapsed)
+		end
+		return
+	end
+
 	local progress = self.timer + (inf.reverse and -1 or 1) * elapsed / (inf.duration or 0.65)
+
+	if progress > 1 or progress < 0 then
+		if not inf.repeatAnim or inf.noTails then
+			if inf.endCallback then
+				inf.endCallback(inf.callbackTarget, inf.callbackExpectedName)
+			end
+			if self.SetClipsChildren then
+				self:SetClipsChildren(false)
+			end
+			SafeReleaseFrame(GlowFramePool, self)
+			return
+		else
+			inf.introDone = true
+			local flashList = inf.flash and inf.flash.list
+			if flashList then
+				for i = 1, #flashList do
+					flashList[i]:Hide()
+				end
+			end
+			local tailList = inf.tail and inf.tail.list
+			if tailList then
+				for i = 1, #tailList do
+					tailList[i]:Show()
+				end
+			end
+			inf.BorderSet(self)
+			if inf.tail then
+				inf.tail.old = inf.reverse and 1 or 0
+			end
+			inf.tailTimer = inf.reverse and 1 or 0.001
+			local tailProg = inf.sine and sin(1.5708 * inf.tailTimer) or inf.tailTimer
+			inf.BorderUpdate(self, tailProg)
+			if inf.gradient then
+				inf.BorderGradient(self, tailProg, elapsed)
+			end
+			return
+		end
+	end
+
 	local old, new
 
 	if inf.sine then
@@ -3459,10 +3606,7 @@ local function BlingUpdate(self, elapsed)
 			end
 		end
 	end
-	if progress > 1 or progress < 0 or not self:IsVisible() then
-		if inf.endCallback then
-			inf.endCallback(inf.callbackTarget, inf.callbackExpectedName)
-		end
+	if not self:IsVisible() then
 		if self.SetClipsChildren then
 			self:SetClipsChildren(false)
 		end
@@ -3481,6 +3625,10 @@ local blingTemplates = {
 		gradientFrequency = 0.7,
 		noTails = false,
 		sine = true,
+		repeatAnim = true,
+		["repeat"] = true,
+		annoy = false,
+		annoyFrequency = 0.5,
 		tails = {
 			th = 2,
 			N = 1,
@@ -3509,6 +3657,12 @@ function lib.Bling(r, options)
 	local noTails = opt.noTails ~= nil and opt.noTails or template.noTails
 	local reverse = opt.reverse ~= nil and opt.reverse or template.reverse
 	local sine = opt.sine ~= nil and opt.sine or template.sine
+	local repeatAnim = false
+	if not noTails then
+		repeatAnim = opt.repeatAnim ~= nil and opt.repeatAnim or (opt["repeat"] ~= nil and opt["repeat"] or (template.repeatAnim ~= nil and template.repeatAnim or (template["repeat"] ~= nil and template["repeat"] or true)))
+	end
+	local annoy = opt.annoy ~= nil and opt.annoy or template.annoy
+	local annoyFrequency = opt.annoyFrequency or template.annoyFrequency
 	local flashType = opt.flash or template.flash
 	local flashEntry = flashF[flashType] or flashF.split
 
@@ -3562,6 +3716,14 @@ function lib.Bling(r, options)
 	inf.duration = opt.duration or template.duration
 	inf.noTails = noTails
 	inf.sine = sine
+	inf.repeatAnim = repeatAnim
+	inf.introDone = nil
+	inf.tailTimer = nil
+	inf.annoy = annoy
+	inf.annoyFrequency = annoyFrequency
+	inf.annoyProg = 0
+	inf.annoyActive = nil
+	inf.annoyFlashTimer = nil
 	inf.midCallback = opt.midCallback
 	inf.endCallback = opt.endCallback
 	inf.callbackTarget = opt.callbackTarget
@@ -3707,6 +3869,25 @@ local BlingParamters = {
 			name = "Sine",
 			desc = "Use sinusoidal progress instead of linear",
 			type = "toggle",
+		},
+		repeatAnim = {
+			name = "Repeat",
+			desc = "Repeat Bling animation continuously",
+			type = "toggle",
+		},
+		annoy = {
+			name = "Annoy",
+			desc = "Repeat Bling periodically while glow is active",
+			type = "toggle",
+		},
+		annoyFrequency = {
+			name = "Annoy frequency",
+			desc = "Frequency of annoy Bling if enabled",
+			type = "range",
+			min = 0.05,
+			softMin = 0.25,
+			softMax = 2,
+			step = 0.05,
 		},
 		tails = {
 			name = "Tail parameters",
@@ -3919,6 +4100,8 @@ local function CopyBlingOptionsInto(dest, src, def)
 	dest.gradientFrequency = s.gradientFrequency or def.gradientFrequency
 	if s.noTails == nil then dest.noTails = def.noTails else dest.noTails = s.noTails end
 	if s.sine == nil then dest.sine = def.sine else dest.sine = s.sine end
+	dest.repeatAnim = false
+	dest["repeat"] = false
 	dest.tails = s.tails or def.tails
 	dest.reverse = s.reverse ~= nil and s.reverse or def.reverse
 	dest.duration = s.duration or def.duration
@@ -5758,6 +5941,11 @@ SyncGlowDefaults = function(force)
 		blDef.sine = bl.sine
 		blDef.reverse = bl.reverse
 		blDef.noTails = bl.noTails
+		local blRepeat = bl.repeatAnim ~= nil and bl.repeatAnim or (bl["repeat"] ~= nil and bl["repeat"] or true)
+		blDef.repeatAnim = blRepeat
+		blDef["repeat"] = blRepeat
+		blDef.annoy = bl.annoy
+		blDef.annoyFrequency = bl.annoyFrequency or 0.5
 		blDef.xOffset = bl.xOffset or 0
 		blDef.yOffset = bl.yOffset or 0
 		blDef.frameLevel = bl.frameLevel or 8
