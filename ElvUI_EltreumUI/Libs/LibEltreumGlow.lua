@@ -44,6 +44,7 @@ local wipe = _G.wipe or _G.table.wipe
 local hooksecurefunc = _G.hooksecurefunc
 
 local SyncGlowDefaults
+local glowDefaultsUnset = true
 
 local sqrt = _G.sqrt
 local floor = _G.floor
@@ -575,6 +576,51 @@ end
 -- HSV transition, for a much prettier color transition in many cases
 -- see http://www.wowinterface.com/forums/showthread.php?t=48236
 local function GetHSVTransition(perc, c1, c2)
+	colorPoolIndex = (colorPoolIndex % 64) + 1
+	local col = colorPool[colorPoolIndex]
+
+	if perc <= 0 then
+		local r1, g1, b1, a1, h1, s1, v1
+		if type(c1) == "table" and c1[1] then
+			r1, g1, b1, a1 = c1[1], c1[2] or 1, c1[3] or 1, c1[4] or 1
+			if c1.h and c1._cr == r1 and c1._cg == g1 and c1._cb == b1 then
+				h1, s1, v1 = c1.h, c1.s, c1.v
+			else
+				h1, s1, v1 = RGBToHSV(r1, g1, b1)
+				c1.h, c1.s, c1.v = h1, s1, v1
+				c1._cr, c1._cg, c1._cb = r1, g1, b1
+			end
+		else
+			r1, g1, b1, a1 = GetColorRGBA(c1)
+			h1, s1, v1 = GetColorHSV(c1, r1, g1, b1)
+		end
+		col[1] = r1; col[2] = g1; col[3] = b1; col[4] = a1
+		col.r = r1; col.g = g1; col.b = b1; col.a = a1
+		col.h = h1; col.s = s1; col.v = v1
+		col._cr = r1; col._cg = g1; col._cb = b1
+		return col
+	elseif perc >= 1 then
+		local r2, g2, b2, a2, h2, s2, v2
+		if type(c2) == "table" and c2[1] then
+			r2, g2, b2, a2 = c2[1], c2[2] or 1, c2[3] or 1, c2[4] or 1
+			if c2.h and c2._cr == r2 and c2._cg == g2 and c2._cb == b2 then
+				h2, s2, v2 = c2.h, c2.s, c2.v
+			else
+				h2, s2, v2 = RGBToHSV(r2, g2, b2)
+				c2.h, c2.s, c2.v = h2, s2, v2
+				c2._cr, c2._cg, c2._cb = r2, g2, b2
+			end
+		else
+			r2, g2, b2, a2 = GetColorRGBA(c2)
+			h2, s2, v2 = GetColorHSV(c2, r2, g2, b2)
+		end
+		col[1] = r2; col[2] = g2; col[3] = b2; col[4] = a2
+		col.r = r2; col.g = g2; col.b = b2; col.a = a2
+		col.h = h2; col.s = s2; col.v = v2
+		col._cr = r2; col._cg = g2; col._cb = b2
+		return col
+	end
+
 	local r1, g1, b1, a1, h1, s1, v1
 	if type(c1) == "table" and c1[1] then
 		r1, g1, b1, a1 = c1[1], c1[2] or 1, c1[3] or 1, c1[4] or 1
@@ -603,23 +649,6 @@ local function GetHSVTransition(perc, c1, c2)
 	else
 		r2, g2, b2, a2 = GetColorRGBA(c2)
 		h2, s2, v2 = GetColorHSV(c2, r2, g2, b2)
-	end
-
-	colorPoolIndex = (colorPoolIndex % 64) + 1
-	local col = colorPool[colorPoolIndex]
-
-	if perc <= 0 then
-		col[1] = r1; col[2] = g1; col[3] = b1; col[4] = a1
-		col.r = r1; col.g = g1; col.b = b1; col.a = a1
-		col.h = h1; col.s = s1; col.v = v1
-		col._cr = r1; col._cg = g1; col._cb = b1
-		return col
-	elseif perc >= 1 then
-		col[1] = r2; col[2] = g2; col[3] = b2; col[4] = a2
-		col.r = r2; col.g = g2; col.b = b2; col.a = a2
-		col.h = h2; col.s = s2; col.v = v2
-		col._cr = r2; col._cg = g2; col._cb = b2
-		return col
 	end
 
 	-- find the shortest arc through the color circle, then interpolate
@@ -3591,7 +3620,7 @@ local DEFAULT_TEXCOORD = { 0, 1, 0, 1 }
 
 function lib.Bling(r, options)
 	if not r then return end
-	if SyncGlowDefaults then
+	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 	local template = options and options.template and blingTemplates[options.template] or blingTemplates.default
@@ -4060,7 +4089,7 @@ function lib.BorderPulse_Start(r, options)
 	if not r then
 		return
 	end
-	if SyncGlowDefaults then
+	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 	local template = options and options.template and borderPulseTemplates[options.template]
@@ -4210,7 +4239,7 @@ function lib.BorderPulse_Stop(r, key, force)
 	if not f then
 		return
 	end
-	if r[hasKey and ("_Bling" .. key) or "_Bling"] and lib.Bling_Stop then
+	if r[hasKey and ("_Bling" .. key) or "_Bling"] then
 		lib.Bling_Stop(r, key)
 	end
 	if force or not r:IsVisible() or not f:IsVisible() or not f.inf or f:GetScript("OnUpdate") ~= BorderPulseUpdate then
@@ -4737,7 +4766,7 @@ end
 function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffset, yOffset, border, key, frameLevel)
 	if not r then return end
 
-	if SyncGlowDefaults then
+	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
@@ -4926,7 +4955,7 @@ function lib.PixelGlow_Stop(r, key, force)
 	if not f then
 		return
 	end
-	if r[hasKey and ("_Bling" .. key) or "_Bling"] and lib.Bling_Stop then
+	if r[hasKey and ("_Bling" .. key) or "_Bling"] then
 		lib.Bling_Stop(r, key)
 	end
 	if force or not r:IsVisible() or not f:IsVisible() or not f.inf or f:GetScript("OnUpdate") ~= PixelUpdate then
@@ -5115,7 +5144,7 @@ function lib.AutoCastGlow_Start(r, colorOrOptions, N, frequency, scale, xOffset,
 	if not r then
 		return
 	end
-	if SyncGlowDefaults then
+	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
@@ -5492,7 +5521,7 @@ function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
 	if not r then
 		return
 	end
-	if SyncGlowDefaults then
+	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
@@ -5522,7 +5551,7 @@ function lib.ButtonGlow_Start(r, colorOrOptions, frequency, frameLevel)
 	local existing = r._ButtonGlow
 	local isValidPoolFrame = existing and IsPoolObjectActive(ButtonGlowPool, existing)
 
-	if existing and isValidPoolFrame then
+	if isValidPoolFrame then
 		local f = existing
 		f.cooldown = r.cooldown
 		local width, height = r:GetSize()
@@ -5860,7 +5889,10 @@ local ProcGlowDefaults = {
 	key = "",
 }
 
-SyncGlowDefaults = function()
+SyncGlowDefaults = function(force)
+	if not force and not glowDefaultsUnset then
+		return
+	end
 	local E = _G.ElvUI and _G.ElvUI[1]
 	if not E or not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.glow then
 		return
@@ -5998,15 +6030,18 @@ SyncGlowDefaults = function()
 		ProcGlowDefaults.frameLevel = pr.frameLevel or 8
 	end
 	ProcGlowDefaults.color = syncColor
+	glowDefaultsUnset = false
 end
 
-lib.SyncGlowDefaults = SyncGlowDefaults
+lib.SyncGlowDefaults = function()
+	SyncGlowDefaults(true)
+end
 
 function lib.ProcGlow_Start(r, options, duration, startAnim, xOffset, yOffset, frameLevel, key)
 	if not r then
 		return
 	end
-	if SyncGlowDefaults then
+	if glowDefaultsUnset then
 		SyncGlowDefaults()
 	end
 
@@ -6034,7 +6069,7 @@ function lib.ProcGlow_Start(r, options, duration, startAnim, xOffset, yOffset, f
 	local existing = r[glowKey]
 	local isValidPoolFrame = existing and IsPoolObjectActive(ProcGlowPool, existing)
 	local f, new
-	if existing and isValidPoolFrame then
+	if isValidPoolFrame then
 		f = existing
 	else
 		if existing then
