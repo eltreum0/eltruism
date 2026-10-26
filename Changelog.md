@@ -1,6 +1,6 @@
 ### 🌌 Next Version
 The future is uncertain
----
+___
 ### 5.1.6
 Added support for World of Warcraft Forever  
 Added Fishing and Titan Reforged cooking ID to Bag Profession Buttons (thanks Dongchen Xu)  
@@ -47,7 +47,7 @@ Fixed BugSack skin after updates and several shadow issues
 Fixed Game Menu buttons animation in the Ace3 skin  
 Removed profiles for abandoned addons (Gladius, GladiusEx, BattleGroundEnemies, OmniCD, AddOnSkins, ProjectAzilroka)  
 Removed deprecated friendly nameplate sizing and interaction options in instances  
----
+___
 ### 5.1.5
 Added gradient backdrop to group frames  
 Updated Pet and Party border colors to more correctly use their class/rection  
@@ -57,7 +57,7 @@ Fixed an issue where inverted target gradient wasn't working correctly
 Fixed a possible issue with Ace3 when some frames are secret  
 Fixed an issue with Gradient Health due to reactions  
 Fixed issues with Borders due to secrets  
----
+___
 ### 5.1.4
 Added an option to change widget texture when using ElvUI Skin  
 Added borders to datatext panels  
@@ -68,11 +68,11 @@ Fixed an issue (script ran too long) with the ElvUI Skin and Ace3 skins
 Fixed an issue with the Death Animation in Retail  
 Fixed an issue with Actionbar glows in Classic  
 Fixed an issue with Shadows and Secret Values  
----
+___
 ### 5.1.3
 Updated for ElvUI 15.23  
 Fixed some secret checks  
----
+___
 ### 5.1.2
 Updated for Retail Patch 12.1  
 Updated for Classic Era Patch 1.15.9  
@@ -83,7 +83,7 @@ Updated Gradient functions to perform better
 Fixed some missing textures due to an ElvUI folder change  
 Fixed several issues related to the patches mentioned.  
 Note: due to the Container change for Auras a lot of features will be missing related to them.  
----
+___
 ### 5.1.1
 Updated for Burning Crusade Anniversary 2.5.6  
 Updated Nameplate Threat color functions  
@@ -91,25 +91,25 @@ Updated Chat to sync with ElvUI changes
 Fixed an Error when trying to Link Achievements in Chat  
 Fixed an issue with Gradient Power in Retail  
 Removed LootText from Burning Crusade Anniversary due to it now being synced with Retail  
----
+___
 ### 5.1.0
 Updated for Midnight 12.0.7  
 Fixed an error with pet action bars in Mists of Pandaria Classic  
 Fixed Eltruism Game Menu button position after an ElvUI change  
----
+___
 ### 5.0.9.1
 Fixed an error in Classic Mists due to a change in Blizzard Chat  
----
+___
 ### 5.0.9
 Updated for Classic Mists 5.5.4  
 Removed LootText from Classic Mists due to the removal of the Blizzard functions necessary for it  
----
+___
 ### 5.0.8
 Updated Waypoint Time To Arrive to use other calculations when player speed is secret  
 Fixed an issue with the Time to Arrive due to player speed being secret  
 Fixed an issue with the Quest Auto Accept due to NPC id being secret  
 Fixed an issue with the font dropdown due to the AvQuest font  
----
+___
 ### 5.0.7
 Updated Nameplate Target Model to be disabled in Retail for now due to the unit tokens now being secret in 12.0.5  
 Updated the Friendly Nameplate hide to better work with the Class Color due to CVar not being account wide  
@@ -119,7 +119,7 @@ Fixed an error in the [eltruismrealm:dash] tag due to realm being secret in Reta
 Fixed an error in Burning Crusade Classic due to aura button being nil sometimes  
 Fixed issues with several stats due to stats now being secret in 12.0.5  
 Fixed issues with Tooltip due to changes introduced in 12.0.5  
----
+___
 ### 5.0.6
 Added Haranir Character Panel skin  
 Added Haranir Chat Icons
@@ -128,7 +128,7 @@ Fixed issues with tags due to hotfixes that changed UnitIsUnit, target reversed 
 Fixed an error on Classic versions due to missing Damage Meter  
 Fixed an error on Classic versions due to the Inspect Talent skin  
 Fixed an error due to a removed function from ElvUI  
----
+___
 ### 5.0.5
 Updated Character Panel skin in Classic, TBC and Wrath to allow resizing in combat again  
 Updated Damage Meter skin to avoid skinning in PVP areas  
@@ -136,7 +136,7 @@ Fixed an issue with the Character Panel shadow in TBC
 Fixed an issue with the Character Panel Skin in PVP  
 Fixed an issue related to secrets on the tooltip  
 Fixed issues with tags due to secrets  
----
+___
 ### 5.0.4
 Added an option to use custom gradient colors in the Character Panel skin  
 Added an option to disable skinning the Vehicle Leave Button  
@@ -158,7 +158,7 @@ Fixed an issue with borders when a unit's reaction could be nil
 Fixed an issuew with the missing Level Up toast in TBC  
 Fixed some issues with the Socket Gems in TBC  
 Fixed an issue with the Quest Skin in Retail  
----
+___
 ### 5.0.3
 Added a new tag [eltruism:status] that combines the dead and dc icons, check note below  
 Added an option to disable replacing Damage Meter icons  
@@ -174,7 +174,7 @@ Fixed an issue in TBC where loot quality filter could error
 Fixed issues with the Compatibility Check  
 Fixed an issue with the AFK screen  
 Note: after a hotfix icons can no longer be displayed with Health values, meaning tags need to be set on separate fields to display those icons. Your [eltruism:hpstatus...] tags won't display icons due to this. I recommend creating a new custom text and using [eltruism:status] or [eltruism:dead][eltruism:dc] to get those icons working again. Sadly this is out of my control.  
----
+___
 ### 5.0.2
 Added an option to disable the mouseover of the Damage Meter  
 Added an option to disable the coloring of Rare Nameplates  
@@ -194,7 +194,7 @@ Fixed an issue where some Portrait options were not applying
 Fixed an issue related to using transparent Power  
 Fixed an issue with Borders and secrets  
 Fixed issues related to chat in Retail  
----
+___
 ### 5.0.1
 Added an option to disable Borders on Raid Unitframe Auras  
 Updated Gradient Nameplates to fix issue with flashing threat colors  
