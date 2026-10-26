@@ -2038,12 +2038,11 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	local bordersDB = eltreumDB and eltreumDB.borders
 	local bordersEnabled = bordersDB and bordersDB.borders
 	if not bordersEnabled then
-		local auraborder
-		if E.Modern then
-			auraborder = button.EltruismAuraBorder
-		else
+		local auraborder = button.EltruismAuraBorder
+		if not auraborder and not E.Modern then
 			local btnName = button.GetName and button:GetName()
 			if btnName then auraborder = _G["EltruismAuraBorder"..btnName] end
+			if auraborder then button.EltruismAuraBorder = auraborder end
 		end
 		if auraborder and auraborder.eltruismShown ~= false then
 			auraborder:Hide()
@@ -2086,12 +2085,11 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 		end
 	end
 
-	local auraborder
-	if E.Modern then
-		auraborder = button.EltruismAuraBorder
-	else
+	local auraborder = button.EltruismAuraBorder
+	if not auraborder and not E.Modern then
 		local btnName = button.GetName and button:GetName()
 		if btnName then auraborder = _G["EltruismAuraBorder"..btnName] end
+		if auraborder then button.EltruismAuraBorder = auraborder end
 	end
 
 	if not shouldEnable then
@@ -2118,12 +2116,12 @@ function ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	--Blizzard_SharedXML/Backdrop.lua:226: attempt to perform arithmetic on local 'width' (a secret number value, while execution tainted by 'ElvUI_EltreumUI')
 	if not auraborder then
 		if E.Modern then
-			button.EltruismAuraBorder = CreateFrame("Frame", nil, button, BackdropTemplateMixin and "BackdropTemplate")
-			auraborder = button.EltruismAuraBorder
+			auraborder = CreateFrame("Frame", nil, button, BackdropTemplateMixin and "BackdropTemplate")
 		else
 			local btnName = button.GetName and button:GetName()
 			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..(btnName or tostring(button)), button, BackdropTemplateMixin and "BackdropTemplate")
 		end
+		button.EltruismAuraBorder = auraborder
 		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
 		auraborder:SetBackdrop({
 			edgeFile = bordertexture or (bordersDB.texture and E.LSM:Fetch("border", bordersDB.texture)),
