@@ -684,7 +684,7 @@ end
 
 --update the values of nameplate power bar
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
-	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable and EltreumPowerBar:IsShown() then
 		local playerPower = UnitPower("player")
 		EltreumPowerBar:SetValue(playerPower)
 		if E.Modern then
@@ -700,7 +700,7 @@ local EltruismPowerBarTextFrame = CreateFrame("FRAME")
 EltruismPowerBarTextFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
 EltruismPowerBarTextFrame:SetScript("OnEvent", function()
 	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
-	if UnitExists("target") then
+	if UnitExists("target") and EltreumPowerBar:IsShown() then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	end
 end)
