@@ -74,6 +74,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["tooltip"]["targetInfo"] = false --was true
 	E.db["tooltip"]["showMount"] = false --was true
 
+	--target of target
+	E.db["unitframe"]["units"]["targettarget"]["enable"] = true
+
 	--modern show class colors
 	E.db["nameplates"]["classColorNames"] = true
 
@@ -109,6 +112,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
 	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
 	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
+
 	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
 	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
 	E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
@@ -122,6 +126,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 15
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
+
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "LEFT"
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -15

@@ -1245,7 +1245,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
 	E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "DEBUFFS_ON_BUFFS"
 	E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
-	E.db["unitframe"]["units"]["targettarget"]["enable"] = true
 	E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25
 	E.db["unitframe"]["units"]["targettarget"]["buffs"]["keepSizeRatio"] = false
