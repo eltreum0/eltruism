@@ -54,6 +54,7 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db["unitframe"]["units"]["focus"]["portrait"]["enable"] = false
 	E.db["unitframe"]["units"]["pet"]["portrait"]["enable"] = false
 	E.db["unitframe"]["units"]["targettarget"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["targettarget"]["enable"] = false
 
 	--Eltruism
 	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
