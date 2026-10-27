@@ -3389,9 +3389,10 @@ local function BlingUpdate(self, elapsed)
 		return
 	end
 
-	-- Repeating edge phase (the center flash / annoy played once during intro and is not repeated)
+	-- Repeating phase (after intro)
 	if inf.introDone then
-		if not inf.repeatAnim then
+		local shouldRepeat = inf.annoy or inf.repeatAnim
+		if not shouldRepeat then
 			if self.SetClipsChildren then
 				self:SetClipsChildren(false)
 			end
@@ -3403,13 +3404,9 @@ local function BlingUpdate(self, elapsed)
 		if not width or not height or width <= 0 or height <= 0 then
 			return
 		end
-		if inf.width ~= width or inf.height ~= height then
-			inf.BorderSet(self)
-			inf.width = width
-			inf.height = height
-		end
 
-		if inf.annoy then
+		local annoyEnabled = inf.annoy or (inf.noTails and inf.repeatAnim)
+		if annoyEnabled then
 			local annoyProg = (inf.annoyProg or 0) + elapsed * (inf.annoyFrequency or 0.5)
 			if annoyProg > 1 then
 				annoyProg = annoyProg % 1
@@ -3446,6 +3443,20 @@ local function BlingUpdate(self, elapsed)
 					end
 				end
 			end
+		end
+
+		if inf.noTails then
+			return
+		end
+
+		if not inf.repeatAnim then
+			return
+		end
+
+		if inf.width ~= width or inf.height ~= height then
+			inf.BorderSet(self)
+			inf.width = width
+			inf.height = height
 		end
 
 		local direction = inf.reverse and -1 or 1
@@ -3493,7 +3504,8 @@ local function BlingUpdate(self, elapsed)
 	local progress = self.timer + (inf.reverse and -1 or 1) * elapsed / (inf.duration or 0.65)
 
 	if progress > 1 or progress < 0 then
-		if not inf.repeatAnim or inf.noTails then
+		local shouldRepeat = inf.annoy or inf.repeatAnim
+		if not shouldRepeat then
 			if inf.endCallback then
 				inf.endCallback(inf.callbackTarget, inf.callbackExpectedName)
 			end
@@ -3510,21 +3522,23 @@ local function BlingUpdate(self, elapsed)
 					flashList[i]:Hide()
 				end
 			end
-			local tailList = inf.tail and inf.tail.list
-			if tailList then
-				for i = 1, #tailList do
-					tailList[i]:Show()
+			if not inf.noTails then
+				local tailList = inf.tail and inf.tail.list
+				if tailList then
+					for i = 1, #tailList do
+						tailList[i]:Show()
+					end
 				end
-			end
-			inf.BorderSet(self)
-			if inf.tail then
-				inf.tail.old = inf.reverse and 1 or 0
-			end
-			inf.tailTimer = inf.reverse and 1 or 0.001
-			local tailProg = inf.sine and sin(1.5708 * inf.tailTimer) or inf.tailTimer
-			inf.BorderUpdate(self, tailProg)
-			if inf.gradient then
-				inf.BorderGradient(self, tailProg, elapsed)
+				inf.BorderSet(self)
+				if inf.tail then
+					inf.tail.old = inf.reverse and 1 or 0
+				end
+				inf.tailTimer = inf.reverse and 1 or 0.001
+				local tailProg = inf.sine and sin(1.5708 * inf.tailTimer) or inf.tailTimer
+				inf.BorderUpdate(self, tailProg)
+				if inf.gradient then
+					inf.BorderGradient(self, tailProg, elapsed)
+				end
 			end
 			return
 		end
@@ -3657,10 +3671,7 @@ function lib.Bling(r, options)
 	local noTails = opt.noTails ~= nil and opt.noTails or template.noTails
 	local reverse = opt.reverse ~= nil and opt.reverse or template.reverse
 	local sine = opt.sine ~= nil and opt.sine or template.sine
-	local repeatAnim = false
-	if not noTails then
-		repeatAnim = opt.repeatAnim ~= nil and opt.repeatAnim or (opt["repeat"] ~= nil and opt["repeat"] or (template.repeatAnim ~= nil and template.repeatAnim or (template["repeat"] ~= nil and template["repeat"] or true)))
-	end
+	local repeatAnim = opt.repeatAnim ~= nil and opt.repeatAnim or (opt["repeat"] ~= nil and opt["repeat"] or (template.repeatAnim ~= nil and template.repeatAnim or (template["repeat"] ~= nil and template["repeat"] or true)))
 	local annoy = opt.annoy ~= nil and opt.annoy or template.annoy
 	local annoyFrequency = opt.annoyFrequency or template.annoyFrequency
 	local flashType = opt.flash or template.flash
@@ -4102,6 +4113,7 @@ local function CopyBlingOptionsInto(dest, src, def)
 	if s.sine == nil then dest.sine = def.sine else dest.sine = s.sine end
 	dest.repeatAnim = false
 	dest["repeat"] = false
+	dest.annoy = false
 	dest.tails = s.tails or def.tails
 	dest.reverse = s.reverse ~= nil and s.reverse or def.reverse
 	dest.duration = s.duration or def.duration
