@@ -1193,6 +1193,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["target"]["raidicon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
+	E.db["unitframe"]["units"]["targettarget"]["enable"] = true
 	E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["targettarget"]["height"] = 54
 	E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25
