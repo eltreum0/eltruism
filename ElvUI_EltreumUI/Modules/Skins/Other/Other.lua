@@ -265,6 +265,28 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
 
 				CraftFrame:HookScript("OnShow", function() --is also the pet training in classic
+					-- The rows must exist before CRAFTS_DISPLAYED says 22: CraftFrame_Update runs on
+					-- the craft events of this same frame, before the delay below, and indexes Craft9+.
+					if not CraftFrame.EltruismExpanded then
+						-- Create the additional rows
+						--local numCrafts = CRAFTS_DISPLAYED
+						local numCrafts = 8
+						--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+						for i = numCrafts + 1, 22 do
+							local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+							craftbutton:SetID(i)
+							craftbutton:Hide()
+							craftbutton:ClearAllPoints()
+							craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+						end
+
+						--increase the width of the rows so the title fits
+						for i = 1, 8 do
+							local craftTitle = _G["Craft"..i]
+							craftTitle:Width(335)
+						end
+						CraftFrame.EltruismExpanded = true
+					end
 					_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
 
 					E:Delay(0, function()
@@ -312,27 +334,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 						_G.CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 
 						_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
-
-						if not CraftFrame.EltruismExpanded then
-							-- Create the additional rows
-							--local numCrafts = CRAFTS_DISPLAYED
-							local numCrafts = 8
-							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
-							for i = numCrafts + 1, 22 do
-								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
-								craftbutton:SetID(i)
-								craftbutton:Hide()
-								craftbutton:ClearAllPoints()
-								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
-							end
-
-							--increase the width of the rows so the title fits
-							for i = 1, 8 do
-								local craftTitle = _G["Craft"..i]
-								craftTitle:Width(335)
-							end
-							CraftFrame.EltruismExpanded = true
-						end
 
 						CraftCreateButton:ClearAllPoints()
 						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 25, 95)
