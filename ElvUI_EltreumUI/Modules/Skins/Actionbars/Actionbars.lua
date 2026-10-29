@@ -534,16 +534,16 @@ function ElvUI_EltreumUI:SkillGlow()
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 					local t1x, t1y = _G["ElvUF_PlayerTotem2"]:GetSize()
 					totemglow1:SetSize(t1x+12, t1y+4)
-					totemglow1:SetPoint("Center", _G["ElvUF_PlayerTotem2"])
+					totemglow1:SetPoint("CENTER", _G["ElvUF_PlayerTotem2"])
 					local t2x, t2y = _G["ElvUF_PlayerTotem1"]:GetSize()
 					totemglow2:SetSize(t2x+12, t2y+4)
-					totemglow2:SetPoint("Center", _G["ElvUF_PlayerTotem1"])
+					totemglow2:SetPoint("CENTER", _G["ElvUF_PlayerTotem1"])
 					local t3x, t3y = _G["ElvUF_PlayerTotem3"]:GetSize()
 					totemglow3:SetSize(t3x+12, t3y+4)
-					totemglow3:SetPoint("Center", _G["ElvUF_PlayerTotem3"])
+					totemglow3:SetPoint("CENTER", _G["ElvUF_PlayerTotem3"])
 					local t4x, t4y = _G["ElvUF_PlayerTotem4"]:GetSize()
 					totemglow4:SetSize(t4x+12, t4y+4)
-					totemglow4:SetPoint("Center", _G["ElvUF_PlayerTotem4"])
+					totemglow4:SetPoint("CENTER", _G["ElvUF_PlayerTotem4"])
 				end
 
 				if not E.db.ElvUI_EltreumUI.glow.totemtypecolor then
