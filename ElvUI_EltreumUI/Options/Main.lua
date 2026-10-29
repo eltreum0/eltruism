@@ -309,6 +309,7 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	E.Libs.ACH:Header(name, order, get, set, hidden)
 	E.Libs.ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
 	E.Libs.ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+	E.Libs.ACH:Spacer(order, width, hidden)
 
 	E.Libs.ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	E.Libs.ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
@@ -316,12 +317,14 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	E.Libs.ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
 	E.Libs.ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
 	E.Libs.ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+	E.Libs.ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden, sortByValue)
 
 	E.Libs.ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
 	E.Libs.ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
 	E.Libs.ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
 	E.Libs.ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
 	E.Libs.ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
+	E.Libs.ACH:FontFlags(name, desc, order, width, get, set, disabled, hidden)
 	]]--
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
