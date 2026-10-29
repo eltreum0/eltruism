@@ -408,8 +408,10 @@ do
 							local texture = icons["Eltruism"].path
 
 							if skin.iconSpec then
-								if icon.specIconID then
+								if icon.specIconID and canaccessvalue(icon.specIconID) then
 									texture = packPath or icons["EltruismSpec"].path
+								else
+									texture = packPath
 								end
 							elseif packPath then
 								texture = packPath
