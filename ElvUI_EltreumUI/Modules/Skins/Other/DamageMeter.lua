@@ -8,6 +8,7 @@ local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local instanceType = "none"
 local CreateColor = _G.CreateColor
+local canaccessvalue = _G.canaccessvalue
 local dmMin = CreateColor(1, 1, 1, 1)
 local dmMax = CreateColor(1, 1, 1, 1)
 
@@ -389,7 +390,7 @@ do
 					local textureCoords
 					if not bar.spellID then --avoid spell stuff
 						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
-							if icon.specIconID and BlizzardTextureIDsForSpecs[tostring(icon.specIconID)] then
+							if icon.specIconID and canaccessvalue(icon.specIconID) and BlizzardTextureIDsForSpecs[tostring(icon.specIconID)] then
 								textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(icon.specIconID)]]
 							else
 								textureCoords = class_coords[bar.classFilename]
