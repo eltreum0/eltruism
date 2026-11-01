@@ -1,4 +1,30 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<AnimationGroup name="Eltruism_DispelMarchingAnimTemplate" looping="REPEAT" virtual="true">
+		<TextureCoordTranslation childKey="Top" duration="1" offsetU="-1" offsetV="0"/>
+		<TextureCoordTranslation childKey="Bottom" duration="1" offsetU="1" offsetV="0"/>
+		<TextureCoordTranslation childKey="Left" duration="1" offsetU="0" offsetV="1"/>
+		<TextureCoordTranslation childKey="Right" duration="1" offsetU="0" offsetV="-1"/>
+	</AnimationGroup>
+
+	<Frame name="Eltruism_DispelBorderTemplate" inherits="MarchingAntsTemplate" virtual="true">
+		<KeyValues>
+			<KeyValue key="verticalAsset" value="UI-RaidFrames-SingleAnt-Vertical" type="string"/>
+			<KeyValue key="horizontalAsset" value="UI-RaidFrames-SingleAnt-Horiz" type="string"/>
+
+			<KeyValue key="leftOffsetP1X" value="-4" type="number"/>
+			<KeyValue key="leftOffsetP2X" value="-4" type="number"/>
+
+			<KeyValue key="rightOffsetP1X" value="4" type="number"/>
+			<KeyValue key="rightOffsetP2X" value="4" type="number"/>
+
+			<KeyValue key="topOffsetP1Y" value="4" type="number"/>
+			<KeyValue key="topOffsetP2Y" value="4" type="number"/>
+
+			<KeyValue key="bottomOffsetP1Y" value="-4" type="number"/>
+			<KeyValue key="bottomOffsetP2Y" value="-4" type="number"/>
+		</KeyValues>
+	</Frame>
+
 	<Script file="LibDeformat-3.0.lua"/>
 	<Script file="LibEltreumGlow.lua"/>
 </Ui>
