@@ -673,6 +673,19 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	end
 end)
 
+--also add something special to edit mode
+function ElvUI_EltreumUI:EditModeMusic()
+	if E.db.ElvUI_EltreumUI.musicEnabled then
+		if E.ConfigurationMode then
+			_G.StopMusic()
+			_G.PlayMusic([[Interface\AddOns\ElvUI_EltreumUI\Media\Music\EditMode.mp3]])
+		else
+			_G.StopMusic()
+		end
+	end
+end
+ElvUI_EltreumUI:SecureHook(E, "ToggleMoveMode", "EditModeMusic")
+
 --make the video options movable because its annoying when adjusting settings
 local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Cata
 if VideoOptionsFrame and not VideoOptionsFrame:HasScript("OnDragStart") then

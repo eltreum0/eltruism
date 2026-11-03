@@ -66,6 +66,7 @@ function ElvUI_EltreumUI:LoadCommands()
 	end
 end
 
+local musicplaying = false
 function ElvUI_EltreumUI:RunCommands(message)
 	if message == 'installer' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
@@ -88,6 +89,23 @@ function ElvUI_EltreumUI:RunCommands(message)
 		if not InCombatLockdown() then
 			E:ToggleOptions("ElvUI_EltreumUI")
 			--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+		end
+	elseif message == 'music' then
+		if E.db.ElvUI_EltreumUI.musicEnabled then
+			if not musicplaying then
+				_G.StopMusic()
+				_G.PlayMusic([[Interface\AddOns\ElvUI_EltreumUI\Media\Music\EltruismTheme.mp3]])
+				musicplaying = true
+			else
+				_G.StopMusic()
+				musicplaying = false
+			end
+		end
+	elseif message == 'musictoggle' then
+		if E.db.ElvUI_EltreumUI.musicEnabled then
+			E.db.ElvUI_EltreumUI.musicEnabled = false
+		else
+			E.db.ElvUI_EltreumUI.musicEnabled = true
 		end
 	elseif message == 'dev' then
 		if not E.db.ElvUI_EltreumUI.dev then

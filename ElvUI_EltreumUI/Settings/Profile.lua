@@ -8,6 +8,7 @@ P.ElvUI_EltreumUI = {
 	encountercheck = false,
 	disabledmodels = false,
 	editModeSpamWarning = true,
+	musicEnabled = false,
 
 	chat = {
 		enable = false,
