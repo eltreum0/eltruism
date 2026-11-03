@@ -32,7 +32,7 @@
 ## X-Tukui-ProjectID: 209
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
-## X-ElvUI: 16.00
+## X-ElvUI: 16.01
 
 Init.lua
 Settings\load_settings.xml
