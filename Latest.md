@@ -1,48 +1,24 @@
-### 5.1.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 5.1.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added support for World of Warcraft Forever  
-Added Fishing and Titan Reforged cooking ID to Bag Profession Buttons (thanks Dongchen Xu)  
-Added option previews for Dark/Light modes, textures, AFK music, and Death animations  
-Added a command (/eltruism transparent) to toggle unitframe transparent health  
-Added Nameplate Custom Height back using different functions  
-Added support for Skyborne Elves in several functions  
-Added Rare 2, Boss 1 and Boss 2 textures to Portrait  
-Added a Waypoint Name option to Map Waypoints  
-Added an ElvUI mover for LootText  
-Added several more shadows  
-Updated Castbars to unify player and target, improve interrupt handling, and revamp non-interruptible shields  
-Updated options layout, installation process, and moved combat settings into a dedicated section  
-Updated Shadows and Universal Borders to improve size, coloring, strata, and aura containers  
-Updated Quest Objective Tracker progress bars to improve backdrop coloring and dynamic hooks  
-Updated several tags to improve performance and restore [eltruism:classification] in Retail  
-Updated DataTexts and Max Camera Distance Zoom to better support Forever and Classic Era  
-Updated Aurabars to re-add gradients, custom fonts/outlines, thin mode, and fix shadows  
-Updated Class Combat Indicator to use default ElvUI indicator when unit class is secret  
-Updated Immersion skin to reliably skin dialogue options and quest reward choices  
-Updated CVars to show loot sparkle effects when object outline is disabled  
-Updated Nameplate threat scaling, borders, and power bar autopositioning  
-Updated hooks, glows, and gradient caching to optimize performance  
-Updated Tooltip skin to use separate functions and dynamic hooks  
-Updated Aura Filters and Chat Icons to sync with ElvUI changes  
-Updated Wishlist to automatically remove items once obtained  
-Updated Group Power gradient textures and color updates  
-Updated Thin Mode layout  
+Added an option to display player Level in Chat with difficulty coloring  
+Added Several Glow styles to Custom Glow via the new LibEltreumGlow  
+Added Power Texture option to Unitframe Custom Textures  
+Added Duel music to Combat Events with duel detection  
+Added a skin for FollowTheArrow  
+Updated Custom Glow to use LibEltreumGlow, replacing active glows smoothly, improving performance, and adding repeat controls  
+Updated Character Panel, Cursor Cooldown, and Nameplate Power Bar to optimize event handling and performance  
+Updated LootText to use custom scroll functions and removed the Blizzard_CombatText dependency  
+Updated Dispel Glow to once again work in Retail and Forever after the aura containers change  
+Updated Aura Borders registration to simplify and improve container handling  
+Updated Mail arrival notification with updated flipbook animations  
+Updated Performance Optimization to disable Target of Target  
+Updated Skyborne Elf race icons with in-game textures  
+Updated Evoker default gradient colors  
 Updated Localizations  
-Fixed non-interruptible castbar colors persisting across casts, missing gradients, and aurabar debuffs  
-Fixed texture escape sequences in tags causing classification, role, and class icons to not display  
-Fixed Nameplate Target Model persisting, Power Bar sizing/clipping, and disabled gradient errors  
-Fixed health tags in modern WoW when values are secret, restoring short values and status icons  
-Fixed player and group unitframe textures, backgrounds, and transparency on login and reload  
-Fixed several errors caused by secret values in combat, character stats, and DataTexts  
-Fixed a possible issue when applying custom font outlines with mMediaTag enabled  
-Fixed aura and group borders coloring, container changes, and hiding behavior  
-Fixed Damage Meter skin after ElvUI changes and name shortening in non-Retail  
-Fixed border auto adjust in combat lockdown and Minimap border misalignment  
-Fixed 3D portraits and models not inheriting alpha and nil value errors  
-Fixed aura positioning overlapping with castbars in the DPS layout  
-Fixed unitframe gradient backdrop colors when unit class is secret  
-Fixed BugSack skin after updates and several shadow issues  
-Fixed Game Menu buttons animation in the Ace3 skin  
-Removed profiles for abandoned addons (Gladius, GladiusEx, BattleGroundEnemies, OmniCD, AddOnSkins, ProjectAzilroka)  
-Removed deprecated friendly nameplate sizing and interaction options in instances  
-Note: Due to castbar database changes, a database conversion will run automatically.
+Fixed unitframe and castbar backdrop alpha and texture hiding when using static or hidden backdrops  
+Fixed Craft and Beast Training frame expansion and button sizing in Classic Era and TBC  
+Fixed Damage Meter skin errors when specialization is nil and improved secret checks  
+Fixed the [name:eltruism:gradientreverse] tag using the target instead of unit  
+Fixed secret value issues across Character Panel stats and Blinkii portraits  
+Fixed PetBattleFrame shadow error in non-Mists clients  
+Fixed Shaman totem options in Custom Glow  
