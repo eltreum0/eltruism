@@ -116,6 +116,9 @@ local SPEC_ID_TO_STAT_TYPE = {
     [105] = "HEAL", --Restoration
 }
 local function GetPrimaryStatForSpecID(specID)
+	if _G.InCombatLockdown() then
+		return "N/A"
+	end
     local statType = SPEC_ID_TO_STAT_TYPE[specID]
 
     if statType == "MeleeAP" then
