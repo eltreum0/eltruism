@@ -1450,7 +1450,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							itemLevelText:ClearAllPoints()
 							if E.Forever then
-								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20)
+								itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
 							else
 								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
 							end
@@ -1464,7 +1464,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							itemLevelText:ClearAllPoints()
 							if E.Forever then
-								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20)
+								itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
 							else
 								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
 							end
@@ -1579,7 +1579,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 									if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 										itemLevelText:ClearAllPoints()
 										if E.Forever then
-											itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20)
+											itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
 										else
 											itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
 										end
@@ -1742,18 +1742,23 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--set ilvl on char panel
 			if E.Forever then
-				CharacterFrame.EltruismText2:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20) --ilvl number
-				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
-				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-
 				if _G.CharacterFrameTitleText then
-					CharacterFrame.EltruismText5:SetPoint("BOTTOM", _G.CharacterFrameTitleText, "BOTTOM", 0, -20)
+					if _G.PaperDollLevelInfo then
+						CharacterFrame.EltruismText5:SetPoint("BOTTOM", _G.PaperDollLevelInfo, "BOTTOM", 0, -10)
+					else
+						CharacterFrame.EltruismText5:SetPoint("BOTTOM", _G.CharacterFrameTitleText, "BOTTOM", 0, -20)
+					end
 					CharacterFrame.EltruismText5:SetParent(_G.CharacterFrame)
 				else
 					CharacterFrame.EltruismText5:SetPoint("TOP", _G.CharacterModelScene, "TOP", 0, 20)
 					CharacterFrame.EltruismText5:SetParent(_G.CharacterFrame)
 				end
+
+				CharacterFrame.EltruismText2:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0,  -13) --ilvl number
+				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
+				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+
 				--CharacterFrame.EltruismText5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.EltruismText5:SetTextColor(1, 1, 1, 1)
 				CharacterFrame.EltruismText5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -1762,6 +1767,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismText5:SetText(specName)
 				else
 					CharacterFrame.EltruismText5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+				end
+
+				--fix the control model overlap
+				if _G.CharacterModelScene.ControlFrame then
+					local point, relativeTo, relativePoint, xOfs, yOfs = _G.CharacterModelScene.ControlFrame:GetPoint()
+					_G.CharacterModelScene.ControlFrame:ClearAllPoints()
+					_G.CharacterModelScene.ControlFrame:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs-15)
 				end
 			end
 		end
@@ -1955,7 +1967,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--set ilvl on char panel
 			if E.Forever then
-				CharacterFrame.EltruismText2:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20) --ilvl number
+				--CharacterFrame.EltruismText2:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20) --ilvl number
+				CharacterFrame.EltruismText2:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13) --ilvl number
 				CharacterFrame.EltruismText2:SetParent(_G.PaperDollLevelInfo)
 				CharacterFrame.EltruismText2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.EltruismText2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -1983,7 +1996,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							itemLevelText:ClearAllPoints()
 							if E.Forever then
-								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20)
+								itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
 							else
 								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
 							end
@@ -2031,7 +2044,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							itemLevelText:ClearAllPoints()
 							if E.Forever then
-								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20)
+								itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
 							else
 								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
 							end
@@ -2045,7 +2058,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							itemLevelText:ClearAllPoints()
 							if E.Forever then
-								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -20)
+								itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
 							else
 								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
 							end
