@@ -14,7 +14,7 @@ local GetQuestLogTitle = _G.GetQuestLogTitle
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
 local ScenarioObjectiveBlockBackground
-local wowheadbutton = CreateFrame("Button", nil)
+local wowheadbutton = CreateFrame("Button", "EltruismWowheadButton")
 local dontexpandanymorequests = 0
 if E.Modern then
 	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
@@ -69,8 +69,10 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 		wowheadbutton:SetText("Wowhead")
 		wowheadbutton:SetNormalFontObject("GameFontNormal")
+
 		--let elvui handle the button skin
 		S:HandleButton(wowheadbutton)
+		wowheadbutton:SetFrameStrata("HIGH") --otherwise the button is not clickable due to map addons
 		--get the wowhead region based on game language region
 		local wowheadregion
 		if E.Retail then
