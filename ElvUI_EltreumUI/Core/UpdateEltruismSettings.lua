@@ -26,8 +26,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		--dmg meter skin
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
-		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
-		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = false
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "Eltruism"
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed = true
 
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
@@ -37,8 +36,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		--dmg meter skin
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.enable = true
-		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "EltruismSpec"
-		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec = false
+		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "Eltruism"
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed = true
 
 		-- Chat
