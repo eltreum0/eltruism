@@ -604,6 +604,8 @@ function ElvUI_EltreumUI:AddGameMenuButton()
 	end
 
 	--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
+	--in forever its 477, so minus my button at 36 = 451 (or 450), which has the elvui button
+	--turns out that despite having 11 buttons (so 9 defaults + elvui and eltruism buttons), it says 9, wether i count it myself or use the one they have
 	if E.Modern then
 		GameMenuFrame:Height((_G.GameMenuFrame.buttonCount*offset) + 218) --dynamically adjust based on button count
 	else
@@ -620,8 +622,8 @@ function ElvUI_EltreumUI:AddGameMenuButton()
 
 	--use elvui moveui instead of blizzard edit mode
 	--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
-	if EditModeButton and not EditModeButton.EltruismHooked then
-		EditModeButton.EltruismHooked = true
+	if EditModeButton then --and not EditModeButton.EltruismHooked then --turns out in forever the script gets rewritten so i need to rewrite again
+		--EditModeButton.EltruismHooked = true
 		ElvUI_EltreumUI:MacroClick(EditModeButton)
 
 		EditModeButton:SetScript("OnClick", function(_, button)
