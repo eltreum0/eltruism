@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		end
 
 		if isTargetTarget or not canaccessvalue(colorClass) or not colorClass or colorClass == "ELTRUISM" then
-			colorClass = "BACKDROP"
+			return
 		end
 
 		local deadState = 0
@@ -307,6 +307,9 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 			backdropAlpha = healthAlpha
 		end
 		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
+		if isTargetTarget or not canaccessvalue(classunit) or not classunit then
+			return
+		end
 
 		local isCharmed = UnitIsCharmed(unit)
 		isCharmed = canaccessvalue(isCharmed) and isCharmed or false
