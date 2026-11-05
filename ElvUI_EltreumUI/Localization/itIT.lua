@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = "Abilita l'aggiunta di livelli"
 
 -- Custom Glow
 L["Annoy"] = "Infastidire"
+L["Annoy Color"] = "Colore fastidioso"
 L["Annoy Frequency"] = "Frequenza fastidiosa"
 L["Bling"] = "Brillante"
 L["Bling duration in seconds"] = "Durata del bling in secondi"
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = "Bling non mostrerà linee, lampegg
 L["Border Pulse"] = "Impulso di confine"
 L["Clockwise"] = "In senso orario"
 L["Clockwise direction"] = "Direzione in senso orario"
+L["Color of annoy bling"] = "Colore del fastidioso bling"
 L["Direction of pulses"] = "Direzione degli impulsi"
 L["Disable Tails"] = "Disabilita code"
 L["Duration of fade animation"] = "Durata dell'animazione in dissolvenza"

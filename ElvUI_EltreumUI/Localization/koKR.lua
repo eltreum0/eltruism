@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = "레벨 추가 활성화"
 
 -- Custom Glow
 L["Annoy"] = "짜증나게 하다"
+L["Annoy Color"] = "짜증 색상"
 L["Annoy Frequency"] = "짜증나는 주파수"
 L["Bling"] = "블링"
 L["Bling duration in seconds"] = "블링 지속 시간(초)"
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = "블링에는 선이 표시되지 �
 L["Border Pulse"] = "경계 펄스"
 L["Clockwise"] = "시계방향"
 L["Clockwise direction"] = "시계방향"
+L["Color of annoy bling"] = "짜증나는 블링의 색상"
 L["Direction of pulses"] = "펄스의 방향"
 L["Disable Tails"] = "꼬리 비활성화"
 L["Duration of fade animation"] = "페이드 애니메이션 지속 시간"

@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = true
 
 -- Custom Glow
 L["Annoy"] = true
+L["Annoy Color"] = true
 L["Annoy Frequency"] = true
 L["Bling"] = true
 L["Bling duration in seconds"] = true
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = true
 L["Border Pulse"] = true
 L["Clockwise"] = true
 L["Clockwise direction"] = true
+L["Color of annoy bling"] = true
 L["Direction of pulses"] = true
 L["Disable Tails"] = true
 L["Duration of fade animation"] = true

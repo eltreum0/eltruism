@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = "Stufe hinzufügen aktivieren"
 
 -- Custom Glow
 L["Annoy"] = "Nerven"
+L["Annoy Color"] = "Nerv-Farbe"
 L["Annoy Frequency"] = "Nerv-Frequenz"
 L["Bling"] = true
 L["Bling duration in seconds"] = "Bling-Dauer in Sekunden"
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = "Bling zeigt keine Linien, nur Aufb
 L["Border Pulse"] = "Rahmenpuls"
 L["Clockwise"] = "Im Uhrzeigersinn"
 L["Clockwise direction"] = "Richtung im Uhrzeigersinn"
+L["Color of annoy bling"] = "Farbe des Nerv-Blings"
 L["Direction of pulses"] = "Richtung der Pulse"
 L["Disable Tails"] = "Schweife deaktivieren"
 L["Duration of fade animation"] = "Dauer der Verblassen-Animation"

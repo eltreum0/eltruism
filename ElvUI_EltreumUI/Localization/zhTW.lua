@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = "啟用添加等級"
 
 -- Custom Glow
 L["Annoy"] = "持續提醒"
+L["Annoy Color"] = "持續提醒顏色"
 L["Annoy Frequency"] = "提醒頻率"
 L["Bling"] = "閃光"
 L["Bling duration in seconds"] = "閃光持續時間（秒）"
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = "閃光將不顯示線條，僅閃�
 L["Border Pulse"] = "邊框脈衝"
 L["Clockwise"] = "順時針"
 L["Clockwise direction"] = "順時針方向"
+L["Color of annoy bling"] = "持續提醒閃光顏色"
 L["Direction of pulses"] = "脈衝方向"
 L["Disable Tails"] = "停用拖尾"
 L["Duration of fade animation"] = "淡出動畫持續時間"

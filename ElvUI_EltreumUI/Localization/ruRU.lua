@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = "Включить добавление уровня"
 
 -- Custom Glow
 L["Annoy"] = "Надоедать"
+L["Annoy Color"] = "Цвет надоедания"
 L["Annoy Frequency"] = "Частота надоедания"
 L["Bling"] = "Блинг"
 L["Bling duration in seconds"] = "Длительность блинга в секундах"
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = "Блинг не будет пок�
 L["Border Pulse"] = "Пульсация границы"
 L["Clockwise"] = "По часовой стрелке"
 L["Clockwise direction"] = "Направление по часовой стрелке"
+L["Color of annoy bling"] = "Цвет надоедливого блинга"
 L["Direction of pulses"] = "Направление пульсаций"
 L["Disable Tails"] = "Отключить хвосты"
 L["Duration of fade animation"] = "Длительность анимации затухания"

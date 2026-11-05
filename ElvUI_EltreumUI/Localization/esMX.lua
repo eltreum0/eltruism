@@ -1659,6 +1659,7 @@ L["Enable adding Level"] = "Habilitar añadir nivel"
 
 -- Custom Glow
 L["Annoy"] = "Molestar"
+L["Annoy Color"] = "Color de molestar"
 L["Annoy Frequency"] = "Frecuencia de molestar"
 L["Bling"] = true
 L["Bling duration in seconds"] = "Duración del destello en segundos"
@@ -1666,6 +1667,7 @@ L["Bling will not show lines, only flash"] = "El destello no mostrará líneas, 
 L["Border Pulse"] = "Pulso de borde"
 L["Clockwise"] = "En sentido horario"
 L["Clockwise direction"] = "Dirección en sentido horario"
+L["Color of annoy bling"] = "Color del destello molesto"
 L["Direction of pulses"] = "Dirección de los pulsos"
 L["Disable Tails"] = "Desactivar colas"
 L["Duration of fade animation"] = "Duración de la animación de desvanecimiento"
