@@ -173,6 +173,14 @@ function ElvUI_EltreumUI:TooltipGradientHook()
 	if not E.db.ElvUI_EltreumUI.skins then return end
 
 	if E.private.tooltip.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+		if E.Modern and not ElvUI_EltreumUI.EltruismTooltipUnitHooked then
+			_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, function(tt)
+				if tt == GameTooltip and E.private and E.private.tooltip and E.private.tooltip.enable and E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.unitframes and E.db.ElvUI_EltreumUI.unitframes.gradientmode and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+					ElvUI_EltreumUI:TooltipGradient()
+				end
+			end)
+			ElvUI_EltreumUI.EltruismTooltipUnitHooked = true
+		end
 		if not self:IsHooked(TT, 'AddTargetInfo') then
 			self:SecureHook(TT, 'AddTargetInfo', 'TooltipGradient')
 		end
