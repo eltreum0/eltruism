@@ -46,6 +46,7 @@ Fixed Craft and Beast Training frame expansion and button sizing in Classic Era 
 Fixed Damage Meter skin errors when specialization is nil and improved secret checks
 Fixed the [name:eltruism:gradientreverse] tag using the target instead of unit
 Fixed secret value issues across Character Panel stats and Blinkii portraits
+Fixed an issue with the Damage Meter after Spec Icon became secret
 Fixed PetBattleFrame shadow error in non-Mists clients
 Fixed Shaman totem options in Custom Glow
 ]], 7, "small", nil, nil, nil, nil, "full")

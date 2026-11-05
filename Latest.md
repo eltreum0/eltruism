@@ -1,4 +1,4 @@
-### 5.1.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 5.1.7.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added an option to display player Level in Chat with difficulty coloring  
 Added Several Glow styles to Custom Glow via the new LibEltreumGlow  
@@ -20,5 +20,6 @@ Fixed Craft and Beast Training frame expansion and button sizing in Classic Era 
 Fixed Damage Meter skin errors when specialization is nil and improved secret checks  
 Fixed the [name:eltruism:gradientreverse] tag using the target instead of unit  
 Fixed secret value issues across Character Panel stats and Blinkii portraits  
+Fixed an issue with the Damage Meter after Spec Icon became secret  
 Fixed PetBattleFrame shadow error in non-Mists clients  
 Fixed Shaman totem options in Custom Glow  

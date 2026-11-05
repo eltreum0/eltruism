@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 5.1.7.1
+Fixed an issue with the Damage Meter after Spec Icon became secret  
+___
 ### 5.1.7
 Added an option to display player Level in Chat with difficulty coloring  
 Added Several Glow styles to Custom Glow via the new LibEltreumGlow  
