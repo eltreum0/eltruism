@@ -604,13 +604,19 @@ function ElvUI_EltreumUI:AddGameMenuButton()
 	end
 
 	--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-	if E.Retail then
+	if E.Modern then
+		GameMenuFrame:Height((_G.GameMenuFrame.buttonCount*offset) + 218) --dynamically adjust based on button count
+	else
+		GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
+	end
+
+	--[[if E.Retail then
 		GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
 	elseif E.Forever then
 		GameMenuFrame:Height(456 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
 	else
 		GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-	end
+	end]]
 
 	--use elvui moveui instead of blizzard edit mode
 	--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
