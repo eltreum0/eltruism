@@ -185,6 +185,28 @@ function ElvUI_EltreumUI:CustomGlowOptions()
 		ElvUI_EltreumUI:UpdateActiveGlows()
 	end, function() return not E.db.ElvUI_EltreumUI.glow.gradient or E.db.ElvUI_EltreumUI.glow.gradientmode == "class" end)
 
+	-- Annoy Color
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.annoydesc = E.Libs.ACH:Description(L["Annoy Color"], 29, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.annoycolor = E.Libs.ACH:Color(L["Annoy Color"], L["Color of annoy bling"], 30, false, nil, function()
+		local c = E.db.ElvUI_EltreumUI.glow.annoycolor
+		local d = P.ElvUI_EltreumUI.glow.annoycolor
+		if not c then
+			c = { r = 1, g = 1, b = 1, a = 1 }
+			E.db.ElvUI_EltreumUI.glow.annoycolor = c
+		end
+		return c.r, c.g, c.b, c.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local c = E.db.ElvUI_EltreumUI.glow.annoycolor
+		if not c then
+			c = {}
+			E.db.ElvUI_EltreumUI.glow.annoycolor = c
+		end
+		c.r, c.g, c.b = r, g, b
+		c.a = a or 1
+		ElvUI_EltreumUI:UpdateActiveGlows()
+	end)
+
 	-- Pixel Glow Tab
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel = E.Libs.ACH:Group(E.NewSign..L["Pixel Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

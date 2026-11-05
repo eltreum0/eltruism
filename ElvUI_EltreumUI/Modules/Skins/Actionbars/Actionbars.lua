@@ -19,6 +19,7 @@ local glowMin = CreateColor(1, 1, 1, 1)
 local glowMax = CreateColor(1, 1, 1, 1)
 
 local defaultSkillGlowColor = { 1, 1, 1, 1 }
+local defaultAnnoyColor = { 1, 1, 1, 1 }
 local customGradientTable = {
 	{ 1, 0.75, 0.75, 1, h = 0, s = 0, v = 1 },
 	{ 0.75, 1, 0.75, 1, h = 0, s = 0, v = 1 },
@@ -138,6 +139,13 @@ function ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor, frameLevel, xOf
 		skillglowcolor = defaultSkillGlowColor
 	end
 
+	local annoyColor = glowDb.annoycolor
+	if annoyColor then
+		defaultAnnoyColor[1], defaultAnnoyColor[2], defaultAnnoyColor[3], defaultAnnoyColor[4] = annoyColor.r or 1, annoyColor.g or 1, annoyColor.b or 1, annoyColor.a or 1
+	else
+		defaultAnnoyColor[1], defaultAnnoyColor[2], defaultAnnoyColor[3], defaultAnnoyColor[4] = 1, 1, 1, 1
+	end
+
 	button._EltruismGlowing = true
 	if button.__LBGoverlay then button.__LBGoverlay:Hide() end
 	if button.overlay then button.overlay:Hide() end
@@ -166,6 +174,7 @@ function ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor, frameLevel, xOf
 		pixelOpts.repeatBling = glowDb.pixelrepeatBling
 		pixelOpts.annoy = glowDb.pixelannoy
 		pixelOpts.annoyFrequency = glowDb.pixelannoyFrequency
+		pixelOpts.annoyColor = defaultAnnoyColor
 		pixelOpts.fadeDuration = glowDb.pixelfadeDuration
 		pixelOpts.forceStop = glowDb.pixelforceStop
 
@@ -228,6 +237,7 @@ function ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor, frameLevel, xOf
 		bpOpts.repeatBling = bp.repeatBling
 		bpOpts.annoy = bp.annoy
 		bpOpts.annoyFrequency = bp.annoyFrequency
+		bpOpts.annoyColor = defaultAnnoyColor
 		bpOpts.forceStop = bp.forceStop
 		bpOpts.frameLevel = frameLevel or bp.frameLevel
 		bpOpts.xOffset = xOffset or bp.xOffset
@@ -255,6 +265,7 @@ function ElvUI_EltreumUI:CustomGlowStart(button, skillglowcolor, frameLevel, xOf
 		blOpts.noTails = bl.noTails
 		blOpts.annoy = bl.annoy
 		blOpts.annoyFrequency = bl.annoyFrequency
+		blOpts.annoyColor = defaultAnnoyColor
 		blOpts.frameLevel = frameLevel or bl.frameLevel
 		blOpts.xOffset = xOffset or bl.xOffset
 		blOpts.yOffset = yOffset or bl.yOffset

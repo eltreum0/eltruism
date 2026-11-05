@@ -679,6 +679,12 @@ P.ElvUI_EltreumUI = {
 			g = 0.50,
 			b = 0.70,
 		},
+		annoycolor = {
+			r = 1,
+			g = 1,
+			b = 1,
+			a = 1,
+		},
 		glowtotem1customcolor = {
 			r = 0.78,
 			g = 0.43,

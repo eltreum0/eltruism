@@ -47,6 +47,7 @@ local hooksecurefunc = _G.hooksecurefunc
 
 local SyncGlowDefaults
 local glowDefaultsUnset = true
+local syncAnnoyColor = { 1, 1, 1, 1 }
 
 local sqrt = _G.sqrt
 local floor = _G.floor
@@ -55,6 +56,11 @@ local sin = _G.math.sin
 local mathmax = _G.math.max
 local abs = _G.math.abs
 local HALF_SQRT2 = sqrt(2) * 0.5
+local CreateFramePool = _G.CreateFramePool
+local CreateTexturePool = _G.CreateTexturePool
+local TextureUtil = _G.TextureUtil
+local CreateVector2D = _G.CreateVector2D
+
 
 local CreateColor = _G.CreateColor
 local AnimateTexCoords = (TextureUtil and TextureUtil.AnimateTexCoords) or _G.AnimateTexCoords
@@ -370,6 +376,7 @@ local FramePoolResetter = function(_, frame)
 		local p = frame.inf.p
 		local offsets = frame.inf.offsets
 		local flashOptions = frame.inf.flashOptions
+		local annoyFlashOptions = frame.inf.annoyFlashOptions
 		local startBlingOptions = frame.inf.startBlingOptions
 		wipe(frame.inf)
 		if tail then
@@ -389,6 +396,7 @@ local FramePoolResetter = function(_, frame)
 		if p then frame.inf.p = p end
 		if offsets then frame.inf.offsets = offsets end
 		if flashOptions then wipe(flashOptions); frame.inf.flashOptions = flashOptions end
+		if annoyFlashOptions then wipe(annoyFlashOptions); frame.inf.annoyFlashOptions = annoyFlashOptions end
 		if startBlingOptions then wipe(startBlingOptions); frame.inf.startBlingOptions = startBlingOptions end
 	else
 		frame.inf = {}
@@ -3417,7 +3425,10 @@ local function BlingUpdate(self, elapsed)
 				end
 				local flashList = inf.flash and inf.flash.list
 				if flashList then
+					local effectiveAnnoyColor = inf.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
+					local aR, aG, aB, aA = GetColorRGBA(effectiveAnnoyColor)
 					for i = 1, #flashList do
+						flashList[i]:SetVertexColor(aR, aG, aB, aA)
 						flashList[i]:Show()
 					end
 				end
@@ -3643,6 +3654,7 @@ local blingTemplates = {
 		["repeat"] = true,
 		annoy = false,
 		annoyFrequency = 0.5,
+		annoyColor = { 1, 1, 1, 1 },
 		tails = {
 			th = 2,
 			N = 1,
@@ -3674,6 +3686,7 @@ function lib.Bling(r, options)
 	local repeatAnim = opt.repeatAnim ~= nil and opt.repeatAnim or (opt["repeat"] ~= nil and opt["repeat"] or (template.repeatAnim ~= nil and template.repeatAnim or (template["repeat"] ~= nil and template["repeat"] or true)))
 	local annoy = opt.annoy ~= nil and opt.annoy or template.annoy
 	local annoyFrequency = opt.annoyFrequency or template.annoyFrequency
+	local annoyColor = opt.annoyColor or template.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
 	local flashType = opt.flash or template.flash
 	local flashEntry = flashF[flashType] or flashF.split
 
@@ -3707,7 +3720,9 @@ function lib.Bling(r, options)
 		end
 	end
 
-	local color = opt.color or template.color
+	local effectiveAnnoyColor = opt.annoyColor or template.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
+	local baseColor = opt.isAnnoy and effectiveAnnoyColor or (opt.color or template.color)
+	local color = baseColor
 	local key = opt.key
 	local xOffset = opt.xOffset or template.xOffset
 	local yOffset = opt.yOffset or template.yOffset
@@ -3732,6 +3747,7 @@ function lib.Bling(r, options)
 	inf.tailTimer = nil
 	inf.annoy = annoy
 	inf.annoyFrequency = annoyFrequency
+	inf.annoyColor = annoyColor
 	inf.annoyProg = 0
 	inf.annoyActive = nil
 	inf.annoyFlashTimer = nil
@@ -3764,6 +3780,10 @@ function lib.Bling(r, options)
 	end
 	for i = flashN + 1, #flashList do
 		flashList[i] = nil
+	end
+	local fR, fG, fB, fA = GetColorRGBA(effectiveAnnoyColor)
+	for i = 1, flashN do
+		flashList[i]:SetVertexColor(fR, fG, fB, fA)
 	end
 
 	if not noTails then
@@ -3900,6 +3920,11 @@ local BlingParamters = {
 			softMax = 2,
 			step = 0.05,
 		},
+		annoyColor = {
+			name = "Annoy color",
+			desc = "Color of annoy Bling if enabled",
+			type = "color",
+		},
 		tails = {
 			name = "Tail parameters",
 			desc = "Parameters of tail lines if enabled",
@@ -4013,7 +4038,22 @@ local function BorderPulseUpdate(self, elapsed)
 	if inf.annoy then
 		local annoyProg = (inf.annoyProg or 0) + elapsed * (inf.annoyFrequency or 0.5)
 		if annoyProg > 1 then
-			lib.Bling(self, inf.flashOptions)
+			local flashOpts = inf.annoyFlashOptions
+			if not flashOpts or not flashOpts.color then
+				if not flashOpts then
+					flashOpts = {}
+					inf.annoyFlashOptions = flashOpts
+				end
+				CopyBlingOptionsInto(flashOpts, inf.flashOptions or blingTemplates.default, blingTemplates.default)
+				flashOpts.noTails = true
+				flashOpts.duration = (flashOpts.duration or 0.65) * 0.66
+			end
+			local aColor = inf.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
+			flashOpts.color = aColor
+			flashOpts.annoyColor = aColor
+			flashOpts.isAnnoy = true
+			flashOpts.gradient = nil
+			lib.Bling(self, flashOpts)
 			annoyProg = annoyProg % 1
 		end
 		inf.annoyProg = annoyProg
@@ -4073,6 +4113,7 @@ local borderPulseTemplates = {
 		repeatBling = true,
 		annoy = false,
 		annoyFrequency = 0.5,
+		annoyColor = { 1, 1, 1, 1 },
 		blingOptions = {
 			flash = "split",
 			startPoint = "TOPLEFT",
@@ -4101,6 +4142,8 @@ local function CopyBlingOptionsInto(dest, src, def)
 	dest.flash = s.flash or def.flash
 	dest.startPoint = s.startPoint or def.startPoint
 	dest.color = s.color or def.color
+	dest.annoyColor = (s and s.annoyColor) or (def and def.annoyColor)
+	dest.isAnnoy = (s and s.isAnnoy) or (def and def.isAnnoy)
 	if s.gradient ~= nil then
 		dest.gradient = s.gradient
 	elseif not src then
@@ -4184,6 +4227,7 @@ function lib.BorderPulse_Start(r, options)
 
 	local repeatBling = opt.repeatBling ~= nil and opt.repeatBling or template.repeatBling
 	local annoy = opt.annoy ~= nil and opt.annoy or template.annoy
+	local annoyColor = opt.annoyColor or template.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
 	local startBling = opt.startBling ~= nil and opt.startBling or template.startBling
 
 	inf.N = N
@@ -4196,6 +4240,7 @@ function lib.BorderPulse_Start(r, options)
 	inf.gradientFrequency = opt.gradientFrequency or template.gradientFrequency
 	inf.annoy = annoy
 	inf.annoyFrequency = opt.annoyFrequency or template.annoyFrequency
+	inf.annoyColor = annoyColor
 	inf.BorderSet = BorderSet
 	inf.BorderUpdate = BorderUpdate
 	inf.BorderGradient = BorderGradient
@@ -4231,17 +4276,34 @@ function lib.BorderPulse_Start(r, options)
 	end
 
 	local blingOptSrc = opt.blingOptions or template.blingOptions
-	if repeatBling or annoy then
+	if repeatBling then
 		local flashOptions = CopyBlingOptionsInto(inf.flashOptions or {}, blingOptSrc, blingTemplates.default)
-		if not opt.blingOptions then
-			flashOptions.color = color
-			flashOptions.gradient = gradient
-		end
+		flashOptions.color = annoyColor
+		flashOptions.annoyColor = annoyColor
+		flashOptions.isAnnoy = true
+		flashOptions.gradient = nil
 		if not flashOptions.noTails then
 			flashOptions.noTails = true
 			flashOptions.duration = flashOptions.duration * 0.66
 		end
 		inf.flashOptions = flashOptions
+	else
+		if inf.flashOptions then wipe(inf.flashOptions) end
+	end
+
+	if annoy then
+		local annoyFlashOptions = CopyBlingOptionsInto(inf.annoyFlashOptions or {}, blingOptSrc, blingTemplates.default)
+		annoyFlashOptions.color = annoyColor
+		annoyFlashOptions.annoyColor = annoyColor
+		annoyFlashOptions.isAnnoy = true
+		annoyFlashOptions.gradient = nil
+		if not annoyFlashOptions.noTails then
+			annoyFlashOptions.noTails = true
+			annoyFlashOptions.duration = (annoyFlashOptions.duration or 0.65) * 0.66
+		end
+		inf.annoyFlashOptions = annoyFlashOptions
+	else
+		if inf.annoyFlashOptions then wipe(inf.annoyFlashOptions) end
 	end
 
 	inf.BorderSet(f)
@@ -4254,10 +4316,10 @@ function lib.BorderPulse_Start(r, options)
 			f:Hide()
 			local startOpts = CopyBlingOptionsInto(inf.startBlingOptions or {}, blingOptSrc, borderPulseTemplates.default.blingOptions)
 			inf.startBlingOptions = startOpts
-			if not opt.blingOptions then
-				startOpts.color = color
-			end
-			startOpts.gradient = gradient
+			startOpts.color = annoyColor
+			startOpts.annoyColor = annoyColor
+			startOpts.isAnnoy = true
+			startOpts.gradient = nil
 			startOpts.callbackTarget = f
 			startOpts.callbackExpectedName = f.name
 			startOpts.midCallback = BorderPulseBlingMid
@@ -4384,6 +4446,11 @@ local BorderPulseParamters = {
 			softMax = 2,
 			step = 0.05,
 		},
+		annoyColor = {
+			name = "Annoy color",
+			desc = "Color of annoy Bling if enabled",
+			type = "color",
+		},
 		blingOptions = BlingParamters,
 		forceStop = {
 			name = "Force stop",
@@ -4439,6 +4506,7 @@ local pixelTemplates = {
 		repeatBling = false,
 		annoy = false,
 		annoyFrequency = 0.5,
+		annoyColor = { 1, 1, 1, 1 },
 		blingOptions = borderPulseTemplates.default.blingOptions,
 		forceStop = false,
 		fadeDuration = 0.45,
@@ -4718,9 +4786,24 @@ local function PixelUpdate(self, elapsed)
 			inf.fading = fading + elapsed
 		end
 	elseif inf.annoy then
-		local annoyProg = (inf.annoyProg or 0) + elapsed * inf.annoyFrequency
+		local annoyProg = (inf.annoyProg or 0) + elapsed * (inf.annoyFrequency or 0.5)
 		if annoyProg > 1 then
-			lib.Bling(self, inf.flashOptions)
+			local flashOpts = inf.annoyFlashOptions
+			if not flashOpts or not flashOpts.color then
+				if not flashOpts then
+					flashOpts = {}
+					inf.annoyFlashOptions = flashOpts
+				end
+				CopyBlingOptionsInto(flashOpts, inf.flashOptions or blingTemplates.default, blingTemplates.default)
+				flashOpts.noTails = true
+				flashOpts.duration = (flashOpts.duration or 0.65) * 0.66
+			end
+			local aColor = inf.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
+			flashOpts.color = aColor
+			flashOpts.annoyColor = aColor
+			flashOpts.isAnnoy = true
+			flashOpts.gradient = nil
+			lib.Bling(self, flashOpts)
 			annoyProg = annoyProg % 1
 		end
 		inf.annoyProg = annoyProg
@@ -4828,6 +4911,7 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 	local optGradFreq = opt.gradientFrequency or template.gradientFrequency
 	local optAnnoy = opt.annoy ~= nil and opt.annoy or template.annoy
 	local optAnnoyFreq = opt.annoyFrequency or template.annoyFrequency
+	local optAnnoyColor = opt.annoyColor or template.annoyColor or syncAnnoyColor or { 1, 1, 1, 1 }
 	local optStartBling = opt.startBling ~= nil and opt.startBling or template.startBling
 	local optRepeatBling = opt.repeatBling ~= nil and opt.repeatBling or template.repeatBling
 	local optBlingOpts = opt.blingOptions or template.blingOptions
@@ -4861,6 +4945,7 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 	inf.frequency = -optFreq
 	inf.annoy = optAnnoy
 	inf.annoyFrequency = optAnnoyFreq
+	inf.annoyColor = optAnnoyColor
 	inf.gradient = optGrad
 	inf.gradientFrequency = optGradFreq
 	inf.gradientStep = ((width + height) > 0) and (optLength / (width + height)) or 0
@@ -4910,17 +4995,34 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 		end
 	end
 
-	if optRepeatBling or optAnnoy then
+	if optRepeatBling then
 		local flashOptions = CopyBlingOptionsInto(inf.flashOptions or {}, optBlingOpts, blingTemplates.default)
-		if not isOpts or not colorOrOptions.blingOptions then
-			flashOptions.color = optColor
-			flashOptions.gradient = optGrad
-		end
+		flashOptions.color = optAnnoyColor
+		flashOptions.annoyColor = optAnnoyColor
+		flashOptions.isAnnoy = true
+		flashOptions.gradient = nil
 		if not flashOptions.noTails then
 			flashOptions.noTails = true
 			flashOptions.duration = flashOptions.duration * 0.66
 		end
 		inf.flashOptions = flashOptions
+	else
+		if inf.flashOptions then wipe(inf.flashOptions) end
+	end
+
+	if optAnnoy then
+		local annoyFlashOptions = CopyBlingOptionsInto(inf.annoyFlashOptions or {}, optBlingOpts, blingTemplates.default)
+		annoyFlashOptions.color = optAnnoyColor
+		annoyFlashOptions.annoyColor = optAnnoyColor
+		annoyFlashOptions.isAnnoy = true
+		annoyFlashOptions.gradient = nil
+		if not annoyFlashOptions.noTails then
+			annoyFlashOptions.noTails = true
+			annoyFlashOptions.duration = (annoyFlashOptions.duration or 0.65) * 0.66
+		end
+		inf.annoyFlashOptions = annoyFlashOptions
+	else
+		if inf.annoyFlashOptions then wipe(inf.annoyFlashOptions) end
 	end
 
 	inf.dirty = true
@@ -4931,10 +5033,10 @@ function lib.PixelGlow_Start(r, colorOrOptions, N, frequency, length, th, xOffse
 			f:Hide()
 			local startOpts = CopyBlingOptionsInto(inf.startBlingOptions or {}, optBlingOpts, borderPulseTemplates.default.blingOptions)
 			inf.startBlingOptions = startOpts
-			if not isOpts or not colorOrOptions.blingOptions then
-				startOpts.color = optColor
-			end
-			startOpts.gradient = optGrad
+			startOpts.color = optAnnoyColor
+			startOpts.annoyColor = optAnnoyColor
+			startOpts.isAnnoy = true
+			startOpts.gradient = nil
 			startOpts.callbackTarget = f
 			startOpts.callbackExpectedName = f.name
 			startOpts.midCallback = PixelGlowBlingMid
@@ -5033,6 +5135,11 @@ local PixelGlowParamters = {
 			softMin = 0.25,
 			softMax = 2,
 			step = 0.05,
+		},
+		annoyColor = {
+			name = "Annoy color",
+			desc = "Color of annoy Bling if enabled",
+			type = "color",
 		},
 		blingOptions = BlingParamters,
 		forceStop = {
@@ -5871,6 +5978,13 @@ SyncGlowDefaults = function(force)
 		syncColor[1], syncColor[2], syncColor[3], syncColor[4] = c.r or 1, c.g or 1, c.b or 1, 1
 	end
 
+	local ac = db.annoycolor
+	if ac then
+		syncAnnoyColor[1], syncAnnoyColor[2], syncAnnoyColor[3], syncAnnoyColor[4] = ac.r or 1, ac.g or 1, ac.b or 1, ac.a or 1
+	else
+		syncAnnoyColor[1], syncAnnoyColor[2], syncAnnoyColor[3], syncAnnoyColor[4] = 1, 1, 1, 1
+	end
+
 	local grad
 	if db.gradient then
 		if db.gradientmode == "class" then
@@ -5913,6 +6027,10 @@ SyncGlowDefaults = function(force)
 	pDef.repeatBling = db.pixelrepeatBling
 	pDef.annoy = db.pixelannoy
 	pDef.annoyFrequency = db.pixelannoyFrequency or 0.5
+	pDef.annoyColor = syncAnnoyColor
+	if pDef.blingOptions then
+		pDef.blingOptions.annoyColor = syncAnnoyColor
+	end
 	pDef.fadeDuration = db.pixelfadeDuration or 0.45
 	pDef.forceStop = db.pixelforceStop or false
 	pDef.color = syncColor
@@ -5934,6 +6052,10 @@ SyncGlowDefaults = function(force)
 		bpDef.repeatBling = bp.repeatBling
 		bpDef.annoy = bp.annoy
 		bpDef.annoyFrequency = bp.annoyFrequency or 0.5
+		bpDef.annoyColor = syncAnnoyColor
+		if bpDef.blingOptions then
+			bpDef.blingOptions.annoyColor = syncAnnoyColor
+		end
 		bpDef.forceStop = bp.forceStop or false
 		bpDef.xOffset = bp.xOffset or 0
 		bpDef.yOffset = bp.yOffset or 0
@@ -5958,6 +6080,7 @@ SyncGlowDefaults = function(force)
 		blDef["repeat"] = blRepeat
 		blDef.annoy = bl.annoy
 		blDef.annoyFrequency = bl.annoyFrequency or 0.5
+		blDef.annoyColor = syncAnnoyColor
 		blDef.xOffset = bl.xOffset or 0
 		blDef.yOffset = bl.yOffset or 0
 		blDef.frameLevel = bl.frameLevel or 8
