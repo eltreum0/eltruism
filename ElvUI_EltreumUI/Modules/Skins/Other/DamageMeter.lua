@@ -8,14 +8,14 @@ local RightChatDamageMeterHook = false
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local instanceType = "none"
 local CreateColor = _G.CreateColor
-local canaccessvalue = _G.canaccessvalue
+--local canaccessvalue = _G.canaccessvalue
 local dmMin = CreateColor(1, 1, 1, 1)
 local dmMax = CreateColor(1, 1, 1, 1)
 
 --pretty much copied from elvui and edited to look more like details
 do
 
-	local BlizzardTextureIDsForSpecs = {
+	--[[local BlizzardTextureIDsForSpecs = {
 		["608952"] = 270,
 		["608953"] = 269,
 		["608951"] = 268,
@@ -129,7 +129,7 @@ do
 		[1468] = {320/512, 384/512, 256/512, 320/512}, -- Preservation
 		[1473] = {384/512, 448/512, 256/512, 320/512}, -- Augmentation
 		[1465] = {256/512, 320/512, 256/512, 320/512}, -- Initial, let it use Devastation
-	}
+	}]]
 	local class_coords = {
 		["DEMONHUNTER"] = {
 			0.73828126 / 2, -- [1]
@@ -299,11 +299,11 @@ do
 			["isSpec"] = false,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism-symbols",
 		},
-		["EltruismSpec"] = {
+		--[[["EltruismSpec"] = {
 			["DisplayName"] = ElvUI_EltreumUI.Name.." Spec",
 			["isSpec"] = true,
 			["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism",
-		},
+		},]]
 	}
 
 	function ElvUI_EltreumUI:AddDamageMeterIconPack(name,DisplayName,isSpec,path)
@@ -368,6 +368,30 @@ do
 		end
 	end
 
+	local function UpdateBarIcon(bar)
+		if not bar or not bar.Icon or not bar.Icon.Icon then return end
+		if E:NotSecretValue(bar.spellID) and not bar.spellID and E:NotSecretValue(bar.classFilename) and bar.classFilename then --avoid spell stuff
+			local textureCoords = class_coords[bar.classFilename]
+			if textureCoords then
+				local icons = ElvUI_EltreumUI.DamageMeterIcons
+				local skin = E.db.ElvUI_EltreumUI.skins.blizzdamagemeter
+				local pack = icons[tostring(skin.iconPack)]
+				local packPath = pack and pack.path
+
+				--fallback
+				local texture = icons["Eltruism"].path
+
+				if packPath then
+					texture = packPath
+				end
+
+				local iconTexture = bar.Icon.Icon
+				iconTexture:SetTexture(texture)
+				iconTexture:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
+			end
+		end
+	end
+
 	local function SkinDamageMeter(bar)
 		if instanceType == "pvp" or instanceType == "arena" then return end
 		if not bar then return end
@@ -385,48 +409,10 @@ do
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.replaceIcon then
+			UpdateBarIcon(bar)
 			if bar.UpdateIcon and not bar.UpdateIconEltruismHook then
-				hooksecurefunc(bar, "UpdateIcon", function(icon)
-					local textureCoords
-					if not bar.spellID then --avoid spell stuff
-						if E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconSpec then
-							if icon.specIconID and canaccessvalue(icon.specIconID) and BlizzardTextureIDsForSpecs[tostring(icon.specIconID)] then
-								textureCoords = class_specs_coords[BlizzardTextureIDsForSpecs[tostring(icon.specIconID)]]
-							else
-								textureCoords = class_coords[bar.classFilename]
-							end
-						else
-							textureCoords = class_coords[bar.classFilename]
-						end
-						if textureCoords then
-							local icons = ElvUI_EltreumUI.DamageMeterIcons
-							local skin = E.db.ElvUI_EltreumUI.skins.blizzdamagemeter
-							local pack = icons[tostring(skin.iconPack)]
-							local packPath = pack and pack.path
-
-							--fallback
-							local texture = icons["Eltruism"].path
-
-							if skin.iconSpec then
-								if icon.specIconID and canaccessvalue(icon.specIconID) then
-									texture = packPath or icons["EltruismSpec"].path
-								else
-									texture = packPath
-								end
-							elseif packPath then
-								texture = packPath
-							end
-
-							local iconTexture = icon.Icon.Icon
-							iconTexture:SetTexture(texture)
-							iconTexture:SetTexCoord(textureCoords[1],textureCoords[2],textureCoords[3],textureCoords[4])
-						end
-					end
-				end)
+				hooksecurefunc(bar, "UpdateIcon", UpdateBarIcon)
 				bar.UpdateIconEltruismHook = true
-				if bar.UpdateIcon then
-					bar:UpdateIcon()
-				end
 			end
 		end
 
