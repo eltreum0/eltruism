@@ -1481,7 +1481,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------version specific
-		if E.Modern then
+		if E.Retail then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then --reputation detail got moved
 				if _G.ReputationFrame and _G.ReputationFrame.ReputationDetailFrame then
 					_G.ReputationFrame.ReputationDetailFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
