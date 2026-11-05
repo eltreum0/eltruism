@@ -938,6 +938,8 @@ local function BlizzShadows(arg)
 						_G.ProfessionsFrame.Professions2Tab,
 						_G.ProfessionsFrame.Professions3Tab,
 						_G.ProfessionsFrame.Professions4Tab,
+						_G.ProfessionsFrame.Professions5Tab,
+						_G.ProfessionsFrame.Professions6Tab,
 					}
 					for _, frame in pairs(foreverprofessions) do
 						if frame then
@@ -1192,6 +1194,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LFGListInviteDialog,
 				_G.LFGParentFrameTab1,
 				_G.LFGParentFrameTab2,
+				_G.LFGParentFrame and _G.LFGParentFrame.ListingTab,
+				_G.LFGParentFrame and _G.LFGParentFrame.BrowsingTab,
+				_G.LFGParentFrame and _G.LFGParentFrame.WhoListingTab,
 				_G.LootFrame,
 				_G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton,
 				_G.LossOfControlFrame,
@@ -1293,8 +1298,8 @@ function ElvUI_EltreumUI:Shadows()
 				E.Modern and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.QuestsTab,
 				E.Modern and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.MapLegendTab,
 				E.Modern and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.EventsTab,
-				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
-				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
+				not E.Modern and _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
+				not E.Modern and _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
 				_G.WorldMapTooltip,
 				_G.WorldStateScoreFrame,
 				_G.WorldStateScoreFrameTab1,
