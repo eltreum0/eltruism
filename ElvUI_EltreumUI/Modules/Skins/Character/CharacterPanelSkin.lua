@@ -1642,8 +1642,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 			end
-			HandleDelayedFrames()
-			E:Delay(0, HandleDelayedFrames)
+			if not E.Forever then
+				HandleDelayedFrames()
+				E:Delay(0, HandleDelayedFrames)
+			end
 		end
 
 		--expand and skin the panel
