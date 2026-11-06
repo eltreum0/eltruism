@@ -3413,7 +3413,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					--calculate inspect ilvl
-					if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+					if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 						E:Delay(0, function()
 							InspectIlvl()
 						end)
