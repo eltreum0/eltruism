@@ -10,7 +10,6 @@
 	<Script file='DatabaseConverter.lua'/>
 	<Script file='Changelog.lua'/>
 	<Script file='Auras.lua'/>
-	<Script file='SetupNameplates.lua'/>
 	<Script file='UpdateElvUISettings.lua'/>
 	<Script file='UpdateEltruismSettings.lua'/>
 </Ui>

@@ -4,4 +4,5 @@
 	<Script file='LayoutDPS.lua'/>
 	<Script file='LayoutThin.lua'/>
 	<Script file='WALikeAB.lua'/>
+	<Script file='SetupNameplates.lua'/>
 </Ui>

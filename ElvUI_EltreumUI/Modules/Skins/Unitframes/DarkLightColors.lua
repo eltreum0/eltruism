@@ -190,13 +190,13 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 
 		if E.private.nameplates.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = E.Forever and "[namecolor][name]" or "[namecolor][name][realm:dash]"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
 
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = E.Forever and "[namecolor][name:title]" or "[namecolor][name:title][realm:dash]"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
 			--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
@@ -354,13 +354,13 @@ function ElvUI_EltreumUI:LightMode()
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 
 		if E.private.nameplates.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = E.Forever and "[namecolor][name]" or "[namecolor][name][realm:dash]"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
 
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = E.Forever and "[namecolor][name:title]" or "[namecolor][name:title][realm:dash]"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
 			--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
@@ -689,13 +689,13 @@ function ElvUI_EltreumUI:GradientMode()
 					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets][eltruismguild:brackets]"
 				end]]
 			else
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = E.Forever and "[namecolor][name]" or "[namecolor][name][realm:dash]"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
 
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
+				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = E.Forever and "[namecolor][name:title]" or "[namecolor][name:title][realm:dash]"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 
 				--[[if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
