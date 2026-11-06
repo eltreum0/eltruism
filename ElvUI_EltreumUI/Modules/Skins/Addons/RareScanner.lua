@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 
 		-- the search box is not named, use get children
 		for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
-			if v and v:GetObjectType() == "Frame" and v.EditBox and v.relativeFrame then
+			if v and v:GetObjectType() == "Frame" and v.EditBox then --and  v.relativeFrame then --seems they dropped the relativeFrame from it
 				S:HandleEditBox(v)
 
 				--add shadows too
@@ -94,7 +94,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				local Desc = v:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				Desc:SetFont(E.media.normFont, 10, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				Desc:SetTextColor(1, 1, 1)
-				Desc:SetText(L["MAP_SEARCHER_TOOLTIP_TITLE"])
+				Desc:SetText("RareScanner:")
 				Desc:SetPoint("RIGHT", v, "LEFT", 0, 0)
 				break
 			end
