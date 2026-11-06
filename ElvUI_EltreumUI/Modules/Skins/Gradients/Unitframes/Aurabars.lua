@@ -10,7 +10,6 @@ local UnitReaction = _G.UnitReaction
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local DebuffColors = (_G.DebuffTypeColor) or (E.Libs and E.Libs.Dispel and E.Libs.Dispel:GetDebuffTypeColor())
 local type = _G.type
-local next = _G.next
 local aurabarMin = CreateColor(1, 1, 1, 1)
 local aurabarMax = CreateColor(1, 1, 1, 1)
 
@@ -233,6 +232,8 @@ end
 
 function ElvUI_EltreumUI:ApplyAuraBarBackdropRetail(container, button)
 	if not (button and button.statusbar) then return end
+	if button.CanBeAccessedInContext and not button:CanBeAccessedInContext() then return end
+	if button.statusbar.CanBeAccessedInContext and not button.statusbar:CanBeAccessedInContext() then return end
 	local barTexture = button.statusbar:GetStatusBarTexture()
 	if not barTexture or not ElvUI_EltreumUI:IsThisASafeSecret(barTexture, true) then return end
 
@@ -260,6 +261,8 @@ end
 
 function ElvUI_EltreumUI:ApplyAuraBarColorRetail(container, button, auraData)
 	if not (button and button.border and button.statusbar) then return end
+	if button.CanBeAccessedInContext and not button:CanBeAccessedInContext() then return end
+	if button.border.CanBeAccessedInContext and not button.border:CanBeAccessedInContext() then return end
 	if not ElvUI_EltreumUI:IsThisASafeSecret(button.border, true) then return end
 
 	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
@@ -295,6 +298,7 @@ function ElvUI_EltreumUI:ApplyAuraBarSparkRetail(container, button)
 
 	local spark = button.spark or (button.statusbar and button.statusbar.spark)
 	if not spark then return end
+	if spark.CanBeAccessedInContext and not spark:CanBeAccessedInContext() then return end
 
 	spark:Show()
 	local reverseFill = container and container.reverseFill
@@ -311,6 +315,8 @@ end
 
 function ElvUI_EltreumUI:ApplyThinModeRetail(container, button)
 	if not (button and button.statusbar) then return end
+	if button.CanBeAccessedInContext and not button:CanBeAccessedInContext() then return end
+	if button.statusbar.CanBeAccessedInContext and not button.statusbar:CanBeAccessedInContext() then return end
 	local eltruismDB = E.db.ElvUI_EltreumUI
 	local db = eltruismDB.unitframes
 	if not db.thinmodeaurabars then return end
@@ -423,6 +429,8 @@ function ElvUI_EltreumUI:UpdateRetailAuraBar(container, button, auraData)
 	if not E.private.unitframe.enable then return end
 	if not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then return end
 	if not (button and button.statusbar) then return end
+	if button.CanBeAccessedInContext and not button:CanBeAccessedInContext() then return end
+	if button.statusbar.CanBeAccessedInContext and not button.statusbar:CanBeAccessedInContext() then return end
 
 	local db = E.db.ElvUI_EltreumUI.unitframes
 	if not (db and db.gradientmode and db.gradientmode.enableaurabars) then return end
@@ -509,17 +517,6 @@ function ElvUI_EltreumUI:AuraBarRetail(container, button)
 	ElvUI_EltreumUI:UpdateRetailAuraBar(container, button, button.eltruismAuraData)
 end
 
-function ElvUI_EltreumUI:UpdateRetailAuraBarContainer(_, container)
-	if container and container.isAuraBar and container.buttons then
-		for button in next, container.buttons do
-			ElvUI_EltreumUI:UpdateRetailAuraBar(container, button)
-		end
-	end
-end
-
 if not E.Modern then
 	ElvUI_EltreumUI:SecureHook(UF, "PostUpdateBar_AuraBars", "AuraBarGradient")
-else
-	ElvUI_EltreumUI:SecureHook(E, "Auras_AurabarUpdate", "UpdateRetailAuraBarContainer")
-	ElvUI_EltreumUI:SecureHook(E, "Auras_SetContainer", "UpdateRetailAuraBarContainer")
 end
