@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 5.1.7.2
+Updated Forever Character Panel to fix its skin  
+Updated several shadows for Forever  
+Fixed a possible issue when using map addons where the wowhead button would become unresponsive  
+Fixed an issue where Target of Target could be missing class color in Dark Mode  
+Fixed a possible issue with the Eltruism Stats datatext in combat  
+Fixed an issue where Bags would not be openable in combat  
+Fixed an issue where the Tooltip could start blinking  
+Fixed an issue where Edit Mode toggle was missing  
+___
 ### 5.1.7.1
 Fixed an issue with the Damage Meter after Spec Icon became secret  
 ___
