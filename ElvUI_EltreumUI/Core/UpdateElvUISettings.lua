@@ -71,8 +71,6 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				E.db["bags"]["useBlizzardJunk"] = false
 				E.db["bags"]["warbandSize"] = 35
 
-				E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
-
 				--new anchors
 				E.db["tooltip"]["cursorAnchorType"] = "ANCHOR_CURSOR"
 				E.db["auras"]["buffs"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
