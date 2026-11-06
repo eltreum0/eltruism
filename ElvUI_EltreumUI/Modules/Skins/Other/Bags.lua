@@ -607,6 +607,11 @@ function ElvUI_EltreumUI:BagProfessions()
 							_G["EltruismProfessionLockpickBagButton"]:SetParent()
 							_G["EltruismProfessionLockpickBagButton"]:Hide()
 						end
+						if _G["EltruismProfessionFishingBagButton"] then
+							_G["EltruismProfessionFishingBagButton"]:ClearAllPoints()
+							_G["EltruismProfessionFishingBagButton"]:SetParent()
+							_G["EltruismProfessionFishingBagButton"]:Hide()
+						end
 						_G["ElvUI_ContainerFrame"].numButtons = 0
 					end
 				elseif event == "PLAYER_REGEN_ENABLED" then
@@ -647,6 +652,12 @@ function ElvUI_EltreumUI:BagProfessions()
 							_G["EltruismProfessionLockpickBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 							_G["EltruismProfessionLockpickBagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
 							_G["EltruismProfessionLockpickBagButton"]:Show()
+						end
+						if _G["EltruismProfessionFishingBagButton"] then
+							_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+							_G["EltruismProfessionFishingBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+							_G["EltruismProfessionFishingBagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
+							_G["EltruismProfessionFishingBagButton"]:Show()
 						end
 					end
 				end
