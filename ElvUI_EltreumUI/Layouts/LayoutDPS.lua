@@ -539,7 +539,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["arena"]["portrait"]["style"] = "Class"
 	E.db["unitframe"]["units"]["arena"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 14
-	E.db["unitframe"]["units"]["arena"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 50
 	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = 0
@@ -900,7 +899,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 	E.db["unitframe"]["units"]["player"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
-	E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
@@ -1231,7 +1229,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["target"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["target"]["power"]["height"] = 15
 	E.db["unitframe"]["units"]["target"]["power"]["position"] = "BOTTOMRIGHT"
-	E.db["unitframe"]["units"]["target"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["target"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["target"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["target"]["power"]["xOffset"] = 0

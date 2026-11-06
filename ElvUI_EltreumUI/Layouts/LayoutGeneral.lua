@@ -678,6 +678,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["powerPrediction"]["color"]["g"] = 1
 	E.db["unitframe"]["colors"]["powerPrediction"]["color"]["r"] = 1
 	E.db["unitframe"]["colors"]["powerPrediction"]["enable"] = true
+	E.db["unitframe"]["units"]["arena"]["power"]["powerPrediction"] = true
+	E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
+	E.db["unitframe"]["units"]["target"]["power"]["powerPrediction"] = true
+	E.db["unitframe"]["units"]["focus"]["power"]["powerPrediction"] = true
 
 	--movers
 	E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-146,-21"

@@ -467,7 +467,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["arena"]["portrait"]["style"] = "Class"
 	E.db["unitframe"]["units"]["arena"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 14
-	E.db["unitframe"]["units"]["arena"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 50
 	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = 0
@@ -911,7 +910,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["overlayAlpha"] = 0.6
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid1"]["power"]["height"] = 8
-	E.db["unitframe"]["units"]["raid1"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["raid1"]["power"]["yOffset"] = 4
 	E.db["unitframe"]["units"]["raid1"]["raidRoleIcons"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid1"]["raidicon"]["attachTo"] = "TOPRIGHT"
@@ -987,7 +985,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["raid2"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["raid2"]["power"]["height"] = 8
-	E.db["unitframe"]["units"]["raid2"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["raid2"]["power"]["yOffset"] = 4
 	E.db["unitframe"]["units"]["raid2"]["raidRoleIcons"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid2"]["raidicon"]["attachTo"] = "TOPRIGHT"
