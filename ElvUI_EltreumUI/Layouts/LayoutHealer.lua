@@ -299,7 +299,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	-- Movers Healing
 	E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-292"
 	E.db["movers"]["AzeriteBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-421,0"
-	E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-259"
+	if E.Forever then
+		E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-233"
+	else
+		E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-259"
+	end
 	E.db["movers"]["BelowMinimapContainerMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,79,-155"
 	E.db["movers"]["BigButtonsFarmBar"] = "TOPLEFT,ElvUIParent,TOPLEFT,433,-134"
 	E.db["movers"]["BigButtonsSeedBarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,281,-186"
