@@ -72,6 +72,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Player-5815-02ABD3B9"] = EltreumIcon,
 			["Player-5815-02ABDC2E"] = EltreumIcon,
 			["Player-5815-02ABDDBF"] = EltreumIcon,
+
+			--Forever
+			["Player-6929-0074BBBD"] = EltreumIcon,
 		}
 
 		--Donators
