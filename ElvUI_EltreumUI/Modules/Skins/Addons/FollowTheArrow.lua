@@ -234,19 +234,147 @@ local function SkinRows(scrollChild)
 	end
 end
 
+--check if follow the arrow is in text-only mode
+local function IsTextOnlyMode(frame)
+	if _G.FTADB and _G.FTADB.profile and _G.FTADB.profile.general and _G.FTADB.profile.general.textOnlyMainWindow ~= nil then
+		return _G.FTADB.profile.general.textOnlyMainWindow == true
+	end
+	return not (frame and frame.backdropInfo)
+end
+
+--toggle shadow, eltruism bg texture, and universal borders for text-only mode
+local function UpdateMainWindowTextOnly(main)
+	if not main then return end
+
+	local isTextOnly = IsTextOnlyMode(main)
+	if isTextOnly then
+		if main.backdropInfo or (main.GetBackdrop and main:GetBackdrop()) then
+			main._eltruismBackdropHook = true
+			if main.SetBackdrop then
+				main:SetBackdrop(nil)
+			end
+			main._eltruismBackdropHook = nil
+		end
+		if main.shadow then
+			main.shadow:Hide()
+		end
+		if main.eltruismbgtexture then
+			main.eltruismbgtexture:Hide()
+		end
+		if main.eltruismuniversalborders then
+			main.eltruismuniversalborders:Hide()
+		end
+	else
+		if not main.backdropInfo and not main._eltruismBackdropHook then
+			main._eltruismBackdropHook = true
+			main:SetTemplate('Transparent')
+			main._eltruismBackdropHook = nil
+		end
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+			if not main.shadow then
+				main:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(main.shadow)
+			else
+				main.shadow:Show()
+			end
+		end
+		if main.eltruismbgtexture and E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+			main.eltruismbgtexture:Show()
+		end
+		if main.eltruismuniversalborders and E.db.ElvUI_EltreumUI.borders.universalborders then
+			main.eltruismuniversalborders:Show()
+		end
+	end
+end
+
+--skin settings panel
+local function SkinSettingsPanel()
+	local scroll1 = _G['FTASettingsScrollFrame1']
+	if not scroll1 then return end
+
+	local content = scroll1:GetParent()
+	if not content or content.IsSkinned then return end
+
+	local panel = content:GetParent()
+	if not panel then return end
+
+	content:SetTemplate('Transparent')
+
+	for _, child in pairs({ panel:GetChildren() }) do
+		if child ~= content and child:IsObjectType('Frame') then
+			child:SetTemplate('Transparent')
+			for _, navChild in pairs({ child:GetChildren() }) do
+				if navChild:IsObjectType('Button') then
+					S:HandleButton(navChild)
+				end
+			end
+		end
+	end
+
+	for i = 1, 3 do
+		local scroll = _G['FTASettingsScrollFrame' .. i]
+		if scroll then
+			local scrollBar = _G['FTASettingsScrollFrame' .. i .. 'ScrollBar']
+			if scrollBar then
+				S:HandleScrollBar(scrollBar)
+				if scrollBar.thumbTexture then
+					scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					scrollBar.thumbTexture:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+				end
+			end
+
+			local scrollChild = scroll:GetScrollChild()
+			if scrollChild then
+				for _, element in pairs({ scrollChild:GetChildren() }) do
+					if element:IsObjectType('CheckButton') then
+						S:HandleCheckBox(element)
+						if not element._eltruismTextOnlyHook then
+							element:HookScript('OnClick', function()
+								E:Delay(0, function()
+									if _G['FollowTheArrowMainFrame'] then
+										UpdateMainWindowTextOnly(_G['FollowTheArrowMainFrame'])
+									end
+								end)
+							end)
+							element._eltruismTextOnlyHook = true
+						end
+					elseif element:IsObjectType('Slider') then
+						S:HandleSliderFrame(element)
+					elseif element:IsObjectType('Button') then
+						S:HandleButton(element)
+					elseif element:IsObjectType('Frame') then
+						for _, subChild in pairs({ element:GetChildren() }) do
+							if subChild:IsObjectType('Button') then
+								S:HandleButton(subChild)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	content.IsSkinned = true
+end
+
 --skin main window
 local function SkinFollowTheArrowMainFrame(main)
 	if not main or main.IsSkinned then return end
 
 	main:SetTemplate('Transparent')
 
-	--prevent default backdrop from overriding
+	--prevent default backdrop from overriding and handle text-only mode
 	hooksecurefunc(main, 'SetBackdrop', function(frame, backdrop)
-		if backdrop and backdrop ~= E.media.blankTex and not frame._eltruismBackdropHook then
+		if frame._eltruismBackdropHook then return end
+
+		local isTextOnly = IsTextOnlyMode(frame)
+		if not isTextOnly and backdrop and backdrop ~= E.media.blankTex then
 			frame._eltruismBackdropHook = true
 			frame:SetTemplate('Transparent')
 			frame._eltruismBackdropHook = nil
 		end
+
+		UpdateMainWindowTextOnly(frame)
 	end)
 
 	--shadows
@@ -257,6 +385,8 @@ local function SkinFollowTheArrowMainFrame(main)
 		end
 	end
 
+	UpdateMainWindowTextOnly(main)
+
 	local scrollFrame, scrollChild
 	local nextBtn, syncBtn
 	for _, child in pairs({ main:GetChildren() }) do
@@ -264,6 +394,12 @@ local function SkinFollowTheArrowMainFrame(main)
 			scrollFrame = child
 			scrollChild = child:GetScrollChild()
 		elseif child:IsObjectType('Button') then
+			for _, r in pairs({ child:GetRegions() }) do
+				if r:IsObjectType('FontString') and E.LSM:Fetch('font', E.db.general.font) then
+					r:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				end
+			end
+
 			local p1 = select(1, child:GetPoint())
 			local text = child:GetText()
 			local tex = child:GetNormalTexture() and child:GetNormalTexture():GetTexture()
@@ -313,6 +449,11 @@ local function SkinFollowTheArrowMainFrame(main)
 						child:GetNormalTexture():SetVertexColor(1, 1, 1, 0.8)
 					end)
 				end
+				child:HookScript('OnClick', function()
+					E:Delay(0, function()
+						SkinSettingsPanel()
+					end)
+				end)
 			end
 		elseif child:IsObjectType('Frame') then
 			if child.MinimizeButton and child.MaximizeButton then
@@ -473,102 +614,20 @@ local function SkinFollowTheArrowMainFrame(main)
 	if scrollChild and not scrollChild._eltruismHooked then
 		hooksecurefunc(scrollChild, 'SetHeight', function(self)
 			SkinRows(self)
+			UpdateMainWindowTextOnly(main)
 		end)
 		scrollChild._eltruismHooked = true
 		SkinRows(scrollChild)
 	end
 
 	main:HookScript('OnShow', function()
+		UpdateMainWindowTextOnly(main)
 		if scrollChild then
 			SkinRows(scrollChild)
 		end
 	end)
 
 	main.IsSkinned = true
-end
-
---skin settings panel
-local function SkinSettingsPanel()
-	local scroll1 = _G['FTASettingsScrollFrame1']
-	if not scroll1 then return end
-
-	local content = scroll1:GetParent()
-	if not content or content.IsSkinned then return end
-
-	local panel = content:GetParent()
-	if not panel then return end
-
-	content:SetTemplate('Transparent')
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-		if not content.shadow then
-			content:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(content.shadow)
-		end
-	end
-
-	for _, child in pairs({ panel:GetChildren() }) do
-		if child ~= content and child:IsObjectType('Frame') then
-			child:SetTemplate('Transparent')
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-				if not child.shadow then
-					child:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(child.shadow)
-				end
-			end
-			for _, navChild in pairs({ child:GetChildren() }) do
-				if navChild:IsObjectType('Button') then
-					S:HandleButton(navChild)
-				end
-			end
-		end
-	end
-
-	for i = 1, 3 do
-		local scroll = _G['FTASettingsScrollFrame' .. i]
-		if scroll then
-			local scrollBar = _G['FTASettingsScrollFrame' .. i .. 'ScrollBar']
-			if scrollBar then
-				S:HandleScrollBar(scrollBar)
-				if scrollBar.thumbTexture then
-					scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					scrollBar.thumbTexture:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
-				end
-			end
-
-			local scrollChild = scroll:GetScrollChild()
-			if scrollChild then
-				for _, element in pairs({ scrollChild:GetChildren() }) do
-					if element:IsObjectType('CheckButton') then
-						S:HandleCheckBox(element)
-					elseif element:IsObjectType('Slider') then
-						S:HandleSliderFrame(element)
-					elseif element:IsObjectType('Button') then
-						S:HandleButton(element)
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-							if not element.shadow then
-								element:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(element.shadow)
-							end
-						end
-					elseif element:IsObjectType('Frame') then
-						for _, subChild in pairs({ element:GetChildren() }) do
-							if subChild:IsObjectType('Button') then
-								S:HandleButton(subChild)
-								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-									if not subChild.shadow then
-										subChild:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(subChild.shadow)
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-
-	content.IsSkinned = true
 end
 
 --skin guide arrow
@@ -606,6 +665,7 @@ function ElvUI_EltreumUI:EltruismFollowTheArrow()
 			_G['FollowTheArrowMinimapButton']:HookScript('OnClick', function()
 				if _G['FollowTheArrowMainFrame'] then
 					SkinFollowTheArrowMainFrame(_G['FollowTheArrowMainFrame'])
+					UpdateMainWindowTextOnly(_G['FollowTheArrowMainFrame'])
 				end
 			end)
 		end
