@@ -35,6 +35,28 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 			},
 			["firstRun"] = false,
 		}
+		DynamicCamDB["profiles"]["EltreumAction"] = {
+			["standardSettings"] = {
+				["reactiveZoomAddIncrements"] = 1.5,
+				["reactiveZoomIncAddDifference"] = 2,
+				["reactiveZoomAddIncrementsAlways"] = 0,
+				["shoulderOffsetZoomUpperBound"] = 8,
+				["cvars"] = {
+					["cameraZoomSpeed"] = 50,
+					["cameraPitchMoveSpeed"] = 160,
+					["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
+					["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
+					["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
+					["test_cameraDynamicPitch"] = 1,
+					["cameraDistanceMaxZoomFactor"] = E.Retail and 2.6 or 4.0,
+					["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
+				},
+			},
+			["situations"] = {
+			},
+			["version"] = 6,
+			["firstRun"] = false,
+		}
 
 		--better handle the situations
 		E:CopyTable(DynamicCamDB["profiles"]["Eltreum"]["situations"], _G.DynamicCam["defaults"]["profile"]["situations"])
@@ -229,6 +251,107 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 				["zoomValue"] = 30,
 				["zoomTimeIsMax"] = true,
 			},
+		}
+
+		--handle action profile
+		E:CopyTable(DynamicCamDB["profiles"]["EltreumAction"]["situations"], DynamicCamDB["profiles"]["Eltreum"]["situations"])
+		DynamicCamDB["profiles"]["EltreumAction"]["situations"]["custom1"] = {
+			["enabled"] = true,
+			["name"] = "Target/Combat",
+			["transitionTime"] = {
+				["timeToEnter"] = 1,
+				["timeToExit"] = 1,
+			},
+			["executeOnInit"] = "",
+			["condition"] = 'return (InCombatLockdown() and UnitExists("target"))',
+			["events"] = {
+				"PLAYER_REGEN_ENABLED",
+				"PLAYER_REGEN_DISABLED",
+				"PLAYER_TARGET_CHANGED",
+			},
+			["rotation"] = {
+				["enabled"] = false,
+				["pitchDegrees"] = 0,
+				["rotationType"] = "continuous",
+				["rotationSpeed"] = 10,
+				["yawDegrees"] = 0,
+				["rotateBack"] = true,
+			},
+			["executeOnEnter"] = "",
+			["viewZoom"] = {
+				["enabled"] = false,
+				["zoomMax"] = 15,
+				["zoomMin"] = 5,
+				["viewZoomType"] = "zoom",
+				["viewRestore"] = true,
+				["zoomTimeIsMax"] = false,
+				["viewInstant"] = false,
+				["zoomType"] = "set",
+				["restoreDefaultViewNumber"] = 1,
+				["viewNumber"] = 2,
+				["zoomValue"] = 10,
+			},
+			["hideUI"] = {
+				["keepChatFrame"] = false,
+				["customFramesToKeep"] = {
+					["MerchantFrame"] = true,
+					["ClassTrainerFrame"] = true,
+					["StaticPopup1"] = true,
+					["BankFrame"] = true,
+					["WardrobeFrame"] = true,
+					["BuffFrame"] = true,
+					["DebuffFrame"] = true,
+					["AuctionHouseFrame"] = true,
+					["QuestFrame"] = true,
+					["GossipFrame"] = true,
+					["PetStableFrame"] = true,
+					["BagnonBankFrame1"] = true,
+				},
+				["keepPartyRaidFrame"] = false,
+				["hideEntireUI"] = false,
+				["enabled"] = false,
+				["keepCustomFrames"] = false,
+				["fadeOpacity"] = 0.6,
+				["keepTrackingBar"] = false,
+				["keepEncounterBar"] = false,
+				["keepFrameRate"] = false,
+				["emergencyShowEscEnabled"] = true,
+				["keepAlertFrames"] = true,
+				["keepTooltip"] = true,
+				["keepMinimap"] = false,
+			},
+			["situationSettings"] = {
+				["cvars"] = {
+					["test_cameraTargetFocusEnemyStrengthPitch"] = 1,
+					["test_cameraTargetFocusInteractEnable"] = 0,
+					["test_cameraTargetFocusInteractStrengthPitch"] = 0.75,
+					["test_cameraTargetFocusEnemyEnable"] = 1,
+					["test_cameraTargetFocusInteractStrengthYaw"] = 1,
+					["test_cameraTargetFocusEnemyStrengthYaw"] = 1,
+				},
+				["cvarsZoomBased"] = {
+					["test_cameraTargetFocusEnemyStrengthYaw"] = {
+						["enabled"] = false,
+						["points"] = {
+							{
+								["value"] = 1,
+								["zoom"] = 0,
+							},
+							{
+								["value"] = 0.17,
+								["zoom"] = 36.4,
+							},
+							{
+								["value"] = 1,
+								["zoom"] = 50,
+							},
+						},
+					},
+				},
+			},
+			["priority"] = 777,
+			["delay"] = 0,
+			["executeOnExit"] = "",
 		}
 	end
 	_G.DynamicCam.db:SetProfile("Eltreum")
