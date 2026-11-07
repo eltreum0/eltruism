@@ -43,6 +43,7 @@ local skippedMinimapFrames = {
 	["LFGMinimapFrame"] = true,
 	["QueueStatusMinimapButton"] = true,
 	["QueueStatusButton"] = true,
+	["QueueStatusFrame"] = true,
 	["ElvUIQueueStatus"] = true,
 	["GarrisonLandingPageMinimapButton"] = true,
 	["ExpansionLandingPageMinimapButton"] = true,
@@ -51,6 +52,20 @@ local skippedMinimapFrames = {
 	["EltruismMinimapButtonBar"] = true,
 	["EltruismMinimapButtonToggle"] = true,
 	["MMHolder"] = true,
+	["MiniMapInstanceDifficulty"] = true,
+	["GuildInstanceDifficulty"] = true,
+	["InstanceDifficulty"] = true,
+	["MiniMapBattlefieldFrame"] = true,
+	["BattlegroundShine"] = true,
+	["MiniMapRecordingButton"] = true,
+	["MiniMapVoiceChatFrame"] = true,
+	["MinimapZoneTextButton"] = true,
+	["SubZoneTextFrame"] = true,
+	["MinimapZoomIn"] = true,
+	["MinimapZoomOut"] = true,
+	["MiniMapWorldMapButton"] = true,
+	["MinimapNorthTag"] = true,
+	["MinimapPanel"] = true,
 }
 
 --textures commonly used as circular rings or background masks on minimap buttons
@@ -106,34 +121,6 @@ local function ButtonOnLeave(self)
 	end
 end
 
-local function ButtonOnVisibilityChange()
-	if not isUpdatingBar then
-		ElvUI_EltreumUI:UpdateMinimapButtonBar()
-	end
-end
-
---prevent addons from dragging or snapping buttons back to the minimap while in the bar
-local function ButtonSetPointHook(self, _, parent)
-	if isUpdatingBar then return end
-	if E.db.ElvUI_EltreumUI.otherstuff.minimapbuttons.enable and self.EltruismInBar and parent ~= buttonBar then
-		ElvUI_EltreumUI:UpdateMinimapButtonBar()
-	end
-end
-
-local function ButtonSetParentHook(self, parent)
-	if isUpdatingBar then return end
-	if E.db.ElvUI_EltreumUI.otherstuff.minimapbuttons.enable and self.EltruismInBar and parent ~= buttonBar then
-		if parent == E.HiddenFrame and self.EltruismBlizzButton then
-			self.EltruismInBar = false
-			ElvUI_EltreumUI:UpdateMinimapButtonBar()
-			return
-		end
-		isUpdatingBar = true
-		self:SetParent(buttonBar)
-		isUpdatingBar = false
-	end
-end
-
 local function SortBarButtons(a, b)
 	if not a or not b then return false end
 	local aBlizz = a.EltruismBlizzButton and true or false
@@ -173,10 +160,6 @@ local function ApplyButtonStyle(button, isBlizzButton)
 	if not button.EltruismHook then
 		button:HookScript("OnEnter", ButtonOnEnter)
 		button:HookScript("OnLeave", ButtonOnLeave)
-		button:HookScript("OnShow", ButtonOnVisibilityChange)
-		button:HookScript("OnHide", ButtonOnVisibilityChange)
-		hooksecurefunc(button, "SetPoint", ButtonSetPointHook)
-		hooksecurefunc(button, "SetParent", ButtonSetParentHook)
 		button.EltruismHook = true
 	end
 
@@ -260,7 +243,8 @@ local function IsValidAddonButton(frame)
 
 	local name = frame:GetName()
 	if not name or skippedMinimapFrames[name] then return false end
-	if string.find(name, "Pin") or string.find(name, "Node") or string.find(name, "Note") or string.find(name, "Pointer") or string.find(name, "Questie") or string.find(name, "Gather") or string.find(name, "HandyNotes") or string.find(name, "TomTom") or string.find(name, "ElvUI") or string.find(name, "Eltruism") then
+	local lower = string.lower(name)
+	if string.find(lower, "pin") or string.find(lower, "node") or string.find(lower, "note") or string.find(lower, "pointer") or string.find(lower, "questie") or string.find(lower, "gather") or string.find(lower, "handynotes") or string.find(lower, "tomtom") or string.find(lower, "elvui") or string.find(lower, "eltruism") or string.find(lower, "difficulty") or string.find(lower, "queue") or string.find(lower, "instance") or string.find(lower, "lfg") or string.find(lower, "lfd") or string.find(lower, "dungeon") or string.find(lower, "raid") or string.find(lower, "scenario") or string.find(lower, "boss") or string.find(lower, "cluster") or string.find(lower, "backdrop") then
 		return false
 	end
 
@@ -345,7 +329,7 @@ local function RestoreBlizzardButton(frame, skipUpdate)
 		E:GetModule("Blizzard"):HandleAddonCompartment()
 	end
 	if not skipUpdate then
-		M:UpdateSettings()
+		ElvUI_EltreumUI:UpdateMinimapButtonBar()
 	end
 end
 
@@ -592,7 +576,7 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 	end
 
 	buttonBar:SetFrameStrata(db.strata or "MEDIUM")
-	buttonBar:SetFrameLevel(db.level or 12)
+	buttonBar:SetFrameLevel(12)
 
 	table.sort(barButtons, SortBarButtons)
 	table.wipe(visibleButtons)
@@ -655,10 +639,16 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 		if btn.SetIgnoreParentScale then
 			btn:SetIgnoreParentScale(false)
 		end
+		if btn.SetFixedFrameStrata then
+			btn:SetFixedFrameStrata(false)
+		end
+		if btn.SetFixedFrameLevel then
+			btn:SetFixedFrameLevel(false)
+		end
 		btn:ClearAllPoints()
 		btn:SetPoint(anchor, buttonBar, anchor, posX, posY)
 		btn:SetFrameStrata(db.strata or "MEDIUM")
-		btn:SetFrameLevel((db.level or 12) + 1)
+		btn:SetFrameLevel(13)
 	end
 
 	local numCols, numRows
@@ -704,14 +694,15 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 			RegisterStateDriver(buttonBar, "visibility", db.visibility or "[petbattle] hide; show")
 		end
 		buttonBar:Show()
-	end
-
-	if db.barMouseOver then
-		if not buttonBar:IsMouseOver() then
-			UIFrameFadeOut(buttonBar, 0.2, buttonBar:GetAlpha(), db.mouseOverAlpha or 0)
+		if db.barMouseOver then
+			if not buttonBar:IsMouseOver() then
+				buttonBar:SetAlpha(db.mouseOverAlpha or 0)
+			else
+				buttonBar:SetAlpha(1)
+			end
+		else
+			buttonBar:SetAlpha(1)
 		end
-	else
-		UIFrameFadeIn(buttonBar, 0.2, buttonBar:GetAlpha(), 1)
 	end
 
 	isUpdatingBar = false
@@ -734,7 +725,7 @@ function ElvUI_EltreumUI:MinimapButtonBar()
 			end
 		end
 		if restoredAny then
-			M:UpdateSettings()
+			ElvUI_EltreumUI:UpdateMinimapButtonBar()
 		end
 		return
 	end
