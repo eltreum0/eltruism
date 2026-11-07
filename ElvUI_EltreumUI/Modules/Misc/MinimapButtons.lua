@@ -576,7 +576,7 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 	end
 
 	buttonBar:SetFrameStrata(db.strata or "MEDIUM")
-	buttonBar:SetFrameLevel(12)
+	buttonBar:SetFrameLevel(db.level or 12)
 
 	table.sort(barButtons, SortBarButtons)
 	table.wipe(visibleButtons)
@@ -648,7 +648,7 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 		btn:ClearAllPoints()
 		btn:SetPoint(anchor, buttonBar, anchor, posX, posY)
 		btn:SetFrameStrata(db.strata or "MEDIUM")
-		btn:SetFrameLevel(13)
+		btn:SetFrameLevel((db.level or 12) + 1)
 	end
 
 	local numCols, numRows
