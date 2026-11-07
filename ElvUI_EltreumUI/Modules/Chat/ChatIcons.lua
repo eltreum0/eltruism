@@ -365,8 +365,8 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 				local race = data.englishRace or "Human"
 				local sex = (not data.sex or data.sex == 1) and 2 or data.sex
 				local folder = E.Retail and "Retail" or "Classic"
-
-				raceStr = strformat("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\%s\\%s%d.tga:0:0:0:0|t", folder, race, sex)
+				local size = E.db.chat.fontSize or 12
+				raceStr = strformat("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\%s\\%s%d.tga:"..size..":"..size..":0:0|t", folder, race, sex)
 			end
 
 			local tag = ""
