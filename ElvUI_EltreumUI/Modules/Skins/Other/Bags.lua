@@ -115,6 +115,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				[441139] = true, --archaeology
 				[1278067] = true, --forever bait and tackle
 				[136245] = true, --forever bait and tackle
+				[136242] = false, --forever poisons, offset is 35, v is 5
 			}
 			_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
 				if not _G["ElvUI_ContainerFrame"].numButtons then
@@ -122,6 +123,7 @@ function ElvUI_EltreumUI:BagProfessions()
 					_G["ElvUI_ContainerFrame"].numButtons = 0
 					if E.Modern then
 						for _,v in ipairs{GetProfessions()} do
+							--"Poisons", 136242, 81, 300, 1, 37, 40, 0, -1, 0, "Poisons"
 							local name, icon, _, _, _, spelloffset = GetProfessionInfo(v)
 							if name then
 								if not _G["EltruismProfession"..v.."BagButton"] then
