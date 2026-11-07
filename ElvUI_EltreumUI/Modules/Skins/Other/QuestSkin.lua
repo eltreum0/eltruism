@@ -22,6 +22,7 @@ if E.Modern then
 end
 local format = _G.format
 local C_QuestLog = _G.C_QuestLog
+local C_Map = _G.C_Map
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local C_SuperTrack = _G.C_SuperTrack
 local MAX_QUESTS = _G.MAX_QUESTS
@@ -56,6 +57,13 @@ function ElvUI_EltreumUI:UpdateZoneQuests(event)
 	updateaftercombat = false
 
 	if E.Modern then
+		--update map id for quest pois before checking quests
+		local mapID = C_Map.GetBestMapForUnit("player")
+		if mapID then
+			C_QuestLog.SetMapForQuestPOIs(mapID)
+		end
+		C_QuestLog.SortQuestWatches()
+
 		--check if quest is on map using C_QuestLog.GetInfo
 		for i = 1, C_QuestLog.GetNumQuestLogEntries() do
 			local info = C_QuestLog.GetInfo(i)

@@ -334,7 +334,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
-	ElvUI_EltreumUI:UpdateZoneQuests()
+	E:Delay(0.5, ElvUI_EltreumUI.UpdateZoneQuests)
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
@@ -344,7 +344,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
-	ElvUI_EltreumUI:UpdateZoneQuests()
+	E:Delay(0.5, ElvUI_EltreumUI.UpdateZoneQuests)
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
@@ -354,11 +354,11 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
 	ElvUI_EltreumUI:InstanceIndicator()
-	ElvUI_EltreumUI:UpdateZoneQuests()
+	E:Delay(0.5, ElvUI_EltreumUI.UpdateZoneQuests)
 end
 
 function ElvUI_EltreumUI:QUEST_ACCEPTED()
-	ElvUI_EltreumUI:UpdateZoneQuests()
+	E:Delay(0.5, ElvUI_EltreumUI.UpdateZoneQuests)
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
