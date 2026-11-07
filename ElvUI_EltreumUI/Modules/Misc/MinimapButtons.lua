@@ -123,6 +123,11 @@ end
 local function ButtonSetParentHook(self, parent)
 	if isUpdatingBar then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapbuttons.enable and self.EltruismInBar and parent ~= buttonBar then
+		if parent == E.HiddenFrame and self.EltruismBlizzButton then
+			self.EltruismInBar = false
+			ElvUI_EltreumUI:UpdateMinimapButtonBar()
+			return
+		end
 		isUpdatingBar = true
 		self:SetParent(buttonBar)
 		isUpdatingBar = false
@@ -336,6 +341,9 @@ local function RestoreBlizzardButton(frame, skipUpdate)
 	if frame.shadow then
 		frame.shadow:Hide()
 	end
+	if frame == _G.AddonCompartmentFrame and E.Modern then
+		E:GetModule("Blizzard"):HandleAddonCompartment()
+	end
 	if not skipUpdate then
 		M:UpdateSettings()
 	end
@@ -396,7 +404,7 @@ function ElvUI_EltreumUI:HandleBlizzardButtons()
 	--tracking
 	local trackFrame = _G.MiniMapTracking or _G.MiniMapTrackingFrame or (_G.MinimapCluster and _G.MinimapCluster.Tracking)
 	if trackFrame then
-		if db.moveTracker then
+		if db.moveTracker and not (E.private.general.minimap and E.private.general.minimap.hideTracking) then
 			if _G.MiniMapTrackingBackground then _G.MiniMapTrackingBackground:Hide() end
 			if _G.MiniMapTrackingButtonBorder then _G.MiniMapTrackingButtonBorder:Hide() end
 			if trackFrame.Background then trackFrame.Background:Hide() end
@@ -425,7 +433,7 @@ function ElvUI_EltreumUI:HandleBlizzardButtons()
 	--calendar (classic/tbc/wrath/cata/mists)
 	local gameTime = _G.GameTimeFrame
 	if gameTime and not E.Retail then
-		if db.moveGameTime then
+		if db.moveGameTime and not (E.private.general.minimap and E.private.general.minimap.hideCalendar) then
 			ApplyButtonStyle(gameTime, true)
 		else
 			RestoreBlizzardButton(gameTime)
@@ -435,7 +443,7 @@ function ElvUI_EltreumUI:HandleBlizzardButtons()
 	--expansion summary / garrison button (retail)
 	local garrisonBtn = _G.ExpansionLandingPageMinimapButton or _G.GarrisonLandingPageMinimapButton
 	if garrisonBtn and E.Retail then
-		if db.moveGarrison then
+		if db.moveGarrison and not (E.private.general.minimap and E.private.general.minimap.hideClassHallReport) then
 			if garrisonBtn.CircleMask then garrisonBtn.CircleMask:Hide() end
 			CropGarrisonTextures(garrisonBtn)
 			if garrisonBtn.UpdateIcon and not garrisonBtn.EltruismIconHook then
@@ -451,7 +459,7 @@ function ElvUI_EltreumUI:HandleBlizzardButtons()
 	--addon compartment (all game versions)
 	local addonComp = _G.AddonCompartmentFrame
 	if addonComp then
-		if db.moveAddonCompartment then
+		if db.moveAddonCompartment and not (E.db.general.addonCompartment and E.db.general.addonCompartment.hide) then
 			HideTextureRegions(addonComp:GetRegions())
 			if addonComp.Text then
 				addonComp.Text:FontTemplate(E.media.normFont, 12, E.db.ElvUI_EltreumUI.skins.armoryfontsize or "OUTLINE")
