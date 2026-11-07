@@ -4,12 +4,26 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local InCombatLockdown = _G.InCombatLockdown
 local ipairs = _G.ipairs
+local select = _G.select
 local GetProfessions = _G.GetProfessions
 local GetProfessionInfo = _G.GetProfessionInfo
 local IsSpellKnown = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsSpellKnown
 local IsPlayerMoving = _G.IsPlayerMoving
 local CastSpell = _G.CastSpell
 local LCG = _G.LibStub("LibEltreumGlow")
+
+local function GetAvailableProfessions()
+	local profs = {}
+	if GetProfessions then
+		for i = 1, select("#", GetProfessions()) do
+			local v = select(i, GetProfessions())
+			if v then
+				profs[#profs + 1] = v
+			end
+		end
+	end
+	return profs
+end
 
 --add profession shortcuts to the ElvUI bags, suggested by Xheno
 function ElvUI_EltreumUI:BagProfessions()
@@ -115,17 +129,21 @@ function ElvUI_EltreumUI:BagProfessions()
 				[441139] = true, --archaeology
 				[1278067] = true, --forever bait and tackle
 				[136245] = true, --forever bait and tackle
-				[136242] = false, --forever poisons, offset is 35, v is 5
+				[136242] = false, --forever poisons, offset is 37, v is 5
 			}
 			_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
-				if not _G["ElvUI_ContainerFrame"].numButtons then
+				if not _G["ElvUI_ContainerFrame"].numButtons or _G["ElvUI_ContainerFrame"].numButtons == 0 then
 					if InCombatLockdown() then return end
 					_G["ElvUI_ContainerFrame"].numButtons = 0
 					if E.Modern then
-						for _,v in ipairs{GetProfessions()} do
+						local hasPoisons = false
+						for _,v in ipairs(GetAvailableProfessions()) do
 							--"Poisons", 136242, 81, 300, 1, 37, 40, 0, -1, 0, "Poisons"
 							local name, icon, _, _, _, spelloffset = GetProfessionInfo(v)
 							if name then
+								if icon == 136242 or name == "Poisons" then
+									hasPoisons = true
+								end
 								if not _G["EltruismProfession"..v.."BagButton"] then
 									if not blockprof[icon] then
 										--[[
@@ -178,6 +196,27 @@ function ElvUI_EltreumUI:BagProfessions()
 										end)
 									end
 								end
+							end
+						end
+
+						--poisons (fallback if not in GetProfessions for Forever)
+						if (E.Forever or not E.Retail) and IsSpellKnown(2842) and not hasPoisons then
+							if not _G["EltruismProfessionPoisonsBagButton"] then
+								local name, _, icon = ElvUI_EltreumUI:EltruismSpellInfo(2842)
+								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+								_G["EltruismProfessionPoisonsBagButton"] = CreateFrame("Button","EltruismProfessionPoisonsBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
+								_G["EltruismProfessionPoisonsBagButton"]:SetSize(21,21)
+								_G["EltruismProfessionPoisonsBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionPoisonsBagButton"].backdrop.Center:Hide()
+								S:HandleButton(_G["EltruismProfessionPoisonsBagButton"])
+								_G["EltruismProfessionPoisonsBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+								_G["EltruismProfessionPoisonsBagButton"]:SetAttribute('type', 'spell')
+								_G["EltruismProfessionPoisonsBagButton"]:SetAttribute('spell', name or 2842)
+								ElvUI_EltreumUI:MacroClick(_G["EltruismProfessionPoisonsBagButton"])
+								_G["EltruismProfessionPoisonsBagButton"].icon = _G["EltruismProfessionPoisonsBagButton"]:CreateTexture(nil,"ARTWORK")
+								_G["EltruismProfessionPoisonsBagButton"].icon:SetTexture(icon or 136242)
+								_G["EltruismProfessionPoisonsBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
+								_G["EltruismProfessionPoisonsBagButton"].icon:SetAllPoints()
 							end
 						end
 
@@ -581,7 +620,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				if event == "PLAYER_REGEN_DISABLED" then
 					if _G["ElvUI_ContainerFrame"].numButtons then
 						if E.Modern then
-							for _,v in ipairs{GetProfessions()} do
+							for _,v in ipairs(GetAvailableProfessions()) do
 								if _G["EltruismProfession"..v.."BagButton"] then
 									_G["EltruismProfession"..v.."BagButton"]:ClearAllPoints()
 									_G["EltruismProfession"..v.."BagButton"]:SetParent()
@@ -598,6 +637,11 @@ function ElvUI_EltreumUI:BagProfessions()
 									end
 								end
 							end
+						end
+						if _G["EltruismProfessionPoisonsBagButton"] then
+							_G["EltruismProfessionPoisonsBagButton"]:ClearAllPoints()
+							_G["EltruismProfessionPoisonsBagButton"]:SetParent()
+							_G["EltruismProfessionPoisonsBagButton"]:Hide()
 						end
 						if _G["EltruismProfessionDisenchantBagButton"] then
 							_G["EltruismProfessionDisenchantBagButton"]:ClearAllPoints()
@@ -620,7 +664,7 @@ function ElvUI_EltreumUI:BagProfessions()
 					if _G["ElvUI_ContainerFrame"].numButtons then
 						_G["ElvUI_ContainerFrame"].numButtons = 0
 						if E.Modern then
-							for _,v in ipairs{GetProfessions()} do
+							for _,v in ipairs(GetAvailableProfessions()) do
 								local name, icon = GetProfessionInfo(v)
 								if name and not blockprof[icon] then
 									_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
@@ -642,6 +686,12 @@ function ElvUI_EltreumUI:BagProfessions()
 									end
 								end
 							end
+						end
+						if _G["EltruismProfessionPoisonsBagButton"] then
+							_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+							_G["EltruismProfessionPoisonsBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+							_G["EltruismProfessionPoisonsBagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
+							_G["EltruismProfessionPoisonsBagButton"]:Show()
 						end
 						if _G["EltruismProfessionDisenchantBagButton"] then
 							_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
