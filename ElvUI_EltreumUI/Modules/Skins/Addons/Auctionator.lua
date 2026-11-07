@@ -596,7 +596,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				end
 				S:HandleEditBox(_G["AuctionatorConfigFrame"].ContributeLink.InputBox)
 				S:HandleEditBox(_G["AuctionatorConfigFrame"].DiscordLink.InputBox)
-				S:HandleEditBox(_G["AuctionatorConfigFrame"].BugReportLink.InputBox)
+				--S:HandleEditBox(_G["AuctionatorConfigFrame"].BugReportLink.InputBox)
 				S:HandleButton(_G["AuctionatorConfigFrame"].ScanButton)
 				S:HandleButton(_G["AuctionatorConfigFrame"].OptionsButton)
 
