@@ -2270,6 +2270,10 @@ P.ElvUI_EltreumUI = {
 			rotate = false,
 			circle = false,
 		},
+		rectangleMinimap = {
+			enable = false,
+			preset = "16:9",
+		},
 		minimapbuttons = {
 			enable = false,
 			barMouseOver = false,

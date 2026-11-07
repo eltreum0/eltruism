@@ -174,6 +174,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:PlayerItemQuality("player") --add item quality texture to character panel skin
 	ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
 	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
+	ElvUI_EltreumUI:UpdateRectangleMinimap() -- rectangle minimap
 	ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
 	ElvUI_EltreumUI:MinimapButtonBar() -- minimap button bar
 	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs

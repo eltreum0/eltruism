@@ -1397,17 +1397,18 @@ function ElvUI_EltreumUI:Shadows()
 		------------------------------------------------------------------------------------------------------ minimap
 		if E.private.general.minimap.enable and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
 
-			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
-			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 			MinimapShadow:SetParent(_G["Minimap"])
 			if not (self.minimapIsSkinned) then
+				local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
+				MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 				MinimapShadow:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
 				if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
 					MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
 				end
-				if IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle then --Shadow and Light Rectangle Minimap
+				if E.db.ElvUI_EltreumUI.otherstuff.rectangleMinimap.enable or (IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle) then --Eltruism or Shadow and Light Rectangle Minimap
+					MinimapShadow:ClearAllPoints()
 					if E.db.datatexts.panels.MinimapPanel.backdrop and E.db.datatexts.panels.MinimapPanel.enable then
 						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
 						MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
@@ -1424,7 +1425,11 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				MinimapShadow:Show()
+				if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
+					MinimapShadow:Hide()
+				else
+					MinimapShadow:Show()
+				end
 				ElvUI_EltreumUI:ShadowColor(MinimapShadow.shadow)
 				self.minimapIsSkinned = true
 			end

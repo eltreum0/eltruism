@@ -1,4 +1,4 @@
-local E, L = unpack(ElvUI)
+local E, L, _, P = unpack(ElvUI)
 local M = E:GetModule('Minimap')
 local S = E:GetModule('Skins')
 local valuecolors = E.myClassColor
@@ -15,6 +15,8 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
 local MAP_PIN = _G.MAP_PIN
+local math = _G.math
+local string = _G.string
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Modern then
@@ -562,7 +564,6 @@ local ONUPDATE_INTERVAL2 = 0.016 --smooth for 60fps
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
-
 local function UpdateCardinalsRotation(_, elapsed)
 	TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
 	if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
@@ -738,9 +739,14 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 			end
 			Cardinals.W:SetText("W")
 
-			Cardinals.N:SetPoint("BOTTOM", Minimap, "TOP", 0, -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+			local verticalInset = (ElvUI_EltreumUI.rectangleMinimapInset or 0) * (E.db.general.minimap.scale or 1)
+			Cardinals.N:ClearAllPoints()
+			Cardinals.E:ClearAllPoints()
+			Cardinals.S:ClearAllPoints()
+			Cardinals.W:ClearAllPoints()
+			Cardinals.N:SetPoint("BOTTOM", Minimap, "TOP", 0, -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset - verticalInset)
 			Cardinals.E:SetPoint("LEFT", Minimap, "RIGHT", -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
-			Cardinals.S:SetPoint("TOP", Minimap, "BOTTOM", 0, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+			Cardinals.S:SetPoint("TOP", Minimap, "BOTTOM", 0, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset + verticalInset)
 			Cardinals.W:SetPoint("RIGHT", Minimap, "LEFT", E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
 
 			Cardinals.N:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -776,13 +782,174 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 	end
 end
 
+-- Eltruism Rectangle Minimap
+local rectangleMaskPresets = {
+	["16:9"] = { heightFactor = 9 / 16, mask = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\map_rectangle_16_9" },
+	["4:3"] = { heightFactor = 3 / 4, mask = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\map_rectangle_4_3" },
+	["2:1"] = { heightFactor = 1 / 2, mask = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\map_rectangle_2_1" },
+}
+local function GetMinimapVerticalCrop()
+	if not E.db.ElvUI_EltreumUI.otherstuff.rectangleMinimap.enable or E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
+		return 0, nil
+	end
+	local preset = rectangleMaskPresets[E.db.ElvUI_EltreumUI.otherstuff.rectangleMinimap.preset] or rectangleMaskPresets["16:9"]
+	local mapSize = E.MinimapSize or Minimap:GetWidth()
+	local crop = math.floor((mapSize * (1 - preset.heightFactor)) * 0.5 + 0.5)
+	return crop, preset.mask
+end
+
+function ElvUI_EltreumUI:GetIconSettings(button)
+	local defaults = P.general.minimap.icons[button]
+	local profile = E.db.general.minimap.icons[button]
+	local scale = profile.scale or defaults.scale
+	local position = profile.position or defaults.position
+	local xOffset = profile.xOffset or defaults.xOffset
+	local yOffset = profile.yOffset or defaults.yOffset
+
+	local crop = GetMinimapVerticalCrop()
+	if crop > 0 and position then
+		local shift = crop * (E.db.general.minimap.scale or 1)
+		if string.find(position, "TOP") then
+			yOffset = (yOffset or 0) - shift
+		elseif string.find(position, "BOTTOM") then
+			yOffset = (yOffset or 0) + shift
+		end
+	end
+
+	return scale, position, xOffset, yOffset
+end
+
+local GetIconSettingsHook = false
+function ElvUI_EltreumUI:UpdateRectangleMinimap()
+	if InCombatLockdown() or not M.MapHolder then
+		return
+	end
+
+	if not GetIconSettingsHook and E.db.ElvUI_EltreumUI.otherstuff.rectangleMinimap.enable and M.GetIconSettings ~= ElvUI_EltreumUI.GetIconSettings then
+		M.GetIconSettings = ElvUI_EltreumUI.GetIconSettings
+		GetIconSettingsHook = true
+		M:UpdateSettings()
+		return
+	end
+
+	local crop, maskPath = GetMinimapVerticalCrop()
+	local borderOffset = E.PixelMode and 1 or 3
+
+	if crop <= 0 then
+		if self.rectangleMinimapInset then
+			self.rectangleMinimapInset = nil
+			Minimap:SetHitRectInsets(0, 0, 0, 0)
+
+			local isCircle = E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle
+			if not isCircle then
+				if M.SetMinimapMask then
+					M:SetMinimapMask(true)
+				else
+					Minimap:SetMaskTexture(E.Modern and 130937 or [[interface\chatframe\chatframebackground]])
+				end
+			end
+
+			if Minimap.backdrop then
+				Minimap.backdrop:ClearAllPoints()
+				Minimap.backdrop:SetOutside(Minimap, borderOffset, borderOffset)
+			end
+			if Minimap.location then
+				Minimap.location:ClearAllPoints()
+				Minimap.location:Point("TOP", Minimap, "TOP", 0, -4)
+			end
+			local shadowFrame = _G["EltruismMiniMapShadowFrame"]
+			if shadowFrame and not isCircle then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.minimap and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
+					shadowFrame:ClearAllPoints()
+					shadowFrame:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
+					if E.db.datatexts.panels.MinimapPanel.backdrop and E.db.datatexts.panels.MinimapPanel.enable and _G.MinimapPanel and _G.MinimapPanel:IsShown() then
+						shadowFrame:SetPoint("BOTTOMLEFT", _G.MinimapPanel, "BOTTOMLEFT", 0, 0)
+					else
+						shadowFrame:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", 0, 0)
+					end
+					shadowFrame:Show()
+				else
+					shadowFrame:Hide()
+				end
+			end
+		end
+		return
+	end
+
+	self.rectangleMinimapInset = crop
+
+	local scale = E.db.general.minimap.scale or 1
+	local scaledCrop = crop * scale
+
+	Minimap:SetMaskTexture(maskPath)
+	Minimap:SetHitRectInsets(0, 0, crop, crop)
+	Minimap:SetClampedToScreen(true)
+	Minimap:SetClampRectInsets(0, 0, 0, 0)
+	Minimap:ClearAllPoints()
+	Minimap:Point("TOPRIGHT", M.MapHolder, "TOPRIGHT", -borderOffset / scale, (-borderOffset / scale) + crop)
+
+	if Minimap.backdrop then
+		Minimap.backdrop:ClearAllPoints()
+		Minimap.backdrop:SetOutside(Minimap, borderOffset, borderOffset - scaledCrop)
+	end
+
+	if Minimap.location then
+		Minimap.location:ClearAllPoints()
+		Minimap.location:Point("TOP", Minimap, "TOP", 0, -4 - scaledCrop)
+	end
+
+	local panel = _G.MinimapPanel
+	if panel and panel:IsShown() then
+		panel:ClearAllPoints()
+		panel:Point("TOPLEFT", Minimap, "BOTTOMLEFT", -E.Border, (E.PixelMode and 0 or -3) + scaledCrop)
+		panel:Point("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", E.Border, -23 + scaledCrop)
+	end
+
+	local visibleHeight = ((E.MinimapSize or Minimap:GetWidth()) - (crop * 2)) * scale
+	local panelHeight = (panel and panel:IsShown() and panel:GetHeight()) or 0
+	local croppedHeight = visibleHeight + panelHeight + (borderOffset * 2)
+	M.MapHolder:SetHeight(croppedHeight)
+	if _G.MinimapMover then
+		_G.MinimapMover:SetHeight(croppedHeight)
+	end
+
+	local shadowFrame = _G["EltruismMiniMapShadowFrame"]
+	if shadowFrame then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.minimap and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
+			local targetBackdrop = Minimap.backdrop or Minimap
+			shadowFrame:ClearAllPoints()
+			shadowFrame:SetPoint("TOPRIGHT", targetBackdrop, "TOPRIGHT", 0, 0)
+			if E.db.datatexts.panels.MinimapPanel.backdrop and E.db.datatexts.panels.MinimapPanel.enable and panel and panel:IsShown() then
+				shadowFrame:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", 0, 0)
+			else
+				shadowFrame:SetPoint("BOTTOMLEFT", targetBackdrop, "BOTTOMLEFT", 0, 0)
+			end
+			shadowFrame:Show()
+		else
+			shadowFrame:Hide()
+		end
+	end
+	if Minimap.EltruismRotateShadow then
+		Minimap.EltruismRotateShadow:Hide()
+	end
+
+	if _G.HybridMinimap and _G.HybridMinimap.MapCanvas then
+		if not _G.HybridMinimap.EltruismMask then
+			_G.HybridMinimap.EltruismMask = _G.HybridMinimap:CreateMaskTexture()
+			_G.HybridMinimap.EltruismMask:SetAllPoints(_G.HybridMinimap)
+		end
+		_G.HybridMinimap.EltruismMask:SetTexture(maskPath)
+		_G.HybridMinimap.MapCanvas:SetMaskTexture(_G.HybridMinimap.EltruismMask)
+		_G.HybridMinimap.MapCanvas:SetUseMaskTexture(true)
+	end
+end
+
 function ElvUI_EltreumUI:M_UpdateSettings()
-	if ElvUI_EltreumUI.MinimapCardinalDirections then
-		ElvUI_EltreumUI:MinimapCardinalDirections()
-	end
-	if ElvUI_EltreumUI.ElvUIMailTexture then
-		ElvUI_EltreumUI:ElvUIMailTexture()
-	end
+	ElvUI_EltreumUI:UpdateRectangleMinimap()
+	ElvUI_EltreumUI:MinimapCardinalDirections()
+	ElvUI_EltreumUI:ElvUIMailTexture()
+	ElvUI_EltreumUI:HandleBlizzardButtons()
+	ElvUI_EltreumUI:UpdateMinimapButtonBar()
 end
 ElvUI_EltreumUI:SecureHook(M, "UpdateSettings", "M_UpdateSettings")
 
