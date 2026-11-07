@@ -200,7 +200,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						end
 
 						--poisons (fallback if not in GetProfessions for Forever)
-						if (E.Forever or not E.Retail) and IsSpellKnown(2842) and not hasPoisons then
+						if E.Forever and IsSpellKnown(2842) and not hasPoisons then
 							if not _G["EltruismProfessionPoisonsBagButton"] then
 								local name, _, icon = ElvUI_EltreumUI:EltruismSpellInfo(2842)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
