@@ -1707,3 +1707,5 @@ L["Thickness of lines"] = true
 L["Thickness of tails"] = true
 L["Type of flash"] = true
 L["Use sinusoidal progress instead of linear"] = true
+L["Automatically track quests that are in your current zone or map, and untrack quests from other zones."] = true
+L["Only Show Quests on Current Map"] = true

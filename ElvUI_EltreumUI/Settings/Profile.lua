@@ -776,6 +776,7 @@ P.ElvUI_EltreumUI = {
 
 	quests = {
 		enable = false,
+		onlyCurrentZoneQuests = false,
 		rogueopen = false,
 		arena = false,
 		combatenable = false,

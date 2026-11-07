@@ -38,7 +38,65 @@ local GetNumQuestLeaderBoards = _G.GetNumQuestLeaderBoards
 local GetNumQuestLogEntries = _G.GetNumQuestLogEntries
 local UpdateWidgetLayoutHook = _G.UpdateWidgetLayoutHook
 local QuestMapFrame_GetDetailQuestID = _G.QuestMapFrame_GetDetailQuestID
+local GetRealZoneText = _G.GetRealZoneText
+local IsQuestWatched = _G.IsQuestWatched
+local AddQuestWatch = _G.AddQuestWatch
+local RemoveQuestWatch = _G.RemoveQuestWatch
 local questside
+local updateaftercombat = false
+
+--only show quests in current map
+function ElvUI_EltreumUI:UpdateZoneQuests(event)
+	if not E.db.ElvUI_EltreumUI.quests.onlyCurrentZoneQuests then return end
+	if event == "PLAYER_REGEN_ENABLED" and not updateaftercombat then return end
+	if InCombatLockdown() then
+		updateaftercombat = true
+		return
+	end
+	updateaftercombat = false
+
+	if E.Modern then
+		--check if quest is on map using C_QuestLog.GetInfo
+		for i = 1, C_QuestLog.GetNumQuestLogEntries() do
+			local info = C_QuestLog.GetInfo(i)
+			if info and not info.isHeader and not info.isHidden and not info.isTask and not info.isBounty and info.questID and info.questID > 0 then
+				local isWatched = C_QuestLog.GetQuestWatchType(info.questID) ~= nil
+				if info.isOnMap then
+					if not isWatched then
+						C_QuestLog.AddQuestWatch(info.questID)
+					end
+				elseif isWatched then
+					C_QuestLog.RemoveQuestWatch(info.questID)
+				end
+			end
+		end
+		C_QuestLog.SortQuestWatches()
+	else
+		--check if quest is on map or matches zone header
+		local playerZone = GetRealZoneText()
+		local currentHeader
+		for i = 1, GetNumQuestLogEntries() do
+			local title, _, _, isHeader, _, _, _, _, _, _, isOnMap = GetQuestLogTitle(i)
+			if isHeader then
+				currentHeader = title
+			elseif title then
+				local isWatched = IsQuestWatched(i)
+				if isOnMap or (currentHeader and currentHeader == playerZone) then
+					if not isWatched then
+						AddQuestWatch(i)
+					end
+				elseif isWatched then
+					RemoveQuestWatch(i)
+				end
+			end
+		end
+		if E.Mists or E.Wrath then
+			_G.WatchFrame_Update()
+		elseif E.Classic or E.TBC then
+			_G.QuestWatch_Update()
+		end
+	end
+end
 
 --skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()

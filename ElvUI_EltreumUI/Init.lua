@@ -155,6 +155,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	end
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
+	ElvUI_EltreumUI:UpdateZoneQuests() --only show quests in current map
 	ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
@@ -313,6 +314,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:MinimapHide(event)
 	ElvUI_EltreumUI:DatatextHide(event)
+	ElvUI_EltreumUI:UpdateZoneQuests(event)
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
@@ -332,6 +334,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
+	ElvUI_EltreumUI:UpdateZoneQuests()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
@@ -341,6 +344,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
+	ElvUI_EltreumUI:UpdateZoneQuests()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
@@ -350,6 +354,11 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
 	ElvUI_EltreumUI:InstanceIndicator()
+	ElvUI_EltreumUI:UpdateZoneQuests()
+end
+
+function ElvUI_EltreumUI:QUEST_ACCEPTED()
+	ElvUI_EltreumUI:UpdateZoneQuests()
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
@@ -541,6 +550,7 @@ function ElvUI_EltreumUI:Initialize()
 	end
 	ElvUI_EltreumUI:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 	ElvUI_EltreumUI:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
+	ElvUI_EltreumUI:RegisterEvent("QUEST_ACCEPTED")
 end
 
 local function CallbackInitialize()
