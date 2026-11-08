@@ -2303,7 +2303,7 @@ P.ElvUI_EltreumUI = {
 			toggleButton = false,
 			toggleButtonPosition = "MINIMAP",
 			toggleButtonAnchor = "TOPLEFT",
-			toggleButtonSize = 20,
+			toggleButtonSize = 24,
 			barCollapsed = false,
 
 			-- Blizzard buttons
