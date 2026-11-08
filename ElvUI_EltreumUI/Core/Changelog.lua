@@ -16,8 +16,11 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
 Added an option to display player Level in Chat with difficulty coloring
 Added Several Glow styles to Custom Glow via the new LibEltreumGlow
+Added an option to show quests only in the same zone you are in
 Added Power Texture option to Unitframe Custom Textures
+Added a Rectangle Minimap option, with 3 aspect ratios
 Added Duel music to Combat Events with duel detection
+Added a Minimap Button Bar to gather minimap icons
 Added a skin for FollowTheArrow
 ]], 3, "small", nil, nil, nil, nil, "full")
 
@@ -29,10 +32,15 @@ Updated Custom Glow to use LibEltreumGlow, replacing active glows smoothly, impr
 Updated Character Panel, Cursor Cooldown, and Nameplate Power Bar to optimize event handling and performance
 Updated LootText to use custom scroll functions and removed the Blizzard_CombatText dependency
 Updated Dispel Glow to once again work in Retail and Forever after the aura containers change
+Updated Forever character and inspect skins to fix some text overlaps and texture cropping
 Updated Aura Borders registration to simplify and improve container handling
 Updated Mail arrival notification with updated flipbook animations
+Updated Chat Race Icon to better respect Elvui Chat Font Size
 Updated Performance Optimization to disable Target of Target
 Updated Skyborne Elf race icons with in-game textures
+Updated nameplates to remove realm tags in Forever
+Updated RareScanner skin to fix the map search box
+Updated FollowTheArrow skin to fix text only mode
 Updated Forever Character Panel to fix its skin
 Updated Evoker default gradient colors
 Updated several shadows for Forever
@@ -50,10 +58,13 @@ Fixed Damage Meter skin errors when specialization is nil and improved secret ch
 Fixed an issue where Target of Target could be missing class color in Dark Mode
 Fixed the [name:eltruism:gradientreverse] tag using the target instead of unit
 Fixed secret value issues across Character Panel stats and Blinkii portraits
+Fixed a possible issue with the Auctionator skin after an Auctionator update
+Fixed an issue where Rogue Poisons was not showing up in Forever and Classic
 Fixed an issue with the Damage Meter after Spec Icon became secret
 Fixed a possible issue with the Eltruism Stats datatext in combat
 Fixed an issue where Bags would not be openable in combat
 Fixed PetBattleFrame shadow error in non-Mists clients
+Fixed aura bars coloring in both regular and thin mode
 Fixed an issue where the Tooltip could start blinking
 Fixed an issue where Edit Mode toggle was missing
 Fixed Shaman totem options in Custom Glow
