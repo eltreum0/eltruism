@@ -390,7 +390,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 
 		--create vellum button
 		local vellumbutton
-		if not E.Classic then
+		if not (E.Classic or E.Forever) then
 			if not _G["EltruismVellumButton"] then
 				if E.Modern then
 					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
@@ -408,7 +408,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		--create disenchant button
 		local disenchantbutton
 		if not _G["EltruismDisenchantButton"] then
-			if E.Modern then
+			if E.Retail then
 				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["ProfessionsFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 				disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
 			else
@@ -417,7 +417,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			end
 			S:HandleButton(disenchantbutton)
 
-			if not E.Classic then
+			if not (E.Classic or E.Forever) then
 				local vellum = GetItemInfo(38682)
 				if vellum then
 					vellum = stringmatch(vellum, "%s+(%S+)")
@@ -444,7 +444,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
-			if not E.Classic then
+			if not (E.Classic or E.Forever) then
 				local vellum = GetItemInfo(38682)
 				if vellum then
 					vellumbutton:SetScript("OnShow", function()
@@ -475,7 +475,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--fix disenchant overlap with create all
-		if E.Modern then
+		if E.Retail then
 			if _G.ProfessionsFrame.CraftingPage.CreateAllButton then
 				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnShow", function()
 					vellumbutton:ClearAllPoints()
@@ -501,7 +501,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 					tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
 				end
 				if tradeskilltext and tradeskilltext:match(enchantingtext) then
-					if not E.Classic then
+					if not (E.Classic or E.Forever) then
 						vellumbutton:Show()
 					end
 					disenchantbutton:Show()
