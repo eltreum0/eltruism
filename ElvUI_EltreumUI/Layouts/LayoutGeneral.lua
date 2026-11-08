@@ -702,9 +702,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	elseif E.Mists or E.Wrath then
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-319"
-	elseif E.Retail then
-		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
-	elseif E.Forever then
+	elseif E.Modern then
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-245"
 	end
 
