@@ -17,6 +17,8 @@ local hooksecurefunc = _G.hooksecurefunc
 local MAP_PIN = _G.MAP_PIN
 local math = _G.math
 local string = _G.string
+local ipairs = _G.ipairs
+local select = _G.select
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Modern then
@@ -24,10 +26,8 @@ if E.Modern then
 	local C_SuperTrack = _G.C_SuperTrack
 	local GetUnitSpeed = _G.GetUnitSpeed
 	local C_Navigation = _G.C_Navigation
-	local math = _G.math
 	local mathfloor = math.floor
 	local mathabs = math.abs
-	local string = _G.string
 	local stringlen = string.len
 	local stringformat = string.format
 	local stringmatch = string.match
@@ -794,14 +794,190 @@ local rectangleMaskPresets = {
 	["2:1"] = { heightFactor = 1 / 2, mask = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\map_rectangle_2_1" },
 }
 local function GetMinimapVerticalCrop()
-	if not E.db.ElvUI_EltreumUI.otherstuff.rectangleMinimap.enable or E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
+	local otherstuff = E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.otherstuff
+	if not otherstuff or not otherstuff.rectangleMinimap or not otherstuff.rectangleMinimap.enable then
 		return 0, nil
 	end
-	local preset = rectangleMaskPresets[E.db.ElvUI_EltreumUI.otherstuff.rectangleMinimap.preset] or rectangleMaskPresets["16:9"]
-	local mapSize = E.MinimapSize or Minimap:GetWidth()
+	if otherstuff.minimapcardinaldirections and otherstuff.minimapcardinaldirections.circle then
+		return 0, nil
+	end
+	local preset = rectangleMaskPresets[otherstuff.rectangleMinimap.preset] or rectangleMaskPresets["16:9"]
+	local mapSize = E.MinimapSize or (Minimap and Minimap:GetWidth()) or 140
 	local crop = math.floor((mapSize * (1 - preset.heightFactor)) * 0.5 + 0.5)
 	return crop, preset.mask
 end
+
+--HereBeDragons pins fix for rectangle minimap (questie, rarescanner and others)
+local HBD_PIN_LIBS = {
+	"HereBeDragons-Pins-2.0",
+	"HereBeDragonsQuestie-Pins-2.0",
+}
+local HBD_THROTTLE = 0 --controls how fast the OnUpdate runs, if higher than zero it will start blinking, i dont like that so for now keep it at zero
+
+--hook pins to track movement and keep alpha hidden if needed
+local function HookHereBeDragonsPin(pin, lib)
+	if not pin or pin.EltruismHbdHooked or not pin.IsObjectType or not pin:IsObjectType("Frame") then
+		return
+	end
+
+	pin.EltruismLib = lib
+
+	--if pin is hidden by rectangle minimap keep it hidden
+	hooksecurefunc(pin, "SetAlpha", function(self, alpha, skipFlag)
+		if not skipFlag and self.EltruismHidden then
+			if alpha and alpha > 0 then
+				self.EltruismOrigAlpha = alpha
+			end
+			self:SetAlpha(0, true)
+		end
+	end)
+	hooksecurefunc(pin, "Show", function(self)
+		if self.EltruismHidden then
+			self:SetAlpha(0, true)
+		end
+	end)
+	--flag lib as moved when a pin moves
+	hooksecurefunc(pin, "SetPoint", function(self)
+		if self.EltruismLib then
+			self.EltruismLib.EltruismPinsMoved = true
+		end
+	end)
+	pin.EltruismHbdHooked = true
+end
+
+--hide or show pins by setting alpha to avoid breaking other addons
+function ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, isShown)
+	if isShown then
+		if pin.EltruismHidden then
+			local restoreAlpha = pin.EltruismOrigAlpha or 1
+			pin:SetAlpha(restoreAlpha, true)
+			if pin.EnableMouse then
+				pin:EnableMouse(true)
+			end
+			pin.EltruismHidden = nil
+			pin.EltruismOrigAlpha = nil
+		end
+	else
+		if not pin.EltruismHidden then
+			local currentAlpha = pin:GetAlpha()
+			if currentAlpha and currentAlpha > 0 then
+				pin.EltruismOrigAlpha = currentAlpha
+			end
+			pin:SetAlpha(0, true)
+			if pin.EnableMouse then
+				pin:EnableMouse(false)
+			end
+			pin.EltruismHidden = true
+		end
+	end
+end
+
+--refresh pin visibility based on rectangle minimap crop
+function ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
+	if not lib or not lib.activeMinimapPins or not Minimap then
+		return
+	end
+
+	local crop = GetMinimapVerticalCrop()
+	local isEnabled = crop > 0
+	local mapHeight = Minimap:GetHeight() or E.MinimapSize or 140
+	local halfHeightLimit = ((mapHeight - (crop * 2)) * 0.5) - 2
+	local minimapCenterY = select(2, Minimap:GetCenter())
+
+	--check if pins are inside the rectangle boundaries
+	for pin in pairs(lib.activeMinimapPins) do
+		local shouldShow = true
+		if isEnabled then
+			local _, _, _, _, yOfs = pin:GetPoint(1)
+			if yOfs then
+				shouldShow = math.abs(yOfs) <= halfHeightLimit
+			elseif minimapCenterY and pin.GetCenter then
+				local pinCenterY = select(2, pin:GetCenter())
+				if pinCenterY then
+					local scale = Minimap:GetEffectiveScale() or 1
+					shouldShow = (math.abs(pinCenterY - minimapCenterY) / scale) <= halfHeightLimit
+				end
+			end
+		end
+		if shouldShow ~= not pin.EltruismHidden then
+			self:SetHereBeDragonsPinShown(pin, shouldShow)
+		end
+	end
+end
+
+--hook herebedragons to mask pins outside rectangle minimap
+function ElvUI_EltreumUI:HereBeDragonsPinsFix()
+	if not _G.LibStub or not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.otherstuff then return end
+
+	for _, libName in ipairs(HBD_PIN_LIBS) do
+		local lib = _G.LibStub(libName, true)
+		if lib and lib.updateFrame and lib.activeMinimapPins then
+			if not lib.EltruismHbdHooked then
+				--hook icon creation methods
+				hooksecurefunc(lib, "AddMinimapIconWorld", function(_, icon)
+					if icon then
+						HookHereBeDragonsPin(icon, lib)
+						lib.EltruismPinsMoved = true
+					end
+				end)
+				hooksecurefunc(lib, "AddMinimapIconMap", function(_, icon)
+					if icon then
+						HookHereBeDragonsPin(icon, lib)
+						lib.EltruismPinsMoved = true
+					end
+				end)
+
+				--throttle onupdate to avoid unnecessary checks
+				lib.updateFrame:HookScript("OnUpdate", function(_, elapsed)
+					lib.EltruismTimer = (lib.EltruismTimer or 0) + elapsed
+					if lib.EltruismTimer < HBD_THROTTLE then
+						return
+					end
+					lib.EltruismTimer = 0
+
+					--hook any new pin that became active
+					local foundUnhookedPin = false
+					for pin in pairs(lib.activeMinimapPins) do
+						if pin and not pin.EltruismHbdHooked then
+							HookHereBeDragonsPin(pin, lib)
+							foundUnhookedPin = true
+						end
+					end
+
+					--return early if stationary and no new pins
+					if not foundUnhookedPin and not lib.EltruismPinsMoved then
+						return
+					end
+					lib.EltruismPinsMoved = nil
+
+					ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
+				end)
+				lib.EltruismHbdHooked = true
+			end
+
+			--hook existing pins
+			if lib.minimapPins then
+				for pin in pairs(lib.minimapPins) do
+					HookHereBeDragonsPin(pin, lib)
+				end
+			end
+			for pin in pairs(lib.activeMinimapPins) do
+				HookHereBeDragonsPin(pin, lib)
+			end
+			self:RefreshHereBeDragonsPins(lib)
+		end
+	end
+end
+
+--some addons like questie or rarescanner load late
+local hbdEventFrame = CreateFrame("Frame")
+hbdEventFrame:RegisterEvent("ADDON_LOADED")
+hbdEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+hbdEventFrame:SetScript("OnEvent", function(_, event, addon)
+	if event == "PLAYER_ENTERING_WORLD" or addon == "Questie" or addon == "RareScanner" or (addon and string.find(addon, "HereBeDragons")) then
+		ElvUI_EltreumUI:HereBeDragonsPinsFix()
+	end
+end)
 
 function ElvUI_EltreumUI:GetIconSettings(button)
 	local defaults = P.general.minimap.icons[button]
@@ -878,6 +1054,7 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 				end
 			end
 		end
+		self:HereBeDragonsPinsFix()
 		return
 	end
 
@@ -947,6 +1124,8 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 		_G.HybridMinimap.MapCanvas:SetMaskTexture(_G.HybridMinimap.EltruismMask)
 		_G.HybridMinimap.MapCanvas:SetUseMaskTexture(true)
 	end
+
+	self:HereBeDragonsPinsFix()
 end
 
 function ElvUI_EltreumUI:M_UpdateSettings()
