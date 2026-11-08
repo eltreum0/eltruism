@@ -974,7 +974,8 @@ local hbdEventFrame = CreateFrame("Frame")
 hbdEventFrame:RegisterEvent("ADDON_LOADED")
 hbdEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 hbdEventFrame:SetScript("OnEvent", function(_, event, addon)
-	if event == "PLAYER_ENTERING_WORLD" or addon == "Questie" or addon == "RareScanner" or (addon and string.find(addon, "HereBeDragons")) then
+	local isLoaded = IsAddOnLoaded("Questie") or IsAddOnLoaded("RareScanner")
+	if event == "PLAYER_ENTERING_WORLD" or addon == "Questie" or addon == "RareScanner" or isLoaded or (addon and string.find(addon, "HereBeDragons")) then
 		ElvUI_EltreumUI:HereBeDragonsPinsFix()
 	end
 end)
