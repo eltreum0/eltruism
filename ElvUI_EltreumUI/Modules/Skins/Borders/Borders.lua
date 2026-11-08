@@ -2363,58 +2363,67 @@ function ElvUI_EltreumUI:TooltipBorder()
 	end
 end
 
+local powertypemonitortarget
+local powertypemonitorfocus
+local powertypemonitorplayer
 function ElvUI_EltreumUI:BordersTargetChanged()  --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		if not _G["EltruismTargetPowerBorder"] then return end
 
 		--targettarget doesnt fire events, and if both units are registered then only the last one is triggering the function, with player never triggering it
-		local powertypemonitortarget = CreateFrame("frame")
-		powertypemonitortarget:RegisterUnitEvent("UNIT_DISPLAYPOWER", "target")
-		powertypemonitortarget:SetScript("OnEvent", function()
-			if not UnitExists("target") then return end
-			local _, powertypetarget = UnitPowerType("target")
-			if E.db.unitframe.units.target.enable and E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
-				if E.db.unitframe.colors.power[powertypetarget] then
-					targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypetarget].r, E.db.unitframe.colors.power[powertypetarget].g, E.db.unitframe.colors.power[powertypetarget].b, 1)
+		if not powertypemonitortarget then
+			powertypemonitortarget = CreateFrame("frame")
+			powertypemonitortarget:RegisterUnitEvent("UNIT_DISPLAYPOWER", "target")
+			powertypemonitortarget:SetScript("OnEvent", function()
+				if not UnitExists("target") then return end
+				local _, powertypetarget = UnitPowerType("target")
+				if E.db.unitframe.units.target.enable and E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
+					if E.db.unitframe.colors.power[powertypetarget] then
+						targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypetarget].r, E.db.unitframe.colors.power[powertypetarget].g, E.db.unitframe.colors.power[powertypetarget].b, 1)
+					else
+						targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					end
 				else
-					targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					powertypemonitortarget:UnregisterEvent("UNIT_DISPLAYPOWER")
 				end
-			else
-				powertypemonitortarget:UnregisterEvent("UNIT_DISPLAYPOWER")
-			end
-		end)
+			end)
+		end
 
-		local powertypemonitorfocus = CreateFrame("frame")
-		powertypemonitorfocus:RegisterUnitEvent("UNIT_DISPLAYPOWER", "focus")
-		powertypemonitorfocus:RegisterEvent("PLAYER_FOCUS_CHANGED")
-		powertypemonitorfocus:SetScript("OnEvent", function()
-			if not UnitExists("focus") then return end
-			local _, powertypefocus = UnitPowerType("focus")
-			if E.db.unitframe.units.focus.enable and E.db.ElvUI_EltreumUI.borders.focuspowerborder and E.db.unitframe.units.focus.power.enable and (E.db.unitframe.units.focus.power.width == "spaced" or E.db.unitframe.units.focus.power.detachFromFrame) then
-				if E.db.unitframe.colors.power[powertypefocus] then
-					focuspowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypefocus].r, E.db.unitframe.colors.power[powertypefocus].g, E.db.unitframe.colors.power[powertypefocus].b, 1)
+		if not powertypemonitorfocus then
+			powertypemonitorfocus = CreateFrame("frame")
+			powertypemonitorfocus:RegisterUnitEvent("UNIT_DISPLAYPOWER", "focus")
+			powertypemonitorfocus:RegisterEvent("PLAYER_FOCUS_CHANGED")
+			powertypemonitorfocus:SetScript("OnEvent", function()
+				if not UnitExists("focus") then return end
+				local _, powertypefocus = UnitPowerType("focus")
+				if E.db.unitframe.units.focus.enable and E.db.ElvUI_EltreumUI.borders.focuspowerborder and E.db.unitframe.units.focus.power.enable and (E.db.unitframe.units.focus.power.width == "spaced" or E.db.unitframe.units.focus.power.detachFromFrame) then
+					if E.db.unitframe.colors.power[powertypefocus] then
+						focuspowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypefocus].r, E.db.unitframe.colors.power[powertypefocus].g, E.db.unitframe.colors.power[powertypefocus].b, 1)
+					else
+						focuspowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					end
 				else
-					focuspowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					powertypemonitorfocus:UnregisterEvent("UNIT_DISPLAYPOWER")
 				end
-			else
-				powertypemonitortarget:UnregisterEvent("UNIT_DISPLAYPOWER")
-			end
-		end)
+			end)
+		end
 
-		local powertypemonitorplayer = CreateFrame("frame")
-		powertypemonitorplayer:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
-		powertypemonitorplayer:SetScript("OnEvent", function()
-			local _, powertypeplayer = UnitPowerType("player")
-			if playerpowerborder and E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and (E.db.unitframe.units.player.power.width == "spaced" or E.db.unitframe.units.player.power.detachFromFrame) then
-				if E.db.unitframe.colors.power[powertypeplayer] then
-					playerpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypeplayer].r, E.db.unitframe.colors.power[powertypeplayer].g, E.db.unitframe.colors.power[powertypeplayer].b, 1)
+		if not powertypemonitorplayer then
+			powertypemonitorplayer = CreateFrame("frame")
+			powertypemonitorplayer:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
+			powertypemonitorplayer:SetScript("OnEvent", function()
+				local _, powertypeplayer = UnitPowerType("player")
+				if playerpowerborder and E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and (E.db.unitframe.units.player.power.width == "spaced" or E.db.unitframe.units.player.power.detachFromFrame) then
+					if E.db.unitframe.colors.power[powertypeplayer] then
+						playerpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypeplayer].r, E.db.unitframe.colors.power[powertypeplayer].g, E.db.unitframe.colors.power[powertypeplayer].b, 1)
+					else
+						playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					end
 				else
-					playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					powertypemonitorplayer:UnregisterEvent("UNIT_DISPLAYPOWER")
 				end
-			else
-				powertypemonitorplayer:UnregisterEvent("UNIT_DISPLAYPOWER")
-			end
-		end)
+			end)
+		end
 
 		if E.db.unitframe.units.target.enable then
 			if UnitExists("target") then
