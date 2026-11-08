@@ -167,7 +167,7 @@ if E.Modern then
 
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
-			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
+			if not EltruismAutopin.AutopinRegistered and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
 				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 				EltruismAutopin:RegisterEvent("PLAYER_ENTERING_WORLD") --doesnt seem to fire
 				EltruismAutopin:RegisterEvent("PLAYER_STARTED_MOVING")
@@ -191,6 +191,7 @@ if E.Modern then
 						end
 					end
 				end)
+				EltruismAutopin.AutopinRegistered = true
 			end
 
 			--try to fix issue where the MapCanvasPinMixin:SetPassThroughButtons() will throw a taint
@@ -272,19 +273,22 @@ if E.Modern then
 				end
 			end
 
-			EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
-			EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
-			EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
-			--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
-			EltruismTimeToArriveParent:SetScript("OnEvent", function()
-				local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
-				--print(instanceType,event,"waypoint")
-				if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
-					EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
-				else
-					EltruismTimeToArrive:SetScript("OnUpdate", nil)
-				end
-			end)
+			if not self.TimeToArriveRegistered then
+				EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
+				EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
+				EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
+				--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
+				EltruismTimeToArriveParent:SetScript("OnEvent", function()
+					local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
+					--print(instanceType,event,"waypoint")
+					if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
+						EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
+					else
+						EltruismTimeToArrive:SetScript("OnUpdate", nil)
+					end
+				end)
+				self.TimeToArriveRegistered = true
+			end
 		end
 	end
 
@@ -573,9 +577,13 @@ local function UpdateCardinalsRotation(_, elapsed)
 	TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
 	if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
 		TimeSinceLastUpdate2 = 0
+		if not (_G.Minimap and _G.Minimap:IsShown()) then return end
 		local facing = GetPlayerFacing()
 		if facing and E:NotSecretValue(facing) then
-			Minimap.EltruismRotate:SetRotation(-facing)
+			if Minimap.EltruismLastFacing ~= facing then
+				Minimap.EltruismRotate:SetRotation(-facing)
+				Minimap.EltruismLastFacing = facing
+			end
 		end
 	end
 end

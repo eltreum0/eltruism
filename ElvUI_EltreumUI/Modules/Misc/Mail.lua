@@ -50,6 +50,8 @@ EltruismMailExists.MailExistsFlipBook:SetOrder(1)
 EltruismMailExists:SetAlpha(0)
 
 local mailthrottle = 0
+local ArriveAlpha = 0
+local ExistsAlpha = 0
 function ElvUI_EltreumUI:BlizzMail()
 	if HasNewMail() then
 
@@ -57,48 +59,50 @@ function ElvUI_EltreumUI:BlizzMail()
 			EltruismMailArrive.MailArriveAnim:Play()
 			EltruismMailArrive:SetAlpha(1)
 
-			EltruismMailArrive.MailArriveAnim:SetScript("OnPlay", function()
-				EltruismMailArrive:SetAlpha(1)
-				EltruismMailExists.MailExistsAnim:SetLooping("NONE")
-				EltruismMailExists:SetAlpha(0)
-				EltruismMailExists.MailExistsAnim:Pause()
-			end)
+			if not EltruismMailArrive.MailMinimapHooked then
+				EltruismMailArrive.MailArriveAnim:SetScript("OnPlay", function()
+					EltruismMailArrive:SetAlpha(1)
+					EltruismMailExists.MailExistsAnim:SetLooping("NONE")
+					EltruismMailExists:SetAlpha(0)
+					EltruismMailExists.MailExistsAnim:Pause()
+				end)
 
-			EltruismMailArrive.MailArriveAnim:SetScript("OnFinished", function()
-				EltruismMailArrive:SetAlpha(0)
-				EltruismMailExists:SetAlpha(1)
-				EltruismMailExists.MailExistsAnim:Play()
-				EltruismMailExists.MailExistsAnim:SetLooping("REPEAT")
-			end)
+				EltruismMailArrive.MailArriveAnim:SetScript("OnFinished", function()
+					EltruismMailArrive:SetAlpha(0)
+					EltruismMailExists:SetAlpha(1)
+					EltruismMailExists.MailExistsAnim:Play()
+					EltruismMailExists.MailExistsAnim:SetLooping("REPEAT")
+				end)
 
-			EltruismMailExists.MailExistsAnim:SetScript("OnPause", function()
-				EltruismMailExists:SetAlpha(0)
-				EltruismMailExists.MailExistsAnim:SetLooping("NONE")
-			end)
+				EltruismMailExists.MailExistsAnim:SetScript("OnPause", function()
+					EltruismMailExists:SetAlpha(0)
+					EltruismMailExists.MailExistsAnim:SetLooping("NONE")
+				end)
 
-			--SetParent on flipbook crashes the game, so have to do a workaround
-			local ArriveAlpha = 0
-			local ExistsAlpha = 0
-			_G.Minimap:HookScript("OnHide", function()
-				ArriveAlpha = EltruismMailArrive:GetAlpha()
-				ExistsAlpha = EltruismMailExists:GetAlpha()
-				EltruismMailArrive:SetAlpha(0)
-				EltruismMailExists:SetAlpha(0)
-			end)
-			_G.Minimap:HookScript("OnShow", function()
-				EltruismMailArrive:SetAlpha(ArriveAlpha)
-				EltruismMailExists:SetAlpha(ExistsAlpha)
-			end)
-
-			hooksecurefunc(_G.Minimap,'SetAlpha', function(_,alpha)
-				if alpha == 0 then
+				--SetParent on flipbook crashes the game, so have to do a workaround
+				_G.Minimap:HookScript("OnHide", function()
+					ArriveAlpha = EltruismMailArrive:GetAlpha()
+					ExistsAlpha = EltruismMailExists:GetAlpha()
 					EltruismMailArrive:SetAlpha(0)
 					EltruismMailExists:SetAlpha(0)
-				else
+				end)
+				_G.Minimap:HookScript("OnShow", function()
 					EltruismMailArrive:SetAlpha(ArriveAlpha)
 					EltruismMailExists:SetAlpha(ExistsAlpha)
-				end
-			end)
+				end)
+
+				hooksecurefunc(_G.Minimap,'SetAlpha', function(_,alpha)
+					if alpha == 0 then
+						EltruismMailArrive:SetAlpha(0)
+						EltruismMailExists:SetAlpha(0)
+					else
+						EltruismMailArrive:SetAlpha(ArriveAlpha)
+						EltruismMailExists:SetAlpha(ExistsAlpha)
+					end
+				end)
+
+				EltruismMailArrive.MailMinimapHooked = true
+			end
 		end
 
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then

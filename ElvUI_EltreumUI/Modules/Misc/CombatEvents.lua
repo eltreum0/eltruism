@@ -56,6 +56,7 @@ end
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event, ...)
+	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.combatmusic) then return end
 	if tostring(GetCVar('Sound_EnableMusic')) ~= '1' then return end
 	if event == 'DUEL_REQUESTED' or event == 'DUEL_TO_THE_DEATH_REQUESTED' then
 		if E.private.ElvUI_EltreumUI.combatmusic and E.private.ElvUI_EltreumUI.combatmusic.duelmusic then

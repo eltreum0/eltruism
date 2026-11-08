@@ -1,5 +1,4 @@
 local E, L = unpack(ElvUI)
-local M = E:GetModule('Minimap')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
@@ -559,6 +558,7 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 		return
 	end
 
+	if isUpdatingBar then return end
 	isUpdatingBar = true
 
 	if not E:HasMoverBeenMoved("MoverEltruismMinimapButtonBar") then

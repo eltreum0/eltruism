@@ -39,9 +39,10 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		local glowcolor = button.EltruismGlowcolor
 
 		local buttonShownStatus = button:IsShown()
+		local opt = E.db.ElvUI_EltreumUI.nameplates.nameplateOptions
 
 		--hide debuffs if they are not target
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
+		if opt.hidedebuffsnontarget then
 			if not E:UnitIsUnit(unit,"target") then
 				if buttonShownStatus then button:Hide() end
 			else
@@ -50,7 +51,7 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		end
 
 		--hide debuffs if they are not in combat
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
+		if opt.hideaurasnoncombat then
 			if not UnitAffectingCombat(unit) then
 				if buttonShownStatus then button:Hide() end
 			else
@@ -62,7 +63,7 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 		--print("np button spam "..math.random(1,99))
 		if buttonCooldown.timer then
 			if not buttonCooldown.EltruismTextureSet then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
+				if opt.hideSwipe then
 					buttonCooldown:SetSwipeColor(0, 0, 0, 0)
 					buttonCooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 				end
@@ -77,7 +78,7 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 				end
 			end
 
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and buttonCooldown.timer.text then
+			if opt.npglow and buttonCooldown.timer.text then
 				local debufftime = tonumber(buttonCooldown.timer.text:GetText())
 				if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
 					if button.aura and button.aura.sourceUnit and E:UnitIsUnit(button.aura.sourceUnit, "player") then
@@ -96,6 +97,12 @@ local function EltruismDebuffOnUpdate(buttonCooldown, elapsed)
 			if button.EltruismIsGlowing then
 				button.EltruismIsGlowing = false
 				ElvUI_EltreumUI:CustomGlowStop(button)
+			end
+		end
+
+		if not opt.hidedebuffsnontarget and not opt.hideaurasnoncombat and not opt.npglow then
+			if buttonCooldown.EltruismTextureSet and (E.Modern or not E.db.ElvUI_EltreumUI.nameplates.auras.enable or buttonCooldown.EltruismPointSet) then
+				buttonCooldown:SetScript('OnUpdate', nil)
 			end
 		end
 	end
@@ -136,7 +143,12 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			else
 				button.EltruismUnit = unit
 				button.EltruismGlowcolor = glowcolor
-				button.Cooldown:SetScript('OnUpdate', EltruismDebuffOnUpdate)
+				local opt = E.db.ElvUI_EltreumUI.nameplates.nameplateOptions
+				if not opt.hidedebuffsnontarget and not opt.hideaurasnoncombat and not opt.npglow and button.Cooldown.EltruismTextureSet and (E.Modern or not E.db.ElvUI_EltreumUI.nameplates.auras.enable or button.Cooldown.EltruismPointSet) then
+					button.Cooldown:SetScript('OnUpdate', nil)
+				else
+					button.Cooldown:SetScript('OnUpdate', EltruismDebuffOnUpdate)
+				end
 			end
 			button.Count:SetParent(button.Cooldown)
 		end
@@ -152,11 +164,12 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 		buttonCooldown2.EltruismTimeSinceLastUpdate = 0
 		local button = buttonCooldown2:GetParent()
 		local unit = button.EltruismUnit or ""
+		local opt = E.db.ElvUI_EltreumUI.nameplates.nameplateOptions
 
 		local buttonShownStatus = button:IsShown()
 
 		--hide buffs if they are not in combat
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
+		if opt.hideaurasnoncombat then
 			if not UnitAffectingCombat(unit) then
 				if buttonShownStatus then button:Hide() end
 			else
@@ -166,7 +179,7 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 
 		if buttonCooldown2.timer then
 			if not buttonCooldown2.EltruismTextureSet then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
+				if opt.hideSwipe then
 					buttonCooldown2:SetSwipeColor(0, 0, 0, 0)
 					buttonCooldown2:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\Testing")
 				else
@@ -184,6 +197,12 @@ local function EltruismBuffOnUpdate(buttonCooldown2, elapsed)
 				end
 			end
 		end
+
+		if not opt.hideaurasnoncombat then
+			if buttonCooldown2.EltruismTextureSet and (E.Modern or not E.db.ElvUI_EltreumUI.nameplates.auras.enable or buttonCooldown2.EltruismPointSet) then
+				buttonCooldown2:SetScript('OnUpdate', nil)
+			end
+		end
 	end
 end
 
@@ -194,7 +213,12 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		else
 			button.EltruismUnit = unit
 			button.Cooldown.EltruismTimeSinceLastUpdate = 0
-			button.Cooldown:SetScript('OnUpdate', EltruismBuffOnUpdate)
+			local opt = E.db.ElvUI_EltreumUI.nameplates.nameplateOptions
+			if not opt.hideaurasnoncombat and button.Cooldown.EltruismTextureSet and (E.Modern or not E.db.ElvUI_EltreumUI.nameplates.auras.enable or button.Cooldown.EltruismPointSet) then
+				button.Cooldown:SetScript('OnUpdate', nil)
+			else
+				button.Cooldown:SetScript('OnUpdate', EltruismBuffOnUpdate)
+			end
 			button.Count:SetParent(button.Cooldown)
 		end
 	end

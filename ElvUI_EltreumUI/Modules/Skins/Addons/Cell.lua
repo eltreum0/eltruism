@@ -160,16 +160,20 @@ function ElvUI_EltreumUI:EltruismCell()
 		--solo
 		if _G["CellSoloFramePlayer"] then
 			if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
-				for _,k in pairs({_G["CellSoloFramePlayer"]:GetRegions()}) do
-					if k:GetName() and k:GetName() == ("CellSoloFramePlayerHealthBarLoss") then
-						hookCell(k,_G["CellSoloFramePlayer"],true)
+				if not _G["CellSoloFramePlayer"].EltruismHook then
+					for _,k in pairs({_G["CellSoloFramePlayer"]:GetRegions()}) do
+						if k:GetName() and k:GetName() == ("CellSoloFramePlayerHealthBarLoss") then
+							hookCell(k,_G["CellSoloFramePlayer"],true)
+						end
 					end
 				end
 			else
-				hookCell(_G["CellSoloFramePlayerHealthBar"])
+				if _G["CellSoloFramePlayerHealthBar"] and not _G["CellSoloFramePlayerHealthBar"].EltruismHook then
+					hookCell(_G["CellSoloFramePlayerHealthBar"])
+				end
 			end
 		end
-		if _G["CellSoloFramePet"] then
+		if _G["CellSoloFramePet"] and _G["CellSoloFramePetHealthBar"] and not _G["CellSoloFramePetHealthBar"].EltruismHook then
 			hookCell(_G["CellSoloFramePetHealthBar"],false,true,true)
 		end
 
@@ -178,26 +182,38 @@ function ElvUI_EltreumUI:EltruismCell()
 			for i = 1, 8 do
 				if _G["CellRaidFrameHeader"..i] then
 					for v = 1, 5 do
-						if _G["CellRaidFrameHeader"..i.."UnitButton"..v] and _G["CellRaidFrameHeader"..i.."UnitButton"..v.."HealthBar"] then
+						local unitButton = _G["CellRaidFrameHeader"..i.."UnitButton"..v]
+						local healthBar = _G["CellRaidFrameHeader"..i.."UnitButton"..v.."HealthBar"]
+						if unitButton and healthBar then
 							if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
-								for _,k in pairs({_G["CellRaidFrameHeader"..i.."UnitButton"..v]:GetRegions()}) do
-									if k:GetName() and k:GetName():match("HealthBarLoss") then
-										hookCell(k,_G["CellRaidFrameHeader"..i.."UnitButton"..v])
+								if not unitButton.EltruismHook then
+									for _,k in pairs({unitButton:GetRegions()}) do
+										if k:GetName() and k:GetName():match("HealthBarLoss") then
+											hookCell(k,unitButton)
+										end
 									end
 								end
 							else
-								hookCell(_G["CellRaidFrameHeader"..i.."UnitButton"..v.."HealthBar"])
+								if not healthBar.EltruismHook then
+									hookCell(healthBar)
+								end
 							end
 						end
-						if _G["CellRaidFrameHeader"..i.."UnitButton"..v.."Pet"] and _G["CellRaidFrameHeader"..i.."UnitButton"..v.."PetHealthBar"] then
+						local petButton = _G["CellRaidFrameHeader"..i.."UnitButton"..v.."Pet"]
+						local petHealthBar = _G["CellRaidFrameHeader"..i.."UnitButton"..v.."PetHealthBar"]
+						if petButton and petHealthBar then
 							if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
-								for _,k in pairs({_G["CellRaidFrameHeader"..i.."UnitButton"..v.."Pet"]:GetRegions()}) do
-									if k:GetName() and k:GetName():match("HealthBarLoss") then
-										hookCell(k,_G["CellRaidFrameHeader"..i.."UnitButton"..v.."Pet"],false,true)
+								if not petButton.EltruismHook then
+									for _,k in pairs({petButton:GetRegions()}) do
+										if k:GetName() and k:GetName():match("HealthBarLoss") then
+											hookCell(k,petButton,false,true)
+										end
 									end
 								end
 							else
-								hookCell(_G["CellRaidFrameHeader"..i.."UnitButton"..v.."PetHealthBar"],false,true)
+								if not petHealthBar.EltruismHook then
+									hookCell(petHealthBar,false,true)
+								end
 							end
 						end
 					end
@@ -209,25 +225,37 @@ function ElvUI_EltreumUI:EltruismCell()
 		if _G["CellPartyFrame"] and IsInGroup() then
 			if _G["CellPartyFrameHeader"] then
 				for i = 1, 5 do
-					if _G["CellPartyFrameHeaderUnitButton"..i] and _G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"] then
-						for _,v in pairs({_G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"]:GetRegions()}) do
-							if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
-								if v:GetName() and v:GetName():match("HealthBarLoss") then
-									hookCell(v,_G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"])
+					local unitButton = _G["CellPartyFrameHeaderUnitButton"..i]
+					local healthBar = _G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"]
+					if unitButton and healthBar then
+						if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
+							if not unitButton.EltruismHook then
+								for _,v in pairs({unitButton:GetRegions()}) do
+									if v:GetName() and v:GetName():match("HealthBarLoss") then
+										hookCell(v,unitButton)
+									end
 								end
-							else
-								hookCell(_G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"])
+							end
+						else
+							if not healthBar.EltruismHook then
+								hookCell(healthBar)
 							end
 						end
 					end
-					if _G["CellPartyFrameHeaderUnitButton"..i.."Pet"] and _G["CellPartyFrameHeaderUnitButton"..i.."PetHealthBar"] then
-						for _,v in pairs({_G["CellPartyFrameHeaderUnitButton"..i.."PetHealthBar"]:GetRegions()}) do
-							if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
-								if v:GetName() and v:GetName():match("HealthBarLoss") then
-									hookCell(v,_G["CellPartyFrameHeaderUnitButton"..i.."PetHealthBar"],false,true)
+					local petButton = _G["CellPartyFrameHeaderUnitButton"..i.."Pet"]
+					local petHealthBar = _G["CellPartyFrameHeaderUnitButton"..i.."PetHealthBar"]
+					if petButton and petHealthBar then
+						if E.db.ElvUI_EltreumUI.skins.cellhealthloss then
+							if not petButton.EltruismHook then
+								for _,v in pairs({petButton:GetRegions()}) do
+									if v:GetName() and v:GetName():match("HealthBarLoss") then
+										hookCell(v,petButton,false,true)
+									end
 								end
-							else
-								hookCell(_G["CellPartyFrameHeaderUnitButton"..i.."PetHealthBar"],false,true)
+							end
+						else
+							if not petHealthBar.EltruismHook then
+								hookCell(petHealthBar,false,true)
 							end
 						end
 					end

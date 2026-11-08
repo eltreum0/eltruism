@@ -556,6 +556,7 @@ local lastPVPInfoText = ""
 local ONUPDATE_INTERVAL = 0.016 --if 1 then the text changes too slow
 local TimeSinceLastUpdate = 0
 function ElvUI_EltreumUI.ZoneTextFrame_OnUpdate(_,elapsed)
+	if not (_G.ZoneTextFrame and _G.ZoneTextFrame:IsShown()) then return end
 	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 		TimeSinceLastUpdate = 0
@@ -591,6 +592,7 @@ local lastSubZoneText = ""
 local lastPVPArenaText = ""
 local TimeSinceLastUpdateSubZone = 0
 function ElvUI_EltreumUI.SubZoneTextFrame_OnUpdate(_,elapsed)
+	if not (_G.SubZoneTextFrame and _G.SubZoneTextFrame:IsShown()) then return end
 	TimeSinceLastUpdateSubZone = TimeSinceLastUpdateSubZone + elapsed
 	if TimeSinceLastUpdateSubZone >= ONUPDATE_INTERVAL then
 		TimeSinceLastUpdateSubZone = 0
