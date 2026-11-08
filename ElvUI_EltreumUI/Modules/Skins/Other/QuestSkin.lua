@@ -37,7 +37,6 @@ local string = _G.string
 local unpack = _G.unpack
 local GetNumQuestLeaderBoards = _G.GetNumQuestLeaderBoards
 local GetNumQuestLogEntries = _G.GetNumQuestLogEntries
-local UpdateWidgetLayoutHook = _G.UpdateWidgetLayoutHook
 local QuestMapFrame_GetDetailQuestID = _G.QuestMapFrame_GetDetailQuestID
 local GetRealZoneText = _G.GetRealZoneText
 local IsQuestWatched = _G.IsQuestWatched
@@ -137,7 +136,9 @@ function ElvUI_EltreumUI:SkinQuests()
 		wowheadbutton:SetNormalFontObject("GameFontNormal")
 
 		--let elvui handle the button skin
-		S:HandleButton(wowheadbutton)
+		if not wowheadbutton.IsSkinned then
+			S:HandleButton(wowheadbutton)
+		end
 		wowheadbutton:SetFrameStrata("HIGH") --otherwise the button is not clickable due to map addons
 		--get the wowhead region based on game language region
 		local wowheadregion
@@ -266,47 +267,50 @@ function ElvUI_EltreumUI:SkinQuests()
 		ElvUI_EltreumUI:MacroClick(wowheadbutton)
 
 		--get questid
-		if E.Modern then
-			local questID
-			local getquestid = CreateFrame("FRAME")
-			getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
-			getquestid:RegisterEvent("QUEST_LOG_UPDATE")
-			getquestid:SetScript("OnEvent", function()
-				questID = QuestMapFrame_GetDetailQuestID()
-				if questID ~= nil then
-					questID = questID
-				elseif questID == nil then
-					questID = C_SuperTrack.GetSuperTrackedQuestID()
-				end
-			end)
-			--set the link to show when the button is clicked
-			wowheadbutton:SetScript('OnClick', function()
-				if questID and questID ~= 0 then
+		if not wowheadbutton.EltruismHooked then
+			if E.Modern then
+				local questID
+				local getquestid = CreateFrame("FRAME")
+				getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
+				getquestid:RegisterEvent("QUEST_LOG_UPDATE")
+				getquestid:SetScript("OnEvent", function()
+					questID = QuestMapFrame_GetDetailQuestID()
+					if questID ~= nil then
+						questID = questID
+					elseif questID == nil then
+						questID = C_SuperTrack.GetSuperTrackedQuestID()
+					end
+				end)
+				--set the link to show when the button is clicked
+				wowheadbutton:SetScript('OnClick', function()
+					if questID and questID ~= 0 then
+						E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+					else
+						E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, L["No quest selected"])
+					end
+				end)
+			elseif E.Classic then
+				local questID
+				--hook the function that sets the quest detail to get the questID from the quest title
+				hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
+					questID = select(8, GetQuestLogTitle(questTitle))
+				end)
+				--set the link to show when the button is clicked
+				wowheadbutton:SetScript('OnClick', function()
 					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
-				else
-					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, L["No quest selected"])
-				end
-			end)
-		elseif E.Classic then
-			local questID
-			--hook the function that sets the quest detail to get the questID from the quest title
-			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
-				questID = select(8, GetQuestLogTitle(questTitle))
-			end)
-			--set the link to show when the button is clicked
-			wowheadbutton:SetScript('OnClick', function()
-				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
-			end)
-		elseif E.Mists or E.TBC or E.Wrath then
-			local questID
-			--hook the function that sets the quest detail to get the questID from the quest title
-			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --QuestLogFrame.lua 311
-				questID = select(8, GetQuestLogTitle(questTitle))
-			end)
-			--set the link to show when the button is clicked
-			wowheadbutton:SetScript('OnClick', function()
-				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
-			end)
+				end)
+			elseif E.Mists or E.TBC or E.Wrath then
+				local questID
+				--hook the function that sets the quest detail to get the questID from the quest title
+				hooksecurefunc("QuestLog_SetSelection", function(questTitle) --QuestLogFrame.lua 311
+					questID = select(8, GetQuestLogTitle(questTitle))
+				end)
+				--set the link to show when the button is clicked
+				wowheadbutton:SetScript('OnClick', function()
+					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+				end)
+			end
+			wowheadbutton.EltruismHooked = true
 		end
 	else
 		wowheadbutton:Hide()
@@ -315,25 +319,29 @@ function ElvUI_EltreumUI:SkinQuests()
 	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
 
 		--option to change the quest scale
-		if _G["QuestFrame"] then
+		if _G["QuestFrame"] and not _G["QuestFrame"].EltruismScaleHooked then
 			_G["QuestFrame"]:HookScript("OnShow", function()
 				_G["QuestFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
 			end)
+			_G["QuestFrame"].EltruismScaleHooked = true
 		end
-		if _G["QuestLogFrame"] then
+		if _G["QuestLogFrame"] and not _G["QuestLogFrame"].EltruismScaleHooked then
 			_G["QuestLogFrame"]:HookScript("OnShow", function()
 				_G["QuestLogFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
 			end)
+			_G["QuestLogFrame"].EltruismScaleHooked = true
 		end
-		if _G["QuestLogDetailFrame"] then
+		if _G["QuestLogDetailFrame"] and not _G["QuestLogDetailFrame"].EltruismScaleHooked then
 			_G["QuestLogDetailFrame"]:HookScript("OnShow", function()
 				_G["QuestLogDetailFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
 			end)
+			_G["QuestLogDetailFrame"].EltruismScaleHooked = true
 		end
-		if _G["GossipFrame"] then
+		if _G["GossipFrame"] and not _G["GossipFrame"].EltruismScaleHooked then
 			_G["GossipFrame"]:HookScript("OnShow", function()
 				_G["GossipFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
 			end)
+			_G["GossipFrame"].EltruismScaleHooked = true
 		end
 
 		if E.Modern then
@@ -1160,9 +1168,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						end)
 
 						--update quest count on quest removed
-						local questnumbermonitor = CreateFrame("frame")
-						questnumbermonitor:RegisterEvent("QUEST_REMOVED")
-						questnumbermonitor:SetScript("OnEvent",updateObjectiveCount)
+						if not self.QuestNumberMonitor then
+							self.QuestNumberMonitor = CreateFrame("frame")
+							self.QuestNumberMonitor:RegisterEvent("QUEST_REMOVED")
+							self.QuestNumberMonitor:SetScript("OnEvent",updateObjectiveCount)
+						end
 
 						k.AddObjectiveHook = true
 					end
@@ -1268,7 +1278,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end)
 						k.UpdateStageBlockHook = true
 					end
-					if k.UpdateWidgetLayout and not UpdateWidgetLayoutHook then
+					if k.UpdateWidgetLayout and not k.UpdateWidgetLayoutHook then
 						hooksecurefunc(k, "UpdateWidgetLayout", function()
 							if ScenarioObjectiveTracker then
 								local frames = {ScenarioObjectiveTracker.ContentsFrame:GetChildren()}
@@ -1370,7 +1380,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				E:Delay(0,firehooks)
 
-				if ScenarioObjectiveTracker and ScenarioObjectiveTracker.UpdateCriteria then
+				if ScenarioObjectiveTracker and ScenarioObjectiveTracker.UpdateCriteria and not ScenarioObjectiveTracker.EltruismUpdateCriteriaHooked then
 					hooksecurefunc(ScenarioObjectiveTracker, "UpdateCriteria", function()
 						if ScenarioObjectiveTracker and ScenarioObjectiveTracker.ContentsFrame then
 							local frames = {ScenarioObjectiveTracker.ContentsFrame:GetChildren()}
@@ -1422,47 +1432,51 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end)
+					ScenarioObjectiveTracker.EltruismUpdateCriteriaHooked = true
 				end
 
-				local eventtrigger = CreateFrame("frame")
-				eventtrigger:RegisterEvent("QUEST_WATCH_LIST_CHANGED")
-				eventtrigger:RegisterEvent("QUEST_LOG_UPDATE")
-				eventtrigger:RegisterEvent("FIRST_FRAME_RENDERED")
-				eventtrigger:RegisterEvent("PLAYER_ENTERING_WORLD")
-				eventtrigger:RegisterEvent("CONTENT_TRACKING_LIST_UPDATE")
-				eventtrigger:RegisterEvent("CONTENT_TRACKING_UPDATE")
-				eventtrigger:SetScript("OnEvent", function()
-					firehooks()
-					E:Delay(0, firehooks)
-					--C_QuestLog.SortQuestWatches()
-				end)
+				if not self.QuestEventTriggerCreated then
+					local eventtrigger = CreateFrame("frame")
+					eventtrigger:RegisterEvent("QUEST_WATCH_LIST_CHANGED")
+					eventtrigger:RegisterEvent("QUEST_LOG_UPDATE")
+					eventtrigger:RegisterEvent("FIRST_FRAME_RENDERED")
+					eventtrigger:RegisterEvent("PLAYER_ENTERING_WORLD")
+					eventtrigger:RegisterEvent("CONTENT_TRACKING_LIST_UPDATE")
+					eventtrigger:RegisterEvent("CONTENT_TRACKING_UPDATE")
+					eventtrigger:SetScript("OnEvent", function()
+						firehooks()
+						E:Delay(0, firehooks)
+						--C_QuestLog.SortQuestWatches()
+					end)
 
-				local function UpdateQuestWatchModules()
-					for _, k in pairs(questmodules) do
-						if k.ContentsFrame then
-							for _, v in pairs({k.ContentsFrame:GetChildren()}) do
-								if v then
-									v:UnregisterEvent("ADDON_ACTION_BLOCKED")
-									v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
-									blockskin(v)
-									if v.NormalBG then
-										v.NormalBG:Hide()
-										v.NormalBG:SetTexture()
-									end
-									if v.FinalBG then
-										v.FinalBG:Hide()
-										v.FinalBG:SetTexture()
+					local function UpdateQuestWatchModules()
+						for _, k in pairs(questmodules) do
+							if k.ContentsFrame then
+								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
+									if v then
+										v:UnregisterEvent("ADDON_ACTION_BLOCKED")
+										v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
+										blockskin(v)
+										if v.NormalBG then
+											v.NormalBG:Hide()
+											v.NormalBG:SetTexture()
+										end
+										if v.FinalBG then
+											v.FinalBG:Hide()
+											v.FinalBG:SetTexture()
+										end
 									end
 								end
 							end
 						end
+						--C_QuestLog.SortQuestWatches()
 					end
-					--C_QuestLog.SortQuestWatches()
-				end
 
-				hooksecurefunc(C_QuestLog, "AddQuestWatch", function()
-					E:Delay(0, UpdateQuestWatchModules)
-				end)
+					hooksecurefunc(C_QuestLog, "AddQuestWatch", function()
+						E:Delay(0, UpdateQuestWatchModules)
+					end)
+					self.QuestEventTriggerCreated = true
+				end
 			end
 		elseif E.Classic or E.TBC then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
@@ -1571,10 +1585,16 @@ function ElvUI_EltreumUI:SkinQuests()
 				QuestWatchFrame.HeaderBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(QuestWatchFrame.HeaderBar.shadow)
 			end
-			local InvisFrameHeaderBar = CreateFrame("Frame", nil, QuestWatchFrame.HeaderBar)
-			InvisFrameHeaderBar:SetFrameLevel(QuestWatchFrame.HeaderBar:GetFrameLevel() + 10)
-			InvisFrameHeaderBar:SetInside()
-			local QuestWatchFrameTitle = QuestWatchFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+			if not QuestWatchFrame.HeaderBar.InvisFrame then
+				QuestWatchFrame.HeaderBar.InvisFrame = CreateFrame("Frame", nil, QuestWatchFrame.HeaderBar)
+				QuestWatchFrame.HeaderBar.InvisFrame:SetFrameLevel(QuestWatchFrame.HeaderBar:GetFrameLevel() + 10)
+				QuestWatchFrame.HeaderBar.InvisFrame:SetInside()
+			end
+			local InvisFrameHeaderBar = QuestWatchFrame.HeaderBar.InvisFrame
+			if not QuestWatchFrame.HeaderBar.Title then
+				QuestWatchFrame.HeaderBar.Title = QuestWatchFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+			end
+			local QuestWatchFrameTitle = QuestWatchFrame.HeaderBar.Title
 			QuestWatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
 				QuestWatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
@@ -1587,7 +1607,8 @@ function ElvUI_EltreumUI:SkinQuests()
 
 			--from blizzard's FrameXML/QuestLogFrame.lua
 			--skin the classic objective frame
-			hooksecurefunc("QuestWatch_Update",function()
+			if not self.QuestWatchUpdateHooked then
+				hooksecurefunc("QuestWatch_Update",function()
 
 				local NumQuests = select(2, GetNumQuestLogEntries())
 				if (NumQuests >= (MAX_QUESTS - 5)) then
@@ -1744,7 +1765,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				UIParent_ManageFramePositions()
-			end)
+				end)
+				self.QuestWatchUpdateHooked = true
+			end
 		elseif E.Mists or E.Wrath then
 			local ObjectiveFrameMover = _G.ObjectiveFrameMover
 
@@ -1864,9 +1887,12 @@ function ElvUI_EltreumUI:SkinQuests()
 					ElvUI_EltreumUI:ShadowColor(_G["EltruismQuestLine"].shadow)
 				end
 
-				local InvisFrameHeaderBar = CreateFrame("Frame", nil, WatchFrame.HeaderBar)
-				InvisFrameHeaderBar:SetFrameLevel(WatchFrame.HeaderBar:GetFrameLevel() + 10)
-				InvisFrameHeaderBar:SetInside()
+				if not WatchFrame.HeaderBar.InvisFrame then
+					WatchFrame.HeaderBar.InvisFrame = CreateFrame("Frame", nil, WatchFrame.HeaderBar)
+					WatchFrame.HeaderBar.InvisFrame:SetFrameLevel(WatchFrame.HeaderBar:GetFrameLevel() + 10)
+					WatchFrame.HeaderBar.InvisFrame:SetInside()
+				end
+				local InvisFrameHeaderBar = WatchFrame.HeaderBar.InvisFrame
 
 				local WatchFrameTitle = _G.WatchFrameTitle
 				WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -1936,7 +1962,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(Button.shadow)
 						end
-						S:HandleButton(Button)
+						if not Button.IsSkinned then
+							S:HandleButton(Button)
+						end
 						local texture = _G["WatchFrameItem"..i.."IconTexture"]
 						texture:SetTexCoord(0.08,0.92,0.08,0.92)
 					else
@@ -1947,130 +1975,133 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 			end
-			hooksecurefunc("WatchFrame_SetLine", colorquests)
-			hooksecurefunc("WatchFrame_Update",colorquests)
+			if not self.WatchFrameHooksRegistered then
+				hooksecurefunc("WatchFrame_SetLine", colorquests)
+				hooksecurefunc("WatchFrame_Update",colorquests)
 
-			--fix? item moving to wrong side
-			hooksecurefunc("WatchFrameItem_OnEvent", function()
-				for i = 1, _G.WATCHFRAME_NUM_ITEMS do
-					local Button = _G["WatchFrameItem"..i]
-					if not (Button) then
-						return
-					end
-					local _, Anchor = Button:GetPoint()
-					Button:ClearAllPoints()
-					if _G["WatchFrameItem"..i.."HotKey"] then
-						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
-					end
-					if Anchor ~= nil then
-						if questside:match("RIGHT") then
-							Button:SetPoint("LEFT", Anchor, "LEFT", -70, -10)
-						else
-							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
+				--fix? item moving to wrong side
+				hooksecurefunc("WatchFrameItem_OnEvent", function()
+					for i = 1, _G.WATCHFRAME_NUM_ITEMS do
+						local Button = _G["WatchFrameItem"..i]
+						if not (Button) then
+							return
 						end
-					elseif Anchor == nil then
-						if questside:match("RIGHT") then
-							Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -70, -10)
-						else
-							Button:SetPoint("RIGHT", _G["WatchFrameLine"..i.."Text"], "RIGHT", 120, -10)
+						local _, Anchor = Button:GetPoint()
+						Button:ClearAllPoints()
+						if _G["WatchFrameItem"..i.."HotKey"] then
+							_G["WatchFrameItem"..i.."HotKey"]:SetText("")
 						end
-					end
-				end
-			end)
-
-			_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-			_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
-			_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-			_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
-
-			if not _G["WatchFrameCollapseExpandButton"].shadow then
-				_G["WatchFrameCollapseExpandButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				_G["WatchFrameCollapseExpandButton"].shadow:ClearAllPoints()
-				_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("TOPLEFT", _G["WatchFrameCollapseExpandButton"], "TOPLEFT", -1, 1)
-				_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("TOPRIGHT", _G["WatchFrameCollapseExpandButton"], "TOPRIGHT", 1, 1)
-				_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("BOTTOMLEFT", _G["WatchFrameCollapseExpandButton"], "BOTTOMLEFT", -1, -1)
-				_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("BOTTOMLEFT", _G["WatchFrameCollapseExpandButton"], "BOTTOMLEFT", 1, -1)
-				ElvUI_EltreumUI:ShadowColor(_G["WatchFrameCollapseExpandButton"].shadow)
-			end
-
-			hooksecurefunc("WatchFrame_Collapse", function()
-				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\PlusButton")
-				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
-				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\PlusButton")
-				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
-
-			end)
-			hooksecurefunc("WatchFrame_Expand", function()
-				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
-				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
-			end)
-
-			local function UpdateWatchFrameCollapseButton()
-				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
-				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
-				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
-			end
-
-			_G["WatchFrameCollapseExpandButton"]:HookScript("OnShow", function()
-				E:Delay(0, UpdateWatchFrameCollapseButton)
-			end)
-
-			--highlight
-			hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(quest, onEnter)
-				local line
-				_G.WatchFrame_Update()
-				for index = quest.startLine, quest.lastLine do
-					line = quest.lines[index]
-					if ( line ) then
-						local testr,testg,testb = line.text:GetTextColor()
-						if (testr == 0) and (testg == 0.99999779462814) and (testb == 0) then
-							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							--line.text:SetWidth(250)
-						else
-							if ( index == quest.startLine ) then
-								-- header
-								if ( onEnter ) then
-
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-										line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customg+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customb+0.2)
-									else
-										line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
-									end
-									--line.text:SetWidth(250)
-								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-										line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-									else
-										line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-									end
-									--line.text:SetWidth(250)
-								end
+						if Anchor ~= nil then
+							if questside:match("RIGHT") then
+								Button:SetPoint("LEFT", Anchor, "LEFT", -70, -10)
 							else
-								if ( onEnter ) then
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									line.text:SetTextColor(1, 1, 1)
-									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									--line.dash:SetTextColor(1, 1, 1)
-									--line.text:SetWidth(250)
+								Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
+							end
+						elseif Anchor == nil then
+							if questside:match("RIGHT") then
+								Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -70, -10)
+							else
+								Button:SetPoint("RIGHT", _G["WatchFrameLine"..i.."Text"], "RIGHT", 120, -10)
+							end
+						end
+					end
+				end)
+
+				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+
+				if not _G["WatchFrameCollapseExpandButton"].shadow then
+					_G["WatchFrameCollapseExpandButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					_G["WatchFrameCollapseExpandButton"].shadow:ClearAllPoints()
+					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("TOPLEFT", _G["WatchFrameCollapseExpandButton"], "TOPLEFT", -1, 1)
+					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("TOPRIGHT", _G["WatchFrameCollapseExpandButton"], "TOPRIGHT", 1, 1)
+					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("BOTTOMLEFT", _G["WatchFrameCollapseExpandButton"], "BOTTOMLEFT", -1, -1)
+					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("BOTTOMLEFT", _G["WatchFrameCollapseExpandButton"], "BOTTOMLEFT", 1, -1)
+					ElvUI_EltreumUI:ShadowColor(_G["WatchFrameCollapseExpandButton"].shadow)
+				end
+
+				hooksecurefunc("WatchFrame_Collapse", function()
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\PlusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\PlusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+
+				end)
+				hooksecurefunc("WatchFrame_Expand", function()
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+				end)
+
+				local function UpdateWatchFrameCollapseButton()
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Game\\Shared\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+				end
+
+				_G["WatchFrameCollapseExpandButton"]:HookScript("OnShow", function()
+					E:Delay(0, UpdateWatchFrameCollapseButton)
+				end)
+
+				--highlight
+				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(quest, onEnter)
+					local line
+					_G.WatchFrame_Update()
+					for index = quest.startLine, quest.lastLine do
+						line = quest.lines[index]
+						if ( line ) then
+							local testr,testg,testb = line.text:GetTextColor()
+							if (testr == 0) and (testg == 0.99999779462814) and (testb == 0) then
+								line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+								--line.text:SetWidth(250)
+							else
+								if ( index == quest.startLine ) then
+									-- header
+									if ( onEnter ) then
+
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+											line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customg+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customb+0.2)
+										else
+											line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
+										end
+										--line.text:SetWidth(250)
+									else
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+											line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+										else
+											line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										end
+										--line.text:SetWidth(250)
+									end
 								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									line.text:SetTextColor(0.8, 0.8, 0.8)
-									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									--line.dash:SetTextColor(0.8, 0.8, 0.8)
-									--line.text:SetWidth(250)
-									--line.text:ClearAllPoints()
-									--line.text:SetPoint("LEFT", line.dash, "RIGHT")
+									if ( onEnter ) then
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										line.text:SetTextColor(1, 1, 1)
+										--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										--line.dash:SetTextColor(1, 1, 1)
+										--line.text:SetWidth(250)
+									else
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										line.text:SetTextColor(0.8, 0.8, 0.8)
+										--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										--line.dash:SetTextColor(0.8, 0.8, 0.8)
+										--line.text:SetWidth(250)
+										--line.text:ClearAllPoints()
+										--line.text:SetPoint("LEFT", line.dash, "RIGHT")
+									end
 								end
 							end
 						end
 					end
-				end
-			end)
+				end)
+				self.WatchFrameHooksRegistered = true
+			end
 			_G.WatchFrame_Update()
 		end
 	end
