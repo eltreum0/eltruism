@@ -43,6 +43,13 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["enable"] = false
 	E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = false
 
+	--aura indicator
+	E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
+
 	-- set Dynamic Status Icons
 	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
 		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"

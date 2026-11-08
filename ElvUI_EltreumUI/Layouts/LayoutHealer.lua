@@ -45,8 +45,13 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["raid3"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = true
-	E.db["unitframe"]["units"]["focus"]["healPrediction"]["enable"] = true
-	E.db["unitframe"]["units"]["targettarget"]["healPrediction"]["enable"] = true
+
+	--aura indicator
+	E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
 
 	--its actually alt power on some fights like vigilant guardian
 	E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
