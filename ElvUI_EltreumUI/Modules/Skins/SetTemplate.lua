@@ -826,7 +826,7 @@ local function SkinFrame(object)
 								end
 							end
 						end)
-						frame:GetParent():GetParent().EltruismLabelHook = true
+						frame:GetParent().EltruismLabelHook = true
 					end
 
 					frame:GetParent():GetParent().EltruismWidgetHook = true
