@@ -96,7 +96,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["buffIndicator"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["buffIndicator"]["enable"] = true
-	E.db["unitframe"]["units"]["targettarget"]["buffIndicator"]["enable"] = true
 	E.db["unitframe"]["units"]["focus"]["buffIndicator"]["enable"] = true
 
 	--to make sure its correct height
