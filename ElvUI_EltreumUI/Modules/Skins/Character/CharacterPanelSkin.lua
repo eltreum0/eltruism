@@ -1962,7 +1962,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 				CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+				if E.Forever then --forever needs different tex coord
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.64, 0, 1)
+				else
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+				end
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
 				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
 				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
