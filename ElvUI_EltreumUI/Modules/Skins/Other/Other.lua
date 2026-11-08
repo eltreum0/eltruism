@@ -23,13 +23,14 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 		if not E.Modern then
 			for i = 1, 3 do
 				local statusBar = _G['MirrorTimer'..i..'StatusBar']
-				if statusBar then
+				if statusBar and not statusBar.EltruismGradientHook then
 					statusBar:HookScript("OnShow", function()
 						statusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
 						statusBar:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
 						local r,g,b,a = statusBar:GetStatusBarColor()
 						statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= a})
 					end)
+					statusBar.EltruismGradientHook = true
 				end
 			end
 		else
@@ -588,10 +589,11 @@ end
 
 local lastSubZoneText = ""
 local lastPVPArenaText = ""
+local TimeSinceLastUpdateSubZone = 0
 function ElvUI_EltreumUI.SubZoneTextFrame_OnUpdate(_,elapsed)
-	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-		TimeSinceLastUpdate = 0
+	TimeSinceLastUpdateSubZone = TimeSinceLastUpdateSubZone + elapsed
+	if TimeSinceLastUpdateSubZone >= ONUPDATE_INTERVAL then
+		TimeSinceLastUpdateSubZone = 0
 		local subZoneText = _G.SubZoneTextString:GetText()
 		if subZoneText and subZoneText ~= lastSubZoneText and not subZoneText:match("|r|c") then
 			local r,g,b = _G.SubZoneTextString:GetTextColor()
@@ -646,12 +648,15 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 			EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)
 				if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
 					if _G["TalkingHeadFrame"] then
-						_G.hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
-							_G["TalkingHeadFrame"]:Hide()
-						end)
-						_G.hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
-							_G["TalkingHeadFrame"]:Hide()
-						end)
+						if not _G["TalkingHeadFrame"].EltruismHooked then
+							_G.hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
+								_G["TalkingHeadFrame"]:Hide()
+							end)
+							_G.hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
+								_G["TalkingHeadFrame"]:Hide()
+							end)
+							_G["TalkingHeadFrame"].EltruismHooked = true
+						end
 						EltruismHideTalkingHead:UnregisterAllEvents()
 					end
 				end

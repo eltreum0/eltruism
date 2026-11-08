@@ -69,6 +69,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 	if not E.private.skins.blizzard.enable then return end
 	if not E.private.skins.blizzard.character then return end
+	if self.ClassicSocketsLoaded then return end
+	self.ClassicSocketsLoaded = true
 
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 	local KIBC_EnchantToSpellID = {
@@ -1535,6 +1537,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.refreshTimer3:Cancel()
 			self.refreshTimer3 = nil
 		end
+		self.refreshGeneration = (self.refreshGeneration or 0) + 1
+		local currentGeneration = self.refreshGeneration
 		self:_Refresh()
 
 		--[[self.refreshTimer0 = C_Timer.NewTimer(0.1, function()
@@ -1551,17 +1555,25 @@ function ElvUI_EltreumUI:ClassicSockets()
 		end)]]
 
 		--Eltreum: use E:Delay to decrease memory/cpu usage and also possibly make it faster
-		self.refreshTimer0 = C_Timer.After(0.1, function()
-			self:_Refresh()
+		C_Timer.After(0.1, function()
+			if self.refreshGeneration == currentGeneration then
+				self:_Refresh()
+			end
 		end)
-		self.refreshTimer1 = C_Timer.After(1, function()
-			self:_Refresh()
+		C_Timer.After(1, function()
+			if self.refreshGeneration == currentGeneration then
+				self:_Refresh()
+			end
 		end)
-		self.refreshTimer2 = C_Timer.After(2, function()
-			self:_Refresh()
+		C_Timer.After(2, function()
+			if self.refreshGeneration == currentGeneration then
+				self:_Refresh()
+			end
 		end)
-		self.refreshTimer3 = C_Timer.After(3, function()
-			self:_Refresh()
+		C_Timer.After(3, function()
+			if self.refreshGeneration == currentGeneration then
+				self:_Refresh()
+			end
 		end)
 	end
 

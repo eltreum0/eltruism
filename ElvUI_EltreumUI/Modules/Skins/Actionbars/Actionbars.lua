@@ -414,7 +414,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			LCG.SyncGlowDefaults()
 		end
 
-		if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+		if not IsAddOnLoaded("ElvUI_ActionBarMasks") and not self.SkillGlowHooked then
 			local function OnGlowStart(button)
 				if not button or button == _G.EltruismGlowPreview then return end
 				ElvUI_EltreumUI:CustomGlowStart(button)
@@ -515,26 +515,33 @@ function ElvUI_EltreumUI:SkillGlow()
 			if _G.ActionButton_HideOverlayGlow then
 				hooksecurefunc("ActionButton_HideOverlayGlow", OnGlowStop)
 			end
+			self.SkillGlowHooked = true
 		end
 		if not E.Retail then
 			--classic shaman totem bar glow when totems are not active in combat
 			if E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem and E.db.unitframe.units.player.classbar.enable then
-				local totemglowholder = CreateFrame("FRAME")
-				local totemglowcombatdetect = CreateFrame("FRAME")
-				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')
-				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
+				if not self.totemglowholder then
+					self.totemglowholder = CreateFrame("FRAME")
+				end
+				local totemglowholder = self.totemglowholder
+				if not self.totemglowcombatdetect then
+					self.totemglowcombatdetect = CreateFrame("FRAME")
+					self.totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')
+					self.totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
+				end
+				local totemglowcombatdetect = self.totemglowcombatdetect
 				local totem1glowcolor = {0.58, 0.23, 0.10, 1}
 				local totem2glowcolor = {0.23,0.45,0.13, 1}
 				local totem3glowcolor = {0.19,0.48,0.60, 1}
 				local totem4glowcolor = {0.42,0.18,0.74, 1}
 
-				local totemglow1 = CreateFrame("FRAME","EltruismTotemGlow2")
+				local totemglow1 = _G["EltruismTotemGlow2"] or CreateFrame("FRAME","EltruismTotemGlow2")
 				totemglow1:SetParent(_G["ElvUF_Player"])
-				local totemglow2 = CreateFrame("FRAME","EltruismTotemGlow1")
+				local totemglow2 = _G["EltruismTotemGlow1"] or CreateFrame("FRAME","EltruismTotemGlow1")
 				totemglow2:SetParent(_G["ElvUF_Player"])
-				local totemglow3 = CreateFrame("FRAME","EltruismTotemGlow3")
+				local totemglow3 = _G["EltruismTotemGlow3"] or CreateFrame("FRAME","EltruismTotemGlow3")
 				totemglow3:SetParent(_G["ElvUF_Player"])
-				local totemglow4 = CreateFrame("FRAME","EltruismTotemGlow4")
+				local totemglow4 = _G["EltruismTotemGlow4"] or CreateFrame("FRAME","EltruismTotemGlow4")
 				totemglow4:SetParent(_G["ElvUF_Player"])
 				--set the sizes differently depending on type because blizz glow is not nice
 				if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
@@ -623,7 +630,8 @@ function ElvUI_EltreumUI:SkillGlow()
 			end
 
 			if E.Classic or E.TBC or E.Wrath then --cata has glows
-				if (E.myclass == 'PALADIN' or E.myclass == 'WARRIOR' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT') and not IsAddOnLoaded("SpellActivationOverlay") then
+				if (E.myclass == 'PALADIN' or E.myclass == 'WARRIOR' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT') and not IsAddOnLoaded("SpellActivationOverlay") and not self.ClassicGlowInitialized then
+					self.ClassicGlowInitialized = true
 					--classic glow proc list
 					local SPELL_ID = {
 
@@ -721,8 +729,9 @@ function ElvUI_EltreumUI:SkillGlow()
 
 					function ElvUI_EltreumUI:ClassicGlow(barName)
 						local bar = AB["handledBars"][barName]
-						if not bar then return end
+						if not bar or bar.EltruismProcFrame then return end
 						local procFrame = CreateFrame('frame')
+						bar.EltruismProcFrame = procFrame
 						procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 						procFrame:RegisterEvent('ACTIONBAR_UPDATE_STATE')
 						procFrame:RegisterEvent('SPELL_UPDATE_USABLE')

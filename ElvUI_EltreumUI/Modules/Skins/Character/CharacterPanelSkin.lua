@@ -559,7 +559,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--statusbars
 				local linewidthsle1 = (( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
-				CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
+				if not CharacterStatsPane.OffenseCategory.Title.StatusLine then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
+				end
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetMinMaxValues(0,100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetValue(100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
@@ -570,7 +572,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				else
 					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 				end
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", CharacterStatsPane)
+				if not CharacterStatsPane.OffenseCategory.Title.StatusLine2 then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", CharacterStatsPane)
+				end
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetMinMaxValues(0,100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetValue(100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize(linewidthsle1, 4)
@@ -596,7 +600,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--statusbars
 				local linewidthsle2 = (( 300 - CharacterStatsPane.DefenseCategory.Title:GetStringWidth())/2)
-				CharacterStatsPane.DefenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenseCategory", CharacterStatsPane)
+				if not CharacterStatsPane.DefenseCategory.Title.StatusLine then
+					CharacterStatsPane.DefenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenseCategory", CharacterStatsPane)
+				end
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetMinMaxValues(0,100)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetValue(100)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
@@ -607,7 +613,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				else
 					CharacterStatsPane.DefenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 				end
-				CharacterStatsPane.DefenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenseCategoryLine2", CharacterStatsPane)
+				if not CharacterStatsPane.DefenseCategory.Title.StatusLine2 then
+					CharacterStatsPane.DefenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenseCategoryLine2", CharacterStatsPane)
+				end
 				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetMinMaxValues(0,100)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetValue(100)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetSize(linewidthsle2, 4)
@@ -821,169 +829,172 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			CharacterFrame:HookScript("OnShow", function()
-				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
-					if not ElvUI_EltreumUI:SLCheck("stats") then
-						local bagilvl, equippedilvl = _G.GetAverageItemLevel()
-						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-							local r, g, b
-							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
-								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
-							else
-								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+			if not self.CharacterPanelRetailOnShowHooked then
+				CharacterFrame:HookScript("OnShow", function()
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
+						if not ElvUI_EltreumUI:SLCheck("stats") then
+							local bagilvl, equippedilvl = _G.GetAverageItemLevel()
+							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+								local r, g, b
+								if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								else
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								end
+								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 							end
-							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 						end
 					end
-				end
 
-				E:Delay(0, function()
-					local actor = CharacterModelScene:GetPlayerActor()
-					if actor then
-						actor:SetPosition(0, 0, 0)
-						actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-					end
+					E:Delay(0, function()
+						local actor = CharacterModelScene:GetPlayerActor()
+						if actor then
+							actor:SetPosition(0, 0, 0)
+							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+						end
+					end)
+
 				end)
 
-			end)
+				--update stats and stats position
+				hooksecurefunc("PaperDollFrame_UpdateStats", function()
+					if ElvUI_EltreumUI:SLCheck("stats") then
 
-			--update stats and stats position
-			hooksecurefunc("PaperDollFrame_UpdateStats", function()
-				if ElvUI_EltreumUI:SLCheck("stats") then
-
-					--offense
-					if CharacterStatsPane.OffenseCategory and CharacterStatsPane.OffenseCategory.backdrop and CharacterStatsPane.OffenseCategory.backdrop:IsShown() then
-						CharacterStatsPane.OffenseCategory.backdrop:Hide()
-					end
-					if CharacterStatsPane.AttributesCategory and CharacterStatsPane.AttributesCategory.backdrop and CharacterStatsPane.AttributesCategory.backdrop:IsShown() then
-						CharacterStatsPane.AttributesCategory.backdrop:Hide()
-					end
-					if CharacterStatsPane.EnhancementsCategory and CharacterStatsPane.EnhancementsCategory.backdrop and CharacterStatsPane.EnhancementsCategory.backdrop:IsShown() then
-						CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
-					end
-				else
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
-						local bagilvl, equippedilvl = _G.GetAverageItemLevel()
-						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-							local r, g, b
-							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
-								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
-							else
-								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+						--offense
+						if CharacterStatsPane.OffenseCategory and CharacterStatsPane.OffenseCategory.backdrop and CharacterStatsPane.OffenseCategory.backdrop:IsShown() then
+							CharacterStatsPane.OffenseCategory.backdrop:Hide()
+						end
+						if CharacterStatsPane.AttributesCategory and CharacterStatsPane.AttributesCategory.backdrop and CharacterStatsPane.AttributesCategory.backdrop:IsShown() then
+							CharacterStatsPane.AttributesCategory.backdrop:Hide()
+						end
+						if CharacterStatsPane.EnhancementsCategory and CharacterStatsPane.EnhancementsCategory.backdrop and CharacterStatsPane.EnhancementsCategory.backdrop:IsShown() then
+							CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
+						end
+					else
+						if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
+							local bagilvl, equippedilvl = _G.GetAverageItemLevel()
+							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+								local r, g, b
+								if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								else
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								end
+								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 							end
-							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
+						end
+
+						--extra stats
+						if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
+							if ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then
+								local speed = ((GetUnitSpeed("player")/7) *100)
+								CharacterFrame.EltruismSpeed:SetText(mathceil(speed).."%")
+							end
+
+							local _, manaRegen = _G.GetManaRegen()
+							local powerRegen = _G.GetPowerRegen()
+							local manaText,powerText
+							if canaccessvalue(manaRegen) and canaccessvalue(powerRegen) then
+								manaRegen = mathfloor(manaRegen * 5.0)
+								manaText = _G.BreakUpLargeNumbers(manaRegen)
+								powerText = _G.BreakUpLargeNumbers(_G.GetPowerRegen())
+							else
+								manaText = manaRegen
+								powerText = powerRegen
+							end
+
+							if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+								CharacterFrame.EltruismClassResource:SetText(powerText)
+							elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+								CharacterFrame.EltruismClassResource:SetText(manaText)
+							elseif E.myclass == 'DEATHKNIGHT' then
+								local _, regenRate = _G.GetRuneCooldown(1)
+								local regenRateText = (format(_G.STAT_RUNE_REGEN_FORMAT, regenRate))
+								CharacterFrame.EltruismClassResource:SetText(regenRateText)
+							elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
+								CharacterFrame.EltruismClassResource2:SetText(manaText)
+							end
+
+							local number = CharacterStatsPane.statsFramePool:GetNumActive()
+							--local number = 13
+							if E.db.ElvUI_EltreumUI.dev then
+								ElvUI_EltreumUI:Print("Number of stats: "..number)
+							end
+
+							--CharacterFrame.EltruismSpeedDesc:SetText("Bewegungsgeschwindigkeit")
+							--CharacterFrame.EltruismClassResourceDesc:SetText("Energieregeneration")
+							--CharacterFrame.EltruismClassResourceDesc2:SetText("Regeneration")
+							CharacterFrame.EltruismExtraStatsFont:ClearAllPoints()
+							if number <= 7 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -90)
+							elseif number == 8 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -100)
+							elseif number == 9 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -110)
+							elseif number == 10 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -120)
+							elseif number == 11 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -130)
+							elseif number == 12 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -140)
+							end
+							--[[elseif number >= 13 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -150)
+							elseif number == 14 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -160)
+							elseif number > 15 and number < 20 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -170)
+							elseif number >= 20 then
+								CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -180)
+							end]]
+
+							--numbers
+							if number < 13 then
+								CharacterFrame.EltruismSpeed:SetAlpha(1)
+								CharacterFrame.EltruismClassResource:SetAlpha(1)
+								CharacterFrame.EltruismClassResource2:SetAlpha(1)
+								CharacterFrame.EltruismSpeedDesc:SetAlpha(1)
+								CharacterFrame.EltruismClassResourceDesc:SetAlpha(1)
+								CharacterFrame.EltruismClassResourceDesc2:SetAlpha(1)
+
+								CharacterFrame.EltruismSpeed:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 60, -10)
+								CharacterFrame.EltruismSpeed:SetSize(50,5)
+								CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
+								CharacterFrame.EltruismClassResource:SetPoint("TOP", CharacterFrame.EltruismSpeed, "BOTTOM", 0, -10)
+								CharacterFrame.EltruismClassResource:SetSize(50,5)
+								CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
+								CharacterFrame.EltruismClassResource2:SetPoint("TOP", CharacterFrame.EltruismClassResource, "BOTTOM", 0, -10)
+								CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
+								CharacterFrame.EltruismClassResource2:SetSize(50,5)
+
+								--text
+								CharacterFrame.EltruismSpeedDesc:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", -7, -10)
+								CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
+								CharacterFrame.EltruismSpeedDesc:SetSize(150,5)
+								CharacterFrame.EltruismClassResourceDesc:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
+								CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
+								CharacterFrame.EltruismClassResourceDesc:SetSize(150,5)
+								CharacterFrame.EltruismClassResourceDesc2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
+								CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
+								CharacterFrame.EltruismClassResourceDesc2:SetSize(150,5)
+
+								--tooltip
+								CharacterFrame.EltruismSpeedDescTooltip:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 42, -10)
+								CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
+								CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
+							else
+								CharacterFrame.EltruismSpeed:SetAlpha(0)
+								CharacterFrame.EltruismClassResource:SetAlpha(0)
+								CharacterFrame.EltruismClassResource2:SetAlpha(0)
+								CharacterFrame.EltruismSpeedDesc:SetAlpha(0)
+								CharacterFrame.EltruismClassResourceDesc:SetAlpha(0)
+								CharacterFrame.EltruismClassResourceDesc2:SetAlpha(0)
+							end
 						end
 					end
-
-					--extra stats
-					if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-						if ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then
-							local speed = ((GetUnitSpeed("player")/7) *100)
-							CharacterFrame.EltruismSpeed:SetText(mathceil(speed).."%")
-						end
-
-						local _, manaRegen = _G.GetManaRegen()
-						local powerRegen = _G.GetPowerRegen()
-						local manaText,powerText
-						if canaccessvalue(manaRegen) and canaccessvalue(powerRegen) then
-							manaRegen = mathfloor(manaRegen * 5.0)
-							manaText = _G.BreakUpLargeNumbers(manaRegen)
-							powerText = _G.BreakUpLargeNumbers(_G.GetPowerRegen())
-						else
-							manaText = manaRegen
-							powerText = powerRegen
-						end
-
-						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							CharacterFrame.EltruismClassResource:SetText(powerText)
-						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-							CharacterFrame.EltruismClassResource:SetText(manaText)
-						elseif E.myclass == 'DEATHKNIGHT' then
-							local _, regenRate = _G.GetRuneCooldown(1)
-							local regenRateText = (format(_G.STAT_RUNE_REGEN_FORMAT, regenRate))
-							CharacterFrame.EltruismClassResource:SetText(regenRateText)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							CharacterFrame.EltruismClassResource2:SetText(manaText)
-						end
-
-						local number = CharacterStatsPane.statsFramePool:GetNumActive()
-						--local number = 13
-						if E.db.ElvUI_EltreumUI.dev then
-							ElvUI_EltreumUI:Print("Number of stats: "..number)
-						end
-
-						--CharacterFrame.EltruismSpeedDesc:SetText("Bewegungsgeschwindigkeit")
-						--CharacterFrame.EltruismClassResourceDesc:SetText("Energieregeneration")
-						--CharacterFrame.EltruismClassResourceDesc2:SetText("Regeneration")
-						CharacterFrame.EltruismExtraStatsFont:ClearAllPoints()
-						if number <= 7 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -90)
-						elseif number == 8 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -100)
-						elseif number == 9 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -110)
-						elseif number == 10 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -120)
-						elseif number == 11 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -130)
-						elseif number == 12 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -140)
-						end
-						--[[elseif number >= 13 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -150)
-						elseif number == 14 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -160)
-						elseif number > 15 and number < 20 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -170)
-						elseif number >= 20 then
-							CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -180)
-						end]]
-
-						--numbers
-						if number < 13 then
-							CharacterFrame.EltruismSpeed:SetAlpha(1)
-							CharacterFrame.EltruismClassResource:SetAlpha(1)
-							CharacterFrame.EltruismClassResource2:SetAlpha(1)
-							CharacterFrame.EltruismSpeedDesc:SetAlpha(1)
-							CharacterFrame.EltruismClassResourceDesc:SetAlpha(1)
-							CharacterFrame.EltruismClassResourceDesc2:SetAlpha(1)
-
-							CharacterFrame.EltruismSpeed:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 60, -10)
-							CharacterFrame.EltruismSpeed:SetSize(50,5)
-							CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
-							CharacterFrame.EltruismClassResource:SetPoint("TOP", CharacterFrame.EltruismSpeed, "BOTTOM", 0, -10)
-							CharacterFrame.EltruismClassResource:SetSize(50,5)
-							CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
-							CharacterFrame.EltruismClassResource2:SetPoint("TOP", CharacterFrame.EltruismClassResource, "BOTTOM", 0, -10)
-							CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
-							CharacterFrame.EltruismClassResource2:SetSize(50,5)
-
-							--text
-							CharacterFrame.EltruismSpeedDesc:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", -7, -10)
-							CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
-							CharacterFrame.EltruismSpeedDesc:SetSize(150,5)
-							CharacterFrame.EltruismClassResourceDesc:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
-							CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
-							CharacterFrame.EltruismClassResourceDesc:SetSize(150,5)
-							CharacterFrame.EltruismClassResourceDesc2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
-							CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
-							CharacterFrame.EltruismClassResourceDesc2:SetSize(150,5)
-
-							--tooltip
-							CharacterFrame.EltruismSpeedDescTooltip:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 42, -10)
-							CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
-							CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
-						else
-							CharacterFrame.EltruismSpeed:SetAlpha(0)
-							CharacterFrame.EltruismClassResource:SetAlpha(0)
-							CharacterFrame.EltruismClassResource2:SetAlpha(0)
-							CharacterFrame.EltruismSpeedDesc:SetAlpha(0)
-							CharacterFrame.EltruismClassResourceDesc:SetAlpha(0)
-							CharacterFrame.EltruismClassResourceDesc2:SetAlpha(0)
-						end
-					end
-				end
-			end)
+				end)
+				self.CharacterPanelRetailOnShowHooked = true
+			end
 
 			--extra stats
 			if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
@@ -1013,7 +1024,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			else
 				linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			end
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
+			if not CharacterStatsPane.ItemLevelCategory.Title.StatusLine then
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
+			end
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetMinMaxValues(0,100)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetValue(100)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
@@ -1024,7 +1037,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			else
 				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
+			if not CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 then
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
+			end
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetMinMaxValues(0,100)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetValue(100)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
@@ -1042,7 +1057,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			else
 				linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
 			end
-			CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
+			if not CharacterStatsPane.AttributesCategory.Title.StatusLine then
+				CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
+			end
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetMinMaxValues(0,100)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetValue(100)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
@@ -1053,7 +1070,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			else
 				CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
+			if not CharacterStatsPane.AttributesCategory.Title.StatusLine2 then
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
+			end
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetMinMaxValues(0,100)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetValue(100)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
@@ -1071,7 +1090,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			else
 				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			end
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
+			if not CharacterStatsPane.EnhancementsCategory.Title.StatusLine then
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
+			end
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetMinMaxValues(0,100)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetValue(100)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
@@ -1082,7 +1103,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			else
 				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
+			if not CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 then
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
+			end
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetMinMaxValues(0,100)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetValue(100)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
@@ -1133,7 +1156,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismClassResourceDescTooltip2:Hide()
 				end
 
-				CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
+				if not CharacterStatsPane.OffenseCategory.Title.StatusLine then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
+				end
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetMinMaxValues(0,100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetValue(100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize((( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2), 4)
@@ -1144,7 +1169,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				else
 					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 				end
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
+				if not CharacterStatsPane.OffenseCategory.Title.StatusLine2 then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
+				end
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetMinMaxValues(0,100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetValue(100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize((( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2), 4)
@@ -1170,7 +1197,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		--add gradient text to stats
-		if E.db.ElvUI_EltreumUI.skins.statcolors then
+		if E.db.ElvUI_EltreumUI.skins.statcolors and not self.PaperDollSetLabelHooked then
 			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame)
 				if ( statFrame.Label ) then
 					local text = statFrame.Label:GetText()
@@ -1207,6 +1234,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 			end)
+			self.PaperDollSetLabelHooked = true
 		end
 
 		-- add and expand art
@@ -1275,11 +1303,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--hide the backdrop on reputation/currency tab
-			_G.CharacterFrame:HookScript("OnHide",function()
-				if _G.CharacterFrameInset.backdrop and _G.CharacterFrameInset.backdrop:IsVisible() then
-					_G.CharacterFrameInset.backdrop:Hide()
-				end
-			end)
+			if not self.CharacterFrameOnHideHooked then
+				_G.CharacterFrame:HookScript("OnHide",function()
+					if _G.CharacterFrameInset.backdrop and _G.CharacterFrameInset.backdrop:IsVisible() then
+						_G.CharacterFrameInset.backdrop:Hide()
+					end
+				end)
+				self.CharacterFrameOnHideHooked = true
+			end
 		end
 
 		--fixing the background with expanded panel but no expanded art
@@ -1319,118 +1350,121 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
 
-		hooksecurefunc(_G.CharacterFrame,"Collapse", function()
-			if PaperDollFrame:IsVisible() then
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				if E.db.ElvUI_EltreumUI.skins.classicarmory then
-					E:Delay(0, function()
-						CharacterFrame:SetWidth(540)
-						local actor = CharacterModelScene:GetPlayerActor()
-						if actor then
-							actor:SetPosition(0, 0, 0)
-							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-						end
-					end)
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
-						if not ElvUI_EltreumUI:SLCheck("stats") then
-							local bagilvl, equippedilvl = _G.GetAverageItemLevel()
-							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-								local r, g, b
-								if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
-									r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
-								else
-									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+		if not self.CharacterFrameCollapseExpandHooked then
+			hooksecurefunc(_G.CharacterFrame,"Collapse", function()
+				if PaperDollFrame:IsVisible() then
+					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					if E.db.ElvUI_EltreumUI.skins.classicarmory then
+						E:Delay(0, function()
+							CharacterFrame:SetWidth(540)
+							local actor = CharacterModelScene:GetPlayerActor()
+							if actor then
+								actor:SetPosition(0, 0, 0)
+								actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+							end
+						end)
+						if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
+							if not ElvUI_EltreumUI:SLCheck("stats") then
+								local bagilvl, equippedilvl = _G.GetAverageItemLevel()
+								if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+									local r, g, b
+									if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+										r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+									else
+										r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+									end
+									CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 								end
-								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 							end
 						end
 					end
-				end
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					else
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-					end
-					if ElvUI_EltreumUI:SLCheck('char') then
-						if _G.PaperDollFrame.SLE_Armory_BG then
-							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
-								_G.PaperDollFrame.SLE_Armory_BG:Hide()
-							end
+					if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						else
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						end
-					end
-					local overlay = _G.CharacterModelFrameBackgroundOverlay or (CharacterModelScene and CharacterModelScene.BackgroundOverlay)
-					if overlay then
-						overlay:Hide()
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					else
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
-					end
-				end
-			end
-		end)
-
-		hooksecurefunc(_G.CharacterFrame,"Expand", function()
-			if PaperDollFrame:IsVisible() then
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-				if E.db.ElvUI_EltreumUI.skins.classicarmory then
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
-						if not ElvUI_EltreumUI:SLCheck("stats") then
-							local bagilvl, equippedilvl = _G.GetAverageItemLevel()
-							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-								local r, g, b
-								if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
-									r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
-								else
-									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+						if ElvUI_EltreumUI:SLCheck('char') then
+							if _G.PaperDollFrame.SLE_Armory_BG then
+								if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+									_G.PaperDollFrame.SLE_Armory_BG:Hide()
 								end
-								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
 							end
 						end
+						local overlay = _G.CharacterModelFrameBackgroundOverlay or (CharacterModelScene and CharacterModelScene.BackgroundOverlay)
+						if overlay then
+							overlay:Hide()
+						end
 					end
+				else
+					if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						else
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+						end
+					end
+				end
+			end)
 
-					E:Delay(0, function()
-						CharacterFrame:SetWidth(700)
-						local actor = CharacterModelScene:GetPlayerActor()
-						if actor then
-							actor:SetPosition(0, 0, 0)
-							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+			hooksecurefunc(_G.CharacterFrame,"Expand", function()
+				if PaperDollFrame:IsVisible() then
+					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					if E.db.ElvUI_EltreumUI.skins.classicarmory then
+						if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
+							if not ElvUI_EltreumUI:SLCheck("stats") then
+								local bagilvl, equippedilvl = _G.GetAverageItemLevel()
+								if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+									local r, g, b
+									if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+										r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+									else
+										r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+									end
+									CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
+								end
+							end
 						end
-					end)
-				end
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					else
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+
+						E:Delay(0, function()
+							CharacterFrame:SetWidth(700)
+							local actor = CharacterModelScene:GetPlayerActor()
+							if actor then
+								actor:SetPosition(0, 0, 0)
+								actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+							end
+						end)
 					end
-					local overlay = _G.CharacterModelFrameBackgroundOverlay or (CharacterModelScene and CharacterModelScene.BackgroundOverlay)
-					if overlay then
-						overlay:Hide()
-					end
-					if ElvUI_EltreumUI:SLCheck('char') then
-						if _G.PaperDollFrame.SLE_Armory_BG then
-							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
-								_G.PaperDollFrame.SLE_Armory_BG:Hide()
+					if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						else
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+						end
+						local overlay = _G.CharacterModelFrameBackgroundOverlay or (CharacterModelScene and CharacterModelScene.BackgroundOverlay)
+						if overlay then
+							overlay:Hide()
+						end
+						if ElvUI_EltreumUI:SLCheck('char') then
+							if _G.PaperDollFrame.SLE_Armory_BG then
+								if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+									_G.PaperDollFrame.SLE_Armory_BG:Hide()
+								end
 							end
 						end
 					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					else
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+				else
+					if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						else
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+						end
 					end
 				end
-			end
-		end)
+			end)
+			self.CharacterFrameCollapseExpandHooked = true
+		end
 	elseif E.Mists or E.Forever then
 
 		--these frames are delayed, so add a delay for the visible check to work correctly
@@ -1706,38 +1740,41 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
 			end
 
-			CharacterFrame:HookScript("OnShow", function()
-				HandleCharacterPanelSize()
-				if CharacterFrame.SetRightPaneCollapsed and CharacterFrame:IsRightPaneCollapsed() then
-					CharacterFrame:SetRightPaneCollapsed(false)
-				end
-				_G.CharacterFrame:Expand() --start expanded
-				if IsAddOnLoaded("ElvUI_CataArmory") or IsAddOnLoaded("ReforgedArmory") then --reset the points since cataarmory adjusts and makes the skin look incorrect
-					if _G.CharacterFrame.BottomRightCorner then
+			if not self.CharacterPanelMistsOnShowHooked then
+				CharacterFrame:HookScript("OnShow", function()
+					HandleCharacterPanelSize()
+					if CharacterFrame.SetRightPaneCollapsed and CharacterFrame:IsRightPaneCollapsed() then
+						CharacterFrame:SetRightPaneCollapsed(false)
+					end
+					_G.CharacterFrame:Expand() --start expanded
+					if IsAddOnLoaded("ElvUI_CataArmory") or IsAddOnLoaded("ReforgedArmory") then --reset the points since cataarmory adjusts and makes the skin look incorrect
+						if _G.CharacterFrame.BottomRightCorner then
+							_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
+							_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
+						end
+						if _G.CharacterFrame.BottomLeftCorner then
+							_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
+							_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+						end
+						if _G.CharacterFrameTab1 then
+							_G.CharacterFrameTab1:ClearAllPoints()
+							_G.CharacterFrameTab1:SetPoint('TOPLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+						end
+
+						_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
+						_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
 						_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
 						_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
 					end
-					if _G.CharacterFrame.BottomLeftCorner then
-						_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
-						_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
-					end
-					if _G.CharacterFrameTab1 then
-						_G.CharacterFrameTab1:ClearAllPoints()
-						_G.CharacterFrameTab1:SetPoint('TOPLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
-					end
-
-					_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
-					_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
-					_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
-					_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
+				end)
+				_G.PaperDollFrame:HookScript("OnShow", HandleCharacterPanelSize)
+				_G.PaperDollFrame:HookScript("OnHide", HandleCharacterPanelSize)
+				_G.ReputationFrame:HookScript("OnShow", HandleCharacterPanelSize)
+				_G.TokenFrame:HookScript("OnShow", HandleCharacterPanelSize)
+				if _G.PetModelFrame then
+					_G.PetModelFrame:HookScript("OnShow", HandleCharacterPanelSize)
 				end
-			end)
-			_G.PaperDollFrame:HookScript("OnShow", HandleCharacterPanelSize)
-			_G.PaperDollFrame:HookScript("OnHide", HandleCharacterPanelSize)
-			_G.ReputationFrame:HookScript("OnShow", HandleCharacterPanelSize)
-			_G.TokenFrame:HookScript("OnShow", HandleCharacterPanelSize)
-			if _G.PetModelFrame then
-				_G.PetModelFrame:HookScript("OnShow", HandleCharacterPanelSize)
+				self.CharacterPanelMistsOnShowHooked = true
 			end
 
 			--adjust the items
@@ -1786,7 +1823,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		--add gradient text to stats
-		if E.db.ElvUI_EltreumUI.skins.statcolors or E.db.ElvUI_EltreumUI.skins.characterskingradients then
+		if (E.db.ElvUI_EltreumUI.skins.statcolors or E.db.ElvUI_EltreumUI.skins.characterskingradients) and not self.PaperDollMistsSetLabelHooked then
 			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame)
 				if ( statFrame.Label ) then
 					local text = statFrame.Label:GetText()
@@ -1894,6 +1931,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end)
 			end
+			self.PaperDollMistsSetLabelHooked = true
 		end
 
 		-- add and expand art
@@ -1983,37 +2021,40 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		--update ilvl
-		hooksecurefunc("PaperDollFrame_UpdateStats", function()
-			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
-				local bagilvl, equippedilvl = _G.GetAverageItemLevel()
-				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-					local r, g, b
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
-						r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
-					else
-						r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
-					end
-					local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
-					if itemLevelText and E.db.general.itemLevel.displayCharacterInfo then
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
-					end
-				else
-					local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
-					if itemLevelText and E.db.general.itemLevel.displayCharacterInfo then
-						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
-							itemLevelText:ClearAllPoints()
-							if E.Forever then
-								itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
-							else
-								itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-							end
+		if not self.PaperDollMistsUpdateStatsHooked then
+			hooksecurefunc("PaperDollFrame_UpdateStats", function()
+				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
+					local bagilvl, equippedilvl = _G.GetAverageItemLevel()
+					if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+						local r, g, b
+						if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+							r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+						else
+							r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 						end
-						--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100)) * 0.01).."|r")
+						local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
+						if itemLevelText and E.db.general.itemLevel.displayCharacterInfo then
+							itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((mathfloor(equippedilvl*100)) * 0.01).."|r ("..((mathfloor(bagilvl*100)) * 0.01)..")|r")
+						end
+					else
+						local itemLevelText = CharacterFrame.EltruismText2 or CharacterFrame.ItemLevelText
+						if itemLevelText and E.db.general.itemLevel.displayCharacterInfo then
+							if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
+								itemLevelText:ClearAllPoints()
+								if E.Forever then
+									itemLevelText:SetPoint("BOTTOM", CharacterFrame.EltruismText5, "BOTTOM", 0, -13)
+								else
+									itemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
+								end
+							end
+							--itemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							itemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((mathfloor(equippedilvl*100)) * 0.01).."|r")
+						end
 					end
 				end
-			end
-		end)
+			end)
+			self.PaperDollMistsUpdateStatsHooked = true
+		end
 
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
@@ -2030,10 +2071,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
 
-		hooksecurefunc(_G.CharacterFrame, "Collapse", HandleCharacterPanelSize)
-		hooksecurefunc(_G.CharacterFrame, "Expand", HandleCharacterPanelSize)
-		if _G.CharacterFrame.SetRightPaneCollapsed then
-			hooksecurefunc(_G.CharacterFrame, "SetRightPaneCollapsed", HandleCharacterPanelSize)
+		if not self.CharacterFrameMistsCollapseExpandHooked then
+			hooksecurefunc(_G.CharacterFrame, "Collapse", HandleCharacterPanelSize)
+			hooksecurefunc(_G.CharacterFrame, "Expand", HandleCharacterPanelSize)
+			if _G.CharacterFrame.SetRightPaneCollapsed then
+				hooksecurefunc(_G.CharacterFrame, "SetRightPaneCollapsed", HandleCharacterPanelSize)
+			end
+			self.CharacterFrameMistsCollapseExpandHooked = true
 		end
 
 		local function ItemLevelString()
@@ -2094,8 +2138,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["yOffset"] = 2
 		end
 
-		local M = E:GetModule('Misc')
-		hooksecurefunc(M,"UpdateAverageString", ItemLevelString)
+		if not self.CharacterMistsAvgStringHooked then
+			local M = E:GetModule('Misc')
+			hooksecurefunc(M,"UpdateAverageString", ItemLevelString)
+			self.CharacterMistsAvgStringHooked = true
+		end
 	elseif E.Classic or E.TBC or E.Wrath then
 
 		--gradient colors to categories other
@@ -2229,10 +2276,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.statcolors or E.db.ElvUI_EltreumUI.skins.characterskingradients then
-			hooksecurefunc("PaperDollFrame_UpdateStats", SetStatGradient)
-		else
-			hooksecurefunc("PaperDollFrame_UpdateStats", SetFontSize)
+		if not self.PaperDollClassicUpdateStatsHooked then
+			hooksecurefunc("PaperDollFrame_UpdateStats", function()
+				if E.db.ElvUI_EltreumUI.skins.statcolors or E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					SetStatGradient()
+				else
+					SetFontSize()
+				end
+			end)
+			self.PaperDollClassicUpdateStatsHooked = true
 		end
 
 		--add class crest
@@ -2363,9 +2415,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--set ilvl on char panel
-			hooksecurefunc("ToggleCharacter", function()
-				CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100)) * 0.01)
-			end)
+			if not self.ToggleCharacterClassicHooked then
+				hooksecurefunc("ToggleCharacter", function()
+					CharacterFrame.EltruismText2:SetText((mathfloor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100)) * 0.01)
+				end)
+				self.ToggleCharacterClassicHooked = true
+			end
 
 			if _G.PlayerTitleDropdown then
 				_G.PlayerTitleDropdown:ClearAllPoints()
@@ -2501,13 +2556,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--end
 			end
 
-			CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
-			hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
+			if not self.ResizeCharacterFrameClassicHooked then
+				CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
+				hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
 
-			_G.PaperDollItemsFrame:HookScript("OnShow", ResizeCharacterFrame)
-			_G.PaperDollItemsFrame:HookScript("OnHide", function()
-				ClassCrestFrame:SetPoint("CENTER", CharacterFrame, 0 , 50)
-			end)
+				_G.PaperDollItemsFrame:HookScript("OnShow", ResizeCharacterFrame)
+				_G.PaperDollItemsFrame:HookScript("OnHide", function()
+					ClassCrestFrame:SetPoint("CENTER", CharacterFrame, 0 , 50)
+				end)
+				self.ResizeCharacterFrameClassicHooked = true
+			end
 
 			--adjust the items
 			_G.CharacterHeadSlot:ClearAllPoints()
@@ -3153,13 +3211,14 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			if englishClass or englishRace then
 				if _G.InspectFrame then
 
-					if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+					if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect and not self.EltruismInspectOnShowHideHook then
 						_G.InspectFrame:HookScript("OnHide", function()
 							EltruismInspectBg:UnregisterEvent("UNIT_MODEL_CHANGED")
 						end)
 						_G.InspectFrame:HookScript("OnShow", function()
 							EltruismInspectBg:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
 						end)
+						self.EltruismInspectOnShowHideHook = true
 					end
 
 					local classcolorinspect = E:ClassColor(englishClass, true)
@@ -3326,7 +3385,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectModelFrame:HookScript("OnHide", function()
 								_G.InspectFrame:SetWidth(338)
 							end)
-							self.EltruismInspectHookmodel = true
+							self.EltruismInspectHookModel = true
 						end
 
 						if _G.InspectPaperDollItemsFrame.InspectTalents then
