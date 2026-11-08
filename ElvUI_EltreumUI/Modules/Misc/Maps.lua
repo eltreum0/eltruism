@@ -493,32 +493,35 @@ end
 function ElvUI_EltreumUI:WorldMapScale()
 	if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale then
 		if _G["WorldMapFrame"] then
-			_G["WorldMapFrame"]:HookScript("OnShow", function()
-				if not E.Modern then
-					if not InCombatLockdown then
-						if not IsAddOnLoaded("Leatrix_Maps") then
+			if not _G["WorldMapFrame"].EltruismScaleHooked then
+				_G["WorldMapFrame"]:HookScript("OnShow", function()
+					if not E.Modern then
+						if not InCombatLockdown then
+							if not IsAddOnLoaded("Leatrix_Maps") then
+								_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+							end
+							if not _G["WorldMapFrame"]:HasScript("OnDragStart") then
+								_G["WorldMapFrame"]:SetMovable(true)
+								_G["WorldMapFrame"]:EnableMouse(true)
+								_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
+								_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
+								_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
+								_G["WorldMapFrame"]:SetClampedToScreen(true)
+							end
+						end
+					else
+						if ElvUI_EltreumUI:IsThisASafeSecret(_G["WorldMapFrame"],true) then
 							_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 						end
-						if not _G["WorldMapFrame"]:HasScript("OnDragStart") then
-							_G["WorldMapFrame"]:SetMovable(true)
-							_G["WorldMapFrame"]:EnableMouse(true)
-							_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
-							_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
-							_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
-							_G["WorldMapFrame"]:SetClampedToScreen(true)
-						end
 					end
-				else
-					if ElvUI_EltreumUI:IsThisASafeSecret(_G["WorldMapFrame"],true) then
-						_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
-					end
-				end
-			end)
+				end)
+				_G["WorldMapFrame"].EltruismScaleHooked = true
+			end
 
 			--make the bounty select mouseover
 			if E.Modern then
 				for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
-					if v then
+					if v and not v.EltruismBountySkinned then
 						if v.BountyDropDown and v.BountyDropdownButton then
 							v:SetAlpha(0)
 							v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
@@ -534,6 +537,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 							v.BountyDropdownButton:GetNormalTexture():SetRotation(-1.57)
 							v.BountyDropdownButton:GetPushedTexture():SetRotation(-1.57)
 							v.BountyDropdownButton:GetDisabledTexture():SetRotation(-1.57)
+							v.EltruismBountySkinned = true
 						elseif v.BountyDropdown then
 							v:SetAlpha(0)
 							v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdown:SetAlpha(1) end)
@@ -549,6 +553,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 							v.BountyDropdown:GetNormalTexture():SetRotation(-1.57)
 							v.BountyDropdown:GetPushedTexture():SetRotation(-1.57)
 							v.BountyDropdown:GetDisabledTexture():SetRotation(-1.57)
+							v.EltruismBountySkinned = true
 						end
 					end
 				end

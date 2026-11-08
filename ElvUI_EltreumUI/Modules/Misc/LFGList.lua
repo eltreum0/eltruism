@@ -191,6 +191,8 @@ local LFG_LIST_INACTIVE_STATUSES = {
 --LFG Spec Icons, based on https://wago.io/cFpgwuLe0
 function ElvUI_EltreumUI:DungeonRoleIcons()
 	if E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons then
+		if self.DungeonRoleIconsHooked then return end
+		self.DungeonRoleIconsHooked = true
 		local role_order = _G.LFG_LIST_GROUP_DATA_ROLE_ORDER
 		local class_order = _G.LFG_LIST_GROUP_DATA_CLASS_ORDER
 		local raidClassColors = _G.RAID_CLASS_COLORS

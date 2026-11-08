@@ -35,12 +35,15 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 				end
 
-				_G.PlayerSpellsFrame:HookScript("OnShow", function()
-					adjustscale()
-				end)
-				_G.PlayerSpellsFrame:HookScript("OnEvent", function()
-					adjustscale()
-				end)
+				if not _G.PlayerSpellsFrame.EltruismScaleHooked then
+					_G.PlayerSpellsFrame:HookScript("OnShow", function()
+						adjustscale()
+					end)
+					_G.PlayerSpellsFrame:HookScript("OnEvent", function()
+						adjustscale()
+					end)
+					_G.PlayerSpellsFrame.EltruismScaleHooked = true
+				end
 			end
 		end)
 	--[[elseif E.Cata then
@@ -217,33 +220,36 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						LoadAddOn("Blizzard_GlyphUI")
 						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
 
-						_G.GlyphFrame:HookScript("OnShow", function()
+						if not _G.GlyphFrame.EltruismHooked then
+							_G.GlyphFrame:HookScript("OnShow", function()
 
-							--fix the button being behind the frame
-							if _G.PlayerTalentFrameCloseButton then
-								_G.PlayerTalentFrameCloseButton:SetFrameStrata("HIGH")
-							end
+								--fix the button being behind the frame
+								if _G.PlayerTalentFrameCloseButton then
+									_G.PlayerTalentFrameCloseButton:SetFrameStrata("HIGH")
+								end
 
-							PlayerTalentFrame:SetSize(384, 512)
-							_G.GlyphFrame:Show()
-							PlayerTalentFrameBackgroundTopLeft:Hide()
-							PlayerTalentFrameBackgroundBottomLeft:Hide()
-							PlayerTalentFrameBackgroundTopRight:Hide()
-							PlayerTalentFrameBackgroundBottomRight:Hide()
-							_G.PlayerTalentFrameStatusFrame:Hide()
-							_G.GlyphFrame:ClearAllPoints()
-							_G.GlyphFrame:SetPoint("CENTER", _G.PlayerTalentFrame, "CENTER", 0, 4)
-							_G.GlyphFrame:SetFrameStrata("HIGH")
-						end)
-						_G.GlyphFrame:HookScript("OnHide", function()
-							PlayerTalentFrame:SetSize(376, 780)
-							_G.GlyphFrame:Hide()
-							_G.PlayerTalentFrameStatusFrame:Show()
-							PlayerTalentFrameBackgroundTopLeft:Show()
-							PlayerTalentFrameBackgroundBottomLeft:Show()
-							PlayerTalentFrameBackgroundTopRight:Show()
-							PlayerTalentFrameBackgroundBottomRight:Show()
-						end)
+								PlayerTalentFrame:SetSize(384, 512)
+								_G.GlyphFrame:Show()
+								PlayerTalentFrameBackgroundTopLeft:Hide()
+								PlayerTalentFrameBackgroundBottomLeft:Hide()
+								PlayerTalentFrameBackgroundTopRight:Hide()
+								PlayerTalentFrameBackgroundBottomRight:Hide()
+								_G.PlayerTalentFrameStatusFrame:Hide()
+								_G.GlyphFrame:ClearAllPoints()
+								_G.GlyphFrame:SetPoint("CENTER", _G.PlayerTalentFrame, "CENTER", 0, 4)
+								_G.GlyphFrame:SetFrameStrata("HIGH")
+							end)
+							_G.GlyphFrame:HookScript("OnHide", function()
+								PlayerTalentFrame:SetSize(376, 780)
+								_G.GlyphFrame:Hide()
+								_G.PlayerTalentFrameStatusFrame:Show()
+								PlayerTalentFrameBackgroundTopLeft:Show()
+								PlayerTalentFrameBackgroundBottomLeft:Show()
+								PlayerTalentFrameBackgroundTopRight:Show()
+								PlayerTalentFrameBackgroundBottomRight:Show()
+							end)
+							_G.GlyphFrame.EltruismHooked = true
+						end
 					end
 
 					-- fix talent frame position due to expanded character bg
@@ -260,12 +266,15 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						end
 					end
 
-					_G.PlayerTalentFrame:HookScript("OnShow", function()
-						ClassicTalent()
-					end)
-					_G.PlayerTalentFrame:HookScript("OnEvent", function()
-						ClassicTalent()
-					end)
+					if not _G.PlayerTalentFrame.EltruismScaleHooked then
+						_G.PlayerTalentFrame:HookScript("OnShow", function()
+							ClassicTalent()
+						end)
+						_G.PlayerTalentFrame:HookScript("OnEvent", function()
+							ClassicTalent()
+						end)
+						_G.PlayerTalentFrame.EltruismScaleHooked = true
+					end
 				end
 			end)
 		end

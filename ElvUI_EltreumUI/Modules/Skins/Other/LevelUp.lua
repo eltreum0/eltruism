@@ -18,7 +18,9 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.GLine:SetAlpha(0)
 				EventToastManagerFrame.GLine2:SetAlpha(0)
 
-				EventToastManagerFrame.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", EventToastManagerFrame)
+				if not EventToastManagerFrame.StatusLine then
+					EventToastManagerFrame.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", EventToastManagerFrame)
+				end
 				EventToastManagerFrame.StatusLine:SetMinMaxValues(0,100)
 				EventToastManagerFrame.StatusLine:SetValue(100)
 				EventToastManagerFrame.StatusLine:SetSize(418, 3)
@@ -26,7 +28,9 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				EventToastManagerFrame.StatusLine:SetParent(EventToastManagerFrame)
-				EventToastManagerFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismEventToastLine2", EventToastManagerFrame)
+				if not EventToastManagerFrame.StatusLine2 then
+					EventToastManagerFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismEventToastLine2", EventToastManagerFrame)
+				end
 				EventToastManagerFrame.StatusLine2:SetMinMaxValues(0,100)
 				EventToastManagerFrame.StatusLine2:SetValue(100)
 				EventToastManagerFrame.StatusLine2:SetSize(418, 3)
@@ -35,33 +39,39 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				EventToastManagerFrame.StatusLine2:SetParent(EventToastManagerFrame)
 
-				_G.hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
-					if toast.currentDisplayingToast then
-						EventToastManagerFrame.StatusLine:Show()
-						EventToastManagerFrame.StatusLine2:Show()
-						if toast.currentDisplayingToast.Title then
-							toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
-							toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
-							--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
+				if not EventToastManagerFrame.EltruismHooked then
+					_G.hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
+						if toast.currentDisplayingToast then
+							EventToastManagerFrame.StatusLine:Show()
+							EventToastManagerFrame.StatusLine2:Show()
+							if toast.currentDisplayingToast.Title then
+								toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
+								toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
+								--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
+							end
+							if toast.currentDisplayingToast.SubTitle then
+								toast.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
+								toast.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
+								--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
+							end
 						end
-						if toast.currentDisplayingToast.SubTitle then
-							toast.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
-							toast.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
-							--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
-						end
-					end
-				end)
-				_G.hooksecurefunc(_G.EventToastManagerFrame,"StopToasting", function()
-					EventToastManagerFrame.StatusLine:Hide()
-					EventToastManagerFrame.StatusLine2:Hide()
-				end)
+					end)
+					_G.hooksecurefunc(_G.EventToastManagerFrame,"StopToasting", function()
+						EventToastManagerFrame.StatusLine:Hide()
+						EventToastManagerFrame.StatusLine2:Hide()
+					end)
+					EventToastManagerFrame.EltruismHooked = true
+				end
 				--/script EventToastManagerFrame:Show()
 			end
 
 			--skin the boss loot banner
 			local BossBanner = _G.BossBanner
 			if BossBanner then
-				local StatusLineTop = CreateFrame("StatusBar", nil, BossBanner)
+				if not BossBanner.StatusLineTop then
+					BossBanner.StatusLineTop = CreateFrame("StatusBar", nil, BossBanner)
+				end
+				local StatusLineTop = BossBanner.StatusLineTop
 				StatusLineTop:SetMinMaxValues(0,100)
 				StatusLineTop:SetValue(100)
 				StatusLineTop:SetSize(418, 2)
@@ -69,7 +79,10 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				StatusLineTop:SetPoint("TOP", BossBanner, 0, -80)
 				StatusLineTop:SetStatusBarTexture(E.Media.Textures.Highlight)
 				StatusLineTop:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 0.7)
-				local StatusLineBottom = CreateFrame("StatusBar", nil, BossBanner)
+				if not BossBanner.StatusLineBottom then
+					BossBanner.StatusLineBottom = CreateFrame("StatusBar", nil, BossBanner)
+				end
+				local StatusLineBottom = BossBanner.StatusLineBottom
 				StatusLineBottom:SetMinMaxValues(0,100)
 				StatusLineBottom:SetValue(100)
 				StatusLineBottom:SetSize(418, 2)
@@ -105,7 +118,9 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				_G.LevelUpDisplay.gLine:SetAlpha(0)
 				_G.LevelUpDisplay.gLine2:SetAlpha(0)
 
-				_G.LevelUpDisplay.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", _G.LevelUpDisplay)
+				if not _G.LevelUpDisplay.StatusLine then
+					_G.LevelUpDisplay.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", _G.LevelUpDisplay)
+				end
 				_G.LevelUpDisplay.StatusLine:SetMinMaxValues(0,100)
 				_G.LevelUpDisplay.StatusLine:SetValue(100)
 				_G.LevelUpDisplay.StatusLine:SetSize(418, 3)
@@ -113,7 +128,9 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				_G.LevelUpDisplay.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				_G.LevelUpDisplay.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				_G.LevelUpDisplay.StatusLine:SetParent(_G.LevelUpDisplay)
-				_G.LevelUpDisplay.StatusLine2 = CreateFrame("StatusBar", "EltruismEventToastLine2", _G.LevelUpDisplay)
+				if not _G.LevelUpDisplay.StatusLine2 then
+					_G.LevelUpDisplay.StatusLine2 = CreateFrame("StatusBar", "EltruismEventToastLine2", _G.LevelUpDisplay)
+				end
 				_G.LevelUpDisplay.StatusLine2:SetMinMaxValues(0,100)
 				_G.LevelUpDisplay.StatusLine2:SetValue(100)
 				_G.LevelUpDisplay.StatusLine2:SetSize(418, 3)

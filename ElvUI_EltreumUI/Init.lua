@@ -193,10 +193,13 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:InitializePortraits(true) --blinkii's mmediatag portraits
 
 	--hardcore requires loading tags later so db is confirmed loaded
-	ElvUI_EltreumUI:LoadHealthTags()
-	ElvUI_EltreumUI:LoadIconTags()
-	ElvUI_EltreumUI:LoadNameTags()
-	ElvUI_EltreumUI:LoadOtherTags()
+	if not self.TagsLoaded then
+		ElvUI_EltreumUI:LoadHealthTags()
+		ElvUI_EltreumUI:LoadIconTags()
+		ElvUI_EltreumUI:LoadNameTags()
+		ElvUI_EltreumUI:LoadOtherTags()
+		self.TagsLoaded = true
+	end
 	ElvUI_EltreumUI:GradientNameplatesHooks()
 	ElvUI_EltreumUI:InstanceIndicator() --for the instance texts
 end

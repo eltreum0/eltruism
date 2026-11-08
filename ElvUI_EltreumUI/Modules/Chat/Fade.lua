@@ -83,15 +83,18 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		if E.db.ElvUI_EltreumUI.chat.leftmouseover then
 
 			--left chat toggle the fade on and off
-			_G["ChatFrame1"]:HookScript('OnMouseDown', function(_, button)
-				if button=='LeftButton' then
-					if leftfaderbutton == 1 then
-						leftfaderbutton = 0
-					elseif leftfaderbutton == 0 then
-						leftfaderbutton = 1
+			if not _G["ChatFrame1"].EltruismMouseHook then
+				_G["ChatFrame1"]:HookScript('OnMouseDown', function(_, button)
+					if button=='LeftButton' then
+						if leftfaderbutton == 1 then
+							leftfaderbutton = 0
+						elseif leftfaderbutton == 0 then
+							leftfaderbutton = 1
+						end
 					end
-				end
-			end)
+				end)
+				_G["ChatFrame1"].EltruismMouseHook = true
+			end
 
 			_G["ChatFrame1"]:SetScript('OnEnter', function()
 				if not InCombatLockdown() then
@@ -113,15 +116,18 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		if E.db.ElvUI_EltreumUI.chat.rightmouseover then
 
 			--right chat toggle the fade on and off
-			_G["ChatFrame4"]:HookScript('OnMouseDown', function(_, button)
-				if button=='LeftButton' then
-					if rightfaderbutton == 1 then
-						rightfaderbutton = 0
-					elseif rightfaderbutton == 0 then
-						rightfaderbutton = 1
+			if not _G["ChatFrame4"].EltruismMouseHook then
+				_G["ChatFrame4"]:HookScript('OnMouseDown', function(_, button)
+					if button=='LeftButton' then
+						if rightfaderbutton == 1 then
+							rightfaderbutton = 0
+						elseif rightfaderbutton == 0 then
+							rightfaderbutton = 1
+						end
 					end
-				end
-			end)
+				end)
+				_G["ChatFrame4"].EltruismMouseHook = true
+			end
 
 			_G["ChatFrame4"]:SetScript('OnEnter', function()
 				if not InCombatLockdown() then

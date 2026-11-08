@@ -377,29 +377,32 @@ function ElvUI_EltreumUI:Doom()
 		end
 		DCP:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-		hooksecurefunc("UseAction", function(slot)
-			local actionType,itemID = GetActionInfo(slot)
-			if (actionType == "item") then
-				local texture = GetActionTexture(slot)
-				watching[itemID] = {GetTime(),"item",texture}
-			end
-		end)
+		if not self.DoomHooksRegistered then
+			hooksecurefunc("UseAction", function(slot)
+				local actionType,itemID = GetActionInfo(slot)
+				if (actionType == "item") then
+					local texture = GetActionTexture(slot)
+					watching[itemID] = {GetTime(),"item",texture}
+				end
+			end)
 
-		hooksecurefunc("UseInventoryItem", function(slot)
-			local itemID = GetInventoryItemID("player", slot)
-			if (itemID) then
-				local texture = GetInventoryItemTexture("player", slot)
-				watching[itemID] = {GetTime(),"item",texture}
-			end
-		end)
+			hooksecurefunc("UseInventoryItem", function(slot)
+				local itemID = GetInventoryItemID("player", slot)
+				if (itemID) then
+					local texture = GetInventoryItemTexture("player", slot)
+					watching[itemID] = {GetTime(),"item",texture}
+				end
+			end)
 
-		hooksecurefunc(_G.C_Container, "UseContainerItem", function(bag,slot)
-			local itemID = _G.C_Container.GetContainerItemID(bag, slot)
+			hooksecurefunc(_G.C_Container, "UseContainerItem", function(bag,slot)
+				local itemID = _G.C_Container.GetContainerItemID(bag, slot)
 
-			if (itemID) then
-				local texture = select(10, GetItemInfo(itemID))
-				watching[itemID] = {GetTime(),"item",texture}
-			end
-		end)
+				if (itemID) then
+					local texture = select(10, GetItemInfo(itemID))
+					watching[itemID] = {GetTime(),"item",texture}
+				end
+			end)
+			self.DoomHooksRegistered = true
+		end
 	end
 end
