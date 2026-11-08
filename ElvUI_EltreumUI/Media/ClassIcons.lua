@@ -1,5 +1,7 @@
 local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
+local _G = _G
+local type = _G.type
 
 ElvUI_EltreumUI.Media = {}
 ElvUI_EltreumUI.Media.CustomPortraits = {}
@@ -61,10 +63,9 @@ ElvUI_EltreumUI.ClassIcons.data = {
 	},
 }
 
-local type = type
 local path = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\class\\"
 
--- style = texture style, textur = path to the texture, table with texture coords for each class, name = optional name to show in dopdown menu
+-- style = texture style, textur = path to the texture, table with texture coords for each class, name = optional name to show in dropdown menu
 function ElvUI_EltreumUI:AddClassIcons(style, texture, texCoords, name)
 	if not (style and texture and texCoords) then
 		ElvUI_EltreumUI:Print("|CFFEA1818Error|r: "..L["Could not add the texture."])
@@ -102,7 +103,7 @@ local function AddClassIcons(style, texture, name)
 	}
 end
 
-ElvUI_EltreumUI:AddClassIcons("BLIZZARD", "Interface\\WorldStateFrame\\Icons-Classes", CLASS_ICON_TCOORDS, "Blizzard")
+ElvUI_EltreumUI:AddClassIcons("BLIZZARD", "Interface\\WorldStateFrame\\Icons-Classes", _G.CLASS_ICON_TCOORDS, "Blizzard")
 
 AddClassIcons("mmt_hd", path .. "mmt_border.tga", "mMT HD")
 AddClassIcons("mmt_hd_black", path .. "mmt_classcolored_border.tga", "mMT HD Black")
