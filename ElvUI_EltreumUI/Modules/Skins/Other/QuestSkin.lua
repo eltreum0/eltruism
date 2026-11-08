@@ -42,6 +42,8 @@ local GetRealZoneText = _G.GetRealZoneText
 local IsQuestWatched = _G.IsQuestWatched
 local AddQuestWatch = _G.AddQuestWatch
 local RemoveQuestWatch = _G.RemoveQuestWatch
+local GetQuestDifficultyColor = _G.GetQuestDifficultyColor
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local questside
 local updateaftercombat = false
 
@@ -403,18 +405,41 @@ function ElvUI_EltreumUI:SkinQuests()
 				local mult = 0.85
 
 				local function FormatQuestTitle(rawText, titleColorHex)
-					if not rawText then return "" end
-					local colorCode, tag, title = rawText:match("^(|c%x%x%x%x%x%x%x%x)(%[%d+%+?%])|?r?%s*(.*)$")
+					if not rawText or rawText == "" then return "" end
+
+					local colorCode, tag, title = rawText:match("^(|c%x%x%x%x%x%x%x%x)(%[%d+[^%]]*%])|?r?%s*(.*)$")
+					if not tag then
+						tag, title = rawText:match("^(%[%d+[^%]]*%])|?r?%s*(.*)$")
+					end
+
+					local cvarValue = GetCVar('showQuestDifficultyColor')
 
 					if tag then
-						title = title:gsub("|r$", "")
+						local cleanTitle = E:StripString(title)
+						cleanTitle = cleanTitle:match("^%s*(.-)%s*$") or ""
+
+						if cvarValue == '0' then
+							colorCode = nil
+						elseif not colorCode and cvarValue == '1' then
+							local level = tag:match("%d+")
+							if level then
+								local diffColor = GetQuestDifficultyColor(tonumber(level))
+								if diffColor then
+									colorCode = E:RGBToHex(diffColor.r, diffColor.g, diffColor.b)
+								end
+							end
+						end
+
 						if colorCode then
-							return string.format("%s%s|r |cff%s%s|r", colorCode, tag, titleColorHex, title)
+							return string.format("%s%s|r |cff%s%s|r", colorCode, tag, titleColorHex, cleanTitle)
 						else
-							return string.format("%s |cff%s%s|r", tag, titleColorHex, title)
+							return string.format("%s |cff%s%s|r", tag, titleColorHex, cleanTitle)
 						end
 					end
-					local cleanTitle = rawText:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+
+					local cleanTitle = E:StripString(rawText)
+					cleanTitle = cleanTitle:match("^%s*(.-)%s*$") or ""
+
 					return string.format("|cff%s%s|r", titleColorHex, cleanTitle)
 				end
 
@@ -424,9 +449,6 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					local currentText = headerText:GetText()
 					if currentText and currentText ~= "" then
-						if not headerText.rawTitle or not currentText:find("|cff") then
-							headerText.rawTitle = currentText
-						end
 						local multVal = multiplier or 1
 						local hex
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -442,7 +464,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								multVal * classcolor.b
 							):gsub("|cff", "")
 						end
-						headerText:SetText(FormatQuestTitle(headerText.rawTitle, hex))
+						headerText:SetText(FormatQuestTitle(currentText, hex))
 					end
 
 					headerText.isFormatting = nil
