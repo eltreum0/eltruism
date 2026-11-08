@@ -45,6 +45,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["raid3"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = true
+	E.db["unitframe"]["units"]["focus"]["healPrediction"]["enable"] = true
+	E.db["unitframe"]["units"]["targettarget"]["healPrediction"]["enable"] = true
 
 	--aura indicator
 	E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
