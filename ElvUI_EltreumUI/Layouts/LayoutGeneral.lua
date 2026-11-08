@@ -88,6 +88,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["targetSound"] = true
 	E.db["unitframe"]["debuffHighlighting"] = "FILL"
 
+	--aura indicator
+	E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["targettarget"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["focus"]["buffIndicator"]["enable"] = true
+
 	--to make sure its correct height
 	E.db["unitframe"]["units"]["player"]["height"] = 54
 	E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] = false
