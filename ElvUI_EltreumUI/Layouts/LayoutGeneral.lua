@@ -80,6 +80,14 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--modern show class colors
 	E.db["nameplates"]["classColorNames"] = true
 
+	--general unitframe
+	E.db["unitframe"]["statusbar"] = "ElvUI Norm1"
+	E.db["unitframe"]["font"] = "Kimberley"
+	E.db["unitframe"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["smartRaidFilter"] = false
+	E.db["unitframe"]["targetSound"] = true
+	E.db["unitframe"]["debuffHighlighting"] = "FILL"
+
 	--to make sure its correct height
 	E.db["unitframe"]["units"]["player"]["height"] = 54
 	E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] = false

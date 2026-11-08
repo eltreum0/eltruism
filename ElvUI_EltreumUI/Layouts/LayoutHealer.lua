@@ -425,12 +425,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["movers"]["MoverEltruismWAConsumables"] = "BOTTOM,ElvUIParent,BOTTOM,-280,357"
 
 	-- UnitFrames Healing
-	E.db["unitframe"]["debuffHighlighting"] = "GLOW"
-	E.db["unitframe"]["statusbar"] = "ElvUI Norm1"
-	E.db["unitframe"]["font"] = "Kimberley"
-	E.db["unitframe"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["smartRaidFilter"] = false
-	E.db["unitframe"]["targetSound"] = true
 	E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 2
 	E.db["unitframe"]["units"]["arena"]["buffs"]["countYOffset"] = -3

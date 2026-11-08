@@ -491,13 +491,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["movers"]["iFilger_FocusDebuffsMover"] = "BOTTOM,ElvUIParent,BOTTOM,-217,461"
 	E.db["movers"]["iFilger_ItemCooldownsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,526,450"
 
-	--dps options
-	E.db["unitframe"]["font"] = "Kimberley"
-	E.db["unitframe"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["smartRaidFilter"] = false
-	E.db["unitframe"]["statusbar"] = "ElvUI Norm1"
-	E.db["unitframe"]["targetSound"] = true
-
 	--Dps units
 	E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 2
