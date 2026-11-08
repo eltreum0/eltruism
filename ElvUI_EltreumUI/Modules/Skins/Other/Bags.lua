@@ -139,7 +139,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						local hasPoisons = false
 						for _,v in ipairs(GetAvailableProfessions()) do
 							--"Poisons", 136242, 81, 300, 1, 37, 40, 0, -1, 0, "Poisons"
-							local name, icon, _, _, _, spelloffset = GetProfessionInfo(v)
+							local name, icon = GetProfessionInfo(v)
 							if name then
 								if icon == 136242 or name == "Poisons" then
 									hasPoisons = true
@@ -190,8 +190,10 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfession"..v.."BagButton"].icon:SetTexture(icon)
 										_G["EltruismProfession"..v.."BagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 										_G["EltruismProfession"..v.."BagButton"].icon:SetAllPoints()
+										_G["EltruismProfession"..v.."BagButton"].spell = v
 										--using id has issues since some characters dont actually know the key spells to cast the profession, use OnClick instead
 										_G["EltruismProfession"..v.."BagButton"]:SetScript("OnClick", function()
+											local spelloffset = select(6, GetProfessionInfo(_G["EltruismProfession"..v.."BagButton"].spell))
 											CastSpell(spelloffset + 1, "Spell")
 										end)
 									end
