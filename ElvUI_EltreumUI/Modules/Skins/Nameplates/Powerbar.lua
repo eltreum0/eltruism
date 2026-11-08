@@ -411,7 +411,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			--update position based on class bar (or not)
 			local targetPosY
 			if nameplatePowerDB.autoadjustposition then
-				if (targetClassPower and targetClassPowerShown) or (targetRunes and targetRunesShown) or (targetStagger and targetStaggerShown) then
+				if targetClassPowerShown or targetRunesShown or targetStaggerShown then
 					targetPosY = 23
 				else
 					targetPosY = 14
