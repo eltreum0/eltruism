@@ -506,7 +506,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 					end
 					disenchantbutton:Show()
 				else
-					if not E.Classic then
+					if not (E.Classic or E.Forever) then
 						vellumbutton:Hide()
 					end
 					disenchantbutton:Hide()
