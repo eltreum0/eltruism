@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:SetupAllAuras(type)
 		E.db["unitframe"]["units"]["raid1"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.buffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["raid2"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.buffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["raid3"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid3.buffs.filterLists.group1.filter
-		E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
+		E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL'
 		E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
 		E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
 		E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'

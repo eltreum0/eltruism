@@ -156,7 +156,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorY"] = 0
 				E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["enable"] = true
 				E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
-				E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["enable"] = true
+				E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["enable"] = false
 				E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
 				E.db["unitframe"]["units"]["player"]["auras"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 				E.db["unitframe"]["units"]["player"]["auras"]["tooltipAnchorX"] = 0
