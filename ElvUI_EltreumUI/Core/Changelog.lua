@@ -14,36 +14,19 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added an option to display player Level in Chat with difficulty coloring
-Added Several Glow styles to Custom Glow via the new LibEltreumGlow
-Added an option to show quests only in the same zone you are in
-Added Power Texture option to Unitframe Custom Textures
-Added a Rectangle Minimap option, with 3 aspect ratios
-Added Duel music to Combat Events with duel detection
-Added a Minimap Button Bar to gather minimap icons
-Added a skin for FollowTheArrow
+Added Pixel Glow fallback to Dispel Glow in Forever due to missing textures
+Added a command (/eltruism fader) and installer option to toggle the Fader
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated Custom Glow to use LibEltreumGlow, replacing active glows smoothly, improving performance, and adding repeat controls
-Updated Character Panel, Cursor Cooldown, and Nameplate Power Bar to optimize event handling and performance
-Updated LootText to use custom scroll functions and removed the Blizzard_CombatText dependency
-Updated Dispel Glow to once again work in Retail and Forever after the aura containers change
-Updated Forever character and inspect skins to fix some text overlaps and texture cropping
-Updated Aura Borders registration to simplify and improve container handling
-Updated Mail arrival notification with updated flipbook animations
-Updated Chat Race Icon to better respect Elvui Chat Font Size
-Updated Performance Optimization to disable Target of Target
-Updated Skyborne Elf race icons with in-game textures
-Updated nameplates to remove realm tags in Forever
-Updated RareScanner skin to fix the map search box
-Updated FollowTheArrow skin to fix text only mode
-Updated Forever Character Panel to fix its skin
-Updated Evoker default gradient colors
-Updated several shadows for Forever
+Updated command list with new commands, help display, and improved formatting
+Updated Healer layout to disable party buffs to reduce clutter with debuffs
+Updated configuration and media menu icons with optimized textures
+Updated Target unitframe fader to always use range fading
+Updated actionbar paging command
 Updated Localizations
 ]], 5, "small", nil, nil, nil, nil, "full")
 
@@ -51,23 +34,12 @@ Updated Localizations
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed unitframe and castbar backdrop alpha and texture hiding when using static or hidden backdrops
-Fixed a possible issue when using map addons where the wowhead button would become unresponsive
-Fixed Craft and Beast Training frame expansion and button sizing in Classic Era and TBC
-Fixed Damage Meter skin errors when specialization is nil and improved secret checks
-Fixed an issue where Target of Target could be missing class color in Dark Mode
-Fixed the [name:eltruism:gradientreverse] tag using the target instead of unit
-Fixed secret value issues across Character Panel stats and Blinkii portraits
-Fixed a possible issue with the Auctionator skin after an Auctionator update
-Fixed an issue where Rogue Poisons was not showing up in Forever and Classic
-Fixed an issue with the Damage Meter after Spec Icon became secret
-Fixed a possible issue with the Eltruism Stats datatext in combat
-Fixed an issue where Bags would not be openable in combat
-Fixed PetBattleFrame shadow error in non-Mists clients
-Fixed aura bars coloring in both regular and thin mode
-Fixed an issue where the Tooltip could start blinking
-Fixed an issue where Edit Mode toggle was missing
-Fixed Shaman totem options in Custom Glow
+Fixed debuff and aura overlap on player, target, and pet frames in the Healer layout
+Fixed an issue where quest titles in Quest Skin could display incorrect colors
+Fixed player aurabar friendly filter restricting non-player helpful auras
+Fixed an issue with Bag Profession Buttons when spellbook offsets shift
+Fixed multiple skin and frame hooks from registering repeatedly across
+Fixed Enchanting skin showing the Vellum button in Forever
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other
