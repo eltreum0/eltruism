@@ -361,9 +361,32 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end)
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
+		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
 		print("|cff82B4ff/eltruism options/config|r - Opens Eltruism Config")
 		print("|cff82B4ff/eltruism setup/install|r - Opens Eltruism Installer")
+		print("|cff82B4ff/eltruism update|r - Resets/Updates Eltruism Settings to Eltreum's Defaults")
+		print("|cff82B4ff/eltruism elvuiskin|r - Toggles ElvUI Skin")
+		print("|cff82B4ff/eltruism paging|r - Swaps Actionbar paging between Bar 1 and Bar4, otherwise resets to Bar4")
+		print("|cff82B4ff/eltruism paging <1-10>|r - Swaps Actionbar paging to specified bar")
+		print("|cff82B4ff/eltruism fader|r - Toggles ElvUI Fader")
+		print("|cff82B4ff/eltruism autoupdate|r - Enables automatically updating Eltruism settings")
+		if ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+			print("|cff82B4ff/eltruism autoadjust|r - Toggles Borders automatically adjusting the layout")
+		end
+		print("|cff82B4ff/eltruism detailshide|r - Toggles Details hiding out of combat")
+		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
+		print("|cff82B4ff/eltruism gradient|r - Toggles gradient mode")
+		print("|cff82B4ff/eltruism transparent|r - Toggles unitframe transparent health")
+		print("|cff82B4ff/eltruism performance|r - Disables a number of functions in ElvUI and Eltruism to optimize performance")
+		print("|cff82B4ff/eltruism performancecvars|r - Applies several CVars to optimize performance")
+		print("|cff82B4ff/eltruism encountercheck|r - Toggles Encounter Check to improve performance during boss fights")
+		print("|cff82B4ff/eltruism togglemodels|r - Toggles several models to improve performance")
+		print("|cff82B4ff/eltruism universalborders|r - Toggles test mode to enable borders everywhere")
+		print("|cff82B4ff/eltruism universalshadows|r - Toggles test mode to enable shadows everywhere")
+		print("|cff82B4ff/eltruism modeldebug|r - Prints target 3D model portrait ID")
+		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
+		print("|cff82B4ff/eltruism screenshotcomparison|r - Takes multiple screenshots at different resolutions")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
 		if E.Modern then
 			if not IsAddOnLoaded("TomTom") then
@@ -374,19 +397,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			print("|cff82B4ff/!key and /!keys|r - Links your keystone in chat")
 		end
 		print("|cff82B4ff/eltruism background|r - Toggles between grey and black background")
-		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
-		print("|cff82B4ff/eltruism gradient|r - Toggles gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
-		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
-		print("|cff82B4ff/eltruism update|r - Resets/Updates Eltruism Settings to Eltreum's Defaults")
-		print("|cff82B4ff/eltruism detailshide|r - Toggles Details hiding out of combat")
-		if ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
-			print("|cff82B4ff/eltruism autoadjust|r - Toggles Borders automatically adjusting the layout")
-		end
-		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
-		print("|cff82B4ff/eltruism elvuiskin|r - Toggles ElvUI Skin")
-		print("|cff82B4ff/eltruism paging|r - Swaps Actionbar paging between Bar 1 and Bar4, otherwise resets to Bar4")
-		print("|cff82B4ff/eltruism autoupdate|r - Enables automatically updating Eltruism settings")
 	end
 end
 
