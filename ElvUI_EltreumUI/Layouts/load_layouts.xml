@@ -3,6 +3,6 @@
 	<Script file='LayoutHealer.lua'/>
 	<Script file='LayoutDPS.lua'/>
 	<Script file='LayoutThin.lua'/>
-	<Script file='WALikeAB.lua'/>
+	<Script file='LayoutWeakAuraAB.lua'/>
 	<Script file='LayoutNameplates.lua'/>
 </Ui>
