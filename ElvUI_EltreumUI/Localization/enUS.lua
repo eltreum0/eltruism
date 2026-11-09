@@ -1727,3 +1727,6 @@ L["Aspect Ratio"] = true
 L["Widescreen"] = true
 L["Standard"] = true
 L["Ultrawide"] = true
+L["Eltruism uses Fading of UnitFrames and ActionBars by default"] = true
+L["ElvUI Fader disabled"] = true
+L["ElvUI Fader enabled"] = true
