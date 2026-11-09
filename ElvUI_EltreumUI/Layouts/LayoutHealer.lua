@@ -772,7 +772,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
-	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
+	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 	E.db["unitframe"]["units"]["pet"]["width"] = 98
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 98
 	if width == 1920 then
@@ -822,8 +822,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 267
 	E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["player"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 	E.db["unitframe"]["units"]["player"]["debuffs"]["xOffset"] = 0
-	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -2
+	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -32
 	E.db["unitframe"]["units"]["player"]["debuffs"]["anchorPoint"] = "BOTTOM"
 	E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["player"]["debuffs"]["countXOffset"] = 2
@@ -1102,6 +1103,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["target"]["aurabar"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 	E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 	E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 	E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "FRAME"
@@ -1162,7 +1164,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 2
 	E.db["unitframe"]["units"]["target"]["debuffs"]["perrow"] = 6
 	E.db["unitframe"]["units"]["target"]["debuffs"]["xOffset"] = 0
-	E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = -2
+	E.db["unitframe"]["units"]["target"]["debuffs"]["yOffset"] = -32
 	E.db["unitframe"]["units"]["target"]["fader"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"
