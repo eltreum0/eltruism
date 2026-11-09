@@ -5,11 +5,14 @@ local next = _G.next
 local select = _G.select
 local Enum = _G.Enum
 local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
 local InCombatLockdown = _G.InCombatLockdown
+local UnitCanAssist = _G.UnitCanAssist
+local UnitIsUnit = _G.UnitIsUnit
+local UnitExists = _G.UnitExists
+local issecretvalue = _G.issecretvalue
 
+--glow dispellable debuffs
 if not E.Modern then
-	--glow dispellable debuffs
 	function ElvUI_EltreumUI:UFGlow(_, frame, _, _, debuffType, _, wasFiltered)
 		if not frame or not frame.GetName then return end
 		local db = E.db.ElvUI_EltreumUI
@@ -47,7 +50,7 @@ if not E.Modern then
 			frame.EltruismDebuffExists = false
 		end
 	end
-	ElvUI_EltreumUI:SecureHook(UF, "PostUpdate_AuraHighlight", "UFGlow")
+	ElvUI_EltreumUI:SecureHook(UF, "PostUpdate_AuraHighlight", "UFGlow") --hook aura highlight updates to apply or remove custom dispel glow
 else
 	--return early
 	if not (E.private.unitframe.enable and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.glow and E.db.ElvUI_EltreumUI.glow.enableUFs) then return end
@@ -56,12 +59,15 @@ else
 	--https://www.townlong-yak.com/framexml/ptr/Blizzard_SharedXML/MarchingAnts.lua
 	local dispelContainers = {}
 	local combatQueue = {}
-	local emptyFilters = {}
 	local dispelTextureOptions = {
 		style = (Enum and Enum.CustomAuraButtonDispelTypeTextureStyle and Enum.CustomAuraButtonDispelTypeTextureStyle.PreserveAsset) or 1,
 		showWhenHarmful = true,
 		showWhenHelpful = false,
 	}
+	local dashOffset = 2
+	local dashThickness = 3
+	local defaultDashLen = 16
+	local dashAnimDuration = 0.75
 
 	--prevent marching ants from stopping animation or keeping scale events registered when hidden
 	local function DispelAntsResume(self)
@@ -70,11 +76,81 @@ else
 		end
 	end
 
+	--unregister scale and display events when marching ants border is hidden
 	local function DispelAntsOnHide(self)
 		self:UnregisterEvent("UI_SCALE_CHANGED")
 		self:UnregisterEvent("DISPLAY_SIZE_CHANGED")
 	end
 
+	--calculate and update pixel glow dash positions and offsets based on unitframe size
+
+	local function LayoutDashes(border)
+		if not border or InCombatLockdown() then return end
+		local frame = border.eltruismFrame
+		local target = border.eltruismTarget
+		if not frame or not target then return end
+
+		--fallback to elvui unitframe dimensions if target width or height is secret or zero
+		local w = target.GetWidth and target:GetWidth()
+		if not w or (issecretvalue and issecretvalue(w)) or w <= 0 then
+			w = (frame.UNIT_WIDTH and frame.UNIT_WIDTH > 0 and frame.UNIT_WIDTH) or (frame.db and frame.db.width) or 220
+		end
+		local h = target.GetHeight and target:GetHeight()
+		if not h or (issecretvalue and issecretvalue(h)) or h <= 0 then
+			h = (frame.UNIT_HEIGHT and frame.UNIT_HEIGHT > 0 and frame.UNIT_HEIGHT) or (frame.db and frame.db.height) or 45
+		end
+
+		--skip dash layout update if dimensions have not changed
+		if border._lastW == w and border._lastH == h then return end
+		border._lastW = w
+		border._lastH = h
+
+		local stepTop = (w + (dashOffset * 2)) / 3
+		local stepRight = (h + (dashOffset * 2)) / 2
+		local hDashLen = (stepTop < defaultDashLen and stepTop) or defaultDashLen
+		local vDashLen = (stepRight < defaultDashLen and stepRight) or defaultDashLen
+
+		local texs = border.dashTextures
+		local anims = border.dashAnims
+
+		--top edge dashes moving left to right
+		for i = 1, 4 do
+			local tex = texs[i]
+			tex:SetSize(hDashLen, dashThickness)
+			tex:ClearAllPoints()
+			tex:SetPoint("TOPLEFT", border, "TOPLEFT", (i - 2) * stepTop, 0)
+			anims[i]:SetOffset(stepTop, 0)
+		end
+
+		--right edge dashes moving top to bottom
+		for i = 5, 7 do
+			local tex = texs[i]
+			tex:SetSize(dashThickness, vDashLen)
+			tex:ClearAllPoints()
+			tex:SetPoint("TOPRIGHT", border, "TOPRIGHT", 0, (6 - i) * stepRight)
+			anims[i]:SetOffset(0, -stepRight)
+		end
+
+		--bottom edge dashes moving right to left
+		for i = 8, 11 do
+			local tex = texs[i]
+			tex:SetSize(hDashLen, dashThickness)
+			tex:ClearAllPoints()
+			tex:SetPoint("BOTTOMRIGHT", border, "BOTTOMRIGHT", (9 - i) * stepTop, 0)
+			anims[i]:SetOffset(-stepTop, 0)
+		end
+
+		--left edge dashes moving bottom to top
+		for i = 12, 14 do
+			local tex = texs[i]
+			tex:SetSize(dashThickness, vDashLen)
+			tex:ClearAllPoints()
+			tex:SetPoint("BOTTOMLEFT", border, "BOTTOMLEFT", 0, (i - 13) * stepRight)
+			anims[i]:SetOffset(0, stepRight)
+		end
+	end
+
+	--configure the invisible dispel slot button and attach the marching ants or pixel glow border
 	local function SetupDispelGlowButton(frame, auraButton)
 		if not frame or not auraButton or auraButton.EltruismUFGlowBorder then return end
 
@@ -103,7 +179,81 @@ else
 			auraButton.backdrop:Hide()
 		end
 
-		--create marching ants border from xml template in load_libs.xml
+		if E.Forever then
+			--recreate pixel glow marching ants in forever since blizzard marching ants atlas is missing
+			local border = CreateFrame("Frame", nil, auraButton)
+			border:EnableMouse(false)
+			if border.SetMouseClickEnabled then
+				border:SetMouseClickEnabled(false)
+			end
+			if border.SetMouseMotionEnabled then
+				border:SetMouseMotionEnabled(false)
+			end
+			if border.SetClipsChildren then
+				border:SetClipsChildren(true)
+			end
+
+			--anchor pixel glow border around health backdrop or health bar
+			local target = (frame.Health and (frame.Health.backdrop or frame.Health)) or frame
+			border.eltruismFrame = frame
+			border.eltruismTarget = target
+			border.UpdateDashes = LayoutDashes
+
+			border:ClearAllPoints()
+			border:SetPoint("TOPLEFT", target, "TOPLEFT", -dashOffset, dashOffset)
+			border:SetPoint("BOTTOMRIGHT", target, "BOTTOMRIGHT", dashOffset, -dashOffset)
+
+			--create repeating animation group for the pixel glow dashes
+			local animGroup = border:CreateAnimationGroup()
+			animGroup:SetLooping("REPEAT")
+			border.AnimGroup = animGroup
+
+			local texs = {}
+			local anims = {}
+			border.dashTextures = texs
+			border.dashAnims = anims
+
+			for i = 1, 14 do
+				local dash = border:CreateTexture(nil, "OVERLAY")
+				dash:SetTexture(E.media.blankTex)
+				local anim = animGroup:CreateAnimation("Translation")
+				anim:SetTarget(dash)
+				anim:SetDuration(dashAnimDuration)
+				texs[i] = dash
+				anims[i] = anim
+			end
+
+			LayoutDashes(border)
+
+			--bind animation group playback to the aura slot visibility
+			if auraButton.AddAuraShownAnimation then
+				auraButton:AddAuraShownAnimation(animGroup)
+			end
+
+			if auraButton.AddDispelTypeTexture then
+				if auraButton.ClearDispelTypeTextures then
+					auraButton:ClearDispelTypeTextures()
+				end
+				for i = 1, 14 do
+					auraButton:AddDispelTypeTexture(texs[i], dispelTextureOptions)
+				end
+			end
+
+			local borderParent = frame.RaisedElementParent or frame
+			local castLevel = borderParent and (borderParent.CastBarLevel or (borderParent.GetFrameLevel and borderParent:GetFrameLevel())) or 10
+			border:SetFrameStrata("HIGH")
+			border:SetFrameLevel(castLevel + 12)
+			border:SetAlpha(1)
+
+			auraButton.EltruismUFGlowBorder = border
+			frame.EltruismUFGlowBorder = border
+
+			border:Show()
+			auraButton:Hide()
+			return
+		end
+
+		--create marching ants border from xml template in load_libs.xml (Retail)
 		local border = CreateFrame("Frame", nil, auraButton, "Eltruism_DispelBorderTemplate")
 
 		border:SetClipsChildren(false)
@@ -132,7 +282,7 @@ else
 			auraButton:AddAuraShownAnimation(marchingAnim)
 		end
 
-		--bind the 4 border sides to blizzard's dispel type texture system so c++ colors/shows them by debuff type
+		--bind the 14 dash textures to blizzard's dispel type texture system so colors/shows them by debuff type
 		if auraButton.AddDispelTypeTexture then
 			if auraButton.ClearDispelTypeTextures then
 				auraButton:ClearDispelTypeTextures()
@@ -173,7 +323,7 @@ else
 		auraButton.EltruismUFGlowBorder = border
 		frame.EltruismUFGlowBorder = border
 
-		--hide the aura button itself while keeping the border shown so only the marching ants are visible
+		--hide the aura button itself while keeping the border shown so only the marching ants/pixel glow is visible
 		border:Show()
 		auraButton:Hide()
 	end
@@ -189,24 +339,18 @@ else
 		end
 	end
 
+	--register or update the dispellable debuff aura slot and candidate filters out of combat
 	local dispelSlotOptions = {
 		initializeFrame = InitializeDispelButton,
 	}
-
-	local function UpdateDispelGlowSlot(container, frame, unit)
+	local function UpdateDispelGlowSlot(container, frame)
 		if not container or not frame then return end
 
-		unit = unit or frame.__unit or frame.unit
-		if frame:IsShown() and unit and not container:IsShown() then
-			E:Auras_ToggleActive(container, unit, true)
-		end
-
-		--defer slot creation if the container is not shown yet
-		if not container:IsShown() then
-			container.eltruismNeedsSlot = true
+		--adding or updating aura slots in combat can fail/taint, so queue the frame for PLAYER_REGEN_ENABLED
+		if InCombatLockdown() then
+			combatQueue[frame] = container
 			return
 		end
-		container.eltruismNeedsSlot = nil
 
 		--resolve candidate filters for dispellable debuffs from elvui
 		local filters
@@ -215,9 +359,10 @@ else
 			if E.Auras_CleanCandidates then
 				E:Auras_CleanCandidates(container, filters)
 			end
-			filters = container.candidates or filters or emptyFilters
-		else
-			filters = emptyFilters
+			filters = container.candidates or filters
+		end
+		if filters and not next(filters) then
+			filters = nil
 		end
 
 		--update existing slot filters when dispellable types change (e.g. talent change)
@@ -231,12 +376,6 @@ else
 			return
 		end
 
-		--adding aura slots in combat can fail/taint, so queue the frame for PLAYER_REGEN_ENABLED
-		if InCombatLockdown() then
-			combatQueue[frame] = container
-			return
-		end
-
 		dispelSlotOptions.candidateFilters = filters
 		container:AddAuraSlot("EltruismUFGlowSlot", "HARMFUL|DISPELLABLE", dispelSlotOptions)
 		container.known.EltruismUFGlowSlot = true
@@ -245,30 +384,51 @@ else
 		end
 	end
 
-	--sync container active state and pending slots when frames are shown or hidden
-	local function OnContainerShow(container)
-		if container.eltruismNeedsSlot and container.eltruismFrame then
-			UpdateDispelGlowSlot(container, container.eltruismFrame)
-		end
-	end
-
-	local function OnFrameShow(frame)
+	--toggle the dispel glow aura container based on unit existence and assist state
+	local function RefreshFrameGlow(frame, unit)
+		if not frame or not frame.Health then return end
 		local container = frame.EltruismUFGlowContainer
-		local unit = frame.__unit or frame.unit
-		if container and unit then
+		if not container then return end
+
+		unit = unit or frame.__unit or frame.unit
+		local frameShown = frame:IsShown()
+		if issecretvalue and issecretvalue(frameShown) then
+			frameShown = true
+		end
+
+		--verify unit exists and can be assisted while guarding against secret values
+		local canAssist = false
+		if frameShown and unit and not (issecretvalue and issecretvalue(unit)) then
+			local unitExists = UnitExists(unit)
+			if not (issecretvalue and issecretvalue(unitExists)) and unitExists then
+				if unit == "player" then
+					canAssist = true
+				else
+					local assist = UnitCanAssist("player", unit)
+					if not (issecretvalue and issecretvalue(assist)) and assist then
+						canAssist = true
+					else
+						local isPlayer = UnitIsUnit("player", unit)
+						if not (issecretvalue and issecretvalue(isPlayer)) and isPlayer then
+							canAssist = true
+						end
+					end
+				end
+			end
+		end
+
+		if canAssist then
+			container.canReach = true
+			container.canAssist = true
 			E:Auras_ToggleActive(container, unit, true)
-		end
-	end
-
-	local function OnFrameHide(frame)
-		local container = frame.EltruismUFGlowContainer
-		local unit = frame.__unit or frame.unit
-		if container and unit then
+		else
+			container.canReach = false
+			container.canAssist = false
 			E:Auras_ToggleActive(container, unit, false)
 		end
 	end
 
-	--create custom aura container on the unitframe for tracking dispellable debuffs
+	--create or retrieve the custom aura container on the unitframe for tracking dispellable debuffs
 	local function GetDispelGlowContainer(frame)
 		local container = frame.EltruismUFGlowContainer
 		if container then
@@ -288,18 +448,17 @@ else
 		end
 		container.candidates = container.candidates or {}
 
+		--anchor container to health backdrop and raise above health bar
 		local target = frame.Health.backdrop or frame.Health
 		container:ClearAllPoints()
 		container:SetAllPoints(target)
 		container.eltruismFrame = frame
 		container:SetFrameLevel((frame.Health:GetFrameLevel() or 10) + 20)
-
-		hooksecurefunc(container, "Show", OnContainerShow)
-
-		if not frame.EltruismUFGlowHooked then
-			hooksecurefunc(frame, "Show", OnFrameShow)
-			hooksecurefunc(frame, "Hide", OnFrameHide)
-			frame.EltruismUFGlowHooked = true
+		container.allowEnable = true
+		container.isHighlight = true
+		container.unitframeType = frame.unitframeType
+		if container.events then
+			container.events.isHighlight = true
 		end
 
 		frame.EltruismUFGlowContainer = container
@@ -307,6 +466,7 @@ else
 		return container
 	end
 
+	--configure dispel glow container and border when an elvui unitframe is updated
 	function ElvUI_EltreumUI:UFGlow_Configure(_, frame)
 		if not frame or not frame.Health then return end
 		if not (E.private.unitframe.enable and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.glow and E.db.ElvUI_EltreumUI.glow.enableUFs) then
@@ -315,39 +475,41 @@ else
 
 		local container = GetDispelGlowContainer(frame)
 		container.allowEnable = true
-		container.forceShowAuras = true
 		container.unitframeType = frame.unitframeType
 
+		--recalculate forever pixel glow dash offsets when unitframe is resized or reconfigured
+		if frame.EltruismUFGlowBorder and frame.EltruismUFGlowBorder.UpdateDashes then
+			frame.EltruismUFGlowBorder:UpdateDashes()
+		end
+
 		local unit = frame.__unit or frame.unit
-		if unit and frame:IsShown() then
-			E:Auras_ToggleActive(container, unit, true)
-		elseif unit then
-			E:Auras_GroupUnit(container, unit)
-		end
 
-		UpdateDispelGlowSlot(container, frame, unit)
+		UpdateDispelGlowSlot(container, frame)
+		RefreshFrameGlow(frame, unit)
 	end
 
+	--toggle dispel glow container active state when elvui toggles unitframe auras
 	function ElvUI_EltreumUI:UFGlow_Toggle(_, frame, unit, shown)
-		local container = frame and frame.EltruismUFGlowContainer
-		if not container then return end
+		if not frame or not frame.Health then return end
 		local targetUnit = unit or frame.__unit or frame.unit
-		if targetUnit then
-			E:Auras_ToggleActive(container, targetUnit, shown)
+		if shown == false then
+			local container = frame.EltruismUFGlowContainer
+			if container then
+				container.canReach = false
+				container.canAssist = false
+				E:Auras_ToggleActive(container, targetUnit, false)
+			end
+		else
+			RefreshFrameGlow(frame, targetUnit)
 		end
 	end
 
+	--toggle dispel glow container active state when elvui toggles unitframe auras
 	function ElvUI_EltreumUI:UFGlow_UpdateUnit(_, frame, unit)
-		local container = frame and frame.EltruismUFGlowContainer
-		if not container then return end
-		local targetUnit = unit or frame.__unit or frame.unit
-		if targetUnit and frame:IsShown() then
-			E:Auras_ToggleActive(container, targetUnit, true)
-		elseif targetUnit then
-			E:Auras_GroupUnit(container, targetUnit)
-		end
+		RefreshFrameGlow(frame, unit)
 	end
 
+	--update dispel slot candidate filters across all containers when dispellable types change
 	function ElvUI_EltreumUI:UFGlow_DispelUpdated()
 		if not (E.private.unitframe.enable and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.glow and E.db.ElvUI_EltreumUI.glow.enableUFs) then
 			return
@@ -373,12 +535,10 @@ else
 		end
 	end
 
+	--initialize or hide modern dispel glow across all individual and group unitframes
 	function ElvUI_EltreumUI:UFGlowModern()
 		if not (E.private.unitframe.enable and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.glow and E.db.ElvUI_EltreumUI.glow.enableUFs) then
-			for frame, container in next, dispelContainers do
-				if frame.EltruismUFGlowBorder then
-					frame.EltruismUFGlowBorder:Hide()
-				end
+			for _, container in next, dispelContainers do
 				if container:IsShown() then
 					container:Hide()
 				end
@@ -386,30 +546,16 @@ else
 			return
 		end
 
+		--configure individual unitframes registered in elvui
 		if UF.units then
 			for _, frame in next, UF.units do
 				if frame and frame.Health then
 					ElvUI_EltreumUI:UFGlow_Configure(nil, frame)
 				end
 			end
-		else
-			if _G.ElvUF_Player then
-				ElvUI_EltreumUI:UFGlow_Configure(nil, _G.ElvUF_Player)
-			end
-			if _G.ElvUF_Target then
-				ElvUI_EltreumUI:UFGlow_Configure(nil, _G.ElvUF_Target)
-			end
-			if _G.ElvUF_TargetTarget then
-				ElvUI_EltreumUI:UFGlow_Configure(nil, _G.ElvUF_TargetTarget)
-			end
-			if _G.ElvUF_Focus then
-				ElvUI_EltreumUI:UFGlow_Configure(nil, _G.ElvUF_Focus)
-			end
-			if _G.ElvUF_Pet then
-				ElvUI_EltreumUI:UFGlow_Configure(nil, _G.ElvUF_Pet)
-			end
 		end
 
+		--configure group header unitframes (party, raid, boss, arena)
 		if UF.headers then
 			for _, header in next, UF.headers do
 				if header.GetChildren then
@@ -420,28 +566,67 @@ else
 	end
 
 	--hooks into elvui unitframe and aura container lifecycle
-	ElvUI_EltreumUI:SecureHook(UF, "ConfigureFrame", "UFGlow_Configure")
-	ElvUI_EltreumUI:SecureHook(UF, "Auras_ToggleContainer", "UFGlow_Toggle")
-	ElvUI_EltreumUI:SecureHook(UF, "Configure_UnitAuras", "UFGlow_UpdateUnit")
-	ElvUI_EltreumUI:SecureHook(E, "Auras_DispelUpdated", "UFGlow_DispelUpdated")
+	ElvUI_EltreumUI:SecureHook(UF, "ConfigureFrame", "UFGlow_Configure") --hook unitframe configuration to setup or update the dispel glow container and border
+	ElvUI_EltreumUI:SecureHook(UF, "Auras_ToggleContainer", "UFGlow_Toggle")--hook aura container toggling to sync the dispel glow active state
+	ElvUI_EltreumUI:SecureHook(UF, "Configure_UnitAuras", "UFGlow_UpdateUnit")--hook unit aura configuration to refresh the dispel glow for the frame unit
+	ElvUI_EltreumUI:SecureHook(E, "Auras_DispelUpdated", "UFGlow_DispelUpdated")--hook dispel list updates to refresh candidate filters when dispellable types change
 
+	--event frame to handle combat lockdown queue and target/focus unit changes in forever
 	local dispelGlowEvents = CreateFrame("FRAME")
 	dispelGlowEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 	dispelGlowEvents:RegisterEvent("PLAYER_REGEN_ENABLED")
-	dispelGlowEvents:SetScript("OnEvent", function(_, event)
+	if E.Forever then
+		dispelGlowEvents:RegisterEvent("PLAYER_TARGET_CHANGED")
+		dispelGlowEvents:RegisterUnitEvent("UNIT_TARGET", "target", "focus")
+		dispelGlowEvents:RegisterEvent("PLAYER_FOCUS_CHANGED")
+	end
+	dispelGlowEvents:SetScript("OnEvent", function(_, event, arg1)
 		if event == "PLAYER_REGEN_ENABLED" then
 			--process any frames that were queued during combat
 			if next(combatQueue) then
 				for frame, container in next, combatQueue do
 					combatQueue[frame] = nil
 					UpdateDispelGlowSlot(container, frame)
+					RefreshFrameGlow(frame)
 				end
 			end
 		elseif event == "PLAYER_ENTERING_WORLD" then
 			ElvUI_EltreumUI:UFGlowModern()
+		--forever only events
+		elseif event == "PLAYER_TARGET_CHANGED" then --refresh target and target of target frames when player target changes
+			if _G.ElvUF_Target then
+				RefreshFrameGlow(_G.ElvUF_Target, "target")
+			end
+			if _G.ElvUF_TargetTarget then
+				RefreshFrameGlow(_G.ElvUF_TargetTarget, "targettarget")
+			end
+			if _G.ElvUF_TargetTargetTarget then
+				RefreshFrameGlow(_G.ElvUF_TargetTargetTarget, "targettargettarget")
+			end
+		elseif event == "UNIT_TARGET" then --refresh target of target or focus target frames when their unit target changes
+			if arg1 == "target" then
+				if _G.ElvUF_TargetTarget then
+					RefreshFrameGlow(_G.ElvUF_TargetTarget, "targettarget")
+				end
+				if _G.ElvUF_TargetTargetTarget then
+					RefreshFrameGlow(_G.ElvUF_TargetTargetTarget, "targettargettarget")
+				end
+			elseif arg1 == "focus" then
+				if _G.ElvUF_FocusTarget then
+					RefreshFrameGlow(_G.ElvUF_FocusTarget, "focustarget")
+				end
+			end
+		elseif event == "PLAYER_FOCUS_CHANGED" then --refresh focus and focus target frames when player focus changes
+			if _G.ElvUF_Focus then
+				RefreshFrameGlow(_G.ElvUF_Focus, "focus")
+			end
+			if _G.ElvUF_FocusTarget then
+				RefreshFrameGlow(_G.ElvUF_FocusTarget, "focustarget")
+			end
 		end
 	end)
 
+	--initialize immediately if elvui unitframes are already loaded
 	if UF.Initialized then
 		ElvUI_EltreumUI:UFGlowModern()
 	end
