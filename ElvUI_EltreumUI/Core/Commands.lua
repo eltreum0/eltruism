@@ -66,8 +66,10 @@ function ElvUI_EltreumUI:LoadCommands()
 	end
 end
 
-local function CommandList()
-	ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
+local function CommandList(unknown)
+	if unknown then
+		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
+	end
 	print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
 	print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
 	print("|cff82B4ff/eltruism options/config|r - Opens Eltruism Config")
@@ -404,7 +406,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'help' then
 		CommandList()
 	else
-		CommandList()
+		CommandList(true)
 	end
 end
 
