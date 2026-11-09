@@ -336,6 +336,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif message == 'fader' then
 		ElvUI_EltreumUI:ToggleFader()
+		E:StaticPopup_Show('CONFIG_RL')
 	elseif message == 'screenshotcomparison' then
 		ElvUI_EltreumUI:Print("Taking multiple screenshots with a delay due to the API, please wait")
 		E:Delay(0, function()
