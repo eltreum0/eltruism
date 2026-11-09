@@ -38,6 +38,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		ElvUI_EltreumUI:GetWindToolsProfile()
+		E.db["movers"]["WTRaidMarkersBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	end
 
 	--tag update rate
@@ -171,6 +172,48 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	--aura filtering
 	ElvUI_EltreumUI:SetupAllAuras("Minimal")
+
+	-- Auras
+	E.db["auras"]["buffs"]["barColor"]["b"] = 0.86666476726532
+	E.db["auras"]["buffs"]["barColor"]["g"] = 0.4392147064209
+	E.db["auras"]["buffs"]["barNoDuration"] = false
+	E.db["auras"]["buffs"]["barPosition"] = "LEFT"
+	E.db["auras"]["buffs"]["barShow"] = false
+	E.db["auras"]["buffs"]["barSize"] = 6
+	E.db["auras"]["buffs"]["barSpacing"] = 0
+	E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+	E.db["auras"]["buffs"]["countFont"] = "Kimberley"
+	E.db["auras"]["buffs"]["countFontOutline"] = "THICKOUTLINE"
+	E.db["auras"]["buffs"]["countFontSize"] = 12
+	E.db["auras"]["buffs"]["fadeThreshold"] = 10
+	E.db["auras"]["buffs"]["horizontalSpacing"] = 7
+	E.db["auras"]["buffs"]["maxWraps"] = 2
+	E.db["auras"]["buffs"]["size"] = 32
+	E.db["auras"]["buffs"]["sortDir"] = "+"
+	E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
+	E.db["auras"]["buffs"]["timeFontOutline"] = "THICKOUTLINE"
+	E.db["auras"]["buffs"]["timeFontSize"] = 12
+	E.db["auras"]["buffs"]["verticalSpacing"] = 14
+	E.db["auras"]["buffs"]["wrapAfter"] = 10
+	E.db["auras"]["debuffs"]["barColor"]["b"] = 0.86666476726532
+	E.db["auras"]["debuffs"]["barColor"]["g"] = 0.4392147064209
+	E.db["auras"]["debuffs"]["barNoDuration"] = false
+	E.db["auras"]["debuffs"]["barPosition"] = "LEFT"
+	E.db["auras"]["debuffs"]["barShow"] = false
+	E.db["auras"]["debuffs"]["barSize"] = 6
+	E.db["auras"]["debuffs"]["barSpacing"] = 0
+	E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+	E.db["auras"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["auras"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
+	E.db["auras"]["debuffs"]["countFontSize"] = 12
+	E.db["auras"]["debuffs"]["horizontalSpacing"] = 7
+	E.db["auras"]["debuffs"]["size"] = 32
+	E.db["auras"]["debuffs"]["sortDir"] = "+"
+	E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
+	E.db["auras"]["debuffs"]["timeFontOutline"] = "THICKOUTLINE"
+	E.db["auras"]["debuffs"]["timeFontSize"] = 12
+	E.db["auras"]["debuffs"]["verticalSpacing"] = 14
+	E.db["auras"]["debuffs"]["wrapAfter"] = 10
 
 	-- aura sorting
 	E.db["auras"]["buffs"]["sortMethod"] = "INDEX"
@@ -666,6 +709,31 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["focus"]["power"]["powerPrediction"] = true
 
 	--movers
+	E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
+	E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
+	E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,205"
+	E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
+	E.db["movers"]["ElvUF_FocusCastbarMover"] = "TOP,ElvUIParent,TOP,0,-168"
+	E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
+	E.db["movers"]["MawBuffsBelowMinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-260"
+	E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,0"
+	E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
+	E.db["movers"]["GMMover"] = "TOP,ElvUIParent,TOP,239,-3"
+	E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,0"
+	E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
+	E.db["movers"]["PetBattleABMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
+	E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"
+	E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
+	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-100"
+	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
+	E.db["movers"]["ThreatBarMover"] = "TOP,ElvUIParent,TOP,0,-42"
+	E.db["movers"]["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-67"
+	E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
+	if E.Modern then
+		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
+	else
+		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-145"
+	end
 	E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-146,-21"
 	E.db["movers"]["MoverRaidWarningFrame"] = "TOP,ElvUIParent,TOP,0,-182"
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
@@ -794,7 +862,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["sortDirection"] = "DESCENDING"
-	E.db["general"]["totems"]["spacing"] = 3
+	E.db["general"]["totems"]["spacing"] = 5
 	E.db["general"]["valuecolor"]["b"] = valuecolors.b
 	E.db["general"]["valuecolor"]["g"] = valuecolors.g
 	E.db["general"]["valuecolor"]["r"] = valuecolors.r
@@ -1259,62 +1327,761 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["tooltip"]["itemQuality"] = true
 
 	-- ActionBars general
-	E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
-	E.db["actionbar"]["bar2"]["inheritGlobalFade"] = true
-	E.db["actionbar"]["bar3"]["inheritGlobalFade"] = true
-	E.db["actionbar"]["bar4"]["inheritGlobalFade"] = true
-	E.db["actionbar"]["bar5"]["inheritGlobalFade"] = true
-	E.db["actionbar"]["barPet"]["inheritGlobalFade"] = true
-	E.db["actionbar"]["bar6"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["bar7"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["bar8"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["bar9"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["bar10"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
-	E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
+	ElvUI_EltreumUI:ClearActionBarPaging(1)
+	E.db["actionbar"]["addNewSpells"] = true
+	E.db["actionbar"]["chargeCooldown"] = true
+	E.db["actionbar"]["desaturateOnCooldown"] = true
 	E.db["actionbar"]["equippedItem"] = false
-
-	E.db["actionbar"]["bar1"]["hotkeytext"] = true
-	E.db["actionbar"]["bar2"]["hotkeytext"] = true
-	E.db["actionbar"]["bar3"]["hotkeytext"] = true
-	E.db["actionbar"]["bar4"]["hotkeytext"] = true
-	E.db["actionbar"]["bar5"]["hotkeytext"] = true
-	E.db["actionbar"]["bar6"]["hotkeytext"] = true
-	E.db["actionbar"]["bar1"]["counttext"] = true
-	E.db["actionbar"]["bar2"]["counttext"] = true
-	E.db["actionbar"]["bar3"]["counttext"] = true
-	E.db["actionbar"]["bar4"]["counttext"] = true
-	E.db["actionbar"]["bar5"]["counttext"] = true
-	E.db["actionbar"]["bar6"]["counttext"] = true
-	E.db["actionbar"]["bar1"]["heightMult"] = 1
-	E.db["actionbar"]["bar2"]["heightMult"] = 1
-	E.db["actionbar"]["bar3"]["heightMult"] = 1
-	E.db["actionbar"]["bar4"]["heightMult"] = 1
-	E.db["actionbar"]["bar5"]["heightMult"] = 1
-	E.db["actionbar"]["bar6"]["heightMult"] = 1
-	E.db["actionbar"]["bar1"]["backdrop"] = false
-	E.db["actionbar"]["bar2"]["backdrop"] = false
-	E.db["actionbar"]["bar3"]["backdrop"] = false
-	E.db["actionbar"]["bar4"]["backdrop"] = false
-	E.db["actionbar"]["bar5"]["backdrop"] = false
-	E.db["actionbar"]["bar6"]["backdrop"] = false
-	E.db["actionbar"]["barPet"]["buttons"] = 10
-	E.db["actionbar"]["stanceBar"]["backdrop"] = false
+	E.db["actionbar"]["font"] = "Kimberley"
+	E.db["actionbar"]["globalFadeAlpha"] = 1
+	E.db["actionbar"]["lockActionBars"] = true
 	E.db["actionbar"]["noRangeColor"]["b"] = 0.11764705882353
 	E.db["actionbar"]["noRangeColor"]["g"] = 0.11764705882353
 	E.db["actionbar"]["noRangeColor"]["r"] = 1
+	E.db["actionbar"]["rightClickSelfCast"] = true
+	E.db["actionbar"]["transparent"] = true
+	E.db["actionbar"]["useDrawSwipeOnCharges"] = true
+
+	-- Bar 1
+	E.db["actionbar"]["bar1"]["backdrop"] = false
+	E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
+	E.db["actionbar"]["bar1"]["buttons"] = 7
+	E.db["actionbar"]["bar1"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar1"]["counttext"] = true
+	E.db["actionbar"]["bar1"]["heightMult"] = 1
+	E.db["actionbar"]["bar1"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar1"]["hotkeytext"] = true
+	E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar1"]["keepSizeRatio"] = false
+	E.db["actionbar"]["bar1"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 2
+	E.db["actionbar"]["bar2"]["backdrop"] = false
+	E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
+	E.db["actionbar"]["bar2"]["buttons"] = 12
+	E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar2"]["counttext"] = true
+	E.db["actionbar"]["bar2"]["enabled"] = true
+	E.db["actionbar"]["bar2"]["heightMult"] = 1
+	E.db["actionbar"]["bar2"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar2"]["hotkeytext"] = true
+	E.db["actionbar"]["bar2"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar2"]["keepSizeRatio"] = false
+	E.db["actionbar"]["bar2"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 3
+	E.db["actionbar"]["bar3"]["backdrop"] = false
+	E.db["actionbar"]["bar3"]["buttonSpacing"] = 3
+	E.db["actionbar"]["bar3"]["buttons"] = 12
+	E.db["actionbar"]["bar3"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar3"]["counttext"] = true
+	E.db["actionbar"]["bar3"]["heightMult"] = 1
+	E.db["actionbar"]["bar3"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar3"]["hotkeytext"] = true
+	E.db["actionbar"]["bar3"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar3"]["keepSizeRatio"] = false
+	E.db["actionbar"]["bar3"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar3"]["mouseover"] = false
+	E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 4
+	E.db["actionbar"]["bar4"]["backdrop"] = false
+	E.db["actionbar"]["bar4"]["buttonSpacing"] = 3
+	E.db["actionbar"]["bar4"]["buttons"] = 12
+	E.db["actionbar"]["bar4"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar4"]["counttext"] = true
+	E.db["actionbar"]["bar4"]["heightMult"] = 1
+	E.db["actionbar"]["bar4"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar4"]["hotkeytext"] = true
+	E.db["actionbar"]["bar4"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar4"]["keepSizeRatio"] = false
+	E.db["actionbar"]["bar4"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar4"]["mouseover"] = false
+	E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
+
+	-- Bar 5
+	E.db["actionbar"]["bar5"]["backdrop"] = false
+	E.db["actionbar"]["bar5"]["buttons"] = 12
+	E.db["actionbar"]["bar5"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar5"]["counttext"] = true
+	E.db["actionbar"]["bar5"]["heightMult"] = 1
+	E.db["actionbar"]["bar5"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar5"]["hotkeytext"] = true
+	E.db["actionbar"]["bar5"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar5"]["keepSizeRatio"] = false
+	E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 6
+	E.db["actionbar"]["bar6"]["alpha"] = 1
+	E.db["actionbar"]["bar6"]["backdrop"] = false
+	E.db["actionbar"]["bar6"]["buttonHeight"] = 24
+	E.db["actionbar"]["bar6"]["buttons"] = 12
+	E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar6"]["countFontOutline"] = "THICKOUTLINE"
+	E.db["actionbar"]["bar6"]["counttext"] = true
+	E.db["actionbar"]["bar6"]["enabled"] = true
+	E.db["actionbar"]["bar6"]["flyoutDirection"] = "UP"
+	E.db["actionbar"]["bar6"]["heightMult"] = 1
+	E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "THICKOUTLINE"
+	E.db["actionbar"]["bar6"]["hotkeytext"] = true
+	E.db["actionbar"]["bar6"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar6"]["keepSizeRatio"] = false
+	E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar6"]["macroFontOutline"] = "THICKOUTLINE"
+	E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
+	E.db["actionbar"]["bar6"]["macroTextYOffset"] = 2
+	E.db["actionbar"]["bar6"]["macrotext"] = true
+	E.db["actionbar"]["bar6"]["mouseover"] = true
+
+	-- Bar 7
+	E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar7"]["enabled"] = false
+	E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar7"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 8
+	E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar8"]["enabled"] = false
+	E.db["actionbar"]["bar8"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar8"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar8"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 9
+	E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar9"]["enabled"] = false
+	E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar9"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Bar 10
+	E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar10"]["enabled"] = false
+	E.db["actionbar"]["bar10"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar10"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar10"]["macroFont"] = "Kimberley"
+
+	-- Pet Bar
+	E.db["actionbar"]["barPet"]["buttons"] = 10
+	E.db["actionbar"]["barPet"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["barPet"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["barPet"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["barPet"]["keepSizeRatio"] = false
+
+	-- Stance Bar
+	E.db["actionbar"]["stanceBar"]["backdrop"] = false
+	E.db["actionbar"]["stanceBar"]["buttonHeight"] = 20
+	E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
+	E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
+	E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["stanceBar"]["keepSizeRatio"] = false
+	E.db["actionbar"]["stanceBar"]["style"] = "classic"
+	E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+	-- Microbar
+	E.db["actionbar"]["microbar"]["backdrop"] = true
+	E.db["actionbar"]["microbar"]["buttonHeight"] = 25
+	E.db["actionbar"]["microbar"]["buttonSize"] = 22
+	E.db["actionbar"]["microbar"]["buttonSpacing"] = 0
+	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 11
+	E.db["actionbar"]["microbar"]["enabled"] = false
+	E.db["actionbar"]["microbar"]["mouseover"] = true
+	E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
+
+	-- Special Action Buttons
+	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.7
+	E.db["actionbar"]["extraActionButton"]["clean"] = true
+	E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+	E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["extraActionButton"]["scale"] = 0.7
+	E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["zoneActionButton"]["alpha"] = 0.7
+	E.db["actionbar"]["zoneActionButton"]["clean"] = true
+	E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.7
 
 	--unitframes general
-	E.db["unitframe"]["units"]["focus"]["width"] = 190
-	E.db["unitframe"]["units"]["player"]["width"] = 270
-	E.db["unitframe"]["units"]["target"]["width"] = 270
-	E.db["unitframe"]["units"]["targettarget"]["width"] = 130
+	-- set Dynamic Status Icons
+	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["faceright"] = true
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Traveler"
+		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["scale"] = 0.8
+		E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMLEFT"
+		E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
+		E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
+		E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
+		E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Clockwork"
+		E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["scale"] = 0.8
+	end
+
+	-- Arena
 	E.db["unitframe"]["units"]["arena"]["width"] = 250
+	E.db["unitframe"]["units"]["arena"]["height"] = 50
+	E.db["unitframe"]["units"]["arena"]["spacing"] = 10
+	E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["arena"]["fader"]["minAlpha"] = 0.8
+	E.db["unitframe"]["units"]["arena"]["middleClickFocus"] = true
+	E.db["unitframe"]["units"]["arena"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["arena"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["arena"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["arena"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["arena"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["arena"]["buffs"]["perrow"] = 6
+	E.db["unitframe"]["units"]["arena"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["arena"]["buffs"]["xOffset"] = -3
+	E.db["unitframe"]["units"]["arena"]["buffs"]["yOffset"] = 14
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["anchorPoint"] = "BOTTOM"
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["attachTo"] = "BUFFS"
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["perrow"] = 6
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = -4
+	E.db["unitframe"]["units"]["arena"]["castbar"]["customColor"]["enable"] = true
+	E.db["unitframe"]["units"]["arena"]["castbar"]["height"] = 15
+	E.db["unitframe"]["units"]["arena"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+	E.db["unitframe"]["units"]["arena"]["castbar"]["strataAndLevel"]["frameStrata"] = "HIGH"
+	E.db["unitframe"]["units"]["arena"]["castbar"]["timeToHold"] = 0.6
+	E.db["unitframe"]["units"]["arena"]["castbar"]["width"] = 250
+	E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["arena"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["arena"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["arena"]["infoPanel"]["height"] = 15
+	E.db["unitframe"]["units"]["arena"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["arena"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["arena"]["portrait"]["style"] = "Class"
+	E.db["unitframe"]["units"]["arena"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["arena"]["power"]["height"] = 14
+	E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
+	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 50
+	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["yOffset"] = 8
+	E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 30
+
+	-- Assist
 	E.db["unitframe"]["units"]["assist"]["width"] = 120
+	E.db["unitframe"]["units"]["assist"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Kimberley"
+
+	-- Boss
 	E.db["unitframe"]["units"]["boss"]["width"] = 216
+	E.db["unitframe"]["units"]["boss"]["height"] = 45
+	E.db["unitframe"]["units"]["boss"]["spacing"] = 10
+	E.db["unitframe"]["units"]["boss"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["boss"]["threatStyle"] = "BORDERS"
+	E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+	E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
+	E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["boss"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["boss"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["growthX"] = "LEFT"
+	E.db["unitframe"]["units"]["boss"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["boss"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
+	E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
+	E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -1
+	E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["growthX"] = "LEFT"
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 2
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
+	E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -16
+	E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+	E.db["unitframe"]["units"]["boss"]["castbar"]["customColor"]["enable"] = true
+	E.db["unitframe"]["units"]["boss"]["fader"]["enable"] = false
+	E.db["unitframe"]["units"]["boss"]["fader"]["minAlpha"] = 0.3
+	E.db["unitframe"]["units"]["boss"]["fader"]["playertarget"] = true
+	E.db["unitframe"]["units"]["boss"]["fader"]["range"] = false
+	E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
+	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc:gradient]"
+	E.db["unitframe"]["units"]["boss"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["boss"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["boss"]["infoPanel"]["height"] = 12
+	E.db["unitframe"]["units"]["boss"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["boss"]["name"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["boss"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[name:eltruism:gradient]"
+	E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = true
+	E.db["unitframe"]["units"]["boss"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["boss"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["boss"]["portrait"]["overlayAlpha"] = 0.2
+	E.db["unitframe"]["units"]["boss"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["boss"]["power"]["height"] = 12
+	E.db["unitframe"]["units"]["boss"]["power"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["boss"]["power"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["boss"]["raidicon"]["attachTo"] = "CENTER"
+	E.db["unitframe"]["units"]["boss"]["raidicon"]["size"] = 24
+	E.db["unitframe"]["units"]["boss"]["raidicon"]["yOffset"] = 12
+
+	-- Focus
+	E.db["unitframe"]["units"]["focus"]["width"] = 190
+	E.db["unitframe"]["units"]["focus"]["height"] = 35
+	E.db["unitframe"]["units"]["focus"]["disableMouseoverGlow"] = true
+	E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
+	E.db["unitframe"]["units"]["focus"]["buffIndicator"]["size"] = 20
+	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
+	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["invertColors"] = false
+	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["useClassColor"] = true
+	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+	E.db["unitframe"]["units"]["focus"]["castbar"]["height"] = 30
+	E.db["unitframe"]["units"]["focus"]["castbar"]["strataAndLevel"]["frameStrata"] = "DIALOG"
+	E.db["unitframe"]["units"]["focus"]["castbar"]["timeToHold"] = 0.6
+	E.db["unitframe"]["units"]["focus"]["castbar"]["width"] = 333
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["anchorPoint"] = "TOP"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["focus"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:class:player] [eltruism:raidmarker]"
+	E.db["unitframe"]["units"]["focus"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["focus"]["power"]["height"] = 14
+	E.db["unitframe"]["units"]["focus"]["power"]["position"] = "RIGHT"
+	E.db["unitframe"]["units"]["focus"]["power"]["text_format"] = "[powercolor][power:current:shortvalue]"
+	E.db["unitframe"]["units"]["focus"]["power"]["width"] = "spaced"
+	E.db["unitframe"]["units"]["focus"]["power"]["xOffset"] = -7
+
+	-- Party
 	E.db["unitframe"]["units"]["party"]["width"] = 200
+	E.db["unitframe"]["units"]["party"]["height"] = 60
+	E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["party"]["groupBy"] = "ROLE"
+	E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
+	E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
+	E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["party"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["party"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["party"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 6
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["transparent"] = false
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useClassColor"] = true
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+	E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["castbar"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["castbar"]["height"] = 15
+	E.db["unitframe"]["units"]["party"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+	E.db["unitframe"]["units"]["party"]["castbar"]["positionsGroup"]["anchorPoint"] = "LEFT"
+	E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["b"] = 1
+	E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["g"] = 1
+	E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["r"] = 1
+	E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 0.6
+	E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
+	E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
+	E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontSize"] = 10
+	E.db["unitframe"]["units"]["party"]["debuffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["party"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["party"]["debuffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["party"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["party"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["party"]["debuffs"]["numrows"] = 2
+	E.db["unitframe"]["units"]["party"]["health"]["position"] = "RIGHT"
+	E.db["unitframe"]["units"]["party"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["party"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["party"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["party"]["name"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["party"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["party"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["party"]["portrait"]["desaturation"] = 0.7
+	E.db["unitframe"]["units"]["party"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["party"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["party"]["portrait"]["paused"] = true
+	E.db["unitframe"]["units"]["party"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["party"]["power"]["text_format"] = ""
+	E.db["unitframe"]["units"]["party"]["power"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["scale"] = 1
+	E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["party"]["raidicon"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["raidicon"]["yOffset"] = 0
+	E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["party"]["petsGroup"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["petsGroup"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["petsGroup"]["healPrediction"]["enable"] = true
+
+	-- Pet
+	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
+	E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
+	E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
+	E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
+	E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "FRAME"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+	E.db["unitframe"]["units"]["pet"]["buffs"]["growthX"] = "LEFT"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["pet"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 1
+	E.db["unitframe"]["units"]["pet"]["buffs"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["b"] = 0
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["g"] = 0.50588235294118
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["r"] = 0.86274509803922
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["enable"] = true
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["invertColors"] = false
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["transparent"] = false
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useClassColor"] = true
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+	E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 15
+	E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
+	E.db["unitframe"]["units"]["pet"]["castbar"]["timeToHold"] = 0.6
+	E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["health"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["hover"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["minAlpha"] = 0
+	E.db["unitframe"]["units"]["pet"]["fader"]["playertarget"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["power"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["range"] = false
+	E.db["unitframe"]["units"]["pet"]["fader"]["unittarget"] = true
+	E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
+	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
+	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
+
+	-- Player
+	E.db["unitframe"]["units"]["player"]["width"] = 270
+	E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
+	E.db["unitframe"]["units"]["player"]["healPrediction"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "REVERSED"
+	E.db["unitframe"]["units"]["player"]["healPrediction"]["anchorPoint"] = "CENTER"
+	E.db["unitframe"]["units"]["player"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["fader"]["minAlpha"] = 0
+	E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
+	E.db["unitframe"]["units"]["player"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["player"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["player"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
+	E.db["unitframe"]["units"]["player"]["aurabar"]["sortDirection"] = "ASCENDING"
+	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 2
+	E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
+	E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["buffs"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["player"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["player"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["player"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["player"]["debuffs"]["anchorPoint"] = "BOTTOM"
+	E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["debuffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["player"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["player"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["player"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["transparent"] = true
+	E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useClassColor"] = true
+	E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+	E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
+	E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] = "Castbar"
+	E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = 0
+	E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 0.6
+	E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
+	E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
+	E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
+	E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
+	E.db["unitframe"]["units"]["player"]["portrait"]["style"] = "3D"
+	E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true --tbc/classic only
+	E.db["unitframe"]["units"]["player"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
+	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
+	E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
+	E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
+	E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
+	E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
+	E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
+
+	-- Raid 1
+	E.db["unitframe"]["units"]["raid1"]["width"] = 120
+	E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
+	E.db["unitframe"]["units"]["raid1"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["raid1"]["growthDirection"] = "DOWN_RIGHT"
+	E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 0
+	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["countFontSize"] = 8
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["height"] = 15
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["sizeOverride"] = 20
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["countFontSize"] = 8
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["growthY"] = "DOWN"
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["height"] = 15
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["raid1"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["raid1"]["name"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["raid1"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["raid1"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
+	E.db["unitframe"]["units"]["raid1"]["portrait"]["desaturation"] = 0.7
+	E.db["unitframe"]["units"]["raid1"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["raid1"]["portrait"]["overlayAlpha"] = 0.6
+	E.db["unitframe"]["units"]["raid1"]["portrait"]["paused"] = true
+	E.db["unitframe"]["units"]["raid1"]["raidicon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid1"]["raidicon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["duration"]["yOffset"] = 3
+	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["stack"]["yOffset"] = -3
+	E.db["unitframe"]["units"]["raid1"]["roleIcon"]["position"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["raid1"]["roleIcon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid1"]["roleIcon"]["yOffset"] = -1
+	E.db["unitframe"]["units"]["raid1"]["summonIcon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid11,exists] hide;show"
+	end
+
+	-- Raid 2
+	E.db["unitframe"]["units"]["raid2"]["width"] = 120
+	E.db["unitframe"]["units"]["raid2"]["numGroups"] = 6
+	E.db["unitframe"]["units"]["raid2"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["raid2"]["growthDirection"] = "DOWN_RIGHT"
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFontSize"] = 8
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["height"] = 15
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["sizeOverride"] = 20
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countFontSize"] = 8
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["growthY"] = "DOWN"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["height"] = 15
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["raid2"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["raid2"]["name"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["raid2"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["raid2"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["desaturation"] = 0.7
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["overlayAlpha"] = 0.6
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["paused"] = true
+	E.db["unitframe"]["units"]["raid2"]["raidicon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid2"]["raidicon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["yOffset"] = 3
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["yOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["yOffset"] = 14
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["position"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["yOffset"] = -1
+	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid2"]["numGroups"] = 5
+		E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid11,noexists][@raid26,exists] hide;show"
+	end
+
+	-- Raid 3
+	E.db["unitframe"]["units"]["raid3"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["raid3"]["growthDirection"] = "DOWN_RIGHT"
+	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid3"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["raid3"]["name"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["raid3"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = false
+	E.db["unitframe"]["units"]["raid3"]["portrait"]["desaturation"] = 0.7
+	E.db["unitframe"]["units"]["raid3"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["raid3"]["portrait"]["overlayAlpha"] = 0.6
+	E.db["unitframe"]["units"]["raid3"]["portrait"]["paused"] = true
+	E.db["unitframe"]["units"]["raid3"]["raidicon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid3"]["raidicon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["position"] = "TOP"
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["yOffset"] = 3
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["size"] = 20
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["xOffset"] = 3
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["yOffset"] = -3
+	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["position"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid26,noexists] hide;show"
+	end
+
+	-- Raid Pets
+	E.db["unitframe"]["units"]["raidpet"]["enable"] = false
+
+	-- Tank
 	E.db["unitframe"]["units"]["tank"]["width"] = 120
+	E.db["unitframe"]["units"]["tank"]["height"] = 30
+	E.db["unitframe"]["units"]["tank"]["verticalSpacing"] = 7
+	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
+	E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["debuffs"]["enable"] = true
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["duration"]["yOffset"] = 3
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontSize"] = 14
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["size"] = 20
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["stack"]["xOffset"] = -3
+	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["height"] = 30
+
+	-- Target
+	E.db["unitframe"]["units"]["target"]["width"] = 270
+	E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
+	E.db["unitframe"]["units"]["target"]["orientation"] = "RIGHT"
+	E.db["unitframe"]["units"]["target"]["healPrediction"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
+	E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"
+	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["target"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["target"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
+	E.db["unitframe"]["units"]["target"]["aurabar"]["sortDirection"] = "ASCENDING"
+	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
+	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["target"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
+	E.db["unitframe"]["units"]["target"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["target"]["buffs"]["maxDuration"] = 1200
+	E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
+	E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
+	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
+	E.db["unitframe"]["units"]["target"]["debuffs"]["height"] = 25
+	E.db["unitframe"]["units"]["target"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["target"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["target"]["debuffs"]["spacing"] = 2
+	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
+	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
+	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
+	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+	E.db["unitframe"]["units"]["target"]["castbar"]["iconAttachedTo"] = "Castbar"
+	E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
+	E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["b"] = 1
+	E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["g"] = 1
+	E.db["unitframe"]["units"]["target"]["castbar"]["textColor"]["r"] = 1
+	E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 0.6
+	E.db["unitframe"]["units"]["target"]["portrait"]["camDistanceScale"] = 4.2
+	E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
+	E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+	E.db["unitframe"]["units"]["target"]["portrait"]["style"] = "3D"
+	E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.1
+	E.db["unitframe"]["units"]["target"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["target"]["power"]["text_format"] = ""
+	E.db["unitframe"]["units"]["target"]["power"]["width"] = "spaced"
+	E.db["unitframe"]["units"]["target"]["power"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["target"]["raidicon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
+	E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
+
+	-- TargetTarget
+	E.db["unitframe"]["units"]["targettarget"]["width"] = 130
+	E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25
+	E.db["unitframe"]["units"]["targettarget"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["targettarget"]["buffs"]["perrow"] = 6
+	E.db["unitframe"]["units"]["targettarget"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
+	E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Power"
+	E.db["unitframe"]["units"]["targettarget"]["power"]["position"] = "RIGHT"
+	E.db["unitframe"]["units"]["targettarget"]["power"]["text_format"] = ""
+	E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
+	E.db["unitframe"]["units"]["targettarget"]["power"]["xOffset"] = -2
+	E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachTo"] = "CENTER"
+	E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachToObject"] = "Health"
+
+	-- TargetTargetTarget
+	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 
 	-- Custom Text: Party
 	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
