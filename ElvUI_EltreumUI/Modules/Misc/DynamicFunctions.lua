@@ -4,6 +4,9 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local InCombatLockdown = _G.InCombatLockdown
 local tonumber = _G.tonumber
+local tostring = _G.tostring
+local type = _G.type
+local ipairs = _G.ipairs
 
 --12.1.0 changes
 local IsPlayerAtEffectiveMaxLevel = _G.GameRulesUtil and _G.GameRulesUtil.IsPlayerAtEffectiveMaxLevel or _G.IsPlayerAtEffectiveMaxLevel
@@ -243,233 +246,146 @@ end]]
 	end
 end]]
 
+local pagingClasses = {"DEATHKNIGHT", "DEMONHUNTER", "DRUID", "EVOKER", "HUNTER", "MAGE", "MONK", "PALADIN", "PRIEST", "ROGUE", "SHAMAN", "WARLOCK", "WARRIOR",}
+
+local function getBarPagingTable(bar)
+	if type(bar) == "table" then
+		return bar
+	elseif type(bar) == "number" or type(bar) == "string" then
+		local barKey = tostring(bar):match("%d+")
+		if barKey and E.db.actionbar and E.db.actionbar["bar"..barKey] then
+			return E.db.actionbar["bar"..barKey].paging
+		end
+	end
+end
+
+--clear paging
+function ElvUI_EltreumUI:ClearActionBarPaging(bar)
+	local paging = getBarPagingTable(bar)
+	if not paging then return end
+
+	for _, unitclass in ipairs(pagingClasses) do
+		paging[unitclass] = ""
+	end
+end
+
+--set default action paging on a specified bar or paging table
+function ElvUI_EltreumUI:SetActionBarPaging(bar)
+	local paging = getBarPagingTable(bar)
+	if not paging then return end
+
+	local pagingBase = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:5] 11;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:5] 11;"
+
+	paging.DEATHKNIGHT = pagingBase
+	paging.DEMONHUNTER = pagingBase
+	paging.HUNTER = pagingBase
+	paging.MAGE = pagingBase
+	paging.MONK = pagingBase
+	paging.PALADIN = pagingBase
+	paging.SHAMAN = pagingBase
+
+	--stance/form-based classes
+	paging.WARRIOR = pagingBase.." [stance:1] 7; [stance:2] 8; [stance:3] 9;"
+	paging.WARLOCK = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [form:1] 7; [bonusbar:5] 11;" or pagingBase
+
+	--rogue
+	local rogueVehicle = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16;"
+	paging.ROGUE = "[bonusbar:1] 7; [bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; "..rogueVehicle.." [bonusbar:2] 8; [bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
+
+	--druid
+	local druidVehicle = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[vehicleui] 16; [overridebar] 18; [possessbar] 16;"
+	paging.DRUID = druidVehicle.." [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10; [bonusbar:5] 11;"
+
+	--priest and evoker
+	if E.Classic then
+		paging.PRIEST = "[vehicleui] 12; [overridebar] 14; [possessbar] 16; [bonusbar:5] 11; [stance:1] 7;"
+	else
+		paging.PRIEST = E.Forever and "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [form:1] 7; [bonusbar:5] 11;" or pagingBase --need to check for mind control in forever
+		paging.EVOKER = pagingBase.." [bonusbar:1] 7;"
+	end
+end
+
 --swap bar1 and bar4 action paging / visibility
-function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
-	if E.private.actionbar.enable then
-		if pagingnumber then
-			pagingnumber = tonumber(pagingnumber)
-			for i =1, 9 do
-				if i ~= pagingnumber then
-					E.db["actionbar"]["bar"..i]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
-					E.db["actionbar"]["bar"..i]["paging"]["DEATHKNIGHT"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["DEMONHUNTER"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["DRUID"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["HUNTER"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["MAGE"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["MONK"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["PALADIN"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["PRIEST"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["ROGUE"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["SHAMAN"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["WARLOCK"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["WARRIOR"] = ""
-					E.db["actionbar"]["bar"..i]["paging"]["EVOKER"] = ""
-				else
-					E.db["actionbar"]["bar"..i]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-					if E.Modern or E.Mists or E.TBC or E.Wrath then
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["HUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["MAGE"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["MONK"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["PALADIN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["PRIEST"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["SHAMAN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["WARLOCK"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["WARRIOR"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["EVOKER"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
-					else
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-						E.db["actionbar"]["bar"..pagingnumber]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
-					end
-				end
-			end
-		else
-			if E.db.actionbar.bar1.visibility == "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show" then
-				E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
-				E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				--E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+function ElvUI_EltreumUI:ActionPagingSwap(targetBar)
+	if not (E.private.actionbar and E.private.actionbar.enable) then return end
 
-				if E.Modern or E.Mists or E.TBC or E.Wrath then
-					E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["HUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["MAGE"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["MONK"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["PALADIN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-					E.db["actionbar"]["bar1"]["paging"]["SHAMAN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-					E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
-				else
-					E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-					E.db["actionbar"]["bar1"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-					E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
-				end
+	if InCombatLockdown() then
+		ElvUI_EltreumUI:Print(_G.ERR_NOT_IN_COMBAT)
+		return
+	end
 
-				E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["DRUID"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["MAGE"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["MONK"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = ""
-				E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = ""
+	local hideVisibility = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	local showVisibility = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 
-				ElvUI_EltreumUI:Print("Actionbar Paging swapped to Bar1")
-			elseif E.db.actionbar.bar4.visibility == "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show" then
-				E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
-				E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				--E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-
-				if E.Modern or E.Mists or E.TBC or E.Wrath then
-					E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [overridebar] 18; [vehicleui] 16; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-					E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-					E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
-				else
-					E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-					E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-					E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
-				end
-
-				E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["DRUID"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["HUNTER"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["MAGE"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["MONK"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["PALADIN"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["ROGUE"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["SHAMAN"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = ""
-
-				ElvUI_EltreumUI:Print("Actionbar Paging swapped to Bar4")
-			else
-				E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
-				E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-				--E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-
-				if E.Modern or E.Mists or E.TBC or E.Wrath then
-					E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [overridebar] 18; [vehicleui] 16; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-					E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[overridebar] 18; [vehicleui] 16;[possessbar] 16;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-					E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
-				else
-					E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-					E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-					E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-					E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
-				end
-
-				E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["DRUID"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["HUNTER"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["MAGE"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["MONK"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["PALADIN"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["ROGUE"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["SHAMAN"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
-				E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = ""
-
-				ElvUI_EltreumUI:Print("Actionbar Paging set to Bar4")
+	local function barHasPaging(barNum)
+		local bar = E.db.actionbar and E.db.actionbar["bar"..barNum]
+		local p = bar and bar.paging
+		if not p then return false end
+		if p[E.myclass] and p[E.myclass] ~= "" then
+			return true
+		end
+		for _, unitclass in ipairs(pagingClasses) do
+			if p[unitclass] and p[unitclass] ~= "" then
+				return true
 			end
 		end
-
-		E:StaticPopup_Show('CONFIG_RL')
+		return false
 	end
+
+	local swapMsg
+	if not targetBar then
+		--swap between bar1 and bar4
+		if (E.db.actionbar.bar1 and E.db.actionbar.bar1.visibility == hideVisibility) or barHasPaging(4) then
+			targetBar = 1
+			swapMsg = "Actionbar Paging swapped to Bar1"
+		elseif (E.db.actionbar.bar4 and E.db.actionbar.bar4.visibility == hideVisibility) or barHasPaging(1) then
+			targetBar = 4
+			swapMsg = "Actionbar Paging swapped to Bar4"
+		else
+			targetBar = 4
+			swapMsg = "Actionbar Paging set to Bar4"
+		end
+	else
+		if type(targetBar) == "string" then
+			targetBar = tonumber(targetBar:match("%d+"))
+		else
+			targetBar = tonumber(targetBar)
+		end
+
+		if not targetBar or targetBar < 1 or targetBar > 10 then
+			ElvUI_EltreumUI:Print("Invalid action bar number. Please choose a bar between 1 and 10.")
+			return
+		end
+		swapMsg = "Actionbar Paging set to Bar"..targetBar
+	end
+
+	--set visibility on the target bar
+	if E.db.actionbar and E.db.actionbar["bar"..targetBar] then
+		E.db.actionbar["bar"..targetBar].visibility = showVisibility
+		ElvUI_EltreumUI:SetActionBarPaging(targetBar)
+	end
+
+	--clear paging on other bars
+	for i = 1, 10 do
+		if i ~= targetBar then
+			ElvUI_EltreumUI:ClearActionBarPaging(i)
+		end
+	end
+
+	--set visiblity on the other bars
+	for _, i in ipairs({ 1, 2, 3, 4, 5, 7, 8, 9 }) do
+		if i ~= targetBar and E.db.actionbar and E.db.actionbar["bar"..i] then
+			E.db.actionbar["bar"..i].visibility = hideVisibility
+		end
+	end
+
+	--also on stance
+	if E.db.actionbar and E.db.actionbar.stanceBar then
+		E.db.actionbar.stanceBar.visibility = hideVisibility
+	end
+
+	ElvUI_EltreumUI:Print(swapMsg)
+	E:StaticPopup_Show('CONFIG_RL')
 end
 
 --fix master loot?

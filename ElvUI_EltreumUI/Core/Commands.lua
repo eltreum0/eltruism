@@ -329,7 +329,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif stringmatch(message, 'paging%s*(%d[,.%d]*)') then
 		local pagingnumber = tonumber(stringmatch(message, 'paging%s*(%d[,.%d]*)'))
-		if pagingnumber < 10 then
+		if pagingnumber and pagingnumber <= 10 then
 			if not InCombatLockdown() then
 				ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 			end
