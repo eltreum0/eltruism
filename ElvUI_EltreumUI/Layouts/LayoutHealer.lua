@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 16
 	E.db["unitframe"]["units"]["party"]["buffs"]["clickThrough"] = true
 	E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 10
-	E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = false
 	E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 24
 	E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOP"
