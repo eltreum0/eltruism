@@ -1182,8 +1182,6 @@ function ElvUI_EltreumUI:ToggleFader()
 		E.db["unitframe"]["units"]["player"]["fader"]["enable"] = false
 		E.db["unitframe"]["units"]["pet"]["fader"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["range"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["range"] = true
 
 		ElvUI_EltreumUI:Print(L["ElvUI Fader disabled"])
 	else
@@ -1205,6 +1203,7 @@ function ElvUI_EltreumUI:ToggleFader()
 		E.db["unitframe"]["units"]["player"]["fader"]["power"] = true
 		E.db["unitframe"]["units"]["player"]["fader"]["unittarget"] = false
 		E.db["unitframe"]["units"]["player"]["fader"]["vehicle"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["minAlpha"] = 0
 		E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["health"] = true
@@ -1215,16 +1214,6 @@ function ElvUI_EltreumUI:ToggleFader()
 		E.db["unitframe"]["units"]["pet"]["fader"]["range"] = false
 		E.db["unitframe"]["units"]["pet"]["fader"]["unittarget"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["casting"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["combat"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["focus"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["health"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["hover"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["playertarget"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["power"] = true
-		E.db["unitframe"]["units"]["target"]["fader"]["unittarget"] = false
-		E.db["unitframe"]["units"]["target"]["fader"]["vehicle"] = true
 
 		ElvUI_EltreumUI:Print(L["ElvUI Fader enabled"])
 	end
@@ -1232,6 +1221,8 @@ function ElvUI_EltreumUI:ToggleFader()
 	--shared
 	E.db["unitframe"]["units"]["boss"]["fader"]["enable"] = true
 	E.db["unitframe"]["units"]["boss"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["target"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["fader"]["range"] = true
 	E.db["unitframe"]["units"]["targettarget"]["fader"]["enable"] = true
 	E.db["unitframe"]["units"]["targettarget"]["fader"]["range"] = true
 	E.db["unitframe"]["units"]["focus"]["fader"]["enable"] = true
