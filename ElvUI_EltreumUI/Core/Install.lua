@@ -24,6 +24,7 @@ local FCFDock_SelectWindow = _G.FCFDock_SelectWindow
 local W
 local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn
 local unpack = _G.unpack
+local S = E:GetModule('Skins')
 
 local installPreviews = {
 	dps = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DPS.jpg",
@@ -82,6 +83,9 @@ local altFrameClasses = {
 local function InstallComplete()
 	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 	E.private.ElvUI_EltreumUI.skippedcheck = nil
+	if _G.PluginInstallFrame.Option5 then
+		_G.PluginInstallFrame.Option5 = nil
+	end
 	ReloadUI()
 end
 
@@ -481,6 +485,8 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI:ImproveInstall()
 			local frame = _G.PluginInstallFrame
 
+			if frame.Option5 then frame.Option5:Hide() end
+
 			ElvUI_EltreumUI:HidePopups(0.1)
 			if not frame.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				frame:CreateShadow()
@@ -526,6 +532,8 @@ ElvUI_EltreumUI.InstallerData = {
 				frame.Desc3:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 			end
 
+			if frame.Option5 then frame.Option5:Hide() end
+
 			frame.Option1:Enable()
 			frame.Option1:Show()
 			frame.Option1:SetScript('OnClick', function() ApplyRoleLayout("dps") end)
@@ -565,7 +573,7 @@ ElvUI_EltreumUI.InstallerData = {
 			local frame = _G.PluginInstallFrame
 
 			frame.SubTitle:SetText(L["Eltruism Modes"])
-			frame.Desc1:SetText(L["Eltruism uses Dark Mode by default"])
+			frame.Desc1:SetText(L["Eltruism uses Dark Mode by default"].."\n\n"..L["Eltruism uses Fading of UnitFrames and ActionBars by default"])
 			frame.Desc2:SetText(L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"])
 			frame.Desc3:SetText(L["You can customize the textures and colors in Eltruism > Unitframes"])
 			frame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
@@ -600,11 +608,25 @@ ElvUI_EltreumUI.InstallerData = {
 			frame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("backgroundcolors", "ENTERING") end)
 			frame.Option4:SetScript('OnLeave', OnLeavePreview)
 			frame.Option4:SetText(L["BACKGROUND"].."\n"..L["COLOR"])
+
+			if not frame.Option5 then
+				frame.Option5 = _G.CreateFrame('Button', 'InstallOption5Button', frame, 'UIPanelButtonTemplate')
+				frame.Option5:Size(100, 30)
+				frame.Option5:Point('LEFT', frame.Option4, 'RIGHT', 4, 0)
+				S:HandleButton(frame.Option5)
+			end
+			frame.Option5:SetText(L["Fader"])
+			frame.Option5:Enable()
+			frame.Option5:Show()
+			frame.Option5:SetScript('OnClick', function() ElvUI_EltreumUI:ToggleFader() end)
+			frame.Option5:SetScript('OnLeave', OnLeavePreview)
 		end,
 		[4] = function()
 			ElvUI_EltreumUI:ResizeInstall()
 			local frame = _G.PluginInstallFrame
 			local fontStyle = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
+
+			if frame.Option5 then frame.Option5:Hide() end
 
 			frame.SubTitle:SetText(L["Fonts"])
 			frame.Desc1:SetText(L["Eltruism uses Kimberley as the default font"])
@@ -649,6 +671,8 @@ ElvUI_EltreumUI.InstallerData = {
 			ResetOptionButtonFonts()
 			local frame = _G.PluginInstallFrame
 
+			if frame.Option5 then frame.Option5:Hide() end
+
 			frame.SubTitle:SetText(CHAT_LABEL)
 			frame.Desc1:SetText(L["Eltruism uses Transparent chat by default"])
 			frame.Desc2:SetText(L["You can switch to Dark Chat by clicking the buttons below"])
@@ -677,6 +701,8 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI:ResizeInstall()
 			local frame = _G.PluginInstallFrame
 			local hasDetails = IsAddOnLoaded("Details")
+
+			if frame.Option5 then frame.Option5:Hide() end
 
 			frame.SubTitle:SetText(L["Details! DPS Meter"])
 			frame.Desc1:SetText(L["Import Details! profile with dual panels"])
@@ -728,6 +754,8 @@ ElvUI_EltreumUI.InstallerData = {
 			local hasWarpDeplete = E.Retail and IsAddOnLoaded("WarpDeplete")
 			local isTBCWrathMists = E.Mists or E.TBC or E.Wrath
 			local hasGladdy = isTBCWrathMists and IsAddOnLoaded("Gladdy")
+
+			if frame.Option5 then frame.Option5:Hide() end
 
 			frame.SubTitle:SetText(L["PVP/PVE Addons"])
 			frame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
@@ -835,6 +863,8 @@ ElvUI_EltreumUI.InstallerData = {
 			local hasNameplateSCT = not E.Modern and IsAddOnLoaded("NameplateSCT")
 			local hasElvUI_FCT = not E.Modern and IsAddOnLoaded("ElvUI_FCT")
 
+			if frame.Option5 then frame.Option5:Hide() end
+
 			frame.SubTitle:SetText(L["QOL Addons"])
 			frame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 
@@ -922,6 +952,8 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI:ResizeInstall()
 			local frame = _G.PluginInstallFrame
 
+			if frame.Option5 then frame.Option5:Hide() end
+
 			frame.SubTitle:SetText('Discord')
 			frame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 			frame.Option1:Enable()
@@ -940,6 +972,8 @@ ElvUI_EltreumUI.InstallerData = {
 		[10] = function()
 			ElvUI_EltreumUI:ResizeInstall()
 			local frame = _G.PluginInstallFrame
+
+			if frame.Option5 then frame.Option5:Hide() end
 
 			frame.SubTitle:SetText(L["Installation Complete"])
 			frame.Desc1:SetText(L["You have completed the installation process"])

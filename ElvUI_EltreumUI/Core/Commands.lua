@@ -334,6 +334,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 				ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 			end
 		end
+	elseif message == 'fader' then
+		ElvUI_EltreumUI:ToggleFader()
 	elseif message == 'screenshotcomparison' then
 		ElvUI_EltreumUI:Print("Taking multiple screenshots with a delay due to the API, please wait")
 		E:Delay(0, function()

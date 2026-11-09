@@ -1168,6 +1168,92 @@ function ElvUI_EltreumUI:CheckForeverSpec()
 	return specID, dominantName, spent1, spent2, spent3
 end
 
+--toggle the fader
+function ElvUI_EltreumUI:ToggleFader()
+	if E.db["unitframe"]["units"]["player"]["fader"]["enable"] then
+		--action bars
+		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = false
+		E.db["actionbar"]["bar2"]["inheritGlobalFade"] = false
+		E.db["actionbar"]["bar3"]["inheritGlobalFade"] = false
+		E.db["actionbar"]["bar4"]["inheritGlobalFade"] = false
+		E.db["actionbar"]["bar5"]["inheritGlobalFade"] = false
+
+		--unitframes
+		E.db["unitframe"]["units"]["player"]["fader"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["fader"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["range"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["enable"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["range"] = true
+
+		ElvUI_EltreumUI:Print(L["ElvUI Fader disabled"])
+	else
+		--action bars
+		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
+		E.db["actionbar"]["bar2"]["inheritGlobalFade"] = true
+		E.db["actionbar"]["bar3"]["inheritGlobalFade"] = true
+		E.db["actionbar"]["bar4"]["inheritGlobalFade"] = true
+		E.db["actionbar"]["bar5"]["inheritGlobalFade"] = true
+
+		--unitframes
+		E.db["unitframe"]["units"]["player"]["fader"]["casting"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["combat"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["enable"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["focus"] = false
+		E.db["unitframe"]["units"]["player"]["fader"]["health"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["hover"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["playertarget"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["power"] = true
+		E.db["unitframe"]["units"]["player"]["fader"]["unittarget"] = false
+		E.db["unitframe"]["units"]["player"]["fader"]["vehicle"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["health"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["hover"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["minAlpha"] = 0
+		E.db["unitframe"]["units"]["pet"]["fader"]["playertarget"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["power"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["range"] = false
+		E.db["unitframe"]["units"]["pet"]["fader"]["unittarget"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["casting"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["combat"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["enable"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["focus"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["health"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["hover"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["playertarget"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["power"] = true
+		E.db["unitframe"]["units"]["target"]["fader"]["unittarget"] = false
+		E.db["unitframe"]["units"]["target"]["fader"]["vehicle"] = true
+
+		ElvUI_EltreumUI:Print(L["ElvUI Fader enabled"])
+	end
+
+	--shared
+	E.db["unitframe"]["units"]["boss"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["boss"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["targettarget"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["targettarget"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["focus"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["focus"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["arena"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["arena"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["party"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["party"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["tank"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["tank"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["assist"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["assist"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["raid1"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["raid2"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["raid3"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["fader"]["range"] = true
+	E.db["unitframe"]["units"]["raidpet"]["fader"]["enable"] = true
+	E.db["unitframe"]["units"]["raidpet"]["fader"]["range"] = true
+end
+
 --cursor positioning with 60 FPS throttle
 local GetCursorPosition = _G.GetCursorPosition
 local GetTime = _G.GetTime
