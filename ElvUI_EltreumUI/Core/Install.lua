@@ -619,7 +619,8 @@ ElvUI_EltreumUI.InstallerData = {
 			frame.Option5:Enable()
 			frame.Option5:Show()
 			frame.Option5:SetScript('OnClick', function() ElvUI_EltreumUI:ToggleFader() end)
-			frame.Option5:SetScript('OnLeave', OnLeavePreview)
+			frame.Option5:SetScript('OnEnter', nil)
+			frame.Option5:SetScript('OnLeave', nil)
 		end,
 		[4] = function()
 			ElvUI_EltreumUI:ResizeInstall()
