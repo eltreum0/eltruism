@@ -286,7 +286,11 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
+		if E.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
+		else
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[difficultycolor][smartlevel]"
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 		if width == 3840 then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
