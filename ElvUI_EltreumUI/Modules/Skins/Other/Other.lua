@@ -685,6 +685,14 @@ function ElvUI_EltreumUI:SkinVehicleButton()
 			_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetVertexColor(1,0,0,1)
 			_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetTexture("Interface\\AddOns\\ElvUI\\Game\\Shared\\Media\\Textures\\ExitVehicle")
 			_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetVertexColor(1,0,0,1)
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if _G["MainMenuBarVehicleLeaveButton"].backdrop then
+					if not _G["MainMenuBarVehicleLeaveButton"].backdrop.shadow then
+						_G["MainMenuBarVehicleLeaveButton"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["MainMenuBarVehicleLeaveButton"].backdrop.shadow)
+					end
+				end
+			end
 		end
 	end
 end
