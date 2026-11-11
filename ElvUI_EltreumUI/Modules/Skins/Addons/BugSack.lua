@@ -347,7 +347,7 @@ local function SkinBugSack()
 		local versionLabel = labelParent:CreateFontString(nil, 'ARTWORK')
 		versionLabel:SetFontObject(countLabel:GetFontObject())
 		versionLabel:SetTextColor(countLabel:GetTextColor())
-		versionLabel:SetText(_G.format('%sElvUI:|r %s %sEltruism:|r %s %sPatch:|r %s %sOther Addons:|r %s %sPage:|r', hex, elvVersion, hex, ElvUI_EltreumUI.Version, hex, _G.GetBuildInfo(), hex, tostring(E:AreOtherAddOnsEnabled()), hex))
+		versionLabel:SetText(_G.format('%sElvUI:|r %s %sEltruism:|r %s %sPatch:|r %s %sOther AddOns:|r %s %sPage:|r', hex, elvVersion, hex, ElvUI_EltreumUI.Version, hex, _G.GetBuildInfo(), hex, tostring(E:AreOtherAddOnsEnabled()), hex))
 		versionLabel:ClearAllPoints()
 		versionLabel:SetPoint('RIGHT', countLabel, 'LEFT', -6, 0)
 	end
