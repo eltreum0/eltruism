@@ -17,89 +17,86 @@ local PortraitStyles = {
 }
 
 local function PortraitWasToggled(portrait, value)
-	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
-		if portrait == "all" then
-			E.db.unitframe.units.player.portrait.enable = value
-			E.db.unitframe.units.target.portrait.enable = value
-			E.db.unitframe.units.focus.portrait.enable = value
-			E.db.unitframe.units.focustarget.portrait.enable = value
-			E.db.unitframe.units.targettarget.portrait.enable = value
-			E.db.unitframe.units.boss.portrait.enable = value
-			E.db.unitframe.units.party.portrait.enable = value
-			E.db.unitframe.units.pet.portrait.enable = value
+	if portrait == "all" then
+		E.db.unitframe.units.player.portrait.enable = value
+		E.db.unitframe.units.target.portrait.enable = value
+		E.db.unitframe.units.focus.portrait.enable = value
+		E.db.unitframe.units.focustarget.portrait.enable = value
+		E.db.unitframe.units.targettarget.portrait.enable = value
+		E.db.unitframe.units.boss.portrait.enable = value
+		E.db.unitframe.units.party.portrait.enable = value
+		E.db.unitframe.units.pet.portrait.enable = value
 
-			if value then
-				E.db.unitframe.units.player.portrait.overlay = value
-				E.db.unitframe.units.target.portrait.overlay = value
-				E.db.unitframe.units.focus.portrait.overlay = value
-				E.db.unitframe.units.focustarget.portrait.overlay = value
-				E.db.unitframe.units.targettarget.portrait.overlay = value
-				E.db.unitframe.units.boss.portrait.overlay = value
-				E.db.unitframe.units.party.portrait.overlay = value
-				E.db.unitframe.units.pet.portrait.overlay = value
+		if value then
+			E.db.unitframe.units.player.portrait.overlay = value
+			E.db.unitframe.units.target.portrait.overlay = value
+			E.db.unitframe.units.focus.portrait.overlay = value
+			E.db.unitframe.units.focustarget.portrait.overlay = value
+			E.db.unitframe.units.targettarget.portrait.overlay = value
+			E.db.unitframe.units.boss.portrait.overlay = value
+			E.db.unitframe.units.party.portrait.overlay = value
+			E.db.unitframe.units.pet.portrait.overlay = value
+		end
+	else
+		if portrait == "player" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable then
+				E.db.unitframe.units.player.portrait.enable = value
+				if value then
+					E.db.unitframe.units.player.portrait.overlay = value
+				end
 			end
-
-			E:StaticPopup_Show('CONFIG_RL')
-		else
-			if portrait == "player" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable then
-					E.db.unitframe.units.player.portrait.enable = value
-					if value then
-						E.db.unitframe.units.player.portrait.overlay = value
-					end
+		elseif portrait == "target" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable then
+				E.db.unitframe.units.target.portrait.enable = value
+				if value then
+					E.db.unitframe.units.target.portrait.overlay = value
 				end
-			elseif portrait == "target" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable then
-					E.db.unitframe.units.target.portrait.enable = value
-					if value then
-						E.db.unitframe.units.target.portrait.overlay = value
-					end
+			end
+		elseif portrait == "focus" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable then
+				E.db.unitframe.units.focus.portrait.enable = value
+				if value then
+				E.db.unitframe.units.focus.portrait.overlay = value
 				end
-			elseif portrait == "focus" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable then
-					E.db.unitframe.units.focus.portrait.enable = value
-					if value then
-					E.db.unitframe.units.focus.portrait.overlay = value
-					end
+			end
+		elseif portrait == "focustarget" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable then
+				E.db.unitframe.units.focustarget.portrait.enable = value
+				if value then
+					E.db.unitframe.units.focustarget.portrait.overlay = value
 				end
-			elseif portrait == "focustarget" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable then
-					E.db.unitframe.units.focustarget.portrait.enable = value
-					if value then
-						E.db.unitframe.units.focustarget.portrait.overlay = value
-					end
+			end
+		elseif portrait == "targettarget" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable then
+				E.db.unitframe.units.targettarget.portrait.enable = value
+				if value then
+					E.db.unitframe.units.targettarget.portrait.overlay = value
 				end
-			elseif portrait == "targettarget" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable then
-					E.db.unitframe.units.targettarget.portrait.enable = value
-					if value then
-						E.db.unitframe.units.targettarget.portrait.overlay = value
-					end
+			end
+		elseif portrait == "boss" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable then
+				E.db.unitframe.units.boss.portrait.enable = value
+				if value then
+					E.db.unitframe.units.boss.portrait.overlay = value
 				end
-			elseif portrait == "boss" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable then
-					E.db.unitframe.units.boss.portrait.enable = value
-					if value then
-						E.db.unitframe.units.boss.portrait.overlay = value
-					end
+			end
+		elseif portrait == "party" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable then
+				E.db.unitframe.units.party.portrait.enable = value
+				if value then
+					E.db.unitframe.units.party.portrait.overlay = value
 				end
-			elseif portrait == "party" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable then
-					E.db.unitframe.units.party.portrait.enable = value
-					if value then
-						E.db.unitframe.units.party.portrait.overlay = value
-					end
-				end
-			elseif portrait == "pet" then
-				if E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable then
-					E.db.unitframe.units.pet.portrait.enable = value
-					if value then
-						E.db.unitframe.units.pet.portrait.overlay = value
-					end
+			end
+		elseif portrait == "pet" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable then
+				E.db.unitframe.units.pet.portrait.enable = value
+				if value then
+					E.db.unitframe.units.pet.portrait.overlay = value
 				end
 			end
 		end
 	end
+	E:StaticPopup_Show('CONFIG_RL')
 end
 
 local form = {
