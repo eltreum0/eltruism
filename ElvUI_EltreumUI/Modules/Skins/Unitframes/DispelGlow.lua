@@ -83,7 +83,6 @@ else
 	end
 
 	--calculate and update pixel glow dash positions and offsets based on unitframe size
-
 	local function LayoutDashes(border)
 		if not border or InCombatLockdown() then return end
 		local frame = border.eltruismFrame
@@ -403,6 +402,8 @@ else
 			if not (issecretvalue and issecretvalue(unitExists)) and unitExists then
 				if unit == "player" then
 					canAssist = true
+				--elseif unit == "targettarget" then --due to how target of target works it doesnt update correctly
+				--	canAssist = false
 				else
 					local assist = UnitCanAssist("player", unit)
 					if not (issecretvalue and issecretvalue(assist)) and assist then
@@ -577,7 +578,7 @@ else
 	dispelGlowEvents:RegisterEvent("PLAYER_REGEN_ENABLED")
 	if E.Forever then
 		dispelGlowEvents:RegisterEvent("PLAYER_TARGET_CHANGED")
-		dispelGlowEvents:RegisterUnitEvent("UNIT_TARGET", "target", "focus")
+		dispelGlowEvents:RegisterUnitEvent("UNIT_TARGET", "target", "focus", "player") --might need a look since wiki doesnt list update for target's target
 		dispelGlowEvents:RegisterEvent("PLAYER_FOCUS_CHANGED")
 	end
 	dispelGlowEvents:SetScript("OnEvent", function(_, event, arg1)
@@ -604,7 +605,7 @@ else
 				RefreshFrameGlow(_G.ElvUF_TargetTargetTarget, "targettargettarget")
 			end
 		elseif event == "UNIT_TARGET" then --refresh target of target or focus target frames when their unit target changes
-			if arg1 == "target" then
+			if arg1 == ("target" or "player") then
 				if _G.ElvUF_TargetTarget then
 					RefreshFrameGlow(_G.ElvUF_TargetTarget, "targettarget")
 				end
