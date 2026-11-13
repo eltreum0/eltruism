@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 			_G.StopMusic()
 			isPlayingMusic = false
 		end
-	end, nil, false, nil, nil, nil, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable or not E.private.ElvUI_EltreumUI.combatmusic.musicfile or E.private.ElvUI_EltreumUI.combatmusic.musicfile == "" end)
+	end, nil, false, nil, nil, nil, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable or E.db.ElvUI_EltreumUI.otherstuff.musicshuffle or not E.private.ElvUI_EltreumUI.combatmusic.musicfile or E.private.ElvUI_EltreumUI.combatmusic.musicfile == "" end)
 	ElvUI_EltreumUI.Options.args.combat.args.bossmusic = E.Libs.ACH:Group(L["Boss Music"], L["Play custom music during fights and boss fights"], 3)
 	ElvUI_EltreumUI.Options.args.combat.args.bossmusic.args.enable = E.Libs.ACH:Toggle(L["Enable Boss Music"], L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end)
 	ElvUI_EltreumUI.Options.args.combat.args.bossmusic.args.description1 = E.Libs.ACH:Description(L["Boss Combat Music"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)

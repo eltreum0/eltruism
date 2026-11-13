@@ -241,7 +241,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.target.args.portraittype = E.Libs.ACH:Select(_G.TYPE, L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.target.args.size = E.Libs.ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.size = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.target.args.anchor = E.Libs.ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -269,7 +269,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.focus.args.portraittype = E.Libs.ACH:Select(_G.TYPE, L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.focus.args.size = E.Libs.ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.size = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.focus.args.anchor = E.Libs.ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -297,7 +297,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.focustarget.args.portraittype = E.Libs.ACH:Select(_G.TYPE, L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.focustarget.args.size = E.Libs.ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.size = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.focustarget.args.anchor = E.Libs.ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -325,7 +325,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.targettarget.args.portraittype = E.Libs.ACH:Select(_G.TYPE, L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.targettarget.args.size = E.Libs.ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.size = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.targettarget.args.anchor = E.Libs.ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -353,7 +353,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.party.args.portraittype = E.Libs.ACH:Select(_G.TYPE, L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.party.args.size = E.Libs.ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.size = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.party.args.anchor = E.Libs.ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -401,7 +401,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.boss.args.portraittype = E.Libs.ACH:Select(_G.TYPE, L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.type = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.boss.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.boss.args.size = E.Libs.ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.size = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.boss.args.anchor = E.Libs.ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -425,6 +425,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.boss.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.boss.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.portraits.args.portraiteltruism.args.boss.args.texture.style = "radio"
 
+	--blinki''s portraits (mmediatag)
 	local sizeString = ":16:16:0:0:64:64:4:60:4:60"
 
 	BuildIconStylesTable()
@@ -435,7 +436,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 
 	Args.toggle_enable = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable = value ElvUI_EltreumUI:InitializePortraits() E:StaticPopup_Show("CONFIG_RL") end)
 
-	Args.header_general = E.Libs.ACH:Group(L["General"], nil, 2)
+	Args.header_general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local InnerGen = Args.header_general.args
 
 	-- Class Icons
@@ -486,7 +487,8 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value)
 			E.db.ElvUI_EltreumUI.unitframes.portraits.general.eltruism = value
 			ElvUI_EltreumUI:InitializePortraits()
-		end
+		end,
+		function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.gradient end
 	)
 
 	-- Misc
@@ -510,7 +512,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		end
 	)
 
-	Args.header_style = E.Libs.ACH:Group(L["Textures & Styles"], nil, 2)
+	Args.header_style = E.Libs.ACH:Group(L["Textures & Styles"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local StyleArgs = Args.header_style.args
 
 	-- Portrait Texture
@@ -832,13 +834,13 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 
 	-- Portrait Offset / Zoom
-	Args.header_offset = E.Libs.ACH:Group(L["Portrait Offset/ Zoom"], nil, 3)
+	Args.header_offset = E.Libs.ACH:Group(L["Portrait Offset/ Zoom"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	Args.header_offset.args.zoom = E.Libs.ACH:Range(L["Zoom"], nil, 1, { min = 0, max = 5, step = 0.001 }, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.zoom end,
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.zoom = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_player = E.Libs.ACH:Group(L["Player"], nil, 3)
+	Args.header_player = E.Libs.ACH:Group(L["Player"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local PlayerArgs = Args.header_player.args
 
 	PlayerArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Player Portraits"], 1, nil, nil, nil,
@@ -846,7 +848,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PlayerArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	PlayerArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.player.enable end)
 	PlayerArgs.general.inline = true
 	PlayerArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.player.texture end,
@@ -861,7 +863,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.cast = value ElvUI_EltreumUI:InitializePortraits(true) E:StaticPopup_Show("CONFIG_RL") end
 	)
 
-	PlayerArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	PlayerArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.player.enable end)
 	PlayerArgs.anchor.inline = true
 	PlayerArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.player.relativePoint end,
@@ -889,7 +891,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PlayerArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	PlayerArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.player.enable end)
 	PlayerArgs.level.inline = true
 	PlayerArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.player.strata end,
@@ -900,7 +902,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.player.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_target = E.Libs.ACH:Group(L["Target"], nil, 4)
+	Args.header_target = E.Libs.ACH:Group(L["Target"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local TargetArgs = Args.header_target.args
 
 	TargetArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Target Portraits"], 1, nil, nil, nil,
@@ -908,7 +910,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	TargetArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	TargetArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.target.enable end)
 	TargetArgs.general.inline = true
 	TargetArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.target.texture end,
@@ -927,7 +929,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.cast = value ElvUI_EltreumUI:InitializePortraits(true) E:StaticPopup_Show("CONFIG_RL") end
 	)
 
-	TargetArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	TargetArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.target.enable end)
 	TargetArgs.anchor.inline = true
 	TargetArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.target.relativePoint end,
@@ -955,7 +957,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	TargetArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	TargetArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.target.enable end)
 	TargetArgs.level.inline = true
 	TargetArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 9, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.target.strata end,
@@ -966,7 +968,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.target.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_targettarget = E.Libs.ACH:Group(L["Target of Target"], nil, 5)
+	Args.header_targettarget = E.Libs.ACH:Group(L["Target of Target"], nil, 5, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local ToTArgs = Args.header_targettarget.args
 
 	ToTArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Target of Target Portraits"], 1, nil, nil, nil,
@@ -974,7 +976,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	ToTArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	ToTArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.enable end)
 	ToTArgs.general.inline = true
 	ToTArgs.general.args.toggle_extra = E.Libs.ACH:Toggle(L["Enable Rare/Elite Border"], nil, 1, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.extraEnable end,
@@ -989,7 +991,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.size = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	ToTArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	ToTArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.enable end)
 	ToTArgs.anchor.inline = true
 	ToTArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.relativePoint end,
@@ -1017,7 +1019,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	ToTArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	ToTArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.enable end)
 	ToTArgs.level.inline = true
 	ToTArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.strata end,
@@ -1028,7 +1030,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.targettarget.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_pet = E.Libs.ACH:Group(L["Pet"], nil, 6)
+	Args.header_pet = E.Libs.ACH:Group(L["Pet"], nil, 6, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local PetArgs = Args.header_pet.args
 
 	PetArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Pet Portraits"], 1, nil, nil, nil,
@@ -1036,7 +1038,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.pet.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PetArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	PetArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.pet.enable end)
 	PetArgs.general.inline = true
 	PetArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.pet.texture end,
@@ -1047,7 +1049,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.pet.size = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PetArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	PetArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.pet.enable end)
 	PetArgs.anchor.inline = true
 	PetArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.pet.relativePoint end,
@@ -1075,7 +1077,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.pet.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PetArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	PetArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.pet.enable end)
 	PetArgs.level.inline = true
 	PetArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.pet.strata end,
@@ -1086,7 +1088,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.pet.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_focus = E.Libs.ACH:Group(L["Focus"], nil, 7)
+	Args.header_focus = E.Libs.ACH:Group(L["Focus"], nil, 7, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local FocusArgs = Args.header_focus.args
 
 	FocusArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Focus Portraits"], 1, nil, nil, nil,
@@ -1094,7 +1096,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	FocusArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	FocusArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.focus.enable end)
 	FocusArgs.general.inline = true
 	FocusArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.focus.texture end,
@@ -1113,7 +1115,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.cast = value ElvUI_EltreumUI:InitializePortraits(true) end
 	)
 
-	FocusArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	FocusArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.focus.enable end)
 	FocusArgs.anchor.inline = true
 	FocusArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.focus.relativePoint end,
@@ -1141,7 +1143,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	FocusArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	FocusArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.focus.enable end)
 	FocusArgs.level.inline = true
 	FocusArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.focus.strata end,
@@ -1152,7 +1154,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.focus.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_party = E.Libs.ACH:Group(L["Party"], nil, 8)
+	Args.header_party = E.Libs.ACH:Group(L["Party"], nil, 8, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local PartyArgs = Args.header_party.args
 
 	PartyArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Party Portraits"], 1, nil, nil, nil,
@@ -1160,7 +1162,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PartyArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	PartyArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.party.enable end)
 	PartyArgs.general.inline = true
 	PartyArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.party.texture end,
@@ -1175,7 +1177,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.cast = value ElvUI_EltreumUI:InitializePortraits(true) E:StaticPopup_Show("CONFIG_RL") end
 	)
 
-	PartyArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	PartyArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.party.enable end)
 	PartyArgs.anchor.inline = true
 	PartyArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.party.relativePoint end,
@@ -1203,7 +1205,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	PartyArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	PartyArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.party.enable end)
 	PartyArgs.level.inline = true
 	PartyArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.party.strata end,
@@ -1214,7 +1216,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.party.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_boss = E.Libs.ACH:Group(L["Boss"], nil, 9)
+	Args.header_boss = E.Libs.ACH:Group(L["Boss"], nil, 9, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local BossArgs = Args.header_boss.args
 
 	BossArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Boss Portraits"], 1, nil, nil, nil,
@@ -1222,7 +1224,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	BossArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	BossArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.boss.enable end)
 	BossArgs.general.inline = true
 	BossArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.boss.texture end,
@@ -1237,7 +1239,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.cast = value ElvUI_EltreumUI:InitializePortraits(true) E:StaticPopup_Show("CONFIG_RL") end
 	)
 
-	BossArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	BossArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.boss.enable end)
 	BossArgs.anchor.inline = true
 	BossArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.boss.relativePoint end,
@@ -1265,7 +1267,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	BossArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	BossArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.boss.enable end)
 	BossArgs.level.inline = true
 	BossArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.boss.strata end,
@@ -1276,7 +1278,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.boss.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_arena = E.Libs.ACH:Group(L["Arena"], nil, 10)
+	Args.header_arena = E.Libs.ACH:Group(L["Arena"], nil, 10, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local ArenaArgs = Args.header_arena.args
 
 	ArenaArgs.toggle_enable = E.Libs.ACH:Toggle(L["Enable"], L["Enable Arena Portraits"], 1, nil, nil, nil,
@@ -1284,7 +1286,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.enable = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	ArenaArgs.general = E.Libs.ACH:Group(L["General"], nil, 2)
+	ArenaArgs.general = E.Libs.ACH:Group(L["General"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.arena.enable end)
 	ArenaArgs.general.inline = true
 	ArenaArgs.general.args.select_style = E.Libs.ACH:Select(L["Texture Form"], nil, 1, form, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.arena.texture end,
@@ -1299,7 +1301,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.cast = value ElvUI_EltreumUI:InitializePortraits(true) E:StaticPopup_Show("CONFIG_RL") end
 	)
 
-	ArenaArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3)
+	ArenaArgs.anchor = E.Libs.ACH:Group(L["Anchor"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.arena.enable end)
 	ArenaArgs.anchor.inline = true
 	ArenaArgs.anchor.args.select_anchor = E.Libs.ACH:Select(L["Anchor Point"], nil, 1, { LEFT = "LEFT", RIGHT = "RIGHT", CENTER = "CENTER" }, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.arena.relativePoint end,
@@ -1327,7 +1329,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.y = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	ArenaArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4)
+	ArenaArgs.level = E.Libs.ACH:Group(L["Frame Level"], nil, 4, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.arena.enable end)
 	ArenaArgs.level.inline = true
 	ArenaArgs.level.args.select_strata = E.Libs.ACH:Select(L["Frame Strata"], nil, 1, frameStrata, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.arena.strata end,
@@ -1338,7 +1340,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.arena.level = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	Args.header_shadow = E.Libs.ACH:Group(L["Shadow"], nil, 11)
+	Args.header_shadow = E.Libs.ACH:Group(L["Shadow"], nil, 11, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local ShadowArgs = Args.header_shadow.args
 
 	ShadowArgs.shadow = E.Libs.ACH:Group(L["Shadow"], nil, 0)
@@ -1349,7 +1351,8 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	ShadowArgs.shadow.args.color_shadow = E.Libs.ACH:Color(L["Shadow Color"], nil, 2, true, nil,
 		function() local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.color return t.r, t.g, t.b, t.a end,
-		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.color t.r, t.g, t.b, t.a = r, g, b, a ElvUI_EltreumUI:InitializePortraits() end
+		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.color t.r, t.g, t.b, t.a = r, g, b, a ElvUI_EltreumUI:InitializePortraits() end,
+		function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.enable end
 	)
 
 	ShadowArgs.innershadow = E.Libs.ACH:Group(L["Inner Shadow"], nil, 3)
@@ -1360,10 +1363,11 @@ function ElvUI_EltreumUI:PortraitOptions()
 	)
 	ShadowArgs.innershadow.args.color_inner = E.Libs.ACH:Color(L["Inner Shadow Color"], nil, 5, true, nil,
 		function() local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.innerColor return t.r, t.g, t.b, t.a end,
-		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.innerColor t.r, t.g, t.b, t.a = r, g, b, a ElvUI_EltreumUI:InitializePortraits() end
+		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.innerColor t.r, t.g, t.b, t.a = r, g, b, a ElvUI_EltreumUI:InitializePortraits() end,
+		function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.inner end
 	)
 
-	Args.header_colors = E.Libs.ACH:Group(L["Colors"], nil, 12)
+	Args.header_colors = E.Libs.ACH:Group(L["Colors"], nil, 12, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.enable end)
 	local ColorsArgs = Args.header_colors.args
 
 	-- Settings
@@ -1445,6 +1449,7 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.general.deathcolor = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 	DeathColors.dead_color = CreateColorPair("Death", 2, E.db.ElvUI_EltreumUI.unitframes.portraits.colors.death)
+	DeathColors.dead_color.disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.general.deathcolor end
 
 	-- Border Colors
 	ColorsArgs.border_colors = E.Libs.ACH:Group(L["Border"], nil, 7)
@@ -1455,14 +1460,14 @@ function ElvUI_EltreumUI:PortraitOptions()
 		function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.border = value ElvUI_EltreumUI:InitializePortraits() end
 	)
 
-	BorderColors.default_color = E.Libs.ACH:Group(L["DEFAULT"], nil, 2)
+	BorderColors.default_color = E.Libs.ACH:Group(L["DEFAULT"], nil, 2, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.border end)
 	BorderColors.default_color.inline = true
 	BorderColors.default_color.args.color_default = E.Libs.ACH:Color(L["DEFAULT"], nil, 2, true, nil,
 		function() local t = E.db.ElvUI_EltreumUI.unitframes.portraits.colors.border.default return t.r, t.g, t.b, t.a end,
 		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.colors.border.default t.r, t.g, t.b, t.a = r, g, b, a end
 	)
 
-	BorderColors.classification_color = E.Libs.ACH:Group(L["Classification"], nil, 3)
+	BorderColors.classification_color = E.Libs.ACH:Group(L["Classification"], nil, 3, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.border end)
 	BorderColors.classification_color.inline = true
 	local ClassifBorderColors = BorderColors.classification_color.args
 
@@ -1484,7 +1489,8 @@ function ElvUI_EltreumUI:PortraitOptions()
 
 	BgColors.color_background = E.Libs.ACH:Color(L["Background color for Icons"], nil, 11, true, nil,
 		function() local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.background return t.r, t.g, t.b, t.a end,
-		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.background t.r, t.g, t.b, t.a = r, g, b, a ElvUI_EltreumUI:InitializePortraits() end
+		function(_, r, g, b, a) local t = E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.background t.r, t.g, t.b, t.a = r, g, b, a ElvUI_EltreumUI:InitializePortraits() end,
+		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.classBG end
 	)
 	BgColors.toggle_classbg = E.Libs.ACH:Toggle(L["Class colored Background"], L["Enable Class colored Background"], 12, nil, nil, nil,
 		function() return E.db.ElvUI_EltreumUI.unitframes.portraits.shadow.classBG end,
