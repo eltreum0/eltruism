@@ -1096,6 +1096,11 @@ local CLASS_TREE_TO_SPEC_ID = {
 		[2] = 257, --Holy
 		[3] = 258, --Shadow
 	},
+	[6]  = { -- Death Knight
+		[1] = 250, --Blood
+		[2] = 251, --Frost
+		[3] = 252, --Unholy
+	},
 	[7]  = { -- Shaman
 		[1] = 262, --Elemental
 		[2] = 263, --Enhancement
@@ -1111,12 +1116,40 @@ local CLASS_TREE_TO_SPEC_ID = {
 		[2] = 266, --Demonology
 		[3] = 267, --Destruction
 	},
+	[10] = { -- Monk
+		[1] = 268, --Brewmaster
+		[2] = 270, --Mistweaver
+		[3] = 269, --Windwalker
+	},
 	[11] = { -- Druid
 		[1] = 102, --Balance
 		[2] = 103, --Feral
 		[3] = 105, --Restoration
 	},
 }
+
+function ElvUI_EltreumUI:CheckClassicSpec()
+	if not _G.GetTalentTabInfo then return 0 end
+	local _, _, classID = UnitClass("player")
+	local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+	local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+	local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
+	spent1, spent2, spent3 = spent1 or 0, spent2 or 0, spent3 or 0
+
+	local dominantIndex = 0
+	if spent1 > spent2 and spent1 > spent3 then
+		dominantIndex = 1
+	elseif spent2 > spent1 and spent2 > spent3 then
+		dominantIndex = 2
+	elseif spent3 > spent1 and spent3 > spent2 then
+		dominantIndex = 3
+	end
+
+	if dominantIndex > 0 and CLASS_TREE_TO_SPEC_ID[classID] and CLASS_TREE_TO_SPEC_ID[classID][dominantIndex] then
+		return CLASS_TREE_TO_SPEC_ID[classID][dominantIndex]
+	end
+	return 0
+end
 function ElvUI_EltreumUI:CheckForeverSpec()
 	local _, _, classID = UnitClass("player")
 	local activeGroup = GetActiveSpecGroup() or 1

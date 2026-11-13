@@ -42,6 +42,26 @@ ElvUI_EltreumUI.Config = {}
 ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)
 ElvUI_EltreumUI.Spec = 0
 
+function ElvUI_EltreumUI:UpdateSpec()
+	if E.Retail then
+		local specIndex = GetSpecialization and GetSpecialization()
+		if E:NotSecretValue(specIndex) then
+			local specID = specIndex and GetSpecializationInfo and GetSpecializationInfo(specIndex)
+			if E:NotSecretValue(specID) then
+				ElvUI_EltreumUI.Spec = specID or 0
+			end
+		end
+	elseif E.Forever then
+		ElvUI_EltreumUI.Spec = (ElvUI_EltreumUI:CheckForeverSpec()) or 0
+	elseif E.Mists then
+		local specIndex = GetSpecialization and GetSpecialization()
+		ElvUI_EltreumUI.Spec = (specIndex and GetSpecializationInfo and GetSpecializationInfo(specIndex)) or 0
+	else
+		ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckClassicSpec()
+	end
+	return ElvUI_EltreumUI.Spec
+end
+
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
@@ -62,6 +82,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	else
 		E.db.ElvUI_EltreumUI.unitframes.hasMode = false
 	end
+	ElvUI_EltreumUI:UpdateSpec()
 
 	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
 	ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict
@@ -121,13 +142,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if E.db.ElvUI_EltreumUI.quests.anchor then
 			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
 		end
-		if E.Retail then
-			ElvUI_EltreumUI.Spec = (E:NotSecretValue(GetSpecialization()) and GetSpecializationInfo(GetSpecialization())) or 0
-		else
-			if ElvUI_EltreumUI:CheckForeverSpec() then --returns nil if no value
-				ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckForeverSpec()
-			end
-		end
 		ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
@@ -147,9 +161,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			end
 		end
 		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
-	end
-	if E.Mists then
-		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
 	if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
@@ -314,6 +325,9 @@ function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
+	if E.Retail and ElvUI_EltreumUI.Spec == 0 then
+		ElvUI_EltreumUI:UpdateSpec()
+	end
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombat(event)
@@ -377,32 +391,14 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	end
 end
 
-local currenttalentretail = E.Modern and GetSpecialization()
-local currenttalentmists = (E.Mists or E.TBC or E.Wrath) and GetSpecialization()
 local GetActiveTalentGroup = _G.GetActiveTalentGroup
-local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
-function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
-	if E.Modern then
-		ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
-	end
-	local newtalentretail = E.Modern and GetSpecialization()
-	local cnewtalentmists = E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
-	local cnewtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup()
-	if E.Retail then
-		ElvUI_EltreumUI.Spec = (E:NotSecretValue(GetSpecialization()) and GetSpecializationInfo(GetSpecialization())) or 0
-	elseif E.Forever then
-		if ElvUI_EltreumUI:CheckForeverSpec() then --returns nil if no value
-			ElvUI_EltreumUI.Spec = ElvUI_EltreumUI:CheckForeverSpec()
-		end
-	elseif E.Mists then
-		ElvUI_EltreumUI.Spec = GetSpecialization()
-	elseif E.ClassicSOD or E.TBC or E.Wrath then
-		ElvUI_EltreumUI.Spec = GetActiveTalentGroup()
-	end
-	if (E.Modern and currenttalentretail ~= newtalentretail) or (E.Mists and currenttalentmists ~= cnewtalentmists) or ((E.ClassicSOD or E.TBC or E.Wrath) and currenttalentclassic ~= cnewtalentclassic) then
-		currenttalentretail = newtalentretail
-		currenttalentmists = cnewtalentmists
-		currenttalentclassic = cnewtalentclassic
+local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup and GetActiveTalentGroup() or 0
+local function RefreshOnSpecChange()
+	local previousSpec = ElvUI_EltreumUI.Spec
+	local newSpec = ElvUI_EltreumUI:UpdateSpec()
+	local newtalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup and GetActiveTalentGroup() or 0
+	if newSpec ~= previousSpec or newtalentclassic ~= currenttalentclassic then
+		currenttalentclassic = newtalentclassic
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
 		if E.Modern or (E.ClassicSOD or E.Mists or E.TBC or E.Wrath) then
@@ -419,6 +415,26 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 			E:Delay(0.5, function() ElvUI_EltreumUI:ExpandedCharacterStats() end)
 		end
 	end
+end
+
+function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
+	if E.Modern then
+		ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
+	end
+	RefreshOnSpecChange()
+end
+
+function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED(_, unit)
+	if unit and unit ~= "player" then return end
+	RefreshOnSpecChange()
+end
+
+function ElvUI_EltreumUI:TRAIT_CONFIG_UPDATED()
+	RefreshOnSpecChange()
+end
+
+function ElvUI_EltreumUI:CHARACTER_POINTS_CHANGED()
+	RefreshOnSpecChange()
 end
 
 function ElvUI_EltreumUI:GOSSIP_SHOW()
@@ -530,14 +546,20 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
-		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		if E.Retail then
+			ElvUI_EltreumUI:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+		else
+			ElvUI_EltreumUI:RegisterEvent("TRAIT_CONFIG_UPDATED")
+		end
 	end
 	if E.Mists or E.TBC or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
-		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 	end
-	if E.ClassicSOD then
+	if E.Classic or E.TBC or E.Wrath then
+		ElvUI_EltreumUI:RegisterEvent("CHARACTER_POINTS_CHANGED")
+	end
+	if E.Modern or E.Mists or E.TBC or E.Wrath or E.ClassicSOD then
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
 	if E.Classic then
