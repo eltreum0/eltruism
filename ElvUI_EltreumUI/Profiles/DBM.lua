@@ -74,7 +74,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		["SpecialWarningY"] = -152.1428680419922,
 		["AutoCorrectTimer"] = false,
 		["RaidWarningSound"] = 11742,
-		["CustomSounds"] = 2,
+		["CustomSounds"] = 0,
 		["ShowTranscriptorMessage"] = true,
 		["RoleSpecAlert"] = false,
 		["MISTSTWMessageShown"] = false,
@@ -306,7 +306,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		["HUDSize1"] = 5,
 		["FilterTankSpec"] = true,
 		["InfoFrameLines"] = -0,
-		["EventSoundWipe"] = 109069,
+		["EventSoundWipe"] = 572130,
 		["WarningDuration"] = 4,
 		["ShowSpecialWarnings"] = true,
 		["EnablePatchRestrictions"] = false,
@@ -334,8 +334,8 @@ function ElvUI_EltreumUI:GetDBMProfile()
 
 		--with the dbm update this seems to be the way to go around using voice packs
 		--["ChosenVoicePack"] = "VEM", --dbm VEM
-		--["ChosenVoicePack2"] = "VEM", --dbm VEM
-		["ChosenVoicePack2"] = "None",
+		["ChosenVoicePack2"] = "VEM", --dbm VEM
+		--["ChosenVoicePack2"] = "None",
 		["CountdownVoice"] = "Corsica",
 		["CountdownVoice2"] = "Corsica",
 		["CountdownVoice3"] = "Corsica",
