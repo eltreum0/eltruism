@@ -3,6 +3,7 @@ local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local pairs = _G.pairs
 local next = _G.next
+local format = _G.format
 
 function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
@@ -655,7 +656,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	if custom then
 		ElvUI_EltreumUI:Print(L["Your custom font has been set."])
 	else
-		ElvUI_EltreumUI:Print(fontvalue.." "..L["Font has been set."])
+		ElvUI_EltreumUI:Print(format(L["%s font has been set."], fontvalue))
 	end
 
 	ElvUI_EltreumUI:ResolutionOutline()

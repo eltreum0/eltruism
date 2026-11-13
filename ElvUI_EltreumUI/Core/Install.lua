@@ -393,14 +393,14 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 				layoutstable.activeLayout = numlayouts + (E.Forever and 3 or 2)
 				C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 				C_EditMode.SetActiveLayout(layoutstable.activeLayout)
-				ElvUI_EltreumUI:Print(L["Importing"].." "..layoutGlobalText)
+				ElvUI_EltreumUI:Print(stringformat(L["Importing %s"], layoutGlobalText))
 			end
 		else
 			layoutstable.layouts[1] = taintpreventlayout
 			layoutstable.activeLayout = E.Forever and 4 or 3 --for some reason the 2 default ones count for it
 			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
-			ElvUI_EltreumUI:Print(L["Importing"].." "..layoutGlobalText)
+			ElvUI_EltreumUI:Print(stringformat(L["Importing %s"], layoutGlobalText))
 		end
 	end
 end
@@ -499,7 +499,7 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 			ElvUI_EltreumUI:ElvUIVersionCheck()
 			frame.SubTitle:SetText(L["Welcome"])
-			frame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
+			frame.Desc1:SetText(stringformat(L["This prompt will help you install %s and import its settings"], ElvUI_EltreumUI.Name))
 			frame.Desc2:SetText(L["Please read the instructions to avoid issues"])
 			frame.Option1:Enable()
 			frame.Option1:Show()
@@ -738,7 +738,7 @@ ElvUI_EltreumUI.InstallerData = {
 				frame.Option3:Enable()
 			else
 				frame.SubTitle:SetText("|cffff0000"..L["WARNING"]..'|r')
-				frame.Desc1:SetText("Details"..L[" is not installed or enabled"])
+				frame.Desc1:SetText(stringformat(L["%s is not installed or enabled"], "Details"))
 				frame.Desc2:SetText(L["Details is an advanced combat parser"])
 				frame.Desc3:SetText(L["It has many plugins to choose from"])
 				frame.Option1:Disable()
@@ -875,11 +875,11 @@ ElvUI_EltreumUI.InstallerData = {
 			frame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Immersion", "ENTERING") end)
 			frame.Option1:SetScript('OnLeave', OnLeavePreview)
 			if hasImmersion then
-				frame.Desc1:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
+				frame.Desc1:SetText(stringformat(L["Import %s settings configured for %s"], "Immersion", "Eltruism"))
 				frame.Option1:Enable()
 			else
 				frame.SubTitle:SetText("|cffff0000"..L["WARNING"]..'|r')
-				frame.Desc1:SetText("Immersion"..L[" is not installed or enabled"])
+				frame.Desc1:SetText(stringformat(L["%s is not installed or enabled"], "Immersion"))
 				frame.Option1:Disable()
 			end
 
@@ -893,7 +893,7 @@ ElvUI_EltreumUI.InstallerData = {
 				frame.Option2:Enable()
 			else
 				frame.SubTitle:SetText("|cffff0000"..L["WARNING"]..'|r')
-				frame.Desc2:SetText("Dynamic Cam"..L[" is not installed or enabled"])
+				frame.Desc2:SetText(stringformat(L["%s is not installed or enabled"], "Dynamic Cam"))
 				frame.Option2:Disable()
 			end
 

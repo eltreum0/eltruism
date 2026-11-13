@@ -2,6 +2,7 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local pairs = _G.pairs
 local next = _G.next
+local format = _G.format
 
 --set texture to all elements
 function ElvUI_EltreumUI:SetupTexture(texturevalue)
@@ -68,5 +69,5 @@ function ElvUI_EltreumUI:SetupTexture(texturevalue)
 		end
 	end
 
-	ElvUI_EltreumUI:Print(texturevalue.." "..L["Texture has been set."])
+	ElvUI_EltreumUI:Print(format(L["%s texture has been set."], texturevalue))
 end
