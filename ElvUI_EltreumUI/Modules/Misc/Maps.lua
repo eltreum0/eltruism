@@ -19,6 +19,8 @@ local math = _G.math
 local string = _G.string
 local ipairs = _G.ipairs
 local select = _G.select
+local type = _G.type
+local rawget = _G.rawget
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Modern then
@@ -864,6 +866,9 @@ function ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, isShown)
 			end
 			pin.EltruismHidden = nil
 			pin.EltruismOrigAlpha = nil
+			if pin.EltruismLib and pin.EltruismLib.EltruismHiddenPins then
+				pin.EltruismLib.EltruismHiddenPins[pin] = nil
+			end
 		end
 	else
 		if not pin.EltruismHidden then
@@ -876,6 +881,21 @@ function ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, isShown)
 				pin:EnableMouse(false)
 			end
 			pin.EltruismHidden = true
+			if pin.EltruismLib then
+				pin.EltruismLib.EltruismHiddenPins = pin.EltruismLib.EltruismHiddenPins or {}
+				pin.EltruismLib.EltruismHiddenPins[pin] = true
+			end
+		end
+	end
+end
+
+local function RestoreInactiveHiddenPins(lib)
+	if not lib or not lib.EltruismHiddenPins or not lib.activeMinimapPins then
+		return
+	end
+	for pin in pairs(lib.EltruismHiddenPins) do
+		if not lib.activeMinimapPins[pin] then
+			ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, true)
 		end
 	end
 end
@@ -885,6 +905,9 @@ function ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
 	if not lib or not lib.activeMinimapPins or not Minimap then
 		return
 	end
+
+	--restore any pins hidden
+	RestoreInactiveHiddenPins(lib)
 
 	local crop = GetMinimapVerticalCrop()
 	local isEnabled = crop > 0
@@ -913,67 +936,101 @@ function ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
 	end
 end
 
---hook herebedragons to mask pins outside rectangle minimap
-function ElvUI_EltreumUI:HereBeDragonsPinsFix()
-	if not _G.LibStub or not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.otherstuff then return end
+local function ApplyHereBeDragonsPinsFix(lib)
+	if not lib or not lib.updateFrame or not lib.activeMinimapPins then
+		return
+	end
 
-	for _, libName in ipairs(HBD_PIN_LIBS) do
-		local lib = _G.LibStub(libName, true)
-		if lib and lib.updateFrame and lib.activeMinimapPins then
-			if not lib.EltruismHbdHooked then
-				--hook icon creation methods
-				hooksecurefunc(lib, "AddMinimapIconWorld", function(_, icon)
-					if icon then
-						HookHereBeDragonsPin(icon, lib)
-						lib.EltruismPinsMoved = true
-					end
-				end)
-				hooksecurefunc(lib, "AddMinimapIconMap", function(_, icon)
-					if icon then
-						HookHereBeDragonsPin(icon, lib)
-						lib.EltruismPinsMoved = true
-					end
-				end)
+	if not lib.EltruismHbdHooked then
+		--hook icon creation and removal methods
+		if lib.AddMinimapIconWorld then
+			hooksecurefunc(lib, "AddMinimapIconWorld", function(_, icon)
+				if icon then
+					HookHereBeDragonsPin(icon, lib)
+					lib.EltruismPinsMoved = true
+				end
+			end)
+		end
+		if lib.AddMinimapIconMap then
+			hooksecurefunc(lib, "AddMinimapIconMap", function(_, icon)
+				if icon then
+					HookHereBeDragonsPin(icon, lib)
+					lib.EltruismPinsMoved = true
+				end
+			end)
+		end
+		if lib.RemoveMinimapIcon then
+			hooksecurefunc(lib, "RemoveMinimapIcon", function(_, _, icon)
+				if icon and icon.EltruismHidden then
+					ElvUI_EltreumUI:SetHereBeDragonsPinShown(icon, true)
+				end
+			end)
+		end
+		if lib.RemoveAllMinimapIcons then
+			hooksecurefunc(lib, "RemoveAllMinimapIcons", function()
+				RestoreInactiveHiddenPins(lib)
+			end)
+		end
 
-				--throttle onupdate to avoid unnecessary checks
-				lib.updateFrame:HookScript("OnUpdate", function(_, elapsed)
-					lib.EltruismTimer = (lib.EltruismTimer or 0) + elapsed
-					if lib.EltruismTimer < HBD_THROTTLE then
-						return
-					end
-					lib.EltruismTimer = 0
-
-					--hook any new pin that became active
-					local foundUnhookedPin = false
-					for pin in pairs(lib.activeMinimapPins) do
-						if pin and not pin.EltruismHbdHooked then
-							HookHereBeDragonsPin(pin, lib)
-							foundUnhookedPin = true
-						end
-					end
-
-					--return early if stationary and no new pins
-					if not foundUnhookedPin and not lib.EltruismPinsMoved then
-						return
-					end
-					lib.EltruismPinsMoved = nil
-
-					ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
-				end)
-				lib.EltruismHbdHooked = true
+		--throttle onupdate to avoid unnecessary checks
+		lib.updateFrame:HookScript("OnUpdate", function(_, elapsed)
+			lib.EltruismTimer = (lib.EltruismTimer or 0) + elapsed
+			if lib.EltruismTimer < HBD_THROTTLE then
+				return
 			end
+			lib.EltruismTimer = 0
 
-			--hook existing pins
-			if lib.minimapPins then
-				for pin in pairs(lib.minimapPins) do
+			--hook any new pin that became active
+			local foundUnhookedPin = false
+			for pin in pairs(lib.activeMinimapPins) do
+				if pin and not pin.EltruismHbdHooked then
 					HookHereBeDragonsPin(pin, lib)
+					foundUnhookedPin = true
 				end
 			end
-			for pin in pairs(lib.activeMinimapPins) do
-				HookHereBeDragonsPin(pin, lib)
+
+			--return early if stationary and no new pins
+			if not foundUnhookedPin and not lib.EltruismPinsMoved then
+				return
 			end
-			self:RefreshHereBeDragonsPins(lib)
+			lib.EltruismPinsMoved = nil
+
+			ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
+		end)
+		lib.EltruismHbdHooked = true
+	end
+
+	--hook existing pins
+	if lib.minimapPins then
+		for pin in pairs(lib.minimapPins) do
+			HookHereBeDragonsPin(pin, lib)
 		end
+	end
+	for pin in pairs(lib.activeMinimapPins) do
+		HookHereBeDragonsPin(pin, lib)
+	end
+	ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
+end
+
+--hook herebedragons to mask pins outside rectangle minimap
+function ElvUI_EltreumUI:HereBeDragonsPinsFix()
+	if not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.otherstuff then return end
+
+	if _G.LibStub then
+		for _, libName in ipairs(HBD_PIN_LIBS) do
+			local lib = _G.LibStub(libName, true)
+			if lib then
+				ApplyHereBeDragonsPinsFix(lib)
+			end
+		end
+	end
+
+	--Questie 12.8+ moved HereBeDragons-Pins into QuestieLoader._modules["HBDPins"] instead of LibStub
+	local loader = _G.QuestieLoader
+	local modules = type(loader) == "table" and rawget(loader, "_modules")
+	local questiePins = type(modules) == "table" and rawget(modules, "HBDPins")
+	if type(questiePins) == "table" then
+		ApplyHereBeDragonsPinsFix(questiePins)
 	end
 end
 
