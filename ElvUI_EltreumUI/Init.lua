@@ -372,8 +372,12 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	E:Delay(0.5, ElvUI_EltreumUI.UpdateZoneQuests)
 end
 
+local function DelayedFriendlyNameplates()
+	ElvUI_EltreumUI:FriendlyNameplates()
+end
+
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
-	E:Delay(5,function() ElvUI_EltreumUI:FriendlyNameplates() end)
+	E:Delay(5, DelayedFriendlyNameplates)
 	ElvUI_EltreumUI:QuestItem()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
@@ -399,6 +403,18 @@ end
 
 local GetActiveTalentGroup = _G.GetActiveTalentGroup
 local currenttalentclassic = (E.ClassicSOD or E.TBC or E.Wrath) and GetActiveTalentGroup and GetActiveTalentGroup() or 0
+local function DelayedBorderAdjust()
+	ElvUI_EltreumUI:BorderAdjust()
+end
+local function DelayedBorders()
+	ElvUI_EltreumUI:Borders()
+end
+local function DelayedShowHideBorders()
+	ElvUI_EltreumUI:ShowHideBorders()
+end
+local function DelayedExpandedCharacterStats()
+	ElvUI_EltreumUI:ExpandedCharacterStats()
+end
 local function RefreshOnSpecChange()
 	local previousSpec = ElvUI_EltreumUI.Spec
 	local newSpec = ElvUI_EltreumUI:UpdateSpec()
@@ -414,11 +430,11 @@ local function RefreshOnSpecChange()
 				ElvUI_EltreumUI:UpdateNPwithoutBar()
 			end
 			if E.db.ElvUI_EltreumUI.borders.borders then
-				E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
-				E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
+				E:Delay(2, DelayedBorderAdjust)
+				E:Delay(2, DelayedBorders)
 			end
-			E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
-			E:Delay(0.5, function() ElvUI_EltreumUI:ExpandedCharacterStats() end)
+			E:Delay(2, DelayedShowHideBorders)
+			E:Delay(0.5, DelayedExpandedCharacterStats)
 		end
 	end
 end
@@ -462,12 +478,15 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 	ElvUI_EltreumUI:UpdateAvgIlvl()
 end
 
+local lastInspectUnit
+local function DelayedInspectBg()
+	if _G.InspectFrame and _G.InspectFrame:IsVisible() then
+		ElvUI_EltreumUI:InspectBg(lastInspectUnit)
+	end
+end
 function ElvUI_EltreumUI:INSPECT_READY(_,unit)
-	E:Delay(0, function()
-		if _G.InspectFrame and _G.InspectFrame:IsVisible() then
-			ElvUI_EltreumUI:InspectBg(unit)
-		end
-	end)
+	lastInspectUnit = unit
+	E:Delay(0, DelayedInspectBg)
 end
 
 function ElvUI_EltreumUI:UPDATE_PENDING_MAIL()
