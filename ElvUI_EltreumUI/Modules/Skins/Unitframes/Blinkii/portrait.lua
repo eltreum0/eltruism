@@ -54,9 +54,17 @@ local function mirrorTexture(texture, mirror, top)
 	if texture.classIcons then
 		local coords = texture.classCoords
 		if #coords == 8 then
-			texture:SetTexCoord(unpack((mirror and { coords[5], coords[6], coords[7], coords[8], coords[1], coords[2], coords[3], coords[4] } or coords)))
+			if mirror then
+				texture:SetTexCoord(coords[5], coords[6], coords[7], coords[8], coords[1], coords[2], coords[3], coords[4])
+			else
+				texture:SetTexCoord(coords[1], coords[2], coords[3], coords[4], coords[5], coords[6], coords[7], coords[8])
+			end
 		else
-			texture:SetTexCoord(unpack((mirror and { coords[2], coords[1], coords[3], coords[4] } or coords)))
+			if mirror then
+				texture:SetTexCoord(coords[2], coords[1], coords[3], coords[4])
+			else
+				texture:SetTexCoord(coords[1], coords[2], coords[3], coords[4])
+			end
 		end
 	else
 		texture:SetTexCoord(mirror and 1 or 0, mirror and 0 or 1, top and 1 or 0, top and 0 or 1)
@@ -113,16 +121,20 @@ local function getColor(unit, isPlayer, isDead)
 	end
 end
 
-local function adjustColor(color, shift)
+local adjustedColorA = {}
+local adjustedColorB = {}
+local adjustedBgColorPair = { a = adjustedColorA, b = adjustedColorB }
+
+local function adjustColor(color, shift, target)
 	if not color then return end
 	if not shift then return end
 	if not color.r then return end
-	return {
-		r = color.r * shift,
-		g = color.g * shift,
-		b = color.b * shift,
-		a = color.a,
-	}
+	target = target or adjustedColorA
+	target.r = color.r * shift
+	target.g = color.g * shift
+	target.b = color.b * shift
+	target.a = color.a
+	return target
 end
 
 local function UpdateIconBackground(tx, unit, mirror)
@@ -137,12 +149,11 @@ local function UpdateIconBackground(tx, unit, mirror)
 	if color then
 		local bgColor
 		if type(color.a) == "table" then
-			bgColor = {
-				a = adjustColor(color.a, ColorShift),
-				b = adjustColor(color.b, ColorShift),
-			}
+			adjustedBgColorPair.a = adjustColor(color.a, ColorShift, adjustedColorA)
+			adjustedBgColorPair.b = adjustColor(color.b, ColorShift, adjustedColorB)
+			bgColor = adjustedBgColorPair
 		else
-			bgColor = adjustColor(color, ColorShift)
+			bgColor = adjustColor(color, ColorShift, adjustedColorA)
 		end
 
 		if bgColor then setColor(tx, bgColor, mirror) end
@@ -416,10 +427,37 @@ local function UpdatePortrait(portraitFrame, force)
 	end
 end
 
-local function SetCastEvents(portrait, unregistering)
-	local castEvents = { "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_CHANNEL_START", "UNIT_SPELLCAST_INTERRUPTED", "UNIT_SPELLCAST_STOP", "UNIT_SPELLCAST_CHANNEL_STOP" }
-	local empowerEvents = { "UNIT_SPELLCAST_EMPOWER_START", "UNIT_SPELLCAST_EMPOWER_STOP" }
+local castEvents = { "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_CHANNEL_START", "UNIT_SPELLCAST_INTERRUPTED", "UNIT_SPELLCAST_STOP", "UNIT_SPELLCAST_CHANNEL_STOP" }
+local empowerEvents = { "UNIT_SPELLCAST_EMPOWER_START", "UNIT_SPELLCAST_EMPOWER_STOP" }
+local partyEvents = { "GROUP_ROSTER_UPDATE", "PARTY_MEMBER_ENABLE", "UNIT_MODEL_CHANGED", "UNIT_PORTRAIT_UPDATE", "UNIT_CONNECTION" }
+local unitEventsList = { "UNIT_MODEL_CHANGED", "UNIT_PORTRAIT_UPDATE", "UNIT_CONNECTION" }
+local allPortraitUnits = {
+	"Player",
+	"Target",
+	"Pet",
+	"Focus",
+	"TargetTarget",
+	"Party1",
+	"Party2",
+	"Party3",
+	"Party4",
+	"Party5",
+	"Arena1",
+	"Arena2",
+	"Arena3",
+	"Arena4",
+	"Arena5",
+	"Boss1",
+	"Boss2",
+	"Boss3",
+	"Boss4",
+	"Boss5",
+	"Boss6",
+	"Boss7",
+	"Boss8",
+}
 
+local function SetCastEvents(portrait, unregistering)
 	if unregistering then
 		for _, event in pairs(castEvents) do
 			portrait:UnregisterEvent(event)
@@ -458,7 +496,6 @@ local function SetScripts(portrait, force)
 		-- party event
 		if portrait.isPartyFrame then
 			-- events for all party frames
-			local partyEvents = { "GROUP_ROSTER_UPDATE", "PARTY_MEMBER_ENABLE", "UNIT_MODEL_CHANGED", "UNIT_PORTRAIT_UPDATE", "UNIT_CONNECTION" }
 			for _, event in ipairs(partyEvents) do
 				portrait:RegisterEvent(event)
 				tinsert(portrait.allEvents, event)
@@ -471,9 +508,7 @@ local function SetScripts(portrait, force)
 			end
 		else
 			-- specific events for unit
-			local unitEvents = { "UNIT_MODEL_CHANGED", "UNIT_PORTRAIT_UPDATE", "UNIT_CONNECTION" }
-
-			for _, event in ipairs(unitEvents) do
+			for _, event in ipairs(unitEventsList) do
 				portrait:RegisterUnitEvent(event, portrait.__unit)
 				tinsert(portrait.allEvents, event)
 			end
@@ -554,32 +589,7 @@ local function SetScripts(portrait, force)
 end
 
 local function UpdateAllPortraits(force)
-	local units = {
-		"Player",
-		"Target",
-		"Pet",
-		"Focus",
-		"TargetTarget",
-		"Party1",
-		"Party2",
-		"Party3",
-		"Party4",
-		"Party5",
-		"Arena1",
-		"Arena2",
-		"Arena3",
-		"Arena4",
-		"Arena5",
-		"Boss1",
-		"Boss2",
-		"Boss3",
-		"Boss4",
-		"Boss5",
-		"Boss6",
-		"Boss7",
-		"Boss8",
-	}
-	for _, name in ipairs(units) do
+	for _, name in ipairs(allPortraitUnits) do
 		if module[name] then
 			UpdatePortrait(module[name])
 
@@ -738,25 +748,25 @@ local function OtherUnitOnEvent(self, event, eventUnit)
 	if shouldHandleEvent(event, eventUnit, self) then UnitEvent(self, event) end
 end
 
-local function CreatePortraits(name, unit, parentFrame, unitSettings, events, unitEvents)
-	local partyFrames = {
-		Party1 = true,
-		Party2 = true,
-		Party3 = true,
-		Party4 = true,
-		Party5 = true,
-	}
-	local bossFrames = {
-		Boss1 = true,
-		Boss2 = true,
-		Boss3 = true,
-		Boss4 = true,
-		Boss5 = true,
-		Boss6 = true,
-		Boss7 = true,
-		Boss8 = true,
-	}
+local partyFrames = {
+	Party1 = true,
+	Party2 = true,
+	Party3 = true,
+	Party4 = true,
+	Party5 = true,
+}
+local bossFrames = {
+	Boss1 = true,
+	Boss2 = true,
+	Boss3 = true,
+	Boss4 = true,
+	Boss5 = true,
+	Boss6 = true,
+	Boss7 = true,
+	Boss8 = true,
+}
 
+local function CreatePortraits(name, unit, parentFrame, unitSettings, events, unitEvents)
 	if not module[name] then
 		module[name] = CreateFrame("Button", "ElvUI_EltreumUI_Portrait_" .. name, parentFrame, "SecureUnitButtonTemplate") -- CreatePortrait(parentFrame, unitSettings, unit)
 		module[name].parent = parentFrame
