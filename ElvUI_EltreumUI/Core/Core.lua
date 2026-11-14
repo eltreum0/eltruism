@@ -49,6 +49,8 @@ local GetGroupDisplayInfoByTreeID = _G.C_Traits and _G.C_Traits.GetGroupDisplayI
 local GetGroupCurrencyInfo = _G.C_Traits and _G.C_Traits.GetGroupCurrencyInfo
 local ipairs = _G.ipairs
 local table = _G.table
+local wipe = _G.wipe
+local tinsert = table.insert
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -473,12 +475,7 @@ function ElvUI_EltreumUI:FixChatToggles()
 			local datatextname = tostring(eltruismdata:GetName())
 
 			--try again due to chat faders
-			E:Delay(1,function()
-				_G.LeftChatToggleButton:SetAlpha(1)
-				_G.LeftChatToggleButton:Show()
-				_G.RightChatToggleButton:SetAlpha(1)
-				_G.RightChatToggleButton:Show()
-			end)
+			E:Delay(1, ElvUI_EltreumUI.DelayedChatToggleShow)
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template and _G[datatextname].template ~= 'NoBackdrop' and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not _G[datatextname].shadow then
@@ -593,8 +590,35 @@ do
 	end
 end
 
+function ElvUI_EltreumUI.DelayedChatToggleShow()
+	_G.LeftChatToggleButton:SetAlpha(1)
+	_G.LeftChatToggleButton:Show()
+	_G.RightChatToggleButton:SetAlpha(1)
+	_G.RightChatToggleButton:Show()
+end
+
 --from elvui api, add button to game menu
 local offset = E.Modern and 36 or 19
+local function EditModeButtonOnClick(_, button)
+	if not InCombatLockdown() then
+		if button == "LeftButton" then
+			E:ToggleMoveMode()
+			HideUIPanel(_G["GameMenuFrame"])
+		else
+			PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+			ShowUIPanel(EditModeManagerFrame)
+		end
+	end
+end
+local function EditModeButtonOnEnter(self)
+	_G["GameTooltip"]:SetOwner(self, 'ANCHOR_RIGHT')
+	_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
+	_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
+	_G["GameTooltip"]:Show()
+end
+local function EditModeButtonOnLeave()
+	_G["GameTooltip"]:Hide()
+end
 function ElvUI_EltreumUI:AddGameMenuButton()
 	if E.Modern then
 		GameMenuFrame.Eltruism:SetPoint("CENTER", _G.GameMenuFrame, "TOP", 0, -50)
@@ -643,26 +667,12 @@ function ElvUI_EltreumUI:AddGameMenuButton()
 		--EditModeButton.EltruismHooked = true
 		ElvUI_EltreumUI:MacroClick(EditModeButton)
 
-		EditModeButton:SetScript("OnClick", function(_, button)
-			if not InCombatLockdown() then
-				if button == "LeftButton" then
-					E:ToggleMoveMode()
-					HideUIPanel(_G["GameMenuFrame"])
-				else
-					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-					ShowUIPanel(EditModeManagerFrame)
-				end
-			end
-		end)
-		EditModeButton:HookScript("OnEnter", function()
-			_G["GameTooltip"]:SetOwner(EditModeButton, 'ANCHOR_RIGHT')
-			_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
-			_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
-			_G["GameTooltip"]:Show()
-		end)
-		EditModeButton:HookScript("OnLeave", function()
-			_G["GameTooltip"]:Hide()
-		end)
+		EditModeButton:SetScript("OnClick", EditModeButtonOnClick)
+		if not EditModeButton.EltruismTooltipHooked then
+			EditModeButton.EltruismTooltipHooked = true
+			EditModeButton:HookScript("OnEnter", EditModeButtonOnEnter)
+			EditModeButton:HookScript("OnLeave", EditModeButtonOnLeave)
+		end
 	end
 end
 
@@ -1167,6 +1177,8 @@ function ElvUI_EltreumUI:CheckClassicSpec()
 	end
 	return 0
 end
+local foreverGroupIDs = {}
+local foreverCurrencyByGroup = {}
 function ElvUI_EltreumUI:CheckForeverSpec()
 	local _, _, classID = UnitClass("player")
 	local activeGroup = GetActiveSpecGroup() or 1
@@ -1180,21 +1192,21 @@ function ElvUI_EltreumUI:CheckForeverSpec()
 	local displayInfos = GetGroupDisplayInfoByTreeID(treeID)
 	if not displayInfos or #displayInfos == 0 then return nil, nil, 0, 0, 0 end
 
-	local groupIDs = {}
+	wipe(foreverGroupIDs)
 	for _, info in ipairs(displayInfos) do
-		table.insert(groupIDs, info.groupID)
+		tinsert(foreverGroupIDs, info.groupID)
 	end
-	local groupCurrencyInfos = GetGroupCurrencyInfo(configID, groupIDs)
-	local currencyByGroup = {}
+	local groupCurrencyInfos = GetGroupCurrencyInfo(configID, foreverGroupIDs)
+	wipe(foreverCurrencyByGroup)
 	if groupCurrencyInfos then
 		for _, curr in ipairs(groupCurrencyInfos) do
-			currencyByGroup[curr.traitNodeGroupID] = curr.currencyInfos[1] and curr.currencyInfos[1].spent or 0
+			foreverCurrencyByGroup[curr.traitNodeGroupID] = curr.currencyInfos[1] and curr.currencyInfos[1].spent or 0
 		end
 	end
 
-	local spent1 = (displayInfos[1] and currencyByGroup[displayInfos[1].groupID]) or 0
-	local spent2 = (displayInfos[2] and currencyByGroup[displayInfos[2].groupID]) or 0
-	local spent3 = (displayInfos[3] and currencyByGroup[displayInfos[3].groupID]) or 0
+	local spent1 = (displayInfos[1] and foreverCurrencyByGroup[displayInfos[1].groupID]) or 0
+	local spent2 = (displayInfos[2] and foreverCurrencyByGroup[displayInfos[2].groupID]) or 0
+	local spent3 = (displayInfos[3] and foreverCurrencyByGroup[displayInfos[3].groupID]) or 0
 	local dominantIndex = 0
 	local dominantName = ""
 
