@@ -196,27 +196,30 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			end
 		else
-			hooksecurefunc('PaperDollFrame_SetLevel', function()
-				--without delay for some reason it does not work since the text returns as just... Name for some reason
-				E:Delay(0, function()
-					if not (CharacterNameText:GetText():match("|T")) then
-						CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
-						CharacterNameText:SetShadowOffset(2, -1)
-						if stringlen(CharacterNameText:GetText()) >= numCharacters then
-							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-								CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
+			if not ElvUI_EltreumUI.ischarpanelClassicHooked then
+				hooksecurefunc('PaperDollFrame_SetLevel', function()
+					--without delay for some reason it does not work since the text returns as just... Name for some reason
+					E:Delay(0, function()
+						if not (CharacterNameText:GetText():match("|T")) then
+							CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
+							CharacterNameText:SetShadowOffset(2, -1)
+							if stringlen(CharacterNameText:GetText()) >= numCharacters then
+								if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+									CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
+								else
+									CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+									CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							else
 								CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 								CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
-						else
-							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
-							CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						end
-					end
+					end)
 				end)
-			end)
+				ElvUI_EltreumUI.ischarpanelClassicHooked = true
+			end
 		end
 	end
 end)
