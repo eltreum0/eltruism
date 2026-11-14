@@ -1768,3 +1768,6 @@ L["|cFFAAAAAAMono|r Thick"] = true
 L["|cff888888Shadow|r"] = true
 L["|cff888888Shadow|r Outline"] = true
 L["|cff888888Shadow|r Thick"] = true
+L["Ranged Swing Timer"] = true
+L["Hide Ranged Swing Timer"] = true
+L["Hides the Blizzard Ranged Swing Timer when no swing timer is active"] = true

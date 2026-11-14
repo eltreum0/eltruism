@@ -1768,6 +1768,9 @@ L["|cFFAAAAAAMono|r Thick"] = "|cFFAAAAAAMono|r Grueso"
 L["|cff888888Shadow|r"] = "|cff888888Sombra|r"
 L["|cff888888Shadow|r Outline"] = "|cff888888Sombra|r Contorno"
 L["|cff888888Shadow|r Thick"] = "|cff888888Sombra|r Grueso"
+L["Ranged Swing Timer"] = "Temporizador de disparo a distancia"
+L["Hide Ranged Swing Timer"] = "Ocultar temporizador de disparo a distancia"
+L["Hides the Blizzard Ranged Swing Timer when no swing timer is active"] = "Oculta el temporizador de disparo a distancia de Blizzard cuando no hay ningún temporizador activo"
 
 local L_esMX = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
 if L_esMX then
