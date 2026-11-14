@@ -466,57 +466,51 @@ local ids = {
 	[180653] = true, -- Shadowlands
 	[151086] = true, -- Tournament
 	[187786] = true, -- Legion Timewalking
+	[168196] = true, -- Time Trial
+	[168195] = true, -- Time Trial
+	[168197] = true, -- Time Trial
 	[186159] = true, -- Dragonflight
 	[211142] = true, -- Delve Keystone
 	[210693] = true, -- Delve Keystone (alternate)
 }
-local keys = {
-}
-function ElvUI_EltreumUI:Keys(event,message)
-	if not E.Retail then
-		return
-	elseif message == nil then
-		return
-	elseif not ElvUI_EltreumUI:IsThisASafeSecret(message,true) then
-		return
-	elseif message:match("!keys") == false or message:match("!key") == false then
-		return
-	end
-
-	local function update()
-		for bag = 0, NUM_BAG_SLOTS do
-			local bagSlots = C_Container.GetContainerNumSlots(bag)
-			for slot = 1, bagSlots do
-				local containerInfo = C_Container.GetContainerItemInfo(bag, slot)
-				if containerInfo then
-					local itemLink = containerInfo.hyperlink
-					local itemID = containerInfo.itemID
-					if itemID and ids[itemID] then
-						keys[itemID] = itemLink
-					end
+local keys = {}
+local function updateKeys()
+	for bag = 0, NUM_BAG_SLOTS do
+		local bagSlots = C_Container.GetContainerNumSlots(bag)
+		for slot = 1, bagSlots do
+			local containerInfo = C_Container.GetContainerItemInfo(bag, slot)
+			if containerInfo then
+				local itemLink = containerInfo.hyperlink
+				local itemID = containerInfo.itemID
+				if itemID and ids[itemID] then
+					keys[itemID] = itemLink
 				end
 			end
 		end
 	end
-
-	local function link(channel)
-		update()
-		if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
-			for _, itemlink in next, keys do
-				message = itemlink
-				SendChatMessage(message, channel)
-			end
+end
+local function linkKeys(channel)
+	updateKeys()
+	if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+		for _, itemlink in next, keys do
+			SendChatMessage(itemlink, channel)
 		end
 	end
-
-	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
+end
+function ElvUI_EltreumUI:Keys(event,message)
+	if not E.Retail then return end
 	if event == 'BAG_UPDATE_DELAYED' then
-		update()
-	elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then
-		--local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
-		link(channel)
+		updateKeys()
+		return
 	end
-
+	if message == nil or not ElvUI_EltreumUI:IsThisASafeSecret(message,true) then
+		return
+	end
+	local lowerMsg = strlower(message)
+	if lowerMsg == '!keys' or lowerMsg == '!key' then
+		local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
+		linkKeys(channel)
+	end
 end
 
 --frame to update using events
