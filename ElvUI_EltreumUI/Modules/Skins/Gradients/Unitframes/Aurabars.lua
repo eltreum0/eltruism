@@ -451,6 +451,48 @@ function ElvUI_EltreumUI:UpdateRetailAuraBar(container, button, auraData)
 	ElvUI_EltreumUI:ApplyAuraBarColorRetail(container, button, auraData)
 end
 
+local function OnRetailAuraBarSetStatusBarColor(bar)
+	if bar.isSettingBackdrop then return end
+	local btn = bar:GetParent()
+	local cont = btn and (btn.container or btn:GetParent())
+	if cont and cont.isAuraBar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		ElvUI_EltreumUI:ApplyAuraBarBackdropRetail(cont, btn)
+		ElvUI_EltreumUI:ApplyAuraBarColorRetail(cont, btn, btn.eltruismAuraData)
+	end
+end
+
+local function OnRetailAuraBarSetTexture(tex)
+	local btn = tex:GetParent()
+	if not btn then return end
+	local cont = btn.container or btn:GetParent()
+	if cont and cont.isAuraBar then
+		if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars and ElvUI_EltreumUI:IsThisASafeSecret(tex, true) then
+			tex:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
+		end
+		ElvUI_EltreumUI:UpdateRetailAuraBar(cont, btn)
+	end
+end
+
+local function OnRetailAuraBarSetText(fs)
+	local tf = fs:GetParent()
+	local btn = tf and tf:GetParent()
+	if not btn then return end
+	local cont = btn.container or btn:GetParent()
+	if cont and cont.isAuraBar then
+		ElvUI_EltreumUI:UpdateRetailAuraBar(cont, btn)
+	end
+end
+
+local function OnRetailAuraBarBorderSetVertexColor(border)
+	if border.isSettingGradient then return end
+	local btn = border:GetParent()
+	if not btn then return end
+	local cont = btn.container or btn:GetParent()
+	if cont and cont.isAuraBar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		ElvUI_EltreumUI:ApplyAuraBarColorRetail(cont, btn, btn.eltruismAuraData)
+	end
+end
+
 function ElvUI_EltreumUI:AuraBarRetail(container, button)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not E.private.unitframe.enable then return end
@@ -463,52 +505,18 @@ function ElvUI_EltreumUI:AuraBarRetail(container, button)
 	if not (container and button and button.statusbar) then return end
 
 	if not button.EltruismHooked then
-		hooksecurefunc(button.statusbar, "SetStatusBarColor", function(bar)
-			if bar.isSettingBackdrop then return end
-			local btn = bar:GetParent()
-			local cont = btn and (btn.container or btn:GetParent())
-			if cont and cont.isAuraBar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-				ElvUI_EltreumUI:ApplyAuraBarBackdropRetail(cont, btn)
-				ElvUI_EltreumUI:ApplyAuraBarColorRetail(cont, btn, btn.eltruismAuraData)
-			end
-		end)
+		hooksecurefunc(button.statusbar, "SetStatusBarColor", OnRetailAuraBarSetStatusBarColor)
 
 		if button.texture then
-			hooksecurefunc(button.texture, "SetTexture", function(tex)
-				local btn = tex:GetParent()
-				if not btn then return end
-				local cont = btn.container or btn:GetParent()
-				if cont and cont.isAuraBar then
-					if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars and ElvUI_EltreumUI:IsThisASafeSecret(tex, true) then
-						tex:SetTexCoord(0.08, 0.92, 0.2799995956419, 0.7200004043581)
-					end
-					ElvUI_EltreumUI:UpdateRetailAuraBar(cont, btn)
-				end
-			end)
+			hooksecurefunc(button.texture, "SetTexture", OnRetailAuraBarSetTexture)
 		end
 
 		if button.textFrame and button.textFrame.nameText then
-			hooksecurefunc(button.textFrame.nameText, "SetText", function(fs)
-				local tf = fs:GetParent()
-				local btn = tf and tf:GetParent()
-				if not btn then return end
-				local cont = btn.container or btn:GetParent()
-				if cont and cont.isAuraBar then
-					ElvUI_EltreumUI:UpdateRetailAuraBar(cont, btn)
-				end
-			end)
+			hooksecurefunc(button.textFrame.nameText, "SetText", OnRetailAuraBarSetText)
 		end
 
 		if button.border then
-			hooksecurefunc(button.border, "SetVertexColor", function(border)
-				if border.isSettingGradient then return end
-				local btn = border:GetParent()
-				if not btn then return end
-				local cont = btn.container or btn:GetParent()
-				if cont and cont.isAuraBar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-					ElvUI_EltreumUI:ApplyAuraBarColorRetail(cont, btn, btn.eltruismAuraData)
-				end
-			end)
+			hooksecurefunc(button.border, "SetVertexColor", OnRetailAuraBarBorderSetVertexColor)
 		end
 
 		button.EltruismHooked = true
