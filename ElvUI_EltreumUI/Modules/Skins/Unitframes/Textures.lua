@@ -16,6 +16,7 @@ local UnitIsFriend = _G.UnitIsFriend
 local UnitInParty = _G.UnitInParty
 local UnitInRaid = _G.UnitInRaid
 local type = _G.type
+local select = _G.select
 local string = _G.string
 local strfind = string.find
 local canaccessvalue = _G.canaccessvalue
@@ -420,10 +421,13 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			--party/raid
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then
-				local partymembers = {_G["ElvUF_PartyGroup1"]:GetChildren()}
-				for _, frame in pairs(partymembers) do
-					if frame and frame.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"party")
+				local partyGroup = _G["ElvUF_PartyGroup1"]
+				if partyGroup then
+					for j = 1, partyGroup:GetNumChildren() do
+						local frame = select(j, partyGroup:GetChildren())
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"party")
+						end
 					end
 				end
 				if E.db.unitframe.units.party.petsGroup.enable then
@@ -440,9 +444,10 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsVisible() then
 				for i = 1, 8 do
-					if _G["ElvUF_Raid1Group"..i] then
-						local raidmembers = {_G["ElvUF_Raid1Group"..i]:GetChildren()}
-						for _, frame in pairs(raidmembers) do
+					local raidGroup = _G["ElvUF_Raid1Group"..i]
+					if raidGroup then
+						for j = 1, raidGroup:GetNumChildren() do
+							local frame = select(j, raidGroup:GetChildren())
 							if frame and frame.Health then
 								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
 							end
@@ -453,9 +458,10 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsVisible() then
 				for i = 1, 8 do
-					if _G["ElvUF_Raid2Group"..i] then
-						local raidmembers = {_G["ElvUF_Raid2Group"..i]:GetChildren()}
-						for _, frame in pairs(raidmembers) do
+					local raidGroup = _G["ElvUF_Raid2Group"..i]
+					if raidGroup then
+						for j = 1, raidGroup:GetNumChildren() do
+							local frame = select(j, raidGroup:GetChildren())
 							if frame and frame.Health then
 								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
 							end
@@ -466,9 +472,10 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsVisible() then
 				for i = 1, 8 do
-					if _G["ElvUF_Raid3Group"..i] then
-						local raidmembers = {_G["ElvUF_Raid3Group"..i]:GetChildren()}
-						for _, frame in pairs(raidmembers) do
+					local raidGroup = _G["ElvUF_Raid3Group"..i]
+					if raidGroup then
+						for j = 1, raidGroup:GetNumChildren() do
+							local frame = select(j, raidGroup:GetChildren())
 							if frame and frame.Health then
 								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
 							end
