@@ -847,19 +847,20 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(castbar, unit)
 	if db.castbar and db.castbar.enable and db.castbar.displayTarget then
 		local frameType = plate.frameType
 		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
-			if UnitExists(ElvUI_EltreumUI:GetTargetUnit(unit)) then
+			local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
+			if UnitExists(targetUnit) then
 				local spellName = E:ShortenString(castbar.spellName, 11)
-				local targetname = E:ShortenString(UnitName(ElvUI_EltreumUI:GetTargetUnit(unit)), 12)
+				local targetname = E:ShortenString(UnitName(targetUnit), 12)
 				--local spellName = E:AbbreviateString(castbar.spellName)
-				--local targetname = E:AbbreviateString(UnitName(ElvUI_EltreumUI:GetTargetUnit(unit)))
-				if UnitIsPlayer(ElvUI_EltreumUI:GetTargetUnit(unit)) or (E.Retail and UnitInPartyIsAI(ElvUI_EltreumUI:GetTargetUnit(unit))) then
-					local _ , classes = UnitClass(ElvUI_EltreumUI:GetTargetUnit(unit))
+				--local targetname = E:AbbreviateString(UnitName(targetUnit))
+				if UnitIsPlayer(targetUnit) or (E.Retail and UnitInPartyIsAI(targetUnit)) then
+					local _ , classes = UnitClass(targetUnit)
 					if not E:NotSecretValue(classes) then --secret class so do something else
 						return targetname
 					end
 					castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else
-					local reaction = UnitReaction(ElvUI_EltreumUI:GetTargetUnit(unit), "player")
+					local reaction = UnitReaction(targetUnit, "player")
 					if reaction >= 5 then
 						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
 					elseif reaction == 4 then
