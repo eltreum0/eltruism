@@ -931,15 +931,32 @@ do
 	_G.ElvUI_EltreumUI_OnAddonCompartmentClick = ElvUI_EltreumUI.OnAddonCompartmentClick
 end
 
+local fontFlagCache = {
+	['NONE'] = '',
+	[''] = '',
+	['SHADOW'] = '',
+	['OUTLINE'] = 'OUTLINE',
+	['THICKOUTLINE'] = 'THICKOUTLINE',
+	['MONOCHROME'] = 'MONOCHROME',
+	['MONOCHROMEOUTLINE'] = 'MONOCHROMEOUTLINE',
+	['MONOCHROMETHICKOUTLINE'] = 'MONOCHROMETHICKOUTLINE',
+	['SHADOWOUTLINE'] = 'OUTLINE',
+	['SHADOWTHICKOUTLINE'] = 'THICKOUTLINE',
+	['SHADOWMONOCHROME'] = 'MONOCHROME',
+	['SHADOWMONOCHROMEOUTLINE'] = 'MONOCHROMEOUTLINE',
+	['SHADOWMONOCHROMETHICKOUTLINE'] = 'MONOCHROMETHICKOUTLINE',
+}
+
 function ElvUI_EltreumUI:FontFlag(style)
+	if not style then return '' end
+	local cached = fontFlagCache[style]
+	if cached ~= nil then return cached end
+	local res = style
 	if strsub(style, 0, 6) == 'SHADOW' then
-		style = strsub(style, 7)
-		if not style then style = '' end
-		return style
-	else
-		if style == 'NONE' then style = '' end
-		return style
+		res = strsub(style, 7) or ''
 	end
+	fontFlagCache[style] = res
+	return res
 end
 
 --from oUF
@@ -1299,8 +1316,9 @@ function ElvUI_EltreumUI:UpdateCursorPosition(frame, elapsed, force)
 	if now ~= lastCursorPollTime or force then
 		lastCursorPollTime = now
 		local rawX, rawY = GetCursorPosition()
-		local offsetX = (E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor and E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx) or 0
-		local offsetY = (E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor and E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety) or 0
+		local cursorDB = E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor
+		local offsetX = (cursorDB and cursorDB.cooldownoffsetx) or 0
+		local offsetY = (cursorDB and cursorDB.cooldownoffsety) or 0
 		local scaleDivisor = E.UIParent:GetEffectiveScale()
 		if rawX ~= lastRawCursorX or rawY ~= lastRawCursorY or offsetX ~= lastOffsetX or offsetY ~= lastOffsetY or scaleDivisor ~= lastScaleDivisor or force then
 			lastRawCursorX, lastRawCursorY = rawX, rawY
