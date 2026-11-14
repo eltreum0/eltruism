@@ -22,12 +22,11 @@ function ElvUI_EltreumUI:Configure_InfoPanel(_, frame)
 	frame.InfoPanel:SetShown(isShown)
 
 	if isShown then
-		frame.InfoPanel:ClearAllPoints()
-
-		local allowed = (E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes or allowedunits[tostring(frame:GetName())]) and true or false
+		local ufDB = E.db.ElvUI_EltreumUI.unitframes
+		local allowed = (ufDB.infopanelontopallframes or allowedunits[frame:GetName()]) and true or false
 
 		--print(E.private["general"]["pixelPerfect"],E.db["unitframe"]["thinBorders"])
-		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowed then
+		if ufDB.UFmodifications and ufDB.infopanelontop and allowed then
 			local portrait = db.portrait and ((db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D)
 			if portrait then
 				portrait.db = db.portrait
@@ -137,7 +136,9 @@ function ElvUI_EltreumUI:Configure_InfoPanel(_, frame)
 					frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
 				end
 			end
-		else --this is the original
+		elseif frame.InfoPanelOnTop then --this is the original
+			frame.InfoPanel:ClearAllPoints()
+			frame.InfoPanelOnTop = nil
 			if frame.ORIENTATION == 'RIGHT' and frame.unitframeType ~= 'arena' then
 				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 				if frame.USE_POWERBAR and not frame.USE_INSET_POWERBAR and not frame.POWERBAR_DETACHED then
@@ -155,10 +156,15 @@ function ElvUI_EltreumUI:Configure_InfoPanel(_, frame)
 			end
 		end
 
-		if db.infoPanel and db.infoPanel.transparent then
-			frame.InfoPanel.backdrop:SetTemplate('Transparent', nil, nil, nil, true)
-		elseif frame.InfoPanel.backdrop then
-			frame.InfoPanel.backdrop:SetTemplate(nil, true, nil, nil, true)
+		local backdrop = frame.InfoPanel.backdrop
+		if backdrop then
+			if db.infoPanel and db.infoPanel.transparent then
+				if backdrop.template ~= 'Transparent' then
+					backdrop:SetTemplate('Transparent', nil, nil, nil, true)
+				end
+			elseif backdrop.template ~= 'Default' then
+				backdrop:SetTemplate(nil, true, nil, nil, true)
+			end
 		end
 	else
 		frame.InfoPanel:Hide()
