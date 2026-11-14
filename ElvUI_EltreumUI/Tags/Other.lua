@@ -173,7 +173,8 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
 		local targetname = UnitName(targetUnit)
-		local _ , classes = UnitClass(UnitName(targetUnit))
+		if not targetname then return end
+		local _ , classes = UnitClass(targetname)
 		if not classes then return end
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
@@ -182,10 +183,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 		--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 		--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-		local reaction = UnitReaction(UnitName(targetUnit), "player")
 
-		if spellID and targetname and endTime > startTime then
-			if UnitIsPlayer(UnitName(targetUnit)) then
+		if spellID and endTime > startTime then
+			if UnitIsPlayer(targetname) then
 				if not E:NotSecretValue(classes) then --secret class so do something else
 					local classColor = GetClassColor(classes)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
@@ -193,7 +193,8 @@ function ElvUI_EltreumUI:LoadOtherTags()
 				end
 				local color = ElvUI_EltreumUI:classcolorcast(classes)
 				return format("|c%s%s|r", color, targetname)
-			elseif not UnitIsPlayer(UnitName(targetUnit)) then
+			else
+				local reaction = UnitReaction(targetname, "player")
 				if reaction then
 					if reaction >= 5 then
 						return ("|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r")
@@ -213,7 +214,8 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
 		local targetname = UnitName(targetUnit)
-		local _ , classes = UnitClass(UnitName(targetUnit))
+		if not targetname then return end
+		local _ , classes = UnitClass(targetname)
 		if not classes then return end
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
@@ -222,10 +224,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 		--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 		--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-		local reaction = UnitReaction(UnitName(targetUnit), "player")
 
-		if spellID and targetname and endTime > startTime then
-			if UnitIsPlayer(UnitName(targetUnit)) then
+		if spellID and endTime > startTime then
+			if UnitIsPlayer(targetname) then
 				if not E:NotSecretValue(classes) then --secret class so do something else
 					local classColor = GetClassColor(classes)
 					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
@@ -233,7 +234,8 @@ function ElvUI_EltreumUI:LoadOtherTags()
 				end
 				local color = ElvUI_EltreumUI:classcolorcast(classes)
 				return format("%s > |c%s%s|r", TARGET, color, targetname)
-			elseif not UnitIsPlayer(UnitName(targetUnit)) then
+			else
+				local reaction = UnitReaction(targetname, "player")
 				if reaction then
 					if reaction >= 5 then
 						return (TARGET.." > |c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r")
@@ -285,10 +287,11 @@ function ElvUI_EltreumUI:LoadOtherTags()
 
 	E:AddTag("eltruism:stance", 1, function()
 		local stance = GetShapeshiftForm()
-		local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
 		if stanceBackup ~= stance then
 			refreshstance()
+			stanceBackup = stance
 		end
+		local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
 		if stanceInfo then
 			return stanceInfo, tostring(stance)
 		end
@@ -419,8 +422,9 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
 			local role = UnitGroupRolesAssigned(unit)
 			if role and role == 'HEALER' then
-				if UnitPower(unit, Enum.PowerType.Mana) ~= 0 then
-					return mathfloor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100).."%"
+				local mana = UnitPower(unit, Enum.PowerType.Mana)
+				if mana ~= 0 then
+					return mathfloor((mana / UnitPowerMax(unit, Enum.PowerType.Mana)) * 100).."%"
 				else
 					return "0%"
 				end
