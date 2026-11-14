@@ -180,8 +180,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			name = format("%s %s", name, surname)
 		end
 		if not name then return end
-		if not args then args = 16 end
-		args = tonumber(args)
+		local length = tonumber(args) or 16
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
@@ -189,11 +188,11 @@ function ElvUI_EltreumUI:LoadNameTags()
 			isTarget = false
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
+			if stringlen(name) > length then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, length,nil,nil,UnitIsPlayer(unit))
 			end
-			if stringlen(name) > tonumber(args) then --second for players
-				name = E:ShortenString(name, tonumber(args))
+			if stringlen(name) > length then --second for players
+				name = E:ShortenString(name, length)
 			end
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -275,8 +274,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 		end
 		if not namecheck then return end
 		local name = namecheck
-		if not args then args = 16 end
-		args = tonumber(args)
+		local length = tonumber(args) or 16
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			isTarget = E:UnitIsUnit(unit,"target") and (not unit:match("nameplate") and not unit:match("party"))
@@ -285,11 +283,11 @@ function ElvUI_EltreumUI:LoadNameTags()
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			name = stringupper(namecheck)
-			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
+			if stringlen(name) > length then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, length,nil,nil,UnitIsPlayer(unit))
 			end
-			if stringlen(name) > tonumber(args) then --second for players
-				name = E:ShortenString(name, tonumber(args))
+			if stringlen(name) > length then --second for players
+				name = E:ShortenString(name, length)
 			end
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -334,11 +332,14 @@ function ElvUI_EltreumUI:LoadNameTags()
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
 			if args then
-				if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-					name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
-				end
-				if stringlen(name) > tonumber(args) then --second for players
-					name = E:ShortenString(name, tonumber(args))
+				local length = tonumber(args)
+				if length then
+					if stringlen(name) > length then --first for npcs with multiple names/titles
+						name = ElvUI_EltreumUI:ShortenString(name, length,nil,nil,UnitIsPlayer(unit))
+					end
+					if stringlen(name) > length then --second for players
+						name = E:ShortenString(name, length)
+					end
 				end
 			end
 		end
@@ -575,13 +576,12 @@ function ElvUI_EltreumUI:LoadNameTags()
 		local name = namecheck
 		if ElvUI_EltreumUI:IsThisASafeSecret(namecheck,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
 			name = stringupper(namecheck)
-			if not args then args = 16 end
-			args = tonumber(args)
-			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),nil,nil,UnitIsPlayer(unit))
+			local length = tonumber(args) or 16
+			if stringlen(name) > length then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, length,nil,nil,UnitIsPlayer(unit))
 			end
-			if stringlen(name) > tonumber(args) then --second for players
-				name = E:ShortenString(name, tonumber(args))
+			if stringlen(name) > length then --second for players
+				name = E:ShortenString(name, length)
 			end
 		end
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
@@ -634,14 +634,15 @@ function ElvUI_EltreumUI:LoadNameTags()
 	--Class Color nickname
 	E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 		if not unit then return end
-		local name,surname = UnitName(unit)
+		local rawName, surname = UnitName(unit)
+		local name = rawName
 		if E.Forever and surname then
-			name = format("%s %s", name, surname)
+			name = format("%s %s", rawName, surname)
 		end
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
 		if nicktag then
-			local nickname = nicktag:GetNickname(UnitName(unit), false, true)
+			local nickname = nicktag:GetNickname(rawName, false, true)
 			if nickname then
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 					if not unitClass then return end
@@ -715,9 +716,10 @@ function ElvUI_EltreumUI:LoadNameTags()
 
 	--Gradient nickname
 	E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
-		local name,surname = UnitName(unit)
+		local rawName, surname = UnitName(unit)
+		local name = rawName
 		if E.Forever and surname then
-			name = format("%s %s", name, surname)
+			name = format("%s %s", rawName, surname)
 		end
 		local _, unitClass = UnitClass(unit)
 		local reaction = UnitReaction(unit, "player")
@@ -728,7 +730,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			isTarget = false
 		end
 		if nicktag then
-			local nickname = nicktag:GetNickname(UnitName(unit), false, true)
+			local nickname = nicktag:GetNickname(rawName, false, true)
 			if nickname then
 				if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 					if not unitClass then return end
@@ -807,8 +809,7 @@ function ElvUI_EltreumUI:LoadNameTags()
 			name = format("%s %s", name, surname)
 		end
 		if not name then return end
-		if not args then args = 16 end
-		args = tonumber(args)
+		local length = tonumber(args) or 16
 		--name = "Mannequin d'entraïnement aux dégäts de zone"
 		local isTarget
 		if not E.Modern then --ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
@@ -817,8 +818,8 @@ function ElvUI_EltreumUI:LoadNameTags()
 			isTarget = false
 		end
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) then
-			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
-				name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true,UnitIsPlayer())
+			if stringlen(name) > length then --first for npcs with multiple names/titles
+				name = ElvUI_EltreumUI:ShortenString(name, length,false,true,UnitIsPlayer(unit))
 			end
 		end
 
@@ -860,15 +861,14 @@ function ElvUI_EltreumUI:LoadNameTags()
 			name = format("%s %s", name, surname)
 		end
 		if not name then return end
-		if not args then args = 16 end
-		args = tonumber(args)
+		local length = tonumber(args) or 16
 		if ElvUI_EltreumUI:IsThisASafeSecret(name,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-			if stringlen(name) > tonumber(args) then --first for npcs with multiple names/titles
+			if stringlen(name) > length then --first for npcs with multiple names/titles
 				name = ElvUI_EltreumUI:Abbrev(name)
 			end
 		end
 		if name then
-			return E:ShortenString(name, args)
+			return E:ShortenString(name, length)
 		end
 	end)
 	E:AddTagInfo("name:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the name of the unit with abbreviation, accepts length args"])
@@ -880,15 +880,14 @@ function ElvUI_EltreumUI:LoadNameTags()
 			targetName = targetName.." "..surname
 		end
 		if not targetName then return end
-		if not args then args = 16 end
-		args = tonumber(args)
+		local length = tonumber(args) or 16
 		if ElvUI_EltreumUI:IsThisASafeSecret(targetName,true) and ElvUI_EltreumUI:IsThisASafeSecret(unit,true) then
-			if stringlen(targetName) > tonumber(args) then --first for npcs with multiple names/titles
+			if stringlen(targetName) > length then --first for npcs with multiple names/titles
 				targetName = ElvUI_EltreumUI:Abbrev(targetName)
 			end
 		end
 		if targetName then
-			return E:ShortenString(targetName, args)
+			return E:ShortenString(targetName, length)
 		end
 	end)
 	E:AddTagInfo("target:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the current target of the unit, accepts length args"])
