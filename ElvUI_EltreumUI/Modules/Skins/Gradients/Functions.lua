@@ -84,7 +84,7 @@ local unitframegradients = {
 	["BACKDROP"] = {r1 = 0, g1 = 0, b1 = 0,r2 = 0.1, g2 = 0.1, b2 = 0.1}, --backdrop gradient
 }
 
-local unitframecustomgradients = unitframegradients
+local unitframecustomgradients = {}
 local unitframeclass = {
 	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
 	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga",
@@ -105,52 +105,89 @@ local unitframeclass = {
 	["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga",
 	["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tapped.tga",
 }
+local unitframeclassV1 = unitframeclass
+local unitframeclassV2 = {
+	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv2.tga",
+	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",
+	["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv2.tga",
+	["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv2.tga",
+	["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PRv2.tga",
+	["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",
+	["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv2.tga",
+	["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv2.tga",
+	["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WLv2.tga",
+	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MKv2.tga",
+	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
+	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DHv2.tga",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-EVv2.tga",
+	["NPCFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv2.tga",
+	["NPCNEUTRAL"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RGv2.tga",
+	["NPCUNFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv2.tga",
+	["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
+	["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tappedv2.tga",
+}
+local unitframeclassV3 = {
+	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv3.tga",
+	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv3.tga",
+	["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv3.tga",
+	["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv3.tga",
+	["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PRv3.tga",
+	["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv3.tga",
+	["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv3.tga",
+	["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv3.tga",
+	["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WLv3.tga",
+	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MKv3.tga",
+	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv3.tga",
+	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DHv3.tga",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-EVv3.tga",
+	["NPCFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv3.tga",
+	["NPCNEUTRAL"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RGv3.tga",
+	["NPCUNFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv3.tga",
+	["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv3.tga",
+	["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tappedv3.tga",
+}
+for k, v in pairs(unitframegradients) do
+	unitframecustomgradients[k] = {r1 = v.r1, g1 = v.g1, b1 = v.b1, r2 = v.r2, g2 = v.g2, b2 = v.b2}
+end
+
+local function SetOrCreateColorPair(targetTbl, k, r1, g1, b1, a1, r2, g2, b2, a2)
+	local pair = targetTbl[k]
+	if pair then
+		pair[1]:SetRGBA(r1, g1, b1, a1)
+		pair[2]:SetRGBA(r2, g2, b2, a2)
+	else
+		targetTbl[k] = { CreateColor(r1, g1, b1, a1), CreateColor(r2, g2, b2, a2) }
+	end
+end
 
 --fill the tabble with the values
 local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targetPower, targetTable, targetDetails, isDetailsCustom, healthAlpha, backdropAlpha, bgOffset)
 	for k, color in pairs(sourceTable) do
 		local r1, g1, b1 = color.r1 or 1, color.g1 or 1, color.b1 or 1
 		local r2, g2, b2 = color.r2 or 1, color.g2 or 1, color.b2 or 1
+		local cr1, cg1, cb1 = E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1)
+		local cr2, cg2, cb2 = E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1)
+		local bgr1, bgg1, bgb1 = E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1)
+		local bgr2, bgg2, bgb2 = E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1)
 
-		targetHealth.normal[k] = {
-			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), healthAlpha),
-			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), healthAlpha)
-		}
+		SetOrCreateColorPair(targetHealth.normal, k, cr1, cg1, cb1, healthAlpha, cr2, cg2, cb2, healthAlpha)
+		SetOrCreateColorPair(targetHealth.invert, k, cr2, cg2, cb2, healthAlpha, cr1, cg1, cb1, healthAlpha)
+		SetOrCreateColorPair(targetBackdrop.normal, k, bgr1, bgg1, bgb1, backdropAlpha, bgr2, bgg2, bgb2, backdropAlpha)
+		SetOrCreateColorPair(targetBackdrop.invert, k, bgr2, bgg2, bgb2, backdropAlpha, bgr1, bgg1, bgb1, backdropAlpha)
+		SetOrCreateColorPair(targetPower.normal, k, cr1, cg1, cb1, 1, cr2, cg2, cb2, 1)
+		SetOrCreateColorPair(targetPower.invert, k, cr2, cg2, cb2, 1, cr1, cg1, cb1, 1)
+		SetOrCreateColorPair(targetPower.backdrop, k, bgr2, bgg2, bgb2, 1, bgr1, bgg1, bgb1, 1)
 
-		targetHealth.invert[k] = {
-			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), healthAlpha),
-			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), healthAlpha)
-		}
-
-		targetBackdrop.normal[k] = {
-			CreateColor(E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1), backdropAlpha),
-			CreateColor(E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1), backdropAlpha)
-		}
-
-		targetBackdrop.invert[k] = {
-			CreateColor(E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1), backdropAlpha),
-			CreateColor(E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1), backdropAlpha)
-		}
-
-		targetPower.normal[k] = {
-			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), 1),
-			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), 1)
-		}
-
-		targetPower.invert[k] = {
-			CreateColor(E:Clamp(r2, 0, 1), E:Clamp(g2, 0, 1), E:Clamp(b2, 0, 1), 1),
-			CreateColor(E:Clamp(r1, 0, 1), E:Clamp(g1, 0, 1), E:Clamp(b1, 0, 1), 1)
-		}
-
-		targetPower.backdrop[k] = {
-			CreateColor(E:Clamp(r2 - bgOffset, 0, 1), E:Clamp(g2 - bgOffset, 0, 1), E:Clamp(b2 - bgOffset, 0, 1), 1),
-			CreateColor(E:Clamp(r1 - bgOffset, 0, 1), E:Clamp(g1 - bgOffset, 0, 1), E:Clamp(b1 - bgOffset, 0, 1), 1)
-		}
-
-		targetTable[k] = {
-			min = { r = r1, g = g1, b = b1 },
-			max = { r = r2, g = g2, b = b2 },
-		}
+		local tblEntry = targetTable[k]
+		if tblEntry then
+			tblEntry.min.r, tblEntry.min.g, tblEntry.min.b = r1, g1, b1
+			tblEntry.max.r, tblEntry.max.g, tblEntry.max.b = r2, g2, b2
+		else
+			targetTable[k] = {
+				min = { r = r1, g = g1, b = b1 },
+				max = { r = r2, g = g2, b = b2 },
+			}
+		end
 
 		local detR1 = isDetailsCustom and r1 or (r1 - 0.2)
 		local detG1 = isDetailsCustom and g1 or (g1 - 0.2)
@@ -159,10 +196,16 @@ local function PopulateGradients(sourceTable, targetHealth, targetBackdrop, targ
 		local detG2 = isDetailsCustom and g2 or (g2 + 0.2)
 		local detB2 = isDetailsCustom and b2 or (b2 + 0.2)
 
-		targetDetails[k] = {
-			min = { r = detR1, g = detG1, b = detB1, a = 0.9 },
-			max = { r = detR2, g = detG2, b = detB2, a = 0.9 },
-		}
+		local detEntry = targetDetails[k]
+		if detEntry then
+			detEntry.min.r, detEntry.min.g, detEntry.min.b, detEntry.min.a = detR1, detG1, detB1, 0.9
+			detEntry.max.r, detEntry.max.g, detEntry.max.b, detEntry.max.a = detR2, detG2, detB2, 0.9
+		else
+			targetDetails[k] = {
+				min = { r = detR1, g = detG1, b = detB1, a = 0.9 },
+				max = { r = detR2, g = detG2, b = detB2, a = 0.9 },
+			}
+		end
 	end
 end
 
@@ -190,26 +233,6 @@ function ElvUI_EltreumUI:CacheGradients()
 	cached_backdropalpha = backdropAlpha
 	cached_bgfade = (gm and gm.bgfade) or 0
 
-	wipe(defaultHealthGradients.normal)
-	wipe(defaultHealthGradients.invert)
-	wipe(customHealthGradients.normal)
-	wipe(customHealthGradients.invert)
-	wipe(defaultBackdropGradients.normal)
-	wipe(defaultBackdropGradients.invert)
-	wipe(customBackdropGradients.normal)
-	wipe(customBackdropGradients.invert)
-	wipe(defaultPowerGradients.normal)
-	wipe(defaultPowerGradients.invert)
-	wipe(defaultPowerGradients.backdrop)
-	wipe(customPowerGradients.normal)
-	wipe(customPowerGradients.invert)
-	wipe(customPowerGradients.backdrop)
-	wipe(cachedCastbars)
-	wipe(defaultTableGradients)
-	wipe(customTableGradients)
-	wipe(defaultDetailsGradients)
-	wipe(customDetailsGradients)
-
 	if gm then
 		cached_use_custom_names = (gm.customcolor or gm.npcustomcolor)
 	else
@@ -229,38 +252,39 @@ function ElvUI_EltreumUI:CacheGradients()
 
 	--castbar
 	if gm then
-		cachedCastbars.noninterruptible_custom = {
-			CreateColor(E:Clamp(gm.castbarR2noninterruptiblecustom or 1, 0, 1), E:Clamp(gm.castbarG2noninterruptiblecustom or 0, 0, 1), E:Clamp(gm.castbarB2noninterruptiblecustom or 0, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR1noninterruptiblecustom or 1, 0, 1), E:Clamp(gm.castbarG1noninterruptiblecustom or 0, 0, 1), E:Clamp(gm.castbarB1noninterruptiblecustom or 0, 0, 1), 1)
-		}
-		cachedCastbars.noninterruptible_default = {
-			CreateColor(E:Clamp(gm.castbarR2noninterruptible or 1, 0, 1), E:Clamp(gm.castbarG2noninterruptible or 0, 0, 1), E:Clamp(gm.castbarB2noninterruptible or 0, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR1noninterruptible or 1, 0, 1), E:Clamp(gm.castbarG1noninterruptible or 0, 0, 1), E:Clamp(gm.castbarB1noninterruptible or 0, 0, 1), 1)
-		}
-		cachedCastbars.castbar_custom = {
-			CreateColor(E:Clamp(gm.castbarR1custom or 1, 0, 1), E:Clamp(gm.castbarG1custom or 1, 0, 1), E:Clamp(gm.castbarB1custom or 1, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR2custom or 1, 0, 1), E:Clamp(gm.castbarG2custom or 1, 0, 1), E:Clamp(gm.castbarB2custom or 1, 0, 1), 1)
-		}
-		cachedCastbars.interruptible_custom = {
-			CreateColor(E:Clamp(gm.castbarR1interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarG1interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarB1interruptablecustom or 1, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR2interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarG2interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarB2interruptablecustom or 1, 0, 1), 1)
-		}
-		cachedCastbars.interruptible_default = {
-			CreateColor(E:Clamp(gm.castbarR1interruptable or 1, 0, 1), E:Clamp(gm.castbarG1interruptable or 1, 0, 1), E:Clamp(gm.castbarB1interruptable or 1, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR2interruptable or 1, 0, 1), E:Clamp(gm.castbarG2interruptable or 1, 0, 1), E:Clamp(gm.castbarB2interruptable or 1, 0, 1), 1)
-		}
-		cachedCastbars.interrupted_custom = {
-			CreateColor(E:Clamp(gm.castbarR1interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarG1interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarB1interruptedcustom or 1, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR2interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarG2interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarB2interruptedcustom or 1, 0, 1), 1)
-		}
-		cachedCastbars.interrupted_default = {
-			CreateColor(E:Clamp(gm.castbarR1interrupted or 1, 0, 1), E:Clamp(gm.castbarG1interrupted or 1, 0, 1), E:Clamp(gm.castbarB1interrupted or 1, 0, 1), 1),
-			CreateColor(E:Clamp(gm.castbarR2interrupted or 1, 0, 1), E:Clamp(gm.castbarG2interrupted or 1, 0, 1), E:Clamp(gm.castbarB2interrupted or 1, 0, 1), 1)
-		}
+		SetOrCreateColorPair(cachedCastbars, "noninterruptible_custom",
+			E:Clamp(gm.castbarR2noninterruptiblecustom or 1, 0, 1), E:Clamp(gm.castbarG2noninterruptiblecustom or 0, 0, 1), E:Clamp(gm.castbarB2noninterruptiblecustom or 0, 0, 1), 1,
+			E:Clamp(gm.castbarR1noninterruptiblecustom or 1, 0, 1), E:Clamp(gm.castbarG1noninterruptiblecustom or 0, 0, 1), E:Clamp(gm.castbarB1noninterruptiblecustom or 0, 0, 1), 1)
+		SetOrCreateColorPair(cachedCastbars, "noninterruptible_default",
+			E:Clamp(gm.castbarR2noninterruptible or 1, 0, 1), E:Clamp(gm.castbarG2noninterruptible or 0, 0, 1), E:Clamp(gm.castbarB2noninterruptible or 0, 0, 1), 1,
+			E:Clamp(gm.castbarR1noninterruptible or 1, 0, 1), E:Clamp(gm.castbarG1noninterruptible or 0, 0, 1), E:Clamp(gm.castbarB1noninterruptible or 0, 0, 1), 1)
+		SetOrCreateColorPair(cachedCastbars, "castbar_custom",
+			E:Clamp(gm.castbarR1custom or 1, 0, 1), E:Clamp(gm.castbarG1custom or 1, 0, 1), E:Clamp(gm.castbarB1custom or 1, 0, 1), 1,
+			E:Clamp(gm.castbarR2custom or 1, 0, 1), E:Clamp(gm.castbarG2custom or 1, 0, 1), E:Clamp(gm.castbarB2custom or 1, 0, 1), 1)
+		SetOrCreateColorPair(cachedCastbars, "interruptible_custom",
+			E:Clamp(gm.castbarR1interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarG1interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarB1interruptablecustom or 1, 0, 1), 1,
+			E:Clamp(gm.castbarR2interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarG2interruptablecustom or 1, 0, 1), E:Clamp(gm.castbarB2interruptablecustom or 1, 0, 1), 1)
+		SetOrCreateColorPair(cachedCastbars, "interruptible_default",
+			E:Clamp(gm.castbarR1interruptable or 1, 0, 1), E:Clamp(gm.castbarG1interruptable or 1, 0, 1), E:Clamp(gm.castbarB1interruptable or 1, 0, 1), 1,
+			E:Clamp(gm.castbarR2interruptable or 1, 0, 1), E:Clamp(gm.castbarG2interruptable or 1, 0, 1), E:Clamp(gm.castbarB2interruptable or 1, 0, 1), 1)
+		SetOrCreateColorPair(cachedCastbars, "interrupted_custom",
+			E:Clamp(gm.castbarR1interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarG1interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarB1interruptedcustom or 1, 0, 1), 1,
+			E:Clamp(gm.castbarR2interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarG2interruptedcustom or 1, 0, 1), E:Clamp(gm.castbarB2interruptedcustom or 1, 0, 1), 1)
+		SetOrCreateColorPair(cachedCastbars, "interrupted_default",
+			E:Clamp(gm.castbarR1interrupted or 1, 0, 1), E:Clamp(gm.castbarG1interrupted or 1, 0, 1), E:Clamp(gm.castbarB1interrupted or 1, 0, 1), 1,
+			E:Clamp(gm.castbarR2interrupted or 1, 0, 1), E:Clamp(gm.castbarG2interrupted or 1, 0, 1), E:Clamp(gm.castbarB2interrupted or 1, 0, 1), 1)
 	end
 end
 
-local unitframeclasscustom = unitframeclass
+local unitframeclasscustom = {}
+local function SetCustomGrad(key, r1, g1, b1, r2, g2, b2)
+	local t = unitframecustomgradients[key]
+	if t then
+		t.r1, t.g1, t.b1, t.r2, t.g2, t.b2 = r1, g1, b1, r2, g2, b2
+	else
+		unitframecustomgradients[key] = {r1 = r1, g1 = g1, b1 = b1, r2 = r2, g2 = g2, b2 = b2}
+	end
+end
 function ElvUI_EltreumUI:GradientColorTableUpdate()
 	local db = E.db.ElvUI_EltreumUI
 	if not db then return end
@@ -271,110 +295,72 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	if not customTex or not gm then return end
 	local ufDB = E.db.unitframe
 
-	unitframeclasscustom = {
-		["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", customTex.warriortexture)),
-		["PALADIN"] = tostring(E.LSM:Fetch("statusbar", customTex.paladintexture)),
-		["HUNTER"] = tostring(E.LSM:Fetch("statusbar", customTex.huntertexture)),
-		["ROGUE"] = tostring(E.LSM:Fetch("statusbar", customTex.roguetexture)),
-		["PRIEST"] = tostring(E.LSM:Fetch("statusbar", customTex.priesttexture)),
-		["DEATHKNIGHT"] = tostring(E.LSM:Fetch("statusbar", customTex.deathknighttexture)),
-		["SHAMAN"] = tostring(E.LSM:Fetch("statusbar", customTex.shamantexture)),
-		["MAGE"] = tostring(E.LSM:Fetch("statusbar", customTex.magetexture)),
-		["WARLOCK"] = tostring(E.LSM:Fetch("statusbar", customTex.warlocktexture)),
-		["MONK"] = tostring(E.LSM:Fetch("statusbar", customTex.monktexture)),
-		["DRUID"] = tostring(E.LSM:Fetch("statusbar", customTex.druidtexture)),
-		["DEMONHUNTER"] = tostring(E.LSM:Fetch("statusbar", customTex.demonhuntertexture)),
-		["EVOKER"] = tostring(E.LSM:Fetch("statusbar", customTex.evokertexture)),
-		["NPCFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", customTex.npcfriendly)),
-		["NPCNEUTRAL"] = tostring(E.LSM:Fetch("statusbar", customTex.npcneutral)),
-		["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", customTex.npcunfriendly)),
-		["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", customTex.npchostile)),
-		["TAPPED"] = tostring(E.LSM:Fetch("statusbar", customTex.tappedtexture)),
-		["RAID"] = tostring(E.LSM:Fetch("statusbar", customTex.raidtexture)),
-		["PARTY"] = tostring(E.LSM:Fetch("statusbar", customTex.partytexture)),
-	}
-	unitframecustomgradients = {
-		["WARRIOR"] = {r1 = gm.warriorcustomcolorR1, g1 = gm.warriorcustomcolorG1, b1 = gm.warriorcustomcolorB1, r2 = gm.warriorcustomcolorR2, g2 = gm.warriorcustomcolorG2, b2 = gm.warriorcustomcolorB2},
-		["PALADIN"] = {r1 = gm.paladincustomcolorR1, g1 = gm.paladincustomcolorG1, b1 = gm.paladincustomcolorB1, r2 = gm.paladincustomcolorR2, g2 = gm.paladincustomcolorG2, b2 = gm.paladincustomcolorB2},
-		["HUNTER"] = {r1 = gm.huntercustomcolorR1, g1 = gm.huntercustomcolorG1, b1 = gm.huntercustomcolorB1, r2 = gm.huntercustomcolorR2, g2 = gm.huntercustomcolorG2, b2 = gm.huntercustomcolorB2},
-		["ROGUE"] = {r1 = gm.roguecustomcolorR1, g1 = gm.roguecustomcolorG1, b1 = gm.roguecustomcolorB1, r2 = gm.roguecustomcolorR2, g2 = gm.roguecustomcolorG2, b2 = gm.roguecustomcolorB2},
-		["PRIEST"] = {r1 = gm.priestcustomcolorR1, g1 = gm.priestcustomcolorG1, b1 = gm.priestcustomcolorB1, r2 = gm.priestcustomcolorR2, g2 = gm.priestcustomcolorG2, b2 = gm.priestcustomcolorB2},
-		["DEATHKNIGHT"] = {r1 = gm.deathknightcustomcolorR1, g1 = gm.deathknightcustomcolorG1, b1 = gm.deathknightcustomcolorB1, r2 = gm.deathknightcustomcolorR2, g2= gm.deathknightcustomcolorG2, b2 = gm.deathknightcustomcolorB2},
-		["SHAMAN"] = {r1 = gm.shamancustomcolorR1, g1 = gm.shamancustomcolorG1, b1 = gm.shamancustomcolorB1, r2 = gm.shamancustomcolorR2, g2 = gm.shamancustomcolorG2, b2 = gm.shamancustomcolorB2},
-		["MAGE"] = {r1 = gm.magecustomcolorR1, g1 = gm.magecustomcolorG1, b1 = gm.magecustomcolorB1, r2 = gm.magecustomcolorR2, g2 = gm.magecustomcolorG2, b2 = gm.magecustomcolorB2},
-		["WARLOCK"] = {r1 = gm.warlockcustomcolorR1, g1 = gm.warlockcustomcolorG1, b1 = gm.warlockcustomcolorB1, r2 = gm.warlockcustomcolorR2, g2 = gm.warlockcustomcolorG2, b2 = gm.warlockcustomcolorB2},
-		["MONK"] = {r1 = gm.monkcustomcolorR1, g1 = gm.monkcustomcolorG1, b1 = gm.monkcustomcolorB1, r2 = gm.monkcustomcolorR2, g2 = gm.monkcustomcolorG2, b2 = gm.monkcustomcolorB2},
-		["DRUID"] = {r1 = gm.druidcustomcolorR1, g1 = gm.druidcustomcolorG1, b1 = gm.druidcustomcolorB1, r2 = gm.druidcustomcolorR2, g2 = gm.druidcustomcolorG2, b2 = gm.druidcustomcolorB2},
-		["DEMONHUNTER"] = {r1 = gm.demonhuntercustomcolorR1, g1 = gm.demonhuntercustomcolorG1, b1 = gm.demonhuntercustomcolorB1, r2 = gm.demonhuntercustomcolorR2, g2= gm.demonhuntercustomcolorG2, b2 = gm.demonhuntercustomcolorB2},
-		["EVOKER"] = {r1 = gm.evokercustomcolorR1, g1 = gm.evokercustomcolorG1, b1 = gm.evokercustomcolorB1, r2 = gm.evokercustomcolorR2, g2= gm.evokercustomcolorG2, b2 = gm.evokercustomcolorB2},
-		["NPCFRIENDLY"] = {r1 = gm.npcfriendlyR1, g1 = gm.npcfriendlyG1, b1 = gm.npcfriendlyB1, r2 = gm.npcfriendlyR2, g2 = gm.npcfriendlyG2, b2 = gm.npcfriendlyB2},
-		["NPCNEUTRAL"] = {r1 = gm.npcneutralR1, g1 = gm.npcneutralG1, b1 = gm.npcneutralB1, r2 = gm.npcneutralR2, g2 = gm.npcneutralG2, b2 = gm.npcneutralB2},
-		["NPCUNFRIENDLY"] = {r1 = gm.npcunfriendlyR1, g1 = gm.npcunfriendlyG1, b1 = gm.npcunfriendlyB1, r2 = gm.npcunfriendlyR2, g2 = gm.npcunfriendlyG2, b2 = gm.npcunfriendlyB2},
-		["NPCHOSTILE"] = {r1 = gm.npchostileR1, g1 = gm.npchostileG1, b1 = gm.npchostileB1, r2 = gm.npchostileR2, g2 = gm.npchostileG2, b2 = gm.npchostileB2},
-		["TAPPED"] = {r1 = gm.tappedR1, g1 = gm.tappedG1, b1 = gm.tappedB1, r2 = gm.tappedR2, g2= gm.tappedG2, b2 = gm.tappedB2},
-		["GOODTHREAT"] = {r1 = gm.goodthreatR1, g1 = gm.goodthreatG1, b1 = gm.goodthreatB1, r2 = gm.goodthreatR2, g2 = gm.goodthreatG2, b2 = gm.goodthreatB2},
-		["BADTHREAT"] = {r1 = gm.badthreatR1, g1 = gm.badthreatG1, b1 = gm.badthreatB1, r2 = gm.badthreatR2, g2 = gm.badthreatG2, b2 = gm.badthreatB2},
-		["GOODTHREATTRANSITION"] = {r1 = gm.goodthreattransitionR1, g1 = gm.goodthreattransitionG1, b1 = gm.goodthreattransitionB1, r2 = gm.goodthreattransitionR2, g2 = gm.goodthreattransitionG2, b2 = gm.goodthreattransitionB2},
-		["BADTHREATTRANSITION"] = {r1 = gm.badthreattransitionR1, g1 = gm.badthreattransitionG1, b1 = gm.badthreattransitionB1, r2 = gm.badthreattransitionR2, g2 = gm.badthreattransitionG2, b2 = gm.badthreattransitionB2},
-		["OFFTANK"] = {r1 = gm.offtankR1, g1 = gm.offtankG1, b1 = gm.offtankB1, r2 = gm.offtankR2, g2 = gm.offtankG2, b2 = gm.offtankB2},
-		["OFFTANKBADTHREATTRANSITION"] = {r1 = gm.badthreattransitionofftankR1, g1 = gm.badthreattransitionofftankG1, b1 = gm.badthreattransitionofftankB1, r2 = gm.badthreattransitionofftankR2, g2 = gm.badthreattransitionofftankG2, b2 = gm.badthreattransitionofftankB2},
-		["OFFTANKGOODTHREATTRANSITION"] = {r1 = gm.goodthreattransitionofftankR1, g1 = gm.goodthreattransitionofftankG1, b1 = gm.goodthreattransitionofftankB1, r2 = gm.goodthreattransitionofftankR2, g2 = gm.goodthreattransitionofftankG2, b2 = gm.goodthreattransitionofftankB2},
-		["MANA"] = {r1 = gm.manaR1, g1 = gm.manaG1, b1 = gm.manaB1, r2 = gm.manaR2, g2 = gm.manaG2, b2 = gm.manaB2}, --MANA
-		["RAGE"] = {r1 = gm.rageR1, g1 = gm.rageG1, b1 = gm.rageB1, r2 = gm.rageR2, g2 = gm.rageG2, b2 = gm.rageB2}, --RAGE
-		["FOCUS"] = {r1 = gm.focusR1, g1 = gm.focusG1, b1 = gm.focusB1, r2 = gm.focusR2, g2 = gm.focusG2, b2 = gm.focusB2}, --FOCUS
-		["ENERGY"] = {r1 = gm.energyR1, g1 = gm.energyG1, b1 = gm.energyB1, r2 = gm.energyR2, g2 = gm.energyG2, b2 = gm.energyB2}, --ENERGY
-		["RUNIC_POWER"] = {r1 = gm.runicpowerR1, g1 = gm.runicpowerG1, b1 = gm.runicpowerB1, r2 = gm.runicpowerR2, g2 = gm.runicpowerG2, b2 = gm.runicpowerB2}, --RUNIC POWER
-		["LUNAR_POWER"] = {r1 = gm.lunarpowerR1, g1 = gm.lunarpowerG1, b1 = gm.lunarpowerB1, r2 = gm.lunarpowerR2, g2 = gm.lunarpowerG2, b2 = gm.lunarpowerB2}, --LUNAR POWER
-		["ALT_POWER"] = {r1 = gm.altpowerR1, g1 = gm.altpowerG1, b1 = gm.altpowerB1, r2 = gm.altpowerR2, g2 = gm.altpowerG2, b2 = gm.altpowerB2}, --ALTERNATE POWER
-		["MAELSTROM"] = {r1 = gm.maelstromR1, g1 = gm.maelstromG1, b1 = gm.maelstromB1, r2 = gm.maelstromR2, g2 = gm.maelstromG2, b2 = gm.maelstromB2}, --MAELSTROM
-		["INSANITY"] = {r1 = gm.insanityR1, g1 = gm.insanityG1, b1 = gm.insanityB1, r2 = gm.insanityR2, g2 = gm.insanityG2, b2 = gm.insanityB2}, --INSANITY
-		["FURY"] = {r1 = gm.furyR1, g1 = gm.furyG1, b1 = gm.furyB1, r2 = gm.furyR2, g2 = gm.furyG2, b2 = gm.furyB2}, --FURY
-		["PAIN"] = {r1 = gm.painR1, g1 = gm.painG1, b1 = gm.painB1, r2 = gm.painR2, g2 = gm.painG2, b2 = gm.painB2}, --PAIN
-		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1}, --addon gradient
-		["BACKDROP"] = {r1 = gm.backdropR1, g1 = gm.backdropG1, b1 = gm.backdropB1, r2 = gm.backdropR2, g2 = gm.backdropG2, b2 = gm.backdropB2}, --backdrop gradient
-	}
+	unitframeclasscustom["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", customTex.warriortexture))
+	unitframeclasscustom["PALADIN"] = tostring(E.LSM:Fetch("statusbar", customTex.paladintexture))
+	unitframeclasscustom["HUNTER"] = tostring(E.LSM:Fetch("statusbar", customTex.huntertexture))
+	unitframeclasscustom["ROGUE"] = tostring(E.LSM:Fetch("statusbar", customTex.roguetexture))
+	unitframeclasscustom["PRIEST"] = tostring(E.LSM:Fetch("statusbar", customTex.priesttexture))
+	unitframeclasscustom["DEATHKNIGHT"] = tostring(E.LSM:Fetch("statusbar", customTex.deathknighttexture))
+	unitframeclasscustom["SHAMAN"] = tostring(E.LSM:Fetch("statusbar", customTex.shamantexture))
+	unitframeclasscustom["MAGE"] = tostring(E.LSM:Fetch("statusbar", customTex.magetexture))
+	unitframeclasscustom["WARLOCK"] = tostring(E.LSM:Fetch("statusbar", customTex.warlocktexture))
+	unitframeclasscustom["MONK"] = tostring(E.LSM:Fetch("statusbar", customTex.monktexture))
+	unitframeclasscustom["DRUID"] = tostring(E.LSM:Fetch("statusbar", customTex.druidtexture))
+	unitframeclasscustom["DEMONHUNTER"] = tostring(E.LSM:Fetch("statusbar", customTex.demonhuntertexture))
+	unitframeclasscustom["EVOKER"] = tostring(E.LSM:Fetch("statusbar", customTex.evokertexture))
+	unitframeclasscustom["NPCFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", customTex.npcfriendly))
+	unitframeclasscustom["NPCNEUTRAL"] = tostring(E.LSM:Fetch("statusbar", customTex.npcneutral))
+	unitframeclasscustom["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", customTex.npcunfriendly))
+	unitframeclasscustom["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", customTex.npchostile))
+	unitframeclasscustom["TAPPED"] = tostring(E.LSM:Fetch("statusbar", customTex.tappedtexture))
+	unitframeclasscustom["RAID"] = tostring(E.LSM:Fetch("statusbar", customTex.raidtexture))
+	unitframeclasscustom["PARTY"] = tostring(E.LSM:Fetch("statusbar", customTex.partytexture))
+
+	SetCustomGrad("WARRIOR", gm.warriorcustomcolorR1, gm.warriorcustomcolorG1, gm.warriorcustomcolorB1, gm.warriorcustomcolorR2, gm.warriorcustomcolorG2, gm.warriorcustomcolorB2)
+	SetCustomGrad("PALADIN", gm.paladincustomcolorR1, gm.paladincustomcolorG1, gm.paladincustomcolorB1, gm.paladincustomcolorR2, gm.paladincustomcolorG2, gm.paladincustomcolorB2)
+	SetCustomGrad("HUNTER", gm.huntercustomcolorR1, gm.huntercustomcolorG1, gm.huntercustomcolorB1, gm.huntercustomcolorR2, gm.huntercustomcolorG2, gm.huntercustomcolorB2)
+	SetCustomGrad("ROGUE", gm.roguecustomcolorR1, gm.roguecustomcolorG1, gm.roguecustomcolorB1, gm.roguecustomcolorR2, gm.roguecustomcolorG2, gm.roguecustomcolorB2)
+	SetCustomGrad("PRIEST", gm.priestcustomcolorR1, gm.priestcustomcolorG1, gm.priestcustomcolorB1, gm.priestcustomcolorR2, gm.priestcustomcolorG2, gm.priestcustomcolorB2)
+	SetCustomGrad("DEATHKNIGHT", gm.deathknightcustomcolorR1, gm.deathknightcustomcolorG1, gm.deathknightcustomcolorB1, gm.deathknightcustomcolorR2, gm.deathknightcustomcolorG2, gm.deathknightcustomcolorB2)
+	SetCustomGrad("SHAMAN", gm.shamancustomcolorR1, gm.shamancustomcolorG1, gm.shamancustomcolorB1, gm.shamancustomcolorR2, gm.shamancustomcolorG2, gm.shamancustomcolorB2)
+	SetCustomGrad("MAGE", gm.magecustomcolorR1, gm.magecustomcolorG1, gm.magecustomcolorB1, gm.magecustomcolorR2, gm.magecustomcolorG2, gm.magecustomcolorB2)
+	SetCustomGrad("WARLOCK", gm.warlockcustomcolorR1, gm.warlockcustomcolorG1, gm.warlockcustomcolorB1, gm.warlockcustomcolorR2, gm.warlockcustomcolorG2, gm.warlockcustomcolorB2)
+	SetCustomGrad("MONK", gm.monkcustomcolorR1, gm.monkcustomcolorG1, gm.monkcustomcolorB1, gm.monkcustomcolorR2, gm.monkcustomcolorG2, gm.monkcustomcolorB2)
+	SetCustomGrad("DRUID", gm.druidcustomcolorR1, gm.druidcustomcolorG1, gm.druidcustomcolorB1, gm.druidcustomcolorR2, gm.druidcustomcolorG2, gm.druidcustomcolorB2)
+	SetCustomGrad("DEMONHUNTER", gm.demonhuntercustomcolorR1, gm.demonhuntercustomcolorG1, gm.demonhuntercustomcolorB1, gm.demonhuntercustomcolorR2, gm.demonhuntercustomcolorG2, gm.demonhuntercustomcolorB2)
+	SetCustomGrad("EVOKER", gm.evokercustomcolorR1, gm.evokercustomcolorG1, gm.evokercustomcolorB1, gm.evokercustomcolorR2, gm.evokercustomcolorG2, gm.evokercustomcolorB2)
+	SetCustomGrad("NPCFRIENDLY", gm.npcfriendlyR1, gm.npcfriendlyG1, gm.npcfriendlyB1, gm.npcfriendlyR2, gm.npcfriendlyG2, gm.npcfriendlyB2)
+	SetCustomGrad("NPCNEUTRAL", gm.npcneutralR1, gm.npcneutralG1, gm.npcneutralB1, gm.npcneutralR2, gm.npcneutralG2, gm.npcneutralB2)
+	SetCustomGrad("NPCUNFRIENDLY", gm.npcunfriendlyR1, gm.npcunfriendlyG1, gm.npcunfriendlyB1, gm.npcunfriendlyR2, gm.npcunfriendlyG2, gm.npcunfriendlyB2)
+	SetCustomGrad("NPCHOSTILE", gm.npchostileR1, gm.npchostileG1, gm.npchostileB1, gm.npchostileR2, gm.npchostileG2, gm.npchostileB2)
+	SetCustomGrad("TAPPED", gm.tappedR1, gm.tappedG1, gm.tappedB1, gm.tappedR2, gm.tappedG2, gm.tappedB2)
+	SetCustomGrad("GOODTHREAT", gm.goodthreatR1, gm.goodthreatG1, gm.goodthreatB1, gm.goodthreatR2, gm.goodthreatG2, gm.goodthreatB2)
+	SetCustomGrad("BADTHREAT", gm.badthreatR1, gm.badthreatG1, gm.badthreatB1, gm.badthreatR2, gm.badthreatG2, gm.badthreatB2)
+	SetCustomGrad("GOODTHREATTRANSITION", gm.goodthreattransitionR1, gm.goodthreattransitionG1, gm.goodthreattransitionB1, gm.goodthreattransitionR2, gm.goodthreattransitionG2, gm.goodthreattransitionB2)
+	SetCustomGrad("BADTHREATTRANSITION", gm.badthreattransitionR1, gm.badthreattransitionG1, gm.badthreattransitionB1, gm.badthreattransitionR2, gm.badthreattransitionG2, gm.badthreattransitionB2)
+	SetCustomGrad("OFFTANK", gm.offtankR1, gm.offtankG1, gm.offtankB1, gm.offtankR2, gm.offtankG2, gm.offtankB2)
+	SetCustomGrad("OFFTANKBADTHREATTRANSITION", gm.badthreattransitionofftankR1, gm.badthreattransitionofftankG1, gm.badthreattransitionofftankB1, gm.badthreattransitionofftankR2, gm.badthreattransitionofftankG2, gm.badthreattransitionofftankB2)
+	SetCustomGrad("OFFTANKGOODTHREATTRANSITION", gm.goodthreattransitionofftankR1, gm.goodthreattransitionofftankG1, gm.goodthreattransitionofftankB1, gm.goodthreattransitionofftankR2, gm.goodthreattransitionofftankG2, gm.goodthreattransitionofftankB2)
+	SetCustomGrad("MANA", gm.manaR1, gm.manaG1, gm.manaB1, gm.manaR2, gm.manaG2, gm.manaB2)
+	SetCustomGrad("RAGE", gm.rageR1, gm.rageG1, gm.rageB1, gm.rageR2, gm.rageG2, gm.rageB2)
+	SetCustomGrad("FOCUS", gm.focusR1, gm.focusG1, gm.focusB1, gm.focusR2, gm.focusG2, gm.focusB2)
+	SetCustomGrad("ENERGY", gm.energyR1, gm.energyG1, gm.energyB1, gm.energyR2, gm.energyG2, gm.energyB2)
+	SetCustomGrad("RUNIC_POWER", gm.runicpowerR1, gm.runicpowerG1, gm.runicpowerB1, gm.runicpowerR2, gm.runicpowerG2, gm.runicpowerB2)
+	SetCustomGrad("LUNAR_POWER", gm.lunarpowerR1, gm.lunarpowerG1, gm.lunarpowerB1, gm.lunarpowerR2, gm.lunarpowerG2, gm.lunarpowerB2)
+	SetCustomGrad("ALT_POWER", gm.altpowerR1, gm.altpowerG1, gm.altpowerB1, gm.altpowerR2, gm.altpowerG2, gm.altpowerB2)
+	SetCustomGrad("MAELSTROM", gm.maelstromR1, gm.maelstromG1, gm.maelstromB1, gm.maelstromR2, gm.maelstromG2, gm.maelstromB2)
+	SetCustomGrad("INSANITY", gm.insanityR1, gm.insanityG1, gm.insanityB1, gm.insanityR2, gm.insanityG2, gm.insanityB2)
+	SetCustomGrad("FURY", gm.furyR1, gm.furyG1, gm.furyB1, gm.furyR2, gm.furyG2, gm.furyB2)
+	SetCustomGrad("PAIN", gm.painR1, gm.painG1, gm.painB1, gm.painR2, gm.painG2, gm.painB2)
+	SetCustomGrad("ELTRUISM", 0.50, 0.70, 1, 0.67, 0.95, 1)
+	SetCustomGrad("BACKDROP", gm.backdropR1, gm.backdropG1, gm.backdropB1, gm.backdropR2, gm.backdropG2, gm.backdropB2)
+
 	if uf.uftextureversion == "V2" then
-		unitframeclass = {
-			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv2.tga",
-			["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",
-			["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv2.tga",
-			["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv2.tga",
-			["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PRv2.tga",
-			["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",
-			["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv2.tga",
-			["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv2.tga",
-			["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WLv2.tga",
-			["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MKv2.tga",
-			["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
-			["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DHv2.tga",
-			["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-EVv2.tga",
-			["NPCFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv2.tga",
-			["NPCNEUTRAL"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RGv2.tga",
-			["NPCUNFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv2.tga",
-			["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
-			["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tappedv2.tga",
-		}
+		unitframeclass = unitframeclassV2
 	elseif uf.uftextureversion == "V3" then
-		unitframeclass = {
-			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv3.tga",
-			["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv3.tga",
-			["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv3.tga",
-			["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv3.tga",
-			["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PRv3.tga",
-			["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv3.tga",
-			["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv3.tga",
-			["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv3.tga",
-			["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WLv3.tga",
-			["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MKv3.tga",
-			["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv3.tga",
-			["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DHv3.tga",
-			["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-EVv3.tga",
-			["NPCFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv3.tga",
-			["NPCNEUTRAL"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RGv3.tga",
-			["NPCUNFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv3.tga",
-			["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv3.tga",
-			["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tappedv3.tga",
-		}
+		unitframeclass = unitframeclassV3
+	else
+		unitframeclass = unitframeclassV1
 	end
 
 	--just testing here bc of how it loads
@@ -452,20 +438,23 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		local dead = ufDB.colors.health_backdrop_dead
 		local alpha = customTex.backdropalpha or 1
 		if dead then
-			deadColorMin = CreateColor(E:Clamp(dead.r - 0.3, 0, 1), E:Clamp(dead.g - 0.3, 0, 1), E:Clamp(dead.b - 0.3, 0, 1), alpha)
-			deadColorMax = CreateColor(dead.r, dead.g, dead.b, alpha)
+			local dr, dg, db2 = E:Clamp(dead.r - 0.3, 0, 1), E:Clamp(dead.g - 0.3, 0, 1), E:Clamp(dead.b - 0.3, 0, 1)
+			if deadColorMin then deadColorMin:SetRGBA(dr, dg, db2, alpha) else deadColorMin = CreateColor(dr, dg, db2, alpha) end
+			if deadColorMax then deadColorMax:SetRGBA(dead.r, dead.g, dead.b, alpha) else deadColorMax = CreateColor(dead.r, dead.g, dead.b, alpha) end
 		end
 
 		local disc = ufDB.colors.disconnected
 		if disc then
-			discColorMin = CreateColor(E:Clamp(disc.r - 0.3, 0, 1), E:Clamp(disc.g - 0.3, 0, 1), E:Clamp(disc.b - 0.3, 0, 1), alpha)
-			discColorMax = CreateColor(disc.r, disc.g, disc.b, alpha)
+			local dcr, dcg, dcb = E:Clamp(disc.r - 0.3, 0, 1), E:Clamp(disc.g - 0.3, 0, 1), E:Clamp(disc.b - 0.3, 0, 1)
+			if discColorMin then discColorMin:SetRGBA(dcr, dcg, dcb, alpha) else discColorMin = CreateColor(dcr, dcg, dcb, alpha) end
+			if discColorMax then discColorMax:SetRGBA(disc.r, disc.g, disc.b, alpha) else discColorMax = CreateColor(disc.r, disc.g, disc.b, alpha) end
 		end
 
 		local tapped = ufDB.colors.tapped
 		if tapped then
-			tappedColorMin = CreateColor(E:Clamp(tapped.r - 0.3, 0, 1), E:Clamp(tapped.g - 0.3, 0, 1), E:Clamp(tapped.b - 0.3, 0, 1), alpha)
-			tappedColorMax = CreateColor(tapped.r, tapped.g, tapped.b, alpha)
+			local tr, tg, tb = E:Clamp(tapped.r - 0.3, 0, 1), E:Clamp(tapped.g - 0.3, 0, 1), E:Clamp(tapped.b - 0.3, 0, 1)
+			if tappedColorMin then tappedColorMin:SetRGBA(tr, tg, tb, alpha) else tappedColorMin = CreateColor(tr, tg, tb, alpha) end
+			if tappedColorMax then tappedColorMax:SetRGBA(tapped.r, tapped.g, tapped.b, alpha) else tappedColorMax = CreateColor(tapped.r, tapped.g, tapped.b, alpha) end
 		end
 	end
 
