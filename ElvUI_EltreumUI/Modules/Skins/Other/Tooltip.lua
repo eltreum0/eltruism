@@ -11,88 +11,92 @@ local UnitReaction = _G.UnitReaction
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GameTooltip = _G.GameTooltip
+local GameTooltipStatusBar = _G.GameTooltipStatusBar
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local canaccessvalue = _G.canaccessvalue
 
---gradient tooltip healthbar
-local function GameTooltipStatusBarGradient(unit, classunit, reaction)
-	local db = E.db.ElvUI_EltreumUI.unitframes.gradientmode
-	local tex = _G.GameTooltipStatusBar:GetStatusBarTexture()
-	local minC, maxC
+local isTooltipGradientEnabled = false
+local GameTooltipTextLeft1 = _G.GameTooltipTextLeft1
 
-	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-		if db.customcolor then
-			minC, maxC = ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false)
-		else
-			minC, maxC = ElvUI_EltreumUI:GradientColors(classunit, false, false)
-		end
-		tex:SetGradient(db.orientation, minC, maxC)
-	else
-		if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-			if db.customcolor then
-				minC, maxC = ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false)
-			else
-				minC, maxC = ElvUI_EltreumUI:GradientColors("TAPPED", false, false)
-			end
-			tex:SetGradient(db.orientation, minC, maxC)
-		elseif reaction then
-			local reactionKey
-			if reaction >= 5 then
-				reactionKey = "NPCFRIENDLY"
-			elseif reaction == 4 then
-				reactionKey = "NPCNEUTRAL"
-			elseif reaction == 3 then
-				reactionKey = "NPCUNFRIENDLY"
-			elseif reaction <= 2 then
-				reactionKey = "NPCHOSTILE"
-			end
+--resolve tooltip class or reaction color key
+local function ResolveTooltipColorKey(unit, reaction, isPlayer)
+	if isPlayer then
+		local _, classunit = UnitClass(unit)
+		if not classunit or not canaccessvalue(classunit) then return nil end
+		return classunit
+	end
 
-			if reactionKey then
-				if db.customcolor then
-					minC, maxC = ElvUI_EltreumUI:GradientColorsCustom(reactionKey, false, false)
-				else
-					minC, maxC = ElvUI_EltreumUI:GradientColors(reactionKey, false, false)
-				end
-				tex:SetGradient(db.orientation, minC, maxC)
-			end
+	if reaction then
+		if reaction >= 5 then
+			return "NPCFRIENDLY"
+		elseif reaction == 4 then
+			return "NPCNEUTRAL"
+		elseif reaction == 3 then
+			return "NPCUNFRIENDLY"
+		elseif reaction <= 2 then
+			return "NPCHOSTILE"
 		end
 	end
+
+	return nil
+end
+
+--gradient tooltip healthbar
+local function GameTooltipStatusBarGradient(unit, isPlayer, colorKey)
+	local db = E.db.ElvUI_EltreumUI.unitframes.gradientmode
+	local statusBar = GameTooltipStatusBar or _G.GameTooltipStatusBar
+	if not statusBar then return end
+	GameTooltipStatusBar = statusBar
+	local tex = statusBar:GetStatusBarTexture()
+	if not tex then return end
+
+	local lookupKey = colorKey
+	if not isPlayer and UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+		lookupKey = "TAPPED"
+	end
+	if not lookupKey then return end
+
+	local minC, maxC
+	if db.customcolor then
+		minC, maxC = ElvUI_EltreumUI:GradientColorsCustom(lookupKey, false, false)
+	else
+		minC, maxC = ElvUI_EltreumUI:GradientColors(lookupKey, false, false)
+	end
+	tex:SetGradient(db.orientation, minC, maxC)
 end
 
 --gradient tooltip text
-local function SetTooltipGradient(unit)
-	if not unit or not E.private.tooltip.enable or not E.db.ElvUI_EltreumUI.skins.gradienttooltip or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then return end
+local function SetTooltipGradient(unit, updateText)
+	if not unit then return end
+	if not isTooltipGradientEnabled and (not E.private.tooltip.enable or not E.db.ElvUI_EltreumUI.skins.gradienttooltip or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable) then return end
 	if GameTooltip and GameTooltip:IsForbidden() then return end
-	if not ElvUI_EltreumUI:IsThisASafeSecret() or not ElvUI_EltreumUI:IsThisASafeSecret(unit, true) then return end
+	if not ElvUI_EltreumUI:IsThisASafeSecret() or not canaccessvalue(unit) then return end
 
-	local _, classunit = UnitClass(unit)
-	if not classunit or not ElvUI_EltreumUI:IsThisASafeSecret(classunit, true) or not E:NotSecretValue(classunit) then return end
+	local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+	local reaction = not isPlayer and UnitReaction(unit, "player") or nil
+	local colorKey = ResolveTooltipColorKey(unit, reaction, isPlayer)
+	if not colorKey and isPlayer then return end
 
-	local reaction = UnitReaction(unit, "player")
-	local textLeft1 = _G["GameTooltipTextLeft1"]
-	local tooltipname = textLeft1 and textLeft1:GetText()
-
-	if tooltipname and ElvUI_EltreumUI:IsThisASafeSecret(tooltipname, true) then
-		tooltipname = E:StripString(tooltipname)
-		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
-			textLeft1:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
-		elseif reaction then
-			local reactionKey
-			if reaction >= 5 then
-				reactionKey = "NPCFRIENDLY"
-			elseif reaction == 4 then
-				reactionKey = "NPCNEUTRAL"
-			elseif reaction == 3 then
-				reactionKey = "NPCUNFRIENDLY"
-			elseif reaction <= 2 then
-				reactionKey = "NPCHOSTILE"
-			end
-			if reactionKey then
-				textLeft1:SetText(ElvUI_EltreumUI:GradientName(tooltipname, reactionKey))
+	if updateText then
+		local textLeft1 = GameTooltipTextLeft1 or _G["GameTooltipTextLeft1"]
+		if textLeft1 then
+			GameTooltipTextLeft1 = textLeft1
+			local tooltipname = textLeft1:GetText()
+			if tooltipname and canaccessvalue(tooltipname) then
+				if colorKey and (tooltipname ~= textLeft1.EltruismLastGradientText or colorKey ~= textLeft1.EltruismLastColorKey) then
+					local strippedName = E:StripString(tooltipname)
+					local gradientText = ElvUI_EltreumUI:GradientName(strippedName, colorKey)
+					if gradientText then
+						textLeft1:SetText(gradientText)
+						textLeft1.EltruismLastGradientText = gradientText
+						textLeft1.EltruismLastColorKey = colorKey
+					end
+				end
 			end
 		end
 	end
 
-	GameTooltipStatusBarGradient(unit, classunit, reaction)
+	GameTooltipStatusBarGradient(unit, isPlayer, colorKey)
 end
 
 local function ApplyTooltipItemFormatting(tooltip, tooltipName, isShopping)
@@ -147,14 +151,37 @@ local function ApplyTooltipItemFormatting(tooltip, tooltipName, isShopping)
 	end
 end
 
+--clear cached tooltip gradient text
+function ElvUI_EltreumUI:ClearTooltipGradientCache()
+	local textLeft1 = GameTooltipTextLeft1 or _G["GameTooltipTextLeft1"]
+	if textLeft1 then
+		textLeft1.EltruismLastGradientText = nil
+		textLeft1.EltruismLastColorKey = nil
+	end
+end
+
 --gradient tooltip
 function ElvUI_EltreumUI:TooltipGradient()
 	if GameTooltip and GameTooltip:IsForbidden() then return end
 	if not E.db.ElvUI_EltreumUI then return end
 
 	local fixunit = TT:GetDisplayedUnit(_G.GameTooltip)
-	if fixunit and E:NotSecretValue(fixunit) then
-		SetTooltipGradient(fixunit)
+	if fixunit and canaccessvalue(fixunit) then
+		SetTooltipGradient(fixunit, true)
+	end
+end
+
+--gradient tooltip status bar only (health updates)
+function ElvUI_EltreumUI:TooltipStatusBarGradient()
+	if not isTooltipGradientEnabled then return end
+	local statusBar = GameTooltipStatusBar or _G.GameTooltipStatusBar
+	if not statusBar or not statusBar:IsShown() then return end
+	if not GameTooltip or GameTooltip:IsForbidden() or not GameTooltip:IsShown() then return end
+	GameTooltipStatusBar = statusBar
+
+	local fixunit = TT:GetDisplayedUnit(GameTooltip)
+	if fixunit and canaccessvalue(fixunit) then
+		SetTooltipGradient(fixunit, false)
 	end
 end
 
@@ -172,10 +199,12 @@ function ElvUI_EltreumUI:TooltipGradientHook()
 	if not E.db.ElvUI_EltreumUI.unitframes.gradientmode then return end
 	if not E.db.ElvUI_EltreumUI.skins then return end
 
-	if E.private.tooltip.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+	isTooltipGradientEnabled = (E.private.tooltip.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip) and true or false
+
+	if isTooltipGradientEnabled then
 		if E.Modern and not ElvUI_EltreumUI.EltruismTooltipUnitHooked then
 			_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, function(tt)
-				if tt == GameTooltip and E.private and E.private.tooltip and E.private.tooltip.enable and E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.unitframes and E.db.ElvUI_EltreumUI.unitframes.gradientmode and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.skins and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+				if tt == GameTooltip and isTooltipGradientEnabled then
 					ElvUI_EltreumUI:TooltipGradient()
 				end
 			end)
@@ -191,17 +220,18 @@ function ElvUI_EltreumUI:TooltipGradientHook()
 			self:SecureHook(TT, 'MODIFIER_STATE_CHANGED', 'TooltipGradient')
 		end
 		if not self:IsHooked(TT, 'GameTooltipStatusBar_UpdateUnitHealth') then
-			self:SecureHook(TT, 'GameTooltipStatusBar_UpdateUnitHealth', 'TooltipGradient')
+			self:SecureHook(TT, 'GameTooltipStatusBar_UpdateUnitHealth', 'TooltipStatusBarGradient')
 		end
 		if _G.GameTooltipStatusBar and not self:IsHooked(_G.GameTooltipStatusBar, 'OnShow') then
-			self:SecureHookScript(_G.GameTooltipStatusBar, 'OnShow', 'TooltipGradient')
+			self:SecureHookScript(_G.GameTooltipStatusBar, 'OnShow', 'TooltipStatusBarGradient')
 		end
 
 		local fixunit = TT:GetDisplayedUnit(_G.GameTooltip)
 		if fixunit and E:NotSecretValue(fixunit) then
-			SetTooltipGradient(fixunit)
+			SetTooltipGradient(fixunit, true)
 		end
 	else
+		ElvUI_EltreumUI:ClearTooltipGradientCache()
 		if self:IsHooked(TT, 'AddTargetInfo') then
 			self:Unhook(TT, 'AddTargetInfo')
 		end
