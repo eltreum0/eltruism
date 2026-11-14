@@ -164,6 +164,98 @@ local function HideElvUIBorders(frame)
 	--theres center too, which can show the corners, but hiding or setting alpha causes it to vanish
 end
 
+local universalBackdrop = {
+	edgeFile = nil,
+	edgeSize = nil,
+}
+
+local function OnUniversalFrameBorderColor(frametable, r, g, b, a)
+	if frametable.eltruismSettingBorder then return end
+	if a == 0 and r == 0 and g == 0 and b == 0 then return end
+
+	local ub = frametable.eltruismuniversalborders
+	if not ub and frametable.backdrop then
+		ub = frametable.backdrop.eltruismuniversalborders
+	end
+	if not ub and frametable:GetParent() then
+		ub = frametable:GetParent().eltruismuniversalborders
+	end
+	if not ub then return end
+
+	if type(r) == "table" then
+		r, g, b, a = r.r, r.g, r.b, r.a
+	end
+
+	if IsDefaultBorderColor(r, g, b) then
+		local dr, dg, db, da = GetDefaultUniversalBorderColor()
+		ub:SetBackdropBorderColor(dr, dg, db, da)
+	else
+		ub:SetBackdropBorderColor(r, g, b, a or 1)
+	end
+	ub:Show()
+
+	HideElvUIBorders(frametable)
+end
+
+local function OnIconBorderSetShown(ib, shown)
+	local parent = ib:GetParent()
+	local ub = parent and parent.eltruismuniversalborders
+	if not ub then return end
+	if shown then
+		local ir, ig, ib_b = ib:GetVertexColor()
+		if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+			ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
+		else
+			local dr, dg, db, da = GetDefaultUniversalBorderColor()
+			ub:SetBackdropBorderColor(dr, dg, db, da)
+		end
+	else
+		local dr, dg, db, da = GetDefaultUniversalBorderColor()
+		ub:SetBackdropBorderColor(dr, dg, db, da)
+	end
+	ub:Show()
+	HideElvUIBorders(parent)
+end
+
+local function OnIconBorderSetVertexColor(ib, ir, ig, ib_b)
+	local parent = ib:GetParent()
+	local ub = parent and parent.eltruismuniversalborders
+	if not ub then return end
+	if ib:IsShown() and ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+		ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
+		ub:Show()
+	end
+end
+
+local function ApplyIconBorderColor(ib)
+	local parent = ib:GetParent()
+	local ub = parent and parent.eltruismuniversalborders
+	if not ub then return end
+	local ir, ig, ib_b = ib:GetVertexColor()
+	if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
+		ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
+	else
+		local dr, dg, db, da = GetDefaultUniversalBorderColor()
+		ub:SetBackdropBorderColor(dr, dg, db, da)
+	end
+	ub:Show()
+	HideElvUIBorders(parent)
+end
+
+local function OnIconBorderShow(ib)
+	E:Delay(0, ApplyIconBorderColor, ib)
+end
+
+local function OnIconBorderHide(ib)
+	local parent = ib:GetParent()
+	local ub = parent and parent.eltruismuniversalborders
+	if not ub then return end
+	local dr, dg, db, da = GetDefaultUniversalBorderColor()
+	ub:SetBackdropBorderColor(dr, dg, db, da)
+	ub:Show()
+	HideElvUIBorders(parent)
+end
+
 local function EltruismBorders(frame,isUnitFrameElement)
 	if (isUnitFrameElement and not (frame:GetDebugName() and frame:GetDebugName():match("AuraBar"))) then return end
 	if not E:NotSecretValue(frame) then return end --check for secret frame, avoid it
@@ -192,10 +284,9 @@ local function EltruismBorders(frame,isUnitFrameElement)
 
 	frame.eltruismuniversalborders:ClearAllPoints()
 	frame.eltruismuniversalborders:SetOutside(frame, xOffset, yOffset)
-	frame.eltruismuniversalborders:SetBackdrop({
-		edgeFile = borderTexture,
-		edgeSize = thickness,
-	})
+	universalBackdrop.edgeFile = borderTexture
+	universalBackdrop.edgeSize = thickness
+	frame.eltruismuniversalborders:SetBackdrop(universalBackdrop)
 
 	--find border color
 	local initR, initG, initB, initA = defR, defG, defB, defA
@@ -216,92 +307,17 @@ local function EltruismBorders(frame,isUnitFrameElement)
 
 	--follow elvui's border color
 	if not frame.EltruismBorderColorHooked then
-		hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable, r, g, b, a)
-			if frametable.eltruismSettingBorder then return end
-			if a == 0 and r == 0 and g == 0 and b == 0 then return end
-
-			local ub = frametable.eltruismuniversalborders
-			if not ub and frametable.backdrop then
-				ub = frametable.backdrop.eltruismuniversalborders
-			end
-			if not ub and frametable:GetParent() then
-				ub = frametable:GetParent().eltruismuniversalborders
-			end
-			if not ub then return end
-
-			if type(r) == "table" then
-				r, g, b, a = r.r, r.g, r.b, r.a
-			end
-
-			if IsDefaultBorderColor(r, g, b) then
-				local dr, dg, db, da = GetDefaultUniversalBorderColor()
-				ub:SetBackdropBorderColor(dr, dg, db, da)
-			else
-				ub:SetBackdropBorderColor(r, g, b, a or 1)
-			end
-			ub:Show()
-
-			HideElvUIBorders(frametable)
-		end)
+		hooksecurefunc(frame, "SetBackdropBorderColor", OnUniversalFrameBorderColor)
 		frame.EltruismBorderColorHooked = true
 	end
 
 	--icon border/quality
 	if frame.IconBorder then
 		if not frame.EltruismIconBorderHooked then
-			hooksecurefunc(frame.IconBorder, "SetShown", function(ib, shown)
-				local parent = ib:GetParent()
-				local ub = parent and parent.eltruismuniversalborders
-				if not ub then return end
-				if shown then
-					local ir, ig, ib_b = ib:GetVertexColor()
-					if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
-						ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
-					else
-						local dr, dg, db, da = GetDefaultUniversalBorderColor()
-						ub:SetBackdropBorderColor(dr, dg, db, da)
-					end
-				else
-					local dr, dg, db, da = GetDefaultUniversalBorderColor()
-					ub:SetBackdropBorderColor(dr, dg, db, da)
-				end
-				ub:Show()
-				HideElvUIBorders(parent)
-			end)
-			hooksecurefunc(frame.IconBorder, "SetVertexColor", function(ib, ir, ig, ib_b)
-				local parent = ib:GetParent()
-				local ub = parent and parent.eltruismuniversalborders
-				if not ub then return end
-				if ib:IsShown() and ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
-					ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
-					ub:Show()
-				end
-			end)
-			hooksecurefunc(frame.IconBorder, "Show", function(ib)
-				E:Delay(0, function()
-					local parent = ib:GetParent()
-					local ub = parent and parent.eltruismuniversalborders
-					if not ub then return end
-					local ir, ig, ib_b = ib:GetVertexColor()
-					if ir and ig and ib_b and not (ir == 1 and ig == 1 and ib_b == 1) then
-						ub:SetBackdropBorderColor(ir, ig, ib_b, 1)
-					else
-						local dr, dg, db, da = GetDefaultUniversalBorderColor()
-						ub:SetBackdropBorderColor(dr, dg, db, da)
-					end
-					ub:Show()
-					HideElvUIBorders(parent)
-				end)
-			end)
-			hooksecurefunc(frame.IconBorder, "Hide", function(ib)
-				local parent = ib:GetParent()
-				local ub = parent and parent.eltruismuniversalborders
-				if not ub then return end
-				local dr, dg, db, da = GetDefaultUniversalBorderColor()
-				ub:SetBackdropBorderColor(dr, dg, db, da)
-				ub:Show()
-				HideElvUIBorders(parent)
-			end)
+			hooksecurefunc(frame.IconBorder, "SetShown", OnIconBorderSetShown)
+			hooksecurefunc(frame.IconBorder, "SetVertexColor", OnIconBorderSetVertexColor)
+			hooksecurefunc(frame.IconBorder, "Show", OnIconBorderShow)
+			hooksecurefunc(frame.IconBorder, "Hide", OnIconBorderHide)
 			frame.EltruismIconBorderHooked = true
 		end
 
@@ -881,6 +897,19 @@ local frametypes = {
 	--"ModelScene",
 }
 
+local function DelayedSetTemplateChatToggle()
+	if E.db.ElvUI_EltreumUI.chat.chattoggles then
+		if _G.LeftChatToggleButton then
+			_G.LeftChatToggleButton:SetAlpha(1)
+			_G.LeftChatToggleButton:Show()
+		end
+		if _G.RightChatToggleButton then
+			_G.RightChatToggleButton:SetAlpha(1)
+			_G.RightChatToggleButton:Show()
+		end
+	end
+end
+
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if self.SetTemplateSkinHooked then return end
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate or E.db.ElvUI_EltreumUI.skins.ace3.enable or E.db.ElvUI_EltreumUI.skins.shadow.enable or E.db.ElvUI_EltreumUI.borders.universalborders then
@@ -898,17 +927,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		self.SetTemplateSkinHooked = true
 		E:UpdateAll()
 
-		E:Delay(10, function()
-			if E.db.ElvUI_EltreumUI.chat.chattoggles then
-				if _G.LeftChatToggleButton then
-					_G.LeftChatToggleButton:SetAlpha(1)
-					_G.LeftChatToggleButton:Show()
-				end
-				if _G.RightChatToggleButton then
-					_G.RightChatToggleButton:SetAlpha(1)
-					_G.RightChatToggleButton:Show()
-				end
-			end
-		end)
+		E:Delay(10, DelayedSetTemplateChatToggle)
 	end
 end
