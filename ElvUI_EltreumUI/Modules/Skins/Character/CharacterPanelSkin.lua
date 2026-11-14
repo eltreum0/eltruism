@@ -33,6 +33,15 @@ local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local next = _G.next
 local GetUnitSpeed = _G.GetUnitSpeed
 local canaccessvalue = _G.canaccessvalue
+local ilvlGradColorLeft = {r = 1, g = 1, b = 1, a = 1}
+local ilvlGradColorRight = {r = 1, g = 1, b = 1, a = 0}
+local qualitytable = {
+	[0] = 0,
+	[1] = 0,
+	[2] = 0,
+	[3] = 0,
+	[4] = 0,
+}
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -476,15 +485,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--color the avg item level
 			if CharacterStatsPane.ItemLevelFrame.leftGrad and CharacterStatsPane.ItemLevelFrame.rightGrad then
+				local itemlevelcolorsleft, itemlevelcolorsright
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-					local itemlevelcolorsleft,itemlevelcolorsright = ElvUI_EltreumUI:GetGradientCustomColor(E.myclass)
-					CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1}, {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0})
-					CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0}, {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1})
+					itemlevelcolorsleft, itemlevelcolorsright = ElvUI_EltreumUI:GetGradientCustomColor(E.myclass)
 				else
-					local itemlevelcolorsleft,itemlevelcolorsright = ElvUI_EltreumUI:GetGradientDefaultColor(E.myclass)
-					CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1}, {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0})
-					CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0}, {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1})
+					itemlevelcolorsleft, itemlevelcolorsright = ElvUI_EltreumUI:GetGradientDefaultColor(E.myclass)
 				end
+				ilvlGradColorLeft.r, ilvlGradColorLeft.g, ilvlGradColorLeft.b, ilvlGradColorLeft.a = itemlevelcolorsleft.r, itemlevelcolorsleft.g, itemlevelcolorsleft.b, 1
+				ilvlGradColorRight.r, ilvlGradColorRight.g, ilvlGradColorRight.b, ilvlGradColorRight.a = itemlevelcolorsright.r, itemlevelcolorsright.g, itemlevelcolorsright.b, 0
+				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', ilvlGradColorLeft, ilvlGradColorRight)
+				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', ilvlGradColorRight, ilvlGradColorLeft)
 			end
 
 			--CharacterFrame:SetHeight(505)
@@ -3106,13 +3116,11 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 
 						if not E.Modern then
 							--coloring ilvl based on the items they have
-							local qualitytable = {
-								[0] = 0,
-								[1] = 0,
-								[2] = 0,
-								[3] = 0,
-								[4] = 0,
-							}
+							qualitytable[0] = 0
+							qualitytable[1] = 0
+							qualitytable[2] = 0
+							qualitytable[3] = 0
+							qualitytable[4] = 0
 							local maxquality = 0
 							local numberquality = 0
 							if quality == 0 then
@@ -3628,13 +3636,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 							if not E.Modern and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 								--coloring ilvl based on the items they have
-								local qualitytable = {
-									[0] = 0,
-									[1] = 0,
-									[2] = 0,
-									[3] = 0,
-									[4] = 0,
-								}
+								qualitytable[0] = 0
+								qualitytable[1] = 0
+								qualitytable[2] = 0
+								qualitytable[3] = 0
+								qualitytable[4] = 0
 								local maxquality = 0
 								local numberquality = 0
 								if quality == 0 then
