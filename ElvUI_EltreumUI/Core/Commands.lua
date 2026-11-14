@@ -475,10 +475,11 @@ local ids = {
 }
 local keys = {}
 local function updateKeys()
+	wipe(keys)
 	for bag = 0, NUM_BAG_SLOTS do
-		local bagSlots = C_Container.GetContainerNumSlots(bag)
+		local bagSlots = GetContainerNumSlots(bag)
 		for slot = 1, bagSlots do
-			local containerInfo = C_Container.GetContainerItemInfo(bag, slot)
+			local containerInfo = GetContainerItemInfo(bag, slot)
 			if containerInfo then
 				local itemLink = containerInfo.hyperlink
 				local itemID = containerInfo.itemID
