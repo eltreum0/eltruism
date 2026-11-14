@@ -264,12 +264,13 @@ function ElvUI_EltreumUI:UF_Configure_Castbar(arg1, arg2)
 
 	if not castbar.Shield.EltruismHooked then
 		castbar.Shield.EltruismHooked = true
-		hooksecurefunc(castbar.Shield, "SetAlphaFromBoolean", function(shield, val, aTrue, aFalse)
-			local cb = shield:GetParent()
-			if cb and cb.ShieldGradientOverlay then
-				cb.ShieldGradientOverlay:SetAlphaFromBoolean(val, aTrue or 1, aFalse or 0)
-			end
-		end)
+		hooksecurefunc(castbar.Shield, "SetAlphaFromBoolean", ElvUI_EltreumUI.OnShieldSetAlphaFromBoolean)
+	end
+end
+function ElvUI_EltreumUI.OnShieldSetAlphaFromBoolean(shield, val, aTrue, aFalse)
+	local cb = shield:GetParent()
+	if cb and cb.ShieldGradientOverlay then
+		cb.ShieldGradientOverlay:SetAlphaFromBoolean(val, aTrue or 1, aFalse or 0)
 	end
 end
 ElvUI_EltreumUI:SecureHook(UF, "Configure_Castbar", "UF_Configure_Castbar")

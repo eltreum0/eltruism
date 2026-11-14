@@ -217,12 +217,7 @@ function ElvUI_EltreumUI:NP_Update_Castbar(arg1, arg2)
 
 	if not castbar.Shield.EltruismHooked then
 		castbar.Shield.EltruismHooked = true
-		hooksecurefunc(castbar.Shield, "SetAlphaFromBoolean", function(shield, val, aTrue, aFalse)
-			local cb = shield:GetParent()
-			if cb and cb.ShieldGradientOverlay then
-				cb.ShieldGradientOverlay:SetAlphaFromBoolean(val, aTrue or 1, aFalse or 0)
-			end
-		end)
+		hooksecurefunc(castbar.Shield, "SetAlphaFromBoolean", ElvUI_EltreumUI.OnShieldSetAlphaFromBoolean)
 	end
 end
 ElvUI_EltreumUI:SecureHook(NP, "Update_Castbar", "NP_Update_Castbar")
