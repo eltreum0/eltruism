@@ -371,9 +371,9 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 
 			local tag = ""
 			if levelStr ~= "" and raceStr ~= "" then
-				tag = levelStr .. " " .. raceStr
+				tag = levelStr .. "" .. raceStr
 			elseif levelStr ~= "" then
-				tag = levelStr .. " "
+				tag = levelStr .. ""
 			elseif raceStr ~= "" then
 				tag = raceStr
 			end
