@@ -457,17 +457,19 @@ end
 --haste and crit datatext
 local function EltruismStatsDatatext1(dt)
 	if E.Modern then
-		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCritChance(),true) then return end
-		if not ElvUI_EltreumUI:IsThisASafeSecret(GetSpellCritChance(),true) then return end
+		local critChance = GetCritChance()
+		local spellCritChance = GetSpellCritChance()
+		if not ElvUI_EltreumUI:IsThisASafeSecret(critChance,true) then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret(spellCritChance,true) then return end
 		local retailhaste = GetHaste()
 		local RangedHaste = GetRangedHaste()
 		local finalhaste = mathmax(retailhaste,RangedHaste)
 
 		local retailcrit
-		if canaccessvalue(GetCritChance()) then
-			retailcrit = mathmax(GetCritChance(),GetSpellCritChance())
+		if canaccessvalue(critChance) then
+			retailcrit = mathmax(critChance,spellCritChance)
 		else
-			retailcrit = GetCritChance()
+			retailcrit = critChance
 		end
 		local haste = STATS.STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", finalhaste).."|r"
 		local crit = STATS.CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", retailcrit).."|r"
@@ -477,11 +479,12 @@ local function EltruismStatsDatatext1(dt)
 		local haste = STATS.STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", GetHaste()).."|r" --GetCombatRatingBonus(CR_HASTE_SPELL)
 		local crit
 		local spellcrit, maxspell
-		if canaccessvalue(GetSpellCritChance(2)) then
-			spellcrit = mathmax(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+		local spellCrit2 = GetSpellCritChance(2)
+		if canaccessvalue(spellCrit2) then
+			spellcrit = mathmax(spellCrit2,GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
 			maxspell = mathmax(GetCritChance(),spellcrit)
 		else
-			maxspell = GetSpellCritChance(2)
+			maxspell = spellCrit2
 		end
 		if E.Mists or E.TBC or E.Wrath then
 			spellcrit = GetCritChance()
@@ -523,13 +526,15 @@ DT:RegisterDatatext('Eltruism Stats 1', STATS.STAT_CATEGORY_ENHANCEMENTS, {'COMB
 --mastery/vers or power/hit
 local function EltruismStatsDatatext2(dt)
 	if E.Retail then
-		if not ElvUI_EltreumUI:IsThisASafeSecret(GetMasteryEffect(),true) then return end
-		if not ElvUI_EltreumUI:IsThisASafeSecret(GetCombatRatingBonus(29),true) then return end
+		local masteryEffect = GetMasteryEffect()
+		local crBonus29 = GetCombatRatingBonus(29)
+		if not ElvUI_EltreumUI:IsThisASafeSecret(masteryEffect,true) then return end
+		if not ElvUI_EltreumUI:IsThisASafeSecret(crBonus29,true) then return end
 
 		--mastery
-		local mastery = STATS.STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", GetMasteryEffect()).."|r"
+		local mastery = STATS.STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.2f%%", masteryEffect).."|r"
 		--versatility
-		local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
+		local versdmg = crBonus29 + GetVersatilityBonus(29)
 		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
 		local versatilitylabel = E:ShortenString(STATS.STAT_VERSATILITY, 4)
 		local versatility = versatilitylabel..": "..ElvUI[1].media.hexvaluecolor..stringformat("%.1f%%", mathmax(versdef,versdmg)).."|r"
@@ -545,21 +550,22 @@ local function EltruismStatsDatatext2(dt)
 		end
 		local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
 		local totalmelee
-		if canaccessvalue(rangedbasepower) then
+		if canaccessvalue(meleebasepower) then
 			totalmelee = meleebasepower+meleebuff+meleenerf
 		else
 			totalmelee = meleebasepower
 		end
 
 		local spellpower
-		if canaccessvalue(GetSpellBonusDamage(2)) then
-			spellpower = mathmax(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
+		local spellBonus2 = GetSpellBonusDamage(2)
+		if canaccessvalue(spellBonus2) then
+			spellpower = mathmax(spellBonus2,GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 		else
 			local specID = ElvUI_EltreumUI:CheckForeverSpec()
 			if specID then
 				spellpower = GetPrimaryStatForSpecID(specID)
 			else
-				spellpower = GetSpellBonusDamage(2)
+				spellpower = spellBonus2
 			end
 		end
 
@@ -654,9 +660,11 @@ local function EltruismStatsDatatext3(dt)
 		dt.text:SetFormattedText('%s %s|r',armor,dodge)
 	else
 		--defense
-		local defense = E:ShortenString(STATS.DEFENSE, 3)..": "..ElvUI[1].media.hexvaluecolor..(select(1, UnitDefense("player"))) + (select(2, UnitDefense("player"))).."|r"
+		local baseDef, armorDef = UnitDefense("player")
+		local totalDef = baseDef + armorDef
+		local defense = E:ShortenString(STATS.DEFENSE, 3)..": "..ElvUI[1].media.hexvaluecolor..totalDef.."|r"
 		--avoidance
-		local miss = 5 + (((select(1, UnitDefense("player"))) + (select(2, UnitDefense("player"))) - (UnitLevel("player") * 5)) * 0.04)
+		local miss = 5 + ((totalDef - (UnitLevel("player") * 5)) * 0.04)
 		local avoid = miss+GetBlockChance()+GetParryChance()+GetDodgeChance()
 		local avoidance = E:ShortenString(STATS.STAT_AVOIDANCE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(mathfloor(avoid*100) * 0.01).."%".."|r"
 
