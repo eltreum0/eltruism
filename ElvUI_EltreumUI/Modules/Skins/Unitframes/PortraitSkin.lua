@@ -254,15 +254,15 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 						return
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
+						local minColor, maxColor
 						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
-							frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
+							minColor, maxColor = ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false)
 						else
-							frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
+							minColor, maxColor = ElvUI_EltreumUI:GradientColors(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false)
 						end
+						frame.EltruismPortrait.border:SetGradient("HORIZONTAL", minColor, maxColor)
+						frame.EltruismPortrait.edge:SetGradient("HORIZONTAL", minColor, maxColor)
+						frame.EltruismPortrait.rare:SetGradient("HORIZONTAL", minColor, maxColor)
 					else
 						local classrgb = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 						frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
@@ -272,51 +272,22 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 				else
 					local reaction = UnitReaction(frame.__unit, "player")
 					if not reaction then return end
+					local npcType = (reaction >= 5 and "NPCFRIENDLY") or (reaction == 4 and "NPCNEUTRAL") or (reaction == 3 and "NPCUNFRIENDLY") or (reaction <= 2 and "NPCHOSTILE")
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
-						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
-							if reaction >= 5 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							elseif reaction == 4 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							elseif reaction == 3 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							elseif reaction <= 2 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
+						if npcType then
+							local minColor, maxColor
+							if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
+								minColor, maxColor = ElvUI_EltreumUI:GradientColorsCustom(npcType, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false)
+							else
+								minColor, maxColor = ElvUI_EltreumUI:GradientColors(npcType, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false)
 							end
-						else
-							if reaction >= 5 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							elseif reaction == 4 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							elseif reaction == 3 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							elseif reaction <= 2 then
-								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
-							end
+							local orient = E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation
+							frame.EltruismPortrait.border:SetGradient(orient, minColor, maxColor)
+							frame.EltruismPortrait.edge:SetGradient(orient, minColor, maxColor)
 						end
 					else
-						if reaction >= 5 then
-							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
-							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
-						elseif reaction == 4 then
-							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
-							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
-						elseif reaction == 3 then
-							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
-							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
-						elseif reaction == 2 or reaction == 1 then
-							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
+						if reaction >= 5 or reaction == 4 or reaction == 3 or reaction == 2 or reaction == 1 then
+							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB(npcType)
 							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 						end
@@ -567,21 +538,22 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frameOrUF, maybeFrame)
 	if not frame or type(frame) ~= "table" then return end
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if not frame.USE_PORTRAIT then return end
-		if not frame:GetName() then return end
-		if frame:GetName():match("PartyGroup") and not frame:GetName():match("Pet") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"party") end)
+		local frameName = frame:GetName()
+		if not frameName then return end
+		if frameName:find("PartyGroup", 1, true) and not frameName:find("Pet", 1, true) then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,frameName,false,true,"party") end)
 		end
-		if frame:GetName():match("Focus") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,tostring(frame.__unit)) end)
+		if frameName:find("Focus", 1, true) then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,frameName,false,true,tostring(frame.__unit)) end)
 		end
-		if frame:GetName():match("FocusTarget") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"focustarget") end)
+		if frameName:find("FocusTarget", 1, true) then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,frameName,false,true,"focustarget") end)
 		end
-		if frame:GetName():match("TargetTarget") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),true,true,"targettarget") end)
+		if frameName:find("TargetTarget", 1, true) then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,frameName,true,true,"targettarget") end)
 		end
-		if frame:GetName():match("Boss") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"boss") end)
+		if frameName:find("Boss", 1, true) then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,frameName,false,true,"boss") end)
 		end
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
