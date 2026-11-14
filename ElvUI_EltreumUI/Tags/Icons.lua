@@ -509,32 +509,34 @@ function ElvUI_EltreumUI:LoadIconTags()
 	end)
 	E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name.." "..L["Icons"], [[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\Disconnect\dc1:0:0:0:0|t ]].. L["Displays a disconnect symbol when unit is disconnected. Can be customized in Eltruism > Media"])
 
-	E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
+	E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE PARTY_LEADER_CHANGED", function(unit)
+		if not unit or not E:NotSecretValue(unit) then return end
 		local leader = UnitIsGroupLeader(unit)
 		local assist = UnitIsGroupAssistant(unit)
 		local isTank = GetPartyAssignment("MAINTANK", unit)
 		local isMainAssist = GetPartyAssignment("MAINASSIST", unit)
-		if leader and not assist and not isTank and not isMainAssist then
-			return [[|TInterface\GroupFrame\UI-Group-LeaderIcon:0:0:0:0|t]]
-		elseif assist and not leader and not isTank and not isMainAssist then
-			return [[|TInterface\GroupFrame\UI-Group-AssistantIcon:0:0:0:0|t]]
-		elseif isTank and isMainAssist and not leader and not assist then
-			return [[|TInterface\GroupFrame\UI-Group-MainTankIcon:0:0:0:0|t|TInterface\GroupFrame\UI-Group-MainAssistIcon:0:0:0:0|t]]
-		elseif isTank and not isMainAssist and not leader and not assist then
-			return [[|TInterface\GroupFrame\UI-Group-MainTankIcon:0:0:0:0|t]]
-		elseif isMainAssist and not isTank and not leader and not assist then
-			return [[|TInterface\GroupFrame\UI-Group-MainAssistIcon:0:0:0:0|t]]
-		elseif leader and isTank then
-			return [[|TInterface\GroupFrame\UI-Group-LeaderIcon:0:0:0:0|t|TInterface\GroupFrame\UI-Group-MainTankIcon:0:0:0:0|t]]
-		elseif assist and isTank and not isMainAssist and not leader then
-			return [[|TInterface\GroupFrame\UI-Group-AssistantIcon:0:0:0:0|t|TInterface\GroupFrame\UI-Group-MainTankIcon:0:0:0:0|t]]
+		local icons = ""
+		if E:NotSecretValue(leader) and leader then
+			icons = [[|TInterface\GroupFrame\UI-Group-LeaderIcon:0:0:0:0|t]]
+		elseif E:NotSecretValue(assist) and assist then
+			icons = [[|TInterface\GroupFrame\UI-Group-AssistantIcon:0:0:0:0|t]]
+		end
+		if E:NotSecretValue(isTank) and isTank then
+			icons = icons..[[|TInterface\GroupFrame\UI-Group-MainTankIcon:0:0:0:0|t]]
+		end
+		if E:NotSecretValue(isMainAssist) and isMainAssist then
+			icons = icons..[[|TInterface\GroupFrame\UI-Group-MainAssistIcon:0:0:0:0|t]]
+		end
+		if icons ~= "" then
+			return icons
 		end
 	end)
 	E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name.." "..L["Icons"], [[|TInterface\GroupFrame\UI-Group-LeaderIcon:0:0:0:0|t ]]..L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
 
-	E:AddTag("eltruism:leader:emoji", "GROUP_ROSTER_UPDATE", function(unit)
+	E:AddTag("eltruism:leader:emoji", "GROUP_ROSTER_UPDATE PARTY_LEADER_CHANGED", function(unit)
+		if not unit or not E:NotSecretValue(unit) then return end
 		local leader = UnitIsGroupLeader(unit)
-		if leader then
+		if E:NotSecretValue(leader) and leader then
 			return [[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\Leader\Leader1]]..escapeSequence..[[|t]]
 		end
 	end)

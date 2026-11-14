@@ -12,6 +12,8 @@ local InCombatLockdown = _G.InCombatLockdown
 local GetPartyAssignment = _G.GetPartyAssignment
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local hooksecurefunc = _G.hooksecurefunc
+local ipairs = _G.ipairs
+local pairs = _G.pairs
 local LoggingCombat = _G.LoggingCombat
 --local UnitSetRole = _G.UnitSetRole
 local bit = _G.bit
@@ -268,48 +270,215 @@ end
 
 --replace the leader/assist/master looter icons in frames
 local UF = E:GetModule('UnitFrames')
-function ElvUI_EltreumUI:LeaderIcon(indicator)
-	if not E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons then return end
-	if not indicator or type(indicator) ~= "table" or not indicator.GetParent then return end
-	local anchor = indicator:GetParent()
-	local frame = anchor and anchor.GetParent and anchor:GetParent()
-	frame = frame and frame.GetParent and frame:GetParent()
-	if not frame then return end
-	if E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and frame.LeaderIndicator then
-		frame.LeaderIndicator:SetTexCoord(0,1,0,1)
-		if E.db.ElvUI_EltreumUI.otherstuff.leadericonstype ~= "CUSTOM" then
-			frame.LeaderIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader'..E.db.ElvUI_EltreumUI.otherstuff.leadericonstype..'.tga')
-		else
-			frame.LeaderIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericonscustom)
-		end
-	end
-	if E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and frame.AssistantIndicator then
-		frame.AssistantIndicator:SetTexCoord(0,1,0,1)
-		if E.db.ElvUI_EltreumUI.otherstuff.assisticonstype ~= "CUSTOM" then
-			frame.AssistantIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\Assist'..E.db.ElvUI_EltreumUI.otherstuff.assisticonstype..'.tga')
-		else
-			frame.AssistantIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
-		end
-	end
-	if E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons and frame.MasterLooterIndicator then
-		frame.MasterLooterIndicator:SetTexCoord(0,1,0,1)
-		if E.db.ElvUI_EltreumUI.otherstuff.lootericonstype ~= "CUSTOM" then
-			frame.MasterLooterIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\MasterLooter\\Looter'..E.db.ElvUI_EltreumUI.otherstuff.lootericonstype..'.tga')
-		else
-			frame.MasterLooterIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericonscustom)
-		end
-	end
-	if frame.RaidRoleIndicator then
-		frame.RaidRoleIndicator:SetTexCoord(0,1,0,1)
-		if(GetPartyAssignment('MAINTANK', frame.__unit)) then
-			frame.RaidRoleIndicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
-			frame.RaidRoleIndicator:SetDesaturated(true)
-		elseif(GetPartyAssignment('MAINASSIST', frame.__unit)) then
-			frame.RaidRoleIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\MainAssist1.tga')
+local function HasRoleIndicator(frame)
+	return type(frame) == "table" and (frame.LeaderIndicator or frame.AssistantIndicator or frame.MasterLooterIndicator or frame.RaidRoleIndicator)
+end
+
+--accept either the unitframe or the indicator widget (from PostUpdate / SetTexture / UF hooks)
+local function ResolveLeaderFrame(arg1, arg2)
+	for i = 1, 2 do
+		local obj = (i == 1) and arg1 or arg2
+		if type(obj) == "table" then
+			if HasRoleIndicator(obj) then
+				return obj
+			end
+			if HasRoleIndicator(obj.__owner) then
+				return obj.__owner, obj
+			end
+			local parent = obj.GetParent and obj:GetParent()
+			for _ = 1, 3 do
+				if not parent then break end
+				if HasRoleIndicator(parent) then
+					return parent, obj
+				end
+				parent = parent.GetParent and parent:GetParent()
+			end
 		end
 	end
 end
-ElvUI_EltreumUI:SecureHook(UF,"RaidRoleUpdate", "LeaderIcon")
+
+local function SetIndicatorTexture(indicator, icontype, prefix, custompath)
+	if indicator.EltruismUpdating then return end --avoid re-triggering our SetTexture hook
+	indicator.EltruismUpdating = true
+	if icontype ~= "CUSTOM" then
+		indicator:SetTexture(prefix..(icontype or "1")..'.tga')
+	else
+		indicator:SetTexture([[Interface\AddOns\]]..(custompath or ""))
+	end
+	indicator:SetTexCoord(0,1,0,1)
+	indicator.EltruismUpdating = false
+end
+
+local function OnIndicatorTextureChanged(indicator, value)
+	if value and value ~= "" and not indicator.EltruismUpdating then
+		ElvUI_EltreumUI:LeaderIcon(indicator)
+	end
+end
+
+local function OnIndicatorPostUpdate(indicator)
+	if not indicator.EltruismUpdating then
+		ElvUI_EltreumUI:LeaderIcon(indicator)
+	end
+end
+
+--hook the texture itself so ElvUI/oUF cannot overwrite it via cached callbacks
+local function HookRoleIndicator(indicator)
+	if not indicator or indicator.EltruismHook then return end
+	indicator.EltruismHook = true
+	if indicator.SetTexture then
+		hooksecurefunc(indicator, "SetTexture", OnIndicatorTextureChanged)
+	end
+	if indicator.SetAtlas then
+		hooksecurefunc(indicator, "SetAtlas", OnIndicatorTextureChanged)
+	end
+	if indicator.PostUpdate and indicator.PostUpdate ~= UF.RaidRoleUpdate then
+		hooksecurefunc(indicator, "PostUpdate", OnIndicatorPostUpdate)
+	end
+end
+
+local function UpdateRoleIndicator(frame, indicator)
+	if not indicator then return end
+	if indicator == frame.LeaderIndicator then
+		if E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons then
+			SetIndicatorTexture(indicator, E.db.ElvUI_EltreumUI.otherstuff.leadericonstype, 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader', E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericonscustom)
+			HookRoleIndicator(indicator)
+		end
+	elseif indicator == frame.AssistantIndicator then
+		if E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons then
+			SetIndicatorTexture(indicator, E.db.ElvUI_EltreumUI.otherstuff.assisticonstype, 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\Assist', E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
+			HookRoleIndicator(indicator)
+		end
+	elseif indicator == frame.MasterLooterIndicator then
+		if E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons then
+			SetIndicatorTexture(indicator, E.db.ElvUI_EltreumUI.otherstuff.lootericonstype, 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\MasterLooter\\Looter', E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericonscustom)
+			HookRoleIndicator(indicator)
+		end
+	elseif indicator == frame.RaidRoleIndicator and not indicator.EltruismUpdating then
+		local unit = frame.__unit or frame.unit
+		if unit and E:NotSecretValue(unit) then
+			local isTank = GetPartyAssignment('MAINTANK', unit)
+			local isAssist = GetPartyAssignment('MAINASSIST', unit)
+			if E:NotSecretValue(isTank) and isTank then
+				indicator.EltruismUpdating = true
+				indicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
+				indicator:SetTexCoord(0,1,0,1)
+				indicator:SetDesaturated(true)
+				indicator.EltruismUpdating = false
+			elseif E:NotSecretValue(isAssist) and isAssist then
+				indicator.EltruismUpdating = true
+				indicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\MainAssist1.tga')
+				indicator:SetTexCoord(0,1,0,1)
+				indicator.EltruismUpdating = false
+			end
+		end
+		HookRoleIndicator(indicator)
+	end
+end
+
+function ElvUI_EltreumUI:LeaderIcon(arg1, arg2)
+	if not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.otherstuff then return end
+	if not E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons then return end
+	local frame, indicator = ResolveLeaderFrame(arg1, arg2)
+	if not frame then return end
+	if indicator then
+		UpdateRoleIndicator(frame, indicator)
+	else
+		UpdateRoleIndicator(frame, frame.LeaderIndicator)
+		UpdateRoleIndicator(frame, frame.AssistantIndicator)
+		UpdateRoleIndicator(frame, frame.MasterLooterIndicator)
+		UpdateRoleIndicator(frame, frame.RaidRoleIndicator)
+	end
+end
+
+local function SkinHeaderChildren(...)
+	for i = 1, select('#', ...) do
+		local frame = select(i, ...)
+		if HasRoleIndicator(frame) then
+			ElvUI_EltreumUI:LeaderIcon(frame)
+		end
+	end
+end
+
+local function CheckHeaderChildren(header)
+	if header and header.GetChildren then
+		SkinHeaderChildren(header:GetChildren())
+	end
+end
+
+--skin already-created frames (needed when ElvUI finishes initializing before EltreumUI loads)
+function ElvUI_EltreumUI:UpdateAllLeaderIcons()
+	if not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.otherstuff then return end
+	if not E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons then return end
+	if _G["ElvUF_Player"] then
+		ElvUI_EltreumUI:LeaderIcon(_G["ElvUF_Player"])
+	end
+	if _G["ElvUF_Target"] then
+		ElvUI_EltreumUI:LeaderIcon(_G["ElvUF_Target"])
+	end
+	CheckHeaderChildren(_G["ElvUF_Party"])
+	CheckHeaderChildren(_G["ElvUF_PartyGroup1"])
+	for raid = 1, 3 do
+		if _G["ElvUF_Raid"..raid] then
+			for group = 1, 8 do
+				CheckHeaderChildren(_G["ElvUF_Raid"..raid.."Group"..group])
+			end
+		end
+	end
+	if _G["ElvUF_TankUnitButton1"] then
+		for i = 1, 8 do
+			if _G["ElvUF_TankUnitButton"..i] then
+				ElvUI_EltreumUI:LeaderIcon(_G["ElvUF_TankUnitButton"..i])
+			end
+		end
+	end
+	if _G["ElvUF_AssistUnitButton1"] then
+		for i = 1, 8 do
+			if _G["ElvUF_AssistUnitButton"..i] then
+				ElvUI_EltreumUI:LeaderIcon(_G["ElvUF_AssistUnitButton"..i])
+			end
+		end
+	end
+	if type(UF.units) == "table" then
+		for _, frame in pairs(UF.units) do
+			if HasRoleIndicator(frame) then
+				ElvUI_EltreumUI:LeaderIcon(frame)
+			end
+		end
+	end
+end
+
+local function OnLeaderHook(arg1, arg2)
+	ElvUI_EltreumUI:LeaderIcon(arg1, arg2)
+end
+
+local function OnGroupConfigHook()
+	ElvUI_EltreumUI:UpdateAllLeaderIcons()
+end
+
+--use hooksecurefunc instead of AceHook SecureHook so shared UF hooks in other modules do not collide
+local leaderFuncs = {
+	"RaidRoleUpdate",
+	"Configure_RaidRoleIcon",
+	"Configure_RaidRoleIcons",
+	"Construct_RaidRoleFrames",
+	"Update_RaidRole",
+	"Update_PartyFrames",
+	"Update_RaidFrames",
+}
+for _, method in ipairs(leaderFuncs) do
+	if UF[method] then
+		hooksecurefunc(UF, method, OnLeaderHook)
+	end
+end
+local groupFuncs = {
+	"ToggleForceShowGroupFrames",
+	"HeaderConfig",
+}
+for _, method in ipairs(groupFuncs) do
+	if UF[method] then
+		hooksecurefunc(UF, method, OnGroupConfigHook)
+	end
+end
 
 --use new flipbook animation to recreate the blizzard resting animation
 function ElvUI_EltreumUI:RestIcon(_, frame)

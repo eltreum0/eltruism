@@ -121,6 +121,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
+	ElvUI_EltreumUI:UpdateAllLeaderIcons() --apply custom party/raid leader, assist, and looter icons
 	ElvUI_EltreumUI:PlayerDeathAnimation() -- death animation
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -289,6 +290,7 @@ function ElvUI_EltreumUI:PLAYER_DEAD(event)
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
+	ElvUI_EltreumUI:UpdateAllLeaderIcons()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
 	if _G.IsInRaid() then
