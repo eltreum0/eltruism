@@ -641,6 +641,20 @@ local UGGGREY = {
 local ScreenWidth = GetScreenWidth()
 local escapeSequence = E.Modern and ":16:16:0:0|t" or ":0:0:0:0|t"
 local escapeSequence2 = E.Modern and ":16:16:0:0:64:64:64:0:0:64|t" or ":0:0:0:0:64:64:64:0:0:64|t"
+local secretIcon = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\secret]]
+local secretIconString = "|T"..secretIcon..escapeSequence
+local iconStringCache = {}
+local iconStringInvertedCache = {}
+local function GetCachedIconString(texPath, invert)
+	if not texPath then return nil end
+	local cache = invert and iconStringInvertedCache or iconStringCache
+	local str = cache[texPath]
+	if not str then
+		str = "|T"..texPath..(invert and escapeSequence2 or escapeSequence)
+		cache[texPath] = str
+	end
+	return str
+end
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring)
 	if ScreenWidth < 2000 then
 		if resolution == "32" then
@@ -649,91 +663,38 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			resolution = "32"
 		end
 	end
+	if not E:NotSecretValue(unitclass) then --secret class so do something else
+		return nostring and secretIcon or secretIconString
+	end
+	local texPath
+	if icon == "RELEAF" then
+		texPath = classIconsReleaf[resolution][unitclass]
+	elseif icon == "OUTLINE" then
+		texPath = classIconsOutline[resolution][unitclass]
+	elseif icon == "BLIZZARD" then
+		texPath = classIconsBlizzard[resolution][unitclass]
+	elseif icon == "BORDER" then
+		texPath = classIconsBorder[resolution][unitclass]
+	elseif icon == "SHADOW" then
+		texPath = classIconsShadow[resolution][unitclass]
+	elseif icon == "ORIGINAL" then
+		texPath = OriginalIcons[resolution][unitclass]
+	elseif icon == "GRADIENT" then
+		texPath = gradient[resolution][unitclass]
+	elseif icon == "SYMBOLS" then
+		texPath = classSymbols[unitclass]
+	elseif icon == "BW" then
+		texPath = blackandwhite[resolution][unitclass]
+	elseif icon == "UGG" then
+		texPath = UGG[resolution][unitclass]
+	elseif icon == "UGGGREY" then
+		texPath = UGGGREY[resolution][unitclass]
+	elseif icon == "CUSTOM" then
+		texPath = E.private.ElvUI_EltreumUI.chat.customicons[unitclass]
+	end
 	if nostring then
-		if not E:NotSecretValue(unitclass) then --secret class so do something else
-			return [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\secret]]
-		end
-		if icon == "RELEAF" then
-			return classIconsReleaf[resolution][unitclass]
-		elseif icon == "OUTLINE" then
-			return classIconsOutline[resolution][unitclass]
-		elseif icon == "BLIZZARD" then
-			return classIconsBlizzard[resolution][unitclass]
-		elseif icon == "BORDER" then
-			return classIconsBorder[resolution][unitclass]
-		elseif icon == "SHADOW" then
-			return classIconsShadow[resolution][unitclass]
-		elseif icon == "ORIGINAL" then
-			return OriginalIcons[resolution][unitclass]
-		elseif icon == "GRADIENT" then
-			return gradient[resolution][unitclass]
-		elseif icon == "SYMBOLS" then
-			return classSymbols[unitclass]
-		elseif icon == "BW" then
-			return blackandwhite[resolution][unitclass]
-		elseif icon == "UGG" then
-			return UGG[resolution][unitclass]
-		elseif icon == "UGGGREY" then
-			return UGGGREY[resolution][unitclass]
-		elseif icon == "CUSTOM" then
-			return E.private.ElvUI_EltreumUI.chat.customicons[unitclass]
-		end
+		return texPath
 	else
-		if not E:NotSecretValue(unitclass) then --secret class so do something else
-			return [[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\secret]]..escapeSequence
-		end
-		if not invert then
-			if icon == "RELEAF" then
-				return "|T"..classIconsReleaf[resolution][unitclass]..escapeSequence
-			elseif icon == "OUTLINE" then
-				return "|T"..classIconsOutline[resolution][unitclass]..escapeSequence
-			elseif icon == "BLIZZARD" then
-				return "|T"..classIconsBlizzard[resolution][unitclass]..escapeSequence
-			elseif icon == "BORDER" then
-				return "|T"..classIconsBorder[resolution][unitclass]..escapeSequence
-			elseif icon == "SHADOW" then
-				return "|T"..classIconsShadow[resolution][unitclass]..escapeSequence
-			elseif icon == "ORIGINAL" then
-				return "|T"..OriginalIcons[resolution][unitclass]..escapeSequence
-			elseif icon == "GRADIENT" then
-				return "|T"..gradient[resolution][unitclass]..escapeSequence
-			elseif icon == "SYMBOLS" then
-				return "|T"..classSymbols[unitclass]..escapeSequence
-			elseif icon == "BW" then
-				return "|T"..blackandwhite[resolution][unitclass]..escapeSequence
-			elseif icon == "UGG" then
-				return "|T"..UGG[resolution][unitclass]..escapeSequence
-			elseif icon == "UGGGREY" then
-				return "|T"..UGGGREY[resolution][unitclass]..escapeSequence
-			elseif icon == "CUSTOM" then
-				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..escapeSequence
-			end
-		else
-			if icon == "RELEAF" then
-				return "|T"..classIconsReleaf[resolution][unitclass]..escapeSequence2
-			elseif icon == "OUTLINE" then
-				return "|T"..classIconsOutline[resolution][unitclass]..escapeSequence2
-			elseif icon == "BLIZZARD" then
-				return "|T"..classIconsBlizzard[resolution][unitclass]..escapeSequence2
-			elseif icon == "BORDER" then
-				return "|T"..classIconsBorder[resolution][unitclass]..escapeSequence2
-			elseif icon == "SHADOW" then
-				return "|T"..classIconsShadow[resolution][unitclass]..escapeSequence2
-			elseif icon == "ORIGINAL" then
-				return "|T"..OriginalIcons[resolution][unitclass]..escapeSequence2
-			elseif icon == "GRADIENT" then
-				return "|T"..gradient[resolution][unitclass]..escapeSequence2
-			elseif icon == "SYMBOLS" then
-				return "|T"..classSymbols[unitclass]..escapeSequence2
-			elseif icon == "BW" then
-				return "|T"..blackandwhite[resolution][unitclass]..escapeSequence2
-			elseif icon == "UGG" then
-				return "|T"..UGG[resolution][unitclass]..escapeSequence2
-			elseif icon == "UGGGREY" then
-				return "|T"..UGGGREY[resolution][unitclass]..escapeSequence2
-			elseif icon == "CUSTOM" then
-				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..escapeSequence2
-			end
-		end
+		return GetCachedIconString(texPath, invert)
 	end
 end
