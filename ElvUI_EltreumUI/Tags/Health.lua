@@ -347,10 +347,11 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		end
 		local value
 		if E.Modern then
-			if E:NotSecretValue(UnitHealth(unit)) then
-				value = format('%s - %.1f%%', AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
+			local cur = UnitHealth(unit)
+			if E:NotSecretValue(cur) then
+				value = format('%s - %.1f%%', AbbreviateNumbers(cur, E.Abbreviate.short), UnitHealthPercent(unit, true, ScaleTo100))
 			else
-				value = AbbreviateNumbers(UnitHealth(unit), E.Abbreviate.short)
+				value = AbbreviateNumbers(cur, E.Abbreviate.short)
 			end
 		else
 			local min, max = UnitHealth(unit), UnitHealthMax(unit)
@@ -668,12 +669,13 @@ function ElvUI_EltreumUI:LoadHealthTags()
 		E:AddTagInfo("eltruism:hpdeficitpc", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays health lost in shortvalue and current health percentage"])
 
 		E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
+			local armor = UnitArmor("player")
 			local dr
 			if UnitExists("target") then
-				dr = (UnitArmor("player") / ((UnitLevel("target") * 467.5) + UnitArmor("player") - 22167.5))
+				dr = (armor / ((UnitLevel("target") * 467.5) + armor - 22167.5))
 				--dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitHealthMax("player")-22167.5))
 			else
-				dr = (UnitArmor("player") / ((UnitLevel("player") * 467.5) + UnitArmor("player") - 22167.5))
+				dr = (armor / ((UnitLevel("player") * 467.5) + armor - 22167.5))
 				--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
 			end
 			local ehp = UnitHealthMax("player") / (1 - dr)
