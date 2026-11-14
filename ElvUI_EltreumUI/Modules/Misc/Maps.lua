@@ -13,9 +13,12 @@ local Enum = _G.Enum
 local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local pairs = _G.pairs
+local next = _G.next
 local hooksecurefunc = _G.hooksecurefunc
 local MAP_PIN = _G.MAP_PIN
 local math = _G.math
+local mathabs = math.abs
+local mathfloor = math.floor
 local string = _G.string
 local ipairs = _G.ipairs
 local select = _G.select
@@ -28,8 +31,6 @@ if E.Modern then
 	local C_SuperTrack = _G.C_SuperTrack
 	local GetUnitSpeed = _G.GetUnitSpeed
 	local C_Navigation = _G.C_Navigation
-	local mathfloor = math.floor
-	local mathabs = math.abs
 	local stringlen = string.len
 	local stringformat = string.format
 	local stringmatch = string.match
@@ -104,11 +105,11 @@ if E.Modern then
 			local speed = 0
 
 			--player speed can be secret, so protect in case there is a waypoint when it is
-			if ElvUI_EltreumUI:IsThisASafeSecret(GetUnitSpeed("player"),true) then
+			local currentSpeed, _, flyspeed = GetUnitSpeed("player")
+			if ElvUI_EltreumUI:IsThisASafeSecret(currentSpeed,true) then
 				notsafe = false
-				speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
+				speed = currentSpeed or GetUnitSpeed("vehicle")
 				if not speed or speed == 0 then
-					local _,_,flyspeed = GetUnitSpeed('player')
 					speed = flyspeed
 				end
 			else
@@ -121,7 +122,9 @@ if E.Modern then
 			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.waypointname then
 				local name = C_SuperTrack.GetSuperTrackedItemName()
 				if name == MAP_PIN then
-					EltruismTimeToArrive.WaypointText:SetText("")
+					if EltruismTimeToArrive.WaypointText:GetText() ~= "" then
+						EltruismTimeToArrive.WaypointText:SetText("")
+					end
 				elseif (name ~= EltruismTimeToArrive.WaypointText:GetText()) then
 					EltruismTimeToArrive.WaypointText:SetText(name)
 				end
@@ -813,7 +816,7 @@ local function GetMinimapVerticalCrop()
 	end
 	local preset = rectangleMaskPresets[otherstuff.rectangleMinimap.preset] or rectangleMaskPresets["16:9"]
 	local mapSize = E.MinimapSize or (Minimap and Minimap:GetWidth()) or 140
-	local crop = math.floor((mapSize * (1 - preset.heightFactor)) * 0.5 + 0.5)
+	local crop = mathfloor((mapSize * (1 - preset.heightFactor)) * 0.5 + 0.5)
 	return crop, preset.mask
 end
 
@@ -824,6 +827,27 @@ local HBD_PIN_LIBS = {
 }
 local HBD_THROTTLE = 0 --controls how fast the OnUpdate runs, if higher than zero it will start blinking, i dont like that so for now keep it at zero
 
+local function HereBeDragonsPinSetAlpha(self, alpha, skipFlag)
+	if not skipFlag and self.EltruismHidden then
+		if alpha and alpha > 0 then
+			self.EltruismOrigAlpha = alpha
+		end
+		self:SetAlpha(0, true)
+	end
+end
+
+local function HereBeDragonsPinShow(self)
+	if self.EltruismHidden then
+		self:SetAlpha(0, true)
+	end
+end
+
+local function HereBeDragonsPinSetPoint(self)
+	if self.EltruismLib then
+		self.EltruismLib.EltruismPinsMoved = true
+	end
+end
+
 --hook pins to track movement and keep alpha hidden if needed
 local function HookHereBeDragonsPin(pin, lib)
 	if not pin or pin.EltruismHbdHooked or not pin.IsObjectType or not pin:IsObjectType("Frame") then
@@ -833,25 +857,10 @@ local function HookHereBeDragonsPin(pin, lib)
 	pin.EltruismLib = lib
 
 	--if pin is hidden by rectangle minimap keep it hidden
-	hooksecurefunc(pin, "SetAlpha", function(self, alpha, skipFlag)
-		if not skipFlag and self.EltruismHidden then
-			if alpha and alpha > 0 then
-				self.EltruismOrigAlpha = alpha
-			end
-			self:SetAlpha(0, true)
-		end
-	end)
-	hooksecurefunc(pin, "Show", function(self)
-		if self.EltruismHidden then
-			self:SetAlpha(0, true)
-		end
-	end)
+	hooksecurefunc(pin, "SetAlpha", HereBeDragonsPinSetAlpha)
+	hooksecurefunc(pin, "Show", HereBeDragonsPinShow)
 	--flag lib as moved when a pin moves
-	hooksecurefunc(pin, "SetPoint", function(self)
-		if self.EltruismLib then
-			self.EltruismLib.EltruismPinsMoved = true
-		end
-	end)
+	hooksecurefunc(pin, "SetPoint", HereBeDragonsPinSetPoint)
 	pin.EltruismHbdHooked = true
 end
 
@@ -890,7 +899,7 @@ function ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, isShown)
 end
 
 local function RestoreInactiveHiddenPins(lib)
-	if not lib or not lib.EltruismHiddenPins or not lib.activeMinimapPins then
+	if not lib or not lib.EltruismHiddenPins or not lib.activeMinimapPins or not next(lib.EltruismHiddenPins) then
 		return
 	end
 	for pin in pairs(lib.EltruismHiddenPins) do
@@ -906,27 +915,40 @@ function ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
 		return
 	end
 
-	--restore any pins hidden
-	RestoreInactiveHiddenPins(lib)
-
 	local crop = GetMinimapVerticalCrop()
-	local isEnabled = crop > 0
+	if crop <= 0 then
+		if lib.EltruismHiddenPins and next(lib.EltruismHiddenPins) then
+			for pin in pairs(lib.EltruismHiddenPins) do
+				ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, true)
+			end
+		end
+		return
+	end
+
+	--restore any pins hidden
+	if lib.EltruismHiddenPins and next(lib.EltruismHiddenPins) then
+		RestoreInactiveHiddenPins(lib)
+	end
+
 	local mapHeight = Minimap:GetHeight() or E.MinimapSize or 140
 	local halfHeightLimit = ((mapHeight - (crop * 2)) * 0.5) - 2
-	local minimapCenterY = select(2, Minimap:GetCenter())
+	local minimapCenterY, scale
 
 	--check if pins are inside the rectangle boundaries
 	for pin in pairs(lib.activeMinimapPins) do
 		local shouldShow = true
-		if isEnabled then
-			local _, _, _, _, yOfs = pin:GetPoint(1)
-			if yOfs then
-				shouldShow = math.abs(yOfs) <= halfHeightLimit
-			elseif minimapCenterY and pin.GetCenter then
+		local _, _, _, _, yOfs = pin:GetPoint(1)
+		if yOfs then
+			shouldShow = mathabs(yOfs) <= halfHeightLimit
+		elseif pin.GetCenter then
+			if minimapCenterY == nil then
+				minimapCenterY = select(2, Minimap:GetCenter()) or false
+				scale = Minimap:GetEffectiveScale() or 1
+			end
+			if minimapCenterY then
 				local pinCenterY = select(2, pin:GetCenter())
 				if pinCenterY then
-					local scale = Minimap:GetEffectiveScale() or 1
-					shouldShow = (math.abs(pinCenterY - minimapCenterY) / scale) <= halfHeightLimit
+					shouldShow = (mathabs(pinCenterY - minimapCenterY) / scale) <= halfHeightLimit
 				end
 			end
 		end
@@ -974,6 +996,9 @@ local function ApplyHereBeDragonsPinsFix(lib)
 
 		--throttle onupdate to avoid unnecessary checks
 		lib.updateFrame:HookScript("OnUpdate", function(_, elapsed)
+			if GetMinimapVerticalCrop() <= 0 and (not lib.EltruismHiddenPins or not next(lib.EltruismHiddenPins)) then
+				return
+			end
 			lib.EltruismTimer = (lib.EltruismTimer or 0) + elapsed
 			if lib.EltruismTimer < HBD_THROTTLE then
 				return
