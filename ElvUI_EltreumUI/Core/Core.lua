@@ -951,12 +951,12 @@ function ElvUI_EltreumUI:FontFlag(style)
 	if not style then return '' end
 	local cached = fontFlagCache[style]
 	if cached ~= nil then return cached end
-	local res = style
+	local result = style
 	if strsub(style, 0, 6) == 'SHADOW' then
-		res = strsub(style, 7) or ''
+		result = strsub(style, 7) or ''
 	end
-	fontFlagCache[style] = res
-	return res
+	fontFlagCache[style] = result
+	return result
 end
 
 --from oUF

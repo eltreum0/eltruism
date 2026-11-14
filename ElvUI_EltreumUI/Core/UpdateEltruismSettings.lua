@@ -29,6 +29,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.iconPack = "Eltruism"
 		E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embed = true
 
+		--forever ranged swing timer
+		E.db.ElvUI_EltreumUI.otherstuff.rangedswinghide = true
+
 		--new minimap things
 		E.db.ElvUI_EltreumUI.otherstuff.minimapbuttons.enable = true
 		E.db.ElvUI_EltreumUI.otherstuff.minimapbuttons.toggleButton = true
@@ -249,6 +252,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		--bags
 		E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = true
+
+		--forever ranged swing timer
+		E.db.ElvUI_EltreumUI.otherstuff.rangedswinghide = true
 
 		-- Misc
 		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false

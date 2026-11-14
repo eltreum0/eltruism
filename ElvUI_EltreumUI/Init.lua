@@ -97,7 +97,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:GroupBorderColorUpdate()
 	end)
 	ElvUI_EltreumUI:SkinVehicleButton() -- re-skin vehicle button like elvui did
-	ElvUI_EltreumUI:CacheGradients()
 	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
 	ElvUI_EltreumUI:InitTooltip()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
@@ -164,6 +163,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
+	end
+	if E.Forever then
+		ElvUI_EltreumUI:RangedSwingTimerHide() --hides blizzard ranged swing timer when no swing timer is active
 	end
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:UpdateZoneQuests() --only show quests in current map

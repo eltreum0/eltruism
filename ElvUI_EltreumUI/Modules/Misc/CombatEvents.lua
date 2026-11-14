@@ -11,6 +11,12 @@ local mathrandom = math.random
 local strsplit = _G.strsplit
 local UnitExists = _G.UnitExists
 local tonumber = _G.tonumber
+local EditModeManagerFrame = _G.EditModeManagerFrame
+local ipairs = _G.ipairs
+local hooksecurefunc = _G.hooksecurefunc
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local CreateFrame = _G.CreateFrame
+local mathabs = math.abs
 local dontstop = 0
 local dontstopboss = 0
 local dontstopduel = 0
@@ -214,5 +220,61 @@ function ElvUI_EltreumUI:DatatextHide(event)
 		elseif event == 'PLAYER_REGEN_ENABLED' then
 			_G.LeftChatDataPanel:Hide()
 		end
+	end
+end
+
+--hide blizzard ranged swing timer when no swing timer is active
+local function UpdateRangedSwingAlpha(frame)
+	local show = (not E.db.ElvUI_EltreumUI.otherstuff.rangedswinghide) or frame:HasSwingTimer() or (EditModeManagerFrame and EditModeManagerFrame:IsEditModeActive())
+	local targetAlpha = show and (frame.eltruismShownAlpha or 1) or 0
+	if mathabs(frame:GetAlpha() - targetAlpha) > 0.01 then
+		frame:SetAlpha(targetAlpha)
+	end
+end
+
+local function HookRangedSwingTimer()
+	local frame = _G.SwingTimerRangedFrame
+	if not frame or frame.EltruismRangedHideHooked then return end
+	frame.EltruismRangedHideHooked = true
+
+	local initialAlpha = frame:GetAlpha()
+	frame.eltruismShownAlpha = (initialAlpha and initialAlpha > 0) and initialAlpha or 1
+
+	for _, method in ipairs({ "ApplyRangePresentation", "ResetSwingTimer", "ClearSwingTimer", "UpdateShownState", "OnEditModeEnter", "OnEditModeExit" }) do
+		if frame[method] then
+			hooksecurefunc(frame, method, UpdateRangedSwingAlpha)
+		end
+	end
+	if frame.UpdateSystemSettingOpacity then --preserve edit mode opacity setting
+		hooksecurefunc(frame, "UpdateSystemSettingOpacity", function(self)
+			local alpha = self:GetAlpha()
+			if alpha and alpha > 0 then self.eltruismShownAlpha = alpha end
+			UpdateRangedSwingAlpha(self)
+		end)
+	end
+	UpdateRangedSwingAlpha(frame)
+end
+
+local swingtimerloader
+function ElvUI_EltreumUI:RangedSwingTimerHide()
+	if not E.Forever then return end
+	if not E.db.ElvUI_EltreumUI.otherstuff.rangedswinghide then
+		if _G.SwingTimerRangedFrame and _G.SwingTimerRangedFrame.EltruismRangedHideHooked then
+			UpdateRangedSwingAlpha(_G.SwingTimerRangedFrame)
+		end
+		return
+	end
+
+	if IsAddOnLoaded("Blizzard_SwingTimer") then
+		HookRangedSwingTimer()
+	elseif not swingtimerloader then
+		swingtimerloader = CreateFrame("Frame")
+		swingtimerloader:RegisterEvent("ADDON_LOADED")
+		swingtimerloader:SetScript("OnEvent", function(self, _, addon)
+			if addon == "Blizzard_SwingTimer" then
+				HookRangedSwingTimer()
+				self:UnregisterAllEvents()
+			end
+		end)
 	end
 end

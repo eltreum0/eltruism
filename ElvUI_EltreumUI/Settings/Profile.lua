@@ -2349,5 +2349,6 @@ P.ElvUI_EltreumUI = {
 		},
 		bagProfessionIcons = false,
 		ClickCastingShortcut = true,
+		rangedswinghide = false,
 	},
 }
