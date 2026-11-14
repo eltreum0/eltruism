@@ -709,13 +709,17 @@ unitdeath:RegisterEvent("GROUP_ROSTER_UPDATE")
 unitdeath:RegisterUnitEvent("UNIT_FLAGS","player")
 --unitdeath:RegisterEvent("UNIT_HEALTH")
 
+local function DelayedUpdatePlayerPortraitDead()
+	UpdateUnitPortraitDead(_G["ElvUF_Player"], "player")
+end
+
 local function DeathEventDispatch(_, event, unit)
 	if not E.private.unitframe.enable or not E.db.ElvUI_EltreumUI.unitframes.portraitfix or not E.db.ElvUI_EltreumUI.unitframes.portraitdead then return end
 
 	if event == "PLAYER_DEAD" or event == "PLAYER_UNGHOST" or event == "PLAYER_ALIVE" then
 		if _G["ElvUF_Player"] then
 			UpdateUnitPortraitDead(_G["ElvUF_Player"], "player")
-			E:Delay(0, function() UpdateUnitPortraitDead(_G["ElvUF_Player"], "player") end)
+			E:Delay(0, DelayedUpdatePlayerPortraitDead)
 		end
 		return
 	elseif event == "PLAYER_TARGET_CHANGED" then
@@ -896,16 +900,17 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
 		if ElvUI_EltreumUI:EncounterCheck() then return end
 		if frame and endAlpha then
-			if endAlpha == 0 then
-				if frame:GetName() ~= nil then
-					if frame:GetName():match("Player") then
+			local frameName = frame:GetName()
+			if frameName ~= nil then
+				if endAlpha == 0 then
+					if frameName:find("Player", 1, true) then
 						if _G["EltruismPlayerEffect"] then
 							_G["EltruismPlayerEffect"]:SetAlpha(0)
 						end
 						if _G["EltruismPlayerPowerBarEffect"] then
 							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
 						end
-					elseif frame:GetName():match("Pet") then
+					elseif frameName:find("Pet", 1, true) then
 						if _G["EltruismPetEffect"] then
 							_G["EltruismPetEffect"]:SetAlpha(0)
 						end
@@ -913,10 +918,8 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
 						end
 					end
-				end
-			elseif endAlpha == 1 then
-				if frame:GetName() ~= nil and frame:GetName():match("Player") then
-					if frame:GetName():match("Player") then
+				elseif endAlpha == 1 then
+					if frameName:find("Player", 1, true) then
 						if _G["EltruismPlayerEffect"] then
 							if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 								_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
@@ -931,7 +934,7 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.8)
 							end
 						end
-					elseif frame:GetName():match("Pet") then
+					elseif frameName:find("Pet", 1, true) then
 						if _G["EltruismPetEffect"] then
 							if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 								_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
@@ -954,16 +957,17 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 	hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
 		if ElvUI_EltreumUI:EncounterCheck() then return end
 		if frame and endAlpha then
-			if endAlpha == 0 then
-				if frame:GetName() ~= nil then
-					if frame:GetName():match("Player") then
+			local frameName = frame:GetName()
+			if frameName ~= nil then
+				if endAlpha == 0 then
+					if frameName:find("Player", 1, true) then
 						if _G["EltruismPlayerEffect"] then
 							_G["EltruismPlayerEffect"]:SetAlpha(0)
 						end
 						if _G["EltruismPlayerPowerBarEffect"] then
 							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
 						end
-					elseif frame:GetName():match("Pet") then
+					elseif frameName:find("Pet", 1, true) then
 						if _G["EltruismPetEffect"] then
 							_G["EltruismPetEffect"]:SetAlpha(0)
 						end
@@ -971,17 +975,15 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
 						end
 					end
-				end
-			elseif endAlpha == 1 then
-				if frame:GetName() ~= nil then
-					if frame:GetName():match("Player") then
+				elseif endAlpha == 1 then
+					if frameName:find("Player", 1, true) then
 						if _G["EltruismPlayerEffect"] then
 							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 						end
 						if _G["EltruismPlayerPowerBarEffect"] then
 							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
 						end
-					elseif frame:GetName():match("Pet") then
+					elseif frameName:find("Pet", 1, true) then
 						if _G["EltruismPetEffect"] then
 							_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 						end
