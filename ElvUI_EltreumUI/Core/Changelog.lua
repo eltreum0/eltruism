@@ -14,19 +14,20 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added Pixel Glow fallback to Dispel Glow in Forever due to missing textures
-Added a command (/eltruism fader) and installer option to toggle the Fader
+Added an option to hide the Blizzard Ranged Swing Timer in Forever when no timer is active
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated command list with new commands, help display, and improved formatting
-Updated Healer layout to disable party buffs to reduce clutter with debuffs
-Updated configuration and media menu icons with optimized textures
-Updated Target unitframe fader to always use range fading
-Updated actionbar paging command
+Updated DBM skin to match Ace3 styling, optimizing bar and timer hooks, textures, and options
+Updated performance across shadows, unitframes, gradients, borders, tooltips, and nameplates
+Updated keystone commands (/!key and /!keys) to improve detection and bag scanning
+Updated specialization detection to better support Retail, Forever, and Classic
+Updated Stats datatext to cache calculations and support Devourer Demon Hunters
+Updated [eltruism:leader] and [eltruism:leader:emoji] tags with secret checks
+Updated HereBeDragons pin masking on the rectangle minimap for Questie
 Updated Localizations
 ]], 5, "small", nil, nil, nil, nil, "full")
 
@@ -34,12 +35,13 @@ Updated Localizations
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed debuff and aura overlap on player, target, and pet frames in the Healer layout
-Fixed an issue where quest titles in Quest Skin could display incorrect colors
-Fixed player aurabar friendly filter restricting non-player helpful auras
-Fixed an issue with Bag Profession Buttons when spellbook offsets shift
-Fixed multiple skin and frame hooks from registering repeatedly across
-Fixed Enchanting skin showing the Vellum button in Forever
+Fixed portrait models and custom textures continuing to show when portraits are disabled
+Fixed leader and assist icons not displaying properly across unitframes and group frames
+Fixed custom sound errors in DBM profiles by utilizing Voice Encounter Mods
+Fixed ammo text not displaying in Forever and other versions that have ammo
+Fixed avoidance calculations in Classic when defense values are secret
+Fixed stance detection and bar switching in dynamic functions
+Fixed Player and Target of Target Dispel Glow
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other

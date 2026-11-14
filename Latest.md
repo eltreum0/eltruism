@@ -1,16 +1,18 @@
-### 5.1.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 5.2.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Pixel Glow fallback to Dispel Glow in Forever due to missing textures  
-Added a command (/eltruism fader) and installer option to toggle the Fader  
-Updated command list with new commands, help display, and improved formatting  
-Updated Healer layout to disable party buffs to reduce clutter with debuffs  
-Updated configuration and media menu icons with optimized textures  
-Updated Target unitframe fader to always use range fading  
-Updated actionbar paging command  
+Added an option to hide the Blizzard Ranged Swing Timer in Forever when no timer is active  
+Updated DBM skin to match Ace3 styling, optimizing bar and timer hooks, textures, and options  
+Updated performance across shadows, unitframes, gradients, borders, tooltips, and nameplates  
+Updated keystone commands (/!key and /!keys) to improve detection and bag scanning  
+Updated specialization detection to better support Retail, Forever, and Classic  
+Updated Stats datatext to cache calculations and support Devourer Demon Hunters  
+Updated [eltruism:leader] and [eltruism:leader:emoji] tags with secret checks  
+Updated HereBeDragons pin masking on the rectangle minimap for Questie  
 Updated Localizations  
-Fixed debuff and aura overlap on player, target, and pet frames in the Healer layout  
-Fixed an issue where quest titles in Quest Skin could display incorrect colors  
-Fixed player aurabar friendly filter restricting non-player helpful auras  
-Fixed an issue with Bag Profession Buttons when spellbook offsets shift  
-Fixed multiple skin and frame hooks from registering repeatedly across  
-Fixed Enchanting skin showing the Vellum button in Forever  
+Fixed portrait models and custom textures continuing to show when portraits are disabled  
+Fixed leader and assist icons not displaying properly across unitframes and group frames  
+Fixed custom sound errors in DBM profiles by utilizing Voice Encounter Mods  
+Fixed ammo text not displaying in Forever and other versions that have ammo  
+Fixed avoidance calculations in Classic when defense values are secret  
+Fixed stance detection and bar switching in dynamic functions  
+Fixed Player and Target of Target Dispel Glow  
