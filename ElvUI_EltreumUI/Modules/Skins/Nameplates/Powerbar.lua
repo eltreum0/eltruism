@@ -114,6 +114,18 @@ local spellGenerators = {
 	[56641] = 10, --steady shot gives bonus focus with a talent (now baseline)
 }
 
+local hexSpells = {
+	[51514] = true,
+	[210873] = true,
+	[211004] = true,
+	[211010] = true,
+	[211015] = true,
+	[269352] = true,
+	[277778] = true,
+	[277784] = true,
+	[309328] = true,
+}
+
 --update talents
 local function UpdatePowerTalents()
 	spellGenerators[56641] = IsPlayerSpell(321018) and 20 or 10 --improved steady shot
@@ -127,9 +139,8 @@ local function UpdatePowerTalents()
 	end
 
 	local hexValue = IsPlayerSpell(378776) and 8 or 0 --shaman inundate
-	local hexSpells = {51514, 210873, 211004, 211010, 211015, 269352, 277778, 277784, 309328}
-	for i = 1, #hexSpells do
-		spellGenerators[hexSpells[i]] = hexValue
+	for spellID in next, hexSpells do
+		spellGenerators[spellID] = hexValue
 	end
 end
 if E.Modern then
@@ -233,7 +244,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 					--druid/shaman
 					if (spellID == 190984 or spellID == 194153) and IsPlayerSpell(114107) and GetPlayerAuraBySpellID(48517) then
 						incResource = 10
-					elseif incResource > 0 and (spellID == 51514 or spellID == 210873 or spellID == 211004 or spellID == 211010 or spellID == 211015 or spellID == 269352 or spellID == 277778 or spellID == 277784 or spellID == 309328) and not _G.InCombatLockdown() then
+					elseif incResource > 0 and hexSpells[spellID] and not _G.InCombatLockdown() then
 						incResource = 0
 					end
 				end
@@ -766,25 +777,27 @@ EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 end)
 
 --update buff/debuff position automatically
+local hasCOMBO = {
+	["DEATHKNIGHT"]	= true,
+	["DEMONHUNTER"]	= false,
+	["DRUID"] = true, --(_G.GetShapeshiftForm() == 2) and true or false,
+	["HUNTER"] = false,
+	["MAGE"] = false,
+	["MONK"] = false,
+	["PALADIN"]	= (E.Retail or E.Mists) and true or false,
+	["PRIEST"] = false,
+	["ROGUE"] = true,
+	["SHAMAN"] = (E.Retail or E.Mists) and true or false,
+	["WARLOCK"] = (E.Retail or E.Mists) and true or false,
+	["WARRIOR"] = false,
+	["EVOKER"] = true,
+}
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
 	if nameplatePowerPrivateDB.enable then
 		if nameplatePowerPrivateDB.adjust then
-			local hasCOMBO = {
-				["DEATHKNIGHT"]	= true,
-				["DEMONHUNTER"]	= false,
-				["DRUID"] = true, --(_G.GetShapeshiftForm() == 2) and true or false,
-				["HUNTER"] = false,
-				["MAGE"] = (ElvUI_EltreumUI.Spec == 62) and true or false,
-				["MONK"] = ((ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268)) and true or false,
-				["PALADIN"]	= (E.Retail or E.Mists) and true or false,
-				["PRIEST"] = false,
-				["ROGUE"] = true,
-				["SHAMAN"] = (E.Retail or E.Mists) and true or false,
-				["WARLOCK"] = (E.Retail or E.Mists) and true or false,
-				["WARRIOR"] = false,
-				["EVOKER"] = true,
-			}
+			hasCOMBO["MAGE"] = (ElvUI_EltreumUI.Spec == 62) and true or false
+			hasCOMBO["MONK"] = ((ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268)) and true or false
 
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
