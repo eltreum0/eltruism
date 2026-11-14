@@ -40,10 +40,13 @@ local function IsFrameRare(frame)
 	return classification == 'worldboss' or classification == 'rareelite' or classification == 'rare'
 end
 
+local hasRareTextureApplied = false
+
 local function UpdateRareHealth(frame)
 	local rareTexName = ElvUI_EltreumUI:GetNameplateRareClassTexture()
 	local rareTex = rareTexName and E.LSM:Fetch("statusbar", rareTexName)
 	if rareTex then
+		hasRareTextureApplied = true
 		if frame.Health.EltruismRareTex ~= rareTex then
 			frame.Health:SetStatusBarTexture(rareTex)
 			frame.Health.EltruismRareTex = rareTex
@@ -61,6 +64,7 @@ local function UpdateRareHealth(frame)
 end
 
 local function RestoreDefaultHealthTexture(frame)
+	if not hasRareTextureApplied and not frame.Health.EltruismRareTex then return end
 	local rareTexName = ElvUI_EltreumUI:GetNameplateRareClassTexture()
 	local rareTex = rareTexName and E.LSM:Fetch("statusbar", rareTexName)
 	local curTex = frame.Health:GetStatusBarTexture()
@@ -138,7 +142,14 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 		return
 	end
 
-	frame.isRare = IsFrameRare(frame)
+	local rareEnabled = EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture
+	local isRare = false
+	if rareEnabled then
+		frame.isRare = IsFrameRare(frame)
+		isRare = frame.isRare
+	else
+		frame.isRare = false
+	end
 
 	local targetUnit = ElvUI_EltreumUI:GetTargetUnit(frame.__unit)
 	local isTank = E.myrole == 'TANK' or E.GroupRoles.player == 'TANK'
@@ -150,7 +161,6 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 		return
 	end
 	local orientation = EltruismDB.unitframes.gradientmode.nporientation or "VERTICAL"
-	local isRare = frame.isRare and EltruismDB.nameplates and EltruismDB.nameplates.nameplateOptions and EltruismDB.nameplates.nameplateOptions.raretexture
 
 	if isRare then
 		UpdateRareHealth(frame)
@@ -230,14 +240,18 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 	local hasThreat = npEnabled and frame.threatStatus and not tapdenied and NP.db.threat and NP.db.threat.enable and NP.db.threat.useThreatColor
 
 	if npEnabled or rareEnabled then
-		frame.isRare = IsFrameRare(frame)
+		local isRare = false
+		if rareEnabled then
+			frame.isRare = IsFrameRare(frame)
+			isRare = frame.isRare
+		else
+			frame.isRare = false
+		end
 
 		local orientation = db.unitframes.gradientmode.nporientation or "VERTICAL"
 		local tex = frame.Health:GetStatusBarTexture()
 
 		if tex then
-			local isRare = frame.isRare and rareEnabled
-
 			if isRare then
 				UpdateRareHealth(frame)
 			else
