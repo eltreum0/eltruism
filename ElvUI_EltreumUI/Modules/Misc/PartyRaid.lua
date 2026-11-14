@@ -196,13 +196,14 @@ function ElvUI_EltreumUI:BattleRes()
 			instanceok = false
 		end
 
-		spellicon:SetTexture(GetSpellTexture(20484))
 		if E.myclass == "DEATHKNIGHT" then
 			spellicon:SetTexture(GetSpellTexture(61999))
 		elseif E.myclass == "WARLOCK" then
 			spellicon:SetTexture(GetSpellTexture(20707))
 		elseif E.myclass == "PALADIN" then
 			spellicon:SetTexture(GetSpellTexture(391054))
+		else
+			spellicon:SetTexture(GetSpellTexture(20484))
 		end
 		spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
 
@@ -480,6 +481,28 @@ for _, method in ipairs(groupFuncs) do
 	end
 end
 
+local function OnRestingIndicatorPostUpdate(restingIndicator)
+	local restLoop = _G["EltruismPlayerRestLoop"]
+	if not restLoop then return end
+	if restingIndicator:IsShown() then
+		restLoop:Show()
+		restLoop.PlayerRestLoopAnim:Play()
+	else
+		restLoop:Hide()
+		restLoop.PlayerRestLoopAnim:Stop()
+	end
+	if E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
+		if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
+			_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+		else
+			_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+		end
+	else
+		local r,g,b,a = restingIndicator:GetVertexColor()
+		_G["EltruismPlayerRestLoopRestTexture"]:SetVertexColor(r,g,b,a)
+	end
+end
+
 --use new flipbook animation to recreate the blizzard resting animation
 function ElvUI_EltreumUI:RestIcon(_, frame)
 	if not frame or type(frame) ~= "table" then return end
@@ -512,25 +535,7 @@ function ElvUI_EltreumUI:RestIcon(_, frame)
 			--_G["EltruismPlayerRestLoop"]:SetFrameStrata('HIGH')
 			_G["EltruismPlayerRestLoop"]:SetFrameLevel(frame:GetFrameLevel()+50)
 			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/10)
-			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
-				if frame.RestingIndicator:IsShown() then
-					_G["EltruismPlayerRestLoop"]:Show()
-					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Play()
-				else
-					_G["EltruismPlayerRestLoop"]:Hide()
-					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Stop()
-				end
-				if E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
-					if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
-						_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
-					else
-						_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
-					end
-				else
-					local r,g,b,a = frame.RestingIndicator:GetVertexColor()
-					_G["EltruismPlayerRestLoopRestTexture"]:SetVertexColor(r,g,b,a)
-				end
-			end)
+			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', OnRestingIndicatorPostUpdate)
 
 			frame.RestingIndicator.EltruismHook = true
 		end
