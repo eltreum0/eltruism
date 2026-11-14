@@ -163,7 +163,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	end
-	if not (E.Retail or E.Mists) then
+	if not (E.Retail or E.Mists or E.Cata) then
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 	end
 	if E.Forever then
