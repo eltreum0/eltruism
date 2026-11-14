@@ -284,42 +284,69 @@ local blocklist = {
 	--[24472] = true, --boss grog'ak's head
 }
 
+local function DelayedFixPosition()
+	if not InCombatLockdown() and _G["EltruismQuestItem1"] then
+		local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
+		_G["EltruismQuestItem1"]:ClearAllPoints()
+		if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
+			if EltruismQuestItemFrame.shownItems ~= 1 then
+				if (EltruismQuestItemFrame.shownItems % 2) == 0 then
+					if xOfs >= 0 then
+						--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2), yOfs)
+					elseif xOfs < 0 then
+						--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2), yOfs)
+					end
+				else
+					if xOfs >= 0 then
+						--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2)-(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+					elseif xOfs < 0 then
+						--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2)+(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+					end
+				end
+			else
+				_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
+			end
+		else
+			_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
+		end
+	end
+end
+
 -- update mover position
 function EltruismQuestItemFrame:FixPosition()
 	if EltruismQuestItemFrame.debug then
 		ElvUI_EltreumUI:Print("Firing FixPosition")
 	end
-	E:Delay(0, function()
-		if not InCombatLockdown() and _G["EltruismQuestItem1"] then
-			local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
-			_G["EltruismQuestItem1"]:ClearAllPoints()
-			if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
-				if EltruismQuestItemFrame.shownItems ~= 1 then
-					if (EltruismQuestItemFrame.shownItems % 2) == 0 then
-						if xOfs >= 0 then
-							--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
-							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2), yOfs)
-						elseif xOfs < 0 then
-							--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
-							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2), yOfs)
-						end
-					else
-						if xOfs >= 0 then
-							--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
-							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2)-(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
-						elseif xOfs < 0 then
-							--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
-							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2)+(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
-						end
-					end
-				else
-					_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
-				end
-			else
-				_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
-			end
-		end
-	end)
+	E:Delay(0, DelayedFixPosition)
+end
+
+local function QuestItemButtonOnEnter(button)
+	GameTooltip:SetOwner(E.UIParent, "ANCHOR_CURSOR")
+	local bag, slot = button:GetAttribute("bag"), button:GetAttribute("slot")
+	if (bag) then
+		GameTooltip:SetBagItem(bag,slot)
+	else
+		GameTooltip:SetInventoryItem("player",slot)
+	end
+	if E.db.ElvUI_EltreumUI.quests.questitemsfade then
+		button:SetAlpha(1)
+	end
+end
+
+local function QuestItemButtonOnLeave(button)
+	if E.db.ElvUI_EltreumUI.quests.questitemsfade then
+		button:SetAlpha(0)
+	end
+	GameTooltip:Hide()
+end
+
+local function QuestItemButtonHookOnEnter(button)
+	AB:BindUpdate(button)
+	AB:FixKeybindText(button)
 end
 
 -- Make Button
@@ -338,30 +365,11 @@ local function CreateItemButton()
 	end
 	b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 	ElvUI_EltreumUI:MacroClick(b)
-	b:SetScript("OnEnter", function (button)
-		GameTooltip:SetOwner(E.UIParent, "ANCHOR_CURSOR")
-		local bag, slot = button:GetAttribute("bag"), button:GetAttribute("slot")
-		if (bag) then
-			GameTooltip:SetBagItem(bag,slot)
-		else
-			GameTooltip:SetInventoryItem("player",slot)
-		end
-		if E.db.ElvUI_EltreumUI.quests.questitemsfade then
-			b:SetAlpha(1)
-		end
-	end)
-	b:SetScript("OnLeave", function()
-		if E.db.ElvUI_EltreumUI.quests.questitemsfade then
-			b:SetAlpha(0)
-		end
-		GameTooltip:Hide()
-	end)
+	b:SetScript("OnEnter", QuestItemButtonOnEnter)
+	b:SetScript("OnLeave", QuestItemButtonOnLeave)
 	--b:HookScript("OnClick",Button_OnClick)
 
-	b:HookScript("OnEnter", function()
-		AB:BindUpdate(b)
-		AB:FixKeybindText(b)
-	end)
+	b:HookScript("OnEnter", QuestItemButtonHookOnEnter)
 
 	b:SetAttribute("type*","item")
 
