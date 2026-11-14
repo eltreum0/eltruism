@@ -4332,287 +4332,514 @@ end
 
 --benik's version
 local bordercolor = E.myClassColor
+--apply cached nameplate border settings
+local function ApplyNameplateBorderFrame(border, anchor, bordertexture, edgeSize, sizeX, sizeY, r, g, b, a)
+	if not border.EltruismBackdropSet or border.EltruismTexture ~= bordertexture or border.EltruismEdgeSize ~= edgeSize then
+		border:SetBackdrop({ edgeFile = bordertexture, edgeSize = edgeSize })
+		border.EltruismBackdropSet = true
+		border.EltruismTexture = bordertexture
+		border.EltruismEdgeSize = edgeSize
+	end
+	if border.EltruismR ~= r or border.EltruismG ~= g or border.EltruismB ~= b or border.EltruismA ~= a then
+		border:SetBackdropBorderColor(r, g, b, a)
+		border.EltruismR = r
+		border.EltruismG = g
+		border.EltruismB = b
+		border.EltruismA = a
+	end
+	local level = anchor:GetFrameLevel() + 1
+	if border.EltruismLevel ~= level then
+		border:SetFrameLevel(level)
+		border.EltruismLevel = level
+	end
+	local anchorStrata = anchor:GetFrameStrata()
+	local strata = E:NotSecretValue(anchorStrata) and anchorStrata or "MEDIUM"
+	if border.EltruismStrata ~= strata then
+		border:SetFrameStrata(strata)
+		border.EltruismStrata = strata
+	end
+	if not border.EltruismPositioned or border.EltruismSizeX ~= sizeX or border.EltruismSizeY ~= sizeY then
+		border:ClearAllPoints()
+		border:SetPoint("CENTER", anchor, "CENTER", 0, 0)
+		border:SetOutside(anchor, sizeX, sizeY)
+		border.EltruismPositioned = true
+		border.EltruismSizeX = sizeX
+		border.EltruismSizeY = sizeY
+	end
+end
+
 function ElvUI_EltreumUI:NameplateShadowsAndBorders(nameplate)
 	if not nameplate then return end
-	local bordertexture
-	if E.private.nameplates.enable then
-		if E.db.ElvUI_EltreumUI.borders.borders and (E.db.ElvUI_EltreumUI.borders.nameplateborders or E.db.ElvUI_EltreumUI.borders.nameplatecastborders) then
-			if E.db.ElvUI_EltreumUI.borders.classcolor and nameplate.__unit then
-				local _, className = _G.UnitClass(nameplate.__unit)
-				local isPlayer = _G.UnitIsPlayer(nameplate.__unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.__unit))
-				if not E:NotSecretValue(className) then --secret class so do something else
-					className = E.myclass
-				end
-				if isPlayer then
-					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
+	if not E.private.nameplates.enable then return end
+
+	local eltreumDB = E.db.ElvUI_EltreumUI
+	if not eltreumDB then return end
+	local bordersDB = eltreumDB.borders
+	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+
+	if bordersDB and bordersDB.borders and (bordersDB.nameplateborders or bordersDB.nameplatecastborders) then
+		local bordertexture
+		if bordersDB.classcolor and nameplate.__unit then
+			local _, className = _G.UnitClass(nameplate.__unit)
+			local isPlayer = _G.UnitIsPlayer(nameplate.__unit) or (E.Retail and _G.UnitInPartyIsAI(nameplate.__unit))
+			if not E:NotSecretValue(className) then --secret class so do something else
+				className = E.myclass
+			end
+			if isPlayer then
+				bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(className)
+			else
+				local targettype
+				if ElvUI_EltreumUI.GetNameplateTargetType then
+					targettype = ElvUI_EltreumUI:GetNameplateTargetType(nameplate, nameplate.__unit)
 				else
-					local targettype
-					if ElvUI_EltreumUI.GetNameplateTargetType then
-						targettype = ElvUI_EltreumUI:GetNameplateTargetType(nameplate, nameplate.__unit)
-					else
-						local reaction = _G.UnitReaction(nameplate.__unit, "player")
-						if reaction and reaction >= 5 then
-							targettype = "NPCFRIENDLY"
-						elseif reaction and reaction == 4 then
-							targettype = "NPCNEUTRAL"
-						elseif reaction and reaction == 3 then
-							targettype = "NPCUNFRIENDLY"
-						elseif reaction and reaction <= 2 then
-							targettype = "NPCHOSTILE"
-						end
+					local reaction = _G.UnitReaction(nameplate.__unit, "player")
+					if reaction and reaction >= 5 then
+						targettype = "NPCFRIENDLY"
+					elseif reaction and reaction == 4 then
+						targettype = "NPCNEUTRAL"
+					elseif reaction and reaction == 3 then
+						targettype = "NPCUNFRIENDLY"
+					elseif reaction and reaction <= 2 then
+						targettype = "NPCHOSTILE"
 					end
-					bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
+				end
+				bordercolor = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
+			end
+		end
+
+		if bordersDB.texture then
+			bordertexture = E.LSM:Fetch("border", bordersDB.texture)
+			if bordertexture == nil then --the border was not found so apply the default
+				bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
+				bordersDB.texture = "Eltreum-Border-1"
+			end
+		end
+
+		local r, g, b
+		if bordersDB.classcolor then
+			if bordercolor.r then
+				r, g, b = bordercolor.r, bordercolor.g, bordercolor.b
+			else --fallback because color failed
+				r, g, b = 1, 1, 1
+			end
+		else
+			r, g, b = bordersDB.bordercolors.r, bordersDB.bordercolors.g, bordersDB.bordercolors.b
+		end
+
+		if bordersDB.nameplateborders and nameplate.Health then
+			if not nameplate.Health.EltruismNameplateBorder then
+				nameplate.Health.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Health, _G.BackdropTemplateMixin and "BackdropTemplate")
+			end
+			ApplyNameplateBorderFrame(nameplate.Health.EltruismNameplateBorder, nameplate.Health, bordertexture, bordersDB.nameplatesize, bordersDB.nameplatesizex, bordersDB.nameplatesizey, r, g, b, 1)
+
+			if bordersDB.universalborders then
+				if nameplate.backdrop and nameplate.backdrop.eltruismuniversalborders then
+					nameplate.backdrop.eltruismuniversalborders:Kill()
+					nameplate.backdrop.eltruismuniversalborders = nil
+				end
+				if nameplate.Health.backdrop and nameplate.Health.backdrop.eltruismuniversalborders then
+					nameplate.Health.backdrop.eltruismuniversalborders:Kill()
+					nameplate.Health.backdrop.eltruismuniversalborders = nil
 				end
 			end
-
-			if E.db.ElvUI_EltreumUI.borders.nameplateborders and nameplate.Health then
-				if not nameplate.Health.EltruismNameplateBorder then
-					nameplate.Health.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Health, _G.BackdropTemplateMixin and "BackdropTemplate")
-				end
-				if E.db.ElvUI_EltreumUI.borders.texture then
-					bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
-					if bordertexture == nil then --the border was not found so apply the default
-						bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
-						E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
-					end
-				end
-				nameplate.Health.EltruismNameplateBorder:SetBackdrop({
-					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.nameplatesize,
-				})
-				if E.db.ElvUI_EltreumUI.borders.classcolor then
-					if bordercolor.r then
-						nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
-					else --fallback because color failed
-						nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(1, 1, 1, 1)
-					end
-				else
-					nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
-				end
-
-				if E.db.ElvUI_EltreumUI.borders.universalborders then
-					if nameplate.backdrop and nameplate.backdrop.eltruismuniversalborders then
-						nameplate.backdrop.eltruismuniversalborders:Kill()
-						nameplate.backdrop.eltruismuniversalborders = nil
-					end
-					if nameplate.Health.backdrop and nameplate.Health.backdrop.eltruismuniversalborders then
-						nameplate.Health.backdrop.eltruismuniversalborders:Kill()
-						nameplate.Health.backdrop.eltruismuniversalborders = nil
-					end
-				end
-
-				nameplate.Health.EltruismNameplateBorder:SetFrameLevel(nameplate.Health:GetFrameLevel()+1)
-				nameplate.Health.EltruismNameplateBorder:SetFrameStrata(E:NotSecretValue(nameplate.Health:GetFrameStrata()) and nameplate.Health:GetFrameStrata() or "MEDIUM")
-				nameplate.Health.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Health, "CENTER", 0, 0)
-				nameplate.Health.EltruismNameplateBorder:SetOutside(nameplate.Health, E.db.ElvUI_EltreumUI.borders.nameplatesizex, E.db.ElvUI_EltreumUI.borders.nameplatesizey)
+		end
+		if bordersDB.nameplatecastborders and nameplate.Castbar then
+			if not nameplate.Castbar.EltruismNameplateBorder then
+				nameplate.Castbar.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Castbar, _G.BackdropTemplateMixin and "BackdropTemplate")
 			end
-			if E.db.ElvUI_EltreumUI.borders.nameplatecastborders and nameplate.Castbar then
-				if not nameplate.Castbar.EltruismNameplateBorder then
-					nameplate.Castbar.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Castbar, _G.BackdropTemplateMixin and "BackdropTemplate")
-				end
-				if E.db.ElvUI_EltreumUI.borders.texture then
-					bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
-					if bordertexture == nil then --the border was not found so apply the default
-						bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
-						E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
-					end
-				end
-				nameplate.Castbar.EltruismNameplateBorder:SetBackdrop({
-					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.nameplatecastsize,
-				})
-				if E.db.ElvUI_EltreumUI.borders.classcolor then
-					nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(bordercolor.r, bordercolor.g, bordercolor.b, 1)
-				else
-					nameplate.Castbar.EltruismNameplateBorder:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.borders.bordercolors.r, E.db.ElvUI_EltreumUI.borders.bordercolors.g, E.db.ElvUI_EltreumUI.borders.bordercolors.b, 1)
-				end
+			ApplyNameplateBorderFrame(nameplate.Castbar.EltruismNameplateBorder, nameplate.Castbar, bordertexture, bordersDB.nameplatecastsize, bordersDB.nameplatecastsizex, bordersDB.nameplatecastsizey, r, g, b, 1)
 
-				if E.db.ElvUI_EltreumUI.borders.universalborders then
-					if nameplate.Castbar.backdrop and nameplate.Castbar.backdrop.eltruismuniversalborders then
-						nameplate.Castbar.backdrop.eltruismuniversalborders:Kill()
-						nameplate.Castbar.backdrop.eltruismuniversalborders = nil
-					end
-				end
-				nameplate.Castbar.EltruismNameplateBorder:SetFrameLevel(nameplate.Castbar:GetFrameLevel()+1)
-				nameplate.Castbar.EltruismNameplateBorder:SetFrameStrata(E:NotSecretValue(nameplate.Castbar:GetFrameStrata()) and nameplate.Castbar:GetFrameStrata() or "MEDIUM")
-				nameplate.Castbar.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Castbar, "CENTER", 0, 0)
-				nameplate.Castbar.EltruismNameplateBorder:SetOutside(nameplate.Castbar, E.db.ElvUI_EltreumUI.borders.nameplatecastsizex, E.db.ElvUI_EltreumUI.borders.nameplatecastsizey)
-			end
-		elseif E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders and not E.db.ElvUI_EltreumUI.skins.shadow.universalshadows then
-			if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
-				if not nameplate.Health then return end
-				if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
-					nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow,nil,true)
+			if bordersDB.universalborders then
+				if nameplate.Castbar.backdrop and nameplate.Castbar.backdrop.eltruismuniversalborders then
+					nameplate.Castbar.backdrop.eltruismuniversalborders:Kill()
+					nameplate.Castbar.backdrop.eltruismuniversalborders = nil
 				end
 			end
+		end
+	elseif shadowDB and shadowDB.enable and not (bordersDB and bordersDB.universalborders) and not shadowDB.universalshadows then
+		if shadowDB.nameplates then
+			if not nameplate.Health then return end
+			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
+				nameplate.Health.backdrop:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow, shadowDB, true)
+			end
+		end
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
-				if not nameplate.Power then return end
-				if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
-					nameplate.Power.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Power.backdrop.shadow)
-				end
-				if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
-					_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerClassPower"].shadow)
-				end
-				if _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"].shadow then
-					_G["ElvNP_TargetClassPowerRunes"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerRunes"].shadow)
-				end
-				if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].shadow then
-					_G["ElvNP_TargetClassPowerStagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerStagger"].shadow)
-				end
-				if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
-					_G["EltruismPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["EltruismPowerBar"].shadow)
-				end
+		if shadowDB.nppower then
+			if not nameplate.Power then return end
+			if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
+				nameplate.Power.backdrop:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(nameplate.Power.backdrop.shadow, shadowDB)
+			end
+			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
+				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerClassPower"].shadow, shadowDB)
+			end
+			if _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"].shadow then
+				_G["ElvNP_TargetClassPowerRunes"]:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerRunes"].shadow, shadowDB)
+			end
+			if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].shadow then
+				_G["ElvNP_TargetClassPowerStagger"]:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerStagger"].shadow, shadowDB)
+			end
+			if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
+				_G["EltruismPowerBar"]:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(_G["EltruismPowerBar"].shadow, shadowDB)
+			end
+		end
+
+		if shadowDB.npcastbar then
+			if not nameplate.Castbar then return end
+			if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
+				nameplate.Castbar.backdrop:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow, shadowDB, true)
 			end
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
-				if not nameplate.Castbar then return end
-				if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
-					nameplate.Castbar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow,nil,true)
-				end
-
-				if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
-					nameplate.Castbar.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.Button.shadow,nil,true)
-				end
+			if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
+				nameplate.Castbar.Button:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.Button.shadow, shadowDB, true)
 			end
+		end
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
-				if not nameplate.Portrait then return end
-				if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
-					nameplate.Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow,nil,true)
-				end
+		if shadowDB.npportraits then
+			if not nameplate.Portrait then return end
+			if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
+				nameplate.Portrait.backdrop:CreateShadow(shadowDB.length)
+				ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow, shadowDB, true)
 			end
 		end
 	end
 end
 
-function ElvUI_EltreumUI:Construct_AuraIcon(_, button)
-	if not button or type(button) ~= "table" then return end
-	if button.shadow then return end
-	if isMasqueLoaded then return end
+local fastShadowSupported
+local fastShadowEdgeFile
+local fastShadowDefR, fastShadowDefG, fastShadowDefB, fastShadowDefA = 0, 0, 0, 0.8
+local fastShadowCoords
 
-	local eltreumDB = E.db.ElvUI_EltreumUI
-	if not eltreumDB then return end
-	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
-	if not shadowDB or not shadowDB.enable or not shadowDB.npauras or shadowDB.universalshadows then return end
-	local bordersDB = eltreumDB.borders
-	if bordersDB and (bordersDB.universalborders or (bordersDB.borders and bordersDB.aurabordernp)) then return end
-
-	if not E:NotSecretValue(button) then return end
-	if not E:NotSecretValue(button:GetFrameStrata()) then return end
-
-	button:CreateShadow(shadowDB.length)
-	ElvUI_EltreumUI:ShadowColor(button.shadow)
+local function SetRegionListColor(r, g, b, a, tex, ...)
+	if not tex then return end
+	tex:SetVertexColor(r, g, b, a)
+	return SetRegionListColor(r, g, b, a, ...)
 end
-ElvUI_EltreumUI:SecureHook(NP, 'Construct_AuraIcon', 'Construct_AuraIcon') --nameplate buffs/debuffs shadows
 
-function ElvUI_EltreumUI:AuraShadows(button, button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
-	if isMasqueLoaded then return end
-	if not button then return end
+local function FastShadow_SetBackdropBorderColor(self, r, g, b, a)
+	SetRegionListColor(r, g, b, a or 1, self:GetRegions())
+end
 
-	local target = button2 or button
-	if not target or type(target) ~= "table" then return end
+local function FastShadow_GetBackdropBorderColor(self)
+	local tex = self:GetRegions()
+	if tex then
+		return tex:GetVertexColor()
+	end
+	return fastShadowDefR, fastShadowDefG, fastShadowDefB, fastShadowDefA
+end
 
-	local isBar = (button2 and button.isAuraBar) or target.isAuraBar
-	if target.shadow and not isBar then
-		target.eltruismShadowChecked = true
+local function FastShadow_Noop() end
+
+--sample GlowTex UV coordinates and default color once from ElvUI's shadow backdrop
+local function InitFastShadowProbe()
+	local probe = CreateFrame("Frame")
+	probe:SetSize(48, 48)
+	probe:Hide()
+	if not probe.CreateShadow then
+		fastShadowSupported = false
+		return
+	end
+	probe:CreateShadow(16)
+	local ps = probe.shadow
+	if ps and ps.GetBackdrop and ps.TopLeftCorner and ps.TopRightCorner and ps.BottomLeftCorner and ps.BottomRightCorner and ps.LeftEdge and ps.RightEdge and ps.TopEdge and ps.BottomEdge then
+		local bd = ps:GetBackdrop()
+		fastShadowEdgeFile = (bd and bd.edgeFile) or (E.Media and E.Media.Textures and E.Media.Textures.GlowTex)
+		if not fastShadowEdgeFile then
+			ps:Hide()
+			fastShadowSupported = false
+			return
+		end
+		local edgeSize = (bd and bd.edgeSize) or 16
+		if edgeSize > 0 then
+			ps:SetSize(edgeSize * 3, edgeSize * 3)
+			if ps.OnBackdropSizeChanged then
+				ps:OnBackdropSizeChanged()
+			end
+		end
+		if ps.GetBackdropBorderColor then
+			local dr, dg, db, da = ps:GetBackdropBorderColor()
+			if dr then
+				fastShadowDefR, fastShadowDefG, fastShadowDefB, fastShadowDefA = dr, dg, db, da or 0.8
+			end
+		end
+		local tl = { ps.TopLeftCorner:GetTexCoord() }
+		local tr = { ps.TopRightCorner:GetTexCoord() }
+		local bl = { ps.BottomLeftCorner:GetTexCoord() }
+		local br = { ps.BottomRightCorner:GetTexCoord() }
+		local l = { ps.LeftEdge:GetTexCoord() }
+		local r = { ps.RightEdge:GetTexCoord() }
+		local t = { ps.TopEdge:GetTexCoord() }
+		local b = { ps.BottomEdge:GetTexCoord() }
+		ps:Hide()
+		if #tl == 8 and #tr == 8 and #bl == 8 and #br == 8 and #l == 8 and #r == 8 and #t == 8 and #b == 8 then
+			fastShadowCoords = { tl = tl, tr = tr, bl = bl, br = br, l = l, r = r, t = t, b = b }
+			fastShadowSupported = true
+		else
+			fastShadowSupported = false
+		end
+	else
+		if ps then
+			ps:Hide()
+		end
+		fastShadowSupported = false
+	end
+end
+
+--create fast 8-texture shadow without BackdropTemplate overhead or per-shadow array tables
+local function CreateFastAuraShadow(target, length, shadowDB)
+	if fastShadowSupported == nil then
+		InitFastShadowProbe()
+	end
+	if not fastShadowSupported then
+		target:CreateShadow(length)
+		ElvUI_EltreumUI:ShadowColor(target.shadow, shadowDB)
 		return
 	end
 
-	local eltreumDB = E.db.ElvUI_EltreumUI
-	if not eltreumDB then return end
-
-	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
-	if not shadowDB or not shadowDB.enable or shadowDB.universalshadows then
-		if not isBar then target.eltruismShadowChecked = true end
-		return
+	length = length or 3
+	local r, g, b, a
+	if shadowDB and shadowDB.classcolor then
+		r, g, b, a = valuecolors.r, valuecolors.g, valuecolors.b, 1
+	elseif shadowDB and shadowDB.customcolor then
+		r, g, b, a = shadowDB.r, shadowDB.g, shadowDB.b, shadowDB.a
+	else
+		r, g, b, a = fastShadowDefR, fastShadowDefG, fastShadowDefB, fastShadowDefA
 	end
 
-	local bordersDB = eltreumDB.borders
-	if bordersDB and bordersDB.universalborders then
-		if not isBar then target.eltruismShadowChecked = true end
-		return
-	end
+	local coords = fastShadowCoords
+	local edgeFile = fastShadowEdgeFile
+	local shadow = CreateFrame("Frame", nil, target)
+	local level = target:GetFrameLevel()
+	shadow:SetFrameLevel(level > 1 and (level - 1) or 1)
+	shadow:SetPoint("TOPLEFT", target, "TOPLEFT", -length, length)
+	shadow:SetPoint("BOTTOMRIGHT", target, "BOTTOMRIGHT", length, -length)
 
-	local container = (button2 and button) or target.container or (target.GetParent and target:GetParent())
+	local c = coords.tl
+	local tl = shadow:CreateTexture(nil, "BACKGROUND")
+	tl:SetTexture(edgeFile)
+	tl:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	tl:SetVertexColor(r, g, b, a)
+	tl:SetSize(length, length)
+	tl:SetPoint("TOPLEFT", shadow, "TOPLEFT")
+
+	c = coords.tr
+	local tr = shadow:CreateTexture(nil, "BACKGROUND")
+	tr:SetTexture(edgeFile)
+	tr:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	tr:SetVertexColor(r, g, b, a)
+	tr:SetSize(length, length)
+	tr:SetPoint("TOPRIGHT", shadow, "TOPRIGHT")
+
+	c = coords.bl
+	local bl = shadow:CreateTexture(nil, "BACKGROUND")
+	bl:SetTexture(edgeFile)
+	bl:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	bl:SetVertexColor(r, g, b, a)
+	bl:SetSize(length, length)
+	bl:SetPoint("BOTTOMLEFT", shadow, "BOTTOMLEFT")
+
+	c = coords.br
+	local br = shadow:CreateTexture(nil, "BACKGROUND")
+	br:SetTexture(edgeFile)
+	br:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	br:SetVertexColor(r, g, b, a)
+	br:SetSize(length, length)
+	br:SetPoint("BOTTOMRIGHT", shadow, "BOTTOMRIGHT")
+
+	c = coords.t
+	local t = shadow:CreateTexture(nil, "BACKGROUND")
+	t:SetTexture(edgeFile)
+	t:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	t:SetVertexColor(r, g, b, a)
+	t:SetPoint("TOPLEFT", tl, "TOPRIGHT")
+	t:SetPoint("BOTTOMRIGHT", tr, "BOTTOMLEFT")
+
+	c = coords.b
+	local bEdge = shadow:CreateTexture(nil, "BACKGROUND")
+	bEdge:SetTexture(edgeFile)
+	bEdge:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	bEdge:SetVertexColor(r, g, b, a)
+	bEdge:SetPoint("TOPLEFT", bl, "TOPRIGHT")
+	bEdge:SetPoint("BOTTOMRIGHT", br, "BOTTOMLEFT")
+
+	c = coords.l
+	local l = shadow:CreateTexture(nil, "BACKGROUND")
+	l:SetTexture(edgeFile)
+	l:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	l:SetVertexColor(r, g, b, a)
+	l:SetPoint("TOPLEFT", tl, "BOTTOMLEFT")
+	l:SetPoint("BOTTOMRIGHT", bl, "TOPRIGHT")
+
+	c = coords.r
+	local rEdge = shadow:CreateTexture(nil, "BACKGROUND")
+	rEdge:SetTexture(edgeFile)
+	rEdge:SetTexCoord(c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8])
+	rEdge:SetVertexColor(r, g, b, a)
+	rEdge:SetPoint("TOPLEFT", tr, "BOTTOMLEFT")
+	rEdge:SetPoint("BOTTOMRIGHT", br, "TOPRIGHT")
+
+	shadow.SetBackdropBorderColor = FastShadow_SetBackdropBorderColor
+	shadow.GetBackdropBorderColor = FastShadow_GetBackdropBorderColor
+	shadow.SetBackdropColor = FastShadow_Noop
+
+	target.shadow = shadow
+end
+
+--check whether shadows are enabled for this aura container
+local function ResolveAuraShadowEnabled(container, target, shadowDB, bordersDB)
+	local isBar = (container and container.isAuraBar) or target.isAuraBar
 	local isNP = target.isNameplate or (container and (container.isNameplate or container.nameplateType or (container.parent and (container.parent.nameplateType or container.parent.unitframeType == "nameplate")) or (NP and NP.AuraContainersCreated and NP.AuraContainersCreated[container])))
 	local isUF
 	if not isNP then
 		isUF = target.isUnitframe or (container and (container.isUnitframe or (container.parent and container.parent.unitframeType and container.parent.unitframeType ~= "nameplate") or (container.unitframeType and container.unitframeType ~= "nameplate")))
 	end
 
-	local shadowEnabled
 	if isNP then
-		shadowEnabled = shadowDB.npauras and not (bordersDB and bordersDB.borders and bordersDB.aurabordernp)
+		return isBar, shadowDB.npauras and not (bordersDB and bordersDB.borders and bordersDB.aurabordernp)
 	elseif isUF then
-		shadowEnabled = shadowDB.ufaura and not (bordersDB and bordersDB.borders and bordersDB.auraborderuf)
+		return isBar, shadowDB.ufaura and not (bordersDB and bordersDB.borders and bordersDB.auraborderuf)
 	else -- Minimap Auras or Aurabars
-		shadowEnabled = shadowDB.aura and not (bordersDB and bordersDB.borders and bordersDB.auraborder)
+		return isBar, shadowDB.aura and not (bordersDB and bordersDB.borders and bordersDB.auraborder)
+	end
+end
+
+function ElvUI_EltreumUI:Construct_AuraIcon(_, button)
+	if not button or type(button) ~= "table" then return end
+	if button.shadow or button.EltruismShadowChecked then return end
+	if isMasqueLoaded then return end
+
+	local eltreumDB = E.db.ElvUI_EltreumUI
+	if not eltreumDB then return end
+	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+	if not shadowDB or not shadowDB.enable or not shadowDB.npauras or shadowDB.universalshadows then
+		button.EltruismShadowChecked = true
+		return
+	end
+	local bordersDB = eltreumDB.borders
+	if bordersDB and (bordersDB.universalborders or (bordersDB.borders and bordersDB.aurabordernp)) then
+		button.EltruismShadowChecked = true
+		return
+	end
+
+	if not E:NotSecretValue(button) then return end
+
+	CreateFastAuraShadow(button, shadowDB.length, shadowDB)
+	button.EltruismShadowChecked = true
+end
+ElvUI_EltreumUI:SecureHook(NP, 'Construct_AuraIcon', 'Construct_AuraIcon') --nameplate buffs/debuffs shadows
+
+local function ApplyAuraShadowInternal(button, button2)
+	local target = button2 or button
+	if not target or type(target) ~= "table" then return end
+
+	local container = (button2 and button) or target.container or (target.GetParent and target:GetParent())
+	if container and container.isHighlight then
+		target.EltruismShadowChecked = true
+		return
+	end
+
+	local eltreumDB = E.db.ElvUI_EltreumUI
+	if not eltreumDB then return end
+	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
+	if not shadowDB or not shadowDB.enable or shadowDB.universalshadows then
+		target.EltruismShadowChecked = true
+		return
+	end
+
+	local bordersDB = eltreumDB.borders
+	if bordersDB and bordersDB.universalborders then
+		target.EltruismShadowChecked = true
+		return
+	end
+
+	local isBar, shadowEnabled = ResolveAuraShadowEnabled(container, target, shadowDB, bordersDB)
+	if target.shadow and not isBar then
+		target.EltruismShadowChecked = true
+		return
 	end
 
 	if not shadowEnabled then
-		if not isBar then target.eltruismShadowChecked = true end
+		if not isBar then
+			target.EltruismShadowChecked = true
+		end
 		return
 	end
 
 	if not E:NotSecretValue(target) then return end
-	local strata = target.GetFrameStrata and target:GetFrameStrata()
-	if not E:NotSecretValue(strata) then return end
 
 	if not target.shadow then
-		target:CreateShadow(shadowDB.length)
-		ElvUI_EltreumUI:ShadowColor(target.shadow, shadowDB)
+		if isBar then
+			target:CreateShadow(shadowDB.length)
+			ElvUI_EltreumUI:ShadowColor(target.shadow, shadowDB)
+		else
+			CreateFastAuraShadow(target, shadowDB.length, shadowDB)
+		end
 	end
 
 	if not isBar then
-		target.eltruismShadowChecked = true
+		target.EltruismShadowChecked = true
 	else
 		-- with the fixed variables i can check for being an aurabar
 		if target.shadow then
 			local barContainer = (button2 and button) or container
 			if barContainer and barContainer.isAuraBar then
+				local len = shadowDB.length
 				if eltreumDB.unitframes and eltreumDB.unitframes.thinmodeaurabars then
-					if target.statusbar then
+					if target.statusbar and (target.EltruismBarShadowMode ~= "thin" or target.EltruismBarShadowLen ~= len) then
 						target.shadow:ClearAllPoints()
-						target.shadow:SetPoint("TOPLEFT", target.statusbar, "TOPLEFT", -shadowDB.length, shadowDB.length)
-						target.shadow:SetPoint("BOTTOMRIGHT", target.statusbar, "BOTTOMRIGHT", shadowDB.length, -shadowDB.length)
+						target.shadow:SetPoint("TOPLEFT", target.statusbar, "TOPLEFT", -len, len)
+						target.shadow:SetPoint("BOTTOMRIGHT", target.statusbar, "BOTTOMRIGHT", len, -len)
 					end
 					if target.backdrop then
 						if not target.iconShadow then
-							target.iconShadow = target:CreateShadow(shadowDB.length, true)
+							target.iconShadow = target:CreateShadow(len, true)
 							ElvUI_EltreumUI:ShadowColor(target.iconShadow, shadowDB)
 						end
 						if target.iconShadow then
 							local level = target:GetFrameLevel()
-							target.iconShadow:SetFrameLevel(level > 1 and (level - 1) or 1)
-							target.iconShadow:Show()
-							target.iconShadow:ClearAllPoints()
-							target.iconShadow:SetPoint("TOPLEFT", target.backdrop, "TOPLEFT", -shadowDB.length, shadowDB.length)
-							target.iconShadow:SetPoint("BOTTOMRIGHT", target.backdrop, "BOTTOMRIGHT", shadowDB.length, -shadowDB.length)
+							local iconLevel = level > 1 and (level - 1) or 1
+							if target.EltruismIconShadowLevel ~= iconLevel then
+								target.iconShadow:SetFrameLevel(iconLevel)
+								target.EltruismIconShadowLevel = iconLevel
+							end
+							if target.EltruismBarShadowMode ~= "thin" or target.EltruismBarShadowLen ~= len then
+								target.iconShadow:Show()
+								target.iconShadow:ClearAllPoints()
+								target.iconShadow:SetPoint("TOPLEFT", target.backdrop, "TOPLEFT", -len, len)
+								target.iconShadow:SetPoint("BOTTOMRIGHT", target.backdrop, "BOTTOMRIGHT", len, -len)
+							end
 						end
 					end
+					target.EltruismBarShadowMode = "thin"
+					target.EltruismBarShadowLen = len
 				else
-					if target.iconShadow then
+					if target.iconShadow and target.EltruismBarShadowMode ~= "normal" then
 						target.iconShadow:Hide()
 					end
-					if target.backdrop and target.statusbar then
+					if target.backdrop and target.statusbar and (target.EltruismBarShadowMode ~= "normal" or target.EltruismBarShadowLen ~= len) then
 						target.shadow:ClearAllPoints()
-						target.shadow:SetPoint("TOPLEFT", target.backdrop, "TOPLEFT", -shadowDB.length, shadowDB.length)
-						target.shadow:SetPoint("BOTTOMRIGHT", target.statusbar, "BOTTOMRIGHT", shadowDB.length, -shadowDB.length)
+						target.shadow:SetPoint("TOPLEFT", target.backdrop, "TOPLEFT", -len, len)
+						target.shadow:SetPoint("BOTTOMRIGHT", target.statusbar, "BOTTOMRIGHT", len, -len)
 					end
+					target.EltruismBarShadowMode = "normal"
+					target.EltruismBarShadowLen = len
 				end
 			end
 		end
 	end
+end
+
+function ElvUI_EltreumUI:AuraShadows(button, button2) --button can be container or the bar, so check for the second arg, which then will be the bar itself
+	if isMasqueLoaded then return end
+	if not button then return end
+	ApplyAuraShadowInternal(button, button2)
 end
 
 if E.Modern then
@@ -4622,14 +4849,22 @@ if E.Modern then
 			button = container
 			container = button:GetParent()
 		end
+		if not button or type(button) ~= "table" then return end
 
 		local isAuraBar = type(container) == "table" and container.isAuraBar
-		if isAuraBar or not (button and (button.shadow or button.eltruismShadowChecked)) then
-			ElvUI_EltreumUI:AuraShadows(container, button)
+		if isAuraBar or (not button.shadow and not button.EltruismShadowChecked) then
+			if container then
+				ApplyAuraShadowInternal(container, button)
+			end
 		end
-		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 
-		if isAuraBar and type(button) == "table" and button.statusbar then
+		local eltreumDB = E.db.ElvUI_EltreumUI
+		local bordersDB = eltreumDB and eltreumDB.borders
+		if (bordersDB and bordersDB.borders) or button.EltruismAuraBorder then
+			ElvUI_EltreumUI:UpdateAuraBorder(container, button)
+		end
+
+		if isAuraBar and button.statusbar then
 			ElvUI_EltreumUI:AuraBarRetail(container, button)
 		end
 	end
@@ -4638,51 +4873,47 @@ if E.Modern then
 	function ElvUI_EltreumUI:Auras_CreateButton(_, button)
 		if isMasqueLoaded then return end
 		if not button or type(button) ~= "table" then return end
-		if button.shadow or button.eltruismShadowChecked then return end
-
-		local eltreumDB = E.db.ElvUI_EltreumUI
-		if not eltreumDB then return end
-		local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
-		if not shadowDB or not shadowDB.enable or shadowDB.universalshadows then
-			button.eltruismShadowChecked = true
-			return
-		end
-		local bordersDB = eltreumDB.borders
-		if bordersDB and bordersDB.universalborders then
-			button.eltruismShadowChecked = true
-			return
-		end
+		if button.shadow or button.EltruismShadowChecked then return end
 
 		local container = button.container or (button.GetParent and button:GetParent())
-		ElvUI_EltreumUI:AuraShadows(container, button)
+		if not container then return end
+		ApplyAuraShadowInternal(container, button)
 	end
 	ElvUI_EltreumUI:SecureHook(E, 'Auras_CreateButton', 'Auras_CreateButton')
 else
 	function ElvUI_EltreumUI:CreateIcon(_, button)
 		if not button or type(button) ~= "table" or not button.GetParent then return end
-		ElvUI_EltreumUI:UpdateAuraBorder(button:GetParent(), button)
-		ElvUI_EltreumUI:AuraShadows(button)
+		local parent = button:GetParent()
+		ElvUI_EltreumUI:UpdateAuraBorder(parent, button)
+		if not isMasqueLoaded then
+			ApplyAuraShadowInternal(button)
+		end
 	end
-	ElvUI_EltreumUI:SecureHook(A, 'CreateIcon', 'CreateIcon')  --aura (minimap)
+	ElvUI_EltreumUI:SecureHook(A, 'CreateIcon', 'CreateIcon') --aura (minimap)
 end
 
 function ElvUI_EltreumUI:UFAuraShadows(_, button)
 	if not button or type(button) ~= "table" then return end
-	if button.shadow then return end
+	if button.shadow or button.EltruismShadowChecked then return end
 	if isMasqueLoaded then return end
 
 	local eltreumDB = E.db.ElvUI_EltreumUI
 	if not eltreumDB then return end
 	local shadowDB = eltreumDB.skins and eltreumDB.skins.shadow
-	if not shadowDB or not shadowDB.enable or not shadowDB.ufaura or shadowDB.universalshadows then return end
+	if not shadowDB or not shadowDB.enable or not shadowDB.ufaura or shadowDB.universalshadows then
+		button.EltruismShadowChecked = true
+		return
+	end
 	local bordersDB = eltreumDB.borders
-	if bordersDB and (bordersDB.universalborders or (bordersDB.borders and bordersDB.auraborderuf)) then return end
+	if bordersDB and (bordersDB.universalborders or (bordersDB.borders and bordersDB.auraborderuf)) then
+		button.EltruismShadowChecked = true
+		return
+	end
 
 	if not E:NotSecretValue(button) then return end
-	if not E:NotSecretValue(button:GetFrameStrata()) then return end
 
-	button:CreateShadow(shadowDB.length)
-	ElvUI_EltreumUI:ShadowColor(button.shadow)
+	CreateFastAuraShadow(button, shadowDB.length, shadowDB)
+	button.EltruismShadowChecked = true
 end
 ElvUI_EltreumUI:SecureHook(UF, 'Construct_AuraIcon', 'UFAuraShadows') --uf aura shadows
 
