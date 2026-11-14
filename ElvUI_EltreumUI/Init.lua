@@ -151,7 +151,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		end
 	else
 		if not E.Mists then
-			ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
 			ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		else
@@ -163,6 +162,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
+	end
+	if not (E.Retail or E.Mists) then
+		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 	end
 	if E.Forever then
 		ElvUI_EltreumUI:RangedSwingTimerHide() --hides blizzard ranged swing timer when no swing timer is active
