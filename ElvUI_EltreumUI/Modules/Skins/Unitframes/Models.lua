@@ -19,6 +19,8 @@ local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEff
 local castbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
 local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
+local powerModelPosVec = CreateVector3D and CreateVector3D(-0.035, 0, 0)
+local powerModelRotVec = CreateVector3D and CreateVector3D(rad(270), 0, 0)
 local UnitReaction = _G.UnitReaction
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitCanAttack = _G.UnitCanAttack
@@ -154,7 +156,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				if E.Modern then
 					powerbareffectplayer:SetModel(1715069)
 					powerbareffectplayer:MakeCurrentCameraCustom()
-					powerbareffectplayer:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.785)
+					powerbareffectplayer:SetTransform(powerModelPosVec, powerModelRotVec, 0.785)
 					powerbareffectplayer:SetPortraitZoom(1)
 					powerbareffectplayer:SetAlpha(0.4 * (playerAlpha)) --might do this
 				else
@@ -286,7 +288,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				if E.Modern then
 					powerbareffecttarget:SetModel(1715069)
 					powerbareffecttarget:MakeCurrentCameraCustom()
-					powerbareffecttarget:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
+					powerbareffecttarget:SetTransform(powerModelPosVec, powerModelRotVec, 0.585)
 					powerbareffecttarget:SetPortraitZoom(1)
 					powerbareffecttarget:SetAlpha(0.4 * (targetAlpha)) --might do this
 				else
@@ -414,7 +416,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				if E.Modern then
 					powerbareffecttargettarget:SetModel(1715069)
 					powerbareffecttargettarget:MakeCurrentCameraCustom()
-					powerbareffecttargettarget:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
+					powerbareffecttargettarget:SetTransform(powerModelPosVec, powerModelRotVec, 0.585)
 					powerbareffecttargettarget:SetPortraitZoom(1)
 					powerbareffecttargettarget:SetAlpha(0.4 * (targettargetAlpha)) --might do this
 				else
@@ -536,7 +538,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				if E.Modern then
 					powerbareffectfocus:SetModel(1715069)
 					powerbareffectfocus:MakeCurrentCameraCustom()
-					powerbareffectfocus:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
+					powerbareffectfocus:SetTransform(powerModelPosVec, powerModelRotVec, 0.585)
 					powerbareffectfocus:SetPortraitZoom(1)
 					powerbareffectfocus:SetAlpha(0.4 * (focusAlpha)) --might do this
 				else
@@ -639,7 +641,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 				if E.Modern then
 					powerbareffectpet:SetModel(1715069)
 					powerbareffectpet:MakeCurrentCameraCustom()
-					powerbareffectpet:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
+					powerbareffectpet:SetTransform(powerModelPosVec, powerModelRotVec, 0.585)
 					powerbareffectpet:SetPortraitZoom(1)
 					powerbareffectpet:SetAlpha(0.8 * (petAlpha)) --might do this
 				else
