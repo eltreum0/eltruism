@@ -839,46 +839,6 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 	end
 end
 
---Class color the target, plus use unit's target directly
-function ElvUI_EltreumUI:Castbar_PostCastStart(castbar, unit)
-	if not castbar or not castbar.__owner then return end
-	local plate = castbar.__owner
-	local db = NP:PlateDB(plate)
-	if db.castbar and db.castbar.enable and db.castbar.displayTarget then
-		local frameType = plate.frameType
-		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
-			local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
-			if UnitExists(targetUnit) then
-				local spellName = E:ShortenString(castbar.spellName, 11)
-				local targetname = E:ShortenString(UnitName(targetUnit), 12)
-				--local spellName = E:AbbreviateString(castbar.spellName)
-				--local targetname = E:AbbreviateString(UnitName(targetUnit))
-				if UnitIsPlayer(targetUnit) or (E.Retail and UnitInPartyIsAI(targetUnit)) then
-					local _ , classes = UnitClass(targetUnit)
-					if not E:NotSecretValue(classes) then --secret class so do something else
-						return targetname
-					end
-					castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
-				else
-					local reaction = UnitReaction(targetUnit, "player")
-					if reaction >= 5 then
-						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
-					elseif reaction == 4 then
-						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r]")
-					elseif reaction == 3 then
-						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r]")
-					elseif reaction == 2 or reaction == 1 then
-						castbar.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r]")
-					end
-				end
-			end
-		end
-	end
-end
-if not E.Modern then
-	ElvUI_EltreumUI:SecureHook(NP, 'Castbar_PostCastStart', 'Castbar_PostCastStart')
-end
-
 function ElvUI_EltreumUI:NP_DarkPowerMultiplier()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 		NP.multiplier = 0

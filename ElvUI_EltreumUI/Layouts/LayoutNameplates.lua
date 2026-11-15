@@ -250,7 +250,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["displayTarget"] = true
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["nameLength"] = 25
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -4
@@ -267,6 +266,15 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -18
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textYOffset"] = -1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeYOffset"] = -1
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["displayTarget"] = true
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["displayTargetClass"] = true
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetStyle"] = "SEPARATE"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetAnchorPoint"] = "BOTTOMLEFT"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFont"] = "Kimberley"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetFontSize"] = 11
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetYOffset"] = -3
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetXOffset"] = 0
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["targetJustifyH"] = 'LEFT'
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["position"] = "LEFT"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["size"] = 16
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["xOffset"] = -4
