@@ -4584,6 +4584,10 @@ local function CreateFastAuraShadow(target, length, shadowDB)
 	if fastShadowSupported == nil then
 		InitFastShadowProbe()
 	end
+	if not shadowDB then
+		local eltreumDB = E.db.ElvUI_EltreumUI
+		shadowDB = eltreumDB and eltreumDB.skins and eltreumDB.skins.shadow
+	end
 	if not fastShadowSupported then
 		target:CreateShadow(length)
 		ElvUI_EltreumUI:ShadowColor(target.shadow, shadowDB)
@@ -4677,6 +4681,12 @@ local function CreateFastAuraShadow(target, length, shadowDB)
 	shadow.SetBackdropColor = FastShadow_Noop
 
 	target.shadow = shadow
+end
+
+function ElvUI_EltreumUI:CreateFastShadow(target, length, shadowDB)
+	if target and not target.shadow then
+		CreateFastAuraShadow(target, length, shadowDB)
+	end
 end
 
 --check whether shadows are enabled for this aura container
