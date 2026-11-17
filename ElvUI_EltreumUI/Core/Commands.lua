@@ -80,6 +80,7 @@ local function CommandList(unknown)
 	print("|cff82B4ff/eltruism paging <1-10>|r - Swaps Actionbar paging to specified bar")
 	print("|cff82B4ff/eltruism fader|r - Toggles ElvUI Fader")
 	print("|cff82B4ff/eltruism autoupdate|r - Enables automatically updating Eltruism settings")
+	print("|cff82B4ff/eltruism newchar|r - Runs Chat Setup, CVars and Edit Mode functions on the current character")
 	if ElvDB.profileKeys[E.mynameRealm] and (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		print("|cff82B4ff/eltruism autoadjust|r - Toggles Borders automatically adjusting the layout")
 	end
@@ -380,6 +381,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'fader' then
 		ElvUI_EltreumUI:ToggleFader()
 		E:StaticPopup_Show('CONFIG_RL')
+	elseif message == 'newchar' then
+		E:SetupChat()
+		ElvUI_EltreumUI:HandleLFG()
+		ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
+		ElvUI_EltreumUI:SetupCVars()
+		ElvUI_EltreumUI:NameplateCVars()
 	elseif message == 'screenshotcomparison' then
 		ElvUI_EltreumUI:Print("Taking multiple screenshots with a delay due to the API, please wait")
 		E:Delay(0, function()

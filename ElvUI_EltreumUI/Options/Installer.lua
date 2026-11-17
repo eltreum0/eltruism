@@ -22,37 +22,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 		E:SetupChat()
 		ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 		--for classic chat lfg
-		if not E.Modern then --remove lfg spam from general and creat tab for it
-			local lfg
-			if E.global.general.locale == "enUS" then
-				lfg = "LookingForGroup"
-			elseif E.global.general.locale == "deDE" then
-				lfg = "SucheNachGruppe"
-			elseif E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
-				lfg = "BuscarGrupo"
-			elseif E.global.general.locale == "frFR" then
-				lfg = "RechercheDeGroupe"
-			elseif E.global.general.locale == "ruRU" then
-				lfg = "ПоискСпутников"
-			elseif E.global.general.locale == "zhTW" then
-				lfg = "尋求組隊"
-			else
-				lfg = "LookingForGroup"
-			end
-			if lfg then
-				ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
-				_G.FCF_OpenNewWindow()
-				ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
-				_G.FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-				if E.TBC or E.Mists then
-					_G.ChatFrame5:AddChannel(lfg)
-				else
-					ChatFrame_AddChannel(_G.ChatFrame5, lfg)
-				end
-				_G.FCFTab_UpdateColors(_G.ChatFrame5Tab)
-				_G.FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
-			end
-		end
+		ElvUI_EltreumUI:HandleLFG()
 	end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.description12 = E.Libs.ACH:Description(L["Skip Plugins"], 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.skipplugin = E.Libs.ACH:Execute(L["Skip Plugins install message"], L["Make the warnings to install profiles for other plugins stop"], 25, function()

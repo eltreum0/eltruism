@@ -405,7 +405,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 	end
 end
 
-local function HandleLFG()
+function ElvUI_EltreumUI:HandleLFG()
 	--if there is an edit mode, import the profile
 	if C_EditMode and C_EditMode.SaveLayouts and C_EditMode.GetLayouts then
 		ElvUI_EltreumUI:NewRetailEditModeLayout()
@@ -428,7 +428,7 @@ end
 
 local function ApplyRoleLayout(role)
 	E:SetupChat()
-	HandleLFG()
+	ElvUI_EltreumUI:HandleLFG()
 	ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 
 	local profileName, shortName
