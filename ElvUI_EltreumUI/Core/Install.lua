@@ -405,9 +405,9 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 	end
 end
 
-function ElvUI_EltreumUI:HandleLFG()
+function ElvUI_EltreumUI:HandleLFG(edit)
 	--if there is an edit mode, import the profile
-	if C_EditMode and C_EditMode.SaveLayouts and C_EditMode.GetLayouts then
+	if edit and C_EditMode and C_EditMode.SaveLayouts and C_EditMode.GetLayouts then
 		ElvUI_EltreumUI:NewRetailEditModeLayout()
 	end
 
@@ -428,7 +428,7 @@ end
 
 local function ApplyRoleLayout(role)
 	E:SetupChat()
-	ElvUI_EltreumUI:HandleLFG()
+	ElvUI_EltreumUI:HandleLFG(true)
 	ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 
 	local profileName, shortName
@@ -447,7 +447,6 @@ local function ApplyRoleLayout(role)
 		profileName = shortName
 	end
 
-	--wait for forever to be added here
 	if (E.Mists or E.Wrath or E.Modern or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 		E.data:SetDualSpecProfile(profileName, E.Libs.DualSpec.currentSpec)
 	else

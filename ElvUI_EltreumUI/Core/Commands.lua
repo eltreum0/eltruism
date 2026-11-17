@@ -383,7 +383,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		E:StaticPopup_Show('CONFIG_RL')
 	elseif message == 'newchar' then
 		E:SetupChat()
-		ElvUI_EltreumUI:HandleLFG()
+		ElvUI_EltreumUI:HandleLFG(true)
 		ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 		ElvUI_EltreumUI:SetupCVars()
 		ElvUI_EltreumUI:NameplateCVars()
