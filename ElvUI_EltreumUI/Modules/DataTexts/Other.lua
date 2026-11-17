@@ -78,3 +78,92 @@ local function EltruismLootMethod(dt)
 	end
 end
 DT:RegisterDatatext('Eltruism Loot Method', nil, {'PARTY_LOOT_METHOD_CHANGED', 'GROUP_ROSTER_UPDATE', 'GROUP_JOINED'}, EltruismLootMethod, nil, nil, nil, nil, L["Eltruism Loot Method"])
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------retail secrets
+--written by acidweb, ty, updated to add tooltips and better descriptions/updating
+if E.Modern then
+	local states = {
+		[0] = {["state"] = 0, ["label"] = "Comb", ["name"] = "Combat"},
+		[1] = {["state"] = 0, ["label"] = "Enc", ["name"] = "Encounter"},
+		[2] = {["state"] = 0, ["label"] = "CM", ["name"] = "Challenge Mode"},
+		[3] = {["state"] = 0, ["label"] = "PvP", ["name"] = "PvP Match"},
+		[4] = {["state"] = 0, ["label"] = "Map", ["name"] = "Map"}
+	}
+
+	local function ParseState(state)
+		if state["state"] == 2 then
+			return "|cFFFF0000"..state["label"].."|r"
+		elseif state["state"] == 1 then
+			return "|cFFFFFF00"..state["label"].."|r"
+		else
+			return "|cFF00FF00"..state["label"].."|r"
+		end
+	end
+
+	local GetAddOnRestrictionState = _G.C_RestrictedActions and _G.C_RestrictedActions.GetAddOnRestrictionState
+	local C_Timer = _G.C_Timer
+
+	local function UpdateSecretText(panel)
+		local payload = ""
+		for i = 0, 4 do
+			payload = payload..(i == 0 and "" or " ")..ParseState(states[i])
+		end
+		panel.text:SetText(payload)
+	end
+
+	local function RefreshActivatingState(panel, restrictionType, attempt)
+		if not GetAddOnRestrictionState then return end
+		C_Timer.After(attempt == 1 and 0.05 or 0.5, function()
+			if states[restrictionType]["state"] ~= 1 then return end
+			local currentState = GetAddOnRestrictionState(restrictionType) or 0
+			if currentState ~= 1 then
+				states[restrictionType]["state"] = currentState
+				UpdateSecretText(panel)
+			elseif attempt < 3 then
+				RefreshActivatingState(panel, restrictionType, attempt + 1)
+			end
+		end)
+	end
+
+	local function SecretOnEnter()
+		DT.tooltip:ClearLines()
+		DT.tooltip:AddLine("Addon Restrictions")
+		DT.tooltip:AddLine(" ")
+		for i = 0, 4 do
+			local entry = states[i]
+			if GetAddOnRestrictionState then
+				entry["state"] = GetAddOnRestrictionState(i) or 0
+			end
+			local status
+			if entry["state"] == 2 then
+				status = "|cFFFF0000Active|r"
+			elseif entry["state"] == 1 then
+				status = "|cFFFFFF00Activating|r"
+			else
+				status = "|cFF00FF00Inactive|r"
+			end
+			DT.tooltip:AddDoubleLine(format("%s (%s):", entry["name"], entry["label"]), status, 1, 1, 1)
+		end
+		DT.tooltip:AddLine(" ")
+		DT.tooltip:AddLine("|cFF00FF00Green|r: Unrestricted  |cFFFFFF00Yellow|r: Activating  |cFFFF0000Red|r: Restricted", 1, 1, 1)
+		DT.tooltip:Show()
+	end
+
+	local function SecretOnEvent(self, event, restrictionType, restrictionState)
+		if event == "ADDON_RESTRICTION_STATE_CHANGED" then
+			if states[restrictionType] then
+				states[restrictionType]["state"] = restrictionState
+				if restrictionState == 1 then
+					RefreshActivatingState(self, restrictionType, 1)
+				end
+			end
+		elseif GetAddOnRestrictionState then
+			for i = 0, 4 do
+				states[i]["state"] = GetAddOnRestrictionState(i) or 0
+			end
+		end
+
+		UpdateSecretText(self)
+	end
+	DT:RegisterDatatext("Secret Tracker", nil, {"ADDON_RESTRICTION_STATE_CHANGED"}, SecretOnEvent, nil, nil, SecretOnEnter,nil,"Secret State Tracker")
+end
