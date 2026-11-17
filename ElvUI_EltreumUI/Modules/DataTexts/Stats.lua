@@ -60,7 +60,6 @@ local GetHitModifier = _G.GetHitModifier
 local GetSpellHitModifier = _G.GetSpellHitModifier
 local GetSpellPenetration = _G.GetSpellPenetration
 local GetCombatRating = _G.GetCombatRating
-local select = _G.select
 local GetBlockChance = _G.GetBlockChance
 local GetParryChance = _G.GetParryChance
 local GetDodgeChance = _G.GetDodgeChance
