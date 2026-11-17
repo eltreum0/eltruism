@@ -274,7 +274,7 @@ function ElvUI_EltreumUI:SetActionBarPaging(bar)
 	local paging = getBarPagingTable(bar)
 	if not paging then return end
 
-	local pagingBase = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:5] 11;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:5] 11;"
+	local pagingBase = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:5] 11;"
 
 	paging.DEATHKNIGHT = pagingBase
 	paging.DEMONHUNTER = pagingBase
@@ -286,7 +286,7 @@ function ElvUI_EltreumUI:SetActionBarPaging(bar)
 
 	--stance/form-based classes
 	paging.WARRIOR = pagingBase.." [stance:1] 7; [stance:2] 8; [stance:3] 9;"
-	paging.WARLOCK = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [form:1] 7; [bonusbar:5] 11;" or pagingBase
+	paging.WARLOCK = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [form:1] 7;" or pagingBase
 
 	--rogue
 	local rogueVehicle = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16;"
@@ -298,9 +298,9 @@ function ElvUI_EltreumUI:SetActionBarPaging(bar)
 
 	--priest and evoker
 	if E.Classic then
-		paging.PRIEST = "[vehicleui] 12; [overridebar] 14; [possessbar] 16; [bonusbar:5] 11; [stance:1] 7;"
+		paging.PRIEST = "[vehicleui] 12; [overridebar] 14; [possessbar] 16; [stance:1] 7;"
 	else
-		paging.PRIEST = E.Forever and "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [form:1] 7; [bonusbar:5] 11;" or pagingBase --need to check for mind control in forever
+		paging.PRIEST = E.Forever and "[overridebar] 33; [vehicleui] 31; [possessbar] 31; [form:1] 7;" or pagingBase --due to gamepad ui shifting paging around
 		paging.EVOKER = pagingBase.." [bonusbar:1] 7;"
 	end
 end
