@@ -327,7 +327,9 @@ function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 	--ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	ElvUI_EltreumUI:AutoScreenshot()
 	if E.Modern then
-		ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
+		E:Delay(2, function()
+			ElvUI_EltreumUI:ObjectiveTrackerAnchor() --fire the anchor again
+		end)
 	end
 end
 
