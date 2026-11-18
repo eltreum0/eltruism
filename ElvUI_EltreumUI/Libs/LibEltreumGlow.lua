@@ -391,13 +391,13 @@ local FramePoolResetter = function(_, frame)
 			flash.list = flash.list or {}
 			frame.inf.flash = flash
 		end
-		if add then wipe(add); frame.inf.add = add end
-		if addVisible then wipe(addVisible); frame.inf.addVisible = addVisible end
+		if add then wipe(add) frame.inf.add = add end
+		if addVisible then wipe(addVisible) frame.inf.addVisible = addVisible end
 		if p then frame.inf.p = p end
 		if offsets then frame.inf.offsets = offsets end
-		if flashOptions then wipe(flashOptions); frame.inf.flashOptions = flashOptions end
-		if annoyFlashOptions then wipe(annoyFlashOptions); frame.inf.annoyFlashOptions = annoyFlashOptions end
-		if startBlingOptions then wipe(startBlingOptions); frame.inf.startBlingOptions = startBlingOptions end
+		if flashOptions then wipe(flashOptions) frame.inf.flashOptions = flashOptions end
+		if annoyFlashOptions then wipe(annoyFlashOptions) frame.inf.annoyFlashOptions = annoyFlashOptions end
+		if startBlingOptions then wipe(startBlingOptions) frame.inf.startBlingOptions = startBlingOptions end
 	else
 		frame.inf = {}
 	end
