@@ -373,9 +373,13 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif stringmatch(message, 'paging%s*(%d[,.%d]*)') then
 		local pagingnumber = tonumber(stringmatch(message, 'paging%s*(%d[,.%d]*)'))
-		if pagingnumber and pagingnumber <= 10 then
-			if not InCombatLockdown() then
-				ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
+		if pagingnumber then
+			if pagingnumber <= 10 then
+				if not InCombatLockdown() then
+					ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
+				end
+			elseif pagingnumber > 10 then
+				ElvUI_EltreumUI:Print("Using ActionBar ".._G.tostring(pagingnumber).." would cause issues with some spells")
 			end
 		end
 	elseif message == 'fader' then
