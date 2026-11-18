@@ -977,7 +977,7 @@ ElvUI_EltreumUI.InstallerData = {
 
 			frame.SubTitle:SetText(L["Installation Complete"])
 			frame.Desc1:SetText(L["You have completed the installation process"])
-			frame.Desc2:SetText(L["Feel free to explore Eltruism settings in ElvUI > Eltruism.\nThere are lot of settings that are disabled by default."])
+			frame.Desc2:SetText(L["Feel free to explore Eltruism settings in ElvUI > Eltruism.\nThere are lot of settings that are disabled by default."].."\n\n"..L["If you run into issues or want to learn useful commands, check ElvUI > Eltruism > Help or type /eltruism help."])
 			frame.Desc3:SetText(L["Please click Finished to reload the UI"])
 			frame.Desc4:SetText(L["Importance: "].."|cff82B4ff"..L["Very High"]..'|r')
 			frame.Option1:Enable()
