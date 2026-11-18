@@ -2,37 +2,195 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local strsplit = _G.strsplit
+local strtrim = _G.strtrim
 local ipairs = _G.ipairs
 local tonumber = _G.tonumber
+local tostring = _G.tostring
 local hooksecurefunc = _G.hooksecurefunc
 local pairs = _G.pairs
-local setmetatable = _G.setmetatable
+local next = _G.next
 local GetPetActionInfo = _G.GetPetActionInfo
 local GetTime = _G.GetTime
 local tinsert = _G.tinsert
 local tremove = _G.tremove
 local unpack = _G.unpack
-local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
-local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
-local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown
-local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
-local GetPetActionCooldown = _G.GetPetActionCooldown
+local C_Spell = _G.C_Spell
+local GetSpellBaseCooldown = C_Spell and C_Spell.GetSpellBaseCooldown or _G.GetSpellBaseCooldown
+local C_Item = _G.C_Item
+local C_Container = _G.C_Container
+local GetItemInfo = C_Item and C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemInfoInstant = C_Item and C_Item.GetItemInfoInstant or _G.GetItemInfoInstant
+local GetItemSpell = C_Item and C_Item.GetItemSpell or _G.GetItemSpell
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
-local select = _G.select
+local type = _G.type
 local wipe = _G.wipe
 local GetActionInfo = _G.GetActionInfo
 local GetActionTexture = _G.GetActionTexture
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
+local GetMacroItem = _G.GetMacroItem
+local IsInCinematicScene = _G.IsInCinematicScene
 local wasPreviewing = false
-local cooldowns, animating, watching = { }, { }, { }
+local cooldowns, animating, watching, waitingEnableSpells = { }, { }, { }, { }
+local listedSpells = { }
+local tablePool = { }
+local equippedUsableItems = { }
 local petOverlay = {1,1,1}
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local C_VoiceChat = _G.C_VoiceChat
-local tostring = _G.tostring
+local EltruismSpellInfo = ElvUI_EltreumUI.EltruismSpellInfo
+local EltruismSpellCooldown = ElvUI_EltreumUI.EltruismSpellCooldown
+local EltruismItemCooldown = ElvUI_EltreumUI.EltruismItemCooldown
+local EltruismPetCooldown = ElvUI_EltreumUI.EltruismPetCooldown
+local doomdb
+local elapsed = 0
+local runtimer = 0
+
+local function AcquireTable()
+	local tbl = tremove(tablePool)
+	if tbl then
+		return tbl
+	end
+	return {}
+end
+
+local function ReleaseTable(tbl)
+	if tbl then
+		wipe(tbl)
+		if #tablePool < 32 then
+			tinsert(tablePool, tbl)
+		end
+	end
+end
+
+local function GetDoomSpellInfo(spellID)
+	if not spellID or not E:NotSecretValue(spellID) then return nil, nil, spellID end
+	local name, resolvedID, texture = EltruismSpellInfo(ElvUI_EltreumUI, spellID)
+	return name, texture, resolvedID or spellID
+end
+
+local function GetDoomItemInfo(item)
+	if not item or not E:NotSecretValue(item) then return nil, nil, nil end
+	local itemID = tonumber(item)
+	if not itemID and type(item) == "string" then
+		itemID = tonumber(item:match("item:(%d+)"))
+	end
+	local name, _, _, _, _, _, _, _, _, texture = GetItemInfo(item)
+	if GetItemInfoInstant then
+		local instantID, _, _, _, instantTex = GetItemInfoInstant(itemID or item)
+		itemID = itemID or instantID
+		texture = texture or instantTex
+	end
+	if not name and itemID then
+		name = GetItemInfo(itemID)
+	end
+	return name, texture, itemID
+end
+
+local function IsEntryListed(key, altID, name)
+	if listedSpells[tostring(key)] then return true end
+	if altID and listedSpells[tostring(altID)] then return true end
+	if name and listedSpells[name] then return true end
+	return false
+end
+
+local function PassesFilter(key, altID, name)
+	if not doomdb then return true end
+	if doomdb.allowing then
+		if not next(listedSpells) then return false end
+		return IsEntryListed(key, altID, name)
+	elseif doomdb.ignoring then
+		if not next(listedSpells) then return true end
+		return not IsEntryListed(key, altID, name)
+	end
+	return true
+end
+
+local function PassesDurationFilter(duration)
+	if not duration or not doomdb then return false end
+	local minCD = doomdb.graceperiod or 0
+	local maxCD = doomdb.gracelimit or 0
+	if duration <= minCD then return false end
+	if maxCD ~= 0 and duration > maxCD then return false end
+	return true
+end
+
+local function GetBaseCooldownSeconds(spellID)
+	if not spellID or not E:NotSecretValue(spellID) or not GetSpellBaseCooldown then return nil end
+	local baseMS = GetSpellBaseCooldown(spellID)
+	if baseMS and E:NotSecretValue(baseMS) and baseMS > 0 then
+		return baseMS / 1000
+	end
+	return nil
+end
+
+local function GetPetActionIndexByName(name)
+	if not name or not E:NotSecretValue(name) then return nil end
+	for i=1, _G.NUM_PET_ACTION_SLOTS, 1 do
+		if (GetPetActionInfo(i) == name) then
+			return i
+		end
+	end
+	return nil
+end
+
+local function RefreshEquippedUsableItems()
+	wipe(equippedUsableItems)
+	for slot = 1, 19 do
+		local itemID = GetInventoryItemID("player", slot)
+		if itemID and E:NotSecretValue(itemID) and (not GetItemSpell or GetItemSpell(itemID)) then
+			equippedUsableItems[slot] = itemID
+		end
+	end
+end
+
+local function QueryEntryCooldown(entry)
+	if entry.cooldownType == "spell" then
+		return EltruismSpellCooldown(ElvUI_EltreumUI, entry.spellID, nil, 0, false, entry.overrideResolved)
+	elseif entry.cooldownType == "item" then
+		return EltruismItemCooldown(ElvUI_EltreumUI, entry.id)
+	elseif entry.cooldownType == "pet" then
+		return EltruismPetCooldown(ElvUI_EltreumUI, entry.petIndex, entry.spellID)
+	end
+	return "READY", 0, 0
+end
+
+local function PromoteEntryToCooldown(i, v, status, start, duration)
+	if status == "EXACT" then
+		if v.texture and PassesDurationFilter(duration) then
+			v.start = start
+			v.duration = duration
+			v.startEst = start
+			v.secret = false
+			v.dirty = false
+			ReleaseTable(cooldowns[i])
+			cooldowns[i] = v
+			return true
+		end
+		ReleaseTable(v)
+		return false
+	elseif status == "SECRET" then
+		if v.texture then
+			v.start = nil
+			v.duration = nil
+			v.startEst = v.castTime
+			v.secret = true
+			v.dirty = false
+			v.lastCheck = GetTime()
+			ReleaseTable(cooldowns[i])
+			cooldowns[i] = v
+			return true
+		end
+		ReleaseTable(v)
+		return false
+	end
+	ReleaseTable(v)
+	return false
+end
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
+local DCP_EventFrame = CreateFrame("FRAME")
 DCP:SetPoint("CENTER",E.UIParent,"CENTER", 0, 350)
 DCP:SetSize(80,80)
 DCP:SetAlpha(0)
@@ -50,9 +208,185 @@ DCPT:SetAllPoints(DCP)
 -- create mover
 E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,SOLO,ELTREUMUI', nil, 'ElvUI_EltreumUI,cooldown')
 
+local function OnUpdate(_,update)
+	elapsed = elapsed + update
+	if wasPreviewing then
+		wasPreviewing = false
+		DCPT:SetTexture(nil)
+		if DCP.shadow then
+			DCP.shadow:SetAlpha(0)
+		end
+	end
+
+	--poll fast (0.05s) while promoting new casts, slower (0.15s) when only tracking active cooldowns
+	local pollInterval = next(watching) and 0.05 or 0.15
+	if (elapsed > pollInterval) then
+		elapsed = 0
+		local now = GetTime()
+		for i, v in pairs(watching) do
+			if (now >= v.castTime + 0.5) then
+				if not v.infoResolved then
+					v.infoResolved = true
+					if v.cooldownType == "spell" then
+						v.name, v.texture, v.spellID = GetDoomSpellInfo(v.spellID)
+						v.overrideResolved = true
+					elseif v.cooldownType == "item" then
+						local itemName, itemTex = GetDoomItemInfo(v.id)
+						v.name = itemName
+						v.texture = v.texture or itemTex
+					elseif v.cooldownType == "pet" then
+						local petName, petTex, _, _, _, _, petSpellID = GetPetActionInfo(v.petIndex)
+						v.name = petName or v.name
+						v.texture = petTex or v.texture
+						if petSpellID then
+							v.spellID = petSpellID
+						end
+					end
+				end
+
+				if not PassesFilter(i, v.spellID, v.name) then
+					watching[i] = nil
+					ReleaseTable(v)
+				else
+					local status, start, duration = QueryEntryCooldown(v)
+					if status == "DISABLED" and v.cooldownType == "spell" then
+						--park disabled spells (e.g. Stealth/Prowl) until SPELL_UPDATE_COOLDOWN wakes them
+						watching[i] = nil
+						ReleaseTable(waitingEnableSpells[i])
+						waitingEnableSpells[i] = v
+					else
+						watching[i] = nil
+						PromoteEntryToCooldown(i, v, status, start, duration)
+					end
+				end
+			end
+		end
+
+		for i, cd in pairs(cooldowns) do
+			if cd.dirty or not cd.start or not cd.duration then
+				--throttle secret fallback checks to 1s
+				if cd.dirty or not cd.secret or (now - (cd.lastCheck or 0) >= 1) then
+					cd.dirty = false
+					cd.lastCheck = now
+					local status, start, duration = QueryEntryCooldown(cd)
+					if status == "EXACT" then
+						cd.secret = false
+						cd.start = start
+						cd.duration = duration
+					elseif status == "SECRET" then
+						cd.secret = true
+					else
+						--cooldown finished or reset
+						local effectiveDuration = cd.duration
+						if not effectiveDuration then
+							effectiveDuration = now - (cd.startEst or now)
+							local minCD = doomdb.graceperiod or 0
+							if effectiveDuration <= minCD then
+								local baseSec = GetBaseCooldownSeconds(cd.spellID)
+								if baseSec and baseSec > minCD then
+									effectiveDuration = baseSec
+								end
+							end
+						end
+						if cd.texture and PassesDurationFilter(effectiveDuration) then
+							local anim = AcquireTable()
+							anim[1], anim[2], anim[3] = cd.texture, cd.isPet, cd.name
+							tinsert(animating, anim)
+						end
+						cooldowns[i] = nil
+						ReleaseTable(cd)
+					end
+				end
+			end
+			if cooldowns[i] and not cd.secret and cd.start and cd.duration then
+				local remaining = cd.duration - (now - cd.start)
+				if remaining <= 0 then
+					if cd.texture and PassesDurationFilter(cd.duration) then
+						local anim = AcquireTable()
+						anim[1], anim[2], anim[3] = cd.texture, cd.isPet, cd.name
+						tinsert(animating, anim)
+					end
+					cooldowns[i] = nil
+					ReleaseTable(cd)
+				end
+			end
+		end
+
+		if (#animating == 0 and not next(watching) and not next(cooldowns)) then
+			DCP_EventFrame:SetScript("OnUpdate", nil)
+			return
+		end
+	end
+
+	if (#animating > 0) and not IsInCinematicScene() then
+		local fadeInTime = doomdb.fadeInTime
+		local holdTime = doomdb.holdTime
+		local fadeOutTime = doomdb.fadeOutTime
+		local totalTime = fadeInTime + holdTime + fadeOutTime
+		runtimer = runtimer + update
+		if (runtimer > totalTime) then
+			ReleaseTable(tremove(animating,1))
+			runtimer = 0
+			DCP.TextFrame:SetText(nil)
+			DCPT:SetTexture(nil)
+			if DCP.shadow then
+				DCP.shadow:SetAlpha(0)
+			end
+			DCPT:SetVertexColor(1,1,1)
+		else
+			local currentAnim = animating[1]
+			if (not DCPT:GetTexture()) then
+				if (currentAnim[3] ~= nil and doomdb.showSpellName) then
+					DCP.TextFrame:SetText(currentAnim[3])
+				end
+				if doomdb.tts and currentAnim[3] then
+					if doomdb.ttsvoice ~= nil then
+						C_VoiceChat.SpeakText(doomdb.ttsvoice, currentAnim[3], 1, doomdb.ttsvolume, true)
+					end
+				end
+				DCPT:SetTexture(currentAnim[1])
+				DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
+				if currentAnim[2] then
+					DCPT:SetVertexColor(unpack(petOverlay))
+				end
+			end
+
+			--weird dlarge issue with alpha
+			local alpha, alphaHolder
+			if doomdb.maxAlpha then
+				alphaHolder = tonumber(doomdb.maxAlpha)
+			else
+				alphaHolder = 0.7
+			end
+			alpha = alphaHolder
+			if (runtimer < fadeInTime) then
+				alpha = alphaHolder * (runtimer / fadeInTime)
+				if alpha < 0 then alpha = 0 end
+				if alpha > 1 then alpha = 1 end
+			elseif (runtimer >= fadeInTime + holdTime) then
+				alpha = alphaHolder - ( alphaHolder * ((runtimer - holdTime - fadeInTime) / fadeOutTime))
+				if alpha < 0 then alpha = 0 end
+				if alpha > 1 then alpha = 1 end
+			end
+			DCP:SetAlpha(alpha)
+			if DCP.shadow then
+				DCP.shadow:SetAlpha(alpha)
+			end
+			local iconSize = doomdb.iconSize
+			local scale = iconSize+(iconSize*((doomdb.animScale-1)*(runtimer/totalTime)))
+			DCP:SetSize(scale, scale)
+		end
+	end
+end
+
+local function StartOnUpdate()
+	if not DCP_EventFrame:GetScript("OnUpdate") then
+		DCP_EventFrame:SetScript("OnUpdate", OnUpdate)
+	end
+end
+
 -- preview function
 function ElvUI_EltreumUI:PreviewDoom()
-	if E.Modern then return end
 	if not E.Classic then
 		DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
 	else
@@ -60,9 +394,9 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 
 	DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
-	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1)))
-	DCP:SetWidth(scale)
-	DCP:SetHeight(scale)
+	local db = E.db.ElvUI_EltreumUI.skins.doom
+	local scale = db.iconSize+(db.iconSize*((db.animScale-1)))
+	DCP:SetSize(scale, scale)
 
 	if DCP:GetAlpha() == 0 then
 		DCP:SetAlpha(1)
@@ -76,9 +410,11 @@ function ElvUI_EltreumUI:PreviewDoom()
 		end
 	end
 
-	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-		local tts = ElvUI_EltreumUI:EltruismSpellInfo(33786) or ElvUI_EltreumUI:EltruismSpellInfo(5197)
-		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume, true)
+	if DCP:GetAlpha() == 1 and db.ttsvoice ~= nil then
+		local tts = EltruismSpellInfo(ElvUI_EltreumUI, 33786) or EltruismSpellInfo(ElvUI_EltreumUI, 5197)
+		if tts then
+			C_VoiceChat.SpeakText(db.ttsvoice, tts, 1, db.ttsvolume, true)
+		end
 	end
 
 	wasPreviewing = true
@@ -87,10 +423,11 @@ end
 --Fork of discoteq's Doom Cooldown Pulse
 function ElvUI_EltreumUI:Doom()
 	if IsAddOnLoaded("Doom_CooldownPulse") then return end
-	if E.db.ElvUI_EltreumUI.skins.doom.enable then
+	doomdb = E.db.ElvUI_EltreumUI.skins.doom
+	if doomdb.enable then
 
 		--set the general elvui font
-		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.doom.iconSize/5, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), doomdb.iconSize/5, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 		--create shadow
 		if not DCP.shadow then
@@ -98,310 +435,291 @@ function ElvUI_EltreumUI:Doom()
 			ElvUI_EltreumUI:ShadowColor(DCP.shadow)
 		end
 
-		--load in the ignored spells
-		local listedSpells = {}
-		if E.db.ElvUI_EltreumUI.skins.doom.ignoring then
+		--load in the ignored/allowed spells
+		wipe(listedSpells)
+		if doomdb.ignoring then
 			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
 			for _,v in ipairs(list) do
-				listedSpells[v] = true
+				local trimmed = strtrim and strtrim(v) or v:match("^%s*(.-)%s*$")
+				if trimmed ~= "" then
+					listedSpells[trimmed] = true
+				end
 			end
-		elseif E.db.ElvUI_EltreumUI.skins.doom.allowing then
+		elseif doomdb.allowing then
 			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomallowed)}
 			for _,v in ipairs(list) do
-				listedSpells[v] = true
-			end
-		end
-
-		---set the main script
-		DCP:SetScript("OnEvent", function(selftable, event, ...) selftable[event](selftable, ...) end)
-
-		-----------------------
-		-- Utility Functions --
-		-----------------------
-		local function tcount(tab)
-			local n = 0
-			for _ in pairs(tab) do
-				n = n + 1
-			end
-			return n
-		end
-
-		local function memorize(f)
-			local cache = nil
-			local memorized = {}
-
-			local function get()
-				if (cache == nil) then
-					cache = f()
-				end
-
-				return cache
-			end
-
-			memorized.resetCache = function()
-				cache = nil
-			end
-
-			setmetatable(memorized, {__call = get})
-
-			return memorized
-		end
-
-		local function GetPetActionIndexByName(name)
-			for i=1, _G.NUM_PET_ACTION_SLOTS, 1 do
-				if (GetPetActionInfo(i) == name) then
-					return i
+				local trimmed = strtrim and strtrim(v) or v:match("^%s*(.-)%s*$")
+				if trimmed ~= "" then
+					listedSpells[trimmed] = true
 				end
 			end
-			return nil
 		end
 
-		--------------------------
-		-- Cooldown / Animation --
-		--------------------------
-		local elapsed = 0
-		local runtimer = 0
-		local function OnUpdate(_,update)
-			elapsed = elapsed + update
-			if wasPreviewing then
-				wasPreviewing = false
-				DCPT:SetTexture(nil)
-				DCP.shadow:SetAlpha(0)
+		RefreshEquippedUsableItems()
+
+		if E.Modern and doomdb.pet then
+			DCP_EventFrame:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player", "pet")
+		else
+			DCP_EventFrame:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
+		end
+
+		if not E.Modern then
+			if doomdb.pet then
+				DCP_EventFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+			else
+				DCP_EventFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 			end
+		end
 
-			if (elapsed > 0.05) then
-				elapsed = 0
-				for i,v in pairs(watching) do
-					if (GetTime() >= v[1] + 0.5) then
-						local getCooldownDetails
-						if (v[2] == "spell") then
-							getCooldownDetails = memorize(function()
-								local cooldowntable = GetSpellCooldown(v[3])
-								local spelltable = GetSpellInfo(v[3])
-								return {
-									name = spelltable.name,
-									texture = spelltable.iconID,
-									start = cooldowntable.startTime,
-									duration = cooldowntable.duration,
-									enabled = cooldowntable.isEnabled
-								}
-							end)
-						elseif (v[2] == "item") then
-							getCooldownDetails = memorize(function()
-								local start, duration, enabled = GetItemCooldown(i)
-								return {
-									name = GetItemInfo(i),
-									texture = v[3],
-									start = start,
-									duration = duration,
-									enabled = enabled
-								}
-							end)
-						elseif (v[2] == "pet") then
-							getCooldownDetails = memorize(function()
-								local name, texture = GetPetActionInfo(v[3])
-								local start, duration, enabled = GetPetActionCooldown(v[3])
-								return {
-									name = name,
-									texture = texture,
-									isPet = true,
-									start = start,
-									duration = duration,
-									enabled = enabled
-								}
-							end)
-						end
+		if not self.DoomInitialized then
+			DCP_EventFrame:SetScript("OnEvent", function(selftable, event, ...) selftable[event](selftable, ...) end)
 
-						local cooldown = getCooldownDetails()
-						if E.db.ElvUI_EltreumUI.skins.doom.allowing then
-							if not listedSpells[tostring(i)] then
-								watching[i] = nil
-							else
-								if (cooldown.enabled ~= 0) then
-									if E.db.ElvUI_EltreumUI.skins.doom.gracelimit ~= 0 then
-										if cooldown.duration and cooldown.texture then
-											if (cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod) and (cooldown.duration <= E.db.ElvUI_EltreumUI.skins.doom.gracelimit) then --controls grace period
-												cooldowns[i] = getCooldownDetails
-											end
-										end
-									else
-										if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
-											cooldowns[i] = getCooldownDetails
-										end
-									end
-								end
-								if (not (cooldown.enabled == 0 and v[2] == "spell")) then
-									watching[i] = nil
-								end
-							end
-						elseif E.db.ElvUI_EltreumUI.skins.doom.ignoring then
-							if listedSpells[tostring(i)] then
-								watching[i] = nil
-							else
-								if (cooldown.enabled ~= 0) then
-									if E.db.ElvUI_EltreumUI.skins.doom.gracelimit ~= 0 then
-										if cooldown.duration and cooldown.texture then
-											if (cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod) and (cooldown.duration <= E.db.ElvUI_EltreumUI.skins.doom.gracelimit) then --controls grace period
-												cooldowns[i] = getCooldownDetails
-											end
-										end
-									else
-										if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
-											cooldowns[i] = getCooldownDetails
-										end
-									end
-								end
-								if (not (cooldown.enabled == 0 and v[2] == "spell")) then
-									watching[i] = nil
+			function DCP_EventFrame:SPELL_UPDATE_COOLDOWN()
+				if next(waitingEnableSpells) then
+					local now = GetTime()
+					for i, v in pairs(waitingEnableSpells) do
+						if (now - v.castTime) > 300 then
+							waitingEnableSpells[i] = nil
+							ReleaseTable(v)
+						else
+							local status, start, duration = QueryEntryCooldown(v)
+							if status ~= "DISABLED" then
+								waitingEnableSpells[i] = nil
+								if PromoteEntryToCooldown(i, v, status, start, duration) then
+									StartOnUpdate()
 								end
 							end
 						end
 					end
 				end
-				for i,getCooldownDetails in pairs(cooldowns) do
-					local cooldown = getCooldownDetails()
-					if not cooldown.start then return end
-					local remaining = cooldown.duration-(GetTime()-cooldown.start)
-					if (remaining <= 0) then
-						tinsert(animating, {cooldown.texture,cooldown.isPet,cooldown.name})
-						cooldowns[i] = nil
-					end
-				end
-				if (#animating == 0 and tcount(watching) == 0 and tcount(cooldowns) == 0) then
-					DCP:SetScript("OnUpdate", nil)
-					return
+				if not next(cooldowns) then return end
+				for _, cd in pairs(cooldowns) do
+					cd.dirty = true
 				end
 			end
+			DCP_EventFrame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
 
-			if (#animating > 0) and not _G.IsInCinematicScene() then
-				runtimer = runtimer + update
-				if (runtimer > (E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime + E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime)) then
-					tremove(animating,1)
-					runtimer = 0
-					DCP.TextFrame:SetText(nil)
-					DCPT:SetTexture(nil)
-					DCP.shadow:SetAlpha(0)
-					DCPT:SetVertexColor(1,1,1)
-				else
-					if (not DCPT:GetTexture()) then
-						if (animating[1][3] ~= nil and E.db.ElvUI_EltreumUI.skins.doom.showSpellName) then
-							DCP.TextFrame:SetText(animating[1][3])
-						end
-						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], 1, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume, true)
+			function DCP_EventFrame:PET_BAR_UPDATE_COOLDOWN()
+				if not next(cooldowns) then return end
+				for _, cd in pairs(cooldowns) do
+					if cd.isPet then
+						cd.dirty = true
+					end
+				end
+			end
+			DCP_EventFrame:RegisterEvent("PET_BAR_UPDATE_COOLDOWN")
+
+			function DCP_EventFrame:PLAYER_EQUIPMENT_CHANGED()
+				RefreshEquippedUsableItems()
+			end
+			DCP_EventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+
+			function DCP_EventFrame:BAG_UPDATE_COOLDOWN()
+				for _, cd in pairs(cooldowns) do
+					if cd.cooldownType == "item" then
+						cd.dirty = true
+					end
+				end
+				if doomdb.allowing and not next(listedSpells) then return end
+				--only scan cached slots that actually hold usable items (trinkets, engineering tinkers, etc.)
+				for _, itemID in pairs(equippedUsableItems) do
+					if not watching[itemID] and not cooldowns[itemID] then
+						local status, start, duration = EltruismItemCooldown(ElvUI_EltreumUI, itemID)
+						if (status == "EXACT" and duration > 1.5 and (GetTime() - start) < 1.5) or status == "SECRET" then
+							local name, texture = GetDoomItemInfo(itemID)
+							if name and texture and PassesFilter(itemID, nil, name) then
+								local entry = AcquireTable()
+								entry.castTime = GetTime()
+								entry.cooldownType = "item"
+								entry.id = itemID
+								entry.texture = texture
+								entry.infoResolved = false
+								entry.overrideResolved = false
+								entry.isPet = false
+								watching[itemID] = entry
+								StartOnUpdate()
 							end
 						end
-						DCPT:SetTexture(animating[1][1])
-						DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
-						if animating[1][2] then
-							DCPT:SetVertexColor(unpack(petOverlay))
-						end
 					end
-
-					--weird dlarge issue with alpha
-					local alpha, alphaHolder
-					if E.db.ElvUI_EltreumUI.skins.doom.maxAlpha then
-						alphaHolder = tonumber(E.db.ElvUI_EltreumUI.skins.doom.maxAlpha)
-					else
-						alphaHolder = 0.7
-					end
-					alpha = alphaHolder
-					if (runtimer < E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) then
-						alpha = alphaHolder * (runtimer / E.db.ElvUI_EltreumUI.skins.doom.fadeInTime)
-						if alpha < 0 then alpha = 0 end
-						if alpha > 1 then alpha = 1 end
-					elseif (runtimer >= E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime) then
-						alpha = alphaHolder - ( alphaHolder * ((runtimer - E.db.ElvUI_EltreumUI.skins.doom.holdTime - E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) / E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))
-						if alpha < 0 then alpha = 0 end
-						if alpha > 1 then alpha = 1 end
-					end
-					DCP:SetAlpha(alpha)
-					DCP.shadow:SetAlpha(alpha)
-					local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1)*(runtimer/(E.db.ElvUI_EltreumUI.skins.doom.fadeInTime+E.db.ElvUI_EltreumUI.skins.doom.holdTime+E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))))
-					DCP:SetWidth(scale)
-					DCP:SetHeight(scale)
 				end
 			end
-		end
+			DCP_EventFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
 
-		--------------------
-		-- Event Handlers --
-		--------------------
-
-		function DCP:SPELL_UPDATE_COOLDOWN()
-			for _, getCooldownDetails in pairs(cooldowns) do
-				getCooldownDetails.resetCache()
-			end
-		end
-		DCP:RegisterEvent("SPELL_UPDATE_COOLDOWN")
-
-		function DCP:UNIT_SPELLCAST_SUCCEEDED(unit,_,spellID)
-			if (unit == "player") then
-				watching[spellID] = {GetTime(),"spell",spellID}
-				self:SetScript("OnUpdate", OnUpdate)
-			end
-		end
-		DCP:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
-
-		function DCP:COMBAT_LOG_EVENT_UNFILTERED()
-			local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()
-			if (event == "SPELL_CAST_SUCCESS") then
-				if (_G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_TYPE_PET) == _G.COMBATLOG_OBJECT_TYPE_PET and _G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_AFFILIATION_MINE) == _G.COMBATLOG_OBJECT_AFFILIATION_MINE) then
-					local name
-					local spelltable = GetSpellInfo(spellID)
-					name = spelltable.name
+			function DCP_EventFrame:UNIT_SPELLCAST_SUCCEEDED(unit,_,spellID)
+				if not spellID or not E:NotSecretValue(spellID) then return end
+				if (unit == "player") then
+					local entry = watching[spellID] or AcquireTable()
+					entry.castTime = GetTime()
+					entry.cooldownType = "spell"
+					entry.id = spellID
+					entry.spellID = spellID
+					entry.infoResolved = false
+					entry.overrideResolved = false
+					entry.isPet = false
+					watching[spellID] = entry
+					StartOnUpdate()
+				elseif (unit == "pet") and doomdb.pet then
+					local name, texture = GetDoomSpellInfo(spellID)
 					local index = GetPetActionIndexByName(name)
+					local entry = watching[spellID] or AcquireTable()
+					entry.castTime = GetTime()
+					entry.id = spellID
+					entry.spellID = spellID
+					entry.infoResolved = false
+					entry.overrideResolved = false
+					entry.isPet = true
 					if index then
-						watching[spellID] = {GetTime(),"pet",index}
-					elseif spellID then
-						watching[spellID] = {GetTime(),"spell",spellID}
+						entry.cooldownType = "pet"
+						entry.petIndex = index
+						entry.name = name
+						entry.texture = texture
 					else
-						return
+						entry.cooldownType = "spell"
 					end
-					self:SetScript("OnUpdate", OnUpdate)
+					watching[spellID] = entry
+					StartOnUpdate()
 				end
 			end
-		end
-		if E.db.ElvUI_EltreumUI.skins.doom.pet then
-			DCP:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-		end
 
-		function DCP:PLAYER_ENTERING_WORLD()
-			local inInstance,instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,nil,true)
-			if (inInstance and instanceType == "arena") then
-				self:SetScript("OnUpdate", nil)
-				wipe(cooldowns)
-				wipe(watching)
+			function DCP_EventFrame:COMBAT_LOG_EVENT_UNFILTERED()
+				local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()
+				if (event == "SPELL_CAST_SUCCESS") then
+					if (_G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_TYPE_PET) == _G.COMBATLOG_OBJECT_TYPE_PET and _G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_AFFILIATION_MINE) == _G.COMBATLOG_OBJECT_AFFILIATION_MINE) then
+						local name = GetDoomSpellInfo(spellID)
+						local index = GetPetActionIndexByName(name)
+						if index then
+							local entry = watching[spellID] or AcquireTable()
+							entry.castTime = GetTime()
+							entry.cooldownType = "pet"
+							entry.id = spellID
+							entry.spellID = spellID
+							entry.infoResolved = false
+							entry.overrideResolved = false
+							entry.petIndex = index
+							entry.isPet = true
+							watching[spellID] = entry
+						elseif spellID then
+							local entry = watching[spellID] or AcquireTable()
+							entry.castTime = GetTime()
+							entry.cooldownType = "spell"
+							entry.id = spellID
+							entry.spellID = spellID
+							entry.infoResolved = false
+							entry.overrideResolved = false
+							entry.isPet = true
+							watching[spellID] = entry
+						else
+							return
+						end
+						StartOnUpdate()
+					end
+				end
 			end
+
+			function DCP_EventFrame:PLAYER_ENTERING_WORLD()
+				RefreshEquippedUsableItems()
+				local inInstance,instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,nil,true)
+				if (inInstance and instanceType == "arena") then
+					self:SetScript("OnUpdate", nil)
+					for k, v in pairs(cooldowns) do
+						cooldowns[k] = nil
+						ReleaseTable(v)
+					end
+					for k, v in pairs(watching) do
+						watching[k] = nil
+						ReleaseTable(v)
+					end
+					for k, v in pairs(waitingEnableSpells) do
+						waitingEnableSpells[k] = nil
+						ReleaseTable(v)
+					end
+					for i = #animating, 1, -1 do
+						ReleaseTable(tremove(animating, i))
+					end
+				end
+			end
+			DCP_EventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+
+			self.DoomInitialized = true
 		end
-		DCP:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 		if not self.DoomHooksRegistered then
+			local function WatchItem(item, fallbackTexture)
+				local _, texture, itemID = GetDoomItemInfo(item)
+				if itemID then
+					local entry = watching[itemID] or AcquireTable()
+					entry.castTime = GetTime()
+					entry.cooldownType = "item"
+					entry.id = itemID
+					entry.texture = texture or fallbackTexture
+					entry.infoResolved = false
+					entry.overrideResolved = false
+					entry.isPet = false
+					watching[itemID] = entry
+					StartOnUpdate()
+				end
+			end
+
 			hooksecurefunc("UseAction", function(slot)
 				local actionType,itemID = GetActionInfo(slot)
 				if (actionType == "item") then
-					local texture = GetActionTexture(slot)
-					watching[itemID] = {GetTime(),"item",texture}
+					WatchItem(itemID, GetActionTexture(slot))
+				elseif (actionType == "macro") and GetMacroItem then
+					local _, macroItemLink = GetMacroItem(itemID)
+					if macroItemLink then
+						WatchItem(macroItemLink, GetActionTexture(slot))
+					end
 				end
 			end)
 
 			hooksecurefunc("UseInventoryItem", function(slot)
 				local itemID = GetInventoryItemID("player", slot)
 				if (itemID) then
-					local texture = GetInventoryItemTexture("player", slot)
-					watching[itemID] = {GetTime(),"item",texture}
+					WatchItem(itemID, GetInventoryItemTexture("player", slot))
 				end
 			end)
 
-			hooksecurefunc(_G.C_Container, "UseContainerItem", function(bag,slot)
-				local itemID = _G.C_Container.GetContainerItemID(bag, slot)
+			if C_Container and C_Container.UseContainerItem then
+				hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
+					local itemID = C_Container.GetContainerItemID(bag, slot)
+					if (itemID) then
+						WatchItem(itemID)
+					end
+				end)
+			end
 
-				if (itemID) then
-					local texture = select(10, GetItemInfo(itemID))
-					watching[itemID] = {GetTime(),"item",texture}
-				end
-			end)
+			if C_Item and C_Item.UseItemByName then
+				hooksecurefunc(C_Item, "UseItemByName", function(item)
+					WatchItem(item)
+				end)
+			elseif _G.UseItemByName then
+				hooksecurefunc("UseItemByName", function(item)
+					WatchItem(item)
+				end)
+			end
+
+			if _G.CastPetAction then
+				hooksecurefunc("CastPetAction", function(index)
+					if E.db.ElvUI_EltreumUI.skins.doom.pet and index then
+						local name, texture, _, _, _, _, petSpellID = GetPetActionInfo(index)
+						local key = petSpellID or ("pet"..index)
+						local entry = watching[key] or AcquireTable()
+						entry.castTime = GetTime()
+						entry.cooldownType = "pet"
+						entry.id = key
+						entry.spellID = petSpellID
+						entry.infoResolved = false
+						entry.overrideResolved = false
+						entry.petIndex = index
+						entry.name = name
+						entry.texture = texture
+						entry.isPet = true
+						watching[key] = entry
+						StartOnUpdate()
+					end
+				end)
+			end
+
 			self.DoomHooksRegistered = true
 		end
 	end

@@ -18,7 +18,7 @@ local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpe
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 		ElvUI_EltreumUI:CastCursor()
-		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown and not E.Modern then
+		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown then
 			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 		end
 	end

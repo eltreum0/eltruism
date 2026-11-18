@@ -37,9 +37,6 @@ local SOUNDKIT = _G.SOUNDKIT
 local StaticPopupDialogs = _G.StaticPopupDialogs
 local ceil = _G.ceil
 local BuffFrame = _G.BuffFrame
-local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
-local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
-local select = _G.select
 local type = _G.type
 local UnitClass = _G.UnitClass
 local GetActiveSpecGroup = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetActiveSpecGroup
@@ -842,60 +839,6 @@ function ElvUI_EltreumUI:ReforgedCheck(setting)
 	return false
 end
 
-function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
-	if ShapeshiftFormID then
-		if GetShapeshiftFormInfo(1) then
-			spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
-			if spellID then
-				local spellData = GetSpellInfo(spellID)
-				if spellData.name then
-					return spellData.name
-				else
-					return ""
-				end
-			else
-				return ""
-			end
-		else
-			return ""
-		end
-	elseif spellID then
-		local spellData = GetSpellInfo(spellID)
-		return spellData.name
-	end
-end
-
-local GetOverrideSpell = _G.C_Spell and _G.C_Spell.GetOverrideSpell
-local C_Spell_GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo
-function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
-	if not spellID then return end
-	if GetOverrideSpell then
-		local override = GetOverrideSpell(spellID)
-		if override and override ~= 0 then
-			spellID = override
-		end
-	end
-	if C_Spell_GetSpellInfo then
-		local spellData = C_Spell_GetSpellInfo(spellID)
-		if spellData then
-			if type(spellData) == "table" then
-				return spellData.name, spellData.spellID, spellData.iconID
-			else
-				return "UNKNOWN", 187874, 136244--fallback value
-			end
-		end
-	end
-	if type(GetSpellInfo) == "function" then
-		local name, _, icon = GetSpellInfo(spellID)
-		if type(name) == "table" then
-			return name.name, name.spellID, name.iconID
-		elseif type(name) == "string" then
-			return name, spellID, icon
-		end
-	end
-	return
-end
-
 do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
 	local shortenSuffix = function(t) return t:utf8sub(1,1)..'.' end
@@ -1358,12 +1301,11 @@ function ElvUI_EltreumUI:GetTargetUnit(unit)
 	return targetUnitCache[unit]
 end
 
-local isModern = E.Modern
 local canaccessvalue = _G.canaccessvalue
 function ElvUI_EltreumUI:IsThisASafeSecret(value, hasValue, isBG)
 	if hasValue then
 		return canaccessvalue(value)
-	elseif isModern then
+	elseif E.Modern then
 		if isBG then
 			return not isPvP
 		else
