@@ -14,20 +14,21 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added an option to hide the Blizzard Ranged Swing Timer in Forever when no timer is active
+Added a Secret Tracker datatext to Retail and Forever in order monitor active addon restriction states
+Added a command (/eltruism newchar) to run Chat Setup, CVars, and Edit Mode on alts
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated DBM skin to match Ace3 styling, optimizing bar and timer hooks, textures, and options
-Updated performance across shadows, unitframes, gradients, borders, tooltips, and nameplates
-Updated keystone commands (/!key and /!keys) to improve detection and bag scanning
-Updated specialization detection to better support Retail, Forever, and Classic
-Updated Stats datatext to cache calculations and support Devourer Demon Hunters
-Updated [eltruism:leader] and [eltruism:leader:emoji] tags with secret checks
-Updated HereBeDragons pin masking on the rectangle minimap for Questie
+Updated ActionBar vehicle and override paging in Forever for GamePad UI compatibility (requires ElvUI dev or future 16.02+)
+Updated F.A.Q tab, renaming it to Help with organized categories, updated answers, and quick actions
+Updated Objective Tracker anchor to better position itself after a level up in Forever and Retail
+Updated Enemy NPC nameplate castbar target settings to use ElvUI's separate target display
+Updated Cursor Cooldown to once again work in Retail and Forever
+Updated Cooldown Pulse to once again work in Retail and Forever
+Updated Damage Meter Skin, enabling Specialization Icons again
 Updated Localizations
 ]], 5, "small", nil, nil, nil, nil, "full")
 
@@ -35,13 +36,7 @@ Updated Localizations
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed portrait models and custom textures continuing to show when portraits are disabled
-Fixed leader and assist icons not displaying properly across unitframes and group frames
-Fixed custom sound errors in DBM profiles by utilizing Voice Encounter Mods
-Fixed ammo text not displaying in Forever and other versions that have ammo
-Fixed avoidance calculations in Classic when defense values are secret
-Fixed stance detection and bar switching in dynamic functions
-Fixed Player and Target of Target Dispel Glow
+Fixed button and tab text staying yellow after clicking or hovering a Button
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other
