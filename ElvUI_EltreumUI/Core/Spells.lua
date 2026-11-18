@@ -45,10 +45,10 @@ function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
 end
 
 function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
-	if not spellID then return end
+	if not spellID or not E:NotSecretValue(spellID) then return end
 	if GetOverrideSpell then
 		local override = GetOverrideSpell(spellID)
-		if override and override ~= 0 then
+		if override and E:NotSecretValue(override) and override ~= 0 then
 			spellID = override
 		end
 	end
@@ -56,7 +56,9 @@ function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
 		local spellData = C_Spell_GetSpellInfo(spellID)
 		if spellData then
 			if type(spellData) == "table" then
-				return spellData.name, spellData.spellID, spellData.iconID
+				local resolvedID = (spellData.spellID and E:NotSecretValue(spellData.spellID)) and spellData.spellID or spellID
+				local resolvedName = (spellData.name and E:NotSecretValue(spellData.name)) and spellData.name or nil
+				return resolvedName, resolvedID, spellData.iconID
 			else
 				return "UNKNOWN", 187874, 136244--fallback value
 			end
@@ -66,7 +68,9 @@ function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
 	if type(LegacyGetSpellInfo) == "function" then
 		local name, _, icon = LegacyGetSpellInfo(spellID)
 		if type(name) == "table" then
-			return name.name, name.spellID, name.iconID
+			local resolvedID = (name.spellID and E:NotSecretValue(name.spellID)) and name.spellID or spellID
+			local resolvedName = (name.name and E:NotSecretValue(name.name)) and name.name or nil
+			return resolvedName, resolvedID, name.iconID
 		elseif type(name) == "string" then
 			return name, spellID, icon
 		end

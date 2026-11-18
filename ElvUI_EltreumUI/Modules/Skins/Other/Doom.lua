@@ -88,9 +88,9 @@ local function GetDoomItemInfo(item)
 end
 
 local function IsEntryListed(key, altID, name)
-	if listedSpells[tostring(key)] then return true end
-	if altID and listedSpells[tostring(altID)] then return true end
-	if name and listedSpells[name] then return true end
+	if key and E:NotSecretValue(key) and listedSpells[tostring(key)] then return true end
+	if altID and E:NotSecretValue(altID) and listedSpells[tostring(altID)] then return true end
+	if name and E:NotSecretValue(name) and listedSpells[name] then return true end
 	return false
 end
 
@@ -127,7 +127,8 @@ end
 local function GetPetActionIndexByName(name)
 	if not name or not E:NotSecretValue(name) then return nil end
 	for i=1, _G.NUM_PET_ACTION_SLOTS, 1 do
-		if (GetPetActionInfo(i) == name) then
+		local petName = GetPetActionInfo(i)
+		if petName and E:NotSecretValue(petName) and (petName == name) then
 			return i
 		end
 	end
@@ -236,9 +237,11 @@ local function OnUpdate(_,update)
 						v.texture = v.texture or itemTex
 					elseif v.cooldownType == "pet" then
 						local petName, petTex, _, _, _, _, petSpellID = GetPetActionInfo(v.petIndex)
-						v.name = petName or v.name
+						if petName and E:NotSecretValue(petName) then
+							v.name = petName
+						end
 						v.texture = petTex or v.texture
-						if petSpellID then
+						if petSpellID and E:NotSecretValue(petSpellID) then
 							v.spellID = petSpellID
 						end
 					end
@@ -339,7 +342,7 @@ local function OnUpdate(_,update)
 				if (currentAnim[3] ~= nil and doomdb.showSpellName) then
 					DCP.TextFrame:SetText(currentAnim[3])
 				end
-				if doomdb.tts and currentAnim[3] then
+				if doomdb.tts and currentAnim[3] and E:NotSecretValue(currentAnim[3]) then
 					if doomdb.ttsvoice ~= nil then
 						C_VoiceChat.SpeakText(doomdb.ttsvoice, currentAnim[3], 1, doomdb.ttsvolume, true)
 					end
@@ -702,16 +705,17 @@ function ElvUI_EltreumUI:Doom()
 				hooksecurefunc("CastPetAction", function(index)
 					if E.db.ElvUI_EltreumUI.skins.doom.pet and index then
 						local name, texture, _, _, _, _, petSpellID = GetPetActionInfo(index)
-						local key = petSpellID or ("pet"..index)
+						local safePetSpellID = (petSpellID and E:NotSecretValue(petSpellID)) and petSpellID or nil
+						local key = safePetSpellID or ("pet"..index)
 						local entry = watching[key] or AcquireTable()
 						entry.castTime = GetTime()
 						entry.cooldownType = "pet"
 						entry.id = key
-						entry.spellID = petSpellID
+						entry.spellID = safePetSpellID
 						entry.infoResolved = false
 						entry.overrideResolved = false
 						entry.petIndex = index
-						entry.name = name
+						entry.name = (name and E:NotSecretValue(name)) and name or nil
 						entry.texture = texture
 						entry.isPet = true
 						watching[key] = entry
