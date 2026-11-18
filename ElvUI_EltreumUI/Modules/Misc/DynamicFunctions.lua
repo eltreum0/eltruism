@@ -274,7 +274,15 @@ function ElvUI_EltreumUI:SetActionBarPaging(bar)
 	local paging = getBarPagingTable(bar)
 	if not paging then return end
 
-	local pagingBase = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16; [bonusbar:5] 11;"
+	local vehicleBase
+	if E.Classic then
+		vehicleBase = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
+	elseif E.Forever then
+		vehicleBase = "[overridebar] 33; [vehicleui] 31; [possessbar] 31;" --due to gamepad ui shifting paging around
+	else
+		vehicleBase = "[overridebar] 18; [vehicleui] 16; [possessbar] 16;"
+	end
+	local pagingBase = (E.Classic or E.Forever) and vehicleBase or vehicleBase.." [bonusbar:5] 11;"
 
 	paging.DEATHKNIGHT = pagingBase
 	paging.DEMONHUNTER = pagingBase
@@ -286,23 +294,16 @@ function ElvUI_EltreumUI:SetActionBarPaging(bar)
 
 	--stance/form-based classes
 	paging.WARRIOR = pagingBase.." [stance:1] 7; [stance:2] 8; [stance:3] 9;"
-	paging.WARLOCK = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [form:1] 7;" or pagingBase
+	paging.WARLOCK = E.Classic and pagingBase.." [form:1] 7;" or pagingBase
+	paging.PRIEST = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 16; [stance:1] 7;" or (E.Forever and pagingBase.." [form:1] 7;" or pagingBase)
+	paging.EVOKER = pagingBase.." [bonusbar:1] 7;"
 
 	--rogue
-	local rogueVehicle = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[overridebar] 18; [vehicleui] 16; [possessbar] 16;"
-	paging.ROGUE = "[bonusbar:1] 7; [bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; "..rogueVehicle.." [bonusbar:2] 8; [bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
+	paging.ROGUE = "[bonusbar:1] 7; [bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; "..vehicleBase.." [bonusbar:2] 8; [bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
 
 	--druid
-	local druidVehicle = E.Classic and "[vehicleui] 12; [overridebar] 14; [possessbar] 12;" or "[vehicleui] 16; [overridebar] 18; [possessbar] 16;"
+	local druidVehicle = (E.Classic or E.Forever) and vehicleBase or "[vehicleui] 16; [overridebar] 18; [possessbar] 16;"
 	paging.DRUID = druidVehicle.." [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10; [bonusbar:5] 11;"
-
-	--priest and evoker
-	if E.Classic then
-		paging.PRIEST = "[vehicleui] 12; [overridebar] 14; [possessbar] 16; [stance:1] 7;"
-	else
-		paging.PRIEST = E.Forever and "[overridebar] 33; [vehicleui] 31; [possessbar] 31; [form:1] 7;" or pagingBase --due to gamepad ui shifting paging around
-		paging.EVOKER = pagingBase.." [bonusbar:1] 7;"
-	end
 end
 
 --swap bar1 and bar4 action paging / visibility
