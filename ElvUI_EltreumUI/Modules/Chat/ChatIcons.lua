@@ -18,227 +18,234 @@ local C_ClassColor_GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassC
 local DiscordDisplayNameType = Enum.DiscordDisplayNameType
 local GetQuestDifficultyColor = _G.GetQuestDifficultyColor
 
+--Eltreum
+--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
+local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodev.tga:0:0:0:0|t"
+local EltreumCharacters = {
+
+	--Retail Alliance
+	["Player-60-0B62BF9C"] = EltreumIcon,
+	["Player-60-0BBBFF11"] = EltreumIcon,
+	["Player-60-0CDCC518"] = EltreumIcon,
+	["Player-60-0D00D78E"] = EltreumIcon,
+	["Player-60-0DBEDC14"] = EltreumIcon,
+	["Player-60-0DEBE0B7"] = EltreumIcon,
+	["Player-60-0DEC3E9C"] = EltreumIcon,
+	["Player-60-0DECCECB"] = EltreumIcon,
+	["Player-60-0DEDEAAD"] = EltreumIcon,
+	["Player-60-0DEDFB0A"] = EltreumIcon,
+	["Player-60-0DFAC76D"] = EltreumIcon,
+	["Player-60-0DFAC842"] = EltreumIcon,
+	["Player-60-0DFAC92E"] = EltreumIcon,
+	["Player-60-0DFD7A01"] = EltreumIcon,
+	["Player-60-0E06D642"] = EltreumIcon,
+	["Player-60-0EDC440B"] = EltreumIcon,
+
+	--Retail Horde
+	["Player-3676-09816781"] = EltreumIcon,
+	["Player-3676-0984E6B5"] = EltreumIcon,
+	["Player-3676-0987AC00"] = EltreumIcon,
+	["Player-3676-099EF991"] = EltreumIcon,
+	["Player-3676-0DF62D9C"] = EltreumIcon,
+
+	--other
+	["Player-100-0DED4208"] = EltreumIcon,
+
+	--MOP
+	["Player-4385-05E59530"] = EltreumIcon,
+	["Player-4385-05E598E3"] = EltreumIcon,
+	["Player-4385-05E59B67"] = EltreumIcon,
+	["Player-4385-05E6F7FE"] = EltreumIcon,
+
+	--Era Hardcore
+	["Eltreum-DefiasPillager"] = EltreumIcon,
+
+	--Era Season of Discovery
+	["Player-5815-029B0939"] = EltreumIcon,
+	["Player-5815-02ABCE57"] = EltreumIcon,
+	["Player-5815-02ABCED4"] = EltreumIcon,
+	["Player-5815-02ABD315"] = EltreumIcon,
+	["Player-5815-02ABD3B9"] = EltreumIcon,
+	["Player-5815-02ABDC2E"] = EltreumIcon,
+	["Player-5815-02ABDDBF"] = EltreumIcon,
+
+	--Forever
+	["Player-6929-0074BBBD"] = EltreumIcon,
+	["Player-6929-0079A95E"] = EltreumIcon,
+	["Player-6929-00768470"] = EltreumIcon,
+	["Player-6929-00794E48"] = EltreumIcon,
+	["Player-6929-0078B796"] = EltreumIcon,
+	["Player-6929-00782E28"] = EltreumIcon,
+	["Player-6929-00778DC3"] = EltreumIcon,
+	["Player-6929-0076DE93"] = EltreumIcon,
+	["Player-6929-0075F7D2"] = EltreumIcon,
+}
+
+--Donators
+local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodonator.tga:0:0:0:0|t"
+local DonatorsCharacters = {
+	--jiberish
+	["Jiberish-Illidan"] = DonatorsIcon,
+	["Jiberishaman-Illidan"] = DonatorsIcon,
+	["Jiberishift-Illidan"] = DonatorsIcon,
+	["Jiberishadow-Illidan"] = DonatorsIcon,
+	["Jiberisheep-Illidan"] = DonatorsIcon,
+
+	--trenchy
+	["Grunchy-Thrall"] = DonatorsIcon,
+	["Trenchey-Thrall"] = DonatorsIcon,
+	["Trenchay-Thrall"] = DonatorsIcon,
+	["Trenchy-Thrall"] = DonatorsIcon,
+	["Trenchee-Thrall"] = DonatorsIcon,
+	["Trenchae-Thrall"] = DonatorsIcon,
+	["Trenchai-Thrall"] = DonatorsIcon,
+
+	--Dlarge
+	["Âlysiâ-Alleria"] = DonatorsIcon,
+	["Xâvius-Alleria"] = DonatorsIcon,
+	["Dractyron-Alleria"] = DonatorsIcon,
+	["Xândos-Alleria"] = DonatorsIcon,
+	["Môrphos-Alleria"] = DonatorsIcon,
+	["Âllandir-Alleria"] = DonatorsIcon,
+	["Xâdrilâ-Alleria"] = DonatorsIcon,
+	["Shiôla-Alleria"] = DonatorsIcon,
+	["Shâolîn-Alleria"] = DonatorsIcon,
+	["Gnomico-Alleria"] = DonatorsIcon,
+	["Sârâphyn-Alleria"] = DonatorsIcon,
+	["Xentario-Alleria"] = DonatorsIcon,
+	["Xântios-Alleria"] = DonatorsIcon,
+
+	--madlampy
+	["Vonbek-TarrenMill"] = DonatorsIcon,
+	["Vonhellzing-TarrenMill"] = DonatorsIcon,
+	["Raarmoo-TarrenMill"] = DonatorsIcon,
+	["Rosavonbek-TarrenMill"] = DonatorsIcon,
+
+	--greevir
+	["Greevir-Skywall"] = DonatorsIcon,
+	["Greebur-Skywall"] = DonatorsIcon,
+	["Greevir-Westfall"] = DonatorsIcon,
+	["Greebur-Westfall"] = DonatorsIcon,
+	["Greevur-Westfall"] = DonatorsIcon,
+	["Analrexia-Westfall"] = DonatorsIcon,
+	["Verstedruide-Westfall"] = DonatorsIcon,
+	["Verstekriger-Westfall"] = DonatorsIcon,
+	["Greevir-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Slaehretaw-Maladath"] = DonatorsIcon,
+	["Greevir-Maladath"] = DonatorsIcon,
+
+	--necator
+	["Necator-Benediction"] = DonatorsIcon,
+
+	--biovenom
+	["Bòóbs-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Bôôbs-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Bôôm-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Bóòbs-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Bõõbs-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Bööbs-Bloodsail Buccaneers"] = DonatorsIcon,
+	["NÏpples-Bloodsail Buccaneers"] = DonatorsIcon,
+	["Biovenom-Bloodsail Buccaneers"] = DonatorsIcon,
+
+	--Ante
+	["Boss-TarrenMill"] = DonatorsIcon,
+	["Viper-TarrenMill"] = DonatorsIcon,
+	["Teddy-TarrenMill"] = DonatorsIcon,
+	["Soap-TarrenMill"] = DonatorsIcon,
+	["Snail-TarrenMill"] = DonatorsIcon,
+	["Pizza-TarrenMill"] = DonatorsIcon,
+	["Bee-TarrenMill"] = DonatorsIcon,
+	["Zeus-TarrenMill"] = DonatorsIcon,
+	["Demik-TarrenMill"] = DonatorsIcon,
+	["Stormer-TarrenMill"] = DonatorsIcon,
+	["Antitankie-TarrenMill"] = DonatorsIcon,
+	["Tarrenmonka-TarrenMill"] = DonatorsIcon,
+	["Vanishe-TarrenMill"] = DonatorsIcon,
+	["Angelina-TarrenMill"] = DonatorsIcon,
+	["Gigadudu-TarrenMill"] = DonatorsIcon,
+	["Tyrant-TarrenMill"] = DonatorsIcon,
+
+	--Spectated
+	["Spectated-Benediction"] = DonatorsIcon,
+
+	--Volo
+	["Völo-Benediction"] = DonatorsIcon,
+
+	--Jaraxal
+	["Grymley-Scilla"] = DonatorsIcon,
+
+	--Marynia
+	["Sarmyte-Azralon"] = DonatorsIcon,
+}
+
+--Discord MVPs
+local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogomvp.tga:0:0:0:0|t"
+local MVPCharacters = {
+	--Atwood
+	["Evowøød-Blackhand"] = MVPIcon,
+	["Evowøød-Antonidas"] = MVPIcon,
+
+	["Lockwøød-Blackhand"] = MVPIcon,
+	["Drwøød-Blackhand"] = MVPIcon,
+	["Shawøød-Blackhand"] = MVPIcon,
+	["Rowøød-Blackhand"] = MVPIcon,
+	["Prwøød-Blackhand"] = MVPIcon,
+	["Mawøød-Blackhand"] = MVPIcon,
+	["Huwøød-Blackhand"] = MVPIcon,
+	["Mokwøød-Blackhand"] = MVPIcon,
+	["Dawøød-Blackhand"] = MVPIcon,
+	["Palwøød-Blackhand"] = MVPIcon,
+	["Warwøød-Blackhand"] = MVPIcon,
+	["Dewøød-Blackhand"] = MVPIcon,
+	["Farmwøød-Blackhand"] = MVPIcon,
+
+	["Lockwøød-Antonidas"] = MVPIcon,
+	["Rowøød-Antonidas"] = MVPIcon,
+	["Warwøød-Antonidas"] = MVPIcon,
+	["Drwøød-Antonidas"] = MVPIcon,
+	["Mokwøød-Antonidas"] = MVPIcon,
+	["Palwøød-Antonidas"] = MVPIcon,
+	["Prwøød-Antonidas"] = MVPIcon,
+	["Mawøød-Antonidas"] = MVPIcon,
+	["Dawøød-Antonidas"] = MVPIcon,
+	["Huwøød-Antonidas"] = MVPIcon,
+	["Shawøød-Antonidas"] = MVPIcon,
+	["Dewøød-Antonidas"] = MVPIcon,
+	["Farmwøød-Antonidas"] = MVPIcon,
+
+	--Blinkii
+	["Raeldan-Thrall"] = MVPIcon,
+	["Blinkii-Thrall"] = MVPIcon,
+	["Flinkii-Thrall"] = MVPIcon,
+	["Zwerglii-Thrall"] = MVPIcon,
+	["Raeldan-Arygos"] = MVPIcon,
+	["Blinkii-Arygos"] = MVPIcon,
+	["Flinkii-Arygos"] = MVPIcon,
+	["Zwerglii-Arygos"] = MVPIcon,
+
+	--roxanne
+	["Roxanne-Blackrock"] = DonatorsIcon,
+}
+
+function ElvUI_EltreumUI:GetCharacterType(unit,Eltreum)
+	if not unit or not E:NotSecretValue(unit) then
+		if Eltreum then
+			return false
+		end
+		return
+	end
+	if Eltreum then
+		return EltreumCharacters[unit] and true or false
+	else
+		return EltreumCharacters[unit] or DonatorsCharacters[unit] or MVPCharacters[unit]
+	end
+end
+
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 	if E.db.ElvUI_EltreumUI.chat.AuthorMVPDonatorIcons and E.db.ElvUI_EltreumUI.chat.enable then
-
-		--Eltreum
-		--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
-		local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodev.tga:0:0:0:0|t"
-		local EltreumCharacters = {
-
-			--Retail Alliance
-			["Player-60-0B62BF9C"] = EltreumIcon,
-			["Player-60-0BBBFF11"] = EltreumIcon,
-			["Player-60-0CDCC518"] = EltreumIcon,
-			["Player-60-0D00D78E"] = EltreumIcon,
-			["Player-60-0DBEDC14"] = EltreumIcon,
-			["Player-60-0DEBE0B7"] = EltreumIcon,
-			["Player-60-0DEC3E9C"] = EltreumIcon,
-			["Player-60-0DECCECB"] = EltreumIcon,
-			["Player-60-0DEDEAAD"] = EltreumIcon,
-			["Player-60-0DEDFB0A"] = EltreumIcon,
-			["Player-60-0DFAC76D"] = EltreumIcon,
-			["Player-60-0DFAC842"] = EltreumIcon,
-			["Player-60-0DFAC92E"] = EltreumIcon,
-			["Player-60-0DFD7A01"] = EltreumIcon,
-			["Player-60-0E06D642"] = EltreumIcon,
-			["Player-60-0EDC440B"] = EltreumIcon,
-
-			--Retail Horde
-			["Player-3676-09816781"] = EltreumIcon,
-			["Player-3676-0984E6B5"] = EltreumIcon,
-			["Player-3676-0987AC00"] = EltreumIcon,
-			["Player-3676-099EF991"] = EltreumIcon,
-			["Player-3676-0DF62D9C"] = EltreumIcon,
-
-			--other
-			["Player-100-0DED4208"] = EltreumIcon,
-
-			--MOP
-			["Player-4385-05E59530"] = EltreumIcon,
-			["Player-4385-05E598E3"] = EltreumIcon,
-			["Player-4385-05E59B67"] = EltreumIcon,
-			["Player-4385-05E6F7FE"] = EltreumIcon,
-
-			--Era Hardcore
-			["Eltreum-DefiasPillager"] = EltreumIcon,
-
-			--Era Season of Discovery
-			["Player-5815-029B0939"] = EltreumIcon,
-			["Player-5815-02ABCE57"] = EltreumIcon,
-			["Player-5815-02ABCED4"] = EltreumIcon,
-			["Player-5815-02ABD315"] = EltreumIcon,
-			["Player-5815-02ABD3B9"] = EltreumIcon,
-			["Player-5815-02ABDC2E"] = EltreumIcon,
-			["Player-5815-02ABDDBF"] = EltreumIcon,
-
-			--Forever
-			["Player-6929-0074BBBD"] = EltreumIcon,
-			["Player-6929-0079A95E"] = EltreumIcon,
-			["Player-6929-00768470"] = EltreumIcon,
-			["Player-6929-00794E48"] = EltreumIcon,
-			["Player-6929-0078B796"] = EltreumIcon,
-			["Player-6929-00782E28"] = EltreumIcon,
-			["Player-6929-00778DC3"] = EltreumIcon,
-			["Player-6929-0076DE93"] = EltreumIcon,
-			["Player-6929-0075F7D2"] = EltreumIcon,
-		}
-
-		--Donators
-		local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodonator.tga:0:0:0:0|t"
-		local DonatorsCharacters = {
-			--jiberish
-			["Jiberish-Illidan"] = DonatorsIcon,
-			["Jiberishaman-Illidan"] = DonatorsIcon,
-			["Jiberishift-Illidan"] = DonatorsIcon,
-			["Jiberishadow-Illidan"] = DonatorsIcon,
-			["Jiberisheep-Illidan"] = DonatorsIcon,
-
-			--trenchy
-			["Grunchy-Thrall"] = DonatorsIcon,
-			["Trenchey-Thrall"] = DonatorsIcon,
-			["Trenchay-Thrall"] = DonatorsIcon,
-			["Trenchy-Thrall"] = DonatorsIcon,
-			["Trenchee-Thrall"] = DonatorsIcon,
-			["Trenchae-Thrall"] = DonatorsIcon,
-			["Trenchai-Thrall"] = DonatorsIcon,
-
-			--Dlarge
-			["Âlysiâ-Alleria"] = DonatorsIcon,
-			["Xâvius-Alleria"] = DonatorsIcon,
-			["Dractyron-Alleria"] = DonatorsIcon,
-			["Xândos-Alleria"] = DonatorsIcon,
-			["Môrphos-Alleria"] = DonatorsIcon,
-			["Âllandir-Alleria"] = DonatorsIcon,
-			["Xâdrilâ-Alleria"] = DonatorsIcon,
-			["Shiôla-Alleria"] = DonatorsIcon,
-			["Shâolîn-Alleria"] = DonatorsIcon,
-			["Gnomico-Alleria"] = DonatorsIcon,
-			["Sârâphyn-Alleria"] = DonatorsIcon,
-			["Xentario-Alleria"] = DonatorsIcon,
-			["Xântios-Alleria"] = DonatorsIcon,
-
-			--madlampy
-			["Vonbek-TarrenMill"] = DonatorsIcon,
-			["Vonhellzing-TarrenMill"] = DonatorsIcon,
-			["Raarmoo-TarrenMill"] = DonatorsIcon,
-			["Rosavonbek-TarrenMill"] = DonatorsIcon,
-
-			--greevir
-			["Greevir-Skywall"] = DonatorsIcon,
-			["Greebur-Skywall"] = DonatorsIcon,
-			["Greevir-Westfall"] = DonatorsIcon,
-			["Greebur-Westfall"] = DonatorsIcon,
-			["Greevur-Westfall"] = DonatorsIcon,
-			["Analrexia-Westfall"] = DonatorsIcon,
-			["Verstedruide-Westfall"] = DonatorsIcon,
-			["Verstekriger-Westfall"] = DonatorsIcon,
-			["Greevir-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Slaehretaw-Maladath"] = DonatorsIcon,
-			["Greevir-Maladath"] = DonatorsIcon,
-
-			--necator
-			["Necator-Benediction"] = DonatorsIcon,
-
-			--biovenom
-			["Bòóbs-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Bôôbs-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Bôôm-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Bóòbs-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Bõõbs-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Bööbs-Bloodsail Buccaneers"] = DonatorsIcon,
-			["NÏpples-Bloodsail Buccaneers"] = DonatorsIcon,
-			["Biovenom-Bloodsail Buccaneers"] = DonatorsIcon,
-
-			--Ante
-			["Boss-TarrenMill"] = DonatorsIcon,
-			["Viper-TarrenMill"] = DonatorsIcon,
-			["Teddy-TarrenMill"] = DonatorsIcon,
-			["Soap-TarrenMill"] = DonatorsIcon,
-			["Snail-TarrenMill"] = DonatorsIcon,
-			["Pizza-TarrenMill"] = DonatorsIcon,
-			["Bee-TarrenMill"] = DonatorsIcon,
-			["Zeus-TarrenMill"] = DonatorsIcon,
-			["Demik-TarrenMill"] = DonatorsIcon,
-			["Stormer-TarrenMill"] = DonatorsIcon,
-			["Antitankie-TarrenMill"] = DonatorsIcon,
-			["Tarrenmonka-TarrenMill"] = DonatorsIcon,
-			["Vanishe-TarrenMill"] = DonatorsIcon,
-			["Angelina-TarrenMill"] = DonatorsIcon,
-			["Gigadudu-TarrenMill"] = DonatorsIcon,
-			["Tyrant-TarrenMill"] = DonatorsIcon,
-
-			--Spectated
-			["Spectated-Benediction"] = DonatorsIcon,
-
-			--Volo
-			["Völo-Benediction"] = DonatorsIcon,
-
-			--Jaraxal
-			["Grymley-Scilla"] = DonatorsIcon,
-
-			--Marynia
-			["Sarmyte-Azralon"] = DonatorsIcon,
-		}
-
-		--Discord MVPs
-		local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogomvp.tga:0:0:0:0|t"
-		local MVPCharacters = {
-			--Atwood
-			["Evowøød-Blackhand"] = MVPIcon,
-			["Evowøød-Antonidas"] = MVPIcon,
-
-			["Lockwøød-Blackhand"] = MVPIcon,
-			["Drwøød-Blackhand"] = MVPIcon,
-			["Shawøød-Blackhand"] = MVPIcon,
-			["Rowøød-Blackhand"] = MVPIcon,
-			["Prwøød-Blackhand"] = MVPIcon,
-			["Mawøød-Blackhand"] = MVPIcon,
-			["Huwøød-Blackhand"] = MVPIcon,
-			["Mokwøød-Blackhand"] = MVPIcon,
-			["Dawøød-Blackhand"] = MVPIcon,
-			["Palwøød-Blackhand"] = MVPIcon,
-			["Warwøød-Blackhand"] = MVPIcon,
-			["Dewøød-Blackhand"] = MVPIcon,
-			["Farmwøød-Blackhand"] = MVPIcon,
-
-			["Lockwøød-Antonidas"] = MVPIcon,
-			["Rowøød-Antonidas"] = MVPIcon,
-			["Warwøød-Antonidas"] = MVPIcon,
-			["Drwøød-Antonidas"] = MVPIcon,
-			["Mokwøød-Antonidas"] = MVPIcon,
-			["Palwøød-Antonidas"] = MVPIcon,
-			["Prwøød-Antonidas"] = MVPIcon,
-			["Mawøød-Antonidas"] = MVPIcon,
-			["Dawøød-Antonidas"] = MVPIcon,
-			["Huwøød-Antonidas"] = MVPIcon,
-			["Shawøød-Antonidas"] = MVPIcon,
-			["Dewøød-Antonidas"] = MVPIcon,
-			["Farmwøød-Antonidas"] = MVPIcon,
-
-			--Blinkii
-			["Raeldan-Thrall"] = MVPIcon,
-			["Blinkii-Thrall"] = MVPIcon,
-			["Flinkii-Thrall"] = MVPIcon,
-			["Zwerglii-Thrall"] = MVPIcon,
-			["Raeldan-Arygos"] = MVPIcon,
-			["Blinkii-Arygos"] = MVPIcon,
-			["Flinkii-Arygos"] = MVPIcon,
-			["Zwerglii-Arygos"] = MVPIcon,
-
-			--roxanne
-			["Roxanne-Blackrock"] = DonatorsIcon,
-		}
-
 		CH:AddPluginIcons(function(unit)
-			if EltreumCharacters[unit] then
-				return EltreumCharacters[unit]
-			elseif DonatorsCharacters[unit] then
-				return DonatorsCharacters[unit]
-			elseif MVPCharacters[unit] then
-				return MVPCharacters[unit]
-			end
+			return ElvUI_EltreumUI:GetCharacterType(unit)
 		end)
 	end
 end

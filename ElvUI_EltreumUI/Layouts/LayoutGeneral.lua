@@ -3127,3 +3127,10 @@ function ElvUI_EltreumUI:CheckBackground()
 		ElvUI_EltreumUI:GreyBg()
 	end
 end
+
+--settings only for my characters
+function ElvUI_EltreumUI:EltreumCvars()
+	if ElvUI_EltreumUI:GetCharacterType(E.myguid) then
+		SetCVar('TTSUseCharacterSettings', 0) --make tts account wide
+	end
+end
