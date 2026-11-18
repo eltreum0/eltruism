@@ -1,6 +1,7 @@
 local E, _, _, P = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
+local tonumber = _G.tonumber
 
 -- Eltruism Custom Glow options
 function ElvUI_EltreumUI:CustomGlowOptions()

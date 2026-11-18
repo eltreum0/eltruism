@@ -15,6 +15,7 @@ local UnitCreatureType = _G.UnitCreatureType
 local InCombatLockdown = _G.InCombatLockdown
 local GetPetActionInfo = _G.GetPetActionInfo
 local CreateColor = _G.CreateColor
+local next = _G.next
 local glowMin = CreateColor(1, 1, 1, 1)
 local glowMax = CreateColor(1, 1, 1, 1)
 

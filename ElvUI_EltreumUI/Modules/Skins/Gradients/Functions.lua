@@ -6,6 +6,7 @@ local GetClassColor = _G.C_ClassColor and _G.C_ClassColor.GetClassColor or _G.Ge
 local CreateColor = _G.CreateColor
 local wipe = _G.wipe
 local pairs = _G.pairs
+local select = _G.select
 
 local gradientColorCache = {}
 local gradientCustomColorCache = {}

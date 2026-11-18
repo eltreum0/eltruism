@@ -2,9 +2,6 @@ local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
-local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel or _G.ChatFrameMixin.RemoveChannel
-local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups or _G.ChatFrameMixin.RemoveAllMessageGroups
-local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
 
 -- Eltruism installer options
 function ElvUI_EltreumUI:InstallerOptions()

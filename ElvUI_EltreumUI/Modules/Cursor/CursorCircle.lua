@@ -482,7 +482,7 @@ function ElvUI_EltreumUI:CastCursor()
 			if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0) end
 			if not InCombatLockdown() then
 				--print('cursorframe loaded')
-				collectgarbage()
+				_G.collectgarbage()
 				_G.ResetCPUUsage()
 				cursorframe:UnregisterAllEvents()
 				cursorframe:SetScript("OnEvent", nil)

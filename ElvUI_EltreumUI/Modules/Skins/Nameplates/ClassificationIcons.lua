@@ -14,6 +14,7 @@ local select = _G.select
 local strsplit = _G.strsplit
 local string = _G.string
 local stringformat = string.format
+local type = _G.type
 
 --based on blinkii's idea
 local bossIDs = {

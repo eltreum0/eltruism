@@ -270,10 +270,10 @@ function ElvUI_EltreumUI:RangedSwingTimerHide()
 	elseif not swingtimerloader then
 		swingtimerloader = CreateFrame("Frame")
 		swingtimerloader:RegisterEvent("ADDON_LOADED")
-		swingtimerloader:SetScript("OnEvent", function(self, _, addon)
+		swingtimerloader:SetScript("OnEvent", function(_, _, addon)
 			if addon == "Blizzard_SwingTimer" then
 				HookRangedSwingTimer()
-				self:UnregisterAllEvents()
+				swingtimerloader:UnregisterAllEvents()
 			end
 		end)
 	end
