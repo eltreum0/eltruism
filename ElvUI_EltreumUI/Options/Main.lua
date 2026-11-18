@@ -173,56 +173,139 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.linebreak5 = E.Libs.ACH:Group(" ", nil, 10)
 	ElvUI_EltreumUI.Options.args.linebreak5.disabled = true
 
-	--faq
-	ElvUI_EltreumUI.Options.args.faq = E.Libs.ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Frequently Asked Questions"], 12, 'tab')
-	ElvUI_EltreumUI.Options.args.faq.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\faq'
-	ElvUI_EltreumUI.Options.args.faq.args.faq = E.Libs.ACH:Group(E:TextGradient(L["Frequently Asked Questions"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 20)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q1 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the chat hide?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q1.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q1.args.answer = E.Libs.ACH:Description(L["If you are coming from a version before 2.3.0 then check ElvUI > Shadow and Light > Chat > Set Hide to None\nOtherwise, check Eltruism > Chat"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q2 = E.Libs.ACH:Group(E:TextGradient(L["After the Chat fades I still see some icons"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q2.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q2.args.answer = E.Libs.ACH:Description(L["This is a Blizzard bug that was found a long time ago"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q3 = E.Libs.ACH:Group(E:TextGradient(L["My chat hides when my mouse leaves it"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q3.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q3.args.answer = E.Libs.ACH:Description(L["Disable Mouse over in Eltruism > Chat"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q4 = E.Libs.ACH:Group(E:TextGradient(L["My chat hides after a few seconds"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q4.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q4.args.answer = E.Libs.ACH:Description(L["Disable Inactivity/Fader in Eltruism > Chat"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q5 = E.Libs.ACH:Group(E:TextGradient(L["My action bars and unitframes keep disappearing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q5.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q5.args.answer = E.Libs.ACH:Description(L["ElvUI > ActionBars > Player Bars > on each Bar disable Inherit Global Fade\nElvUI > Unitframes > Type of Unit > Unit > Fader, disable the fader"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q6 = E.Libs.ACH:Group(E:TextGradient(L["My Details! window disappears after combat!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q6.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q6.args.answer = E.Libs.ACH:Description(L["If you have AddOnSkins then go to ElvUI > AddOnSkins > Embed Settings > Turn off Out of Combat (Hide)\nIf details is showing up on top of the trade chat, try going to AddOnSkins > Embed Settings and making sure that its hiding the Trade/Loot chat, you can also right click the > arrow in order to toggle the details embed.\nIf you do not have AddOnSkins then go to Eltruism > Skins > Addons > Details > Embed > Hide out of Combat, you can also change the amount of time it takes for it to hide.\nIn either AddOnSkins or Eltruism embeds you can also Right Click the Chat Toggle (the Arrow [ > ] on the bottom right) to Toggle the Visibility\nA shortcut to disabling the combat hide is /eltruism detailshide"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7 = E.Libs.ACH:Group(E:TextGradient(L["Music keeps playing when AFK"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.args.answer = E.Libs.ACH:Description(L["Disable the AFK music in Eltruism > AFK in order to stop the music from playing"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7 = E.Libs.ACH:Group(E:TextGradient(L["How do I make bar 1 my action paging bar instead of bar 4?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.args.answer = E.Libs.ACH:Description(L["You can swap them out in Eltruism > Media, or by using the command /eltruism paging, make sure to reload"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8 = E.Libs.ACH:Group(E:TextGradient(L["How can I get Blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.args.answer = E.Libs.ACH:Description(L["Go to ElvUI > Eltruism > Misc > Blizzard Combat Text and uncheck Disable Combat Text and Check Enable Resource Gains, then reload"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9 = E.Libs.ACH:Group(E:TextGradient(L["My Loot Rolls are missing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9.args.answer = E.Libs.ACH:Description(L["You have enabled Hide Alert Frame, disable that setting to restore the Alert Frame/Loot Rolls"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10 = E.Libs.ACH:Group(E:TextGradient(L["Where is my floating combat text?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10.args.answer = E.Libs.ACH:Description(L["It's possible you installed NameplateSCT/FCT and removed it so the floating combat text was not enabled back\nYou can go into Eltruism > CVars > Other CVars > Restore All Combat Text to restore them"])
-	--ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11 = E.Libs.ACH:Group(E:TextGradient(L["My nameplates flash once an enemy is below 20% Health!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	--ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.inline = true
-	--ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.args.answer = E.Libs.ACH:Description(L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12 = E.Libs.ACH:Group(E:TextGradient(L["My Unitframes and/or ActionBars keep reverting positions!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12.args.answer = E.Libs.ACH:Description(L["If your actionbars or other frames are moving or resetting after a reload,\ncheck ElvUI > Eltruism > Borders for the Auto Adjust option.\n\nThis option is enabled when you enable Borders, it will not enable otherwise.\n\nAuto Adjust moves frames to a set position due to how borders need\ndifferent settings per layout and need to be changed so that borders don't overlap.\nDisable this option to stop the automatic changes.\n\nYou can also use the /eltruism autoadjust command to toggle it off"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13 = E.Libs.ACH:Group(E:TextGradient(L["How do I remove the lines/skin on all the frames?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13.args.answer = E.Libs.ACH:Description(L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go into\n\nEltruism > Skins > Addons > ElvUI\n\nWhere you can disable it or change its color, transparency and texture.\nYou can also type /eltruism elvuiskin to disable it."])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the class color texture at the bottom of the screen?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14.inline = true
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q14.args.answer = E.Libs.ACH:Description(L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"])
+	--help
+	ElvUI_EltreumUI.Options.args.help = E.Libs.ACH:Group(E:TextGradient(_G.HELP_LABEL or L["Help"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Frequently Asked Questions"], 0.5, 'tab')
+	ElvUI_EltreumUI.Options.args.help.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\faq'
+
+	ElvUI_EltreumUI.Options.args.help.args.frames = E.Libs.ACH:Group(L["Frames & ActionBars"], nil, 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q1 = E.Libs.ACH:Group(E:TextGradient(L["My action bars and unitframes keep disappearing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q1.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q1.args.answer = E.Libs.ACH:Description(L["ElvUI > ActionBars > Player Bars > on each Bar disable Inherit Global Fade\nElvUI > Unitframes > Type of Unit > Unit > Fader, disable the fader"].."\n\n"..L["You can also toggle the Fader in Eltruism > Media > Fader or with the /eltruism fader command, then reload"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q1.args.fader = E.Libs.ACH:Execute(L["Fader"], L["Eltruism uses Fading of UnitFrames and ActionBars by default"], 2, function() ElvUI_EltreumUI:ToggleFader() E:StaticPopup_Show('CONFIG_RL') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q2 = E.Libs.ACH:Group(E:TextGradient(L["How do I make bar 1 my action paging bar instead of bar 4?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q2.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q2.args.answer = E.Libs.ACH:Description(L["You can swap them out in Eltruism > Media, or by using the command /eltruism paging, make sure to reload"].."\n"..L["You can also use /eltruism paging <1-10> to set action paging to a specific bar"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q2.args.paging = E.Libs.ACH:Execute(L["Swap Action Paging and visibility for Bar1 and Bar4"], nil, 2, function() ElvUI_EltreumUI:ActionPagingSwap() E:StaticPopup_Show('CONFIG_RL') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q3 = E.Libs.ACH:Group(E:TextGradient(L["My Unitframes and/or ActionBars keep reverting positions!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q3.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q3.args.answer = E.Libs.ACH:Description(L["If your actionbars or other frames are moving or resetting after a reload,\ncheck ElvUI > Eltruism > Borders for the Auto Adjust option.\n\nThis option is enabled when you enable Borders, it will not enable otherwise.\n\nAuto Adjust moves frames to a set position due to how borders need\ndifferent settings per layout and need to be changed so that borders don't overlap.\nDisable this option to stop the automatic changes.\n\nYou can also use the /eltruism autoadjust command to toggle it off"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q3.args.autoadjust = E.Libs.ACH:Execute(L["Enable Auto-adjusting the actionbar spacing and position"], L["Adjusts actionbar spacing and position based on borders being enabled or not"], 2, function() E.db.ElvUI_EltreumUI.borders.borderautoadjust = not E.db.ElvUI_EltreumUI.borders.borderautoadjust ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q4 = E.Libs.ACH:Group(E:TextGradient(L["How do I remove the lines/skin on all the frames?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q4.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q4.args.answer = E.Libs.ACH:Description(L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go into\n\nEltruism > Skins > Addons > ElvUI\n\nWhere you can disable it or change its color, transparency and texture.\nYou can also type /eltruism elvuiskin to disable it."], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q4.args.elvuiskin = E.Libs.ACH:Execute(L["Toggle ElvUI Skin"], nil, 2, function() ElvUI_EltreumUI:RunCommands('elvuiskin') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q5 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the WeakAuras-like ActionBar layout?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 5)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q5.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q5.args.answer = E.Libs.ACH:Description(L["You can toggle it in Eltruism > Media > Move ActionBars and Power to be similar to WeakAuras, or by typing /eltruism weakauras."], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q5.args.weakauras = E.Libs.ACH:Execute(L["Move ActionBars and Power to be similar to WeakAuras"], L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"], 2, function() ElvUI_EltreumUI:RunCommands('weakauras') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q6 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the class color texture at the bottom of the screen?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 6)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q6.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q6.args.answer = E.Libs.ACH:Description(L["This is the texture that comes with the Eltruism Datatext, to disable go to:\n\nElvUI > Eltruism > Misc > DataTexts > Uncheck Class Color Texture with Eltruism Datatext"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q6.args.datatexttexture = E.Libs.ACH:Execute(L["Class Color Texture with Eltruism Datatext"], nil, 2, function() E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar = not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar ElvUI_EltreumUI:BottomDatabarTexture() end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q7 = E.Libs.ACH:Group(E:TextGradient(L["My Details! or Damage Meter window disappears after combat!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 7)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q7.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q7.args.answer = E.Libs.ACH:Description(L["If you have AddOnSkins then go to ElvUI > AddOnSkins > Embed Settings > Turn off Out of Combat (Hide)\nIf details is showing up on top of the trade chat, try going to AddOnSkins > Embed Settings and making sure that its hiding the Trade/Loot chat, you can also right click the > arrow in order to toggle the details embed.\nIf you do not have AddOnSkins then go to Eltruism > Skins > Addons > Details > Embed > Hide out of Combat, you can also change the amount of time it takes for it to hide.\nIn either AddOnSkins or Eltruism embeds you can also Right Click the Chat Toggle (the Arrow [ > ] on the bottom right) to Toggle the Visibility\nA shortcut to disabling the combat hide is /eltruism detailshide"].."\n"..L["For Blizzard's Damage Meter in Retail and Forever, check Eltruism > Skins > Damage Meter > Hide Out of Combat (or right click the Chat Toggle [ > ])."], 1)
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q7.args.detailshide = E.Libs.ACH:Execute(L["Toggle Details Out of Combat Hide"], nil, 2, function() ElvUI_EltreumUI:RunCommands('detailshide') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.frames.args.q7.args.damagemeterhide = E.Libs.ACH:Execute(L["Toggle Damage Meter Out of Combat Hide"], nil, 3, function() E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc = not E.db.ElvUI_EltreumUI.skins.blizzdamagemeter.embedhideooc E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double", nil, nil, nil, not E.Modern)
+
+	--ElvUI_EltreumUI.Options.args.help.args.frames.args.q8 = E.Libs.ACH:Group(E:TextGradient(L["My nameplates flash once an enemy is below 20% Health!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 8)
+	--ElvUI_EltreumUI.Options.args.help.args.frames.args.q8.inline = true
+	--ElvUI_EltreumUI.Options.args.help.args.frames.args.q8.args.answer = E.Libs.ACH:Description(L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"], 1)
+
+	ElvUI_EltreumUI.Options.args.help.args.chat = E.Libs.ACH:Group(L["Chat, Audio & Combat Text"], nil, 2)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q1 = E.Libs.ACH:Group(E:TextGradient(L["How do I disable the chat hide?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q1.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q1.args.answer = E.Libs.ACH:Description(L["If you are coming from a version before 2.3.0 then check ElvUI > Shadow and Light > Chat > Set Hide to None\nOtherwise, check Eltruism > Chat"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q1.args.leftmouseover = E.Libs.ACH:Execute(L["Left Chat Mouse Over"], nil, 2, function() E.db.ElvUI_EltreumUI.chat.leftmouseover = not E.db.ElvUI_EltreumUI.chat.leftmouseover E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q1.args.leftfade = E.Libs.ACH:Execute(L["Left Inactivity Fader"], nil, 3, function() E.db.ElvUI_EltreumUI.chat.leftfader = not E.db.ElvUI_EltreumUI.chat.leftfader E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q2 = E.Libs.ACH:Group(E:TextGradient(L["My chat hides when my mouse leaves it"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q2.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q2.args.answer = E.Libs.ACH:Description(L["Disable Mouse over in Eltruism > Chat"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q2.args.leftmouseover = E.Libs.ACH:Execute(L["Left Chat Mouse Over"], nil, 2, function() E.db.ElvUI_EltreumUI.chat.leftmouseover = not E.db.ElvUI_EltreumUI.chat.leftmouseover E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q2.args.rightmouseover = E.Libs.ACH:Execute(L["Right Chat Mouse Over"], nil, 3, function() E.db.ElvUI_EltreumUI.chat.rightmouseover = not E.db.ElvUI_EltreumUI.chat.rightmouseover E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q3 = E.Libs.ACH:Group(E:TextGradient(L["My chat hides after a few seconds"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q3.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q3.args.answer = E.Libs.ACH:Description(L["Disable Inactivity/Fader in Eltruism > Chat"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q3.args.leftfade = E.Libs.ACH:Execute(L["Left Inactivity Fader"], nil, 2, function() E.db.ElvUI_EltreumUI.chat.leftfader = not E.db.ElvUI_EltreumUI.chat.leftfader E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q3.args.rightfade = E.Libs.ACH:Execute(L["Right Inactivity Fader"], nil, 3, function() E.db.ElvUI_EltreumUI.chat.rightfader = not E.db.ElvUI_EltreumUI.chat.rightfader E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q4 = E.Libs.ACH:Group(E:TextGradient(L["After the Chat fades I still see some icons"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q4.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q4.args.answer = E.Libs.ACH:Description(L["This is a Blizzard bug that was found a long time ago"], 1)
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q5 = E.Libs.ACH:Group(E:TextGradient(L["Music keeps playing when AFK"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 5)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q5.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q5.args.answer = E.Libs.ACH:Description(L["Disable the AFK music in Eltruism > AFK in order to stop the music from playing"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q5.args.afkmusic = E.Libs.ACH:Execute(L["Toggle AFK Music"], nil, 2, function() E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = not E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q6 = E.Libs.ACH:Group(E:TextGradient(L["How can I get Blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 6)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q6.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q6.args.answer = E.Libs.ACH:Description(L["Go to ElvUI > Eltruism > CVars > Combat Text and uncheck Disable Combat Text and Check Enable Resource Gains, then reload"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q6.args.restorecvars = E.Libs.ACH:Execute(L["Restore All Blizzard Combat Text"], nil, 2, function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end, nil, true, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q7 = E.Libs.ACH:Group(E:TextGradient(L["Where is my floating combat text?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 7)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q7.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q7.args.answer = E.Libs.ACH:Description(L["It's possible you installed NameplateSCT/FCT and removed it so the floating combat text was not enabled back\nYou can go into Eltruism > CVars > Combat Text > Restore All Blizzard Combat Text to restore them"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q7.args.restorecvars = E.Libs.ACH:Execute(L["Restore All Blizzard Combat Text"], nil, 2, function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end, nil, true, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q8 = E.Libs.ACH:Group(E:TextGradient(L["My Loot Rolls are missing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 8)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q8.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q8.args.answer = E.Libs.ACH:Description(L["You have enabled Hide Alert Frame, disable that setting to restore the Alert Frame/Loot Rolls"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.chat.args.q8.args.hidealert = E.Libs.ACH:Execute(L["Hide Alert Frame"], L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"], 2, function() E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert = not E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert E:StaticPopup_Show('CONFIG_RL') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.setup = E.Libs.ACH:Group(L["Setup, Modes & Performance"], nil, 3)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q1 = E.Libs.ACH:Group(E:TextGradient(L["How do I set up a new character or alt?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 1)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q1.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q1.args.answer = E.Libs.ACH:Description(L["On a new character, it is recommended to either run the Eltruism installer (/eltruism setup or Eltruism > Installer), or select/import an existing profile first and then type /eltruism newchar.\nThe /eltruism newchar command runs Chat Setup, applies Eltruism CVars, and imports the Edit Mode layout on the current character."], 1)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q1.args.installer = E.Libs.ACH:Execute(L["Launch Eltruism Installer"], L["Launches the Eltruism install prompt"], 2, function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptions() end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q1.args.newchar = E.Libs.ACH:Execute(L["Run New Character Setup"], nil, 3, function() ElvUI_EltreumUI:RunCommands('newchar') end, nil, true, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q2 = E.Libs.ACH:Group(E:TextGradient(L["How do I update or reset Eltruism settings after an addon update?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q2.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q2.args.answer = E.Libs.ACH:Description(L["You can reset or update Eltruism settings to Eltreum's defaults in Eltruism > Installer or by typing /eltruism update.\nIf you want Eltruism and ElvUI settings to update automatically when a new Eltruism version is installed, type /eltruism autoupdate to toggle Auto Update."], 1)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q2.args.update = E.Libs.ACH:Execute(L["Reset/Update Eltruism Settings"], L["Resets/Updates Eltruism Settings to Eltreum's Defaults"], 2, function() ElvUI_EltreumUI:RunCommands('update') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q2.args.autoupdate = E.Libs.ACH:Execute(L["Toggle Auto Update"], nil, 3, function() ElvUI_EltreumUI:RunCommands('autoupdate') end, nil, false, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3 = E.Libs.ACH:Group(E:TextGradient(L["How do I switch between Dark, Light, Gradient, Transparent, or Chat modes?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.args.answer = E.Libs.ACH:Description(L["You can customize these in Eltruism > UnitFrames, Eltruism > Gradient, Eltruism > Media, and Eltruism > Chat, or quickly toggle them with commands:\n/eltruism color - Toggles UnitFrames between Light and Dark mode\n/eltruism gradient - Toggles Gradient mode\n/eltruism transparent - Toggles transparent UnitFrame health\n/eltruism background - Toggles between grey and black ElvUI backgrounds\n/eltruism chat - Toggles Chat between dark and transparent modes"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.args.color = E.Libs.ACH:Execute(L["Toggle Light / Dark Mode"], nil, 2, function() ElvUI_EltreumUI:RunCommands('color') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.args.gradient = E.Libs.ACH:Execute(L["Toggle Gradient Mode"], nil, 3, function() ElvUI_EltreumUI:RunCommands('gradient') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.args.transparent = E.Libs.ACH:Execute(L["Toggle Transparent Health"], nil, 4, function() ElvUI_EltreumUI:RunCommands('transparent') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.args.background = E.Libs.ACH:Execute(L["Toggle Grey / Black Background"], nil, 5, function() ElvUI_EltreumUI:RunCommands('background') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q3.args.chat = E.Libs.ACH:Execute(L["Toggle Dark / Transparent Chat"], nil, 6, function() ElvUI_EltreumUI:RunCommands('chat') E:StaticPopup_Show('CONFIG_RL') end, nil, false, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4 = E.Libs.ACH:Group(E:TextGradient(L["How can I improve performance and FPS with Eltruism?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4.args.answer = E.Libs.ACH:Description(L["Eltruism includes several commands to optimize performance:\n/eltruism performance - Disables demanding ElvUI and Eltruism features and applies performance CVars\n/eltruism performancecvars - Applies performance-oriented game CVars\n/eltruism encountercheck - Toggles Encounter Check to disable some effects during boss fights\n/eltruism togglemodels - Toggles 3D portrait and frame models on or off"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4.args.performance = E.Libs.ACH:Execute(L["Performance Optimization"], nil, 2, function() ElvUI_EltreumUI:RunCommands('performance') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4.args.performancecvars = E.Libs.ACH:Execute(L["Apply Performance CVars"], nil, 3, function() ElvUI_EltreumUI:RunCommands('performancecvars') end, nil, true, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4.args.encountercheck = E.Libs.ACH:Execute(L["Toggle Encounter Check"], nil, 4, function() ElvUI_EltreumUI:RunCommands('encountercheck') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.setup.args.q4.args.togglemodels = E.Libs.ACH:Execute(L["Toggle 3D Models"], nil, 5, function() ElvUI_EltreumUI:RunCommands('togglemodels') end, nil, false, "double")
+
+	ElvUI_EltreumUI.Options.args.help.args.commands = E.Libs.ACH:Group(L["Commands"], nil, 4)
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q1 = E.Libs.ACH:Group(E:TextGradient(L["What slash commands does Eltruism have?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 1)
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q1.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q1.args.answer = E.Libs.ACH:Description(L["Type /eltruism help in chat to see the full list of commands.\n\nCommon commands include:\n/eltruism - Opens Eltruism options\n/eltruism setup - Opens the Eltruism installer\n/eltruism fader - Toggles UnitFrame and ActionBar fading\n/eltruism paging <1-10> - Swaps ActionBar paging between Bar 1 and Bar 4, or sets a specific bar\n/eltruism newchar - Sets up Chat, CVars, and Edit Mode on the current character\n/eltruismdebug on/off - Toggles debug mode (disables other addons and enables Lua errors)"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q1.args.help = E.Libs.ACH:Execute(L["Print Commands in Chat"], nil, 2, function() ElvUI_EltreumUI:RunCommands('help') end, nil, false, "full")
+
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q2 = E.Libs.ACH:Group(E:TextGradient(L["How do /way and !key commands work?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q2.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q2.args.answer = E.Libs.ACH:Description(L["In modern WoW (Retail), Eltruism provides:\n/way or /waypoint (moved to /eway and /ewaypoint if TomTom is loaded) - Sets a map waypoint at the given coordinates (Eltruism > Maps > Chat Command)\n!key or !keys in guild or party chat (and /!key) - Links your Mythic+ keystone and automatically slots it when opening the keystone pedestal (Eltruism > Chat)"], 1)
+
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q3 = E.Libs.ACH:Group(E:TextGradient(L["What other utility and testing commands does Eltruism have?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q3.inline = true
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q3.args.answer = E.Libs.ACH:Description(L["/eltruism modeldebug - Prints your target's 3D portrait model ID (useful for custom models in Eltruism > UnitFrames > Models)\n/eltruism universalborders - Toggles test mode to add borders everywhere (also in Eltruism > Borders)\n/eltruism universalshadows - Toggles test mode to add shadows everywhere\n/eltruism loot - Demonstrates Eltruism LootText\n/eltruism screenshotcomparison - Takes screenshots at multiple resolutions"], 1)
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q3.args.loot = E.Libs.ACH:Execute(L["Test LootText"], nil, 2, function() ElvUI_EltreumUI:RunCommands('loot') end, nil, false, "double")
+	ElvUI_EltreumUI.Options.args.help.args.commands.args.q3.args.debug = E.Libs.ACH:Execute(L["Debug"], nil, 3, function() if next(ElvDB.EltruismDisabledAddOns) then ElvUI_EltreumUI:DebugMode("off") else ElvUI_EltreumUI:DebugMode("on") end end, nil, true, "double")
 
 	--support
 	ElvUI_EltreumUI.Options.args.support = E.Libs.ACH:Group(E:TextGradient(_G.GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 13, 'tab')
