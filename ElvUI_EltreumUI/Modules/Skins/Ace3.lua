@@ -9,14 +9,15 @@ local type = _G.type
 local ipairs = _G.ipairs
 local valuecolors = E.myClassColor
 local S = E:GetModule('Skins')
-local backupR,backupG,backupB = 1,1,1
-local pairs = _G.pairs
-
 local select = _G.select
+
+local function GetFrameText(frame)
+	return (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+end
 
 local function FrameInteracted(frame)
 	if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-	local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+	local frametext = GetFrameText(frame)
 	if frametext and frametext.GetText then
 		if frame.selected then
 			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
@@ -27,10 +28,21 @@ local function FrameInteracted(frame)
 		elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
 			frametext:SetTextColor(0.5,0.5,0.5)
 		else
+			local r, g, b
 			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-				frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				r, g, b = E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b
 			else
-				frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				r, g, b = valuecolors.r, valuecolors.g, valuecolors.b
+			end
+			if frame.EltruismHovered then
+				frame.EltruismBackupR, frame.EltruismBackupG, frame.EltruismBackupB = r, g, b
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			else
+				frametext:SetTextColor(r, g, b)
 			end
 		end
 	end
@@ -38,8 +50,9 @@ end
 
 local function FrameShowedUp(frame)
 	if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-	local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+	local frametext = GetFrameText(frame)
 	if frametext and frametext.GetText then
+		FrameInteracted(frame)
 		E:Delay(0, FrameInteracted, frame) --the disable is delayed so delay running to run after it
 	end
 end
@@ -52,9 +65,17 @@ local function FrameOnEnter(frame)
 	if frame.SetBackdropBorderColor then
 		frame:SetBackdropBorderColor(0, 0, 0, 1)
 	end
-	local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+	local frametext = GetFrameText(frame)
 	if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-		backupR,backupG,backupB = frametext:GetTextColor()
+		if not frame.EltruismHovered then
+			local r, g, b = frametext:GetTextColor()
+			if r == 1 and mathceil(g * 100) == 82 and b == 0 then --do not back up default ace3/blizzard yellow if color was reset before OnEnter
+				FrameInteracted(frame)
+				r, g, b = frametext:GetTextColor()
+			end
+			frame.EltruismBackupR, frame.EltruismBackupG, frame.EltruismBackupB = r, g, b
+			frame.EltruismHovered = true
+		end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
 			frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
 		else
@@ -72,10 +93,23 @@ local function FrameOnLeave(frame)
 	else
 		UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
 	end
-	local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+	frame.EltruismHovered = nil
+	local frametext = GetFrameText(frame)
 	if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-		frametext:SetTextColor(backupR,backupG,backupB)
+		if frame.selected then
+			FrameInteracted(frame)
+		elseif frame.EltruismBackupR then
+			frametext:SetTextColor(frame.EltruismBackupR, frame.EltruismBackupG, frame.EltruismBackupB)
+		else
+			FrameInteracted(frame)
+		end
 	end
+	frame.EltruismBackupR, frame.EltruismBackupG, frame.EltruismBackupB = nil, nil, nil
+end
+
+local function FrameOnHide(frame)
+	frame.EltruismHovered = nil
+	frame.EltruismBackupR, frame.EltruismBackupG, frame.EltruismBackupB = nil, nil, nil
 end
 
 local function SetupFrameHooks(frame,isTree)
@@ -83,8 +117,9 @@ local function SetupFrameHooks(frame,isTree)
 	frame:HookScript("OnEnter", FrameOnEnter)
 	frame:HookScript("OnLeave", FrameOnLeave)
 	frame:HookScript("OnShow", FrameShowedUp)
+	frame:HookScript("OnHide", FrameOnHide)
 	frame:HookScript("OnEnable", FrameInteracted)
-	if frame.OnClick then
+	if frame.HasScript and frame:HasScript("OnClick") then
 		frame:HookScript("OnClick", FrameInteracted)
 	end
 	frame:HookScript("OnDisable", FrameInteracted)
