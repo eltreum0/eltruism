@@ -222,10 +222,6 @@ function ElvUI_EltreumUI:PerformanceCVars(command,login)
 		SetCVar('graphicsSpellDensity', 1) --use the new
 		--SetCVar('refraction', 2) --needs more testing
 
-		--personal graphics
-		--SetCVar("Brightness", 45)
-		--SetCVar("Contrast", 60)
-
 		--LOD things
 		SetCVar('entityLodDist',10) --USEDEFAULT (lowest) value
 		SetCVar('RAIDentityLodDist',10) --USEDEFAULT (lowest) value

@@ -2855,10 +2855,6 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	SetCVar("enableMouseoverCast", 1) --this will prevent people not having mouse over cast if the blizzard addon is loaded
 
-	--graphics
-	SetCVar("Brightness", 45)
-	SetCVar("Contrast", 60)
-
 	-- fast loot
 	SetCVar("autoLootRate", 1)
 
@@ -3132,5 +3128,8 @@ end
 function ElvUI_EltreumUI:EltreumCvars()
 	if ElvUI_EltreumUI:GetCharacterType(E.myguid) then
 		SetCVar('TTSUseCharacterSettings', 0) --make tts account wide
+		--graphics
+		SetCVar("Brightness", 45)
+		SetCVar("Contrast", 60)
 	end
 end
