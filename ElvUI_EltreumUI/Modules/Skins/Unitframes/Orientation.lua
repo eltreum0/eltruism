@@ -144,6 +144,16 @@ local function ApplyBackdropAlphas(db, bg, backdrop, tex, isTransparent, barTex,
 end
 ElvUI_EltreumUI.ApplyBackdropAlphas = ApplyBackdropAlphas
 
+local function GetBarTexture(isPowerBar, customTex, gm)
+	local texture = E.db.unitframe.statusbar
+	if isPowerBar and customTex.enable and customTex.powertexture then
+		texture = customTex.powertexture
+	elseif (gm.enable or (isPowerBar and gm.enablepower)) and not customTex.enable then
+		texture = gm.useUFtexture and texture or gm.texture
+	end
+	return E.LSM:Fetch("statusbar", texture or UF.db.statusbar)
+end
+
 -- Unitframe Backdrop Texture/Alpha/Fill Direction
 function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar, backdropTex, adjustBackdropPoints, _, reverseFill)
 	if not statusBar then return end
@@ -260,15 +270,11 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 				end
 			end
 		else
-			local targetTex = E.db.unitframe.statusbar
-			if isPowerBar and customTex.enable and customTex.powertexture then
-				targetTex = customTex.powertexture
-			elseif gm.enable and not customTex.enable then
-				targetTex = gm.useUFtexture and targetTex or gm.texture
-			end
-
-			local fetchedTex = E.LSM:Fetch("statusbar", targetTex or UF.db.statusbar)
+			local fetchedTex = GetBarTexture(isPowerBar, customTex, gm)
 			statusBar:SetStatusBarTexture(fetchedTex)
+			if isPowerBar then
+				statusBar.EltruismTextureVersion = nil
+			end
 			local bgTex = fetchedBackdropTex or fetchedTex
 			UF:Update_StatusBar(bg, bgTex)
 			if backdropTex then
@@ -278,16 +284,13 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 
 		UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 	else --not transparent but texture should be set
-		local texture = E.db.unitframe.statusbar
-		if isPowerBar and customTex.enable and customTex.powertexture then
-			texture = customTex.powertexture
-		elseif gm.enable and not customTex.enable then
-			texture = gm.useUFtexture and texture or gm.texture
-		end
-		local fetchedTex = E.LSM:Fetch('statusbar', texture or UF.db.statusbar)
+		local fetchedTex = GetBarTexture(isPowerBar, customTex, gm)
 		statusBar:SetStatusBarTexture(fetchedTex)
+		if isPowerBar then
+			statusBar.EltruismTextureVersion = nil
+		end
 
-		local bgTex = fetchedBackdropTex or texture
+		local bgTex = fetchedBackdropTex or fetchedTex
 		UF:Update_StatusBar(bg, bgTex)
 
 		if adjustBackdropPoints then

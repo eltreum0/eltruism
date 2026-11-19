@@ -957,16 +957,21 @@ end
 if E.CoroutineCallback then
 	ElvUI_EltreumUI:SecureHook(UF, "CreateAndUpdateUF", "UF_CreateAndUpdateUF")
 	local function Update_UnitFrameTransparencyFix(frame)
-		if frame and frame.Health and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		local UFdb = E.db.ElvUI_EltreumUI.unitframes
+		if frame and frame.Health and UFdb.UFmodifications then
 			local frameType = frame.unitframeType
 			if frameType then
 				local info = individualUnits[frameType]
 				if info then
 					ElvUI_EltreumUI:ApplyUnitCustomTexture(frame.__unit or frameType, info.name, info.db)
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.hasMode then
+					if UFdb.gradientmode.enable and UFdb.hasMode then
 						ElvUI_EltreumUI:ApplyUnitGradient(frame.__unit or frameType, info.name, info.db)
 					end
 				end
+			end
+			if frame.Power and UFdb.gradientmode.enablepower then
+				frame.Power.EltruismTextureVersion = nil
+				ElvUI_EltreumUI:UF_PostUpdatePowerColor(frame.Power, frame.__unit or frame.unit)
 			end
 		end
 	end

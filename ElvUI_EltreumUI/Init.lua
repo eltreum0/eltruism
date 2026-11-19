@@ -225,6 +225,7 @@ function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			ElvUI_EltreumUI:CustomTexture("testunit")
 			ElvUI_EltreumUI:GradientUF("testunit")
+			ElvUI_EltreumUI:GradientPower("testunit")
 		end
 	end)
 end
@@ -297,6 +298,7 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:GradientUF()
 		ElvUI_EltreumUI:CustomTexture()
+		ElvUI_EltreumUI:GradientPower()
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		ElvUI_EltreumUI:GroupBorderColorUpdate()

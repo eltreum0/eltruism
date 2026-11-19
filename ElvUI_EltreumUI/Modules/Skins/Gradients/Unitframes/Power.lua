@@ -54,7 +54,7 @@ end
 
 local function ApplyPowerTextures(bar, ufCustom, gm, UFdb)
 	local textureVersion = ElvUI_EltreumUI.EltruismTextureVersion or 0
-	local isTextureCached = (bar.EltruismTextureVersion == textureVersion)
+	if bar.EltruismTextureVersion == textureVersion then return end
 	local textureToUse
 	if ufCustom.enable then
 		textureToUse = E.LSM:Fetch("statusbar", ufCustom.powertexture)
@@ -63,14 +63,9 @@ local function ApplyPowerTextures(bar, ufCustom, gm, UFdb)
 	else
 		textureToUse = E.LSM:Fetch("statusbar", gm.texture)
 	end
-	if not isTextureCached or bar.EltruismPowerTexture ~= textureToUse then
-		bar:SetStatusBarTexture(textureToUse)
-		bar.EltruismPowerTexture = textureToUse
-	end
-	local bgTexture = (ufCustom.backdroptexture and E.LSM:Fetch("statusbar", ufCustom.backdroptexture)) or textureToUse
-	if bar.bg and (not isTextureCached or bar.EltruismPowerBgTexture ~= bgTexture) then
-		bar.bg:SetTexture(bgTexture)
-		bar.EltruismPowerBgTexture = bgTexture
+	bar:SetStatusBarTexture(textureToUse)
+	if bar.bg then
+		bar.bg:SetTexture((ufCustom.backdroptexture and E.LSM:Fetch("statusbar", ufCustom.backdroptexture)) or textureToUse)
 	end
 	bar.EltruismTextureVersion = textureVersion
 end
