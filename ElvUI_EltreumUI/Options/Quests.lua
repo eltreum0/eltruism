@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:QuestOptions()
 	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation = E.Libs.ACH:Select(L["Bar Direction"], nil, 8, {
 		["HORIZONTAL"] = L["Horizontal"],
 		["VERTICAL"] = L["Vertical"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.quests.questorientation end, function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.quests.questorientation end, function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value ElvUI_EltreumUI:QuestItem() end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
 	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation.style = "radio"
 	ElvUI_EltreumUI.Options.args.quests.args.autoaccept = E.Libs.ACH:Group(_G.LFG_LIST_AUTO_ACCEPT, nil, 2)
 	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
