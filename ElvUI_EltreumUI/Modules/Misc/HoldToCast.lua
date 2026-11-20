@@ -13,33 +13,34 @@ local SetOverrideBinding, SetOverrideBindingMacro, ClearOverrideBindings = _G.Se
 local GetActionInfo, GetMacroInfo, GetNumMacros = _G.GetActionInfo, _G.GetMacroInfo, _G.GetNumMacros
 local GetCursorInfo, ClearCursor, PlaceAction = _G.GetCursorInfo, _G.ClearCursor, _G.PlaceAction
 local PickupMacro = _G.PickupMacro
-local PickupSpell = (_G.C_Spell and _G.C_Spell.PickupSpell) or _G.PickupSpell
-local GetNumSpellTabs, GetSpellTabInfo, GetSpellBookItemInfo, GetSpellBookItemName = _G.GetNumSpellTabs, _G.GetSpellTabInfo, _G.GetSpellBookItemInfo, _G.GetSpellBookItemName
-local GetSpellInfo, GetSpellSubtext, IsSpellKnown = _G.GetSpellInfo, _G.GetSpellSubtext, _G.IsSpellKnown
-local GetBuildInfo, C_Timer, C_Housing = _G.GetBuildInfo, _G.C_Timer, _G.C_Housing
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
-local GetSpellName = _G.C_Spell and _G.C_Spell.GetSpellName
-local C_GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo
-local C_GetSpellSubtext = _G.C_Spell and _G.C_Spell.GetSpellSubtext
-local IsSpellKnownModern = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown
-local GetNumSkillLines = _G.C_SpellBook and _G.C_SpellBook.GetNumSpellBookSkillLines
-local GetSkillLineInfo = _G.C_SpellBook and _G.C_SpellBook.GetSpellBookSkillLineInfo
-local GetSpellBookItemModern = _G.C_SpellBook and _G.C_SpellBook.GetSpellBookItemInfo
-local playerBank = (_G.Enum and _G.Enum.SpellBookSpellBank and _G.Enum.SpellBookSpellBank.Player) or 0
-local spellItemType = _G.Enum and _G.Enum.SpellBookItemType and _G.Enum.SpellBookItemType.Spell
-local maxAccountMacros = (_G.Constants and _G.Constants.MacroConsts and _G.Constants.MacroConsts.MAX_ACCOUNT_MACROS) or _G.MAX_ACCOUNT_MACROS or 120
-local GetActionText = (_G.C_ActionBar and _G.C_ActionBar.GetActionText) or _G.GetActionText
-local GetTempShapeshiftBarIndex = (_G.C_ActionBar and _G.C_ActionBar.GetTempShapeshiftBarIndex) or _G.GetTempShapeshiftBarIndex
-local IsHouseEditorActive = _G.C_HouseEditor and _G.C_HouseEditor.IsHouseEditorActive
-local IsInsidePlot = C_Housing and C_Housing.IsInsidePlot
-local IsEventValid = _G.C_EventUtils and _G.C_EventUtils.IsEventValid
-local GetCVar = (_G.C_CVar and _G.C_CVar.GetCVar) or _G.GetCVar
-local SetCVar = (_G.C_CVar and _G.C_CVar.SetCVar) or _G.SetCVar
+local C_Spell = _G.C_Spell
+local PickupSpell = C_Spell.PickupSpell
+local GetSpellName = C_Spell.GetSpellName
+local GetSpellSubtext = C_Spell.GetSpellSubtext
+local C_SpellBook = _G.C_SpellBook
+local IsSpellKnown = C_SpellBook.IsSpellKnown
+local GetNumSkillLines = C_SpellBook.GetNumSpellBookSkillLines
+local GetSkillLineInfo = C_SpellBook.GetSpellBookSkillLineInfo
+local GetSpellBookItemInfo = C_SpellBook.GetSpellBookItemInfo
+local GetBuildInfo, C_Timer = _G.GetBuildInfo, _G.C_Timer
+local IsAddOnLoaded = _G.C_AddOns.IsAddOnLoaded
+local playerBank = _G.Enum.SpellBookSpellBank.Player
+local spellItemType = _G.Enum.SpellBookItemType.Spell
+local maxAccountMacros = _G.Constants.MacroConsts.MAX_ACCOUNT_MACROS
+local C_ActionBar = _G.C_ActionBar
+local GetActionText = C_ActionBar.GetActionText
+local GetTempShapeshiftBarIndex = C_ActionBar.GetTempShapeshiftBarIndex
+local ActionBarController = _G.ActionBarController
+local IsHouseEditorActive = _G.C_HouseEditor.IsHouseEditorActive
+local IsInsidePlot = _G.C_Housing.IsInsidePlot
+local C_CVar = _G.C_CVar
+local GetCVar = C_CVar.GetCVar
+local SetCVar = C_CVar.SetCVar
 
 local pairs, ipairs, next, select = _G.pairs, _G.ipairs, _G.next, _G.select
 local tonumber, tostring, print, pcall, wipe = _G.tonumber, _G.tostring, _G.print, _G.pcall, _G.wipe
 local bor, mathabs, format, tconcat = _G.bit.bor, _G.math.abs, _G.format, _G.table.concat
-local strtrim = _G.strtrim or function(s) return (s or ""):gsub("^%s+", ""):gsub("%s+$", "") end
+local strtrim = _G.strtrim
 
 local supportedBars = { 1, 3, 4, 5, 6, 13, 14, 15 }
 local BAR_INFO = {
@@ -60,7 +61,7 @@ local multiBarToElvUIBar = {
 	MultiBarRight = 3, MultiBarLeft = 4, MultiBarBottomRight = 5, MultiBarBottomLeft = 6,
 	MultiBar5 = 13, MultiBar6 = 14, MultiBar7 = 15,
 }
-local macroEvents = { "LEARNED_SPELL_IN_TAB", "SPELLS_CHANGED", "ACTIONBAR_SLOT_CHANGED", "UPDATE_MACROS" }
+local macroEvents = { "LEARNED_SPELL_IN_SKILL_LINE", "SPELLS_CHANGED", "ACTIONBAR_SLOT_CHANGED", "UPDATE_MACROS" }
 
 --3-bit modifier masks: 1=ALT, 2=CTRL, 4=SHIFT
 local modBits = { alt = 1, ctrl = 2, shift = 4 }
@@ -97,12 +98,12 @@ local SECURE_UPDATE = [[
 	else
 		local page = tonumber(newstate)
 		if page and page > 0 then
-			local enginePage = 1
-			if HasBonusActionBar and HasBonusActionBar() and GetBonusBarIndex then
+			local enginePage
+			if HasBonusActionBar() then
 				enginePage = GetBonusBarIndex()
-			elseif HasTempShapeshiftActionBar and HasTempShapeshiftActionBar() and GetTempShapeshiftBarIndex then
+			elseif HasTempShapeshiftActionBar() then
 				enginePage = GetTempShapeshiftBarIndex()
-			elseif GetActionBarPage then
+			else
 				enginePage = GetActionBarPage()
 			end
 			if enginePage == page then
@@ -123,7 +124,7 @@ local SECURE_UPDATE = [[
 				local key, macro, cmd = self:GetAttribute("htc-key-" .. i), self:GetAttribute("htc-macro-" .. i), self:GetAttribute("htc-cmd-" .. i)
 				if key then
 					if macro then
-						if bf.SetBindingMacro then bf:SetBindingMacro(true, key, macro) else bf:SetBinding(true, key, "MACRO " .. macro) end
+						bf:SetBindingMacro(true, key, macro)
 					elseif cmd then
 						bf:SetBinding(true, key, cmd)
 					end
@@ -259,18 +260,13 @@ end
 
 local function GetBarPagingConditions(barNum, classPaging)
 	wipe(activeBarsTmp)
-	activeBarsTmp[1] = "[overridebar] 0; [vehicleui] 0; [possessbar] 0;"
-	if E.Modern or E.Mists then
-		activeBarsTmp[#activeBarsTmp + 1] = "[petbattle] 0;"
-	end
+	activeBarsTmp[1] = "[overridebar] 0; [vehicleui] 0; [possessbar] 0; [petbattle] 0;"
 	if classPaging then
 		local negated = NegateModifierPages(classPaging)
 		activeBarsTmp[#activeBarsTmp + 1] = negated:find(";%s*$") and negated or (negated .. ";")
 	end
 	if barNum == 1 then
-		if GetTempShapeshiftBarIndex then
-			activeBarsTmp[#activeBarsTmp + 1] = classPaging and format("[shapeshift] %d;", GetTempShapeshiftBarIndex()) or "[shapeshift] 0;"
-		end
+		activeBarsTmp[#activeBarsTmp + 1] = classPaging and format("[shapeshift] %d;", GetTempShapeshiftBarIndex()) or "[shapeshift] 0;"
 		activeBarsTmp[#activeBarsTmp + 1] = "[bar:2] 2; [bar:3] 3; [bar:4] 4; [bar:5] 5; [bar:6] 6;"
 		activeBarsTmp[#activeBarsTmp + 1] = "[bonusbar:1] 0; [bonusbar:2] 0; [bonusbar:3] 0; [bonusbar:4] 0; [bonusbar:5] 0; 1"
 	else
@@ -475,7 +471,7 @@ local function BuildMacroCache()
 end
 
 local function GetActionSlotMacro(slot, actionId, subType)
-	local label = GetActionText and GetActionText(slot)
+	local label = GetActionText(slot)
 	if label and label ~= "" and macroByName[label] then
 		local name, icon, body = GetMacroInfo(macroByName[label])
 		if name == label and body then return name, icon, body end
@@ -561,30 +557,9 @@ local function ParseConvertibleMacro(body)
 	return defaultSpell, modifiers
 end
 
-local function GetSpellNameCompat(spellID)
-	if not spellID then return nil end
-	local name = (GetSpellName and GetSpellName(spellID)) or nil
-	if name and name ~= "" then return name end
-	local info = C_GetSpellInfo and C_GetSpellInfo(spellID)
-	if info and info.name and info.name ~= "" then return info.name end
-	name = GetSpellInfo and GetSpellInfo(spellID)
-	return (name and name ~= "") and name or nil
-end
-
-local function GetSpellSubtextCompat(spellID, slotIndex)
-	local sub = (spellID and C_GetSpellSubtext and C_GetSpellSubtext(spellID))
-		or (slotIndex and GetSpellSubtext and GetSpellSubtext(slotIndex, "BOOKTYPE_SPELL"))
-		or (spellID and GetSpellSubtext and GetSpellSubtext(spellID))
-	return sub or ""
-end
-
 local function AddSpellCandidate(spellID, name, subName)
 	if not spellID or not name or name == "" then return end
-	if IsSpellKnownModern then
-		if not IsSpellKnownModern(spellID, playerBank) then return end
-	elseif IsSpellKnown and not IsSpellKnown(spellID) then
-		return
-	end
+	if not IsSpellKnown(spellID, playerBank) then return end
 
 	local lowerName = strtrim(name:lower())
 	local entry = spellCache[lowerName]
@@ -607,48 +582,19 @@ local function AddSpellCandidate(spellID, name, subName)
 	end
 end
 
-local function AddLegacySpellBookSlot(idx)
-	local spellType, sID = GetSpellBookItemInfo(idx, "player")
-	if not spellType then return false end
-	if (spellType == "SPELL" or spellType == 1) and sID then
-		AddSpellCandidate(sID, (GetSpellBookItemName and GetSpellBookItemName(idx, "player")) or GetSpellNameCompat(sID), GetSpellSubtextCompat(sID, idx))
-	end
-	return true
-end
-
 local function BuildSpellBookCache()
 	wipe(spellCache)
-	--Modern C_SpellBook (Retail / Forever)
-	if GetSpellBookItemModern and GetNumSkillLines and GetSkillLineInfo then
-		for lineIdx = 1, (GetNumSkillLines() or 0) do
-			local skillInfo = GetSkillLineInfo(lineIdx)
-			if skillInfo and skillInfo.numSpellBookItems and skillInfo.numSpellBookItems > 0 then
-				for offset = 1, skillInfo.numSpellBookItems do
-					local slotIndex = skillInfo.itemIndexOffset + offset
-					local itemInfo = GetSpellBookItemModern(slotIndex, playerBank)
-					if itemInfo and not itemInfo.isPassive and not itemInfo.isOffSpec and itemInfo.spellID
-						and (not spellItemType or itemInfo.itemType == spellItemType) then
-						local sID = itemInfo.spellID
-						AddSpellCandidate(sID, itemInfo.name or GetSpellNameCompat(sID), itemInfo.subName or GetSpellSubtextCompat(sID, slotIndex))
-					end
+	for lineIdx = 1, (GetNumSkillLines() or 0) do
+		local skillInfo = GetSkillLineInfo(lineIdx)
+		if skillInfo and skillInfo.numSpellBookItems and skillInfo.numSpellBookItems > 0 then
+			for offset = 1, skillInfo.numSpellBookItems do
+				local slotIndex = skillInfo.itemIndexOffset + offset
+				local itemInfo = GetSpellBookItemInfo(slotIndex, playerBank)
+				if itemInfo and not itemInfo.isPassive and not itemInfo.isOffSpec and itemInfo.spellID and itemInfo.itemType == spellItemType then
+					local sID = itemInfo.spellID
+					AddSpellCandidate(sID, itemInfo.name or GetSpellName(sID), itemInfo.subName or GetSpellSubtext(sID))
 				end
 			end
-		end
-	end
-	--Legacy spellbook tabs & direct slot fallback (Classic / TBC / Wrath / Mists)
-	if not next(spellCache) and GetNumSpellTabs and GetSpellBookItemInfo then
-		for tabIndex = 1, (GetNumSpellTabs() or 0) do
-			local _, _, offset, numSpells = GetSpellTabInfo(tabIndex)
-			if offset and numSpells and numSpells > 0 then
-				for spellIndex = offset + 1, offset + numSpells do
-					AddLegacySpellBookSlot(spellIndex)
-				end
-			end
-		end
-	end
-	if not next(spellCache) and GetSpellBookItemInfo then
-		for i = 1, 500 do
-			if not AddLegacySpellBookSlot(i) then break end
 		end
 	end
 end
@@ -668,7 +614,6 @@ local function ResolveSpellFromCache(spellName)
 end
 
 local function PlaceOnSlot(pickupFn, arg, slot)
-	if not pickupFn then return false end
 	ClearCursor()
 	pickupFn(arg)
 	if not GetCursorInfo() then
@@ -686,12 +631,6 @@ local function PlaceSpellInSlot(slot, spellID)
 	return kind == "spell" and id == spellID
 end
 
-local function RegisterEventSafe(event)
-	if not IsEventValid or IsEventValid(event) then
-		pcall(eventFrame.RegisterEvent, eventFrame, event)
-	end
-end
-
 local function UpdateMacroEvents(db)
 	if not eventFrame then return end
 	local need = (db and db.enable and (db.convertMacros or next(GetMacroSlotTable()) ~= nil)) and true or false
@@ -699,9 +638,9 @@ local function UpdateMacroEvents(db)
 	macroEventsRegistered = need
 	for _, ev in ipairs(macroEvents) do
 		if need then
-			RegisterEventSafe(ev)
+			eventFrame:RegisterEvent(ev)
 		else
-			pcall(eventFrame.UnregisterEvent, eventFrame, ev)
+			eventFrame:UnregisterEvent(ev)
 		end
 	end
 end
@@ -732,7 +671,7 @@ local function SyncMacrosAndRanksInner(db, macroSlots)
 				--Clean up stale macroSlot records if the player manually replaced or cleared the slot
 				if savedMacro then
 					if kind == "spell" and id then
-						local currentName = GetSpellNameCompat(id)
+						local currentName = GetSpellName(id)
 						if id ~= savedMacro.spellID and (not currentName or strtrim(currentName:lower()) ~= GetBaseSpellLower(savedMacro.spellName)) then
 							macroSlots[slot], savedMacro = nil, nil
 						end
@@ -832,12 +771,10 @@ SyncMacrosAndRanks = function()
 end
 
 local function EnableBlizzardBarEvents()
-	local controller = _G.ActionBarController
-	if not controller then return end
-	controller:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
-	controller:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
-	controller:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
-	controller:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
+	ActionBarController:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
+	ActionBarController:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
+	ActionBarController:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+	ActionBarController:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
 end
 
 ApplyBindings = function(skipSync)
@@ -858,7 +795,7 @@ ApplyBindings = function(skipSync)
 		return
 	end
 
-	if (IsHouseEditorActive and IsHouseEditorActive()) or (IsInsidePlot and IsInsidePlot()) then
+	if IsHouseEditorActive() or IsInsidePlot() then
 		housingMode = true
 		ClearAllBindings(true)
 		isApplying = false
@@ -998,37 +935,29 @@ local function InstallHooks()
 		end)
 	end
 
-	if _G.ActionButtonDown then
-		hooksecurefunc("ActionButtonDown", function(id)
-			for barNum in pairs(actionButtonOwnerBars) do
+	hooksecurefunc("ActionButtonDown", function(id)
+		for barNum in pairs(actionButtonOwnerBars) do
+			SetElvUIButtonPushed(barNum, id, true)
+		end
+	end)
+	hooksecurefunc("ActionButtonUp", function(id)
+		for barNum in pairs(pagedBars) do
+			SetElvUIButtonPushed(barNum, id, false)
+		end
+	end)
+	hooksecurefunc("MultiActionButtonDown", function(bar, id)
+		local barNum = multiBarToElvUIBar[bar]
+		if barNum then
+			local pb = pagedBars[barNum]
+			if not pb or not pb.active or pb.mode == "home" then
 				SetElvUIButtonPushed(barNum, id, true)
 			end
-		end)
-	end
-	if _G.ActionButtonUp then
-		hooksecurefunc("ActionButtonUp", function(id)
-			for barNum in pairs(pagedBars) do
-				SetElvUIButtonPushed(barNum, id, false)
-			end
-		end)
-	end
-	if _G.MultiActionButtonDown then
-		hooksecurefunc("MultiActionButtonDown", function(bar, id)
-			local barNum = multiBarToElvUIBar[bar]
-			if barNum then
-				local pb = pagedBars[barNum]
-				if not pb or not pb.active or pb.mode == "home" then
-					SetElvUIButtonPushed(barNum, id, true)
-				end
-			end
-		end)
-	end
-	if _G.MultiActionButtonUp then
-		hooksecurefunc("MultiActionButtonUp", function(bar, id)
-			local barNum = multiBarToElvUIBar[bar]
-			if barNum then SetElvUIButtonPushed(barNum, id, false) end
-		end)
-	end
+		end
+	end)
+	hooksecurefunc("MultiActionButtonUp", function(bar, id)
+		local barNum = multiBarToElvUIBar[bar]
+		if barNum then SetElvUIButtonPushed(barNum, id, false) end
+	end)
 
 	hooked = true
 end
@@ -1073,7 +1002,6 @@ function ElvUI_EltreumUI:RestoreHoldToCastMacros()
 		ElvUI_EltreumUI:Print(L["Cannot restore macros while in combat or holding something on the cursor."])
 		return 0
 	end
-	if not PickupMacro then return 0 end
 
 	local macroSlots = GetMacroSlotTable()
 	if not next(macroSlots) then return 0 end
@@ -1082,7 +1010,7 @@ function ElvUI_EltreumUI:RestoreHoldToCastMacros()
 	local restored, bodyToIdx = 0, nil
 	for slot, info in pairs(macroSlots) do
 		local kind, id = GetActionInfo(slot)
-		local currentName = (kind == "spell" and id) and GetSpellNameCompat(id)
+		local currentName = (kind == "spell" and id) and GetSpellName(id)
 		local slotMatches = (kind == nil) or (kind == "spell" and (id == info.spellID or (currentName and info.spellName and strtrim(currentName:lower()) == GetBaseSpellLower(info.spellName))))
 
 		if slotMatches then
@@ -1164,7 +1092,7 @@ local function FormatBool(val, warnIfTrue)
 end
 
 local function FormatCVar(name)
-	local val = GetCVar and GetCVar(name)
+	local val = GetCVar(name)
 	if val == "1" then return "|cff00ff001 (OK)|r" end
 	if val ~= nil then return "|cffff4444" .. tostring(val) .. " (Disabled)|r" end
 	return "|cff888888n/a|r"
@@ -1344,20 +1272,16 @@ function ElvUI_EltreumUI:HoldToCast(isZoning)
 	InstallHooks()
 
 	--Ensure Blizzard's Press and Hold Casting CVars are enabled when the fix is active
-	if GetCVar and SetCVar then
-		if GetCVar("ActionButtonUseKeyHeldSpell") ~= nil and GetCVar("ActionButtonUseKeyHeldSpell") ~= "1" then
-			SetCVar("ActionButtonUseKeyHeldSpell", "1")
-		end
-		if GetCVar("ActionButtonUseKeyDown") ~= nil and GetCVar("ActionButtonUseKeyDown") ~= "1" then
-			SetCVar("ActionButtonUseKeyDown", "1")
-		end
+	if GetCVar("ActionButtonUseKeyHeldSpell") ~= "1" then
+		SetCVar("ActionButtonUseKeyHeldSpell", "1")
+	end
+	if GetCVar("ActionButtonUseKeyDown") ~= "1" then
+		SetCVar("ActionButtonUseKeyDown", "1")
 	end
 
 	eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
-	if C_Housing then
-		RegisterEventSafe("HOUSE_PLOT_ENTERED")
-		RegisterEventSafe("HOUSE_PLOT_EXITED")
-	end
+	eventFrame:RegisterEvent("HOUSE_PLOT_ENTERED")
+	eventFrame:RegisterEvent("HOUSE_PLOT_EXITED")
 	macroEventsRegistered = false
 	UpdateMacroEvents(db)
 	eventFrame:SetScript("OnEvent", OnEvent)
