@@ -6,19 +6,17 @@ local CreateFrame = _G.CreateFrame
 local InCombatLockdown = _G.InCombatLockdown
 local GetTime = _G.GetTime
 local tonumber = _G.tonumber
-local type = _G.type
 local strmatch = _G.string.match
-local SetCVar = (_G.C_CVar and _G.C_CVar.SetCVar) or _G.SetCVar
-local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
-local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
+local SetCVar = _G.C_CVar.SetCVar
+local UnitCastingInfo = _G.UnitCastingInfo
+local UnitChannelInfo = _G.UnitChannelInfo
 local UnitCastingDuration = _G.UnitCastingDuration
 local UnitChannelDuration = _G.UnitChannelDuration
 local UnitEmpoweredChannelDuration = _G.UnitEmpoweredChannelDuration
 local GetUnitEmpowerHoldAtMaxTime = _G.GetUnitEmpowerHoldAtMaxTime
 local C_Spell = _G.C_Spell
-local C_Spell_GetSpellCooldown = C_Spell and C_Spell.GetSpellCooldown
-local GetSpellCooldownDuration = C_Spell and C_Spell.GetSpellCooldownDuration
-local LegacyGetSpellCooldown = _G.GetSpellCooldown
+local GetSpellCooldown = C_Spell.GetSpellCooldown
+local GetSpellCooldownDuration = C_Spell.GetSpellCooldownDuration
 local tostring = _G.tostring
 
 local DEFAULT_RING = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga'
@@ -47,9 +45,7 @@ local function createSwipeRing(name, level)
 	cd:SetHideCountdownNumbers(true)
 	cd.noCooldownCount = true
 	cd:SetReverse(true)
-	if cd.SetUseCircularEdge then
-		cd:SetUseCircularEdge(true)
-	end
+	cd:SetUseCircularEdge(true)
 	cd:Hide()
 	return cd
 end
@@ -102,21 +98,13 @@ local function updateRootVisibility()
 	end
 end
 
-local function clearSwipe(frame)
-	if frame.Clear then
-		frame:Clear()
-	else
-		frame:SetCooldown(0, 0)
-	end
-end
-
 local function setCastVisible(visible)
 	castVisible = visible
 	if visible then
 		castFrame:Show()
 	else
 		castGradActive = false
-		clearSwipe(castFrame)
+		castFrame:Clear()
 		castFrame:Hide()
 	end
 	updateRootVisibility()
@@ -127,7 +115,7 @@ local function setGCDVisible(visible)
 	if visible then
 		gcdFrame:Show()
 	else
-		clearSwipe(gcdFrame)
+		gcdFrame:Clear()
 		gcdFrame:Hide()
 	end
 	updateRootVisibility()
@@ -169,7 +157,7 @@ local function startCastSwipe(startSec, durationSec, durationObj)
 			castGradActive = false
 		end
 		setCastVisible(true)
-	elseif durationObj and castFrame.SetCooldownFromDurationObject then
+	elseif durationObj then
 		castGradActive = false
 		castFrame:SetCooldownFromDurationObject(durationObj)
 		setCastVisible(true)
@@ -189,7 +177,7 @@ local function handleCastStart()
 	if startMS and endMS and E:NotSecretValue(startMS) and E:NotSecretValue(endMS) then
 		startCastSwipe(startMS * 0.001, (endMS - startMS) * 0.001, nil)
 	else
-		local durationObj = UnitCastingDuration and UnitCastingDuration("player")
+		local durationObj = UnitCastingDuration("player")
 		startCastSwipe(nil, nil, durationObj)
 	end
 end
@@ -203,7 +191,7 @@ local function handleChannelStart(isEmpower)
 	end
 	activeCastID = nil
 	if startMS and endMS and E:NotSecretValue(startMS) and E:NotSecretValue(endMS) then
-		if E.Modern and numEmpowerStages and E:NotSecretValue(numEmpowerStages) and numEmpowerStages > 0 and GetUnitEmpowerHoldAtMaxTime then
+		if E.Modern and numEmpowerStages and E:NotSecretValue(numEmpowerStages) and numEmpowerStages > 0 then
 			local holdMS = GetUnitEmpowerHoldAtMaxTime("player")
 			if holdMS and E:NotSecretValue(holdMS) then
 				endMS = endMS + holdMS
@@ -212,10 +200,10 @@ local function handleChannelStart(isEmpower)
 		startCastSwipe(startMS * 0.001, (endMS - startMS) * 0.001, nil)
 	else
 		local durationObj
-		if isEmpower and UnitEmpoweredChannelDuration then
+		if isEmpower then
 			durationObj = UnitEmpoweredChannelDuration("player", true)
 		end
-		if not durationObj and UnitChannelDuration then
+		if not durationObj then
 			durationObj = UnitChannelDuration("player")
 		end
 		startCastSwipe(nil, nil, durationObj)
@@ -254,35 +242,24 @@ end)
 
 local function queryAndShowGCD(spellID)
 	local queryID = (E.Modern or E.Mists or E.Wrath or E.TBC) and GCD_SPELL_ID or ((spellID and E:NotSecretValue(spellID)) and spellID or GCD_SPELL_ID)
-	if C_Spell_GetSpellCooldown then
-		local info = C_Spell_GetSpellCooldown(queryID)
-		if type(info) == "table" then
-			if info.startTime and info.duration and E:NotSecretValue(info.startTime) and E:NotSecretValue(info.duration) then
-				if info.startTime > 0 and info.duration > 0 and (E.Modern or info.duration <= 1.51) then
-					gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
-					gcdFrame:SetCooldown(info.startTime, info.duration)
-					setGCDVisible(true)
-				end
-				return
-			end
-			--secret gcd values on E.Modern (Midnight)
-			if E:NotSecretValue(info.isActive) and info.isActive and GetSpellCooldownDuration and gcdFrame.SetCooldownFromDurationObject then
-				local durationObj = GetSpellCooldownDuration(GCD_SPELL_ID)
-				if durationObj then
-					gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
-					gcdFrame:SetCooldownFromDurationObject(durationObj)
-					setGCDVisible(true)
-				end
+	local info = GetSpellCooldown(queryID)
+	if info then
+		if info.startTime and info.duration and E:NotSecretValue(info.startTime) and E:NotSecretValue(info.duration) then
+			if info.startTime > 0 and info.duration > 0 and (E.Modern or info.duration <= 1.51) then
+				gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
+				gcdFrame:SetCooldown(info.startTime, info.duration)
+				setGCDVisible(true)
 			end
 			return
 		end
-	end
-	if LegacyGetSpellCooldown then
-		local startTime, duration = LegacyGetSpellCooldown(queryID)
-		if startTime and duration and E:NotSecretValue(startTime) and E:NotSecretValue(duration) and startTime > 0 and duration > 0 and duration <= 1.51 then
-			gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
-			gcdFrame:SetCooldown(startTime, duration)
-			setGCDVisible(true)
+		--secret gcd values on E.Modern (Midnight)
+		if E:NotSecretValue(info.isActive) and info.isActive then
+			local durationObj = GetSpellCooldownDuration(GCD_SPELL_ID)
+			if durationObj then
+				gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
+				gcdFrame:SetCooldownFromDurationObject(durationObj)
+				setGCDVisible(true)
+			end
 		end
 	end
 end
@@ -292,16 +269,9 @@ gcdFrame:SetScript("OnEvent", function(_, event, unit, _, spellID)
 	if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_SUCCEEDED" then
 		queryAndShowGCD(spellID)
 	elseif gcdVisible then
-		if C_Spell_GetSpellCooldown then
-			local info = C_Spell_GetSpellCooldown(GCD_SPELL_ID)
-			if type(info) == "table" and info.duration and E:NotSecretValue(info.duration) and info.duration == 0 then
-				setGCDVisible(false)
-			end
-		elseif LegacyGetSpellCooldown then
-			local _, duration = LegacyGetSpellCooldown(GCD_SPELL_ID)
-			if duration and E:NotSecretValue(duration) and duration == 0 then
-				setGCDVisible(false)
-			end
+		local info = GetSpellCooldown(GCD_SPELL_ID)
+		if info and info.duration and E:NotSecretValue(info.duration) and info.duration == 0 then
+			setGCDVisible(false)
 		end
 	end
 end)
