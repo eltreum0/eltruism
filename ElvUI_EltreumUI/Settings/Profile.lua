@@ -476,8 +476,6 @@ P.ElvUI_EltreumUI = {
 		},
 		cursorcast = {
 			radius = 25,
-			sublayer = 1,
-			thickness = 5,
 			classcolor = true,
 			gradient = false,
 			r = 0.27,
@@ -487,8 +485,6 @@ P.ElvUI_EltreumUI = {
 		},
 		cursorgcd = {
 			radius = 20,
-			sublayer = 0,
-			thickness = 5,
 			classcolor = false,
 			r = 1,
 			g = 1,
@@ -497,8 +493,6 @@ P.ElvUI_EltreumUI = {
 		},
 		cursorcursor = {
 			radius = 15,
-			sublayer = 0,
-			thickness = 5,
 			combat = true,
 			classcolor = false,
 			r = 0.5,
