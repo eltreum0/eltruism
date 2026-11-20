@@ -372,6 +372,7 @@ function ElvUI_EltreumUI:Configtable()
 			E.Modern and [[
 Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
 FreeVector (www.freevector.com) for some of the icons. List in license.txt
+Hold to Cast is based on HoldToCastFix by JulianNorton and ElvUI-HoldToCastFix by danielbehrens, licensed under MIT License
 Icons8 (www.icons8.com) for some of the icons. List in license.txt
 Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
 Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3

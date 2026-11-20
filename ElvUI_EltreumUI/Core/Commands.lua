@@ -105,6 +105,7 @@ local function CommandList(unknown)
 			print("|cff82B4ff/eway and /ewaypoint|r - Sets a map waypoint with the supplied coordinates")
 		end
 		print("|cff82B4ff/!key and /!keys|r - Links your keystone in chat")
+		print("|cff82B4ff/eltruism holdtocast|r - Toggles Hold to Cast fix (/eltruism holdtocastdiag for diagnostics or /eltruism holdtocastrestore to restore macros)")
 	end
 	print("|cff82B4ff/eltruism background|r - Toggles between grey and black background")
 	print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
@@ -414,6 +415,15 @@ function ElvUI_EltreumUI:RunCommands(message)
 			Screenshot()
 			ElvUI_EltreumUI:Print("Native, 720p, 1080p, 1440p and 4K screenshots taken")
 		end)
+	elseif E.Modern and message == 'holdtocastdiag' then
+		ElvUI_EltreumUI:HoldToCastDiagnostics()
+	elseif E.Modern and message == 'holdtocastrestore' then
+		local count = ElvUI_EltreumUI:RestoreHoldToCastMacros()
+		ElvUI_EltreumUI:Print("Restored " .. count .. " macro slot(s).")
+	elseif E.Modern and message == 'holdtocast' then
+		E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable = not E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable
+		ElvUI_EltreumUI:HoldToCast()
+		ElvUI_EltreumUI:Print("Hold to Cast fix " .. (E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable and "enabled" or "disabled"))
 	elseif message == 'help' then
 		CommandList()
 	else

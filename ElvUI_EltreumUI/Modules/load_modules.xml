@@ -14,6 +14,7 @@
 	<Script file='Misc/CombatEvents.lua'/>
 	<Script file='Misc/CombatIcons.lua'/>
 	<Script file='Misc/DynamicFunctions.lua'/>
+	<Script file='Misc/HoldToCast.lua'/>
 	<Script file='Misc/LFGList.lua'/>
 	<Script file='Misc/InstantLoot.lua'/>
 	<Script file='Misc/Instances.lua'/>

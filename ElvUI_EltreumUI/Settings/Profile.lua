@@ -2350,5 +2350,20 @@ P.ElvUI_EltreumUI = {
 		bagProfessionIcons = false,
 		ClickCastingShortcut = true,
 		rangedswinghide = false,
+		holdtocast = {
+			enable = false,
+			convertMacros = true,
+			autoUpgradeRanks = true,
+			bars = {
+				[1] = true,
+				[3] = true,
+				[4] = true,
+				[5] = true,
+				[6] = true,
+				[13] = true,
+				[14] = true,
+				[15] = true,
+			},
+		},
 	},
 }

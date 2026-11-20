@@ -1,6 +1,13 @@
 local E, _, _, P = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
+local ipairs = _G.ipairs
+local tostring = _G.tostring
+
+local holdtocastBars = { 1, 3, 4, 5, 6, 13, 14, 15 }
+local function isHTCDisabled()
+	return not E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable
+end
 
 -- Eltruism combat music options
 local isPlayingMusic = false
@@ -141,4 +148,43 @@ function ElvUI_EltreumUI:CombatMusicOptions()
 	ElvUI_EltreumUI.Options.args.combat.args.datatext.args.description4 = E.Libs.ACH:Description(L["Datatext Hiding"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.combat.args.datatext.args.leftdatatexthide = E.Libs.ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
 	ElvUI_EltreumUI.Options.args.combat.args.datatext.args.rightdatatexthide = E.Libs.ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)
+
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast = E.Libs.ACH:Group(E.NewSign..L["Hold to Cast"], nil, 5, nil, nil, nil, nil, not E.Modern)
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.description1 = E.Libs.ACH:Description(L["Fixes Blizzard's Press and Hold Casting on ElvUI ActionBars by routing keybinds to Blizzard's native ActionButton commands"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.enable = E.Libs.ACH:Toggle(L["Enable"], L["Fixes Press and Hold Casting (ActionButtonUseKeyHeldSpell) on ElvUI action bars"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable = value ElvUI_EltreumUI:HoldToCast() end)
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.status = E.Libs.ACH:Description(function() return L["Status"] .. ": " .. ElvUI_EltreumUI:GetHoldToCastStatusText() end, 3, "medium", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.convertMacros = E.Libs.ACH:Toggle(L["Convert Spell Macros"], L["Converts simple or modifier-downrank spell macros into direct spells for Hold to Cast while keeping modifier overrides"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.holdtocast.convertMacros end, function(_, value)
+		E.db.ElvUI_EltreumUI.otherstuff.holdtocast.convertMacros = value
+		if value then
+			ElvUI_EltreumUI:HoldToCast()
+		else
+			local restored = ElvUI_EltreumUI:RestoreHoldToCastMacros()
+			ElvUI_EltreumUI:Print(L["Restored"] .. " " .. tostring(restored) .. " " .. L["macro slot(s)."])
+		end
+	end, isHTCDisabled)
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.autoUpgradeRanks = E.Libs.ACH:Toggle(L["Auto-Upgrade Spell Ranks"], L["Automatically upgrades converted macro slots to the highest learned spell rank"], 5, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.holdtocast.autoUpgradeRanks end, function(_, value)
+		E.db.ElvUI_EltreumUI.otherstuff.holdtocast.autoUpgradeRanks = value
+		if value then
+			ElvUI_EltreumUI:HoldToCast()
+		end
+	end, isHTCDisabled)
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.bars = E.Libs.ACH:Group(L["ActionBars"], nil, 6, nil, nil, nil, isHTCDisabled)
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.bars.inline = true
+	for orderIndex, barNum in ipairs(holdtocastBars) do
+		local barKey = "bar" .. barNum
+		ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.bars.args[barKey] = E.Libs.ACH:Toggle(L["ActionBar"] .. " " .. barNum, nil, orderIndex, nil, false, nil,
+			function() return E.db.ElvUI_EltreumUI.otherstuff.holdtocast.bars[barNum] end,
+			function(_, value) E.db.ElvUI_EltreumUI.otherstuff.holdtocast.bars[barNum] = value ElvUI_EltreumUI:HoldToCast() end,
+			nil,
+			function() return not (E.db.actionbar and E.db.actionbar[barKey]) end
+		)
+	end
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.restoreMacros = E.Libs.ACH:Execute(L["Restore Macros"], L["Restores macros that were converted to direct spells back onto their action bar slots"], 7, function()
+		E.db.ElvUI_EltreumUI.otherstuff.holdtocast.convertMacros = false
+		local restored = ElvUI_EltreumUI:RestoreHoldToCastMacros()
+		ElvUI_EltreumUI:Print(L["Restored"] .. " " .. tostring(restored) .. " " .. L["macro slot(s)."])
+	end)
+	ElvUI_EltreumUI.Options.args.combat.args.holdtocast.args.diagnostics = E.Libs.ACH:Execute(L["Diagnostics"], L["Prints Hold to Cast status and keybind diagnostics to chat"], 8, function()
+		ElvUI_EltreumUI:HoldToCastDiagnostics()
+	end)
 end

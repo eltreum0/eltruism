@@ -302,6 +302,16 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	--CheckMerathilisUI(L["Cooldown Pulse\n(Includes TTS)"], L["Cooldown Pulse"], "db.ElvUI_EltreumUI.skins.doom.enable", "db.mui.cooldownFlash.enable")
 	CheckDoom(L["Cooldowns"], L["Doom_CooldownPulse"], "db.ElvUI_EltreumUI.skins.doom.enable", "Doom_CooldownPulse")
 
+	--Hold to Cast
+	if E.Modern then
+		local CheckHoldToCastFix = GetCheckCompatibilityFunction("HoldToCastFix", select(2,GetAddOnInfo("HoldToCastFix")),true)
+		local CheckElvUIHoldToCastFix = GetCheckCompatibilityFunction("ElvUI_HoldToCastFix", select(2,GetAddOnInfo("ElvUI_HoldToCastFix")),true)
+		local CheckElvUIHoldToCastFixDash = GetCheckCompatibilityFunction("ElvUI-HoldToCastFix", select(2,GetAddOnInfo("ElvUI-HoldToCastFix")),true)
+		CheckHoldToCastFix(L["Hold to Cast"], "ElvUI HoldToCastFix", "db.ElvUI_EltreumUI.otherstuff.holdtocast.enable", "HoldToCastFix")
+		CheckElvUIHoldToCastFix(L["Hold to Cast"], "ElvUI HoldToCastFix", "db.ElvUI_EltreumUI.otherstuff.holdtocast.enable", "ElvUI_HoldToCastFix")
+		CheckElvUIHoldToCastFixDash(L["Hold to Cast"], "ElvUI HoldToCastFix", "db.ElvUI_EltreumUI.otherstuff.holdtocast.enable", "ElvUI-HoldToCastFix")
+	end
+
 	--Quests
 	CheckWindTools(L["Quest Autoaccept"], L["Quest Autoaccept"], "db.ElvUI_EltreumUI.quests.autoaccept", "db.WT.quest.turnIn.enable")
 	--CheckMerathilisUI(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "private.mui.quest.objectiveTracker.enable")

@@ -55,6 +55,7 @@ V.ElvUI_EltreumUI = {
 
 	wishlistID = {},
 	wishlistName = {},
+	holdtocastMacroSlots = {},
 
 	isInstalled ={
 		sle = false,

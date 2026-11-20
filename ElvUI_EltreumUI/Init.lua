@@ -216,6 +216,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	ElvUI_EltreumUI:GradientNameplatesHooks()
 	ElvUI_EltreumUI:InstanceIndicator() --for the instance texts
+	if E.Modern then
+		ElvUI_EltreumUI:HoldToCast(true) --fix press and hold casting on elvui actionbars
+	end
 end
 
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
