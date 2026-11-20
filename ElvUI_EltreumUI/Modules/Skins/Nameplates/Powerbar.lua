@@ -13,7 +13,6 @@ local UnitPowerType = _G.UnitPowerType
 local UnitExists = _G.UnitExists
 local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
-local GetShapeshiftForm = _G.GetShapeshiftForm
 local CreateVector3D = _G.CreateVector3D
 local UnitIsDead = _G.UnitIsDead
 local Enum = _G.Enum
@@ -66,53 +65,68 @@ local powerEffectTransformVec1 = CreateVector3D(-0.035, 0, 0)
 local powerEffectTransformVec2 = CreateVector3D(4.7123889803847, 0, 0)
 local maxpower = 0
 
---Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
-local spellGenerators = {
-	-- Balance Druid
-	[190984] = 6, --wrath
-	[194153] = 8, -- StarFire
-	--[214281] = 10, -- New Moon --might finally have become 1
-	[274281] = 10, -- New Moon
-	--[214282] = 20, -- Half Moon --might finally have become 1
-	[274282] = 20, -- Half Moon
-	[274283] = 40, -- Full Moon
-	[202347] = 12, -- Stellar Flare
-
-	-- Shadow Priest
-	[8092] = 6, -- mind blast
-	[34914] = 4, -- vampiric touch
-	--[15407] = 12, -- mind flay, but is a channel so idc
-	--[48045] = 6, -- per target, but is a channel so idc
-	--[263165] = 60, -- void torrent, but is a channel so idc
-	[263346] = 15, --dark void
-	[73510] = 4, --mind spike
-	[391109] = 30, --dark ascension
-	[407466] = 12, --mind spike: insanity
-	--[391403] = 12, --mind flay: insanity, but its a channel so idc
-	[375901] = 10, --mindgames
-	[120644] = 10, -- halo
-	--[263165] = 24, --void torrent, but its a channel so idc
-	[450983] = 6, --void blast
-
-	-- Elemental Shaman
-	[188196] = 6, --lightning bolt
-	[51505] = 8, --lava burst
-	[114074] = 2, --lava beam
-	[210714] = 25, --icefury
-	[188443] = 4, --chain lightning (per target hit)
-	[51514] = 0, --hex can have maelstrom if they have inundate
-	[210873] = 0, --hex can have maelstrom if they have inundate
-	[211004] = 0, --hex can have maelstrom if they have inundate
-	[211010] = 0, --hex can have maelstrom if they have inundate
-	[211015] = 0, --hex can have maelstrom if they have inundate
-	[269352] = 0, --hex can have maelstrom if they have inundate
-	[277778] = 0, --hex can have maelstrom if they have inundate
-	[277784] = 0, --hex can have maelstrom if they have inundate
-	[309328] = 0, --hex can have maelstrom if they have inundate
-
-	--Hunter
-	[56641] = 10, --steady shot gives bonus focus with a talent (now baseline)
+local powerTypeSettings = {
+	MANA = "mana",
+	RAGE = "rage",
+	ENERGY = "energy",
+	LUNAR_POWER = "astral",
+	RUNIC_POWER = "runic",
+	INSANITY = "insanity",
+	MAELSTROM = "maelstrom",
+	FURY = "fury",
+	FOCUS = "focus",
 }
+
+--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
+--In Classic Era, Forever, TBC, and Wrath, cast-time abilities use Mana/Rage/Energy/Runic Power costs read dynamically via GetSpellPowerCost.
+local spellGenerators = {}
+if E.Retail then
+	spellGenerators = {
+		-- Balance Druid
+		[190984] = 6, -- Wrath
+		[194153] = 8, -- Starfire
+		[274281] = 10, -- New Moon
+		[274282] = 20, -- Half Moon
+		[274283] = 40, -- Full Moon
+		[202347] = 12, -- Stellar Flare
+
+		-- Shadow Priest (channels like Mind Flay / Void Torrent are excluded)
+		[8092] = 6, -- Mind Blast
+		[34914] = 4, -- Vampiric Touch
+		[228260] = 10, -- Voidform
+		[375901] = 10, -- Mindgames (PvP talent)
+		[120644] = 5, -- Halo
+		[450983] = 6, -- Void Blast
+
+		-- Elemental Shaman
+		[188196] = 6, -- Lightning Bolt
+		[51505] = 8, -- Lava Burst
+		[462818] = 10, -- Icefury
+		[188443] = 2, -- Chain Lightning (per target hit)
+		[191634] = 0, -- Stormkeeper (generates Maelstrom with Stormwell)
+		[51514] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[210873] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[211004] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[211010] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[211015] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[269352] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[277778] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[277784] = 0, -- Hex (can generate Maelstrom with Inundate)
+		[309328] = 0, -- Hex (can generate Maelstrom with Inundate)
+
+		-- Marksmanship Hunter
+		[56641] = 20, -- Steady Shot
+
+		-- Devourer Demon Hunter
+		[473662] = 8, -- Consume
+	}
+elseif E.Mists then
+	spellGenerators = {
+		-- Hunter
+		[56641] = 14, -- Steady Shot
+		[77767] = 14, -- Cobra Shot
+	}
+end
 
 local hexSpells = {
 	[51514] = true,
@@ -126,28 +140,40 @@ local hexSpells = {
 	[309328] = true,
 }
 
+local function HasPlayerAura(spellID)
+	if not GetPlayerAuraBySpellID then return false end
+	local aura = GetPlayerAuraBySpellID(spellID)
+	if E.IsSecretValue and E:IsSecretValue(aura) then return false end
+	return aura ~= nil
+end
+
 --update talents
 local function UpdatePowerTalents()
-	spellGenerators[56641] = IsPlayerSpell(321018) and 20 or 10 --improved steady shot
-
-	if IsPlayerSpell(385923) then --shaman flow of power
-		spellGenerators[188196] = 8
-		spellGenerators[51505] = 10
-	else
-		spellGenerators[188196] = 6
-		spellGenerators[51505] = 8
-	end
-
-	local hexValue = IsPlayerSpell(378776) and 8 or 0 --shaman inundate
-	for spellID in next, hexSpells do
-		spellGenerators[spellID] = hexValue
+	if E.myclass == "DRUID" then
+		local wildSurgesBonus = IsPlayerSpell(406890) and 2 or 0 -- Wild Surges
+		spellGenerators[190984] = 6 + wildSurgesBonus -- Wrath
+		spellGenerators[194153] = 8 + wildSurgesBonus + (IsPlayerSpell(429520) and 2 or 0) -- Starfire + Moon Guardian
+		spellGenerators[274283] = IsPlayerSpell(424058) and 46 or 40 -- Full Moon + Boundless Moonlight
+	elseif E.myclass == "PRIEST" then
+		spellGenerators[450983] = IsPlayerSpell(450612) and 8 or 6 -- Void Blast + Void Infusion
+	elseif E.myclass == "SHAMAN" then
+		spellGenerators[191634] = IsPlayerSpell(1264762) and 10 or 0 -- Stormkeeper + Stormwell
+		local hexValue = IsPlayerSpell(378776) and 8 or 0 -- Inundate
+		for spellID in next, hexSpells do
+			spellGenerators[spellID] = hexValue
+		end
+	elseif E.myclass == "HUNTER" then
+		spellGenerators[56641] = IsPlayerSpell(450379) and 25 or 20 -- Steady Shot + Invigorating Pulse
+	elseif E.myclass == "DEMONHUNTER" then
+		spellGenerators[473662] = IsPlayerSpell(1253415) and 10 or 8 -- Consume + Celestial Echoes
 	end
 end
-if E.Modern then
+if E.Retail then
 	local TalentUpdateFrame = CreateFrame("FRAME")
 	TalentUpdateFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	TalentUpdateFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
 	TalentUpdateFrame:RegisterEvent("SPELLS_CHANGED")
+	TalentUpdateFrame:RegisterEvent("TRAIT_CONFIG_UPDATED")
 	TalentUpdateFrame:SetScript("OnEvent", UpdatePowerTalents)
 end
 
@@ -225,26 +251,37 @@ function ElvUI_EltreumUI:PowerPrediction()
 			end
 		end
 
-		--because priest/shaman/druid have a secondary power AND mana they need to be checked against
-		if not isSecretSpell and spellID and spellGenerators[spellID] then
+		--because priest/shaman/druid/hunter/dh have a secondary power or generator casts they need to be checked against
+		if (E.Retail or E.Mists) and not isSecretSpell and spellID and spellGenerators[spellID] then
 			local isGeneratorForPowerType = false
-			if E.myclass == "DRUID" and powerType == (Enum.PowerType.LunarPower or 8) then
-				isGeneratorForPowerType = true
-			elseif E.myclass == "PRIEST" and powerType == (Enum.PowerType.Insanity or 13) then
-				isGeneratorForPowerType = true
-			elseif E.myclass == "SHAMAN" and powerType == (Enum.PowerType.Maelstrom or 11) then
-				isGeneratorForPowerType = true
-			elseif E.myclass == "HUNTER" and powerType == (Enum.PowerType.Focus or 2) then
-				isGeneratorForPowerType = true
+			if E.Retail then
+				if E.myclass == "DRUID" and powerType == (Enum.PowerType.LunarPower or 8) then
+					isGeneratorForPowerType = true
+				elseif E.myclass == "PRIEST" and powerType == (Enum.PowerType.Insanity or 13) then
+					isGeneratorForPowerType = true
+				elseif E.myclass == "SHAMAN" and powerType == (Enum.PowerType.Maelstrom or 11) then
+					isGeneratorForPowerType = true
+				elseif E.myclass == "HUNTER" and powerType == (Enum.PowerType.Focus or 2) then
+					isGeneratorForPowerType = true
+				elseif E.myclass == "DEMONHUNTER" and powerType == (Enum.PowerType.Fury or 17) then
+					isGeneratorForPowerType = true
+				end
+			elseif E.Mists then
+				if E.myclass == "HUNTER" and powerType == (Enum.PowerType.Focus or 2) then
+					isGeneratorForPowerType = true
+				end
 			end
 
 			if isGeneratorForPowerType then
 				incResource = spellGenerators[spellID] or 0
-				if E.Modern then
-					--druid/shaman
-					if (spellID == 190984 or spellID == 194153) and IsPlayerSpell(114107) and GetPlayerAuraBySpellID(48517) then
-						incResource = 10
-					elseif incResource > 0 and hexSpells[spellID] and not _G.InCombatLockdown() then
+				if E.Retail then
+					if spellID == 190984 and IsPlayerSpell(114107) and HasPlayerAura(48517) then -- Balance Druid: Soul of the Forest + Solar Eclipse
+						incResource = incResource * 1.4
+					elseif spellID == 194153 and IsPlayerSpell(114107) and HasPlayerAura(48518) then -- Balance Druid: Soul of the Forest + Lunar Eclipse
+						incResource = incResource * 1.4
+					elseif spellID == 56641 and HasPlayerAura(288613) then -- Marksmanship Hunter: Trueshot
+						incResource = incResource * 1.5
+					elseif incResource > 0 and hexSpells[spellID] and not _G.InCombatLockdown() then -- Elemental Shaman: Inundate requires combat
 						incResource = 0
 					end
 				end
@@ -439,225 +476,22 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			--adjust position, show/hide, show colors depending on powertype if not gradient
-			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
-				if nameplatePowerPrivateDB.mana then
-					EltreumPowerBar:Show()
-					if not npGradient then
-						EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
+			local powerSettingKey = powertype and powerTypeSettings[powertype]
+			if powerSettingKey and nameplatePowerPrivateDB[powerSettingKey] then
+				EltreumPowerBar:Show()
+				if not npGradient then
+					local powerColor = PowerColorDB[powertype]
+					if powerColor then
+						EltreumPowerBar:SetStatusBarColor(powerColor.r, powerColor.g, powerColor.b)
 					end
 				end
-			elseif E.myclass == 'DRUID' then
-				local stance = GetShapeshiftForm()
-				--[[
-					-- FOR BALANCE
-					--retail
-					-- 0 is human
-					-- 1 is bear
-					-- 2 is cat
-					-- 3 is bird
-					-- 4 is moonkin
-					-- 5 is tree (if known)
-					-- 6 is mount form (if known)
-
-					--for resto
-					-- 0 is human
-					-- 1 is bear
-					-- 2 is cat
-					-- 3 is bird
-					-- 4 is moonkin (if known)
-					-- 4 is tree (if known and moonkin not known)
-					--5 = tree of life (talent)
-				]]--
-				--tree = IsSpellKnown(114282)
-				--moonkin = IsSpellKnown(197625)
-				--stag = IsSpellKnown(210053)
-				if stance == 0 then --humanoid
-					if nameplatePowerPrivateDB.mana then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-					end
-				elseif stance == 1 then --bear
-					if nameplatePowerPrivateDB.rage then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.RAGE.r, PowerColorDB.RAGE.g, PowerColorDB.RAGE.b) --its rage so color it like rage
-						end
-					end
-				elseif stance == 2 then --cat for retail, aquatic for classic
-					if nameplatePowerPrivateDB.energy then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
-						end
-					end
-				elseif stance == 3 then --travel for retail, cat for classic
-					if E.Modern then
-						if nameplatePowerPrivateDB.mana then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-							end
-						end
-					else
-						if nameplatePowerPrivateDB.energy then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
-							end
-						end
-					end
-				elseif stance == 4 then
-					if E.Retail then --this is where it gets tricky due to talents and specs 4 is either moonkin OR tree of life if resto and not talented into moonkin affinity
-						if ElvUI_EltreumUI.Spec == 103 then --moonkin
-							if nameplatePowerPrivateDB.astral then
-								EltreumPowerBar:Show()
-								if not npGradient then
-									EltreumPowerBar:SetStatusBarColor(PowerColorDB.LUNAR_POWER.r, PowerColorDB.LUNAR_POWER.g, PowerColorDB.LUNAR_POWER.b) --its astral/lunar power
-								end
-							end
-						else --resto druid or other druid
-							if nameplatePowerPrivateDB.mana then
-								EltreumPowerBar:Show()
-								if not npGradient then
-									EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-								end
-							end
-						end
-					else --and in classic, 4 is travel and 5 is moonkin/resto tree
-						if nameplatePowerPrivateDB.mana then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-							end
-						end
-					end
-				elseif stance == 5 or stance == 6 then
-					if nameplatePowerPrivateDB.mana then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-					end
-				end
-			elseif E.myclass == 'WARRIOR' then
-				if nameplatePowerPrivateDB.rage then
-					EltreumPowerBar:Show()
-					if not npGradient then
-						EltreumPowerBar:SetStatusBarColor(PowerColorDB.RAGE.r, PowerColorDB.RAGE.g, PowerColorDB.RAGE.b) --its rage so color it like rage
-					end
-				end
-			elseif E.myclass == 'ROGUE' then
-				if nameplatePowerPrivateDB.energy then
-					EltreumPowerBar:Show()
-					if not npGradient then
-						EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
-					end
-				end
-			elseif E.myclass == 'MONK' then
-				if nameplatePowerPrivateDB.energy then
-					EltreumPowerBar:Show()
-					if not npGradient then
-						EltreumPowerBar:SetStatusBarColor(PowerColorDB.ENERGY.r, PowerColorDB.ENERGY.g, PowerColorDB.ENERGY.b) --its energy so color it like energy
-					end
-				end
-			elseif E.myclass == 'DEATHKNIGHT' then
-				if nameplatePowerPrivateDB.runic then
-					EltreumPowerBar:Show()
-					if not npGradient then
-						EltreumPowerBar:SetStatusBarColor(PowerColorDB.RUNIC_POWER.r, PowerColorDB.RUNIC_POWER.g, PowerColorDB.RUNIC_POWER.b) --its runic power
-					end
-				end
-			elseif E.myclass == 'HUNTER' then
-				if E.Retail then
-					if nameplatePowerPrivateDB.focus then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.FOCUS.r, PowerColorDB.FOCUS.g, PowerColorDB.FOCUS.b) --its focus so color it like focus
-						end
-					end
-				else
-					if nameplatePowerPrivateDB.mana then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-					end
-				end
-			elseif E.myclass == 'DEMONHUNTER' then
-				if nameplatePowerPrivateDB.fury then
-					EltreumPowerBar:Show()
-					if not npGradient then
-						EltreumPowerBar:SetStatusBarColor(PowerColorDB.FURY.r, PowerColorDB.FURY.g, PowerColorDB.FURY.b) --its fury
-					end
-				end
-			elseif E.myclass == 'PRIEST' then
-				if E.Retail then
-					if ElvUI_EltreumUI.Spec == 258 then
-						if nameplatePowerPrivateDB.insanity then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.INSANITY.r, PowerColorDB.INSANITY.g, PowerColorDB.INSANITY.b) --its insanity
-							end
-						end
-					elseif ElvUI_EltreumUI.Spec == 256 or ElvUI_EltreumUI.Spec == 257 then
-						if nameplatePowerPrivateDB.mana then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-							end
-						end
-					else --its a low level priest
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-					end
-				else
-					if nameplatePowerPrivateDB.mana then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-					end
-				end
-			elseif E.myclass == 'SHAMAN' then
-				if E.Retail then
-					if ElvUI_EltreumUI.Spec == 262 or ElvUI_EltreumUI.Spec == 263 then
-						if nameplatePowerPrivateDB.maelstrom then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MAELSTROM.r, PowerColorDB.MAELSTROM.g, PowerColorDB.MAELSTROM.b) --its maelstrom
-							end
-						end
-					elseif ElvUI_EltreumUI.Spec == 264 then
-						if nameplatePowerPrivateDB.mana then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-							end
-						end
-					else --its a low level shaman
-						if nameplatePowerPrivateDB.mana then
-							EltreumPowerBar:Show()
-							if not npGradient then
-								EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-							end
-						end
-					end
-				else
-					if nameplatePowerPrivateDB.mana then
-						EltreumPowerBar:Show()
-						if not npGradient then
-							EltreumPowerBar:SetStatusBarColor(PowerColorDB.MANA.r, PowerColorDB.MANA.g, PowerColorDB.MANA.b) --its mana so color like mana
-						end
-					end
-				end
+			else
+				EltreumPowerBar:Hide()
+				powerbareffect:Hide()
 			end
 
 			--add effect to bar
-			if nameplatePowerDB.modeleffect then
+			if nameplatePowerDB.modeleffect and EltreumPowerBar:IsShown() then
 				powerbareffect:Show()
 				powerbareffect:SetSize(nameplatePowerDB.sizex or 150, nameplatePowerDB.sizey or 6)
 				powerbareffect:SetAllPoints(EltreumPowerBar:GetStatusBarTexture())
@@ -764,9 +598,10 @@ if E.Classic then
 	end)
 end
 
---update when model changes (for druids mostly)
+--update when model or power type changes (for druids/monks mostly)
 local EltruismPowerBarModelCheck = CreateFrame("FRAME")
 EltruismPowerBarModelCheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPowerBarModelCheck:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
 EltruismPowerBarModelCheck:SetScript("OnEvent", function()
 	if not (E.private.ElvUI_EltreumUI and E.private.ElvUI_EltreumUI.nameplatepower and E.private.ElvUI_EltreumUI.nameplatepower.enable) then return end
 	if UnitExists("target") then
@@ -796,8 +631,8 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	local nameplatePowerPrivateDB = E.private.ElvUI_EltreumUI.nameplatepower
 	if nameplatePowerPrivateDB.enable then
 		if nameplatePowerPrivateDB.adjust then
-			hasCOMBO["MAGE"] = (ElvUI_EltreumUI.Spec == 62) and true or false
-			hasCOMBO["MONK"] = ((ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268)) and true or false
+			hasCOMBO["MAGE"] = (E.Retail and ElvUI_EltreumUI.Spec == 62) and true or false
+			hasCOMBO["MONK"] = ((E.Retail or E.Mists) and ((ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268))) and true or false
 
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
