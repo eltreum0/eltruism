@@ -1250,44 +1250,65 @@ function ElvUI_EltreumUI:ToggleFader()
 	E.db["unitframe"]["units"]["raidpet"]["fader"]["range"] = true
 end
 
---cursor positioning with 60 FPS throttle
+--cursor positioning with frame-capped throttle
 local GetCursorPosition = _G.GetCursorPosition
 local GetTime = _G.GetTime
-local CURSOR_THROTTLE = 0.016 --around 60fps
+local CURSOR_THROTTLE = 0.014 --around 70fps cap without halving 75/90Hz monitors
 local lastCursorPollTime = 0
 local lastRawCursorX, lastRawCursorY
 local lastOffsetX, lastOffsetY
-local lastScaleDivisor
+local lastInvScale
 local cachedCursorPosX, cachedCursorPosY
+local cachedInvScale
+local cachedCursorDB
+local cursorScaleWatcher = CreateFrame("Frame")
+cursorScaleWatcher:RegisterEvent("UI_SCALE_CHANGED")
+cursorScaleWatcher:RegisterEvent("DISPLAY_SIZE_CHANGED")
+cursorScaleWatcher:SetScript("OnEvent", function()
+	cachedInvScale = nil
+end)
 function ElvUI_EltreumUI:UpdateCursorPosition(frame, elapsed, force)
 	if not frame then return end
-	frame.EltruismTimeSinceLastUpdate = (frame.EltruismTimeSinceLastUpdate or 0) + (elapsed or 0)
-	if not force and frame.EltruismTimeSinceLastUpdate < CURSOR_THROTTLE then
-		return
+	if not force then
+		local acc = (frame.EltruismTimeSinceLastUpdate or 0) + (elapsed or 0)
+		if acc < CURSOR_THROTTLE then
+			frame.EltruismTimeSinceLastUpdate = acc
+			return
+		end
+		acc = acc - CURSOR_THROTTLE
+		if acc > CURSOR_THROTTLE then
+			acc = 0
+		end
+		frame.EltruismTimeSinceLastUpdate = acc
+	else
+		frame.EltruismTimeSinceLastUpdate = 0
 	end
-	frame.EltruismTimeSinceLastUpdate = 0
 
 	local now = GetTime()
 	if now ~= lastCursorPollTime or force then
 		lastCursorPollTime = now
 		local rawX, rawY = GetCursorPosition()
-		local cursorDB = E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor
-		local offsetX = (cursorDB and cursorDB.cooldownoffsetx) or 0
-		local offsetY = (cursorDB and cursorDB.cooldownoffsety) or 0
-		local scaleDivisor = E.UIParent:GetEffectiveScale()
-		if rawX ~= lastRawCursorX or rawY ~= lastRawCursorY or offsetX ~= lastOffsetX or offsetY ~= lastOffsetY or scaleDivisor ~= lastScaleDivisor or force then
+		if not cachedCursorDB or force then
+			cachedCursorDB = E.db and E.db.ElvUI_EltreumUI and E.db.ElvUI_EltreumUI.cursors and E.db.ElvUI_EltreumUI.cursors.cursor
+		end
+		if not cachedInvScale or force then
+			cachedInvScale = 1 / E.UIParent:GetEffectiveScale()
+		end
+		local offsetX = (cachedCursorDB and cachedCursorDB.cooldownoffsetx) or 0
+		local offsetY = (cachedCursorDB and cachedCursorDB.cooldownoffsety) or 0
+		local invScale = cachedInvScale
+		if rawX ~= lastRawCursorX or rawY ~= lastRawCursorY or offsetX ~= lastOffsetX or offsetY ~= lastOffsetY or invScale ~= lastInvScale or force then
 			lastRawCursorX, lastRawCursorY = rawX, rawY
 			lastOffsetX, lastOffsetY = offsetX, offsetY
-			lastScaleDivisor = scaleDivisor
-			cachedCursorPosX = (rawX / scaleDivisor) + offsetX
-			cachedCursorPosY = (rawY / scaleDivisor) + offsetY
+			lastInvScale = invScale
+			cachedCursorPosX = (rawX * invScale) + offsetX
+			cachedCursorPosY = (rawY * invScale) + offsetY
 		end
 	end
 
 	if cachedCursorPosX and (force or frame.EltruismCursorX ~= cachedCursorPosX or frame.EltruismCursorY ~= cachedCursorPosY) then
 		frame.EltruismCursorX = cachedCursorPosX
 		frame.EltruismCursorY = cachedCursorPosY
-		frame:ClearAllPoints()
 		frame:SetPoint("CENTER", E.UIParent, "BOTTOMLEFT", cachedCursorPosX, cachedCursorPosY)
 	end
 end

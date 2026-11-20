@@ -48,8 +48,7 @@ local THANKYOU = {
 	'Burzolog - inspiration for Rogue Door Opener',
 	'mitchnull - inspiration for Cursor Cooldowns (CooldownToGo)',
 	'Aezay - inspiration for Quest Items (QBar)',
-	--Uncomment after Cursor is rewritten to All Rights Reserved:
-	--'michaelsp - inspiration for Cursor (CastCursor)',
+	'michaelsp - inspiration for Cursor (CastCursor)',
 }
 
 local DONATORS = {
@@ -375,8 +374,6 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
 	local licenses = {
 		'Cooldown includes portions from Doom Cooldown Pulse by discoteq (MIT License)',
-		-- TODO(ARR rewrite): remove this entry, delete Licenses/Cursor License.txt, and uncomment michaelsp in THANKYOU
-		'Cursor is a fork of CastCursor by michaelsp, which is licensed under GNU GPLv3',
 		'FreeVector (www.freevector.com) for some icons (see Licenses/Textures License.txt)',
 		'Icons8 (www.icons8.com) for some icons (see Licenses/Textures License.txt)',
 		'LibDeformat-3.0 includes portions from LibDeformat-3.0 by ckknight (MIT License)',

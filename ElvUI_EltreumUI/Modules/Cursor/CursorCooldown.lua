@@ -27,6 +27,7 @@ local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 local C_CurveUtil = _G.C_CurveUtil
 local Enum = _G.Enum
 local type = _G.type
+local wipe = _G.wipe
 local EltruismSpellInfo = ElvUI_EltreumUI.EltruismSpellInfo
 local EltruismSpellCooldown = ElvUI_EltreumUI.EltruismSpellCooldown
 local EltruismItemCooldown = ElvUI_EltreumUI.EltruismItemCooldown
@@ -287,7 +288,14 @@ function ElvUI_EltreumUI:CooldownEnable()
 	ElvUI_EltreumUI:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
 
 	CooldownEventFrame:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player", "pet")
-	CooldownEventFrame:SetScript("OnEvent", function(_, _, unit, _, spellID)
+	CooldownEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+	CooldownEventFrame:SetScript("OnEvent", function(_, event, unit, _, spellID)
+		if event == "PLAYER_ENTERING_WORLD" then
+			wipe(spellStartGuess)
+			wipe(itemStartGuess)
+			wipe(petStartGuess)
+			return
+		end
 		if not spellID or not E:NotSecretValue(spellID) then return end
 		if unit == "player" or (unit == "pet" and cursordb and cursordb.petcooldown) then
 			local nowTime = GetTime()

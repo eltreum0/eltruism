@@ -1,19 +1,313 @@
+--cursor rings for casts, gcd and combat (originally inspired by CastCursor by michaelsp)
 local E = unpack(ElvUI)
 local _G = _G
-local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
-local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
+
 local CreateFrame = _G.CreateFrame
-local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
-local next = _G.next
-local min = _G.min
-local floor = _G.floor
-local unpack = _G.unpack
-local max = _G.max
-local sin = _G.sin
-local cos = _G.cos
 local InCombatLockdown = _G.InCombatLockdown
 local GetTime = _G.GetTime
-local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
+local tonumber = _G.tonumber
+local type = _G.type
+local strmatch = _G.string.match
+local SetCVar = (_G.C_CVar and _G.C_CVar.SetCVar) or _G.SetCVar
+local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
+local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
+local UnitCastingDuration = _G.UnitCastingDuration
+local UnitChannelDuration = _G.UnitChannelDuration
+local UnitEmpoweredChannelDuration = _G.UnitEmpoweredChannelDuration
+local GetUnitEmpowerHoldAtMaxTime = _G.GetUnitEmpowerHoldAtMaxTime
+local C_Spell = _G.C_Spell
+local C_Spell_GetSpellCooldown = C_Spell and C_Spell.GetSpellCooldown
+local GetSpellCooldownDuration = C_Spell and C_Spell.GetSpellCooldownDuration
+local LegacyGetSpellCooldown = _G.GetSpellCooldown
+
+local DEFAULT_RING = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga'
+local GCD_SPELL_ID = 61304
+
+local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", E.UIParent)
+rootFrame:SetSize(8, 8)
+rootFrame:Hide()
+
+local cursorFrame = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
+cursorFrame:SetPoint("CENTER", rootFrame, "CENTER", 0, 0)
+cursorFrame:SetFrameStrata("TOOLTIP")
+cursorFrame:SetFrameLevel(1)
+local cursorTex = cursorFrame:CreateTexture(nil, "OVERLAY")
+cursorTex:SetAllPoints(cursorFrame)
+cursorFrame:Hide()
+
+local function createSwipeRing(name, level)
+	local cd = CreateFrame("Cooldown", name, rootFrame)
+	cd:SetPoint("CENTER", rootFrame, "CENTER", 0, 0)
+	cd:SetFrameStrata("TOOLTIP")
+	cd:SetFrameLevel(level)
+	cd:SetDrawSwipe(true)
+	cd:SetDrawEdge(false)
+	cd:SetDrawBling(false)
+	cd:SetHideCountdownNumbers(true)
+	cd.noCooldownCount = true
+	cd:SetReverse(true)
+	if cd.SetUseCircularEdge then
+		cd:SetUseCircularEdge(true)
+	end
+	cd:Hide()
+	return cd
+end
+
+local gcdFrame = createSwipeRing("EltruismCursorGCD", 2)
+local castFrame = createSwipeRing("EltruismCursorCast", 3)
+
+local cursordb, castdb, gcddb, combatdb
+local castVisible, gcdVisible, combatVisible = false, false, false
+local activeCastID
+local castR, castG, castB, castA = 1, 1, 1, 1
+local gcdR, gcdG, gcdB, gcdA = 1, 1, 1, 1
+local useCastGradient = false
+local gradR1, gradG1, gradB1 = 1, 1, 1
+local gradR2, gradG2, gradB2 = 1, 1, 1
+local castGradActive = false
+local castGradStart = 0
+local castGradInvDur = 0
+
+local function onRootUpdate(self, elapsed)
+	ElvUI_EltreumUI:UpdateCursorPosition(self, elapsed)
+	if castGradActive then
+		local progress = (GetTime() - castGradStart) * castGradInvDur
+		if progress >= 1 then
+			castFrame:SetSwipeColor(gradR2, gradG2, gradB2, castA)
+			castGradActive = false
+		elseif progress > 0 then
+			castFrame:SetSwipeColor(
+				gradR1 + (gradR2 - gradR1) * progress,
+				gradG1 + (gradG2 - gradG1) * progress,
+				gradB1 + (gradB2 - gradB1) * progress,
+				castA
+			)
+		end
+	end
+end
+
+local function updateRootVisibility()
+	if castVisible or gcdVisible or combatVisible then
+		if not rootFrame:IsShown() then
+			rootFrame:Show()
+			ElvUI_EltreumUI:UpdateCursorPosition(rootFrame, 0, true)
+			rootFrame:SetScript("OnUpdate", onRootUpdate)
+		end
+	else
+		if rootFrame:IsShown() then
+			rootFrame:SetScript("OnUpdate", nil)
+			rootFrame:Hide()
+		end
+	end
+end
+
+local function clearSwipe(frame)
+	if frame.Clear then
+		frame:Clear()
+	else
+		frame:SetCooldown(0, 0)
+	end
+end
+
+local function setCastVisible(visible)
+	castVisible = visible
+	if visible then
+		castFrame:Show()
+	else
+		castGradActive = false
+		clearSwipe(castFrame)
+		castFrame:Hide()
+	end
+	updateRootVisibility()
+end
+
+local function setGCDVisible(visible)
+	gcdVisible = visible
+	if visible then
+		gcdFrame:Show()
+	else
+		clearSwipe(gcdFrame)
+		gcdFrame:Hide()
+	end
+	updateRootVisibility()
+end
+
+local function setCombatVisible(visible)
+	combatVisible = visible
+	if visible then
+		cursorFrame:Show()
+	else
+		cursorFrame:Hide()
+	end
+	updateRootVisibility()
+end
+
+castFrame:SetScript("OnCooldownDone", function()
+	activeCastID = nil
+	setCastVisible(false)
+end)
+
+gcdFrame:SetScript("OnCooldownDone", function()
+	setGCDVisible(false)
+end)
+
+local function startCastSwipe(startSec, durationSec, durationObj)
+	if useCastGradient then
+		castFrame:SetSwipeColor(gradR1, gradG1, gradB1, castA)
+	else
+		castFrame:SetSwipeColor(castR, castG, castB, castA)
+	end
+
+	if startSec and durationSec and durationSec > 0 then
+		castFrame:SetCooldown(startSec, durationSec)
+		if useCastGradient then
+			castGradStart = startSec
+			castGradInvDur = 1 / durationSec
+			castGradActive = true
+		else
+			castGradActive = false
+		end
+		setCastVisible(true)
+	elseif durationObj and castFrame.SetCooldownFromDurationObject then
+		castGradActive = false
+		castFrame:SetCooldownFromDurationObject(durationObj)
+		setCastVisible(true)
+	else
+		setCastVisible(false)
+	end
+end
+
+local function handleCastStart()
+	local name, _, _, startMS, endMS, _, castID = UnitCastingInfo("player")
+	if not name then
+		activeCastID = nil
+		setCastVisible(false)
+		return
+	end
+	activeCastID = (castID and E:NotSecretValue(castID)) and castID or nil
+	if startMS and endMS and E:NotSecretValue(startMS) and E:NotSecretValue(endMS) then
+		startCastSwipe(startMS * 0.001, (endMS - startMS) * 0.001, nil)
+	else
+		local durationObj = UnitCastingDuration and UnitCastingDuration("player")
+		startCastSwipe(nil, nil, durationObj)
+	end
+end
+
+local function handleChannelStart(isEmpower)
+	local name, _, _, startMS, endMS, _, _, _, _, numEmpowerStages = UnitChannelInfo("player")
+	if not name then
+		activeCastID = nil
+		setCastVisible(false)
+		return
+	end
+	activeCastID = nil
+	if startMS and endMS and E:NotSecretValue(startMS) and E:NotSecretValue(endMS) then
+		if E.Modern and numEmpowerStages and E:NotSecretValue(numEmpowerStages) and numEmpowerStages > 0 and GetUnitEmpowerHoldAtMaxTime then
+			local holdMS = GetUnitEmpowerHoldAtMaxTime("player")
+			if holdMS and E:NotSecretValue(holdMS) then
+				endMS = endMS + holdMS
+			end
+		end
+		startCastSwipe(startMS * 0.001, (endMS - startMS) * 0.001, nil)
+	else
+		local durationObj
+		if isEmpower and UnitEmpoweredChannelDuration then
+			durationObj = UnitEmpoweredChannelDuration("player", true)
+		end
+		if not durationObj and UnitChannelDuration then
+			durationObj = UnitChannelDuration("player")
+		end
+		startCastSwipe(nil, nil, durationObj)
+	end
+end
+
+local function handleCastStop(event, castID)
+	if event == "UNIT_SPELLCAST_FAILED" then
+		if castID and activeCastID and E:NotSecretValue(castID) and castID ~= activeCastID then
+			return
+		end
+		if UnitCastingInfo("player") or UnitChannelInfo("player") then
+			return
+		end
+	elseif event == "UNIT_SPELLCAST_STOP" or event == "UNIT_SPELLCAST_INTERRUPTED" then
+		if castID and activeCastID and E:NotSecretValue(castID) and castID ~= activeCastID then
+			return
+		end
+	end
+	activeCastID = nil
+	setCastVisible(false)
+end
+
+castFrame:SetScript("OnEvent", function(_, event, unit, castID)
+	if unit and unit ~= "player" then return end
+	if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_DELAYED" then
+		handleCastStart()
+	elseif event == "UNIT_SPELLCAST_CHANNEL_START" or event == "UNIT_SPELLCAST_CHANNEL_UPDATE" then
+		handleChannelStart(false)
+	elseif event == "UNIT_SPELLCAST_EMPOWER_START" or event == "UNIT_SPELLCAST_EMPOWER_UPDATE" then
+		handleChannelStart(true)
+	else
+		handleCastStop(event, castID)
+	end
+end)
+
+local function queryAndShowGCD(spellID)
+	local queryID = (E.Modern or E.Mists or E.Wrath or E.TBC) and GCD_SPELL_ID or ((spellID and E:NotSecretValue(spellID)) and spellID or GCD_SPELL_ID)
+	if C_Spell_GetSpellCooldown then
+		local info = C_Spell_GetSpellCooldown(queryID)
+		if type(info) == "table" then
+			if info.startTime and info.duration and E:NotSecretValue(info.startTime) and E:NotSecretValue(info.duration) then
+				if info.startTime > 0 and info.duration > 0 and (E.Modern or info.duration <= 1.51) then
+					gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
+					gcdFrame:SetCooldown(info.startTime, info.duration)
+					setGCDVisible(true)
+				end
+				return
+			end
+			--secret gcd values on E.Modern (Midnight)
+			if E:NotSecretValue(info.isActive) and info.isActive and GetSpellCooldownDuration and gcdFrame.SetCooldownFromDurationObject then
+				local durationObj = GetSpellCooldownDuration(GCD_SPELL_ID)
+				if durationObj then
+					gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
+					gcdFrame:SetCooldownFromDurationObject(durationObj)
+					setGCDVisible(true)
+				end
+			end
+			return
+		end
+	end
+	if LegacyGetSpellCooldown then
+		local startTime, duration = LegacyGetSpellCooldown(queryID)
+		if startTime and duration and E:NotSecretValue(startTime) and E:NotSecretValue(duration) and startTime > 0 and duration > 0 and duration <= 1.51 then
+			gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
+			gcdFrame:SetCooldown(startTime, duration)
+			setGCDVisible(true)
+		end
+	end
+end
+
+gcdFrame:SetScript("OnEvent", function(_, event, unit, _, spellID)
+	if unit and unit ~= "player" then return end
+	if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_SUCCEEDED" then
+		queryAndShowGCD(spellID)
+	elseif gcdVisible then
+		if C_Spell_GetSpellCooldown then
+			local info = C_Spell_GetSpellCooldown(GCD_SPELL_ID)
+			if type(info) == "table" and info.duration and E:NotSecretValue(info.duration) and info.duration == 0 then
+				setGCDVisible(false)
+			end
+		elseif LegacyGetSpellCooldown then
+			local _, duration = LegacyGetSpellCooldown(GCD_SPELL_ID)
+			if duration and E:NotSecretValue(duration) and duration == 0 then
+				setGCDVisible(false)
+			end
+		end
+	end
+end)
+
+cursorFrame:SetScript("OnEvent", function(_, event)
+	setCombatVisible(event == "PLAYER_REGEN_DISABLED")
+end)
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
@@ -24,475 +318,121 @@ function ElvUI_EltreumUI:CursorInit()
 	end
 end
 
-local cursorframe = CreateFrame("Frame", "EltruismCursorSetup")
-local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", E.UIParent)
-local Cast = CreateFrame("Frame", "EltruismCursorCast", rootFrame)
-local GCD = CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
-local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
-
---Detect the current cursor for options
+--detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
 	local currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
-	if currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' then
-		currentring = '|cff82B4ffType 1|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' then
-		currentring = '|cff82B4ffType 2|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' then
-		currentring = '|cff82B4ffType 3|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' then
-		currentring = '|cff82B4ffType 4|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' then
-		currentring = '|cff82B4ffType 5|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' then
-		currentring = '|cff82B4ffType 6|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' then
-		currentring = '|cff82B4ffType 7|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' then
-		currentring = '|cff82B4ffType 8|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' then
-		currentring = '|cff82B4ffType 9|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' then
-		currentring = '|cff82B4ffType 10|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring11.tga' then
-		currentring = '|cff82B4ffType 11|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring12.tga' then
-		currentring = '|cff82B4ffType 12|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring13.tga' then
-		currentring = '|cff82B4ffType 13|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring14.tga' then
-		currentring = '|cff82B4ffType 14|r'
-	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring15.tga' then
-		currentring = '|cff82B4ffType 15|r'
+	if currentring then
+		local ringNum = strmatch(currentring, "[Rr]ing(%d+)")
+		if ringNum then
+			return '|cff82B4ffType ' .. ringNum .. '|r'
+		end
 	end
-	return currentring
+	return currentring or ""
 end
 
--- Change cursor size based on user input
+--change cursor size based on user input
 function ElvUI_EltreumUI:CursorSize(value)
-	if value == '-1' then
-		SetCVar("cursorSizePreferred", -1)
-		E.db.ElvUI_EltreumUI.cursors.cursor.size = '-1'
-	elseif value == '0' then
-		SetCVar("cursorSizePreferred", 0)
-		E.db.ElvUI_EltreumUI.cursors.cursor.size = '0'
-	elseif value == '1' then
-		SetCVar("cursorSizePreferred", 1)
-		E.db.ElvUI_EltreumUI.cursors.cursor.size = '1'
-	elseif value == '2' then
-		SetCVar("cursorSizePreferred", 2)
-		E.db.ElvUI_EltreumUI.cursors.cursor.size = '2'
-	elseif value == '3' then
-		SetCVar("cursorSizePreferred", 3)
-		E.db.ElvUI_EltreumUI.cursors.cursor.size = '3'
-	elseif value == '4' then
-		SetCVar("cursorSizePreferred", 4)
-		E.db.ElvUI_EltreumUI.cursors.cursor.size = '4'
+	local num = tonumber(value)
+	if num and num >= -1 and num <= 4 then
+		SetCVar("cursorSizePreferred", num)
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = tostring(num)
 	end
 end
 
---This module is a direct fork of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
+local function resolveColor(db, defaultAlpha)
+	if db.classcolor then
+		return E.myClassColor.r, E.myClassColor.g, E.myClassColor.b, db.a or defaultAlpha
+	end
+	return db.r, db.g, db.b, db.a or defaultAlpha
+end
+
+--setup and update cursor rings
 function ElvUI_EltreumUI:CastCursor()
-	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
+	local cursors = E.db.ElvUI_EltreumUI.cursors
+	cursordb = cursors.cursor
+	castdb = cursors.cursorcast
+	gcddb = cursors.cursorgcd
+	combatdb = cursors.cursorcursor
 
-		local colorcast
-		local colorgcd
-		local colorcursor
+	if not cursordb.enable then
+		castFrame:UnregisterAllEvents()
+		gcdFrame:UnregisterAllEvents()
+		cursorFrame:UnregisterAllEvents()
+		activeCastID = nil
+		setCastVisible(false)
+		setGCDVisible(false)
+		setCombatVisible(false)
+		return
+	end
 
-		if E.db.ElvUI_EltreumUI.cursors.cursor.fixlag == 0 then
-			--SetCVar("gxCursor", 0)
-			SetCVar("HardwareCursor", 0)
-		end
-		if E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor then
-			colorcast = E.myClassColor
-		end
-		if not E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor then
-			colorcast = {
-				r = E.db.ElvUI_EltreumUI.cursors.cursorcast.r,
-				g = E.db.ElvUI_EltreumUI.cursors.cursorcast.g,
-				b = E.db.ElvUI_EltreumUI.cursors.cursorcast.b,
-				a = E.db.ElvUI_EltreumUI.cursors.cursorcast.a
-			}
-		end
-		if E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
-			colorgcd = E.myClassColor
-		end
-		if not E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
-			colorgcd = {
-				r = E.db.ElvUI_EltreumUI.cursors.cursorgcd.r,
-				g = E.db.ElvUI_EltreumUI.cursors.cursorgcd.g,
-				b = E.db.ElvUI_EltreumUI.cursors.cursorgcd.b,
-				a = E.db.ElvUI_EltreumUI.cursors.cursorgcd.a,
-			}
-		end
-		if E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
-			colorcursor = E.myClassColor
-		end
-		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
-			colorcursor = {
-				r = E.db.ElvUI_EltreumUI.cursors.cursorcursor.r,
-				g = E.db.ElvUI_EltreumUI.cursors.cursorcursor.g,
-				b = E.db.ElvUI_EltreumUI.cursors.cursorcursor.b,
-				a = E.db.ElvUI_EltreumUI.cursors.cursorcursor.a
-			}
-		end
+	if cursordb.fixlag == 0 or cursordb.fixlag == "0" then
+		SetCVar("HardwareCursor", 0)
+	end
 
-		local Defaults = {
-			cast = {
-				radius = E.db.ElvUI_EltreumUI.cursors.cursorcast.radius,
-				sublayer = 1,
-				thickness = E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness,
-				color = { colorcast.r, colorcast.g, colorcast.b, colorcast.a },
-				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
-			},
-			gcd = {
-				radius = E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius,
-				sublayer = 0,
-				thickness = E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness,
-				color = { colorgcd.r, colorgcd.g, colorgcd.b, colorgcd.a },
-				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
-			},
-			cursor = {
-				radius = E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius,
-				sublayer = 0,
-				thickness = E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness,
-				combat = E.db.ElvUI_EltreumUI.cursors.cursor.combat,
-				color = { colorcursor.r, colorcursor.g, colorcursor.b, colorcursor.a },
-				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
-			},
-		}
-		local QUAD_POINTS = {
-			{ 'TOPLEFT', 'TOP' },
-			{ 'TOPRIGHT', 'RIGHT' },
-			{ 'BOTTOMRIGHT', 'BOTTOM' },
-			{ 'BOTTOMLEFT', 'LEFT' },
-		}
-		local QUAD_COORD_FULL = {
-			{ 0,0, 0,1, 1,0, 1,1 },
-			{ 0,1, 1,1, 0,0, 1,0 },
-			{ 1,1, 1,0, 0,1, 0,0 },
-			{ 1,0, 0,0, 1,1, 0,1 },
-		}
-		local QUAD_COORD_FUNC = {
-			function(t, r, x1, x2, y1, y2) -- Quadrant1: TOPRIGHT
-				t:SetTexCoord(x1,1-y2, x1,1-y1, x2,1-y2, x2,1-y1)
-				t:SetSize(x2*r, (1-y1)*r)
-			end,
-			function(t, r, x1, x2, y1, y2) -- Quadrant2: BOTTOMRIGHT
-				t:SetTexCoord(x1,1-y1, x2,1-y1, x1,1-y2, x2,1-y2)
-				t:SetSize((1-y1)*r, x2*r)
-			end,
-			function(t, r, x1, x2, y1, y2) -- Quadrant3: BOTTOMLEFT
-				t:SetTexCoord(x2,1-y1, x2,1-y2, x1,1-y1, x1,1-y2)
-				t:SetSize(x2*r, (1-y1)*r)
-			end,
-			function(t, r, x1, x2, y1, y2) -- Quadrant4: TOPLEFT
-				t:SetTexCoord(x2,1-y2, x1,1-y2, x2,1-y1, x1,1-y1)
-				t:SetSize((1-y1)*r, x2*r)
-			end,
-		}
+	castR, castG, castB, castA = resolveColor(castdb, 1)
+	useCastGradient = (castdb.classcolor and castdb.gradient) and true or false
+	if useCastGradient then
+		local uf = E.db.ElvUI_EltreumUI.unitframes
+		local ufgrad = uf and uf.gradientmode
+		local useCustomGrad = ufgrad and (ufgrad.customcolor or ufgrad.npcustomcolor)
+		local minColor, maxColor
+		if useCustomGrad then
+			minColor, maxColor = ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false)
+		else
+			minColor, maxColor = ElvUI_EltreumUI:GradientColors(E.myclass, false, false)
+		end
+		if minColor and maxColor and minColor.GetRGB and maxColor.GetRGB then
+			gradR1, gradG1, gradB1 = minColor:GetRGB()
+			gradR2, gradG2, gradB2 = maxColor:GetRGB()
+		else
+			gradR1, gradG1, gradB1 = castR, castG, castB
+			gradR2, gradG2, gradB2 = castR, castG, castB
+		end
+	end
 
-		-- Root Frame
-		rootFrame:SetSize(8,8)
-		local function UpdateRootFramePosition(rootframe, elapsed)
-			ElvUI_EltreumUI:UpdateCursorPosition(rootframe, elapsed)
-		end
-		if rootFrame:IsShown() then
-			ElvUI_EltreumUI:UpdateCursorPosition(rootFrame, 0, true)
-			rootFrame:SetScript("OnUpdate", UpdateRootFramePosition)
-		end
+	gcdR, gcdG, gcdB, gcdA = resolveColor(gcddb, 1)
+	local combatR, combatG, combatB, combatA = resolveColor(combatdb, 1)
 
-		local ringsVisible = {}
-		local function RingSetShown(ringframe, visible)
-			if visible then
-				if not next(ringsVisible) then
-					rootFrame:Show()
-					ElvUI_EltreumUI:UpdateCursorPosition(rootFrame, 0, true)
-					rootFrame:SetScript("OnUpdate", UpdateRootFramePosition)
-				end
-				ringsVisible[ringframe] = true
-				ringframe:Show()
-			else
-				ringsVisible[ringframe] = nil
-				if not next(ringsVisible) then
-					rootFrame:Hide()
-					rootFrame:SetScript("OnUpdate", nil)
-				end
-				ringframe:Hide()
-			end
-		end
-		-- Shared functions
-		local function OnEvent(oneventself,event,...)
-			oneventself[event](oneventself,event,...)
-		end
-		local function Start(startself, d, m)
-			local textures = startself.textures
-			local quad = min( floor( 4 * (startself.reverse and m - d or d) / m ) + 1, 4)
-			for i=1,4 do
-				local tex = textures[i]
-				if i>quad then
-					tex:SetTexCoord(0,0,1,1)
-					tex:Hide()
-				else
-					tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
-					tex:SetSize(startself.radius, startself.radius)
-					tex:Show()
-				end
-			end
-			startself.quad = quad
-			startself.dur = max(d,0)
-			startself.max = m
-			RingSetShown(startself, true)
-		end
-		local function Update(updateself, elapsed)
-			local dur
-			if updateself.dur == nil then
-				updateself.dur = 0
-			end
-			dur = updateself.dur + elapsed
-			if dur == nil then
-				dur = 0
-			end
-			if updateself.max == nil then
-				updateself.max = 0
-			end
-			if dur >= updateself.max then
-				RingSetShown(updateself,false)
-				return
-			end
-			updateself.dur = dur
-			local rev = updateself.reverse
-			local maxdur = updateself.max
-			local radius = updateself.radius
-			local angle = 360 * ( rev and maxdur-dur or dur ) / maxdur
-			local qangle = angle % 90
-			local quad = floor(angle / 90) + 1
-			local tex = updateself.textures[quad]
-			local pquad = updateself.quad
-			if quad~=pquad then
-				if pquad>0 and pquad<5 then
-					local ptex = updateself.textures[pquad]
-					if rev then
-						ptex:Hide()
-					else
-						ptex:SetTexCoord(unpack(QUAD_COORD_FULL[pquad]))
-						ptex:SetSize(radius, radius)
-					end
-				end
-				tex:Show()
-				updateself.quad = quad
-			end
+	local ringTexture = cursordb.ring or DEFAULT_RING
+	castFrame:SetSize(castdb.radius * 2, castdb.radius * 2)
+	castFrame:SetSwipeTexture(ringTexture)
+	castFrame:SetSwipeColor(useCastGradient and gradR1 or castR, useCastGradient and gradG1 or castG, useCastGradient and gradB1 or castB, castA)
 
-			if qangle > 0 then
-				local f = qangle <= 45 and updateself.factor or 1
-				QUAD_COORD_FUNC[quad]( tex, radius, 0, sin(qangle)*f, cos(qangle)*f, 1 )
-			end
-		end
-		local function Setup(frame)
-			local cfg = frame.db
-			local radius = cfg.radius
-			local r,g,b,a = unpack(cfg.color)
-			frame:SetScale(1)
-			frame:SetAlpha(a or 1)
-			frame:SetFrameStrata( cfg.background and "BACKGROUND" or "TOOLTIP" )
-			frame:ClearAllPoints()
-			frame:SetPoint('CENTER', rootFrame, 'CENTER', 0, 0)
-			frame:SetSize(radius*2, radius*2)
-			frame.textures = frame.textures or {}
-			local hide = not frame.IsCursor
-			for i=1,4 do
-				local tex = frame.textures[i] or frame:CreateTexture(nil, "OVERLAY")
-				tex:ClearAllPoints()
-				tex:SetDrawLayer("OVERLAY", cfg.sublayer or 0)
-				tex:SetTexture(cfg.texture)
+	gcdFrame:SetSize(gcddb.radius * 2, gcddb.radius * 2)
+	gcdFrame:SetSwipeTexture(ringTexture)
+	gcdFrame:SetSwipeColor(gcdR, gcdG, gcdB, gcdA)
 
-				--set gradient on casts
-				if E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient then
-					if frame:GetName() == 'EltruismCursorCast' then --would likely be better to rewrite to use a mask instead of coords since that would also end up with better clipping, but would need a rework
-						tex:SetVertexColor(1, 1, 1, a)
-						if i == 1 then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false))
-							else
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
-							end
-						elseif i == 2 then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false))
-							else
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
-							end
-						elseif i == 3 then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, true, false))
-							else
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, true, false))
-							end
-						elseif i == 4 then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, true, false))
-							else
-								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, true, false))
-							end
-						end
-						--local mask = frame:CreateMaskTexture()
-						--mask:SetTexture([[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\square_mask]])
-						--mask:SetAllPoints(tex)
-						--tex:AddMaskTexture(mask)
-					else
-						tex:SetVertexColor(r, g, b, a)
-					end
-				else
-					tex:SetVertexColor(r, g, b, a)
-				end
+	cursorFrame:SetSize(combatdb.radius * 2, combatdb.radius * 2)
+	cursorTex:SetTexture(ringTexture)
+	cursorTex:SetVertexColor(combatR, combatG, combatB, combatA)
 
-				tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
-				tex:SetSize(radius, radius)
-				tex:SetPoint(QUAD_POINTS[i][1], frame, QUAD_POINTS[i][2])
-				if hide then tex:Hide() end
-				frame.textures[i] = tex
-			end
-			frame.quad = 0
-			frame.radius = radius
-			frame.factor = (radius-cfg.thickness)/radius
-			frame.reverse = cfg.reverse
-			if frame.IsCursor then
-				if cfg.combat then
-					frame:RegisterEvent('PLAYER_REGEN_ENABLED')
-					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
-					frame:SetScript("OnEvent", function(function1self, event) RingSetShown(function1self,event=='PLAYER_REGEN_DISABLED') end)
-					RingSetShown( frame, InCombatLockdown() )
-				else
-					frame:RegisterEvent('PLAYER_ENTERING_WORLD')
-					frame:SetScript("OnEvent", function(function2self, event) RingSetShown(function2self,event=='PLAYER_ENTERING_WORLD') end)
-					RingSetShown( frame, true )
-				end
-			else
-				frame:SetScript("OnEvent", OnEvent or nil)
-				frame:SetScript("OnUpdate", Update)
-				RingSetShown( frame, false )
-			end
-			return frame
-		end
+	castFrame:UnregisterAllEvents()
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
+	castFrame:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", "player")
+	if E.Modern then
+		castFrame:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_START", "player")
+		castFrame:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_UPDATE", "player")
+		castFrame:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_STOP", "player")
+	end
 
-		-- Casting/Channeling Ring
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
-		function Cast:UNIT_SPELLCAST_START(_, unit)
-			if unit and unit ~= 'player' then
-				return
-			elseif unit and unit == 'player' then
-				local name, _, _, start, finish, _, castID = UnitCastingInfo("player")
-				if name then
-					self.castID = castID
-					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
-				else
-					RingSetShown( self, false )
-				end
-			end
-		end
+	gcdFrame:UnregisterAllEvents()
+	gcdFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+	gcdFrame:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
+	gcdFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+	gcdFrame:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 
-		Cast.UNIT_SPELLCAST_DELAYED = Cast.UNIT_SPELLCAST_START
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", "player")
-		if E.Modern then
-			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_STOP", "player")
-		end
-		function Cast:UNIT_SPELLCAST_STOP(_, unit, castID)
-			if unit and unit ~= 'player' then
-				return
-			elseif unit and unit == 'player' then
-				if castID == self.castID then
-					RingSetShown( self, false )
-				end
-			end
-		end
-
-		Cast.UNIT_SPELLCAST_FAILED = Cast.UNIT_SPELLCAST_STOP
-		Cast.UNIT_SPELLCAST_INTERRUPTED = Cast.UNIT_SPELLCAST_STOP
-		Cast.UNIT_SPELLCAST_CHANNEL_STOP = Cast.UNIT_SPELLCAST_STOP
-		Cast.UNIT_SPELLCAST_EMPOWER_STOP = Cast.UNIT_SPELLCAST_STOP
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
-		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
-		if E.Modern then
-			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_START", "player")
-			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_UPDATE", "player")
-		end
-		function Cast:UNIT_SPELLCAST_CHANNEL_START(_, unit)
-			if unit and unit ~= 'player' then
-				return
-			elseif unit and unit == 'player' then
-				local name, _, _, start, finish, _, _, _ ,_ , numEmpowerStages = UnitChannelInfo("player")
-				if name then
-					self.castID = nil
-					if E.Modern and numEmpowerStages and numEmpowerStages > 0 then
-						finish = finish + _G.GetUnitEmpowerHoldAtMaxTime("player")
-					end
-					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
-				else
-					RingSetShown( self, false )
-				end
-			end
-		end
-		Cast.UNIT_SPELLCAST_CHANNEL_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
-		Cast.UNIT_SPELLCAST_EMPOWER_START = Cast.UNIT_SPELLCAST_CHANNEL_START
-		Cast.UNIT_SPELLCAST_EMPOWER_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
-
-		-- GCD Ring
-		if not E.Modern then
-			GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
-			GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
-		end
-		function GCD:UNIT_SPELLCAST_START(_, unit, _, spellID)
-			if unit and unit ~= 'player' then
-				return
-			elseif unit and unit == 'player' then
-				local cooldowntable = GetSpellCooldown(spellID or 61304)
-				if cooldowntable.duration > 0 and (E.Modern or cooldowntable.duration <= 1.51) then
-					Start(self, GetTime() - cooldowntable.startTime, cooldowntable.duration )
-				end
-			end
-		end
-		GCD.UNIT_SPELLCAST_SUCCEEDED = GCD.UNIT_SPELLCAST_START
-		GCD:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-		GCD:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
-		function GCD:UNIT_SPELLCAST_STOP(_, unit)
-			if unit and unit ~= 'player' then
-				return
-			elseif unit and unit == 'player' then
-				RingSetShown( self, false )
-			end
-		end
-		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
-
-		-- Cursor Ring
-		Cursor.IsCursor = true
-		Cursor:Hide()
-
-		--attempt to hide at the start to prevent onupdate
-		rootFrame:Hide()
-
-		-- Run
-		--this is kinda of a roundabout way of getting this to working here
-		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
-		cursorframe:RegisterEvent("FIRST_FRAME_RENDERED")
-		cursorframe:RegisterEvent("PLAYER_LOGIN")
-		cursorframe:SetScript("OnEvent", function()
-			if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0) end
-			if not InCombatLockdown() then
-				--print('cursorframe loaded')
-				_G.collectgarbage()
-				_G.ResetCPUUsage()
-				cursorframe:UnregisterAllEvents()
-				cursorframe:SetScript("OnEvent", nil)
-				Cursor.db = Defaults.cursor
-				Cast.db = Defaults.cast
-				GCD.db = Defaults.gcd
-				Setup(Cursor)
-				Setup(Cast)
-				Setup(GCD)
-			end
-		end)
+	cursorFrame:UnregisterAllEvents()
+	if cursordb.combat then
+		cursorFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+		cursorFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+		setCombatVisible(InCombatLockdown())
+	else
+		setCombatVisible(true)
 	end
 end
