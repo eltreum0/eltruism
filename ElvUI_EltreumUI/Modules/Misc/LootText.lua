@@ -6,8 +6,6 @@ local tonumber = _G.tonumber
 local ipairs = _G.ipairs
 local type = _G.type
 local tIndexOf = _G.tIndexOf
-local math = _G.math
-local mathrandom = math.random
 local string = _G.string
 local stringfind = string.find
 local stringgsub = string.gsub
@@ -18,15 +16,18 @@ local table = _G.table
 local tinsert = table.insert
 local tremove = table.remove
 local tconcat = table.concat
-local fastrandom = _G.fastrandom or mathrandom
+local fastrandom = _G.fastrandom
 
 local CreateFrame = _G.CreateFrame
 local CreateFontStringPool = _G.CreateFontStringPool
-local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
-local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
+local C_Item = _G.C_Item
+local GetItemInfo = C_Item.GetItemInfo
+local GetItemQualityColor = C_Item.GetItemQualityColor
 local Item = _G.Item
 local C_CurrencyInfo = _G.C_CurrencyInfo
-local Constants = _G.Constants
+local GetCurrencyInfoFromLink = C_CurrencyInfo.GetCurrencyInfoFromLink
+local GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+local CurrencyConsts = _G.Constants.CurrencyConsts
 local UnitFactionGroup = _G.UnitFactionGroup
 
 local COMBAT = _G.COMBAT
@@ -112,7 +113,7 @@ end
 
 --CombatTextMixin:AcquireFontString() but with my font options
 function EltruismCombatText:InitializeFontString(fontString)
-	fontString:SetFontObject(_G.CombatTextFont or "CombatTextFont")
+	fontString:SetFontObject(_G.CombatTextFont)
 	fontString:SetAlpha(0)
 	fontString:ClearAllPoints()
 	fontString:SetPoint("CENTER", self, "CENTER", self.textLocations.startX or 0, self.textLocations.startY or 0)
@@ -433,7 +434,7 @@ local function handleLootMessage(msg, db)
 	local itemName, _, rarity, _, _, _, _, _, _, itemTexture = GetItemInfo(itemLink)
 	if itemName and rarity and itemTexture then
 		displayLootItem(itemName, rarity, itemTexture, count, db)
-	elseif Item and Item.CreateFromItemLink then
+	else
 		local item = Item:CreateFromItemLink(itemLink)
 		if item and not item:IsItemEmpty() then
 			item:ContinueOnItemLoad(function()
@@ -472,7 +473,6 @@ local function handleMoneyMessage(msg)
 end
 
 local function handleCurrencyMessage(msg)
-	if not (C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfoFromLink) then return end
 	if not stringfind(msg, "|H", 1, true) then return end
 
 	local currencyLink
@@ -490,7 +490,7 @@ local function handleCurrencyMessage(msg)
 	end
 	if not currencyLink then return end
 
-	local info = C_CurrencyInfo.GetCurrencyInfoFromLink(currencyLink)
+	local info = GetCurrencyInfoFromLink(currencyLink)
 	if info and info.iconFileID and info.name then
 		EltruismCombatText:AddMessage(formatIconMessage(info.iconFileID, info.name, count), EltruismScroll, 1, 1, 1, nil, true)
 	end
@@ -501,19 +501,17 @@ local function getHonorDisplayInfo()
 		return cachedHonorIcon, cachedHonorName
 	end
 
-	local honorCurrencyID = E.Modern and 1792 or (Constants and Constants.CurrencyConsts and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
-	if honorCurrencyID and C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo then
-		local info = C_CurrencyInfo.GetCurrencyInfo(honorCurrencyID)
-		if info and info.iconFileID and info.name then
-			cachedHonorIcon = info.iconFileID
-			cachedHonorName = info.name
-			return cachedHonorIcon, cachedHonorName
-		end
+	local honorCurrencyID = E.Modern and CurrencyConsts.HONOR_CURRENCY_ID or CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID
+	local info = GetCurrencyInfo(honorCurrencyID)
+	if info and info.iconFileID and info.name then
+		cachedHonorIcon = info.iconFileID
+		cachedHonorName = info.name
+		return cachedHonorIcon, cachedHonorName
 	end
 
-	local faction = UnitFactionGroup and UnitFactionGroup("player")
+	local faction = UnitFactionGroup("player")
 	cachedHonorIcon = (faction == "Horde") and iconHordeHonor or iconAllianceHonor
-	cachedHonorName = HONOR or "Honor"
+	cachedHonorName = HONOR
 	return cachedHonorIcon, cachedHonorName
 end
 
@@ -643,9 +641,7 @@ function ElvUI_EltreumUI:LootText()
 		LootTextframe:RegisterEvent("UI_ERROR_MESSAGE")
 		LootTextframe:RegisterEvent("CHAT_MSG_LOOT")
 		LootTextframe:RegisterEvent("CHAT_MSG_MONEY")
-		if C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfoFromLink then
-			LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
-		end
+		LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
 		LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 		LootTextframe:RegisterEvent("CHAT_MSG_SKILL") --profession level up
 		LootTextframe:SetScript("OnEvent", onLootEvent)

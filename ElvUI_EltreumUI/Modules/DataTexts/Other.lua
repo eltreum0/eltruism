@@ -32,7 +32,7 @@ end
 local function EltruismHonorDatatext(dt)
 	local arg2 = E.Retail and COMBAT_HONOR_GAIN or HONOR
 
-	local honorCurrencyID = (not E.Modern and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID) or (E.Modern and 1792)
+	local honorCurrencyID = (not E.Modern and Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID) or (E.Modern and Constants.CurrencyConsts.HONOR_CURRENCY_ID)
 	local arg4 = (not E.Classic and C_CurrencyInfo_GetCurrencyInfo(honorCurrencyID).quantity) or select(2, _G.GetPVPThisWeekStats())
 
 	local arg5 = (E.Retail and PVP_CONQUEST) or (not E.Modern and ARENA) or _G.RANK
