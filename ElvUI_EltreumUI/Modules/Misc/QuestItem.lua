@@ -5,7 +5,6 @@ local _G = _G
 
 local tonumber = _G.tonumber
 local tostring = _G.tostring
-local type = _G.type
 local select = _G.select
 local wipe = _G.wipe
 local CreateFrame = _G.CreateFrame
@@ -14,22 +13,23 @@ local GetBindingKey = _G.GetBindingKey
 local GameTooltip = _G.GameTooltip
 local CooldownFrame_Set = _G.CooldownFrame_Set
 local C_Container = _G.C_Container
-local GetContainerNumSlots = (C_Container and C_Container.GetContainerNumSlots) or _G.GetContainerNumSlots
-local GetContainerItemInfo = (C_Container and C_Container.GetContainerItemInfo) or _G.GetContainerItemInfo
-local GetContainerItemLink = (C_Container and C_Container.GetContainerItemLink) or _G.GetContainerItemLink
-local GetContainerItemQuestInfo = (C_Container and C_Container.GetContainerItemQuestInfo) or _G.GetContainerItemQuestInfo
-local GetContainerItemCooldown = (C_Container and C_Container.GetContainerItemCooldown) or _G.GetContainerItemCooldown
+local GetContainerNumSlots = C_Container.GetContainerNumSlots
+local GetContainerItemInfo = C_Container.GetContainerItemInfo
+local GetContainerItemLink = C_Container.GetContainerItemLink
+local GetContainerItemQuestInfo = C_Container.GetContainerItemQuestInfo
+local GetContainerItemCooldown = C_Container.GetContainerItemCooldown
 local C_Item = _G.C_Item
-local GetItemInfoInstant = (C_Item and C_Item.GetItemInfoInstant) or _G.GetItemInfoInstant
-local GetItemSpell = (C_Item and C_Item.GetItemSpell) or _G.GetItemSpell
+local GetItemInfoInstant = C_Item.GetItemInfoInstant
+local GetItemSpell = C_Item.GetItemSpell
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local C_Timer = _G.C_Timer
 
-local QUEST_ITEM_CLASS_ID = (_G.Enum and _G.Enum.ItemClass and _G.Enum.ItemClass.Questitem) or _G.LE_ITEM_CLASS_QUESTITEM or 12
-local FIRST_EQUIP_SLOT = _G.INVSLOT_FIRST_EQUIPPED or 1
-local LAST_EQUIP_SLOT = _G.INVSLOT_LAST_EQUIPPED or 19
+local QUEST_ITEM_CLASS_ID = _G.Enum.ItemClass.Questitem
+local FIRST_EQUIP_SLOT = _G.INVSLOT_FIRST_EQUIPPED
+local LAST_EQUIP_SLOT = _G.INVSLOT_LAST_EQUIPPED
+local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 
 local IGNORED_ITEMS = {
 	[8529] = true,
@@ -108,31 +108,18 @@ local function ApplyIconCrop(texture, width, height)
 end
 
 local function ReadBagSlot(bag, slot)
-	if not GetContainerItemInfo then
-		local link = GetContainerItemLink and GetContainerItemLink(bag, slot)
-		local itemID = link and tonumber(link:match("item:(%d+)"))
-		return itemID, link, nil, nil
+	local info = GetContainerItemInfo(bag, slot)
+	if not info then
+		return nil
 	end
-	local a, b, _, _, _, _, g, _, _, j = GetContainerItemInfo(bag, slot)
-	if type(a) == "table" then
-		local link = a.hyperlink or (GetContainerItemLink and GetContainerItemLink(bag, slot))
-		local itemID = a.itemID or (link and tonumber(link:match("item:(%d+)")))
-		return itemID, link, a.iconFileID, a.stackCount
-	end
-	local link = g or (GetContainerItemLink and GetContainerItemLink(bag, slot))
-	local itemID = j or (link and tonumber(link:match("item:(%d+)")))
-	return itemID, link, a, b
+	local link = info.hyperlink or GetContainerItemLink(bag, slot)
+	local itemID = info.itemID or (link and tonumber(link:match("item:(%d+)")))
+	return itemID, link, info.iconFileID, info.stackCount
 end
 
 local function IsBagQuestItem(bag, slot)
-	if not GetContainerItemQuestInfo then
-		return false
-	end
 	local info = GetContainerItemQuestInfo(bag, slot)
-	if type(info) == "table" then
-		return info.isQuestItem and true or false
-	end
-	return info and true or false
+	return info and info.isQuestItem and true or false
 end
 
 local function IsEligibleItem(itemID, isQuestFlag, isEquipped)
@@ -140,25 +127,25 @@ local function IsEligibleItem(itemID, isQuestFlag, isEquipped)
 		return false
 	end
 	if isEquipped then
-		if not GetItemSpell or GetItemSpell(itemID) == nil then
+		if GetItemSpell(itemID) == nil then
 			return false
 		end
 		if EXTRA_QUEST_ITEMS[itemID] then
 			return true
 		end
-		local classID = GetItemInfoInstant and select(6, GetItemInfoInstant(itemID))
+		local classID = select(6, GetItemInfoInstant(itemID))
 		return classID == QUEST_ITEM_CLASS_ID
 	end
 	if EXTRA_QUEST_ITEMS[itemID] then
 		return true
 	end
-	if not GetItemSpell or GetItemSpell(itemID) == nil then
+	if GetItemSpell(itemID) == nil then
 		return false
 	end
 	if isQuestFlag then
 		return true
 	end
-	local classID = GetItemInfoInstant and select(6, GetItemInfoInstant(itemID))
+	local classID = select(6, GetItemInfoInstant(itemID))
 	return classID == QUEST_ITEM_CLASS_ID
 end
 
@@ -293,9 +280,9 @@ local function RefreshCooldowns()
 	for i = 1, activeCount do
 		local btn = buttonPool[i]
 		local startTime, duration, enable
-		if btn.bagID ~= nil and GetContainerItemCooldown then
+		if btn.bagID ~= nil then
 			startTime, duration, enable = GetContainerItemCooldown(btn.bagID, btn.slotID)
-		elseif btn.slotID ~= nil and GetInventoryItemCooldown then
+		elseif btn.slotID ~= nil then
 			startTime, duration, enable = GetInventoryItemCooldown("player", btn.slotID)
 		end
 		if startTime and duration then
@@ -347,15 +334,15 @@ local function ScanAndRender()
 	wipe(seenItems)
 	local index = 0
 
-	for bag = 0, (_G.NUM_BAG_SLOTS or 4) do
-		local numSlots = GetContainerNumSlots and GetContainerNumSlots(bag) or 0
+	for bag = 0, NUM_BAG_SLOTS do
+		local numSlots = GetContainerNumSlots(bag) or 0
 		for slot = 1, numSlots do
 			local itemID, _, icon, stackCount = ReadBagSlot(bag, slot)
 			if itemID and not seenItems[itemID] then
 				local isQuestFlag = IsBagQuestItem(bag, slot)
 				if IsEligibleItem(itemID, isQuestFlag, false) then
 					seenItems[itemID] = true
-					if not icon and GetItemInfoInstant then
+					if not icon then
 						icon = select(5, GetItemInfoInstant(itemID))
 					end
 					index = index + 1
@@ -366,10 +353,10 @@ local function ScanAndRender()
 	end
 
 	for invSlot = FIRST_EQUIP_SLOT, LAST_EQUIP_SLOT do
-		local itemID = GetInventoryItemID and GetInventoryItemID("player", invSlot)
+		local itemID = GetInventoryItemID("player", invSlot)
 		if itemID and not seenItems[itemID] and IsEligibleItem(itemID, false, true) then
 			seenItems[itemID] = true
-			local icon = (GetInventoryItemTexture and GetInventoryItemTexture("player", invSlot)) or (GetItemInfoInstant and select(5, GetItemInfoInstant(itemID)))
+			local icon = GetInventoryItemTexture("player", invSlot) or select(5, GetItemInfoInstant(itemID))
 			index = index + 1
 			ConfigureButton(index, nil, invSlot, itemID, icon, nil, db)
 		end
@@ -398,13 +385,9 @@ local function RunScheduledRefresh()
 end
 
 local function ScheduleRefresh()
-	if C_Timer and C_Timer.After then
-		if not refreshQueued then
-			refreshQueued = true
-			C_Timer.After(0, RunScheduledRefresh)
-		end
-	else
-		ScanAndRender()
+	if not refreshQueued then
+		refreshQueued = true
+		C_Timer.After(0, RunScheduledRefresh)
 	end
 end
 
