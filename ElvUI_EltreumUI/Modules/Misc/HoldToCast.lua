@@ -71,7 +71,7 @@ local modSpecToBit = {
 	["ALT-SHIFT"] = 5, ["CTRL-SHIFT"] = 6, ["ALT-CTRL-SHIFT"] = 7,
 }
 
---Frames are created lazily on first enable; reusable caches avoid allocations in hot paths
+--Frames are created lazily on first enable, reusable caches avoid allocations in hot paths
 local bindingFrameOthers, eventFrame
 local pagedBars, barSnap = {}, {}
 local barBoundMap, activeBarMap, actionButtonOwnerBars, barButtons = {}, {}, {}, {}
@@ -737,7 +737,10 @@ local function SyncMacrosAndRanksInner(db, macroSlots)
 							macroSlots[slot], savedMacro = nil, nil
 						end
 					elseif kind == "macro" then
-						if not macroCacheBuilt then BuildMacroCache(); macroCacheBuilt = true end
+						if not macroCacheBuilt then
+							BuildMacroCache()
+							macroCacheBuilt = true
+						end
 						macroName, macroIcon, macroBody = GetActionSlotMacro(slot, id, subType)
 						if not macroName or macroName ~= savedMacro.macroName then
 							macroSlots[slot], savedMacro = nil, nil
@@ -748,7 +751,10 @@ local function SyncMacrosAndRanksInner(db, macroSlots)
 				end
 
 				if kind == "macro" and db.convertMacros then
-					if not macroCacheBuilt then BuildMacroCache(); macroCacheBuilt = true end
+					if not macroCacheBuilt then
+						BuildMacroCache()
+						macroCacheBuilt = true
+					end
 					if not macroBody then macroName, macroIcon, macroBody = GetActionSlotMacro(slot, id, subType) end
 					if macroBody then
 						local spellName, modifiers = ParseConvertibleMacro(macroBody)
@@ -917,10 +923,22 @@ local function RunConfigSync()
 end
 
 local function CancelPendingTimers()
-	if zoneTimer then zoneTimer:Cancel(); zoneTimer = nil end
-	if slotSyncTimer then slotSyncTimer:Cancel(); slotSyncTimer = nil end
-	if spellbookRetryTimer then spellbookRetryTimer:Cancel(); spellbookRetryTimer = nil end
-	if configSyncTimer then configSyncTimer:Cancel(); configSyncTimer = nil end
+	if zoneTimer then
+		zoneTimer:Cancel()
+		zoneTimer = nil
+	end
+	if slotSyncTimer then
+		slotSyncTimer:Cancel()
+		slotSyncTimer = nil
+	end
+	if spellbookRetryTimer then
+		spellbookRetryTimer:Cancel()
+		spellbookRetryTimer = nil
+	end
+	if configSyncTimer then
+		configSyncTimer:Cancel()
+		configSyncTimer = nil
+	end
 end
 
 local function SetElvUIButtonPushed(barNum, slot, isPushed)
