@@ -8,7 +8,7 @@ Updated Spell List for the Nameplate Power Bar
 Updated Quest Item Bar  
 Updated Cursor Casts  
 Updated LootText  
-Fixed an issue where the Player unitframe was not using the correct texture  
+Fixed an issue where the Player unitframe power bar was not using the correct texture  
 ___
 ### 5.2.1
 Added a Secret Tracker datatext to Retail and Forever in order monitor active addon restriction states  

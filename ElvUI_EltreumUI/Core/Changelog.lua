@@ -32,7 +32,7 @@ Updated LootText
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Fixed an issue where the Player unitframe was not using the correct texture
+Fixed an issue where the Player unitframe power bar was not using the correct texture
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other
