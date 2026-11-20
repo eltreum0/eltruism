@@ -63,7 +63,7 @@ ElvUI_EltreumUI.ClassIcons.data = {
 	},
 }
 
-local path = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\class\\"
+local path = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\mmt\\"
 
 -- style = texture style, textur = path to the texture, table with texture coords for each class, name = optional name to show in dropdown menu
 function ElvUI_EltreumUI:AddClassIcons(style, texture, texCoords, name)
