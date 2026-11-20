@@ -49,6 +49,7 @@ local THANKYOU = {
 	'mitchnull - inspiration for Cursor Cooldowns (CooldownToGo)',
 	'Aezay - inspiration for Quest Items (QBar)',
 	'michaelsp - inspiration for Cursor (CastCursor)',
+	'xavjer - inspiration for Loot Text (Scrolling Loot Text / SLoTe)',
 }
 
 local DONATORS = {
@@ -376,7 +377,6 @@ function ElvUI_EltreumUI:Configtable()
 		'Cooldown includes portions from Doom Cooldown Pulse by discoteq (MIT License)',
 		'FreeVector (www.freevector.com) for some icons (see Licenses/Textures License.txt)',
 		'Icons8 (www.icons8.com) for some icons (see Licenses/Textures License.txt)',
-		'LibDeformat-3.0 includes portions from LibDeformat-3.0 by ckknight (MIT License)',
 		'LibEltreumGlow includes portions from LibCustomGlow by Benjamin Staneck (Stanzilla), Dooez, and Hendrick "nevcairiel" Leppkes (MIT License)',
 		'Loot Icons include portions from Chat Loot Icons by Stanzilla (Public Domain)',
 	}

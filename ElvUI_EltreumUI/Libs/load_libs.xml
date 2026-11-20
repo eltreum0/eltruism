@@ -25,6 +25,5 @@
 		</KeyValues>
 	</Frame>
 
-	<Script file="LibDeformat-3.0.lua"/>
 	<Script file="LibEltreumGlow.lua"/>
 </Ui>
