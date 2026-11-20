@@ -1,9 +1,9 @@
---LibEltreumGlow is a fork of LibCustomGlow
+--LibEltreumGlow includes portions from LibCustomGlow (MIT License; see ElvUI_EltreumUI/Licenses/LibCustomGlow License.txt). Eltruism modifications are All Rights Reserved.
 
 --[[
 This library contains work of:
 Hendrick "nevcairiel" Leppkes - https://www.wowace.com/projects/libbuttonglow-1-0
-Benjamin Staneck - https://github.com/Stanzilla/LibCustomGlow
+Benjamin Staneck (Stanzilla) - https://github.com/Stanzilla/LibCustomGlow
 Dooez - https://github.com/Dooez/LibCustomGlow
 ]]
 

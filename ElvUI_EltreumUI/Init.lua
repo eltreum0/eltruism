@@ -118,18 +118,18 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
 	ElvUI_EltreumUI:RaidDeathGroupCheck() -- attempt at prevent CLEU tracking
 	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
-	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
+	ElvUI_EltreumUI:QuestItem() -- quest item bar
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
 	ElvUI_EltreumUI:UpdateAllLeaderIcons() --apply custom party/raid leader, assist, and looter icons
 	ElvUI_EltreumUI:PlayerDeathAnimation() -- death animation
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
-	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
+	ElvUI_EltreumUI:SkillGlow() --makes skill glow using LibEltreumGlow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
-	ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
+	ElvUI_EltreumUI:Doom() -- cooldown pulse (includes portions from Doom Cooldown Pulse by discoteq)
 	ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
 	ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
 	ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
@@ -151,7 +151,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	else
 		if not E.Mists then
 			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
-			ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
+			ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel (includes portions from Kibs Item Level by Kibsgaard)
 		else
 			if E.myclass == 'HUNTER' then
 				ElvUI_EltreumUI:ExpandedStable()

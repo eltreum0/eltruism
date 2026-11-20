@@ -423,7 +423,7 @@ function ElvUI_EltreumUI:PreviewDoom()
 	wasPreviewing = true
 end
 
---Fork of discoteq's Doom Cooldown Pulse
+--Includes portions from Doom Cooldown Pulse by discoteq (MIT License; see ElvUI_EltreumUI/Licenses/Doom Cooldown Pulse.txt). Eltruism modifications are All Rights Reserved.
 function ElvUI_EltreumUI:Doom()
 	if IsAddOnLoaded("Doom_CooldownPulse") then return end
 	doomdb = E.db.ElvUI_EltreumUI.skins.doom

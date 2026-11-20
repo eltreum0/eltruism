@@ -4,6 +4,7 @@ Author(s): ckknight (ckknight@gmail.com)
 Website: http://www.wowace.com/projects/libdeformat-3-0/
 Description: A library to convert a post-formatted string back to its original arguments given its format string.
 License: MIT
+Notice: Original LibDeformat-3.0 portions are MIT (see ElvUI_EltreumUI/Licenses/LibDeformat License.txt); Eltruism modifications are All Rights Reserved.
 ]]
 local _G = _G
 local LibStub = _G.LibStub

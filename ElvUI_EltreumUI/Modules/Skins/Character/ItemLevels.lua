@@ -54,7 +54,7 @@ local centereditem = {
 	["InspectSecondaryHandSlot"] = true,
 }
 
---from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
+--Includes portions from Simple Item Levels by Kemayo (BSD 3-Clause License; see ElvUI_EltreumUI/Licenses/Simple Item Levels.txt). Eltruism modifications are All Rights Reserved.
 local function PrepareItemButton(button)
 	if button.eltruismilvl then
 		return

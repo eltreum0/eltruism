@@ -62,7 +62,7 @@ local SpellInfoFunctionTable = {}
 SpellInfoFunctionTable.__index = SpellInfoFunctionTable
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 
---Fork of Kibs Item Level by Kibsgaard
+--Includes portions from Kibs Item Level by Kibsgaard (Public Domain). Eltruism modifications are All Rights Reserved.
 function ElvUI_EltreumUI:ClassicSockets()
 	if not E.db.ElvUI_EltreumUI.skins.sockets then
 		return

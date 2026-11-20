@@ -44,7 +44,12 @@ local THANKYOU = {
 	'|cffB50909Dlarge|r - for the German localization',
 	'|cff33937FFang2hou|r - for the compatibility function',
 	E:TextGradient("Meowcactus", 1, 0.49, 0.04, 1, 0.96, 0.41),
-	'plusmouse'
+	'plusmouse',
+	'Burzolog - inspiration for Rogue Door Opener',
+	'mitchnull - inspiration for Cursor Cooldowns (CooldownToGo)',
+	'Aezay - inspiration for Quest Items (QBar)',
+	--Uncomment after Cursor is rewritten to All Rights Reserved:
+	--'michaelsp - inspiration for Cursor (CastCursor)',
 }
 
 local DONATORS = {
@@ -368,26 +373,26 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = E.Libs.ACH:Description(TRANSLATORS_STRING, 18, "medium")
 	ElvUI_EltreumUI.Options.args.credits.args.licenses = E.Libs.ACH:Group(L["License"], nil, 19)
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = E.Libs.ACH:Description(
-			E.Modern and [[
-Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
-FreeVector (www.freevector.com) for some of the icons. List in license.txt
-Hold to Cast is based on HoldToCastFix by JulianNorton and ElvUI-HoldToCastFix by danielbehrens, licensed under MIT License
-Icons8 (www.icons8.com) for some of the icons. List in license.txt
-Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
-Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
-Rogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3
-]] or [[
-Cooldown is a fork of discoteq's Doom Cooldown Pulse which is licensed under MIT License
-Cursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain
-Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
-FreeVector (www.freevector.com) for some of the icons. List in license.txt
-Icons8 (www.icons8.com) for some of the icons. List in license.txt
-Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
-Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
-Sockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain
-The Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD
-]], 10, "small", nil, nil, nil, nil, "full")
+	local licenses = {
+		'Cooldown includes portions from Doom Cooldown Pulse by discoteq (MIT License)',
+		-- TODO(ARR rewrite): remove this entry, delete Licenses/Cursor License.txt, and uncomment michaelsp in THANKYOU
+		'Cursor is a fork of CastCursor by michaelsp, which is licensed under GNU GPLv3',
+		'FreeVector (www.freevector.com) for some icons (see Licenses/Textures License.txt)',
+		'Icons8 (www.icons8.com) for some icons (see Licenses/Textures License.txt)',
+		'LibDeformat-3.0 includes portions from LibDeformat-3.0 by ckknight (MIT License)',
+		'LibEltreumGlow includes portions from LibCustomGlow by Benjamin Staneck (Stanzilla), Dooez, and Hendrick "nevcairiel" Leppkes (MIT License)',
+		'Loot Icons include portions from Chat Loot Icons by Stanzilla (Public Domain)',
+	}
+	if E.Modern then
+		tinsert(licenses, 'Hold to Cast includes portions from HoldToCastFix by JulianNorton and ElvUI-HoldToCastFix by danielbehrens (MIT License)')
+	end
+	if not E.Retail then
+		tinsert(licenses, 'Sockets and Enchants include portions from Kibs Item Levels by Kibsgaard (Public Domain)')
+		tinsert(licenses, 'Character Panel Item Levels include portions from Simple Item Levels by Kemayo (BSD 3-Clause License)')
+	end
+	sort(licenses, SortList)
+	local licenseText = "Eltruism is All Rights Reserved (see License.md). Permissive (MIT/BSD) and Public Domain notices below apply only to original upstream portions; all Eltruism modifications and additions remain All Rights Reserved.\n\n" .. tconcat(licenses, '\n')
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = E.Libs.ACH:Description(licenseText, 10, "small", nil, nil, nil, nil, "full")
 
 	--[[
 	E.Libs.ACH:Header(name, order, get, set, hidden)

@@ -1,4 +1,4 @@
---CursorCooldown is a fork of CooldownToGo by mitchnull, which is licensed under Public Domain. My thanks to mitchnull for making it!
+--CursorCooldown was originally inspired by CooldownToGo by mitchnull (Public Domain), rewritten for Eltruism. Thanks to mitchnull for the original idea!
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame

@@ -25,7 +25,7 @@ local classcolorsescape = {
 	["EVOKER"] = "33937F",
 }
 
---Forked from Chat Loot Icons by Stanzilla which is Public Domain, modified to do more things
+--Includes portions from Chat Loot Icons by Stanzilla (Public Domain). Eltruism modifications are All Rights Reserved.
 local function AddLootIcons(_, _, message, ...) --arg2 is event
 	--local chatType = strsub(event, 10)
 	--if E:IsSecretValue(chatType) then return end

@@ -314,7 +314,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 	end
 end
 
---based on Rogue Door Opener by Burzolog
+--inspired by Rogue Door Opener by Burzolog
 function ElvUI_EltreumUI:RogueAutoOpen()
 	if E.db.ElvUI_EltreumUI.quests.rogueopen then
 
