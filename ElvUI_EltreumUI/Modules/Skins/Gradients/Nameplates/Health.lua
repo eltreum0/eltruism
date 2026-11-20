@@ -230,7 +230,7 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 	local unit = frame.__unit
 	local _, className = UnitClass(unit)
 	if not E:NotSecretValue(className) then --secret class so do something else
-		className = E.myclass
+		return
 	end
 
 	local isPlayer = frame.isPlayer or UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
