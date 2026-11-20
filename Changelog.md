@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 5.2.2.1
+Updated Class Symbols to have a better outline  
+Fixed an issue where enemy nameplates in battlegrounds would have your own class color  
+___
 ### 5.2.2
 Added a setting to fix the Press and Hold to Keep Casting introduced in Dragonflight, this setting works in Retail and Forever  
 Updated CVars to remove Brightness and Contrast  

@@ -22,6 +22,7 @@ Added a setting to fix the Press and Hold to Keep Casting introduced in Dragonfl
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
 Updated CVars to remove Brightness and Contrast
+Updated Class Symbols to have a better outline
 Updated Spell List for the Nameplate Power Bar
 Updated Quest Item Bar
 Updated Cursor Casts
@@ -32,6 +33,7 @@ Updated LootText
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
+Fixed an issue where enemy nameplates in battlegrounds would have your own class color
 Fixed an issue where the Player unitframe power bar was not using the correct texture
 ]], 7, "small", nil, nil, nil, nil, "full")
 
