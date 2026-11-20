@@ -37,6 +37,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.otherstuff.minimapbuttons.toggleButton = true
 
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
+
+		--use hold to cast
+		E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable = true
 	else
 		--to make sure everything resets during import
 		E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
@@ -255,6 +258,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		--forever ranged swing timer
 		E.db.ElvUI_EltreumUI.otherstuff.rangedswinghide = true
+
+		--use hold to cast
+		E.db.ElvUI_EltreumUI.otherstuff.holdtocast.enable = true
 
 		-- Misc
 		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
