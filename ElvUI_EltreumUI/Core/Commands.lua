@@ -118,17 +118,17 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'loot' then
 		--_G.CombatText:AddMessage(message, scrollFunction, r, g, b, displayType, isStaggered)
 		if E.db.ElvUI_EltreumUI.loot.loottext.enable then
-			local aImage = GetCoinIcon(9999999999)
-			local aSilver = GetCoinIcon(100)
-			local aCopper = GetCoinIcon(1)
+			local goldIcon = GetCoinIcon(9999999999)
+			local silverIcon = GetCoinIcon(100)
+			local copperIcon = GetCoinIcon(1)
 			--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
-			if E.Modern then
-				_G.EltruismCombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", _G.EltruismCombatText.StandardScroll, 255, 255, 255, nil, true)
-			elseif E.Classic or E.Mists or E.TBC or E.Wrath then
-				_G.EltruismCombatText:AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", _G.EltruismCombatText.StandardScroll, 255, 255, 255, nil, true)
+			if E.Retail then
+				_G.EltruismCombatText:AddMessage("|T" .. goldIcon .. ":22:22:0:0:64:64:5:59:5:59|t " .. "9.999.999 Gold", _G.EltruismCombatText.StandardScroll, 1, 1, 1, nil, true)
+			else
+				_G.EltruismCombatText:AddMessage("|T" .. goldIcon .. ":22:22:0:0:64:64:5:59:5:59|t " .. "214.748 Gold |T" .. silverIcon .. ":22:22:0:0:64:64:5:59:5:59|t " .. "36 Silver |T" .. copperIcon .. ":22:22:0:0:64:64:5:59:5:59|t " .. "47 Copper", _G.EltruismCombatText.StandardScroll, 1, 1, 1, nil, true)
 			end
 		else
-			_G.EltruismCombatText:AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", _G.EltruismCombatText.StandardScroll, 255, 255, 255, nil, true)
+			_G.EltruismCombatText:AddMessage("|T" .. 136176 .. ":22:22:-11:-11:64:64:5:59:5:59|t " .. "Eltruism Loot is currently disabled!", _G.EltruismCombatText.StandardScroll, 1, 1, 1, nil, true)
 		end
 	elseif message == 'config' or message == 'options' or message == '' then
 		if not InCombatLockdown() then
