@@ -19,6 +19,7 @@ local C_Spell = _G.C_Spell
 local C_Spell_GetSpellCooldown = C_Spell and C_Spell.GetSpellCooldown
 local GetSpellCooldownDuration = C_Spell and C_Spell.GetSpellCooldownDuration
 local LegacyGetSpellCooldown = _G.GetSpellCooldown
+local tostring = _G.tostring
 
 local DEFAULT_RING = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga'
 local GCD_SPELL_ID = 61304
