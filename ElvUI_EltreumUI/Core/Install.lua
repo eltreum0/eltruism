@@ -711,19 +711,19 @@ ElvUI_EltreumUI.InstallerData = {
 			frame.Desc4:SetText(L["Choose the type of icons Details! will use:"])
 
 			frame.Option1:Show()
-			frame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") ElvUI_EltreumUI:GetASProfile() end)
+			frame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") end)
 			frame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsspec", "ENTERING") end)
 			frame.Option1:SetScript('OnLeave', OnLeavePreview)
 			frame.Option1:SetText((E.Modern or E.Mists or E.TBC or E.Wrath) and 'Spec' or 'Blizzard')
 
 			frame.Option2:Show()
-			frame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafalpha") ElvUI_EltreumUI:GetASProfile() end)
+			frame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafalpha") end)
 			frame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsreleafalpha", "ENTERING") end)
 			frame.Option2:SetScript('OnLeave', OnLeavePreview)
 			frame.Option2:SetText('Releaf Alpha')
 
 			frame.Option3:Show()
-			frame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") ElvUI_EltreumUI:GetASProfile() end)
+			frame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") end)
 			frame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsreleafsolid", "ENTERING") end)
 			frame.Option3:SetScript('OnLeave', OnLeavePreview)
 			frame.Option3:SetText('Releaf Solid')
