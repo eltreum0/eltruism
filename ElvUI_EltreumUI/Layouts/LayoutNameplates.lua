@@ -637,6 +637,14 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none" --no target glow
 
+		--modern filters
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["enable"] = true
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||CROWD_CONTROL"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group2"]["enable"] = false
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["enable"] = true
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||CROWD_CONTROL"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group2"]["enable"] = false
+
 		if E.Classic then
 			E.db["v11NamePlateReset"] = true
 			E.db["nameplates"]["motionType"] = "OVERLAP"

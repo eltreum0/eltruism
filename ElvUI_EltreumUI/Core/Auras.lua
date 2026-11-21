@@ -73,7 +73,7 @@ local minimalAura = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
 
 local EltruismModernEverythingBuffs = "HELPFUL"
 local EltruismModernEverythingDebuffs = "HARMFUL"
-local EltruismModernTargetAuraBar = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|!CROWD_CONTROL"
+local EltruismModernDebuff = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL"
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
@@ -248,8 +248,8 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = EltruismNameplateEnemyPlayerDebuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = EltruismNameplateEnemyNPCDebuffs
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff --P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff --P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
 		elseif type == 'Minimal' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = minimalDebuffs
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
@@ -299,12 +299,12 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
-			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernTargetAuraBar
+			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff
 			E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
 		elseif type == 'Minimal' then
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = minimalAura
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = minimalAura
-			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernTargetAuraBar
+			E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff
 			E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
 		end
 	end
