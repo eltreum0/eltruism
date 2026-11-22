@@ -249,7 +249,7 @@ function EltruismCombatText:AddMessage(message, scrollFunction, r, g, b, _, isSt
 end
 
 local function isSafeString(val)
-	if not val or not E:NotSecretValue(val) then return false end
+	if not E:NotSecretValue(val) then return false end
 	return type(val) == "string"
 end
 
@@ -535,14 +535,13 @@ local function handleHonorMessage(msg)
 end
 
 local function printSkillMsg()
-	local msg = tremove(skillQueue, 1)
-	if msg then
+	if #skillQueue > 0 then
+		local msg = tremove(skillQueue, 1)
 		EltruismCombatText:AddMessage(msg, EltruismScroll, 1, 1, 1, nil, true)
 	end
 end
 
-local function handleSkillMessage(msg, sender)
-	if sender ~= "" then return end
+local function handleSkillMessage(msg)
 	skillQueue[#skillQueue + 1] = msg
 	E:Delay(0.5, printSkillMsg)
 end
@@ -580,8 +579,8 @@ local function onLootEvent(_, event, arg1, arg2)
 			handleHonorMessage(arg1)
 		end
 	elseif event == "CHAT_MSG_SKILL" then
-		if db.skill and isSafeString(arg1) and isSafeString(arg2) then
-			handleSkillMessage(arg1, arg2)
+		if db.skill and type(arg1) == "string" then
+			handleSkillMessage(arg1)
 		end
 	elseif event == "UI_ERROR_MESSAGE" then
 		if isSafeString(arg2) then
