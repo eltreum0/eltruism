@@ -639,10 +639,10 @@ function ElvUI_EltreumUI:SetupNamePlates()
 
 		--modern filters
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["enable"] = true
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||CROWD_CONTROL"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group2"]["enable"] = false
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["enable"] = true
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||CROWD_CONTROL"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group2"]["enable"] = false
 
 		if E.Classic then

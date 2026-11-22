@@ -73,7 +73,7 @@ local minimalAura = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
 
 local EltruismModernEverythingBuffs = "HELPFUL"
 local EltruismModernEverythingDebuffs = "HARMFUL"
-local EltruismModernDebuff = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL"
+local EltruismModernDebuff = "HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||CROWD_CONTROL"
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
@@ -243,8 +243,8 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		if type == 'Everything' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = EltruismEverything
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = EltruismEverything
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernEverythingDebuffs
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff
 		elseif type == 'Eltruism' then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = EltruismNameplateEnemyPlayerDebuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = EltruismNameplateEnemyNPCDebuffs
@@ -402,13 +402,13 @@ function ElvUI_EltreumUI:SetupAllAuras(type)
 		E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
 		E.db["unitframe"]["units"]["player"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
 		E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL||PLAYER'
-		E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL||PLAYER'
+		E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff
 		E.db["unitframe"]["units"]["player"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.player.debuffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["target"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.target.debuffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.focus.debuffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.boss.debuffs.filterLists.group1.filter
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff --P.nameplates.units.ENEMY_PLAYER.debuffs.filterLists.group1.filter
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = EltruismModernDebuff --P.nameplates.units.ENEMY_NPC.debuffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["raid1"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid1.debuffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["party"]["buffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.party.debuffs.filterLists.group1.filter
 		E.db["unitframe"]["units"]["raid2"]["debuffs"]["filterLists"]["group1"]["filter"] = P.unitframe.units.raid2.debuffs.filterLists.group1.filter
