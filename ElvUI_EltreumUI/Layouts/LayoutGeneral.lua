@@ -103,9 +103,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["health"]["reverseFill"] = false
 	E.db["unitframe"]["units"]["target"]["power"]["reverseFill"] = false
 
-	--disable the custom auras on target
-	E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
-
 	--general pixel perfect things
 	E.private["general"]["pixelPerfect"] = true
 	E.db["unitframe"]["thinBorders"] = true
@@ -417,13 +414,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["player"]["aurabar"]["tooltipAnchorY"] = 0
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["enable"] = true
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL'
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["enable"] = false
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group3"]["enable"] = false
-	E.db["unitframe"]["units"]["player"]["aurabar"]["friendlyFilter"]["filterLists"]["group3"]["maxDuration"] = 300
 
 	---aurabar filter for retail
 	--[[E.db["unitframe"]["units"]["player"]["aurabar"]["isAuraBigDefensive"] = true
@@ -492,16 +482,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorX"] = 0
 	E.db["unitframe"]["units"]["target"]["aurabar"]["tooltipAnchorY"] = 0
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["enable"] = true
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group1"]["filter"] = 'HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL'
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["enable"] = false
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group2"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["enable"] = false
-	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["enable"] = true
-	E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["maxDuration"] = 300
-	E.db["unitframe"]["units"]["target"]["aurabar"]["friendlyFilter"]["filterLists"]["group1"]["filter"] = 'HELPFUL|PLAYER'
 
 	---aurabar filter for retail
 	--[[E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraBigDefensive"] = true
@@ -512,6 +492,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	--hide permanent auras
 	E.db["unitframe"]["units"]["target"]["aurabar"]["isAuraPermanentPlayer"] = true
+
+	--setup eltruism aura filters
+	ElvUI_EltreumUI:SetupAllAuras('Eltruism', true)
 
 	E.db["unitframe"]["units"]["target"]["auras"]["tooltipAnchorType"] = "ANCHOR_CURSOR"
 	E.db["unitframe"]["units"]["target"]["auras"]["tooltipAnchorX"] = 0

@@ -201,12 +201,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 
-		--E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
-		--E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs,CastByNPC"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,NonPersonal"
-
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["enable"] = true
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["countFontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["countXOffset"] = 2
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["countYOffset"] = -3
@@ -338,7 +332,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["enable"] = true
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["countFontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["countXOffset"] = 2
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["auras"]["countYOffset"] = -3
@@ -373,7 +366,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["height"] = 18
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["keepSizeRatio"] = false
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 6
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,NonPersonal"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
@@ -636,14 +628,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
 		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none" --no target glow
-
-		--modern filters
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["enable"] = true
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["filterLists"]["group2"]["enable"] = false
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["enable"] = true
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group1"]["filter"] = "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY|CROWD_CONTROL"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["filterLists"]["group2"]["enable"] = false
 
 		if E.Classic then
 			E.db["v11NamePlateReset"] = true
