@@ -15,12 +15,15 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
 Added a setting to fix the Press and Hold to Keep Casting introduced in Dragonflight, this setting works in Retail and Forever
+Added Reset Buttons to Aura Filters to reset to ElvUI Defaults
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
+
+Updated Filters to better show Crowd Control and other debuffs
 Updated CVars to remove Brightness and Contrast
 Updated Class Symbols to have a better outline
 Updated Spell List for the Nameplate Power Bar
@@ -35,6 +38,7 @@ Updated LootText
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
 Fixed an issue where enemy nameplates in battlegrounds would have your own class color
 Fixed an issue where the Player unitframe power bar was not using the correct texture
+Fixed an issue where Details profiles wouldn't import due to a removed function
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other

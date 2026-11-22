@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 5.2.2.2
+Added Reset Buttons to Aura Filters to reset to ElvUI Defaults  
+Updated Filters to better show Crowd Control and other debuffs  
+Fixed an issue where Details profiles wouldn't import due to a removed function  
+___
 ### 5.2.2.1
 Updated Class Symbols to have a better outline  
 Fixed an issue where enemy nameplates in battlegrounds would have your own class color  
