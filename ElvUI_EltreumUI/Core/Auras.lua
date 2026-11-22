@@ -217,6 +217,13 @@ local minimalModernNameplateNPCBuffs = {
 	{ filter = 'HELPFUL||IMPORTANT', useBlocklist = true },
 }
 
+local EltruismModernNameplateNPCBuffs = {
+	{ filter = 'HELPFUL', candidates = { isBossOrRoleAura = true } },
+	{ filter = 'HELPFUL||!IMPORTANT', candidates = { isStealable = true, isBossOrRoleAura = 1 }, useBlocklist = true },
+	{ filter = 'HELPFUL||IMPORTANT', candidates = { isBossOrRoleAura = 1 } },
+	{ filter = 'HELPFUL||!IMPORTANT', maxDuration = 300, candidates = { isBossOrRoleAura = 1, isStealable = 1 }, useBlocklist = true },
+}
+
 local EltruismModernGroupBuffs = {
 	{ filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE' },
 	{ filter = 'HELPFUL||EXTERNAL_DEFENSIVE' },
@@ -373,7 +380,7 @@ local function ApplyBuffFilters(frame, filterType)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = EltruismNameplateEnemyPlayerBuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = EltruismNameplateEnemyNPCBuffs
 			CopyFilterLists(E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["filterLists"], P.nameplates.units.ENEMY_PLAYER.buffs.filterLists)
-			CopyFilterLists(E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"], P.nameplates.units.ENEMY_NPC.buffs.filterLists)
+			ApplyFilterGroups(E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["filterLists"], EltruismModernNameplateNPCBuffs, 'HELPFUL')
 		elseif filterType == 'Minimal' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = minimalBuffs
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = 'Blacklist,Dispellable,TurtleBuffs'

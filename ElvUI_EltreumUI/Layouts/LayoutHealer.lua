@@ -494,6 +494,10 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 
 	-- Target
 	E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["filter"] = "HELPFUL"
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["maxDuration"] = 300
+	E.db["unitframe"]["units"]["target"]["aurabar"]["enemyFilter"]["filterLists"]["group3"]["candidates"]["nameplateShowPersonal"] = 1
 	E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 	E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 2
