@@ -5,33 +5,19 @@ local CreateFrame = _G.CreateFrame
 local GetTime = _G.GetTime
 local math = _G.math
 local mathfloor = math.floor
-local UIFrameFadeOut = _G.UIFrameFadeOut
-local UIFrameFadeRemoveFrame = _G.UIFrameFadeRemoveFrame
 local GetActionInfo = _G.GetActionInfo
 local GetPetActionInfo = _G.GetPetActionInfo
-local C_Spell = _G.C_Spell
-local GetSpellBaseCooldown = C_Spell and C_Spell.GetSpellBaseCooldown or _G.GetSpellBaseCooldown
-local GetSpellCharges = C_Spell and C_Spell.GetSpellCharges or _G.GetSpellCharges
-local GetOverrideSpell = C_Spell and C_Spell.GetOverrideSpell
+local GetSpellCharges = _G.C_Spell.GetSpellCharges
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local C_Container = _G.C_Container
-local GetContainerItemLink = C_Container and C_Container.GetContainerItemLink
-local tonumber = _G.tonumber
+local GetContainerItemLink = C_Container.GetContainerItemLink
 local C_Item = _G.C_Item
-local GetItemInfo = C_Item and C_Item.GetItemInfo or _G.GetItemInfo
-local GetItemInfoInstant = C_Item and C_Item.GetItemInfoInstant or _G.GetItemInfoInstant
 local GetMacroSpell = _G.GetMacroSpell
 local GetMacroItem = _G.GetMacroItem
 local PlaySoundFile = _G.PlaySoundFile
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
-local C_CurveUtil = _G.C_CurveUtil
 local Enum = _G.Enum
-local type = _G.type
 local wipe = _G.wipe
-local EltruismSpellInfo = ElvUI_EltreumUI.EltruismSpellInfo
-local EltruismSpellCooldown = ElvUI_EltreumUI.EltruismSpellCooldown
-local EltruismItemCooldown = ElvUI_EltreumUI.EltruismItemCooldown
-local EltruismPetCooldown = ElvUI_EltreumUI.EltruismPetCooldown
 
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden
@@ -74,15 +60,14 @@ local cooldownsize = 28
 
 --secret-safe curve so display alpha reacts to remaining duration without reading secret numbers or allocating tables
 local almostReadyCurve
-if C_CurveUtil and C_CurveUtil.CreateCurve and Enum and Enum.LuaCurveType and Enum.LuaCurveType.Step then
-	almostReadyCurve = C_CurveUtil.CreateCurve()
-	almostReadyCurve:SetType(Enum.LuaCurveType.Step)
+if E.Modern then
+	almostReadyCurve = E:CreateCurve(Enum.LuaCurveType.Step)
 	almostReadyCurve:AddPoint(0, 1)
 	almostReadyCurve:AddPoint(db.readyTime, 0)
 end
 
 local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", E.UIParent)
---inner display frame isolates curve-driven secret alpha from EltruismCooldownFrame's UIFrameFadeOut
+--inner display frame isolates curve-driven secret alpha from EltruismCooldownFrame's E:UIFrameFadeOut
 local EltruismCooldownDisplay = CreateFrame("Frame", nil, EltruismCooldownFrame)
 EltruismCooldownDisplay:SetAllPoints(EltruismCooldownFrame)
 local EltruismCooldownText = EltruismCooldownDisplay:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
@@ -101,7 +86,7 @@ EltruismNativeCooldown:SetDrawEdge(false)
 EltruismNativeCooldown:SetDrawBling(false)
 EltruismNativeCooldown:SetHideCountdownNumbers(false)
 EltruismNativeCooldown.noCooldownCount = true
-if EltruismNativeCooldown.SetCountdownMillisecondsThreshold then
+if E.Modern then
 	EltruismNativeCooldown:SetCountdownMillisecondsThreshold(1)
 end
 EltruismNativeCooldown:Hide()
@@ -110,7 +95,8 @@ local CooldownEventFrame = CreateFrame("Frame")
 local EltruismCursorCooldownOnUpdate
 
 local function styleNativeCooldownFont()
-	if not nativeFontString and EltruismNativeCooldown.GetCountdownFontString then
+	if not E.Modern then return end
+	if not nativeFontString then
 		nativeFontString = EltruismNativeCooldown:GetCountdownFontString()
 	end
 	if nativeFontString then
@@ -124,18 +110,12 @@ end
 local function clearNativeCooldown()
 	EltruismNativeCooldown.eltruismExpectingDone = false
 	currDurationObj = nil
-	if EltruismNativeCooldown.Clear then
-		EltruismNativeCooldown:Clear()
-	elseif EltruismNativeCooldown.SetCooldown then
-		EltruismNativeCooldown:SetCooldown(0, 0)
-	end
+	EltruismNativeCooldown:Clear()
 	EltruismNativeCooldown:Hide()
 end
 
 local function resetCooldownFrameFade(alpha)
-	if UIFrameFadeRemoveFrame then
-		UIFrameFadeRemoveFrame(EltruismCooldownFrame)
-	end
+	E:UIFrameFadeRemoveFrame(EltruismCooldownFrame)
 	EltruismCooldownFrame:SetAlpha(alpha)
 end
 
@@ -150,20 +130,12 @@ local function getGuessTable(cooldownType)
 end
 
 local function queryCooldown(cooldownType, id, slot, petSpellID, wantDurationObj)
-	if not id then return "READY", 0, 0, nil end
-	if cooldownType == "spell" then
-		return EltruismSpellCooldown(ElvUI_EltreumUI, id, slot, GCD, wantDurationObj, true)
-	elseif cooldownType == "item" then
-		return EltruismItemCooldown(ElvUI_EltreumUI, id, slot, GCD, wantDurationObj)
-	elseif cooldownType == "pet" then
-		return EltruismPetCooldown(ElvUI_EltreumUI, id, petSpellID, slot, GCD, wantDurationObj)
-	end
-	return "READY", 0, 0, nil
+	return ElvUI_EltreumUI:EltruismCooldownQuery(cooldownType, id, petSpellID, slot, GCD, wantDurationObj, true)
 end
 
 local function applySecretDuration(durationObj, restyleFont)
 	currDurationObj = durationObj
-	if durationObj and EltruismNativeCooldown.SetCooldownFromDurationObject then
+	if durationObj then
 		EltruismNativeCooldown.eltruismExpectingDone = true
 		EltruismNativeCooldown:Show()
 		EltruismNativeCooldown:SetCooldownFromDurationObject(durationObj)
@@ -176,7 +148,7 @@ local function applySecretDuration(durationObj, restyleFont)
 end
 
 local function enterSecretAlmostReadyWait()
-	if not almostReadyCurve or not currDurationObj or not currDurationObj.EvaluateRemainingDuration then
+	if not almostReadyCurve or not currDurationObj then
 		return false
 	end
 	isWaitingAlmostReady = true
@@ -220,18 +192,8 @@ EltruismNativeCooldown:SetScript("OnCooldownDone", function(self)
 end)
 
 function ElvUI_EltreumUI:CooldownEnable()
-	if E.db.ElvUI_EltreumUI then
-		cursordb = E.db.ElvUI_EltreumUI.cursors.cursor
-		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor then
-			cooldownsize = 28
-		elseif E.db.ElvUI_EltreumUI.cursors.cursorcursor then
-			if E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius then
-				cooldownsize = ( (E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius * 2 ) - 1 )
-			else
-				cooldownsize = 28
-			end
-		end
-	end
+	cursordb = E.db.ElvUI_EltreumUI.cursors.cursor
+	cooldownsize = (E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius * 2) - 1
 	EltruismCooldownFrame:SetSize(cooldownsize, cooldownsize)
 	EltruismCooldownFrame:SetJustifyH("CENTER")
 	local width = GetPhysicalScreenSize()
@@ -254,17 +216,15 @@ function ElvUI_EltreumUI:CooldownEnable()
 		ElvUI_EltreumUI:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
 	end
 
-	if C_Container and C_Container.UseContainerItem then
-		if not ElvUI_EltreumUI:IsHooked(C_Container, "UseContainerItem", "checkContainerItemCooldown") then
-			ElvUI_EltreumUI:SecureHook(C_Container, "UseContainerItem", "checkContainerItemCooldown")
-		end
+	if not ElvUI_EltreumUI:IsHooked(C_Container, "UseContainerItem", "checkContainerItemCooldown") then
+		ElvUI_EltreumUI:SecureHook(C_Container, "UseContainerItem", "checkContainerItemCooldown")
 	end
 
 	if not ElvUI_EltreumUI:IsHooked("UseInventoryItem", "checkInventoryItemCooldown") then
 		ElvUI_EltreumUI:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
 	end
 
-	if C_Item and C_Item.UseItemByName then
+	if C_Item.UseItemByName then
 		if not ElvUI_EltreumUI:IsHooked(C_Item,"UseItemByName", "checkItemCooldown") then
 			ElvUI_EltreumUI:SecureHook(C_Item,"UseItemByName", "checkItemCooldown")
 		end
@@ -297,14 +257,12 @@ function ElvUI_EltreumUI:CooldownEnable()
 			return
 		end
 		if not spellID or not E:NotSecretValue(spellID) then return end
-		if unit == "player" or (unit == "pet" and cursordb and cursordb.petcooldown) then
+		if unit == "player" or (unit == "pet" and cursordb.petcooldown) then
 			local nowTime = GetTime()
 			spellStartGuess[spellID] = nowTime
-			if GetOverrideSpell then
-				local override = GetOverrideSpell(spellID)
-				if override and E:NotSecretValue(override) and override ~= 0 then
-					spellStartGuess[override] = nowTime
-				end
+			local override = ElvUI_EltreumUI:EltruismOverrideSpell(spellID)
+			if override ~= spellID then
+				spellStartGuess[override] = nowTime
 			end
 		end
 	end)
@@ -377,13 +335,10 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 			end
 		end
 		if isWaitingAlmostReady then
-			if almostReadyCurve and currDurationObj and currDurationObj.EvaluateRemainingDuration then
+			if almostReadyCurve and currDurationObj then
 				EltruismCooldownDisplay:SetAlpha(currDurationObj:EvaluateRemainingDuration(almostReadyCurve))
 			end
 			return
-		end
-		if fadeStamp == nil then
-			fadeStamp = 0
 		end
 		if isHidden then
 			if not isReady and endStamp and now >= endStamp then
@@ -392,7 +347,7 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 			return
 		elseif now > fadeStamp then
 			isHidden = true
-			UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
+			E:UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
 			if not isReady then
 				endStamp = now + db.fadeTime
 			end
@@ -462,17 +417,11 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 				end
 			end
 		end
-		if fadeStamp == nil then --error fix attempt
-			fadeStamp = 0
-		end
-		if now == nil then
-			now = 0
-		end
 		if isHidden then
 			return
-		elseif now > fadeStamp then --error?
+		elseif now > fadeStamp then
 			isHidden = true
-			UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
+			E:UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
 		end
 	end
 end
@@ -489,7 +438,7 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 		endStamp = now
 	end
 	if now + db.holdTime >= endStamp then
-		--fadeStamp = endStamp
+		fadeStamp = endStamp
 		resetCooldownFrameFade(0)
 	else
 		fadeStamp = now + db.holdTime
@@ -500,7 +449,7 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 	isHidden = false
 	if show then
 		EltruismCooldownDisplay:SetAlpha(1)
-		if cursordb and cursordb.cooldown then
+		if cursordb.cooldown then
 			EltruismCooldownFrame:Show()
 		end
 		if startHidden then
@@ -564,13 +513,13 @@ function ElvUI_EltreumUI:showCooldown(texture, cooldownType, id, actionSlot, pet
 		lastUpdate = NormalUpdateDelay
 		lastSecretCheck = 0
 		EltruismCooldownDisplay:SetAlpha(1)
-		if cursordb and cursordb.cooldown then
+		if cursordb.cooldown then
 			EltruismCooldownFrame:Show()
 		end
 		resetCooldownFrameFade(1)
 		ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, 0, true)
 		EltruismCooldownFrame:SetScript("OnUpdate", EltruismCursorCooldownOnUpdate)
-		if cursordb and cursordb.cooldownsound then
+		if cursordb.cooldownsound then
 			PlaySoundFile(E.LSM:Fetch("sound", cursordb.cooldownfile),"Master")
 		end
 		return
@@ -590,7 +539,7 @@ function ElvUI_EltreumUI:showCooldown(texture, cooldownType, id, actionSlot, pet
 	EltruismCooldownIcon:SetTexture(texture)
 	EltruismCooldownIcon:AddMaskTexture(EltruismCooldownMask)
 	ElvUI_EltreumUI:updateStamps(startcd, durationcd, true)
-	if durationcd > 0 and cursordb and cursordb.cooldownsound then
+	if durationcd > 0 and cursordb.cooldownsound then
 		PlaySoundFile(E.LSM:Fetch("sound", cursordb.cooldownfile),"Master")
 	end
 end
@@ -602,10 +551,10 @@ function ElvUI_EltreumUI:checkActionCooldown(slot)
 	elseif actionType == 'item' then
 		ElvUI_EltreumUI:checkItemCooldown(id, slot)
 	elseif actionType == 'macro' then
-		local macroSpell = GetMacroSpell and GetMacroSpell(id)
+		local macroSpell = GetMacroSpell(id)
 		if macroSpell then
 			ElvUI_EltreumUI:checkSpellCooldown(macroSpell, slot)
-		elseif GetMacroItem then
+		else
 			local _, macroItem = GetMacroItem(id)
 			if macroItem then
 				ElvUI_EltreumUI:checkItemCooldown(macroItem, slot)
@@ -614,54 +563,32 @@ function ElvUI_EltreumUI:checkActionCooldown(slot)
 	end
 end
 
-local function findPetActionIndexForSpell(spell)
-	if not spell then return end
-	for i = 1, _G.NUM_PET_ACTION_SLOTS do
-		local namepet, _, _, isToken = GetPetActionInfo(i)
-		if isToken then namepet = _G[namepet] end
-		if namepet == spell and cursordb and cursordb.petcooldown then
-			return i
-		end
-	end
-end
-
 function ElvUI_EltreumUI:checkSpellCooldown(spell, actionSlot)
 	if not spell or not E:NotSecretValue(spell) then return end
-	local namespell, spellID, texturespell = EltruismSpellInfo(ElvUI_EltreumUI, spell)
-	if cursordb and cursordb.petcooldown and not namespell then
-		return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
+	local namespell, spellID, texturespell = ElvUI_EltreumUI:EltruismSpellInfo(spell)
+	if cursordb.petcooldown and not namespell then
+		return ElvUI_EltreumUI:checkPetActionCooldown(ElvUI_EltreumUI:EltruismPetActionIndex(spell))
 	end
 	local resolvedID = spellID or spell
 
 	local hasCooldown = false
-	local baseCooldown = 0
-	if GetSpellBaseCooldown then
-		local bcd = GetSpellBaseCooldown(resolvedID)
-		if bcd and E:NotSecretValue(bcd) then
-			baseCooldown = bcd
-		end
-	end
-	if baseCooldown > 0 then
+	if ElvUI_EltreumUI:EltruismSpellBaseCooldown(resolvedID) > 0 then
 		hasCooldown = true
 		ElvUI_EltreumUI:showCooldown(texturespell, "spell", resolvedID, actionSlot, nil, hasCooldown)
 		return
 	end
 
-	if GetSpellCharges then
-		local chargeInfo, _, _, chargeDuration = GetSpellCharges(resolvedID)
-		if type(chargeInfo) == "table" then
-			if E:NotSecretValue(chargeInfo.isActive) and chargeInfo.isActive then
-				hasCooldown = true
-			elseif E:NotSecretValue(chargeInfo.cooldownDuration) and chargeInfo.cooldownDuration and chargeInfo.cooldownDuration > 0 then
-				hasCooldown = true
-			end
-		elseif chargeInfo and chargeDuration and E:NotSecretValue(chargeDuration) and chargeDuration > 0 then
+	local chargeInfo = GetSpellCharges(resolvedID)
+	if chargeInfo then
+		if E:NotSecretValue(chargeInfo.isActive) and chargeInfo.isActive then
+			hasCooldown = true
+		elseif E:NotSecretValue(chargeInfo.cooldownDuration) and chargeInfo.cooldownDuration and chargeInfo.cooldownDuration > 0 then
 			hasCooldown = true
 		end
 	end
 
 	--single cooldown query reused by showCooldown
-	local state, startcd, durationcd, durationObj = EltruismSpellCooldown(ElvUI_EltreumUI, resolvedID, actionSlot, GCD, true, true)
+	local state, startcd, durationcd, durationObj = ElvUI_EltreumUI:EltruismSpellCooldown(resolvedID, actionSlot, GCD, true, true)
 	if state == "EXACT" or state == "SECRET" then
 		hasCooldown = true
 	end
@@ -674,33 +601,12 @@ function ElvUI_EltreumUI:checkInventoryItemCooldown(invSlot)
 end
 
 function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
-	local itemLinkcontainer
-	if GetContainerItemLink then
-		itemLinkcontainer = GetContainerItemLink(bagId, bagSlot)
-	end
+	local itemLinkcontainer = GetContainerItemLink(bagId, bagSlot)
 	ElvUI_EltreumUI:checkItemCooldown(itemLinkcontainer)
 end
 
-local function itemIdFromLink(link)
-	if not link or type(link) ~= "string" then return nil end
-	local idlink = link:match("item:(%d+)")
-	return tonumber(idlink)
-end
-
 function ElvUI_EltreumUI:checkItemCooldown(item, actionSlot)
-	if not item or not E:NotSecretValue(item) then return end
-	local itemIdcd = tonumber(item) or itemIdFromLink(item)
-	local texturecd
-	if GetItemInfoInstant then
-		local instantID, _, _, _, instantTex = GetItemInfoInstant(itemIdcd or item)
-		itemIdcd = itemIdcd or instantID
-		texturecd = instantTex
-	end
-	if not itemIdcd or not texturecd then
-		local _, itemLinkcd, _, _, _, _, _, _, _, tex = GetItemInfo(itemIdcd or item)
-		itemIdcd = itemIdcd or itemIdFromLink(itemLinkcd)
-		texturecd = texturecd or tex
-	end
+	local _, itemIdcd, texturecd = ElvUI_EltreumUI:EltruismItemInfo(item)
 	if not itemIdcd then return end
 	ElvUI_EltreumUI:showCooldown(texturecd, "item", itemIdcd, actionSlot)
 end
@@ -743,7 +649,7 @@ function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 				EltruismCooldownIcon:SetTexture(lastTexture)
 				EltruismCooldownIcon:AddMaskTexture(EltruismCooldownMask)
 				applySecretDuration(durationObj, true)
-				if cursordb and cursordb.cooldown then
+				if cursordb.cooldown then
 					EltruismCooldownFrame:Show()
 				end
 				if not enterSecretAlmostReadyWait() then

@@ -1,16 +1,23 @@
 local E = unpack(ElvUI)
 local _G = _G
 local select = _G.select
+local tonumber = _G.tonumber
+local type = _G.type
+local strmatch = _G.string.match
 local C_Spell = _G.C_Spell
 local GetSpellInfo = C_Spell.GetSpellInfo
 local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local GetOverrideSpell = C_Spell.GetOverrideSpell
+local GetSpellBaseCooldown = C_Spell.GetSpellBaseCooldown or _G.GetSpellBaseCooldown
 local GetSpellCooldown = C_Spell.GetSpellCooldown
 local GetSpellCooldownDuration = C_Spell.GetSpellCooldownDuration
 local GetSpellChargeDuration = C_Spell.GetSpellChargeDuration
 local GetActionCooldownDuration = _G.C_ActionBar.GetActionCooldownDuration
 local GetItemCooldown = _G.C_Container.GetItemCooldown
-local GetItemSpell = _G.C_Item.GetItemSpell
+local C_Item = _G.C_Item
+local GetItemInfo = C_Item.GetItemInfo
+local GetItemInfoInstant = C_Item.GetItemInfoInstant
+local GetItemSpell = C_Item.GetItemSpell
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local GetPetActionInfo = _G.GetPetActionInfo
 
@@ -37,14 +44,20 @@ function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
 	end
 end
 
-function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
-	if not spellID or not E:NotSecretValue(spellID) then return end
+--resolve spell override safely
+function ElvUI_EltreumUI:EltruismOverrideSpell(spellID)
 	if GetOverrideSpell then
 		local override = GetOverrideSpell(spellID)
 		if override and E:NotSecretValue(override) and override ~= 0 then
-			spellID = override
+			return override
 		end
 	end
+	return spellID
+end
+
+function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
+	if not spellID or not E:NotSecretValue(spellID) then return end
+	spellID = self:EltruismOverrideSpell(spellID)
 	local spellData = GetSpellInfo(spellID)
 	if spellData then
 		local resolvedID = (spellData.spellID and E:NotSecretValue(spellData.spellID)) and spellData.spellID or spellID
@@ -54,17 +67,63 @@ function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
 	return
 end
 
+--resolve item info (name, itemID, texture) from item ID, link, or name
+function ElvUI_EltreumUI:EltruismItemInfo(item, needName)
+	if not item or not E:NotSecretValue(item) then return end
+	local itemID = tonumber(item)
+	if not itemID and type(item) == "string" then
+		itemID = tonumber(strmatch(item, "item:(%d+)"))
+	end
+	local instantID, _, _, _, instantTex = GetItemInfoInstant(itemID or item)
+	itemID = itemID or instantID
+	local texture = instantTex
+	local name
+	if needName or not itemID or not texture then
+		local infoName, itemLink, _, _, _, _, _, _, _, infoTex = GetItemInfo(itemID or item)
+		name = infoName
+		if not itemID and type(itemLink) == "string" then
+			itemID = tonumber(strmatch(itemLink, "item:(%d+)"))
+		end
+		texture = texture or infoTex
+	end
+	return name, itemID, texture
+end
+
+--resolve base cooldown in seconds
+function ElvUI_EltreumUI:EltruismSpellBaseCooldown(spellID)
+	if not spellID or not E:NotSecretValue(spellID) then return 0 end
+	local baseMS = GetSpellBaseCooldown(spellID)
+	if baseMS and E:NotSecretValue(baseMS) and baseMS > 0 then
+		return baseMS / 1000
+	end
+	return 0
+end
+
+--find pet action bar slot matching spell name
+function ElvUI_EltreumUI:EltruismPetActionIndex(name)
+	if not name or not E:NotSecretValue(name) then return nil end
+	for i = 1, _G.NUM_PET_ACTION_SLOTS do
+		local petName, _, _, isToken = GetPetActionInfo(i)
+		if petName and E:NotSecretValue(petName) then
+			if isToken then
+				petName = _G[petName]
+			end
+			if petName == name then
+				return i
+			end
+		end
+	end
+	return nil
+end
+
 --resolve spell cooldown safely across secret and non-secret values
 --returns state ("READY", "GCD", "DISABLED", "EXACT", "SECRET"), start, duration, durationObj
 function ElvUI_EltreumUI:EltruismSpellCooldown(spellID, actionSlot, minDuration, wantDurationObj, skipOverride)
 	if not spellID or not E:NotSecretValue(spellID) then
 		return "READY", 0, 0, nil
 	end
-	if not skipOverride and GetOverrideSpell then
-		local override = GetOverrideSpell(spellID)
-		if override and E:NotSecretValue(override) and override ~= 0 then
-			spellID = override
-		end
+	if not skipOverride then
+		spellID = self:EltruismOverrideSpell(spellID)
 	end
 	local minimumDuration = minDuration or 0
 	local info = GetSpellCooldown(spellID)
@@ -121,7 +180,7 @@ function ElvUI_EltreumUI:EltruismItemCooldown(itemID, actionSlot, minDuration, w
 	end
 	local _, itemSpellID = GetItemSpell(itemID)
 	if itemSpellID and E:NotSecretValue(itemSpellID) then
-		return ElvUI_EltreumUI:EltruismSpellCooldown(itemSpellID, actionSlot, minimumDuration, wantDurationObj, true)
+		return self:EltruismSpellCooldown(itemSpellID, actionSlot, minimumDuration, wantDurationObj, true)
 	end
 	return "READY", 0, 0, nil
 end
@@ -147,7 +206,20 @@ function ElvUI_EltreumUI:EltruismPetCooldown(index, spellID, actionSlot, minDura
 		petSpellID = select(7, GetPetActionInfo(index))
 	end
 	if petSpellID and E:NotSecretValue(petSpellID) then
-		return ElvUI_EltreumUI:EltruismSpellCooldown(petSpellID, actionSlot, minimumDuration, wantDurationObj)
+		return self:EltruismSpellCooldown(petSpellID, actionSlot, minimumDuration, wantDurationObj)
+	end
+	return "READY", 0, 0, nil
+end
+
+--dispatch cooldown lookup by type
+function ElvUI_EltreumUI:EltruismCooldownQuery(cooldownType, id, petSpellID, actionSlot, minDuration, wantDurationObj, skipOverride)
+	if not id then return "READY", 0, 0, nil end
+	if cooldownType == "spell" then
+		return self:EltruismSpellCooldown(id, actionSlot, minDuration, wantDurationObj, skipOverride)
+	elseif cooldownType == "item" then
+		return self:EltruismItemCooldown(id, actionSlot, minDuration, wantDurationObj)
+	elseif cooldownType == "pet" then
+		return self:EltruismPetCooldown(id, petSpellID, actionSlot, minDuration, wantDurationObj)
 	end
 	return "READY", 0, 0, nil
 end

@@ -14,15 +14,10 @@ local GetTime = _G.GetTime
 local tinsert = _G.tinsert
 local tremove = _G.tremove
 local unpack = _G.unpack
-local C_Spell = _G.C_Spell
-local GetSpellBaseCooldown = C_Spell and C_Spell.GetSpellBaseCooldown or _G.GetSpellBaseCooldown
 local C_Item = _G.C_Item
 local C_Container = _G.C_Container
-local GetItemInfo = C_Item and C_Item.GetItemInfo or _G.GetItemInfo
-local GetItemInfoInstant = C_Item and C_Item.GetItemInfoInstant or _G.GetItemInfoInstant
-local GetItemSpell = C_Item and C_Item.GetItemSpell or _G.GetItemSpell
+local GetItemSpell = C_Item.GetItemSpell
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
-local type = _G.type
 local wipe = _G.wipe
 local GetActionInfo = _G.GetActionInfo
 local GetActionTexture = _G.GetActionTexture
@@ -36,12 +31,8 @@ local listedSpells = { }
 local tablePool = { }
 local equippedUsableItems = { }
 local petOverlay = {1,1,1}
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns.IsAddOnLoaded
 local C_VoiceChat = _G.C_VoiceChat
-local EltruismSpellInfo = ElvUI_EltreumUI.EltruismSpellInfo
-local EltruismSpellCooldown = ElvUI_EltreumUI.EltruismSpellCooldown
-local EltruismItemCooldown = ElvUI_EltreumUI.EltruismItemCooldown
-local EltruismPetCooldown = ElvUI_EltreumUI.EltruismPetCooldown
 local doomdb
 local elapsed = 0
 local runtimer = 0
@@ -63,30 +54,6 @@ local function ReleaseTable(tbl)
 	end
 end
 
-local function GetDoomSpellInfo(spellID)
-	if not spellID or not E:NotSecretValue(spellID) then return nil, nil, spellID end
-	local name, resolvedID, texture = EltruismSpellInfo(ElvUI_EltreumUI, spellID)
-	return name, texture, resolvedID or spellID
-end
-
-local function GetDoomItemInfo(item)
-	if not item or not E:NotSecretValue(item) then return nil, nil, nil end
-	local itemID = tonumber(item)
-	if not itemID and type(item) == "string" then
-		itemID = tonumber(item:match("item:(%d+)"))
-	end
-	local name, _, _, _, _, _, _, _, _, texture = GetItemInfo(item)
-	if GetItemInfoInstant then
-		local instantID, _, _, _, instantTex = GetItemInfoInstant(itemID or item)
-		itemID = itemID or instantID
-		texture = texture or instantTex
-	end
-	if not name and itemID then
-		name = GetItemInfo(itemID)
-	end
-	return name, texture, itemID
-end
-
 local function IsEntryListed(key, altID, name)
 	if key and E:NotSecretValue(key) and listedSpells[tostring(key)] then return true end
 	if altID and E:NotSecretValue(altID) and listedSpells[tostring(altID)] then return true end
@@ -95,7 +62,6 @@ local function IsEntryListed(key, altID, name)
 end
 
 local function PassesFilter(key, altID, name)
-	if not doomdb then return true end
 	if doomdb.allowing then
 		if not next(listedSpells) then return false end
 		return IsEntryListed(key, altID, name)
@@ -107,53 +73,27 @@ local function PassesFilter(key, altID, name)
 end
 
 local function PassesDurationFilter(duration)
-	if not duration or not doomdb then return false end
-	local minCD = doomdb.graceperiod or 0
-	local maxCD = doomdb.gracelimit or 0
+	if not duration then return false end
+	local minCD = doomdb.graceperiod
+	local maxCD = doomdb.gracelimit
 	if duration <= minCD then return false end
 	if maxCD ~= 0 and duration > maxCD then return false end
 	return true
-end
-
-local function GetBaseCooldownSeconds(spellID)
-	if not spellID or not E:NotSecretValue(spellID) or not GetSpellBaseCooldown then return nil end
-	local baseMS = GetSpellBaseCooldown(spellID)
-	if baseMS and E:NotSecretValue(baseMS) and baseMS > 0 then
-		return baseMS / 1000
-	end
-	return nil
-end
-
-local function GetPetActionIndexByName(name)
-	if not name or not E:NotSecretValue(name) then return nil end
-	for i=1, _G.NUM_PET_ACTION_SLOTS, 1 do
-		local petName = GetPetActionInfo(i)
-		if petName and E:NotSecretValue(petName) and (petName == name) then
-			return i
-		end
-	end
-	return nil
 end
 
 local function RefreshEquippedUsableItems()
 	wipe(equippedUsableItems)
 	for slot = 1, 19 do
 		local itemID = GetInventoryItemID("player", slot)
-		if itemID and E:NotSecretValue(itemID) and (not GetItemSpell or GetItemSpell(itemID)) then
+		if itemID and E:NotSecretValue(itemID) and GetItemSpell(itemID) then
 			equippedUsableItems[slot] = itemID
 		end
 	end
 end
 
 local function QueryEntryCooldown(entry)
-	if entry.cooldownType == "spell" then
-		return EltruismSpellCooldown(ElvUI_EltreumUI, entry.spellID, nil, 0, false, entry.overrideResolved)
-	elseif entry.cooldownType == "item" then
-		return EltruismItemCooldown(ElvUI_EltreumUI, entry.id)
-	elseif entry.cooldownType == "pet" then
-		return EltruismPetCooldown(ElvUI_EltreumUI, entry.petIndex, entry.spellID)
-	end
-	return "READY", 0, 0
+	local id = (entry.cooldownType == "spell" and entry.spellID) or (entry.cooldownType == "pet" and entry.petIndex) or entry.id
+	return ElvUI_EltreumUI:EltruismCooldownQuery(entry.cooldownType, id, entry.spellID, nil, 0, false, entry.overrideResolved)
 end
 
 local function PromoteEntryToCooldown(i, v, status, start, duration)
@@ -229,10 +169,13 @@ local function OnUpdate(_,update)
 				if not v.infoResolved then
 					v.infoResolved = true
 					if v.cooldownType == "spell" then
-						v.name, v.texture, v.spellID = GetDoomSpellInfo(v.spellID)
+						local name, resolvedID, texture = ElvUI_EltreumUI:EltruismSpellInfo(v.spellID)
+						v.name = name
+						v.spellID = resolvedID or v.spellID
+						v.texture = texture
 						v.overrideResolved = true
 					elseif v.cooldownType == "item" then
-						local itemName, itemTex = GetDoomItemInfo(v.id)
+						local itemName, _, itemTex = ElvUI_EltreumUI:EltruismItemInfo(v.id, true)
 						v.name = itemName
 						v.texture = v.texture or itemTex
 					elseif v.cooldownType == "pet" then
@@ -283,10 +226,10 @@ local function OnUpdate(_,update)
 						local effectiveDuration = cd.duration
 						if not effectiveDuration then
 							effectiveDuration = now - (cd.startEst or now)
-							local minCD = doomdb.graceperiod or 0
+							local minCD = doomdb.graceperiod
 							if effectiveDuration <= minCD then
-								local baseSec = GetBaseCooldownSeconds(cd.spellID)
-								if baseSec and baseSec > minCD then
+								local baseSec = ElvUI_EltreumUI:EltruismSpellBaseCooldown(cd.spellID)
+								if baseSec > minCD then
 									effectiveDuration = baseSec
 								end
 							end
@@ -414,7 +357,7 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 
 	if DCP:GetAlpha() == 1 and db.ttsvoice ~= nil then
-		local tts = EltruismSpellInfo(ElvUI_EltreumUI, 33786) or EltruismSpellInfo(ElvUI_EltreumUI, 5197)
+		local tts = ElvUI_EltreumUI:EltruismSpellInfo(33786) or ElvUI_EltreumUI:EltruismSpellInfo(5197)
 		if tts then
 			C_VoiceChat.SpeakText(db.ttsvoice, tts, 1, db.ttsvolume, true)
 		end
@@ -443,7 +386,7 @@ function ElvUI_EltreumUI:Doom()
 		if doomdb.ignoring then
 			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
 			for _,v in ipairs(list) do
-				local trimmed = strtrim and strtrim(v) or v:match("^%s*(.-)%s*$")
+				local trimmed = strtrim(v)
 				if trimmed ~= "" then
 					listedSpells[trimmed] = true
 				end
@@ -451,7 +394,7 @@ function ElvUI_EltreumUI:Doom()
 		elseif doomdb.allowing then
 			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomallowed)}
 			for _,v in ipairs(list) do
-				local trimmed = strtrim and strtrim(v) or v:match("^%s*(.-)%s*$")
+				local trimmed = strtrim(v)
 				if trimmed ~= "" then
 					listedSpells[trimmed] = true
 				end
@@ -527,9 +470,9 @@ function ElvUI_EltreumUI:Doom()
 				--only scan cached slots that actually hold usable items (trinkets, engineering tinkers, etc.)
 				for _, itemID in pairs(equippedUsableItems) do
 					if not watching[itemID] and not cooldowns[itemID] then
-						local status, start, duration = EltruismItemCooldown(ElvUI_EltreumUI, itemID)
+						local status, start, duration = ElvUI_EltreumUI:EltruismItemCooldown(itemID)
 						if (status == "EXACT" and duration > 1.5 and (GetTime() - start) < 1.5) or status == "SECRET" then
-							local name, texture = GetDoomItemInfo(itemID)
+							local name, _, texture = ElvUI_EltreumUI:EltruismItemInfo(itemID, true)
 							if name and texture and PassesFilter(itemID, nil, name) then
 								local entry = AcquireTable()
 								entry.castTime = GetTime()
@@ -562,8 +505,8 @@ function ElvUI_EltreumUI:Doom()
 					watching[spellID] = entry
 					StartOnUpdate()
 				elseif (unit == "pet") and doomdb.pet then
-					local name, texture = GetDoomSpellInfo(spellID)
-					local index = GetPetActionIndexByName(name)
+					local name, _, texture = ElvUI_EltreumUI:EltruismSpellInfo(spellID)
+					local index = ElvUI_EltreumUI:EltruismPetActionIndex(name)
 					local entry = watching[spellID] or AcquireTable()
 					entry.castTime = GetTime()
 					entry.id = spellID
@@ -588,8 +531,8 @@ function ElvUI_EltreumUI:Doom()
 				local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()
 				if (event == "SPELL_CAST_SUCCESS") then
 					if (_G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_TYPE_PET) == _G.COMBATLOG_OBJECT_TYPE_PET and _G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_AFFILIATION_MINE) == _G.COMBATLOG_OBJECT_AFFILIATION_MINE) then
-						local name = GetDoomSpellInfo(spellID)
-						local index = GetPetActionIndexByName(name)
+						local name = ElvUI_EltreumUI:EltruismSpellInfo(spellID)
+						local index = ElvUI_EltreumUI:EltruismPetActionIndex(name)
 						if index then
 							local entry = watching[spellID] or AcquireTable()
 							entry.castTime = GetTime()
@@ -648,7 +591,7 @@ function ElvUI_EltreumUI:Doom()
 
 		if not self.DoomHooksRegistered then
 			local function WatchItem(item, fallbackTexture)
-				local _, texture, itemID = GetDoomItemInfo(item)
+				local _, itemID, texture = ElvUI_EltreumUI:EltruismItemInfo(item)
 				if itemID then
 					local entry = watching[itemID] or AcquireTable()
 					entry.castTime = GetTime()
@@ -667,7 +610,7 @@ function ElvUI_EltreumUI:Doom()
 				local actionType,itemID = GetActionInfo(slot)
 				if (actionType == "item") then
 					WatchItem(itemID, GetActionTexture(slot))
-				elseif (actionType == "macro") and GetMacroItem then
+				elseif (actionType == "macro") then
 					local _, macroItemLink = GetMacroItem(itemID)
 					if macroItemLink then
 						WatchItem(macroItemLink, GetActionTexture(slot))
@@ -682,16 +625,14 @@ function ElvUI_EltreumUI:Doom()
 				end
 			end)
 
-			if C_Container and C_Container.UseContainerItem then
-				hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
-					local itemID = C_Container.GetContainerItemID(bag, slot)
-					if (itemID) then
-						WatchItem(itemID)
-					end
-				end)
-			end
+			hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
+				local itemID = C_Container.GetContainerItemID(bag, slot)
+				if (itemID) then
+					WatchItem(itemID)
+				end
+			end)
 
-			if C_Item and C_Item.UseItemByName then
+			if C_Item.UseItemByName then
 				hooksecurefunc(C_Item, "UseItemByName", function(item)
 					WatchItem(item)
 				end)
@@ -701,28 +642,26 @@ function ElvUI_EltreumUI:Doom()
 				end)
 			end
 
-			if _G.CastPetAction then
-				hooksecurefunc("CastPetAction", function(index)
-					if E.db.ElvUI_EltreumUI.skins.doom.pet and index then
-						local name, texture, _, _, _, _, petSpellID = GetPetActionInfo(index)
-						local safePetSpellID = (petSpellID and E:NotSecretValue(petSpellID)) and petSpellID or nil
-						local key = safePetSpellID or ("pet"..index)
-						local entry = watching[key] or AcquireTable()
-						entry.castTime = GetTime()
-						entry.cooldownType = "pet"
-						entry.id = key
-						entry.spellID = safePetSpellID
-						entry.infoResolved = false
-						entry.overrideResolved = false
-						entry.petIndex = index
-						entry.name = (name and E:NotSecretValue(name)) and name or nil
-						entry.texture = texture
-						entry.isPet = true
-						watching[key] = entry
-						StartOnUpdate()
-					end
-				end)
-			end
+			hooksecurefunc("CastPetAction", function(index)
+				if E.db.ElvUI_EltreumUI.skins.doom.pet and index then
+					local name, texture, _, _, _, _, petSpellID = GetPetActionInfo(index)
+					local safePetSpellID = (petSpellID and E:NotSecretValue(petSpellID)) and petSpellID or nil
+					local key = safePetSpellID or ("pet"..index)
+					local entry = watching[key] or AcquireTable()
+					entry.castTime = GetTime()
+					entry.cooldownType = "pet"
+					entry.id = key
+					entry.spellID = safePetSpellID
+					entry.infoResolved = false
+					entry.overrideResolved = false
+					entry.petIndex = index
+					entry.name = (name and E:NotSecretValue(name)) and name or nil
+					entry.texture = texture
+					entry.isPet = true
+					watching[key] = entry
+					StartOnUpdate()
+				end
+			end)
 
 			self.DoomHooksRegistered = true
 		end
