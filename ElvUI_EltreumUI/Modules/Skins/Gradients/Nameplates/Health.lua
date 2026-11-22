@@ -77,16 +77,30 @@ local function RestoreDefaultHealthTexture(frame)
 	end
 end
 
-function ElvUI_EltreumUI:GetNameplateTargetType(frame, unit)
+local function GetNonSecretReaction(frame, unit)
+	local reaction = UnitReaction(unit, "player")
+	if E:NotSecretValue(reaction) and reaction then
+		return reaction
+	end
+	if frame then
+		local fr1 = frame.repReaction
+		if E:NotSecretValue(fr1) and fr1 then
+			return fr1
+		end
+		local fr2 = frame.reaction
+		if E:NotSecretValue(fr2) and fr2 then
+			return fr2
+		end
+	end
+end
+
+function ElvUI_EltreumUI:GetNameplateTargetType(frame, unit, reaction)
 	unit = unit or (frame and frame.__unit)
 	if not unit then return "NPCNEUTRAL" end
 
-	local reaction = (UnitReaction(unit, "player") or UnitReaction("player", unit))
-	if not reaction and frame then
-		reaction = frame.repReaction or frame.reaction
-	end
+	reaction = reaction or GetNonSecretReaction(frame, unit)
 
-	if reaction and E:NotSecretValue(reaction) then
+	if reaction then
 		if reaction <= 2 then
 			return "NPCHOSTILE"
 		elseif reaction == 3 then
@@ -105,15 +119,12 @@ function ElvUI_EltreumUI:GetNameplateTargetType(frame, unit)
 	end
 
 	-- Fallback when reaction is nil, unknown, or secret
-	local canAttack = UnitCanAttack("player", unit)
-	local isEnemy = UnitIsEnemy("player", unit)
 	local frameIsEnemy = frame and (frame.isEnemy or frame.frameType == "ENEMY_NPC" or frame.frameType == "ENEMY_PLAYER")
-	if (E:NotSecretValue(canAttack) and canAttack) or (E:NotSecretValue(isEnemy) and isEnemy) or frameIsEnemy then
+	if UnitCanAttack("player", unit) or UnitIsEnemy("player", unit) or frameIsEnemy then
 		return "NPCHOSTILE"
 	else
-		local isFriend = UnitIsFriend("player", unit)
 		local frameIsFriend = frame and (frame.isFriend or frame.frameType == "FRIENDLY_NPC" or frame.frameType == "FRIENDLY_PLAYER")
-		if (E:NotSecretValue(isFriend) and isFriend) or frameIsFriend then
+		if UnitIsFriend("player", unit) or frameIsFriend then
 			return "NPCFRIENDLY"
 		else
 			return "NPCNEUTRAL"
@@ -228,14 +239,25 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 	end
 
 	local unit = frame.__unit
-	local _, className = UnitClass(unit)
-	if not E:NotSecretValue(className) then --secret class so do something else
-		return
+	local isPlayer = frame.isPlayer or UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+	local className, reaction
+	if isPlayer then
+		local _, unitClass = UnitClass(unit)
+		if not E:NotSecretValue(unitClass) or not unitClass then
+			frame.EltruismInGradientUpdate = nil
+			return
+		end
+		className = unitClass
+	else
+		reaction = GetNonSecretReaction(frame, unit)
+		if not reaction then
+			frame.EltruismInGradientUpdate = nil
+			return
+		end
 	end
 
-	local isPlayer = frame.isPlayer or UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 	local tapdenied = UnitIsTapDenied(unit)
-	local targettype = ElvUI_EltreumUI:GetNameplateTargetType(frame, unit)
+	local targettype = ElvUI_EltreumUI:GetNameplateTargetType(frame, unit, reaction)
 
 	local hasThreat = npEnabled and frame.threatStatus and not tapdenied and NP.db.threat and NP.db.threat.enable and NP.db.threat.useThreatColor
 

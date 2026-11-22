@@ -80,14 +80,35 @@ local invertframes = {
 	["arena"] = true,
 }
 
+local function GetNPCReactionColorClass(unit, reaction, hasReaction)
+	if hasReaction then
+		if reaction >= 5 then
+			return "NPCFRIENDLY"
+		elseif reaction == 4 then
+			return "NPCNEUTRAL"
+		elseif reaction == 3 then
+			return "NPCUNFRIENDLY"
+		elseif reaction <= 2 then
+			return "NPCHOSTILE"
+		end
+	end
+	if UnitCanAttack("player", unit) or UnitIsEnemy("player", unit) then
+		return "NPCHOSTILE"
+	elseif UnitIsFriend("player", unit) then
+		return "NPCFRIENDLY"
+	else
+		return "NPCHOSTILE"
+	end
+end
+
 --set the backdrop gradient
 function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,unitDB)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	local db = UFdb.gradientmode
 	if not db then return end
 	if db.enablebackdrop then
-		local hasClass = englishClass and canaccessvalue(englishClass)
-		local hasReaction = reactionunit and canaccessvalue(reactionunit)
+		local hasClass = canaccessvalue(englishClass) and englishClass
+		local hasReaction = canaccessvalue(reactionunit) and reactionunit
 
 		local transparentHealth = E.db.unitframe.colors.transparentHealth
 		local isHidden = UFdb.ufcustomtexture.backdrophidden
@@ -98,24 +119,9 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			backdropAlpha = healthAlpha
 		end
 
-		local isPlayer = false
-		local p = UnitIsPlayer(unit)
-		local canAccessIsPlayer = canaccessvalue(p)
-		if canAccessIsPlayer and p then
-			isPlayer = true
-		elseif E.Retail then
-			local ai = UnitInPartyIsAI(unit)
-			if canaccessvalue(ai) and ai then
-				isPlayer = true
-				canAccessIsPlayer = true
-			end
-		end
-
-		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
-		if isTargetTarget then
-			if not canAccessIsPlayer or (isPlayer and not hasClass) or (not isPlayer and not hasReaction) then
-				return
-			end
+		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+		if not isGroupFrame and not hasClass and not hasReaction then
+			return
 		end
 
 		local colorClass = "BACKDROP"
@@ -133,75 +139,34 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				invert = true
 			end
 
-			if db.classcolorbackdrop and canAccessIsPlayer then
-				if isPlayer then
-					if hasClass then
-						colorClass = englishClass
-					else
-						colorClass = "BACKDROP"
-					end
-				else
-					if hasReaction then
-						if reactionunit >= 5 then
-							colorClass = "NPCFRIENDLY"
-						elseif reactionunit == 4 then
-							colorClass = "NPCNEUTRAL"
-						elseif reactionunit == 3 then
-							colorClass = "NPCUNFRIENDLY"
-						elseif reactionunit <= 2 then
-							colorClass = "NPCHOSTILE"
-						end
-					end
-					if not colorClass or colorClass == "BACKDROP" then
-						local canAttack = UnitCanAttack("player", unit)
-						if canaccessvalue(canAttack) and canAttack then
-							colorClass = "NPCHOSTILE"
-						else
-							local isEnemy = UnitIsEnemy("player", unit)
-							if canaccessvalue(isEnemy) and isEnemy then
-								colorClass = "NPCHOSTILE"
-							else
-								local isFriend = UnitIsFriend("player", unit)
-								if canaccessvalue(isFriend) and isFriend then
-									colorClass = "NPCFRIENDLY"
-								else
-									colorClass = "NPCHOSTILE"
-								end
-							end
-						end
-					end
+			if db.classcolorbackdrop then
+				if (isPlayer and hasClass) or (hasClass and not hasReaction) then
+					colorClass = englishClass
+				elseif hasReaction then
+					colorClass = GetNPCReactionColorClass(unit, reactionunit, true)
 				end
 			end
 		end
 
-		if not canaccessvalue(colorClass) or not colorClass or colorClass == "ELTRUISM" then
+		if colorClass == "ELTRUISM" then
 			return
 		end
 
 		local deadState = 0
 		if db.usedeadbackdrop then
-			local isDead = UnitIsDeadOrGhost(unit)
-			if canaccessvalue(isDead) and isDead then
+			if UnitIsDeadOrGhost(unit) then
 				deadState = 1
 			elseif isPlayer then
-				local isConnected = UnitIsConnected(unit)
-				if canaccessvalue(isConnected) and not isConnected then
+				if not UnitIsConnected(unit) then
 					deadState = 3
 				end
-			else
-				local isTap = UnitIsTapDenied(unit)
-				if canaccessvalue(isTap) and isTap then
-					deadState = 2
-				end
+			elseif UnitIsTapDenied(unit) then
+				deadState = 2
 			end
 		end
 
 		local isCustom = db.customcolor
 		local orientation = db.orientation or "HORIZONTAL"
-
-		if not canaccessvalue(frame.EltruismBackdropClass) then
-			frame.EltruismBackdropClass = nil
-		end
 
 		frame.EltruismBackdropClass = colorClass
 		frame.EltruismBackdropDead = deadState
@@ -303,67 +268,52 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 	local db = UFdb.gradientmode
 	if not db then return end
 	if UnitExists(unit) then
-		local _, classunit = UnitClass(unit)
-		local reaction = UnitReaction(unit, "player")
-		local hasClass = classunit and canaccessvalue(classunit)
-		local hasReaction = reaction and canaccessvalue(reaction)
-
-		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
 		local unitframe = frame or _G["ElvUF_"..name]
-		if not hasClass and not hasReaction then
-			if not isTargetTarget and db.enablebackdrop and unitframe then
-				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
-			end
-			return
-		end
-
-		local isPlayer = false
-		local p = UnitIsPlayer(unit)
-		local canAccessIsPlayer = canaccessvalue(p)
-		if canAccessIsPlayer and p then
-			isPlayer = true
-		elseif E.Retail then
-			local ai = UnitInPartyIsAI(unit)
-			if canaccessvalue(ai) and ai then
-				isPlayer = true
-				canAccessIsPlayer = true
-			end
-		end
-		local orientation = db.orientation or "HORIZONTAL"
-		local transparentHealth = E.db.unitframe.colors.transparentHealth
-		local isHidden = UFdb.ufcustomtexture.backdrophidden
-		local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-		local backdropAlpha = isHidden and 0 or rawAlpha
-		local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-		if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
-			backdropAlpha = healthAlpha
-		end
-		if not canAccessIsPlayer then
-			return
-		end
-
-		local isCharmed = UnitIsCharmed(unit)
-		isCharmed = canaccessvalue(isCharmed) and isCharmed or false
-
-		local isActualPlayer = false
 		if unitframe and unitframe.Health then
+			local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+			local isActualPlayer = false
+			local classunit, reaction
+
 			if unitframe.realUnit then
 				if name == "Player" and unitframe.__unit == "vehicle" then
 					isPlayer = false
 					isActualPlayer = false
-				end
-				if name == "Pet" and unitframe.__unit == "player" then
+				elseif name == "Pet" and unitframe.__unit == "player" then
 					isPlayer = true
 					isActualPlayer = true
 					classunit = E.myclass
-					hasClass = classunit and canaccessvalue(classunit)
 				end
 			end
-			if isPlayer and not hasClass then
-				return
-			elseif not isPlayer and not hasReaction then
-				return
+
+			local hasReaction = false
+			if isPlayer then
+				if not classunit then
+					local _, unitClass = UnitClass(unit)
+					classunit = unitClass
+				end
+				if not canaccessvalue(classunit) or not classunit then
+					return
+				end
+			else
+				reaction = UnitReaction(unit, "player")
+				if not canaccessvalue(reaction) or not reaction then
+					return
+				end
+				hasReaction = true
 			end
+
+			local orientation = db.orientation or "HORIZONTAL"
+			local transparentHealth = E.db.unitframe.colors.transparentHealth
+			local isHidden = UFdb.ufcustomtexture.backdrophidden
+			local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
+			local backdropAlpha = isHidden and 0 or rawAlpha
+			local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
+			if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
+				backdropAlpha = healthAlpha
+			end
+
+			local isCharmed = UnitIsCharmed(unit)
+			isCharmed = canaccessvalue(isCharmed) and isCharmed or false
 			local targetUFOrientation = UFdb.UForientation
 			if not noOrientation and targetUFOrientation and unitframe.Health.EltruismOrientation ~= targetUFOrientation then
 				unitframe.Health:SetOrientation(targetUFOrientation)
@@ -413,54 +363,13 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 				health.EltruismTextureVersion = textureVersion
 			end
 
-			local colorClass = "BACKDROP"
+			local colorClass
 			if (isPlayer and not isCharmed) or isActualPlayer then
-				if not classunit or not canaccessvalue(classunit) then
-					classunit = E.myclass or "ELTRUISM"
-				end
 				colorClass = classunit
+			elseif UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+				colorClass = "TAPPED"
 			else
-				local isTap = UnitIsTapDenied(unit)
-				isTap = canaccessvalue(isTap) and isTap
-				local isPlayerControlled = UnitPlayerControlled(unit)
-				isPlayerControlled = canaccessvalue(isPlayerControlled) and isPlayerControlled
-				if isTap and not isPlayerControlled then
-					colorClass = "TAPPED"
-				else
-					if reaction and canaccessvalue(reaction) then
-						if reaction >= 5 then
-							colorClass = "NPCFRIENDLY"
-						elseif reaction == 4 then
-							colorClass = "NPCNEUTRAL"
-						elseif reaction == 3 then
-							colorClass = "NPCUNFRIENDLY"
-						elseif reaction <= 2 then
-							colorClass = "NPCHOSTILE"
-						end
-					end
-					if not colorClass or colorClass == "BACKDROP" then
-						local canAttack = UnitCanAttack("player", unit)
-						if canaccessvalue(canAttack) and canAttack then
-							colorClass = "NPCHOSTILE"
-						else
-							local isEnemy = UnitIsEnemy("player", unit)
-							if canaccessvalue(isEnemy) and isEnemy then
-								colorClass = "NPCHOSTILE"
-							else
-								local isFriend = UnitIsFriend("player", unit)
-								if canaccessvalue(isFriend) and isFriend then
-									colorClass = "NPCFRIENDLY"
-								else
-									colorClass = "NPCHOSTILE"
-								end
-							end
-						end
-					end
-				end
-			end
-
-			if not canaccessvalue(colorClass) or not colorClass then
-				colorClass = "BACKDROP"
+				colorClass = GetNPCReactionColorClass(unit, reaction, hasReaction)
 			end
 
 			local invert = false
@@ -476,9 +385,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 			local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(colorClass, invert, isCustom)
 
 			local isDead = UnitIsDeadOrGhost(unit)
-			isDead = (canaccessvalue(isDead) and isDead) or false
-			local isDisconnected = UnitIsConnected(unit)
-			isDisconnected = isPlayer and not (canaccessvalue(isDisconnected) and isDisconnected)
+			local isDisconnected = isPlayer and not UnitIsConnected(unit)
 
 			if UFdb.lightmode then
 				if unitframe.Health.EltruismGradientAlpha ~= backdropAlpha or unitframe.Health.EltruismGradientDebuff ~= unitframe.EltruismDebuffExists then
@@ -596,16 +503,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	if not unit then return end
 
 	local _, buttonclass
-	local isPlayer = false
-	local p = UnitIsPlayer(unit)
-	if canaccessvalue(p) and p then
-		isPlayer = true
-	elseif E.Retail then
-		local ai = UnitInPartyIsAI(unit)
-		if canaccessvalue(ai) and ai then
-			isPlayer = true
-		end
-	end
+	local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 	--due to raid pet, check if is player
 	if isPlayer then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
 		_, buttonclass = UnitClass(unit)
@@ -637,9 +535,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(buttonclass, false, isCustom)
 
 		local isDead = UnitIsDeadOrGhost(unit)
-		isDead = (canaccessvalue(isDead) and isDead) or false
-		local isDisconnected = UnitIsConnected(unit)
-		isDisconnected = isPlayer and not (canaccessvalue(isDisconnected) and isDisconnected)
+		local isDisconnected = isPlayer and not UnitIsConnected(unit)
 
 		if UFdb.lightmode then
 			if button.Health.EltruismGradientAlpha ~= backdropAlpha or button.Health.EltruismGradientDebuff ~= button.EltruismDebuffExists then
