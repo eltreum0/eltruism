@@ -100,16 +100,23 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 
 		local isPlayer = false
 		local p = UnitIsPlayer(unit)
-		if canaccessvalue(p) and p then
+		local canAccessIsPlayer = canaccessvalue(p)
+		if canAccessIsPlayer and p then
 			isPlayer = true
 		elseif E.Retail then
 			local ai = UnitInPartyIsAI(unit)
 			if canaccessvalue(ai) and ai then
 				isPlayer = true
+				canAccessIsPlayer = true
 			end
 		end
 
 		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
+		if isTargetTarget then
+			if not canAccessIsPlayer or (isPlayer and not hasClass) or (not isPlayer and not hasReaction) then
+				return
+			end
+		end
 
 		local colorClass = "BACKDROP"
 		local invert = false
@@ -126,7 +133,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				invert = true
 			end
 
-			if db.classcolorbackdrop and not isTargetTarget then
+			if db.classcolorbackdrop and canAccessIsPlayer then
 				if isPlayer then
 					if hasClass then
 						colorClass = englishClass
@@ -167,7 +174,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
-		if isTargetTarget or not canaccessvalue(colorClass) or not colorClass or colorClass == "ELTRUISM" then
+		if not canaccessvalue(colorClass) or not colorClass or colorClass == "ELTRUISM" then
 			return
 		end
 
@@ -242,7 +249,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		end
 
 		if not frame.EltruismDebuffExists then
-			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, isCustom, isTargetTarget or (not hasClass))
+			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, isCustom, isPlayer and not hasClass)
 
 			if UFdb.lightmode then
 				if frame.Health.bg then
@@ -301,9 +308,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 		local hasClass = classunit and canaccessvalue(classunit)
 		local hasReaction = reaction and canaccessvalue(reaction)
 
+		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
 		local unitframe = frame or _G["ElvUF_"..name]
 		if not hasClass and not hasReaction then
-			if db.enablebackdrop and unitframe then
+			if not isTargetTarget and db.enablebackdrop and unitframe then
 				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
 			end
 			return
@@ -311,12 +319,14 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 
 		local isPlayer = false
 		local p = UnitIsPlayer(unit)
-		if canaccessvalue(p) and p then
+		local canAccessIsPlayer = canaccessvalue(p)
+		if canAccessIsPlayer and p then
 			isPlayer = true
 		elseif E.Retail then
 			local ai = UnitInPartyIsAI(unit)
 			if canaccessvalue(ai) and ai then
 				isPlayer = true
+				canAccessIsPlayer = true
 			end
 		end
 		local orientation = db.orientation or "HORIZONTAL"
@@ -328,8 +338,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 		if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
 			backdropAlpha = healthAlpha
 		end
-		local isTargetTarget = (unit == "targettarget" or unitDB == "targettarget" or unit == "targettargettarget" or unitDB == "targettargettarget") and E.Modern
-		if isTargetTarget or not canaccessvalue(classunit) or not classunit then
+		if not canAccessIsPlayer then
 			return
 		end
 
@@ -347,7 +356,13 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 					isPlayer = true
 					isActualPlayer = true
 					classunit = E.myclass
+					hasClass = classunit and canaccessvalue(classunit)
 				end
+			end
+			if isPlayer and not hasClass then
+				return
+			elseif not isPlayer and not hasReaction then
+				return
 			end
 			local targetUFOrientation = UFdb.UForientation
 			if not noOrientation and targetUFOrientation and unitframe.Health.EltruismOrientation ~= targetUFOrientation then
@@ -359,21 +374,6 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
 				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
 			end
 
-			if isTargetTarget then
-				if isPlayer or not hasReaction then
-					if UFdb.darkmode and unitframe.Health.backdropTex then
-						local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
-						unitframe.Health.backdropTex:SetVertexColor(0, 0, 0, missingHealthAlpha)
-					end
-					return
-				end
-			else
-				if isPlayer and not hasClass then
-					return
-				elseif not isPlayer and not hasReaction then
-					return
-				end
-			end
 			local health = unitframe.Health
 			local textureVersion = ElvUI_EltreumUI.EltruismTextureVersion or 0
 			local isTextureCached = (health.EltruismTextureVersion == textureVersion)
