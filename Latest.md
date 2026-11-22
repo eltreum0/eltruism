@@ -2,7 +2,9 @@
 ___
 Added a setting to fix the Press and Hold to Keep Casting introduced in Dragonflight, this setting works in Retail and Forever  
 Added Reset Buttons to Aura Filters to reset to ElvUI Defaults  
+Updated Waypoints to use a fallback method in Forever since blizzard disabled it, this might not work in the future  
 Updated Filters to better show Crowd Control and other debuffs  
+Updated Loot Text to better display skill point gains  
 Updated CVars to remove Brightness and Contrast  
 Updated Class Symbols to have a better outline  
 Updated Spell List for the Nameplate Power Bar  

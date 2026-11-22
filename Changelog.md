@@ -3,7 +3,9 @@ The future is uncertain
 ___
 ### 5.2.2.2
 Added Reset Buttons to Aura Filters to reset to ElvUI Defaults  
+Updated Waypoints to use a fallback method in Forever since blizzard disabled it, this might not work in the future  
 Updated Filters to better show Crowd Control and other debuffs  
+Updated Loot Text to better display skill point gains  
 Fixed an issue where Details profiles wouldn't import due to a removed function  
 ___
 ### 5.2.2.1

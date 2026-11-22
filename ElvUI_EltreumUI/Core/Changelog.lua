@@ -22,8 +22,9 @@ Added Reset Buttons to Aura Filters to reset to ElvUI Defaults
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-
+Updated Waypoints to use a fallback method in Forever since blizzard disabled it, this might not work in the future
 Updated Filters to better show Crowd Control and other debuffs
+Updated Loot Text to better display skill point gains
 Updated CVars to remove Brightness and Contrast
 Updated Class Symbols to have a better outline
 Updated Spell List for the Nameplate Power Bar
