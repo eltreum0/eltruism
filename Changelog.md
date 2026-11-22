@@ -4,8 +4,12 @@ ___
 ### 5.2.2.2
 Added Reset Buttons to Aura Filters to reset to ElvUI Defaults  
 Updated Waypoints to use a fallback method in Forever since blizzard disabled it, this might not work in the future  
+Updated Gradient Nameplates and Unitframes to better handle Secret Classes and Reactions  
+Updated Character Panel in Forever to better handle the frame being expanded or not  
+Updated Aura Filters to better display Enrage, Crowd Control and other Auras  
 Updated Filters to better show Crowd Control and other debuffs  
 Updated Loot Text to better display skill point gains  
+Updated Nameplate Buff vertical positioning  
 Fixed an issue where Details profiles wouldn't import due to a removed function  
 ___
 ### 5.2.2.1
