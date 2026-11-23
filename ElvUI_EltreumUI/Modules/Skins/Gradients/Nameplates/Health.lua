@@ -173,7 +173,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 	end
 	local orientation = EltruismDB.unitframes.gradientmode.nporientation or "VERTICAL"
 
-	if isRare then
+	if isRare and not UnitIsTapDenied(frame.__unit) then
 		UpdateRareHealth(frame)
 	else
 		RestoreDefaultHealthTexture(frame)
