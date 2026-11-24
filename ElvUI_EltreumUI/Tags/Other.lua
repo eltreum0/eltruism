@@ -215,7 +215,7 @@ function ElvUI_EltreumUI:LoadOtherTags()
 		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
 		local targetname = UnitName(targetUnit)
 		if not targetname then return end
-		local _ , classes = UnitClass(targetname)
+		local _ , classes = UnitClass(targetUnit)
 		if not classes then return end
 		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 		if not name then
