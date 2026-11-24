@@ -484,6 +484,9 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			end
 		end
 	end
+	if db.otherstuff.minimapLocation.gradient and db.otherstuff.minimapLocation.gradientMode == "CLASS" then
+		ElvUI_EltreumUI:UpdateMinimapLocationText(true)
+	end
 end
 
 colorupdateframe = CreateFrame("FRAME")

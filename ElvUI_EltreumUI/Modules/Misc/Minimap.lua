@@ -1,4 +1,4 @@
-local E, _, _, P = unpack(ElvUI)
+local E, L, _, P = unpack(ElvUI)
 local M = E:GetModule('Minimap')
 local S = E:GetModule('Skins')
 local valuecolors = E.myClassColor
@@ -7,6 +7,7 @@ local CreateFrame = _G.CreateFrame
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local Minimap = _G.Minimap
 local GetPlayerFacing = _G.GetPlayerFacing
+local GetMinimapZoneText = _G.GetMinimapZoneText
 local Enum = _G.Enum
 local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
@@ -16,6 +17,8 @@ local hooksecurefunc = _G.hooksecurefunc
 local math = _G.math
 local mathabs = math.abs
 local mathfloor = math.floor
+local mathmax = math.max
+local utf8sub = _G.string.utf8sub
 local ipairs = _G.ipairs
 local select = _G.select
 local type = _G.type
@@ -648,10 +651,7 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 				Minimap.backdrop:ClearAllPoints()
 				Minimap.backdrop:SetOutside(Minimap, borderOffset, borderOffset)
 			end
-			if Minimap.location then
-				Minimap.location:ClearAllPoints()
-				Minimap.location:Point("TOP", Minimap, "TOP", 0, -4)
-			end
+			self:UpdateMinimapLocationPosition()
 			local shadowFrame = _G["EltruismMiniMapShadowFrame"]
 			if shadowFrame and not isCircle then
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.minimap and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
@@ -689,10 +689,7 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 		Minimap.backdrop:SetOutside(Minimap, borderOffset, borderOffset - scaledCrop)
 	end
 
-	if Minimap.location then
-		Minimap.location:ClearAllPoints()
-		Minimap.location:Point("TOP", Minimap, "TOP", 0, -4 - scaledCrop)
-	end
+	self:UpdateMinimapLocationPosition()
 
 	local panel = _G.MinimapPanel
 	if panel and panel:IsShown() then
@@ -742,14 +739,145 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 	self:HereBeDragonsPinsFix()
 end
 
+-- Minimap location text gradient and mover
+local locationHolder
+local pendingLocationUpdate
+
+local function ShouldDisableLocationMover()
+	return M.db.locationText == "HIDE" or not M.db.clusterDisable
+end
+
+function ElvUI_EltreumUI:UpdateMinimapLocationText(fromHook)
+	if not M.Initialized or not E.private.general.minimap.enable then return end
+
+	local db = E.db.ElvUI_EltreumUI.otherstuff.minimapLocation
+	if not db.gradient then
+		if not fromHook then
+			M:Update_ZoneText()
+			if not M.db.clusterDisable and _G.Minimap_Update then
+				_G.Minimap_Update()
+			end
+		end
+		return
+	end
+
+	local zone = GetMinimapZoneText()
+	if not zone or zone == "" then return end
+
+	local text = utf8sub(zone, 1, 46)
+	local gradText
+	if db.gradientMode == "CLASS" then
+		gradText = ElvUI_EltreumUI:GradientName(text, E.myclass)
+	elseif db.gradientMode == "CUSTOM" then
+		local c1, c2 = db.customColor1, db.customColor2
+		gradText = E:TextGradient(text, c1.r, c1.g, c1.b, c2.r, c2.g, c2.b)
+	else
+		local r, g, b = M:GetLocTextColor()
+		gradText = E:TextGradient(text, r, g, b, E:Clamp(r + 0.35, 0, 1), E:Clamp(g + 0.35, 0, 1), E:Clamp(b + 0.35, 0, 1))
+	end
+
+	if Minimap.location and M.db.locationText ~= "HIDE" then
+		Minimap.location:SetTextColor(1, 1, 1)
+		Minimap.location:SetText(gradText)
+	end
+
+	if not M.db.clusterDisable and _G.MinimapZoneText then
+		_G.MinimapZoneText:SetTextColor(1, 1, 1)
+		_G.MinimapZoneText:SetText(gradText)
+	end
+end
+
+function ElvUI_EltreumUI:UpdateMinimapLocationPosition(overrideOffsetY)
+	if not Minimap.location then return end
+
+	local offsetY = overrideOffsetY
+	if not offsetY then
+		local inset = self.rectangleMinimapInset
+		offsetY = (inset and inset > 0) and (-4 - (inset * (E.db.general.minimap.scale or 1))) or -2
+	end
+
+	if locationHolder then
+		Minimap.location:ClearAllPoints()
+		Minimap.location:SetPoint("CENTER", locationHolder, "CENTER", 0, 0)
+
+		if not InCombatLockdown() then
+			local holder = E:GetMoverHolder("MoverEltruismMinimapLocation")
+			holder.originPoint = { "TOP", Minimap, "TOP", 0, offsetY }
+
+			if not E:HasMoverBeenMoved("MoverEltruismMinimapLocation") then
+				if E.CreatedMovers["MoverEltruismMinimapLocation"] then
+					E:SetMoverPoints("MoverEltruismMinimapLocation")
+				else
+					holder.mover:ClearAllPoints()
+					holder.mover:SetPoint("TOP", Minimap, "TOP", 0, offsetY)
+				end
+			end
+		end
+	else
+		Minimap.location:ClearAllPoints()
+		Minimap.location:Point("TOP", Minimap, "TOP", 0, offsetY)
+	end
+end
+
+function ElvUI_EltreumUI:UpdateMinimapLocation()
+	if not E.private.general.minimap.enable or not Minimap.location then return end
+
+	if InCombatLockdown() then
+		pendingLocationUpdate = true
+		self:UpdateMinimapLocationText(true)
+		return
+	end
+
+	pendingLocationUpdate = nil
+
+	local width = E.MinimapSize or Minimap:GetWidth()
+	local height = mathmax(M.db.locationFontSize + 6, 18)
+
+	if not locationHolder then
+		locationHolder = CreateFrame("Frame", "EltruismMinimapLocationHolder", E.UIParent)
+		locationHolder:SetFrameStrata("LOW")
+		locationHolder:SetFrameLevel(20)
+		locationHolder:SetSize(width, height)
+		locationHolder:SetPoint("TOP", Minimap, "TOP", 0, -2)
+
+		E:CreateMover(locationHolder, "MoverEltruismMinimapLocation", L["Eltruism Minimap Location"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", ShouldDisableLocationMover, "ElvUI_EltreumUI,map,general")
+	else
+		locationHolder:SetSize(width, height)
+	end
+
+	if ShouldDisableLocationMover() then
+		E:DisableMover("MoverEltruismMinimapLocation")
+	else
+		E:EnableMover("MoverEltruismMinimapLocation")
+	end
+
+	self:UpdateMinimapLocationPosition()
+	self:UpdateMinimapLocationText(true)
+end
+
+function ElvUI_EltreumUI:MinimapLocationCombatUpdate()
+	if pendingLocationUpdate then
+		self:UpdateMinimapLocation()
+	end
+end
+
 function ElvUI_EltreumUI:M_UpdateSettings()
 	ElvUI_EltreumUI:UpdateRectangleMinimap()
 	ElvUI_EltreumUI:MinimapCardinalDirections()
 	ElvUI_EltreumUI:ElvUIMailTexture()
 	ElvUI_EltreumUI:HandleBlizzardButtons()
 	ElvUI_EltreumUI:UpdateMinimapButtonBar()
+	ElvUI_EltreumUI:UpdateMinimapLocation()
 end
 ElvUI_EltreumUI:SecureHook(M, "UpdateSettings", "M_UpdateSettings")
+
+function ElvUI_EltreumUI:M_Update_ZoneText()
+	ElvUI_EltreumUI:UpdateMinimapLocationText(true)
+end
+ElvUI_EltreumUI:SecureHook(M, "Update_ZoneText", "M_Update_ZoneText")
+if _G.Minimap_Update then
+	ElvUI_EltreumUI:SecureHook("Minimap_Update", "M_Update_ZoneText")
+end
 
 --setup onupdate and also get rid of it
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()

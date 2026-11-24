@@ -1739,8 +1739,9 @@ local function BordersPart2()
 			updatelocationpos:RegisterEvent("PLAYER_ENTERING_WORLD")
 			updatelocationpos:RegisterEvent("MINIMAP_UPDATE_ZOOM")
 			updatelocationpos:SetScript("OnEvent", function()
-				_G.Minimap.location:ClearAllPoints()
-				_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
+				if not E:HasMoverBeenMoved("MoverEltruismMinimapLocation") then
+					ElvUI_EltreumUI:UpdateMinimapLocationPosition(-15)
+				end
 			end)
 		elseif IsAddOnLoaded("ElvUI_WindTools") and E.db.WT.maps.rectangleMinimap.enable then --Windtools rectangle minimap
 			MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"] ,"CENTER", 0, 0)
@@ -1751,8 +1752,9 @@ local function BordersPart2()
 			updatelocationpos:RegisterEvent("PLAYER_ENTERING_WORLD")
 			updatelocationpos:RegisterEvent("MINIMAP_UPDATE_ZOOM")
 			updatelocationpos:SetScript("OnEvent", function()
-				_G.Minimap.location:ClearAllPoints()
-				_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
+				if not E:HasMoverBeenMoved("MoverEltruismMinimapLocation") then
+					ElvUI_EltreumUI:UpdateMinimapLocationPosition(-15)
+				end
 			end)
 		end
 

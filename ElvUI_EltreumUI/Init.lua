@@ -191,6 +191,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:UpdateRectangleMinimap() -- rectangle minimap
 	ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
 	ElvUI_EltreumUI:MinimapButtonBar() -- minimap button bar
+	ElvUI_EltreumUI:UpdateMinimapLocation() -- minimap location gradient and mover
 	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs
 	ElvUI_EltreumUI:FrameScales() --misc frames scales
 	ElvUI_EltreumUI:NPClassificatioNIcon() -- add different elite/rare icons to np
@@ -346,6 +347,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:MinimapHide(event)
+	ElvUI_EltreumUI:MinimapLocationCombatUpdate()
 	ElvUI_EltreumUI:DatatextHide(event)
 	ElvUI_EltreumUI:UpdateZoneQuests(event)
 end
@@ -354,6 +356,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:MinimapHide(event)
+	ElvUI_EltreumUI:MinimapLocationCombatUpdate()
 	ElvUI_EltreumUI:DatatextHide(event)
 end
 

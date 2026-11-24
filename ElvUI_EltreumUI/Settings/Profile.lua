@@ -2268,6 +2268,12 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			preset = "16:9",
 		},
+		minimapLocation = {
+			gradient = false,
+			gradientMode = "ZONE",
+			customColor1 = { r = 0.50, g = 0.70, b = 1 },
+			customColor2 = { r = 0.67, g = 0.95, b = 1 },
+		},
 		minimapbuttons = {
 			enable = false,
 			barMouseOver = false,
