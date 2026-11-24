@@ -47,6 +47,44 @@ local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local questside
 local updateaftercombat = false
 
+--inspired by blinkii's skin, color quest objective progress from red -> yellow -> green
+function ElvUI_EltreumUI:ColorQuestStep(text)
+	local left, right, questtext = strmatch(text, "^(%d+)/(%d+) (.+)")
+	if left then
+		local rightNum = tonumber(right)
+		local percentagedone = rightNum > 0 and (tonumber(left) / rightNum) * 100 or 0
+		local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+		local hexstring = E:RGBToHex(r, g, b)
+		return format("%s%s/%s|r %s", hexstring, left, right, questtext), percentagedone
+	end
+
+	local questtext2, left2, right2 = strmatch(text, "(.+): (%d+)/(%d+)$")
+	if left2 then
+		local rightNum = tonumber(right2)
+		local percentagedone = rightNum > 0 and (tonumber(left2) / rightNum) * 100 or 0
+		local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+		local hexstring = E:RGBToHex(r, g, b)
+		return format("%s|r %s%s/%s|r", questtext2, hexstring, left2, right2), percentagedone
+	end
+
+	local left3, right3, questtext3 = strmatch(text, "^- (%d+)/(%d+) (.+)")
+	if left3 then
+		local rightNum = tonumber(right3)
+		local percentagedone = rightNum > 0 and (tonumber(left3) / rightNum) * 100 or 0
+		local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+		local hexstring = E:RGBToHex(r, g, b)
+		return format("- %s%s/%s|r %s", hexstring, left3, right3, questtext3), percentagedone
+	end
+
+	local before, percent, after = strmatch(text, "^(.-)(%d+)%%(.*)$")
+	if percent and not strmatch(before, "|c%x%x%x%x%x%x%x%x$") then
+		local percentagedone = tonumber(percent)
+		local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+		local hexstring = E:RGBToHex(r, g, b)
+		return format("%s%s%s%%|r%s", before, hexstring, percent, after), percentagedone
+	end
+end
+
 --only show quests in current map
 function ElvUI_EltreumUI:UpdateZoneQuests(event)
 	if not E.db.ElvUI_EltreumUI.quests.onlyCurrentZoneQuests then return end
@@ -615,37 +653,10 @@ function ElvUI_EltreumUI:SkinQuests()
 
 							--inspired by blinkii's skin, color
 							local text = line.Text:GetText()
-							--5320674
-							--5320671
 							if text ~= nil then
-								local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
-								local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
-								local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
-								if left then
-									local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(1, 1, 1)
-									end
-								elseif left2 then
-									local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(1, 1, 1)
-									end
-								elseif left3 then
-									local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+								local coloredText, percentagedone = ElvUI_EltreumUI:ColorQuestStep(text)
+								if coloredText then
+									line.Text:SetText(coloredText)
 									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
@@ -728,37 +739,10 @@ function ElvUI_EltreumUI:SkinQuests()
 
 							--inspired by blinkii's skin, color
 							local text = line.Text:GetText()
-							--5320674
-							--5320671
 							if text ~= nil then
-								local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
-								local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
-								local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
-								if left then
-									local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(1, 1, 1)
-									end
-								elseif left2 then
-									local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(1, 1, 1)
-									end
-								elseif left3 then
-									local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+								local coloredText, percentagedone = ElvUI_EltreumUI:ColorQuestStep(text)
+								if coloredText then
+									line.Text:SetText(coloredText)
 									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
@@ -1705,24 +1689,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								--inspired by blinkii's skin, color
 								local textclassic = watchText:GetText()
 								if textclassic ~= nil then
-									local left, right, questtext = strmatch(textclassic, "^(%d-)/(%d-) (.+)")
-									local questtext2,left2, right2 = strmatch(textclassic, "(.+): (%d-)/(%d-)$")
-									local left3, right3, questtext3 = strmatch(textclassic, "^- (%d-)/(%d-) (.+)")
-									if left then
-										local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-										local hexstring = E:RGBToHex(r, g, b)
-										watchText:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-									elseif left2 then
-										local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-										local hexstring = E:RGBToHex(r, g, b)
-										watchText:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-									elseif left3 then
-										local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-										local hexstring = E:RGBToHex(r, g, b)
-										watchText:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+									local coloredText = ElvUI_EltreumUI:ColorQuestStep(textclassic)
+									if coloredText then
+										watchText:SetText(coloredText)
 									end
 								end
 
@@ -1824,24 +1793,9 @@ function ElvUI_EltreumUI:SkinQuests()
 						--inspired by blinkii's skin, color
 						local textcata = line.text:GetText()
 						if textcata ~= nil then
-							local left, right, questtext = strmatch(textcata, "^(%d-)/(%d-) (.+)")
-							local questtext2,left2, right2 = strmatch(textcata, "(.+): (%d-)/(%d-)$")
-							local left3, right3, questtext3 = strmatch(textcata, "^- (%d-)/(%d-) (.+)")
-							if left then
-								local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-								local hexstring = E:RGBToHex(r, g, b)
-								line.text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-							elseif left2 then
-								local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-								local hexstring = E:RGBToHex(r, g, b)
-								line.text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-							elseif left3 then
-								local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-								local hexstring = E:RGBToHex(r, g, b)
-								line.text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+							local coloredText = ElvUI_EltreumUI:ColorQuestStep(textcata)
+							if coloredText then
+								line.text:SetText(coloredText)
 							end
 						end
 
