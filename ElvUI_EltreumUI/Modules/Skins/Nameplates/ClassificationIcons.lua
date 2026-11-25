@@ -17,7 +17,10 @@ local stringformat = string.format
 local type = _G.type
 
 --based on blinkii's idea
-local bossIDs = {
+local bossIDs
+local function GetBossIDs()
+	if not bossIDs then
+		bossIDs = {
 
 	-------Classic-------
 
@@ -1960,7 +1963,10 @@ local bossIDs = {
 	["221067"] = true, --orta
 	["231821"] = true, --the-gobfather
 	["238319"] = true, --reshanor
-}
+		}
+	end
+	return bossIDs
+end
 
 local textureDB = {
 	["TYPE1"] = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\Nameplates\star]],
@@ -2041,7 +2047,7 @@ function ElvUI_EltreumUI:GetBossIconTextureAndID(textureType,isbossID,bossID,res
 			return textureDB[textureType]
 		end
 	elseif isbossID then
-		if bossIDs[bossID] then
+		if GetBossIDs()[bossID] then
 			return true
 		else
 			return false
@@ -2061,7 +2067,7 @@ local function Update(self)
 
 	if frameType then
 		--if frameType and frameType == 'ENEMY_NPC' then
-		local key = (classification == 'worldboss' or bossIDs[self.npcID]) and "boss" or unitDB[classification]
+		local key = (classification == 'worldboss' or GetBossIDs()[self.npcID]) and "boss" or unitDB[classification]
 		if key then
 			local db = E.db.ElvUI_EltreumUI.nameplates.classification
 			element:SetTexture(getTexturePath(db, key))
