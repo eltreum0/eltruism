@@ -1,6 +1,9 @@
 local E = unpack(ElvUI)
 
-local textures = {
+local textures
+local function GetTexturesTable()
+	if not textures then
+		textures = {
 	circle = {
 		texture = {
 			a = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\circle\\circle_txa.tga",
@@ -921,9 +924,15 @@ local textures = {
 			},
 		},
 	},
-}
+		}
+	end
+	return textures
+end
 
-local old_textures = {
+local old_textures
+local function GetOldTexturesTable()
+	if not old_textures then
+		old_textures = {
 	CI = {
 		texture = {
 			a = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\old\\circle\\old_circle_txa.tga",
@@ -1168,7 +1177,10 @@ local old_textures = {
 			shadow = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Blinkii\\old\\thin\\old_thin_rare_shadow.tga",
 		},
 	},
-}
+		}
+	end
+	return old_textures
+end
 
 local old = {
 	SQ = true,
@@ -1295,11 +1307,14 @@ function ElvUI_EltreumUI:GetTextures(style)
 	else
 		OldSytleCheck()
 
+		local texturesTable = GetTexturesTable()
+		local oldTexturesTable = GetOldTexturesTable()
+
 		-- prevent nil erorr if the providing addon is not loaded
-		if not (ElvUI_EltreumUI.Media.CustomPortraits[style] or old_textures[style] or textures[style]) then style = "drop" end
+		if not (ElvUI_EltreumUI.Media.CustomPortraits[style] or oldTexturesTable[style] or texturesTable[style]) then style = "drop" end
 
 		local variant = E.db.ElvUI_EltreumUI.unitframes.portraits.general.style
-		local textures_source = old[style] and old_textures or textures
+		local textures_source = old[style] and oldTexturesTable or texturesTable
 
 		tmp_db.texture = textures_source[style].texture[variant]
 		tmp_db.border = textures_source[style].border
