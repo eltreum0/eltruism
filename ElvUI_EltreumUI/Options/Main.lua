@@ -10,111 +10,6 @@ local stringupper = _G.string.upper
 local mathfloor = _G.math.floor
 local next = _G.next
 
---Author list
-local AUTHORS = {
-	E:TextGradient("Eltreum", 0.50, 0.70, 1, 0.67, 0.95, 1),
-}
-
--- Credits and Thank yous list
-local THANKYOU = {
-	'|cff0070DEAzilroka|r',
-	'|cffC41F3BKringel|r',
-	'|cFF99CCFFAftermathh|r',
-	'|cffF58CBARepooc|r Especially for the huge helps',
-	'Blazeflack',
-	'Botanica',
-	'|cffFFC44DHydra|r',
-	'|T134297:15:15:0:0:64:64:5:59:5:59|t |cffff7d0aMerathilis|r',
-	'|cff9482c9Darth Predator|r',
-	'Caedis',
-	'Elv',
-	E:TextGradient('Simpy, his name might be shorter sometimes even though he fixes a lot of things', 0.27,0.72,0.86, 0.51,0.36,0.80, 0.69,0.28,0.94, 0.94,0.28,0.63, 1.00,0.51,0.00, 0.27,0.96,0.43),
-	--E:TextGradient('Simpy he fixes a lot of things but he cant see power colors right', 0.27,0.72,0.86, 0.51,0.36,0.80, 0.69,0.28,0.94, 0.94,0.28,0.63, 1.00,0.51,0.00, 0.27,0.96,0.43),
-	'Shrom',
-	'Pat',
-	'|cff00c0faBenik|r',
-	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r',
-	'|TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
-	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/releaf:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0AReleaf|r for the alternate class icons',
-	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/tukuidiscord:15:15:0:0:64:64:5:59:5:59|t Tukui Community for all the help and motivation',
-	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/addonsdiscord:15:15:0:0:64:64:5:59:5:59|t WoW AddOns; for answering a lot of questions',
-	'AcidWeb |TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
-	'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r', --blinkii's colored name
-	'|cff960000Atwood|r - for some of the role icons',
-	'|cffB50909Dlarge|r - for the German localization',
-	'|cff33937FFang2hou|r - for the compatibility function',
-	E:TextGradient("Meowcactus", 1, 0.49, 0.04, 1, 0.96, 0.41),
-	'plusmouse',
-	'Burzolog - inspiration for Rogue Door Opener',
-	'mitchnull - inspiration for Cursor Cooldowns (CooldownToGo)',
-	'Aezay - inspiration for Quest Items (QBar)',
-	'michaelsp - inspiration for Cursor (CastCursor)',
-	'xavjer - inspiration for Loot Text (Scrolling Loot Text / SLoTe)',
-}
-
-local DONATORS = {
-	'Akiao',
-	'Artan',
-	'BralumConquest',
-	'Brovenn',
-	'Daxxarri',
-	'Dlarge',
-	'Dreamador',
-	'Dreandor',
-	'Gently Caress the Constabulary',
-	'Greevir',
-	'Jazz',
-	'Jiberish',
-	'Madlampy',
-	'Markpoops',
-	'Michael_',
-	'Morthart',
-	'Mr.Ditto',
-	'Nekator',
-	'Nyhilatiant',
-	'Oakshlam',
-	'Smuve',
-	'Trenchy',
-	'Vxt',
-	'BioVenom',
-	'bansheeirl',
-	'Ante',
-	'Spectated',
-	'Volo',
-	'seba4287',
-	'orangepaw3',
-	'Jaraxal',
-	'BlazeFury',
-	'Marynia',
-	'Garrgamell',
-	'dartworth',
-	'Rocket Surgery',
-	'Embee',
-	'mercenariosgx',
-	'Deathclaw',
-	'AegisX',
-	'windseeker',
-	'crusty',
-	'clozure',
-	'Aphadon',
-	'shifty',
-	'Baleos',
-	'hunty',
-	'Tel',
-	'Capra Demon/domingoose',
-	'Numnuts',
-}
-
-local TRANSLATORS = {
-	'|cffCC3333Khornan|r - German Translation',
-	'|cffCC3333Dlarge|r - German Translation',
-	'|cffCC3333Neo|r - Simplified Chinese Translation',
-	'DeepL artificial intelligence for French and Spanish translations',
-	'|cffCC3333魔能機曱 (Johnson)|r - Traditional Chinese translation',
-	'|cffCC3333Meowcactus|r - Simplified Chinese Translation',
-	'|cffCC3333ZamestoTV|r - Russian Translation',
-}
-
 -- SortList
 local function SortList(a, b)
 	local aUpper = a:gsub("^%l", stringupper)
@@ -126,36 +21,141 @@ local function SortList(a, b)
 	end
 end
 
-sort(AUTHORS, SortList)
-sort(THANKYOU, SortList)
-sort(DONATORS, SortList)
-sort(TRANSLATORS, SortList)
-
--- Author table
-local AUTHORS_STRING = tconcat(AUTHORS, '|n')
-
--- Thank you table
-local THANKYOU_STRING = tconcat(THANKYOU, '|n')
-
--- Donators table
-local donator1,donator2 = {},{}
-local donatordivisor = mathfloor(#DONATORS/2)
-for i, name in pairs(DONATORS) do
-	local namecolor = "|cffB50909"..name.."|r"
-	if i <= donatordivisor then
-		tinsert(donator1, namecolor)
-	elseif i >= donatordivisor then
-		tinsert(donator2, namecolor)
-	end
-end
-local DONATORS_STRING1 = tconcat(donator1, '|n')
-local DONATORS_STRING2 = tconcat(donator2, '|n')
-
--- Translators table
-local TRANSLATORS_STRING = tconcat(TRANSLATORS, '|n')
-
 -- Eltruism ingame options
 function ElvUI_EltreumUI:Configtable()
+	--Author list
+	local AUTHORS = {
+		E:TextGradient("Eltreum", 0.50, 0.70, 1, 0.67, 0.95, 1),
+	}
+
+	-- Credits and Thank yous list
+	local THANKYOU = {
+		'|cff0070DEAzilroka|r',
+		'|cffC41F3BKringel|r',
+		'|cFF99CCFFAftermathh|r',
+		'|cffF58CBARepooc|r Especially for the huge helps',
+		'Blazeflack',
+		'Botanica',
+		'|cffFFC44DHydra|r',
+		'|T134297:15:15:0:0:64:64:5:59:5:59|t |cffff7d0aMerathilis|r',
+		'|cff9482c9Darth Predator|r',
+		'Caedis',
+		'Elv',
+		E:TextGradient('Simpy, his name might be shorter sometimes even though he fixes a lot of things', 0.27,0.72,0.86, 0.51,0.36,0.80, 0.69,0.28,0.94, 0.94,0.28,0.63, 1.00,0.51,0.00, 0.27,0.96,0.43),
+		--E:TextGradient('Simpy he fixes a lot of things but he cant see power colors right', 0.27,0.72,0.86, 0.51,0.36,0.80, 0.69,0.28,0.94, 0.94,0.28,0.63, 1.00,0.51,0.00, 0.27,0.96,0.43),
+		'Shrom',
+		'Pat',
+		'|cff00c0faBenik|r',
+		'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r',
+		'|TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
+		'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/releaf:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0AReleaf|r for the alternate class icons',
+		'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/tukuidiscord:15:15:0:0:64:64:5:59:5:59|t Tukui Community for all the help and motivation',
+		'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/addonsdiscord:15:15:0:0:64:64:5:59:5:59|t WoW AddOns; for answering a lot of questions',
+		'AcidWeb |TInterface/AddOns/ElvUI/Game/Shared/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
+		'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r', --blinkii's colored name
+		'|cff960000Atwood|r - for some of the role icons',
+		'|cffB50909Dlarge|r - for the German localization',
+		'|cff33937FFang2hou|r - for the compatibility function',
+		E:TextGradient("Meowcactus", 1, 0.49, 0.04, 1, 0.96, 0.41),
+		'plusmouse',
+		'Burzolog - inspiration for Rogue Door Opener',
+		'mitchnull - inspiration for Cursor Cooldowns (CooldownToGo)',
+		'Aezay - inspiration for Quest Items (QBar)',
+		'michaelsp - inspiration for Cursor (CastCursor)',
+		'xavjer - inspiration for Loot Text (Scrolling Loot Text / SLoTe)',
+	}
+
+	local DONATORS = {
+		'Akiao',
+		'Artan',
+		'BralumConquest',
+		'Brovenn',
+		'Daxxarri',
+		'Dlarge',
+		'Dreamador',
+		'Dreandor',
+		'Gently Caress the Constabulary',
+		'Greevir',
+		'Jazz',
+		'Jiberish',
+		'Madlampy',
+		'Markpoops',
+		'Michael_',
+		'Morthart',
+		'Mr.Ditto',
+		'Nekator',
+		'Nyhilatiant',
+		'Oakshlam',
+		'Smuve',
+		'Trenchy',
+		'Vxt',
+		'BioVenom',
+		'bansheeirl',
+		'Ante',
+		'Spectated',
+		'Volo',
+		'seba4287',
+		'orangepaw3',
+		'Jaraxal',
+		'BlazeFury',
+		'Marynia',
+		'Garrgamell',
+		'dartworth',
+		'Rocket Surgery',
+		'Embee',
+		'mercenariosgx',
+		'Deathclaw',
+		'AegisX',
+		'windseeker',
+		'crusty',
+		'clozure',
+		'Aphadon',
+		'shifty',
+		'Baleos',
+		'hunty',
+		'Tel',
+		'Capra Demon/domingoose',
+		'Numnuts',
+	}
+
+	local TRANSLATORS = {
+		'|cffCC3333Khornan|r - German Translation',
+		'|cffCC3333Dlarge|r - German Translation',
+		'|cffCC3333Neo|r - Simplified Chinese Translation',
+		'DeepL artificial intelligence for French and Spanish translations',
+		'|cffCC3333魔能機曱 (Johnson)|r - Traditional Chinese translation',
+		'|cffCC3333Meowcactus|r - Simplified Chinese Translation',
+		'|cffCC3333ZamestoTV|r - Russian Translation',
+	}
+
+	sort(AUTHORS, SortList)
+	sort(THANKYOU, SortList)
+	sort(DONATORS, SortList)
+	sort(TRANSLATORS, SortList)
+
+	-- Author table
+	local AUTHORS_STRING = tconcat(AUTHORS, '|n')
+
+	-- Thank you table
+	local THANKYOU_STRING = tconcat(THANKYOU, '|n')
+
+	-- Donators table
+	local donator1,donator2 = {},{}
+	local donatordivisor = mathfloor(#DONATORS/2)
+	for i, name in pairs(DONATORS) do
+		local namecolor = "|cffB50909"..name.."|r"
+		if i <= donatordivisor then
+			tinsert(donator1, namecolor)
+		elseif i >= donatordivisor then
+			tinsert(donator2, namecolor)
+		end
+	end
+	local DONATORS_STRING1 = tconcat(donator1, '|n')
+	local DONATORS_STRING2 = tconcat(donator2, '|n')
+
+	-- Translators table
+	local TRANSLATORS_STRING = tconcat(TRANSLATORS, '|n')
+
 	-- Add Eltruism version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 
