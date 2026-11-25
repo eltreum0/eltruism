@@ -14,6 +14,15 @@ WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
 local string = _G.string
 local stringmatch = string.match
 local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName
+local CreateColor = _G.CreateColor
+local otherColorMin = CreateColor(1, 1, 1, 1)
+local otherColorMax = CreateColor(1, 1, 1, 1)
+local MirrorTimerAtlasCheck = {
+	["EXHAUSTION"] = "UI-CastingBar-Filling-Standard", --yellow
+	["BREATH"] = "UI-CastingBar-Filling-ApplyingCrafting", --changing talents (blue)
+	--["DEATH"] = "UI-CastingBar-Filling-Standard", --same as EXHAUSTION
+	["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
+}
 
 --gradient loot roll/mirror/breath/feigndeath
 function ElvUI_EltreumUI:GradientMirrorLoot()
@@ -28,7 +37,9 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						statusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
 						statusBar:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
 						local r,g,b,a = statusBar:GetStatusBarColor()
-						statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= a})
+						otherColorMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), a)
+						otherColorMax:SetRGBA(E:Clamp(r + 0.2, 0, 1), E:Clamp(g + 0.2, 0, 1), E:Clamp(b + 0.2, 0, 1), a)
+						statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", otherColorMin, otherColorMax)
 					end)
 					statusBar.EltruismGradientHook = true
 				end
@@ -36,7 +47,6 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 		else
 			if not _G.MirrorTimerContainer.EltruismHook then
 				_G.hooksecurefunc(_G.MirrorTimerContainer, 'SetupTimer', function(container, timer) --based on elvui
-					_G.MirrorTimerContainer.EltruismHook = true
 					local bar = container:GetAvailableTimer(timer)
 					if not bar then return end
 					if bar.StatusBar then
@@ -68,18 +78,18 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 							bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.private.general.glossTex))
 
 							--print(timer, value, maxvalue, scale, paused, label)
-							local MirrorTimerAtlasCheck = {
-								["EXHAUSTION"] = "UI-CastingBar-Filling-Standard", --yellow
-								["BREATH"] = "UI-CastingBar-Filling-ApplyingCrafting", --changing talents (blue)
-								--["DEATH"] = "UI-CastingBar-Filling-Standard", --same as EXHAUSTION
-								["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
-							}
 							if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then
-								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=1,g= 0.68,b= 0,a= alpha}, {r=1,g= 0.83,b= 0.25,a= alpha})
+								otherColorMin:SetRGBA(1, 0.68, 0, alpha)
+								otherColorMax:SetRGBA(1, 0.83, 0.25, alpha)
+								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", otherColorMin, otherColorMax)
 							elseif atlas == MirrorTimerAtlasCheck["BREATH"] then
-								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0,g= 0.33,b= 0.53,a= alpha}, {r=0.49,g= 0.87,b= 1,a= alpha})
+								otherColorMin:SetRGBA(0, 0.33, 0.53, alpha)
+								otherColorMax:SetRGBA(0.49, 0.87, 1, alpha)
+								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", otherColorMin, otherColorMax)
 							elseif atlas == MirrorTimerAtlasCheck["FEIGNDEATH"] then
-								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0.01,g= 0.6,b= 0.36,a= alpha}, {r=0,g= 1,b= 0.58,a= alpha})
+								otherColorMin:SetRGBA(0.01, 0.6, 0.36, alpha)
+								otherColorMax:SetRGBA(0, 1, 0.58, alpha)
+								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", otherColorMin, otherColorMax)
 							end
 						end
 
@@ -87,6 +97,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						bar:SetTemplate('Transparent')
 					end
 				end)
+				_G.MirrorTimerContainer.EltruismHook = true
 			end
 		end
 
@@ -105,7 +116,9 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				if not frame.GradientHook then
 					frame:HookScript("OnShow", function()
 						local r,g,b = frame.status:GetStatusBarColor()
-						frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.3,g= g + 0.3,b= b + 0.3,a= 1})
+						otherColorMin:SetRGBA(E:Clamp(r - 0.5, 0, 1), E:Clamp(g - 0.5, 0, 1), E:Clamp(b - 0.5, 0, 1), 1)
+						otherColorMax:SetRGBA(E:Clamp(r + 0.3, 0, 1), E:Clamp(g + 0.3, 0, 1), E:Clamp(b + 0.3, 0, 1), 1)
+						frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", otherColorMin, otherColorMax)
 					end)
 					frame.GradientHook = true
 				end
