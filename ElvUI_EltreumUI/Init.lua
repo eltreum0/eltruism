@@ -62,164 +62,173 @@ function ElvUI_EltreumUI:UpdateSpec()
 	return ElvUI_EltreumUI.Spec
 end
 
+local function DelayedBorderSetup()
+	ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
+	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
+	ElvUI_EltreumUI:GroupBorderColorUpdate()
+end
+
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
 	ElvUI_EltreumUI:CombatMusic('PLAYER_ENTERING_WORLD')
-	if not ElvDB.EltruismDisabledAddOns then
-		ElvDB.EltruismDisabledAddOns = {}
-	end
-	if E.Modern then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
-		E.private.skins.blizzard.bgscore = false
-	end
-
-	if _G.InCombatLockdown() then
-		ElvUI_EltreumUI:Print("Reloading while in combat is not recommended and you are very likely to break several addons.")
-	end
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode then
-		E.db.ElvUI_EltreumUI.unitframes.hasMode = true
-	else
-		E.db.ElvUI_EltreumUI.unitframes.hasMode = false
-	end
 	ElvUI_EltreumUI:UpdateSpec()
 
-	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
-	ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict
-	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
-	ElvUI_EltreumUI:LoadCommands() --loads chat commands
-	ElvUI_EltreumUI:AuthorMVPDonatorIcons() -- add author/donator/mvp icons
-	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
-	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
-	E:Delay(0, function()
-		ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
-		ElvUI_EltreumUI:Borders() --creates borders if option is enabled
-		ElvUI_EltreumUI:GroupBorderColorUpdate()
-	end)
-	ElvUI_EltreumUI:SkinVehicleButton() -- re-skin vehicle button like elvui did
-	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
-	ElvUI_EltreumUI:InitTooltip()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
-	ElvUI_EltreumUI:CursorInit() --starts cursor modules
-	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
-	ElvUI_EltreumUI:RaidShadows() --adds shadows to raid groups
-	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
+	if not self.PEWInitialized then
+		self.PEWInitialized = true
+		if not ElvDB.EltruismDisabledAddOns then
+			ElvDB.EltruismDisabledAddOns = {}
+		end
+		if E.Modern then --due to an issue in retail disable the scoreboard skin (_G.PVPMatchScoreboard)
+			E.private.skins.blizzard.bgscore = false
+		end
+
+		if _G.InCombatLockdown() then
+			ElvUI_EltreumUI:Print("Reloading while in combat is not recommended and you are very likely to break several addons.")
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode then
+			E.db.ElvUI_EltreumUI.unitframes.hasMode = true
+		else
+			E.db.ElvUI_EltreumUI.unitframes.hasMode = false
+		end
+
+		ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
+		ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict
+		ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
+		ElvUI_EltreumUI:LoadCommands() --loads chat commands
+		ElvUI_EltreumUI:AuthorMVPDonatorIcons() -- add author/donator/mvp icons
+		ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
+		ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
+		E:Delay(0, DelayedBorderSetup)
+		ElvUI_EltreumUI:SkinVehicleButton() -- re-skin vehicle button like elvui did
+		ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
+		ElvUI_EltreumUI:InitTooltip()
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
+		ElvUI_EltreumUI:CursorInit() --starts cursor modules
+		ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
+		ElvUI_EltreumUI:RaidShadows() --adds shadows to raid groups
+		ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
+		ElvUI_EltreumUI:ShamanTextureMode() -- applies the dark color to shaman powers in TBC/Classic
+		ElvUI_EltreumUI:Anchors() --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
+		ElvUI_EltreumUI:UnitframeRoleIcons() --adds custom role icons in chat when swapping roles
+		ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
+		--ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
+		ElvUI_EltreumUI:DynamicExperienceDatabar() --makes experience bar mouseover or not depending on current player level
+		ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
+		ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
+		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
+		ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
+		ElvUI_EltreumUI:UpdateAllLeaderIcons() --apply custom party/raid leader, assist, and looter icons
+		ElvUI_EltreumUI:PlayerDeathAnimation() -- death animation
+		ElvUI_EltreumUI:DeleteItem() -- automatically type delete
+		ElvUI_EltreumUI:SkillGlow() --makes skill glow using LibEltreumGlow
+		ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
+		ElvUI_EltreumUI:Doom() -- cooldown pulse (includes portions from Doom Cooldown Pulse by discoteq)
+		ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
+		ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
+		ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
+		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll in classic, scale in retail
+		if E.Modern then
+			ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+			if E.db.ElvUI_EltreumUI.quests.anchor then
+				ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
+			end
+			ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
+			ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
+			ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
+			if E.Retail then
+				ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
+			else
+				ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
+			end
+		else
+			if not E.Mists then
+				ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
+				ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel (includes portions from Kibs Item Level by Kibsgaard)
+			else
+				if E.myclass == 'HUNTER' then
+					ElvUI_EltreumUI:ExpandedStable()
+				end
+			end
+			ElvUI_EltreumUI:SkinProfessions() --makes professions wider
+		end
+		if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
+			ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
+		end
+		if not (E.Retail or E.Mists or E.Cata) then
+			ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
+		end
+		if E.Forever then
+			ElvUI_EltreumUI:RangedSwingTimerHide() --hides blizzard ranged swing timer when no swing timer is active
+		end
+		ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
+		ElvUI_EltreumUI:WorldMapScale() -- set world map scale
+		if E.private.nameplates.enable then
+			ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
+			--ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
+			ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
+
+			--return of custom nameplate heights
+			if E.db.ElvUI_EltreumUI.nameplates and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then
+				ElvUI_EltreumUI:UpdateAllNameplateHeights()
+			end
+		end
+		if E.db.ElvUI_EltreumUI.dev and not E.Modern then --load dev tools if user enables
+			ElvUI_EltreumUI:DevTools()
+		end
+		ElvUI_EltreumUI:Shadows() --adds shadows to frames
+		ElvUI_EltreumUI:PlayerItemQuality("player") --add item quality texture to character panel skin
+		ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
+		ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
+		ElvUI_EltreumUI:UpdateRectangleMinimap() -- rectangle minimap
+		ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
+		ElvUI_EltreumUI:MinimapButtonBar() -- minimap button bar
+		ElvUI_EltreumUI:UpdateMinimapLocation() -- minimap location gradient and mover
+		ElvUI_EltreumUI:FrameScales() --misc frames scales
+		ElvUI_EltreumUI:NPClassificatioNIcon() -- add different elite/rare icons to np
+		if not E.private.unitframe.disabledBlizzardFrames.raid then -- blizzard raid textures/gradient
+			ElvUI_EltreumUI:BlizzardTexturesGradient()
+		end
+		if E.db.ElvUI_EltreumUI.skins.cell then --Cell gradient/custom textures/shadows
+			ElvUI_EltreumUI:EltruismCell()
+		end
+		ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
+		ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
+		ElvUI_EltreumUI:PerformanceCVars(false,true) --set some cvars that reset on login
+		ElvUI_EltreumUI:InitializePortraits(true) --blinkii's mmediatag portraits
+
+		--hardcore requires loading tags later so db is confirmed loaded
+		if not self.TagsLoaded then
+			ElvUI_EltreumUI:LoadHealthTags()
+			ElvUI_EltreumUI:LoadIconTags()
+			ElvUI_EltreumUI:LoadNameTags()
+			ElvUI_EltreumUI:LoadOtherTags()
+			self.TagsLoaded = true
+		end
+		ElvUI_EltreumUI:GradientNameplatesHooks()
+		if E.Modern then
+			ElvUI_EltreumUI:HoldToCast(true) --fix press and hold casting on elvui actionbars
+		end
+	elseif _G.IsInRaid() then
+		ElvUI_EltreumUI:RaidShadows() --adds shadows to raid groups
+	end
+
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
-	ElvUI_EltreumUI:ShamanTextureMode() -- applies the dark color to shaman powers in TBC/Classic
-	ElvUI_EltreumUI:Anchors() --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
-	ElvUI_EltreumUI:UnitframeRoleIcons() --adds custom role icons in chat when swapping roles
-	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
 	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth
-	--ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
-	ElvUI_EltreumUI:DynamicExperienceDatabar() --makes experience bar mouseover or not depending on current player level
 	ElvUI_EltreumUI:BlizzCombatText() --enables or disables blizzard's combat text depending on player setting in eltruism
 	ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes() --hides elvui unitframes in bgs/arenas
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
-	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
 	ElvUI_EltreumUI:RaidDeathGroupCheck() -- attempt at prevent CLEU tracking
-	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
 	ElvUI_EltreumUI:QuestItem() -- quest item bar
-	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
-	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
-	ElvUI_EltreumUI:UpdateAllLeaderIcons() --apply custom party/raid leader, assist, and looter icons
-	ElvUI_EltreumUI:PlayerDeathAnimation() -- death animation
-	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
-	ElvUI_EltreumUI:SkillGlow() --makes skill glow using LibEltreumGlow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
-	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
-	ElvUI_EltreumUI:Doom() -- cooldown pulse (includes portions from Doom Cooldown Pulse by discoteq)
-	ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
-	ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
 	ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
-	ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
-	ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll in classic, scale in retail
-	if E.Modern then
-		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
-		if E.db.ElvUI_EltreumUI.quests.anchor then
-			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
-		end
-		ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
-		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
-		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
-		if E.Retail then
-			ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
-		else
-			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
-		end
-	else
-		if not E.Mists then
-			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
-			ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel (includes portions from Kibs Item Level by Kibsgaard)
-		else
-			if E.myclass == 'HUNTER' then
-				ElvUI_EltreumUI:ExpandedStable()
-			end
-		end
-		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
-	end
-	if not (E.Classic or E.TBC or E.Wrath or E.Forever) then
-		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
-	end
-	if not (E.Retail or E.Mists or E.Cata) then
-		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
-	end
-	if E.Forever then
-		ElvUI_EltreumUI:RangedSwingTimerHide() --hides blizzard ranged swing timer when no swing timer is active
-	end
-	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:UpdateZoneQuests() --only show quests in current map
-	ElvUI_EltreumUI:WorldMapScale() -- set world map scale
-	if E.private.nameplates.enable then
-		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
-		--ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
-		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
-
-		--return of custom nameplate heights
-		if E.db.ElvUI_EltreumUI.nameplates and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then
-			ElvUI_EltreumUI:UpdateAllNameplateHeights()
-		end
-	end
-	if E.db.ElvUI_EltreumUI.dev and not E.Modern then --load dev tools if user enables
-		ElvUI_EltreumUI:DevTools()
-	end
-	ElvUI_EltreumUI:Shadows() --adds shadows to frames
-	ElvUI_EltreumUI:PlayerItemQuality("player") --add item quality texture to character panel skin
-	ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
-	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
-	ElvUI_EltreumUI:UpdateRectangleMinimap() -- rectangle minimap
-	ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
-	ElvUI_EltreumUI:MinimapButtonBar() -- minimap button bar
-	ElvUI_EltreumUI:UpdateMinimapLocation() -- minimap location gradient and mover
 	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs
-	ElvUI_EltreumUI:FrameScales() --misc frames scales
-	ElvUI_EltreumUI:NPClassificatioNIcon() -- add different elite/rare icons to np
-	if not E.private.unitframe.disabledBlizzardFrames.raid then -- blizzard raid textures/gradient
-		ElvUI_EltreumUI:BlizzardTexturesGradient()
-	end
-	if E.db.ElvUI_EltreumUI.skins.cell then --Cell gradient/custom textures/shadows
-		ElvUI_EltreumUI:EltruismCell()
-	end
-	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
-	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
-	ElvUI_EltreumUI:BordersTargetChanged() --fix borders for focus
-	ElvUI_EltreumUI:PerformanceCVars(false,true) --set some cvars that reset on login
-	ElvUI_EltreumUI:InitializePortraits(true) --blinkii's mmediatag portraits
-
-	--hardcore requires loading tags later so db is confirmed loaded
-	if not self.TagsLoaded then
-		ElvUI_EltreumUI:LoadHealthTags()
-		ElvUI_EltreumUI:LoadIconTags()
-		ElvUI_EltreumUI:LoadNameTags()
-		ElvUI_EltreumUI:LoadOtherTags()
-		self.TagsLoaded = true
-	end
-	ElvUI_EltreumUI:GradientNameplatesHooks()
 	ElvUI_EltreumUI:InstanceIndicator() --for the instance texts
-	if E.Modern then
-		ElvUI_EltreumUI:HoldToCast(true) --fix press and hold casting on elvui actionbars
-	end
+	ElvUI_EltreumUI:BordersTargetChanged() --fix borders for focus
 end
 
 function ElvUI_EltreumUI:FIRST_FRAME_RENDERED()
@@ -292,10 +301,10 @@ function ElvUI_EltreumUI:PLAYER_DEAD(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 end
 
-function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
+local rosterUpdatePending = false
+local function FlushGroupRosterUpdate()
+	rosterUpdatePending = false
 	ElvUI_EltreumUI:UpdateAllLeaderIcons()
-	ElvUI_EltreumUI:RaidDeathGroupCheck()
-	--ElvUI_EltreumUI:Shadows()
 	if _G.IsInRaid() then
 		ElvUI_EltreumUI:RaidShadows()
 	end
@@ -312,6 +321,14 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	end
 	if E.db.ElvUI_EltreumUI.skins.cell then --Cell gradient/custom textures/shadows
 		ElvUI_EltreumUI:EltruismCell()
+	end
+end
+
+function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
+	ElvUI_EltreumUI:RaidDeathGroupCheck()
+	if not rosterUpdatePending then
+		rosterUpdatePending = true
+		E:Delay(0.1, FlushGroupRosterUpdate)
 	end
 end
 
@@ -559,13 +576,15 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('INSTANCE_ENCOUNTER_ENGAGE_UNIT') ----for quests and combat music
-	ElvUI_EltreumUI:RegisterEvent('DUEL_REQUESTED') --for duel music
-	if E.ClassicHC then
-		ElvUI_EltreumUI:RegisterEvent('DUEL_TO_THE_DEATH_REQUESTED') --for makgora duel music
+	if E.private.ElvUI_EltreumUI.combatmusic and E.private.ElvUI_EltreumUI.combatmusic.duelmusic then
+		ElvUI_EltreumUI:RegisterEvent('DUEL_REQUESTED') --for duel music
+		if E.ClassicHC then
+			ElvUI_EltreumUI:RegisterEvent('DUEL_TO_THE_DEATH_REQUESTED') --for makgora duel music
+		end
+		ElvUI_EltreumUI:RegisterEvent('DUEL_FINISHED') --for duel music
+		ElvUI_EltreumUI:RegisterEvent('CHAT_MSG_SYSTEM') --for duel music
+		ElvUI_EltreumUI:RegisterEvent('PLAYER_DEAD') --for duel music
 	end
-	ElvUI_EltreumUI:RegisterEvent('DUEL_FINISHED') --for duel music
-	ElvUI_EltreumUI:RegisterEvent('CHAT_MSG_SYSTEM') --for duel music
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_DEAD') --for duel music
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music
