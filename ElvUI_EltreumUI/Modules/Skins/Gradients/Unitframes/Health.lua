@@ -165,14 +165,50 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
-		local isCustom = db.customcolor
 		local orientation = db.orientation or "HORIZONTAL"
+		local mode = UFdb.lightmode and 1 or (UFdb.darkmode and 2 or 0)
+		local texVersion = ElvUI_EltreumUI.EltruismTextureVersion
+		local missingPlayerClass = isPlayer and not hasClass
+		local hasDebuff = frame.EltruismDebuffExists
+
+		if frame.EltruismBackdropClass == colorClass
+			and frame.EltruismBackdropDead == deadState
+			and frame.EltruismBackdropInvert == invert
+			and frame.EltruismBackdropCustom == db.customcolor
+			and frame.EltruismBackdropOrient == orientation
+			and frame.EltruismBackdropAlpha == backdropAlpha
+			and frame.EltruismBackdropRawAlpha == rawAlpha
+			and frame.EltruismBackdropHealthAlpha == healthAlpha
+			and frame.EltruismBackdropTransparent == transparentHealth
+			and frame.EltruismBackdropHidden == isHidden
+			and frame.EltruismBackdropMode == mode
+			and frame.EltruismBackdropVersion == texVersion
+			and frame.EltruismBackdropMissingClass == missingPlayerClass
+			and frame.EltruismBackdropDebuff == hasDebuff
+			and (not hasDebuff or (
+				frame.EltruismBackdropDebuffR == frame.EltruismDebuffr
+				and frame.EltruismBackdropDebuffG == frame.EltruismDebuffg
+				and frame.EltruismBackdropDebuffB == frame.EltruismDebuffb
+				and frame.EltruismBackdropDebuffA == frame.EltruismDebuffa
+			)) then
+			return
+		end
 
 		frame.EltruismBackdropClass = colorClass
 		frame.EltruismBackdropDead = deadState
 		frame.EltruismBackdropInvert = invert
-		frame.EltruismBackdropDebuff = frame.EltruismDebuffExists
-		if frame.EltruismDebuffExists then
+		frame.EltruismBackdropCustom = db.customcolor
+		frame.EltruismBackdropOrient = orientation
+		frame.EltruismBackdropAlpha = backdropAlpha
+		frame.EltruismBackdropRawAlpha = rawAlpha
+		frame.EltruismBackdropHealthAlpha = healthAlpha
+		frame.EltruismBackdropTransparent = transparentHealth
+		frame.EltruismBackdropHidden = isHidden
+		frame.EltruismBackdropMode = mode
+		frame.EltruismBackdropVersion = texVersion
+		frame.EltruismBackdropMissingClass = missingPlayerClass
+		frame.EltruismBackdropDebuff = hasDebuff
+		if hasDebuff then
 			frame.EltruismBackdropDebuffR = frame.EltruismDebuffr
 			frame.EltruismBackdropDebuffG = frame.EltruismDebuffg
 			frame.EltruismBackdropDebuffB = frame.EltruismDebuffb
@@ -214,7 +250,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		end
 
 		if not frame.EltruismDebuffExists then
-			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, isCustom, isPlayer and not hasClass)
+			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, db.customcolor, missingPlayerClass)
 
 			if UFdb.lightmode then
 				if frame.Health.bg then
@@ -711,6 +747,15 @@ local function HealthBar_PostUpdateHealthColor(healthBar, unit)
 	end
 end
 
+local function ApplyGroupGradientChildren(...)
+	for i = 1, select("#", ...) do
+		local frame = select(i, ...)
+		if frame.Health then
+			ElvUI_EltreumUI:ApplyGroupGradient(frame, true)
+		end
+	end
+end
+
 local forced = false
 function ElvUI_EltreumUI:GradientUF(unit)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
@@ -774,12 +819,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 				--print("party gradient firing",math.random(1,99))
 				local party = _G["ElvUF_PartyGroup1"]
 				if party then
-					for i = 1, select("#", party:GetChildren()) do
-						local frame = select(i, party:GetChildren())
-						if frame and frame.Health then
-							ElvUI_EltreumUI:ApplyGroupGradient(frame, true)
-						end
-					end
+					ApplyGroupGradientChildren(party:GetChildren())
 				end
 				if E.db.unitframe.units.party.petsGroup.enable then
 					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsVisible() then
@@ -799,10 +839,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 					for i = 1, 8 do
 						local group = _G["ElvUF_Raid"..raidNum.."Group"..i]
 						if group then
-							for j = 1, select("#", group:GetChildren()) do
-								local frame = select(j, group:GetChildren())
-								if frame and frame.Health then ElvUI_EltreumUI:ApplyGroupGradient(frame, true) end
-							end
+							ApplyGroupGradientChildren(group:GetChildren())
 						end
 					end
 				end
@@ -826,7 +863,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 end
 
 function ElvUI_EltreumUI:UF_Update_StatusBars()
-	ElvUI_EltreumUI.EltruismTextureVersion = (ElvUI_EltreumUI.EltruismTextureVersion or 0) + 1
+	ElvUI_EltreumUI.EltruismTextureVersion = ElvUI_EltreumUI.EltruismTextureVersion + 1
 	if ElvUI_EltreumUI.GradientUF then
 		ElvUI_EltreumUI:GradientUF()
 	end
@@ -874,22 +911,20 @@ if E.CoroutineCallback then
 	E:CoroutineCallback(UF.Update_UnitFrame, function(_, frame)
 		Update_UnitFrameTransparencyFix(frame)
 	end)
+	local function UpdateGroupTransparencyChildren(...)
+		for i = 1, select("#", ...) do
+			local frame = select(i, ...)
+			if frame.Health then
+				Update_UnitFrameTransparencyFix(frame)
+			else
+				UpdateGroupTransparencyChildren(frame:GetChildren())
+			end
+		end
+	end
 	E:CoroutineCallback(UF.Update_GroupFrame, function(group)
-	    local header = UF[group]
-	    if not header then return end
-	    for i = 1, header:GetNumChildren() do
-	        local frame = select(i, header:GetChildren())
-	        if frame and frame.Health then
-	            Update_UnitFrameTransparencyFix(frame)
-	        elseif frame and frame.GetNumChildren then
-	            for j = 1, frame:GetNumChildren() do
-	                local subFrame = select(j, frame:GetChildren())
-	                if subFrame and subFrame.Health then
-	                    Update_UnitFrameTransparencyFix(subFrame)
-	                end
-	            end
-	        end
-	    end
+		local header = UF[group]
+		if not header then return end
+		UpdateGroupTransparencyChildren(header:GetChildren())
 	end)
 end
 
