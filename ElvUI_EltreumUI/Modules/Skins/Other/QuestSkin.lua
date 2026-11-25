@@ -13,6 +13,9 @@ local QuestLogTrackTracking = _G.QuestLogTrackTracking
 local GetQuestLogTitle = _G.GetQuestLogTitle
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
+local CreateColor = _G.CreateColor
+local questLineColor1 = CreateColor(1, 1, 1, 1)
+local questLineColor2 = CreateColor(1, 1, 1, 1)
 local ScenarioObjectiveBlockBackground
 local wowheadbutton = CreateFrame("Button", "EltruismWowheadButton")
 local dontexpandanymorequests = 0
@@ -996,7 +999,10 @@ function ElvUI_EltreumUI:SkinQuests()
 										module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 									end
 								else
-									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
+									local qs = E.db.ElvUI_EltreumUI.skins.questsettings
+									questLineColor1:SetRGBA(qs.linecustomcolor1r, qs.linecustomcolor1g, qs.linecustomcolor1b, 1)
+									questLineColor2:SetRGBA(qs.linecustomcolor2r, qs.linecustomcolor2g, qs.linecustomcolor2b, 1)
+									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, questLineColor1, questLineColor2)
 								end
 								module.Header.EltruismStatusLine:SetFrameLevel(1)
 								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow and E.private.general.pixelPerfect then
@@ -1220,7 +1226,10 @@ function ElvUI_EltreumUI:SkinQuests()
 												module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 											end
 										else
-											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
+											local qs = E.db.ElvUI_EltreumUI.skins.questsettings
+											questLineColor1:SetRGBA(qs.linecustomcolor1r, qs.linecustomcolor1g, qs.linecustomcolor1b, 1)
+											questLineColor2:SetRGBA(qs.linecustomcolor2r, qs.linecustomcolor2g, qs.linecustomcolor2b, 1)
+											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, questLineColor1, questLineColor2)
 										end
 										module.Header.EltruismStatusLine:SetFrameLevel(1)
 										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
@@ -1584,7 +1593,10 @@ function ElvUI_EltreumUI:SkinQuests()
 					QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 				end
 			else
-				QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, b = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, a = 1},{r= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, a = 1})
+				local qs = E.db.ElvUI_EltreumUI.skins.questsettings
+				questLineColor1:SetRGBA(qs.linecustomcolor1r, qs.linecustomcolor1g, qs.linecustomcolor1b, 1)
+				questLineColor2:SetRGBA(qs.linecustomcolor2r, qs.linecustomcolor2g, qs.linecustomcolor2b, 1)
+				QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, questLineColor1, questLineColor2)
 			end
 			if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow and E.private.general.pixelPerfect then
 				QuestWatchFrame.HeaderBar:CreateBackdrop('Transparent')
@@ -1854,7 +1866,10 @@ function ElvUI_EltreumUI:SkinQuests()
 						WatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 					end
 				else
-					WatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, b = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, a = 1},{r= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, a = 1})
+					local qs = E.db.ElvUI_EltreumUI.skins.questsettings
+					questLineColor1:SetRGBA(qs.linecustomcolor1r, qs.linecustomcolor1g, qs.linecustomcolor1b, 1)
+					questLineColor2:SetRGBA(qs.linecustomcolor2r, qs.linecustomcolor2g, qs.linecustomcolor2b, 1)
+					WatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, questLineColor1, questLineColor2)
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow and E.private.general.pixelPerfect then
