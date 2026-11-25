@@ -1834,3 +1834,7 @@ L["Bars"] = true
 L["Paused"] = true
 L["Paused (actionbar paged)"] = true
 L["Inactive"] = true
+L["Gradient Location Text"] = true
+L["Eltruism Minimap Location"] = true
+L["Zone Color"] = true
+L["Class Colors"] = true
