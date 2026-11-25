@@ -634,8 +634,8 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			hasCOMBO["MAGE"] = (E.Retail and ElvUI_EltreumUI.Spec == 62) and true or false
 			hasCOMBO["MONK"] = ((E.Retail or E.Mists) and ((ElvUI_EltreumUI.Spec == 269) or (ElvUI_EltreumUI.Spec == 268))) and true or false
 
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 15
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 15
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 

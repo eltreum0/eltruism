@@ -1588,7 +1588,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
 	E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -1
-	E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
+	E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 15
 	E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
 	E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
