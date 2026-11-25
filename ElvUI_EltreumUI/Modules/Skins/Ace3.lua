@@ -260,17 +260,21 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 		end)
 
+		local function ColorSeparatorRegions(...)
+			local r, g, b = E.db.general.valuecolor.r, E.db.general.valuecolor.g, E.db.general.valuecolor.b
+			for i = 1, select("#", ...) do
+				local line = select(i, ...)
+				if line.SetVertexColor then
+					line:SetVertexColor(r, g, b, 0.4)
+				end
+			end
+		end
+
 		hooksecurefunc(E,"Config_CreateSeparatorLine",function(_,frame)
 			if not E.private.skins.ace3Enable then return end
 			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 			if not (frame and frame.leftHolder) then return end
-			local buttons = frame.leftHolder.buttons
-			for i = 1, buttons:GetNumRegions() do
-				local line = select(i, buttons:GetRegions())
-				if line and line.SetVertexColor then
-					line:SetVertexColor(E.db.general.valuecolor.r, E.db.general.valuecolor.g, E.db.general.valuecolor.b, 0.4)
-				end
-			end
+			ColorSeparatorRegions(frame.leftHolder.buttons:GetRegions())
 		end)
 
 		hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
