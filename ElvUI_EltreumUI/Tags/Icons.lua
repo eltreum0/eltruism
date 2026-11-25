@@ -563,7 +563,7 @@ function ElvUI_EltreumUI:LoadIconTags()
 	E:AddTagInfo("eltruism:leader:emoji", tagCategory, [[|TInterface\AddOns\ElvUI_EltreumUI\Media\Textures\Leader\Leader1:0:0:0:0|t]]..L["Shows the Leader Icon as an Emoji Crown"])
 
 	--combat icon idea for other units
-	E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH PLAYER_FLAGS_CHANGED', function(unit)
+	E:AddTag("eltruism:combatindicator", 'UNIT_FLAGS PLAYER_FLAGS_CHANGED', function(unit)
 		if UnitAffectingCombat(unit) then
 			local texture = E.db.unitframe.units.player.CombatIcon.texture
 			if combatTextureCache[texture] then
