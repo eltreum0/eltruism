@@ -13,6 +13,21 @@ local function SkinLocale()
 end
 SkinLocale()
 
+local function SkinMeetingHornTabs(...)
+	for i = 1, select("#", ...) do
+		local group = select(i, ...)
+		if group:GetName() == nil then
+			if group.HighlightTexture then
+				S:HandleTab(group)
+				if not group.backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
+					group.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(group.backdrop.shadow)
+				end
+			end
+		end
+	end
+end
+
 --SkinMeeting horn as asked by Neo
 function ElvUI_EltreumUI:EltruismMeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
@@ -136,19 +151,7 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 		S:HandleFrame(f.MainPanel.Help)
 
 		--bc the tab names are nil, gotta try to detect it
-		local header = f.MainPanel
-		for i = 1, header:GetNumChildren() do
-			local group = select(i, header:GetChildren())
-			if group and group:GetName() == nil then
-				if group.HighlightTexture then
-					S:HandleTab(group)
-					if not group.backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-						group.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(group.backdrop.shadow)
-					end
-				end
-			end
-		end
+		SkinMeetingHornTabs(f.MainPanel:GetChildren())
 	end
 end
 S:AddCallbackForAddon('MeetingHorn', 'EltruismMeetingHorn', ElvUI_EltreumUI.EltruismMeetingHorn)

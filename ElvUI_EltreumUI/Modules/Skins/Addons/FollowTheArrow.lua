@@ -79,159 +79,162 @@ local function SkinRows(scrollChild)
 	end
 
 	--loop over row children in scrollChild
-	for i = 1, scrollChild:GetNumChildren() do
-		local row = select(i, scrollChild:GetChildren())
-		if row and row:IsShown() then
-			--row text
-			if row.text and E.LSM:Fetch('font', E.db.general.font) then
-				row.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			end
-			if row.sub and E.LSM:Fetch('font', E.db.general.font) then
-				row.sub:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize - 1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			end
+	local function SkinFollowTheArrowRows(...)
+		for i = 1, select("#", ...) do
+			local row = select(i, ...)
+			if row and row:IsShown() then
+				--row text
+				if row.text and E.LSM:Fetch('font', E.db.general.font) then
+					row.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				end
+				if row.sub and E.LSM:Fetch('font', E.db.general.font) then
+					row.sub:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize - 1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				end
 
-			--module button
-			if row.btn and not row.btn.IsSkinned then
-				S:HandleButton(row.btn)
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					if not row.btn.shadow then
-						row.btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(row.btn.shadow)
-					end
-				end
-				row.btn.IsSkinned = true
-			end
-
-			--manual check button
-			if row.manualCheck and not row.manualCheck.IsSkinned then
-				S:HandleCheckBox(row.manualCheck)
-				if row.manualCheckHolder then
-					row.manualCheckHolder:SetBackdrop(nil)
-				end
-				row.manualCheck.IsSkinned = true
-			end
-
-			--thumb button
-			if row.thumbBtn and not row.thumbBtn.IsSkinned then
-				if row.thumbBorderFrame then
-					row.thumbBorderFrame:Hide()
-				end
-				row.thumbBtn:CreateBackdrop('Transparent')
-				if row.thumbIcon then
-					row.thumbIcon:SetTexCoord(unpack(E.TexCoords))
-				end
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					if not row.thumbBtn.shadow then
-						row.thumbBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(row.thumbBtn.shadow)
-					end
-				end
-				row.thumbBtn:HookScript('OnClick', function()
-					E:Delay(0, function()
-						if _G['FollowTheArrow_ImagePopup'] then
-							SkinImagePopup(_G['FollowTheArrow_ImagePopup'])
+				--module button
+				if row.btn and not row.btn.IsSkinned then
+					S:HandleButton(row.btn)
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+						if not row.btn.shadow then
+							row.btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(row.btn.shadow)
 						end
+					end
+					row.btn.IsSkinned = true
+				end
+
+				--manual check button
+				if row.manualCheck and not row.manualCheck.IsSkinned then
+					S:HandleCheckBox(row.manualCheck)
+					if row.manualCheckHolder then
+						row.manualCheckHolder:SetBackdrop(nil)
+					end
+					row.manualCheck.IsSkinned = true
+				end
+
+				--thumb button
+				if row.thumbBtn and not row.thumbBtn.IsSkinned then
+					if row.thumbBorderFrame then
+						row.thumbBorderFrame:Hide()
+					end
+					row.thumbBtn:CreateBackdrop('Transparent')
+					if row.thumbIcon then
+						row.thumbIcon:SetTexCoord(unpack(E.TexCoords))
+					end
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+						if not row.thumbBtn.shadow then
+							row.thumbBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(row.thumbBtn.shadow)
+						end
+					end
+					row.thumbBtn:HookScript('OnClick', function()
+						E:Delay(0, function()
+							if _G['FollowTheArrow_ImagePopup'] then
+								SkinImagePopup(_G['FollowTheArrow_ImagePopup'])
+							end
+						end)
 					end)
-				end)
-				row.thumbBtn.IsSkinned = true
-			end
+					row.thumbBtn.IsSkinned = true
+				end
 
-			--choice tiles
-			if row._choiceTiles then
-				for _, tile in ipairs(row._choiceTiles) do
-					if tile and not tile.IsSkinned then
-						if tile.thumbBorderFrame then
-							tile.thumbBorderFrame:Hide()
-						end
-						if tile.thumbBtn then
-							tile.thumbBtn:CreateBackdrop('Transparent')
-							if tile.thumbIcon then
-								tile.thumbIcon:SetTexCoord(unpack(E.TexCoords))
+				--choice tiles
+				if row._choiceTiles then
+					for _, tile in ipairs(row._choiceTiles) do
+						if tile and not tile.IsSkinned then
+							if tile.thumbBorderFrame then
+								tile.thumbBorderFrame:Hide()
 							end
-							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-								if not tile.thumbBtn.shadow then
-									tile.thumbBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(tile.thumbBtn.shadow)
+							if tile.thumbBtn then
+								tile.thumbBtn:CreateBackdrop('Transparent')
+								if tile.thumbIcon then
+									tile.thumbIcon:SetTexCoord(unpack(E.TexCoords))
 								end
-							end
-							tile.thumbBtn:HookScript('OnClick', function()
-								E:Delay(0, function()
-									if _G['FollowTheArrow_ImagePopup'] then
-										SkinImagePopup(_G['FollowTheArrow_ImagePopup'])
+								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+									if not tile.thumbBtn.shadow then
+										tile.thumbBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(tile.thumbBtn.shadow)
 									end
+								end
+								tile.thumbBtn:HookScript('OnClick', function()
+									E:Delay(0, function()
+										if _G['FollowTheArrow_ImagePopup'] then
+											SkinImagePopup(_G['FollowTheArrow_ImagePopup'])
+										end
+									end)
 								end)
-							end)
-						end
-						if tile.btn then
-							S:HandleButton(tile.btn)
-							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-								if not tile.btn.shadow then
-									tile.btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(tile.btn.shadow)
+							end
+							if tile.btn then
+								S:HandleButton(tile.btn)
+								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+									if not tile.btn.shadow then
+										tile.btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(tile.btn.shadow)
+									end
 								end
 							end
+							tile.IsSkinned = true
 						end
-						tile.IsSkinned = true
 					end
 				end
-			end
 
-			--item buttons
-			if row.itemButtons and not InCombatLockdown() then
-				for _, itemBtn in pairs(row.itemButtons) do
-					if itemBtn and not itemBtn.IsSkinned then
-						itemBtn:CreateBackdrop()
-						if itemBtn.icon then
-							itemBtn.icon:SetTexCoord(unpack(E.TexCoords))
-						end
-						if itemBtn.cooldown then
-							E:RegisterCooldown(itemBtn.cooldown)
-						end
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-							if not itemBtn.shadow then
-								itemBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(itemBtn.shadow)
+				--item buttons
+				if row.itemButtons and not InCombatLockdown() then
+					for _, itemBtn in pairs(row.itemButtons) do
+						if itemBtn and not itemBtn.IsSkinned then
+							itemBtn:CreateBackdrop()
+							if itemBtn.icon then
+								itemBtn.icon:SetTexCoord(unpack(E.TexCoords))
 							end
+							if itemBtn.cooldown then
+								E:RegisterCooldown(itemBtn.cooldown)
+							end
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+								if not itemBtn.shadow then
+									itemBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(itemBtn.shadow)
+								end
+							end
+							itemBtn.IsSkinned = true
 						end
-						itemBtn.IsSkinned = true
 					end
 				end
-			end
 
-			--craft button
-			if row.craftButton and not row.craftButton.IsSkinned and not InCombatLockdown() then
-				row.craftButton:CreateBackdrop()
-				if row.craftButton.icon then
-					row.craftButton.icon:SetTexCoord(unpack(E.TexCoords))
-				end
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					if not row.craftButton.shadow then
-						row.craftButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(row.craftButton.shadow)
+				--craft button
+				if row.craftButton and not row.craftButton.IsSkinned and not InCombatLockdown() then
+					row.craftButton:CreateBackdrop()
+					if row.craftButton.icon then
+						row.craftButton.icon:SetTexCoord(unpack(E.TexCoords))
 					end
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+						if not row.craftButton.shadow then
+							row.craftButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(row.craftButton.shadow)
+						end
+					end
+					row.craftButton.IsSkinned = true
 				end
-				row.craftButton.IsSkinned = true
-			end
 
-			--spell button
-			if row.spellButton and not row.spellButton.IsSkinned and not InCombatLockdown() then
-				row.spellButton:CreateBackdrop()
-				if row.spellButton.icon then
-					row.spellButton.icon:SetTexCoord(unpack(E.TexCoords))
-				end
-				if row.spellButton.cooldown then
-					E:RegisterCooldown(row.spellButton.cooldown)
-				end
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					if not row.spellButton.shadow then
-						row.spellButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(row.spellButton.shadow)
+				--spell button
+				if row.spellButton and not row.spellButton.IsSkinned and not InCombatLockdown() then
+					row.spellButton:CreateBackdrop()
+					if row.spellButton.icon then
+						row.spellButton.icon:SetTexCoord(unpack(E.TexCoords))
 					end
+					if row.spellButton.cooldown then
+						E:RegisterCooldown(row.spellButton.cooldown)
+					end
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+						if not row.spellButton.shadow then
+							row.spellButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(row.spellButton.shadow)
+						end
+					end
+					row.spellButton.IsSkinned = true
 				end
-				row.spellButton.IsSkinned = true
 			end
 		end
 	end
+	SkinFollowTheArrowRows(scrollChild:GetChildren())
 end
 
 --check if follow the arrow is in text-only mode

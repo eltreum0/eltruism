@@ -3,6 +3,43 @@ local S = E:GetModule('Skins')
 local valuecolors = E.myClassColor
 local select = _G.select
 
+local function SkinScrollBars(useHandleFrame, ...)
+	for i = 1, select("#", ...) do
+		local group = select(i, ...)
+		if group.scrollBar then
+			S:HandleScrollBar(group.scrollBar)
+			if useHandleFrame then
+				S:HandleFrame(group)
+			end
+			group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+			group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+		end
+	end
+end
+
+local function SkinSortBoxChildren(...)
+	for itemnumber = 1, select("#", ...) do
+		local frame = select(itemnumber, ...)
+		if frame.SortBox then
+			S:HandleEditBox(frame.SortBox)
+		end
+	end
+end
+
+local function SkinSortOrderChildren(...)
+	for i = 1, select("#", ...) do
+		local group = select(i, ...)
+		if group.scrollChild then
+			SkinSortBoxChildren(group.scrollChild:GetChildren())
+		end
+		if group.scrollBar then
+			S:HandleScrollBar(group.scrollBar)
+			group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+			group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+		end
+	end
+end
+
 --based on meeting horn skin
 function ElvUI_EltreumUI:EltruismBagSync()
 	if E.db.ElvUI_EltreumUI.skins.bagsync then
@@ -20,15 +57,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 			S:HandleButton(Search.frame.HelpButton)
 			S:HandleButton(Search.frame.advSearchBtn)
 			S:HandleButton(Search.frame.resetButton)
-			local header = Search.frame
-			for i = 1, header:GetNumChildren() do
-				local group = select(i, header:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Search.frame:GetChildren())
 
 			S:HandleFrame(Search.helpFrame)
 			S:HandleCloseButton(Search.helpFrame.CloseButton)
@@ -50,54 +79,22 @@ function ElvUI_EltreumUI:EltruismBagSync()
 			S:HandleCloseButton(adv.frame.closeBtn)
 			S:HandleButton(adv.frame.selectAllButton)
 			S:HandleButton(adv.frame.resetButton)
-			local header2 = adv.frame
-			for i = 1, header2:GetNumChildren() do
-				local group = select(i, header2:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, adv.frame:GetChildren())
 
 			local Currency = f:GetModule("Currency")
 			S:HandleFrame(Currency.frame)
 			S:HandleCloseButton(Currency.frame.closeBtn)
-			local header3 = Currency.frame
-			for i = 1, header3:GetNumChildren() do
-				local group = select(i, header3:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Currency.frame:GetChildren())
 
 			local Professions = f:GetModule("Professions")
 			S:HandleFrame(Professions.frame)
 			S:HandleCloseButton(Professions.frame.closeBtn)
-			local header4 = Professions.frame
-			for i = 1, header4:GetNumChildren() do
-				local group = select(i, header4:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Professions.frame:GetChildren())
 
 			local Recipes = f:GetModule("Recipes")
 			S:HandleFrame(Recipes.frame)
 			S:HandleCloseButton(Recipes.frame.closeBtn)
-			local header5 = Recipes.frame
-			for i = 1, header5:GetNumChildren() do
-				local group = select(i, header5:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Recipes.frame:GetChildren())
 
 			local Blacklist = f:GetModule("Blacklist")
 			S:HandleFrame(Blacklist.frame)
@@ -106,97 +103,38 @@ function ElvUI_EltreumUI:EltruismBagSync()
 			S:HandleButton(Blacklist.frame.addGuildBtn)
 			S:HandleButton(Blacklist.frame.addItemIDBtn)
 			S:HandleEditBox(Blacklist.frame.itemIDBox)
-			local header6 = Blacklist.frame
-			for i = 1, header6:GetNumChildren() do
-				local group = select(i, header6:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Blacklist.frame:GetChildren())
 
 			local Whitelist = f:GetModule("Whitelist")
 			S:HandleFrame(Whitelist.frame)
 			S:HandleCloseButton(Whitelist.frame.closeBtn)
 			S:HandleButton(Whitelist.frame.addItemIDBtn)
 			S:HandleEditBox(Whitelist.frame.itemIDBox)
-			local header7 = Whitelist.frame
-			for i = 1, header7:GetNumChildren() do
-				local group = select(i, header7:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Whitelist.frame:GetChildren())
 			S:HandleFrame(Whitelist.warningFrame)
 			S:HandleCloseButton(Whitelist.warningFrame.CloseButton)
 
 			local Gold = f:GetModule("Gold")
 			S:HandleFrame(Gold.frame)
 			S:HandleCloseButton(Gold.frame.closeBtn)
-			local header8 = Gold.frame
-			for i = 1, header8:GetNumChildren() do
-				local group = select(i, header8:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Gold.frame:GetChildren())
 
 			local Profiles = f:GetModule("Profiles")
 			S:HandleFrame(Profiles.frame)
 			S:HandleCloseButton(Profiles.frame.closeBtn)
-			local header9 = Profiles.frame
-			for i = 1, header9:GetNumChildren() do
-				local group = select(i, header9:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(false, Profiles.frame:GetChildren())
 
 			local SortOrder = f:GetModule("SortOrder")
 			S:HandleFrame(SortOrder.frame)
 			S:HandleCloseButton(SortOrder.frame.closeBtn)
-			local header10 = SortOrder.frame
-			for i = 1, header10:GetNumChildren() do
-				local group = select(i, header10:GetChildren())
-				if group then
-					if group.scrollChild then
-						for itemnumber = 1, group.scrollChild:GetNumChildren() do
-							local frame = select(itemnumber, group.scrollChild:GetChildren())
-							if frame.SortBox then
-								S:HandleEditBox(frame.SortBox)
-							end
-						end
-					end
-					if group.scrollBar then
-						S:HandleScrollBar(group.scrollBar)
-						group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-						group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-					end
-				end
-			end
+			SkinSortOrderChildren(SortOrder.frame:GetChildren())
 			S:HandleFrame(SortOrder.warningFrame)
 			S:HandleCloseButton(SortOrder.warningFrame.CloseButton)
 
 			local Details = f:GetModule("Details")
 			S:HandleFrame(Details.frame)
 			S:HandleCloseButton(Details.frame.closeBtn)
-			local header11 = Details.frame
-			for i = 1, header11:GetNumChildren() do
-				local group = select(i, header11:GetChildren())
-				if group and group.scrollBar then
-					S:HandleScrollBar(group.scrollBar)
-					S:HandleFrame(group)
-					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
-					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-				end
-			end
+			SkinScrollBars(true, Details.frame:GetChildren())
 
 			--shadows
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
