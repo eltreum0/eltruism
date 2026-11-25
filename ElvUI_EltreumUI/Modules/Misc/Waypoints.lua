@@ -34,8 +34,15 @@ local stringmatch = string.match
 local tonumber = _G.tonumber
 local table = _G.table
 local tinsert = table.insert
+local tconcat = table.concat
 local wipe = _G.wipe
 local UiMapPoint = _G.UiMapPoint
+local C_QuestLog = _G.C_QuestLog
+local GetQuestLogCompletionText = _G.GetQuestLogCompletionText
+local GetQuestProgressBarPercent = _G.GetQuestProgressBarPercent
+local QUEST_WATCH_QUEST_READY = _G.QUEST_WATCH_QUEST_READY
+local QUEST_WATCH_QUEST_COMPLETE = _G.QUEST_WATCH_QUEST_COMPLETE
+local FAILED = _G.FAILED
 
 local useFallbackNavFrame = (E.Forever or (GetCVar and GetCVar("showInGameNavigation") == nil)) and _G.SuperTrackedFrameMixin ~= nil
 local EltruismSuperTrackedFrame
@@ -195,25 +202,39 @@ end
 
 local SuperTrackedFrame = useFallbackNavFrame and EltruismSuperTrackedFrame or _G.SuperTrackedFrame
 if SuperTrackedFrame then --if not the main one and not the fallback dont do anything
-	local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
-	local EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
-	EltruismTimeToArriveParent:RegisterEvent("PLAYER_ENTERING_WORLD")
-	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", E.UIParent)
-	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
-	EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
-	EltruismTimeToArrive.TimeText:SetSize(0, 26)
-	EltruismTimeToArrive.TimeText:SetPoint("TOP", SuperTrackedFrame, "BOTTOM", 0, 7)
-	EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	EltruismTimeToArrive.TimeText:SetParent(SuperTrackedFrame)
-	EltruismTimeToArrive.WaypointText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
-	EltruismTimeToArrive.WaypointText:SetJustifyV("TOP")
-	EltruismTimeToArrive.WaypointText:SetSize(0, 26)
-	EltruismTimeToArrive.WaypointText:SetPoint("TOP", SuperTrackedFrame, "BOTTOM", 0, -9)
-	EltruismTimeToArrive.WaypointText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	EltruismTimeToArrive.WaypointText:SetParent(SuperTrackedFrame)
-	EltruismTimeToArrive:SetParent(SuperTrackedFrame)
+	local EltruismAutopin
+	local EltruismTimeToArriveParent
+	local EltruismTimeToArrive
 	SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
 	SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+
+	local function CreateWaypointFrames()
+		EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
+		EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
+		EltruismTimeToArriveParent:RegisterEvent("PLAYER_ENTERING_WORLD")
+		EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", E.UIParent)
+		EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+		EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
+		EltruismTimeToArrive.TimeText:SetSize(0, 26)
+		EltruismTimeToArrive.TimeText:SetPoint("TOP", SuperTrackedFrame, "BOTTOM", 0, 7)
+		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+		EltruismTimeToArrive.TimeText:SetParent(SuperTrackedFrame)
+		EltruismTimeToArrive.WaypointText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+		EltruismTimeToArrive.WaypointText:SetJustifyV("TOP")
+		EltruismTimeToArrive.WaypointText:SetSize(0, 26)
+		EltruismTimeToArrive.WaypointText:SetPoint("TOP", SuperTrackedFrame, "BOTTOM", 0, -9)
+		EltruismTimeToArrive.WaypointText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+		EltruismTimeToArrive.WaypointText:SetParent(SuperTrackedFrame)
+		EltruismTimeToArrive.QuestText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+		EltruismTimeToArrive.QuestText:SetJustifyV("TOP")
+		EltruismTimeToArrive.QuestText:SetWidth(300)
+		EltruismTimeToArrive.QuestText:SetSpacing(2)
+		EltruismTimeToArrive.QuestText:SetPoint("TOP", EltruismTimeToArrive.WaypointText, "TOP", 0, -(E.db.general.fontSize + 4))
+		EltruismTimeToArrive.QuestText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+		EltruismTimeToArrive.QuestText:SetTextColor(1, 1, 1)
+		EltruismTimeToArrive.QuestText:SetParent(SuperTrackedFrame)
+		EltruismTimeToArrive:SetParent(SuperTrackedFrame)
+	end
 
 	--set the throttle
 	local ONUPDATE_INTERVAL = 1
@@ -250,6 +271,85 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 		end
 	end
 
+	local questSteps = {}
+	local completeHex = E:RGBToHex(0.12, 1, 0.12)
+	local failedHex = E:RGBToHex(1, 0, 0)
+
+	local function GetSuperTrackedQuestSteps()
+		if C_SuperTrack.GetHighestPrioritySuperTrackingType() ~= Enum.SuperTrackingType.Quest then
+			return ""
+		end
+
+		local questID = C_SuperTrack.GetSuperTrackedQuestID()
+		if not questID or questID <= 0 then
+			return ""
+		end
+
+		wipe(questSteps)
+
+		if C_QuestLog.IsFailed(questID) then
+			tinsert(questSteps, stringformat("%s%s|r", failedHex, FAILED))
+		elseif C_QuestLog.IsComplete(questID) then
+			local questLogIndex = C_QuestLog.GetLogIndexForQuestID(questID)
+			local questInfo = questLogIndex and C_QuestLog.GetInfo(questLogIndex)
+			if questInfo and questInfo.isAutoComplete then
+				tinsert(questSteps, stringformat("%s%s|r", completeHex, QUEST_WATCH_QUEST_COMPLETE))
+			else
+				local waypointText = C_QuestLog.GetNextWaypointText(questID)
+				local completionText = questLogIndex and GetQuestLogCompletionText(questLogIndex)
+				if waypointText and waypointText ~= "" then
+					tinsert(questSteps, waypointText)
+				end
+				if completionText and completionText ~= "" and completionText ~= waypointText then
+					tinsert(questSteps, stringformat("%s%s|r", completeHex, completionText))
+				end
+				if #questSteps == 0 then
+					tinsert(questSteps, stringformat("%s%s|r", completeHex, QUEST_WATCH_QUEST_READY))
+				end
+			end
+		else
+			local waypointText = C_QuestLog.GetNextWaypointText(questID)
+			if waypointText and waypointText ~= "" then
+				tinsert(questSteps, waypointText)
+			end
+
+			local objectives = C_QuestLog.GetQuestObjectives(questID)
+			if objectives then
+				for i = 1, #objectives do
+					local objective = objectives[i]
+					if not objective.finished and objective.text and objective.text ~= "" then
+						local text = objective.text
+						if objective.type == "progressbar" and not stringmatch(text, "%%") then
+							text = stringformat("%s (%d%%)", text, mathfloor(GetQuestProgressBarPercent(questID)))
+						end
+						local coloredText = ElvUI_EltreumUI:ColorQuestStep(text)
+						tinsert(questSteps, coloredText or text)
+					end
+				end
+			end
+		end
+
+		return #questSteps > 0 and tconcat(questSteps, "\n") or ""
+	end
+
+	local function UpdateSuperTrackedText()
+		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.waypointname then
+			local name = C_SuperTrack.GetSuperTrackedItemName()
+			if not name or name == MAP_PIN then
+				if EltruismTimeToArrive.WaypointText:GetText() ~= "" then
+					EltruismTimeToArrive.WaypointText:SetText("")
+				end
+			elseif name ~= EltruismTimeToArrive.WaypointText:GetText() then
+				EltruismTimeToArrive.WaypointText:SetText(name)
+			end
+
+			local questText = GetSuperTrackedQuestSteps()
+			if questText ~= EltruismTimeToArrive.QuestText:GetText() then
+				EltruismTimeToArrive.QuestText:SetText(questText)
+			end
+		end
+	end
+
 	--use throttled onupdate to udpate the text (once per second)
 	function ElvUI_EltreumUI:TimeToArriveOnUpdate(elapsed)
 		TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -272,18 +372,7 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 			end
 
 			--add objective text
-			--name, description = C_SuperTrack.GetSuperTrackedItemName()
-			--questID = C_SuperTrack.GetSuperTrackedQuestID()
-			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.waypointname then
-				local name = C_SuperTrack.GetSuperTrackedItemName()
-				if name == MAP_PIN then
-					if EltruismTimeToArrive.WaypointText:GetText() ~= "" then
-						EltruismTimeToArrive.WaypointText:SetText("")
-					end
-				elseif (name ~= EltruismTimeToArrive.WaypointText:GetText()) then
-					EltruismTimeToArrive.WaypointText:SetText(name)
-				end
-			end
+			UpdateSuperTrackedText()
 
 			--calculate time to arrive
 			local distance = C_Navigation.GetDistance()
@@ -327,6 +416,7 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
+			if not EltruismTimeToArrive then CreateWaypointFrames() end
 			if not EltruismAutopin.AutopinRegistered and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
 				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 				EltruismAutopin:RegisterEvent("PLAYER_ENTERING_WORLD") --doesnt seem to fire
@@ -412,6 +502,10 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 			SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			EltruismTimeToArrive.WaypointText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			EltruismTimeToArrive.QuestText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			EltruismTimeToArrive.QuestText:ClearAllPoints()
+			EltruismTimeToArrive.QuestText:SetPoint("TOP", EltruismTimeToArrive.WaypointText, "TOP", 0, -(E.db.general.fontSize + 4))
+			EltruismTimeToArrive.QuestText:SetTextColor(1, 1, 1)
 			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.classcolortext then
 				SuperTrackedFrame.DistanceText:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
 				EltruismTimeToArrive.TimeText:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
@@ -444,9 +538,12 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 					local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 					--print(instanceType,event,"waypoint")
 					if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
+						UpdateSuperTrackedText()
 						EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
 					else
 						EltruismTimeToArrive:SetScript("OnUpdate", nil)
+						EltruismTimeToArrive.WaypointText:SetText("")
+						EltruismTimeToArrive.QuestText:SetText("")
 					end
 				end)
 				self.TimeToArriveRegistered = true
