@@ -3,13 +3,20 @@ local DB = E:GetModule('DataBars')
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
+local CreateColor = _G.CreateColor
+local databarMin = CreateColor(1, 1, 1, 1)
+local databarMax = CreateColor(1, 1, 1, 1)
 local classcolor = E.myClassColor
 local GetWatchedFactionInfo = _G.C_Reputation and _G.C_Reputation.GetWatchedFactionInfo or _G.GetWatchedFactionInfo
 
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()
 	if _G["ElvUI_ExperienceBar"] and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
-		_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPdirection, { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
+		local xpColor = E.db.databars.colors.experience
+		local xpGrad = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors
+		databarMin:SetRGBA(xpColor.r, xpColor.g, xpColor.b, xpColor.a)
+		databarMax:SetRGBA(xpGrad.r, xpGrad.g, xpGrad.b, xpColor.a)
+		_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPdirection, databarMin, databarMax)
 	end
 end
 ElvUI_EltreumUI:SecureHook(DB, 'ExperienceBar_Update', 'GradientDatabarXP')
@@ -43,12 +50,15 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 			local color = ((customColors or customReaction) and DB.db.colors.factionColors[reaction]) or _G.FACTION_BAR_COLORS[reaction]
 			if color then
 				local alpha = (customColors and color.a) or DB.db.colors.reputationAlpha or 1
-				--databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r - 0.4, color.g - 0.1, color.b - 0.5, alpha or color.a or 1)
+				local repGrad = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors
+				local a = alpha or color.a or 1
+				databarMin:SetRGBA(color.r, color.g, color.b, a)
 				if reaction == 10 then
-					_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
+					databarMax:SetRGBA(E:Clamp(color.r - repGrad.r, 0, 1), E:Clamp(color.g - repGrad.g, 0, 1), E:Clamp(color.b - repGrad.b, 0, 1), a)
 				else
-					_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
+					databarMax:SetRGBA(E:Clamp(color.r + repGrad.r, 0, 1), E:Clamp(color.g + repGrad.g, 0, 1), E:Clamp(color.b + repGrad.b, 0, 1), a)
 				end
+				_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", databarMin, databarMax)
 			end
 		end
 	end
@@ -58,7 +68,11 @@ ElvUI_EltreumUI:SecureHook(DB, 'ReputationBar_Update', 'GradientDatabarRep')
 --gradient honor
 function ElvUI_EltreumUI:GradientDatabarHonor()
 	if _G["ElvUI_HonorBar"] and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor then
-		_G["ElvUI_HonorBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.databars.colors.honor.r,g= E.db.databars.colors.honor.g,b= E.db.databars.colors.honor.b,a= E.db.databars.colors.honor.a}, {r=E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r,g=E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g,b= E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b,a= E.db.databars.colors.honor.a})
+		local honorColor = E.db.databars.colors.honor
+		local honorGrad = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors
+		databarMin:SetRGBA(honorColor.r, honorColor.g, honorColor.b, honorColor.a)
+		databarMax:SetRGBA(E:Clamp(honorColor.r + honorGrad.r, 0, 1), E:Clamp(honorColor.g + honorGrad.g, 0, 1), E:Clamp(honorColor.b + honorGrad.b, 0, 1), honorColor.a)
+		_G["ElvUI_HonorBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", databarMin, databarMax)
 	end
 end
 if E.Retail then
@@ -82,7 +96,10 @@ function ElvUI_EltreumUI:GradientArcheology()
 		if _G.ArcheologyDigsiteProgressBar.FillBar then
 			_G.ArcheologyDigsiteProgressBar.FillBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex,E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b1,a= 1}, {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b2,a= 1})
+				local arch = E.db.ElvUI_EltreumUI.otherstuff.archeology
+				databarMin:SetRGBA(arch.r1, arch.g1, arch.b1, 1)
+				databarMax:SetRGBA(arch.r2, arch.g2, arch.b2, 1)
+				_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", databarMin, databarMax)
 			end
 		end
 	end
@@ -95,15 +112,21 @@ function ElvUI_EltreumUI:BlizzardAltPower()
 	if B.AltPowerBar and B.AltPowerBar:IsShown() then
 		B.AltPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower then
+			local altAlpha = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+			local altGrad = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors
 			if E.db.general.altPowerBar.statusBarColorGradient then
 				local power, maxPower = B.AltPowerBar.powerValue or 0, B.AltPowerBar.powerMaxValue or 0
 				if not ElvUI_EltreumUI:IsThisASafeSecret(power,true) then return end
 				local value = (maxPower > 0 and power / maxPower) or 0
 				local r, g, b = E:ColorGradient(value,0.8,0,0, 0.8,0.8,0, 0,0.8,0)
-				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+				databarMin:SetRGBA(r, g, b, altAlpha)
+				databarMax:SetRGBA(E:Clamp(r + altGrad.r, 0, 1), E:Clamp(g + altGrad.g, 0, 1), E:Clamp(b + altGrad.b, 0, 1), altAlpha)
+				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", databarMin, databarMax)
 			else
 				local color = E.db.general.altPowerBar.statusBarColor
-				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=color.r,g= color.g,b= color.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+				databarMin:SetRGBA(color.r, color.g, color.b, altAlpha)
+				databarMax:SetRGBA(E:Clamp(color.r + altGrad.r, 0, 1), E:Clamp(color.g + altGrad.g, 0, 1), E:Clamp(color.b + altGrad.b, 0, 1), altAlpha)
+				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", databarMin, databarMax)
 			end
 		end
 	end
