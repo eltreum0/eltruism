@@ -192,7 +192,39 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
 				end
 
-				local function handlesubframe(frame)
+				local handlesubframe
+				local function handlesubframechildren(...)
+					for i = 1, select("#", ...) do
+						local subframe = select(i, ...)
+						if subframe:GetObjectType() == "Frame" then
+							--S:HandleFrame(subframe) --causes erors in non pixel perfect mode (non thin mode)
+							--subframe:SetBackdrop()
+							if subframe.NormalTexture then
+								subframe.NormalTexture:SetAlpha(0)
+								subframe.NormalTexture.SetAlpha = E.noop
+							end
+							if subframe.HighlightTexture then
+								subframe.HighlightTexture:SetAlpha(0)
+								subframe.HighlightTexture.SetAlpha = E.noop
+							end
+						elseif subframe:GetObjectType() == "Button" then
+							--subframe:StripTextures()
+							S:HandleButton(subframe)
+							if subframe.EltruismAnimation then --is the bag item button,fix the animation
+								subframe.EltruismAnimation:SetDrawLayer("OVERLAY")
+								subframe.EltruismAnimation:SetBlendMode("ADD")
+							end
+						elseif subframe:GetObjectType() == "EditBox" then
+							S:HandleEditBox(subframe)
+							subframe:SetTemplate()
+						elseif subframe:GetObjectType() == "CheckButton" then
+							S:HandleButton(subframe)
+						end
+						handlesubframe(subframe)
+					end
+				end
+
+				handlesubframe = function(frame)
 					if frame.eltruismbgtexture then frame.eltruismbgtexture:Hide() end
 					if frame.Icon then
 						frame.Icon:SetTexCoord(unpack(E.TexCoords))
@@ -224,36 +256,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 						frame.EltruismAddButtonHook = true
 					end
 					if frame:GetObjectType() ~= "Texture" then
-						for i = 1, frame:GetNumChildren() do
-							local subframe = select(i, frame:GetChildren())
-							if subframe then
-								if subframe:GetObjectType() == "Frame" then
-									--S:HandleFrame(subframe) --causes erors in non pixel perfect mode (non thin mode)
-									--subframe:SetBackdrop()
-									if subframe.NormalTexture then
-										subframe.NormalTexture:SetAlpha(0)
-										subframe.NormalTexture.SetAlpha = E.noop
-									end
-									if subframe.HighlightTexture then
-										subframe.HighlightTexture:SetAlpha(0)
-										subframe.HighlightTexture.SetAlpha = E.noop
-									end
-								elseif subframe:GetObjectType() == "Button" then
-									--subframe:StripTextures()
-									S:HandleButton(subframe)
-									if subframe.EltruismAnimation then --is the bag item button,fix the animation
-										subframe.EltruismAnimation:SetDrawLayer("OVERLAY")
-										subframe.EltruismAnimation:SetBlendMode("ADD")
-									end
-								elseif subframe:GetObjectType() == "EditBox" then
-									S:HandleEditBox(subframe)
-									subframe:SetTemplate()
-								elseif subframe:GetObjectType() == "CheckButton" then
-									S:HandleButton(subframe)
-								end
-								handlesubframe(subframe)
-							end
-						end
+						handlesubframechildren(frame:GetChildren())
 					end
 				end
 
