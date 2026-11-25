@@ -5,18 +5,32 @@ local hooksecurefunc = _G.hooksecurefunc
 local UnitClass = _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
 local CreateFrame = _G.CreateFrame
-local playereffect = CreateFrame("playermodel", "EltruismPlayerEffect")
-local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
-local targettargeteffect = CreateFrame("playermodel", "EltruismTargetTargetEffect")
-local focuseffect = CreateFrame("playermodel", "EltruismFocusEffect")
-local peteffect = CreateFrame("playermodel", "EltruismPetEffect")
-local powerbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerPowerBarEffect")
-local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetPowerBarEffect")
-local powerbareffecttargettarget = CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
-local powerbareffectfocus = CreateFrame("PlayerModel", "EltruismFocusPowerBarEffect")
-local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
-local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
-local castbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
+local playereffect
+local targeteffect
+local targettargeteffect
+local focuseffect
+local peteffect
+local powerbareffectplayer
+local powerbareffecttarget
+local powerbareffecttargettarget
+local powerbareffectfocus
+local powerbareffectpet
+local castbareffectplayer
+local castbareffecttarget
+
+local modelupdater = CreateFrame("FRAME")
+local modelUpdaterRegistered = false
+local function RegisterModelUpdaterEvents()
+	if modelUpdaterRegistered then return end
+	modelUpdaterRegistered = true
+	modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
+	modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
+	modelupdater:RegisterEvent("PLAYER_FOCUS_CHANGED")
+	modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
+	modelupdater:RegisterEvent("PLAYER_REGEN_DISABLED")
+	modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
+	modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so refresh everything
+end
 local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
 local powerModelPosVec = CreateVector3D and CreateVector3D(-0.035, 0, 0)
@@ -101,12 +115,16 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		local db = E.db.ElvUI_EltreumUI
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
+		if modelsDB.unitframe or modelsDB.powerbar or modelsDB.castbar then
+			RegisterModelUpdaterEvents()
+		end
 
 		local playerbar = _G["ElvUF_Player"]
 		if not playerbar then return end
 		local playerAlpha = playerbar:GetAlpha() or 1
 		if not ElvUI_EltreumUI:IsThisASafeSecret(playerAlpha, true) then playerAlpha = 1 end
 		if modelsDB.unitframe then
+			playereffect = playereffect or CreateFrame("PlayerModel", "EltruismPlayerEffect")
 			if not playerbar.EltruismModelAlphaHooked then
 				hooksecurefunc(playerbar, "SetAlpha", function(_, alpha)
 					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
@@ -152,6 +170,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		if modelsDB.powerbar then
 			local powerbar = _G["ElvUF_Player_PowerBar"]
 			if not powerbar then return end
+			powerbareffectplayer = powerbareffectplayer or CreateFrame("PlayerModel", "EltruismPlayerPowerBarEffect")
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectplayer:SetModel(1715069)
@@ -199,12 +218,16 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		local db = E.db.ElvUI_EltreumUI
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
+		if modelsDB.unitframe or modelsDB.powerbar or modelsDB.castbar then
+			RegisterModelUpdaterEvents()
+		end
 
 		local targetbar = _G["ElvUF_Target"]
 		if not targetbar then return end
 		local targetAlpha = targetbar:GetAlpha() or 1
 		if not ElvUI_EltreumUI:IsThisASafeSecret(targetAlpha, true) then targetAlpha = 1 end
 		if modelsDB.unitframe then
+			targeteffect = targeteffect or CreateFrame("PlayerModel", "EltruismTargetEffect")
 			if not targetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targetbar, "SetAlpha", function(_, alpha)
 					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
@@ -284,6 +307,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		if modelsDB.powerbar then
 			local targetpowerbar = _G["ElvUF_Target_PowerBar"]
 			if not targetpowerbar then return end
+			powerbareffecttarget = powerbareffecttarget or CreateFrame("PlayerModel", "EltruismTargetPowerBarEffect")
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffecttarget:SetModel(1715069)
@@ -330,12 +354,16 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		local db = E.db.ElvUI_EltreumUI
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
+		if modelsDB.unitframe or modelsDB.powerbar or modelsDB.castbar then
+			RegisterModelUpdaterEvents()
+		end
 
 		local targettargetbar = _G["ElvUF_TargetTarget"]
 		if not targettargetbar then return end
 		local targettargetAlpha = targettargetbar:GetAlpha() or 1
 		if not ElvUI_EltreumUI:IsThisASafeSecret(targettargetAlpha, true) then targettargetAlpha = 1 end
 		if modelsDB.unitframe then
+			targettargeteffect = targettargeteffect or CreateFrame("PlayerModel", "EltruismTargetTargetEffect")
 			if not targettargetbar.EltruismModelAlphaHooked then
 				hooksecurefunc(targettargetbar, "SetAlpha", function(_, alpha)
 					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
@@ -412,6 +440,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		if modelsDB.powerbar then
 			local targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
 			if not targettargetpowerbar then return end
+			powerbareffecttargettarget = powerbareffecttargettarget or CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffecttargettarget:SetModel(1715069)
@@ -451,12 +480,16 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		local db = E.db.ElvUI_EltreumUI
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications or E.Classic then return end
 		local modelsDB = db.unitframes.models
+		if modelsDB.unitframe or modelsDB.powerbar or modelsDB.castbar then
+			RegisterModelUpdaterEvents()
+		end
 
 		local focusbar = _G["ElvUF_Focus"]
 		if not focusbar then return end
 		local focusAlpha = focusbar and focusbar:GetAlpha() or 1
 		if not ElvUI_EltreumUI:IsThisASafeSecret(focusAlpha, true) then focusAlpha = 1 end
 		if modelsDB.unitframe then
+			focuseffect = focuseffect or CreateFrame("PlayerModel", "EltruismFocusEffect")
 			if not focusbar.EltruismModelAlphaHooked then
 				hooksecurefunc(focusbar, "SetAlpha", function(_, alpha)
 					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
@@ -534,6 +567,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 
 		if modelsDB.powerbar then
 			local focuspowerbar = _G["ElvUF_Focus_PowerBar"]
+			powerbareffectfocus = powerbareffectfocus or CreateFrame("PlayerModel", "EltruismFocusPowerBarEffect")
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectfocus:SetModel(1715069)
@@ -576,12 +610,16 @@ function ElvUI_EltreumUI:PetUFEffects()
 		local db = E.db.ElvUI_EltreumUI
 		if not db or not db.unitframes or not db.unitframes.models or not db.unitframes.UFmodifications then return end
 		local modelsDB = db.unitframes.models
+		if modelsDB.unitframe or modelsDB.powerbar or modelsDB.castbar then
+			RegisterModelUpdaterEvents()
+		end
 
 		local petbar = _G["ElvUF_Pet"]
 		if not petbar then return end
 		local petAlpha = petbar and petbar:GetAlpha() or 1
 		if not ElvUI_EltreumUI:IsThisASafeSecret(petAlpha, true) then petAlpha = 1 end
 		if modelsDB.unitframe then
+			peteffect = peteffect or CreateFrame("PlayerModel", "EltruismPetEffect")
 			if not petbar.EltruismModelAlphaHooked then
 				hooksecurefunc(petbar, "SetAlpha", function(_, alpha)
 					if not ElvUI_EltreumUI:IsThisASafeSecret(alpha, true) then alpha = 1 end
@@ -637,6 +675,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 		end
 		if modelsDB.powerbar then
 			local petpowerbar = _G["ElvUF_Pet_PowerBar"]
+			powerbareffectpet = powerbareffectpet or CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
 			if modelsDB.modeltypepower == "DEFAULT" then
 				if E.Modern then
 					powerbareffectpet:SetModel(1715069)
@@ -682,6 +721,9 @@ function ElvUI_EltreumUI:CastbarEffects()
 		local modelsDB = db.unitframes.models
 
 		if modelsDB.castbar then
+			RegisterModelUpdaterEvents()
+			castbareffectplayer = castbareffectplayer or CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
+			castbareffecttarget = castbareffecttarget or CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
 			castbar = _G["ElvUF_Player_CastBar"]
 			targetcastbar = _G["ElvUF_Target_CastBar"]
 
@@ -727,15 +769,11 @@ function ElvUI_EltreumUI:CastbarEffects()
 	end
 end
 
-local modelupdater = CreateFrame("FRAME")
-modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
-modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
-modelupdater:RegisterEvent("PLAYER_FOCUS_CHANGED")
-modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
-modelupdater:RegisterEvent("PLAYER_REGEN_DISABLED")
-modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
-modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
+	local uf = E.db.ElvUI_EltreumUI.unitframes
+	if not uf.UFmodifications then return end
+	local modelsDB = uf.models
+	if not (modelsDB.unitframe or modelsDB.powerbar or modelsDB.castbar) then return end
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 	ElvUI_EltreumUI:FocusUFEffects()
 	if E.Modern then --forever seems to have the bug too, but it always returns isvisible true and alpha 1 for power bar
