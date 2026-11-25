@@ -29,6 +29,8 @@ local UnitLevel = _G.UnitLevel
 local UnitEffectiveLevel = _G.UnitEffectiveLevel
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
+local UnitSpellTargetName = _G.UnitSpellTargetName
+local UnitSpellTargetClass = _G.UnitSpellTargetClass
 local UnitReaction = _G.UnitReaction
 local UnitName = _G.UnitName
 local UnitClassification = _G.UnitClassification
@@ -78,6 +80,66 @@ local function refreshstance()
 
 	for i = 1, #stanceID[E.myclass] do
 		stanceID[E.myclass][i] = ElvUI_EltreumUI:SpellInfoShapeshift(nil, i)
+	end
+end
+
+local function FormatCastTarget(targetName, classToken, reaction, showIndicator)
+	if classToken then
+		if not E:NotSecretValue(classToken) then
+			local classColor = GetClassColor(classToken)
+			local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
+			return showIndicator and format("%s > %s%s|r", TARGET, hex, targetName) or format("%s%s|r", hex, targetName)
+		end
+		local color = ElvUI_EltreumUI:classcolorcast(classToken) or 'FFcccccc'
+		return showIndicator and format("%s > |c%s%s|r", TARGET, color, targetName) or format("|c%s%s|r", color, targetName)
+	end
+	if reaction and E:NotSecretValue(reaction) then
+		local color
+		if reaction >= 5 then
+			color = ElvUI_EltreumUI:classcolorcast("FRIENDLY")
+		elseif reaction == 4 then
+			color = ElvUI_EltreumUI:classcolorcast("NEUTRAL")
+		elseif reaction == 3 then
+			color = ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")
+		elseif reaction == 2 or reaction == 1 then
+			color = ElvUI_EltreumUI:classcolorcast("HOSTILE")
+		end
+		if color then
+			return showIndicator and format("%s > |c%s%s|r", TARGET, color, targetName) or format("|c%s%s|r", color, targetName)
+		end
+		return
+	end
+	return showIndicator and format("%s > |cFFcccccc%s|r", TARGET, targetName) or format("|cFFcccccc%s|r", targetName)
+end
+
+local function GetTargetCast(unit, showIndicator)
+	if E.Modern then
+		local spellTarget = UnitSpellTargetName(unit)
+		if spellTarget then
+			return FormatCastTarget(spellTarget, UnitSpellTargetClass(unit), nil, showIndicator)
+		end
+	end
+
+	local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
+	if not name then
+		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo(unit)
+	end
+	if not spellID then return end
+	if E:NotSecretValue(startTime) and E:NotSecretValue(endTime) and endTime <= startTime then return end
+
+	local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
+	local targetname = UnitName(targetUnit)
+	if not targetname then return end
+
+	if UnitIsPlayer(targetUnit) or (E.Retail and UnitInPartyIsAI(targetUnit)) then
+		local _, classes = UnitClass(targetUnit)
+		if not classes then return end
+		return FormatCastTarget(targetname, classes, nil, showIndicator)
+	else
+		local reaction = UnitReaction(targetUnit, "player")
+		if reaction then
+			return FormatCastTarget(targetname, nil, reaction, showIndicator)
+		end
 	end
 end
 
@@ -170,85 +232,13 @@ function ElvUI_EltreumUI:LoadOtherTags()
 	end)
 	E:AddTagInfo('eltruism:difficulty:all', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Colors NPC name according to their difficulty compared to the player"])
 
-	E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
-		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
-		local targetname = UnitName(targetUnit)
-		if not targetname then return end
-		local _ , classes = UnitClass(targetUnit)
-		if not classes then return end
-		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
-		if not name then
-			_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo(unit)
-		end
-		--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
-		--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
-		--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-
-		if spellID and endTime > startTime then
-			if UnitIsPlayer(targetname) then
-				if not E:NotSecretValue(classes) then --secret class so do something else
-					local classColor = GetClassColor(classes)
-					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return format("%s%s|r", hex, targetname)
-				end
-				local color = ElvUI_EltreumUI:classcolorcast(classes)
-				return format("|c%s%s|r", color, targetname)
-			else
-				local reaction = UnitReaction(targetname, "player")
-				if reaction then
-					if reaction >= 5 then
-						return ("|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r")
-					elseif reaction == 4 then
-						return ("|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r")
-					elseif reaction == 3 then
-						return ("|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r")
-					elseif reaction == 2 or reaction == 1 then
-						return ("|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r")
-					end
-				end
-			end
-		end
+	E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_SPELLCAST_STOP UNIT_SPELLCAST_INTERRUPTED UNIT_SPELLCAST_FAILED UNIT_SPELLCAST_CHANNEL_START UNIT_SPELLCAST_CHANNEL_STOP UNIT_TARGET', function(unit)
+		return GetTargetCast(unit, false)
 	end)
 	E:AddTagInfo('eltruism:targetcast', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows Target of Spellcast, does not work for Mouseover casts"])
 
-	E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
-		local targetUnit = ElvUI_EltreumUI:GetTargetUnit(unit)
-		local targetname = UnitName(targetUnit)
-		if not targetname then return end
-		local _ , classes = UnitClass(targetUnit)
-		if not classes then return end
-		local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
-		if not name then
-			_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo(unit)
-		end
-		--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
-		--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
-		--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-
-		if spellID and endTime > startTime then
-			if UnitIsPlayer(targetname) then
-				if not E:NotSecretValue(classes) then --secret class so do something else
-					local classColor = GetClassColor(classes)
-					local hex = classColor and ElvUI_EltreumUI:Hex(classColor) or '|cFFcccccc'
-					return format("%s%s|r", hex, targetname)
-				end
-				local color = ElvUI_EltreumUI:classcolorcast(classes)
-				return format("%s > |c%s%s|r", TARGET, color, targetname)
-			else
-				local reaction = UnitReaction(targetname, "player")
-				if reaction then
-					if reaction >= 5 then
-						return (TARGET.." > |c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r")
-					elseif reaction == 4 then
-						return (TARGET.." > |c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r")
-					elseif reaction == 3 then
-						return (TARGET.." > |c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r")
-					elseif reaction == 2 or reaction == 1 then
-						return (TARGET.." > |c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r")
-					end
-				end
-			end
-		end
+	E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_SPELLCAST_STOP UNIT_SPELLCAST_INTERRUPTED UNIT_SPELLCAST_FAILED UNIT_SPELLCAST_CHANNEL_START UNIT_SPELLCAST_CHANNEL_STOP UNIT_TARGET', function(unit)
+		return GetTargetCast(unit, true)
 	end)
 	E:AddTagInfo('eltruism:targetcast:indicator', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows Target of Spellcast, does not work for Mouseover casts. Includes a Target > indicator"])
 
