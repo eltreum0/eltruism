@@ -723,20 +723,26 @@ function ElvUI_EltreumUI:GradientMode()
 	end
 end
 
+local function SetTotemGroupBackground(...)
+	for j = 1, select("#", ...) do
+		local unitbutton = select(j, ...)
+		if unitbutton.bg then
+			unitbutton.bg:SetVertexColor(0, 0, 0)
+		end
+	end
+end
+
+local function IterateTotemGroups(...)
+	for i = 1, select("#", ...) do
+		local group = select(i, ...)
+		SetTotemGroupBackground(group:GetChildren())
+	end
+end
+
 function ElvUI_EltreumUI:TotemBackground()
 	local header = _G["ElvUF_Player"]
 	if not header then return end
-	for i = 1, header:GetNumChildren() do
-		local group = select(i, header:GetChildren())
-		if group and group.GetNumChildren then
-			for j = 1, group:GetNumChildren() do
-				local unitbutton = select(j, group:GetChildren())
-				if unitbutton and unitbutton.bg then
-					unitbutton.bg:SetVertexColor(0, 0, 0)
-				end
-			end
-		end
-	end
+	IterateTotemGroups(header:GetChildren())
 end
 
 function ElvUI_EltreumUI:ShamanTextureMode()
