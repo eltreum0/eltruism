@@ -898,99 +898,93 @@ end)
 --hook if frame has smoothing
 if E.db.unitframe.units.player.fader.smooth > 0 then
 	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
+		if not (_G["EltruismPlayerEffect"] or _G["EltruismPlayerPowerBarEffect"] or _G["EltruismPetEffect"] or _G["EltruismPetPowerBarEffect"]) then return end
+		if not frame or not endAlpha then return end
 		if ElvUI_EltreumUI:EncounterCheck() then return end
-		if frame and endAlpha then
-			local frameName = frame:GetName()
-			if frameName ~= nil then
-				if endAlpha == 0 then
-					if frameName:find("Player", 1, true) then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-						end
-					elseif frameName:find("Pet", 1, true) then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
-						end
+		if frame == _G["ElvUF_Player"] then
+			if endAlpha == 0 then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			elseif endAlpha == 1 then
+				if _G["EltruismPlayerEffect"] then
+					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					else
+						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 					end
-				elseif endAlpha == 1 then
-					if frameName:find("Player", 1, true) then
-						if _G["EltruismPlayerEffect"] then
-							if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-								_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-							else
-								_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
-							end
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							if E.Modern then
-								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-							else
-								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.8)
-							end
-						end
-					elseif frameName:find("Pet", 1, true) then
-						if _G["EltruismPetEffect"] then
-							if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-								_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-							else
-								_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
-							end
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							if E.Modern then
-								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
-							else
-								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.6)
-							end
-						end
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					if E.Modern then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+					else
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.8)
+					end
+				end
+			end
+		elseif frame == _G["ElvUF_Pet"] then
+			if endAlpha == 0 then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+				end
+			elseif endAlpha == 1 then
+				if _G["EltruismPetEffect"] then
+					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+						_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					else
+						_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+					end
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					if E.Modern then
+						_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+					else
+						_G["EltruismPetPowerBarEffect"]:SetAlpha(0.6)
 					end
 				end
 			end
 		end
 	end)
 	hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
+		if not (_G["EltruismPlayerEffect"] or _G["EltruismPlayerPowerBarEffect"] or _G["EltruismPetEffect"] or _G["EltruismPetPowerBarEffect"]) then return end
+		if not frame or not endAlpha then return end
 		if ElvUI_EltreumUI:EncounterCheck() then return end
-		if frame and endAlpha then
-			local frameName = frame:GetName()
-			if frameName ~= nil then
-				if endAlpha == 0 then
-					if frameName:find("Player", 1, true) then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-						end
-					elseif frameName:find("Pet", 1, true) then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
-						end
-					end
-				elseif endAlpha == 1 then
-					if frameName:find("Player", 1, true) then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-						end
-					elseif frameName:find("Pet", 1, true) then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
-						end
-					end
+		if frame == _G["ElvUF_Player"] then
+			if endAlpha == 0 then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			elseif endAlpha == 1 then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+				end
+			end
+		elseif frame == _G["ElvUF_Pet"] then
+			if endAlpha == 0 then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+				end
+			elseif endAlpha == 1 then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
 				end
 			end
 		end
