@@ -22,17 +22,7 @@ local tostring = _G.tostring
 local DEFAULT_RING = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga'
 local GCD_SPELL_ID = 61304
 
-local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", E.UIParent)
-rootFrame:SetSize(8, 8)
-rootFrame:Hide()
-
-local cursorFrame = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
-cursorFrame:SetPoint("CENTER", rootFrame, "CENTER", 0, 0)
-cursorFrame:SetFrameStrata("TOOLTIP")
-cursorFrame:SetFrameLevel(1)
-local cursorTex = cursorFrame:CreateTexture(nil, "OVERLAY")
-cursorTex:SetAllPoints(cursorFrame)
-cursorFrame:Hide()
+local rootFrame, cursorFrame, cursorTex, gcdFrame, castFrame
 
 local function createSwipeRing(name, level)
 	local cd = CreateFrame("Cooldown", name, rootFrame)
@@ -49,9 +39,6 @@ local function createSwipeRing(name, level)
 	cd:Hide()
 	return cd
 end
-
-local gcdFrame = createSwipeRing("EltruismCursorGCD", 2)
-local castFrame = createSwipeRing("EltruismCursorCast", 3)
 
 local cursordb, castdb, gcddb, combatdb
 local castVisible, gcdVisible, combatVisible = false, false, false
@@ -130,15 +117,6 @@ local function setCombatVisible(visible)
 	end
 	updateRootVisibility()
 end
-
-castFrame:SetScript("OnCooldownDone", function()
-	activeCastID = nil
-	setCastVisible(false)
-end)
-
-gcdFrame:SetScript("OnCooldownDone", function()
-	setGCDVisible(false)
-end)
 
 local function startCastSwipe(startSec, durationSec, durationObj)
 	if useCastGradient then
@@ -227,7 +205,16 @@ local function handleCastStop(event, castID)
 	setCastVisible(false)
 end
 
-castFrame:SetScript("OnEvent", function(_, event, unit, castID)
+local function OnCastCooldownDone()
+	activeCastID = nil
+	setCastVisible(false)
+end
+
+local function OnGCDCooldownDone()
+	setGCDVisible(false)
+end
+
+local function OnCastFrameEvent(_, event, unit, castID)
 	if unit and unit ~= "player" then return end
 	if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_DELAYED" then
 		handleCastStart()
@@ -238,7 +225,7 @@ castFrame:SetScript("OnEvent", function(_, event, unit, castID)
 	else
 		handleCastStop(event, castID)
 	end
-end)
+end
 
 local function queryAndShowGCD(spellID)
 	local queryID = (E.Modern or E.Mists or E.Wrath or E.TBC) and GCD_SPELL_ID or ((spellID and E:NotSecretValue(spellID)) and spellID or GCD_SPELL_ID)
@@ -264,7 +251,7 @@ local function queryAndShowGCD(spellID)
 	end
 end
 
-gcdFrame:SetScript("OnEvent", function(_, event, unit, _, spellID)
+local function OnGCDFrameEvent(_, event, unit, _, spellID)
 	if unit and unit ~= "player" then return end
 	if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_SUCCEEDED" then
 		queryAndShowGCD(spellID)
@@ -274,11 +261,34 @@ gcdFrame:SetScript("OnEvent", function(_, event, unit, _, spellID)
 			setGCDVisible(false)
 		end
 	end
-end)
+end
 
-cursorFrame:SetScript("OnEvent", function(_, event)
+local function OnCursorFrameEvent(_, event)
 	setCombatVisible(event == "PLAYER_REGEN_DISABLED")
-end)
+end
+
+local function CreateCursorFrames()
+	rootFrame = CreateFrame("Frame", "EltruismCursorRoot", E.UIParent)
+	rootFrame:SetSize(8, 8)
+	rootFrame:Hide()
+
+	cursorFrame = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
+	cursorFrame:SetPoint("CENTER", rootFrame, "CENTER", 0, 0)
+	cursorFrame:SetFrameStrata("TOOLTIP")
+	cursorFrame:SetFrameLevel(1)
+	cursorTex = cursorFrame:CreateTexture(nil, "OVERLAY")
+	cursorTex:SetAllPoints(cursorFrame)
+	cursorFrame:Hide()
+
+	gcdFrame = createSwipeRing("EltruismCursorGCD", 2)
+	castFrame = createSwipeRing("EltruismCursorCast", 3)
+
+	castFrame:SetScript("OnCooldownDone", OnCastCooldownDone)
+	gcdFrame:SetScript("OnCooldownDone", OnGCDCooldownDone)
+	castFrame:SetScript("OnEvent", OnCastFrameEvent)
+	gcdFrame:SetScript("OnEvent", OnGCDFrameEvent)
+	cursorFrame:SetScript("OnEvent", OnCursorFrameEvent)
+end
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
@@ -326,6 +336,7 @@ function ElvUI_EltreumUI:CastCursor()
 	combatdb = cursors.cursorcursor
 
 	if not cursordb.enable then
+		if not rootFrame then return end
 		castFrame:UnregisterAllEvents()
 		gcdFrame:UnregisterAllEvents()
 		cursorFrame:UnregisterAllEvents()
@@ -335,6 +346,8 @@ function ElvUI_EltreumUI:CastCursor()
 		setCombatVisible(false)
 		return
 	end
+
+	if not rootFrame then CreateCursorFrames() end
 
 	if cursordb.fixlag == 0 or cursordb.fixlag == "0" then
 		SetCVar("HardwareCursor", 0)
