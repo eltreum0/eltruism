@@ -28,6 +28,7 @@ local gradientNameCacheCount = 0
 local gradientNameDefaultCacheCount = 0
 local MAX_NAME_CACHE_SIZE = 500
 local colorupdateframe
+ElvUI_EltreumUI.EltruismTextureVersion = 0
 
 --clear cached name tables
 local function ClearGradientNameCache(cache, count)
@@ -427,6 +428,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		RAID_CLASS_COLORS["DEMONHUNTER"].colorSrt = E:RGBToHex(unitframecustomgradients["DEMONHUNTER"].r1,unitframecustomgradients["DEMONHUNTER"].g1,unitframecustomgradients["DEMONHUNTER"].b1, "ff")
 	end]]
 
+	ElvUI_EltreumUI.EltruismTextureVersion = ElvUI_EltreumUI.EltruismTextureVersion + 1
 	wipe(gradientColorCache)
 	wipe(gradientCustomColorCache)
 
@@ -621,38 +623,33 @@ end
 local function GetCachedColors(cache, unitclass, invert, alpha, isBG, customalpha, isHealth)
 	local c1 = cache[unitclass]
 	if not c1 then return end
-	local c2 = c1[invert or false]
-	if not c2 then return end
-	local c3 = c2[alpha or false]
-	if not c3 then return end
-	local c4 = c3[isBG or false]
-	if not c4 then return end
-	local c5 = c4[customalpha or 0]
-	if not c5 then return end
-	local entry = c5[isHealth or false]
+	local flags = (invert and 1 or 0) + (alpha and 2 or 0) + (isBG and 4 or 0) + (isHealth and 8 or 0)
+	local entry
+	if customalpha and customalpha ~= 0 then
+		local ca = c1[16]
+		local cf = ca and ca[flags]
+		entry = cf and cf[customalpha]
+	else
+		entry = c1[flags]
+	end
 	if entry then
 		return entry[1], entry[2]
 	end
 end
 
 local function SetCachedColors(cache, minColor, maxColor, unitclass, invert, alpha, isBG, customalpha, isHealth)
-	local invKey = invert or false
-	local alphaKey = alpha or false
-	local bgKey = isBG or false
-	local custAlphaKey = customalpha or 0
-	local healthKey = isHealth or false
-
+	local flags = (invert and 1 or 0) + (alpha and 2 or 0) + (isBG and 4 or 0) + (isHealth and 8 or 0)
 	local c1 = cache[unitclass]
 	if not c1 then c1 = {} cache[unitclass] = c1 end
-	local c2 = c1[invKey]
-	if not c2 then c2 = {} c1[invKey] = c2 end
-	local c3 = c2[alphaKey]
-	if not c3 then c3 = {} c2[alphaKey] = c3 end
-	local c4 = c3[bgKey]
-	if not c4 then c4 = {} c3[bgKey] = c4 end
-	local c5 = c4[custAlphaKey]
-	if not c5 then c5 = {} c4[custAlphaKey] = c5 end
-	c5[healthKey] = { minColor, maxColor }
+	if customalpha and customalpha ~= 0 then
+		local ca = c1[16]
+		if not ca then ca = {} c1[16] = ca end
+		local cf = ca[flags]
+		if not cf then cf = {} ca[flags] = cf end
+		cf[customalpha] = { minColor, maxColor }
+	else
+		c1[flags] = { minColor, maxColor }
+	end
 end
 
 --resolve gradient colors
