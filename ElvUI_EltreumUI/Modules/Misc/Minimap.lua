@@ -12,17 +12,16 @@ local Enum = _G.Enum
 local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local pairs = _G.pairs
-local next = _G.next
 local hooksecurefunc = _G.hooksecurefunc
 local math = _G.math
 local mathabs = math.abs
 local mathfloor = math.floor
 local mathmax = math.max
 local utf8sub = _G.string.utf8sub
-local ipairs = _G.ipairs
+local strfind = _G.string.find
 local select = _G.select
 local type = _G.type
-local rawget = _G.rawget
+local setmetatable = _G.setmetatable
 
 --scale the world map in retail
 function ElvUI_EltreumUI:WorldMapScale()
@@ -346,14 +345,90 @@ local function GetMinimapVerticalCrop()
 	return crop, preset.mask
 end
 
---HereBeDragons pins fix for rectangle minimap (questie, rarescanner and others)
-local HBD_PIN_LIBS = {
-	"HereBeDragons-Pins-2.0",
-	"HereBeDragonsQuestie-Pins-2.0",
-}
-local HBD_THROTTLE = 0 --controls how fast the OnUpdate runs, if higher than zero it will start blinking, i dont like that so for now keep it at zero
+--Clip minimap pins outside the rectangle minimap area
+local clipHalfHeight = 0
+local lastMinimapChildCount = 0
+local pinClipElapsed = 0
+local pinClipActive = false
+local PIN_SCAN_INTERVAL = 0.25
+local hookedPins = setmetatable({}, { __mode = "k" })
+local hiddenPins = setmetatable({}, { __mode = "k" })
 
-local function HereBeDragonsPinSetAlpha(self, alpha, skipFlag)
+local skippedPinFrames = {
+	["MinimapBackdrop"] = true,
+	["MinimapCompassTexture"] = true,
+	["MinimapCluster"] = true,
+	["TimeManagerClockButton"] = true,
+	["GameTimeFrame"] = true,
+	["MiniMapTracking"] = true,
+	["MiniMapTrackingFrame"] = true,
+	["MiniMapTrackingButton"] = true,
+	["MiniMapMailFrame"] = true,
+	["MiniMapLFGFrame"] = true,
+	["LFGMinimapFrame"] = true,
+	["QueueStatusMinimapButton"] = true,
+	["QueueStatusButton"] = true,
+	["QueueStatusFrame"] = true,
+	["ElvUIQueueStatus"] = true,
+	["GarrisonLandingPageMinimapButton"] = true,
+	["ExpansionLandingPageMinimapButton"] = true,
+	["AddonCompartmentFrame"] = true,
+	["ElvConfigToggle"] = true,
+	["MMHolder"] = true,
+	["MiniMapInstanceDifficulty"] = true,
+	["GuildInstanceDifficulty"] = true,
+	["InstanceDifficulty"] = true,
+	["MiniMapBattlefieldFrame"] = true,
+	["BattlegroundShine"] = true,
+	["MiniMapRecordingButton"] = true,
+	["MiniMapVoiceChatFrame"] = true,
+	["MinimapZoneTextButton"] = true,
+	["SubZoneTextFrame"] = true,
+	["MinimapZoomIn"] = true,
+	["MinimapZoomOut"] = true,
+	["MiniMapWorldMapButton"] = true,
+	["MinimapNorthTag"] = true,
+	["MinimapPanel"] = true,
+	["HybridMinimap"] = true,
+	["FeedbackUIButton"] = true,
+}
+
+local function SetMinimapPinShown(pin, isShown)
+	if isShown then
+		if pin.EltruismHidden then
+			pin:SetAlpha(pin.EltruismOrigAlpha or 1, true)
+			if pin.EltruismMouseEnabled then
+				pin:EnableMouse(true)
+				pin.EltruismMouseEnabled = nil
+			end
+			if pin.EltruismMouseMotion then
+				pin:SetMouseMotionEnabled(true)
+				pin.EltruismMouseMotion = nil
+			end
+			pin.EltruismHidden = nil
+			pin.EltruismOrigAlpha = nil
+			hiddenPins[pin] = nil
+		end
+	elseif not pin.EltruismHidden then
+		local currentAlpha = pin:GetAlpha()
+		if currentAlpha and currentAlpha > 0 then
+			pin.EltruismOrigAlpha = currentAlpha
+		end
+		pin:SetAlpha(0, true)
+		if pin:IsMouseEnabled() then
+			pin.EltruismMouseEnabled = true
+			pin:EnableMouse(false)
+		end
+		if pin.IsMouseMotionEnabled and pin:IsMouseMotionEnabled() then
+			pin.EltruismMouseMotion = true
+			pin:SetMouseMotionEnabled(false)
+		end
+		pin.EltruismHidden = true
+		hiddenPins[pin] = true
+	end
+end
+
+local function OnPinSetAlpha(self, alpha, skipFlag)
 	if not skipFlag and self.EltruismHidden then
 		if alpha and alpha > 0 then
 			self.EltruismOrigAlpha = alpha
@@ -362,239 +437,167 @@ local function HereBeDragonsPinSetAlpha(self, alpha, skipFlag)
 	end
 end
 
-local function HereBeDragonsPinShow(self)
+local function OnPinShow(self)
 	if self.EltruismHidden then
 		self:SetAlpha(0, true)
 	end
 end
 
-local function HereBeDragonsPinSetPoint(self)
-	if self.EltruismLib then
-		self.EltruismLib.EltruismPinsMoved = true
-	end
-end
-
---hook pins to track movement and keep alpha hidden if needed
-local function HookHereBeDragonsPin(pin, lib)
-	if not pin or pin.EltruismHbdHooked or not pin.IsObjectType or not pin:IsObjectType("Frame") then
-		return
-	end
-
-	pin.EltruismLib = lib
-
-	--if pin is hidden by rectangle minimap keep it hidden
-	hooksecurefunc(pin, "SetAlpha", HereBeDragonsPinSetAlpha)
-	hooksecurefunc(pin, "Show", HereBeDragonsPinShow)
-	--flag lib as moved when a pin moves
-	hooksecurefunc(pin, "SetPoint", HereBeDragonsPinSetPoint)
-	pin.EltruismHbdHooked = true
-end
-
---hide or show pins by setting alpha to avoid breaking other addons
-function ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, isShown)
-	if isShown then
+local function ApplyPinClip(pin, yOfs)
+	if clipHalfHeight <= 0 then
 		if pin.EltruismHidden then
-			local restoreAlpha = pin.EltruismOrigAlpha or 1
-			pin:SetAlpha(restoreAlpha, true)
-			if pin.EnableMouse then
-				pin:EnableMouse(true)
-			end
-			pin.EltruismHidden = nil
-			pin.EltruismOrigAlpha = nil
-			if pin.EltruismLib and pin.EltruismLib.EltruismHiddenPins then
-				pin.EltruismLib.EltruismHiddenPins[pin] = nil
-			end
+			SetMinimapPinShown(pin, true)
 		end
+		return
+	end
+	if yOfs == nil then
+		local point, relativeTo, relativePoint, _, y = pin:GetPoint(1)
+		if point == "CENTER" and relativeTo == Minimap and relativePoint == "CENTER" then
+			yOfs = y
+		end
+	end
+	if yOfs then
+		local shouldShow = mathabs(yOfs * pin:GetScale()) <= clipHalfHeight
+		if shouldShow == (pin.EltruismHidden == true) then
+			SetMinimapPinShown(pin, shouldShow)
+		end
+	end
+end
+
+local function OnPinSetPoint(self, point, arg2, arg3, arg4, arg5)
+	if clipHalfHeight <= 0 then
+		if self.EltruismHidden then
+			SetMinimapPinShown(self, true)
+		end
+		return
+	end
+	if point == "CENTER" then
+		local yOfs
+		if arg2 == Minimap and arg3 == "CENTER" and type(arg5) == "number" then
+			yOfs = arg5
+		elseif arg2 == Minimap and type(arg4) == "number" then
+			yOfs = arg4
+		elseif type(arg2) == "number" and type(arg3) == "number" and self:GetParent() == Minimap then
+			yOfs = arg3
+		end
+		if yOfs then
+			ApplyPinClip(self, yOfs)
+			return
+		end
+	end
+	if self.EltruismHidden then
+		SetMinimapPinShown(self, true)
+	end
+end
+
+local function IsCandidateMinimapPin(frame)
+	if hookedPins[frame] or frame:IsForbidden() then
+		return false
+	end
+	if frame == Minimap.backdrop or frame == Minimap.location or frame == Minimap.ZoomIn or frame == Minimap.ZoomOut or frame == Minimap.ZoomHitArea or frame == Minimap.EltruismRotateShadow then
+		return false
+	end
+	if frame.dataObject or frame.EltruismInBar or frame.EltruismSkinned then
+		return false
+	end
+	if frame:GetScript("OnDragStart") or frame:GetNumPoints() > 1 then
+		return false
+	end
+	local name = frame:GetName()
+	if name then
+		if skippedPinFrames[name]
+			or strfind(name, "^LibDBIcon10_")
+			or strfind(name, "^ElvUI")
+			or strfind(name, "^Eltruism")
+			or strfind(name, "^Minimap")
+			or strfind(name, "^MiniMap")
+			or strfind(name, "^SexyMap") then
+			return false
+		end
+	end
+	return true
+end
+
+local function HookMinimapPin(pin)
+	hookedPins[pin] = true
+	hooksecurefunc(pin, "SetAlpha", OnPinSetAlpha)
+	hooksecurefunc(pin, "Show", OnPinShow)
+	hooksecurefunc(pin, "SetPoint", OnPinSetPoint)
+	ApplyPinClip(pin)
+end
+
+local function ScanMinimapPinChildren(...)
+	for i = 1, select("#", ...) do
+		local child = select(i, ...)
+		if IsCandidateMinimapPin(child) then
+			HookMinimapPin(child)
+		end
+	end
+end
+
+local function ScanMinimapPins(force)
+	local numChildren = Minimap:GetNumChildren()
+	if not force and numChildren == lastMinimapChildCount then
+		return
+	end
+	lastMinimapChildCount = numChildren
+	ScanMinimapPinChildren(Minimap:GetChildren())
+end
+
+local pinClipFrame = CreateFrame("Frame")
+
+local function OnPinClipUpdate(_, elapsed)
+	pinClipElapsed = pinClipElapsed + elapsed
+	if pinClipElapsed < PIN_SCAN_INTERVAL then
+		return
+	end
+	pinClipElapsed = 0
+	ScanMinimapPins()
+end
+
+local function OnPinClipEvent(_, event)
+	if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" or event == "MINIMAP_UPDATE_ZOOM" then
+		ScanMinimapPins(true)
 	else
-		if not pin.EltruismHidden then
-			local currentAlpha = pin:GetAlpha()
-			if currentAlpha and currentAlpha > 0 then
-				pin.EltruismOrigAlpha = currentAlpha
-			end
-			pin:SetAlpha(0, true)
-			if pin.EnableMouse then
-				pin:EnableMouse(false)
-			end
-			pin.EltruismHidden = true
-			if pin.EltruismLib then
-				pin.EltruismLib.EltruismHiddenPins = pin.EltruismLib.EltruismHiddenPins or {}
-				pin.EltruismLib.EltruismHiddenPins[pin] = true
-			end
-		end
+		ScanMinimapPins()
 	end
 end
+pinClipFrame:SetScript("OnEvent", OnPinClipEvent)
 
-local function RestoreInactiveHiddenPins(lib)
-	if not lib or not lib.EltruismHiddenPins or not lib.activeMinimapPins or not next(lib.EltruismHiddenPins) then
-		return
-	end
-	for pin in pairs(lib.EltruismHiddenPins) do
-		if not lib.activeMinimapPins[pin] then
-			ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, true)
-		end
-	end
-end
-
---refresh pin visibility based on rectangle minimap crop
-function ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
-	if not lib or not lib.activeMinimapPins or not Minimap then
-		return
-	end
-
+function ElvUI_EltreumUI:UpdateMinimapPinClip()
 	local crop = GetMinimapVerticalCrop()
 	if crop <= 0 then
-		if lib.EltruismHiddenPins and next(lib.EltruismHiddenPins) then
-			for pin in pairs(lib.EltruismHiddenPins) do
-				ElvUI_EltreumUI:SetHereBeDragonsPinShown(pin, true)
-			end
+		clipHalfHeight = 0
+		if pinClipActive then
+			pinClipFrame:UnregisterAllEvents()
+			pinClipFrame:SetScript("OnUpdate", nil)
+			pinClipActive = false
+		end
+		for pin in pairs(hiddenPins) do
+			SetMinimapPinShown(pin, true)
 		end
 		return
-	end
-
-	--restore any pins hidden
-	if lib.EltruismHiddenPins and next(lib.EltruismHiddenPins) then
-		RestoreInactiveHiddenPins(lib)
 	end
 
 	local mapHeight = Minimap:GetHeight() or E.MinimapSize or 140
-	local halfHeightLimit = ((mapHeight - (crop * 2)) * 0.5) - 2
-	local minimapCenterY, scale
+	clipHalfHeight = ((mapHeight - (crop * 2)) * 0.5) - 2
 
-	--check if pins are inside the rectangle boundaries
-	for pin in pairs(lib.activeMinimapPins) do
-		local shouldShow = true
-		local _, _, _, _, yOfs = pin:GetPoint(1)
-		if yOfs then
-			shouldShow = mathabs(yOfs) <= halfHeightLimit
-		elseif pin.GetCenter then
-			if minimapCenterY == nil then
-				minimapCenterY = select(2, Minimap:GetCenter()) or false
-				scale = Minimap:GetEffectiveScale() or 1
-			end
-			if minimapCenterY then
-				local pinCenterY = select(2, pin:GetCenter())
-				if pinCenterY then
-					shouldShow = (mathabs(pinCenterY - minimapCenterY) / scale) <= halfHeightLimit
-				end
-			end
-		end
-		if shouldShow ~= not pin.EltruismHidden then
-			self:SetHereBeDragonsPinShown(pin, shouldShow)
-		end
+	if not pinClipActive then
+		pinClipActive = true
+		pinClipFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+		pinClipFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+		pinClipFrame:RegisterEvent("ZONE_CHANGED")
+		pinClipFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
+		pinClipFrame:RegisterEvent("MINIMAP_UPDATE_ZOOM")
+		pinClipFrame:RegisterEvent("ADDON_LOADED")
+		pinClipFrame:SetScript("OnUpdate", OnPinClipUpdate)
+	end
+
+	ScanMinimapPins(true)
+	for pin in pairs(hookedPins) do
+		ApplyPinClip(pin)
 	end
 end
-
-local function ApplyHereBeDragonsPinsFix(lib)
-	if not lib or not lib.updateFrame or not lib.activeMinimapPins then
-		return
-	end
-
-	if not lib.EltruismHbdHooked then
-		--hook icon creation and removal methods
-		if lib.AddMinimapIconWorld then
-			hooksecurefunc(lib, "AddMinimapIconWorld", function(_, icon)
-				if icon then
-					HookHereBeDragonsPin(icon, lib)
-					lib.EltruismPinsMoved = true
-				end
-			end)
-		end
-		if lib.AddMinimapIconMap then
-			hooksecurefunc(lib, "AddMinimapIconMap", function(_, icon)
-				if icon then
-					HookHereBeDragonsPin(icon, lib)
-					lib.EltruismPinsMoved = true
-				end
-			end)
-		end
-		if lib.RemoveMinimapIcon then
-			hooksecurefunc(lib, "RemoveMinimapIcon", function(_, _, icon)
-				if icon and icon.EltruismHidden then
-					ElvUI_EltreumUI:SetHereBeDragonsPinShown(icon, true)
-				end
-			end)
-		end
-		if lib.RemoveAllMinimapIcons then
-			hooksecurefunc(lib, "RemoveAllMinimapIcons", function()
-				RestoreInactiveHiddenPins(lib)
-			end)
-		end
-
-		--throttle onupdate to avoid unnecessary checks
-		lib.updateFrame:HookScript("OnUpdate", function(_, elapsed)
-			if GetMinimapVerticalCrop() <= 0 and (not lib.EltruismHiddenPins or not next(lib.EltruismHiddenPins)) then
-				return
-			end
-			lib.EltruismTimer = (lib.EltruismTimer or 0) + elapsed
-			if lib.EltruismTimer < HBD_THROTTLE then
-				return
-			end
-			lib.EltruismTimer = 0
-
-			--hook any new pin that became active
-			local foundUnhookedPin = false
-			for pin in pairs(lib.activeMinimapPins) do
-				if pin and not pin.EltruismHbdHooked then
-					HookHereBeDragonsPin(pin, lib)
-					foundUnhookedPin = true
-				end
-			end
-
-			--return early if stationary and no new pins
-			if not foundUnhookedPin and not lib.EltruismPinsMoved then
-				return
-			end
-			lib.EltruismPinsMoved = nil
-
-			ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
-		end)
-		lib.EltruismHbdHooked = true
-	end
-
-	--hook existing pins
-	if lib.minimapPins then
-		for pin in pairs(lib.minimapPins) do
-			HookHereBeDragonsPin(pin, lib)
-		end
-	end
-	for pin in pairs(lib.activeMinimapPins) do
-		HookHereBeDragonsPin(pin, lib)
-	end
-	ElvUI_EltreumUI:RefreshHereBeDragonsPins(lib)
-end
-
---hook herebedragons to mask pins outside rectangle minimap
-function ElvUI_EltreumUI:HereBeDragonsPinsFix()
-	if not E.db or not E.db.ElvUI_EltreumUI or not E.db.ElvUI_EltreumUI.otherstuff then return end
-
-	if _G.LibStub then
-		for _, libName in ipairs(HBD_PIN_LIBS) do
-			local lib = _G.LibStub(libName, true)
-			if lib then
-				ApplyHereBeDragonsPinsFix(lib)
-			end
-		end
-	end
-
-	--Questie 12.8+ moved HereBeDragons-Pins into QuestieLoader._modules["HBDPins"] instead of LibStub
-	local loader = _G.QuestieLoader
-	local modules = type(loader) == "table" and rawget(loader, "_modules")
-	local questiePins = type(modules) == "table" and rawget(modules, "HBDPins")
-	if type(questiePins) == "table" then
-		ApplyHereBeDragonsPinsFix(questiePins)
-	end
-end
-
---some addons like questie or rarescanner load late
-local hbdEventFrame = CreateFrame("Frame")
-hbdEventFrame:RegisterEvent("ADDON_LOADED")
-hbdEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-hbdEventFrame:SetScript("OnEvent", function(_, event, addon)
-	local isLoaded = IsAddOnLoaded("Questie") or IsAddOnLoaded("RareScanner")
-	if event == "PLAYER_ENTERING_WORLD" or addon == "Questie" or addon == "RareScanner" or isLoaded or (addon and string.find(addon, "HereBeDragons")) then
-		ElvUI_EltreumUI:HereBeDragonsPinsFix()
-	end
-end)
 
 function ElvUI_EltreumUI:GetIconSettings(button)
 	local defaults = P.general.minimap.icons[button]
@@ -668,7 +671,7 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 				end
 			end
 		end
-		self:HereBeDragonsPinsFix()
+		self:UpdateMinimapPinClip()
 		return
 	end
 
@@ -736,7 +739,7 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 		_G.HybridMinimap.MapCanvas:SetUseMaskTexture(true)
 	end
 
-	self:HereBeDragonsPinsFix()
+	self:UpdateMinimapPinClip()
 end
 
 -- Minimap location text gradient and mover
