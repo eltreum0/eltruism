@@ -94,31 +94,34 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 end
 
 --bres
-local bresframe = CreateFrame("Frame", "EltruismBattleResFrame")
-local spellicon = bresframe:CreateTexture("EltruismBattleResFrameTexture")
-spellicon:SetParent(bresframe)
-spellicon:SetSize(30, 30)
-spellicon:SetPoint("LEFT", bresframe)
-local spellcount = bresframe:CreateFontString("EltruismBattleResFrameCount", "OVERLAY", "GameFontNormal")
-spellcount:SetParent(bresframe)
-spellcount:SetPoint("CENTER", spellicon)
-spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-spellcount:SetTextColor(1, 1, 1)
-local spellcd = bresframe:CreateFontString("EltruismBattleResText", "OVERLAY", "GameFontNormal")
-spellcd:SetParent(bresframe)
-spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
-spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-spellcd:SetTextColor(1, 1, 1)
-spellcd:SetText(_G.READY)
-bresframe:SetPoint("TOPLEFT", E.UIParent, "TOPLEFT", 342, -28)
-if E.Modern then
-	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
+local bresframe, spellicon, spellcount, spellcd
+local function CreateBattleResFrame()
+	bresframe = CreateFrame("Frame", "EltruismBattleResFrame")
+	spellicon = bresframe:CreateTexture("EltruismBattleResFrameTexture")
+	spellicon:SetParent(bresframe)
+	spellicon:SetSize(30, 30)
+	spellicon:SetPoint("LEFT", bresframe)
+	spellcount = bresframe:CreateFontString("EltruismBattleResFrameCount", "OVERLAY", "GameFontNormal")
+	spellcount:SetParent(bresframe)
+	spellcount:SetPoint("CENTER", spellicon)
+	spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	spellcount:SetTextColor(1, 1, 1)
+	spellcd = bresframe:CreateFontString("EltruismBattleResText", "OVERLAY", "GameFontNormal")
+	spellcd:SetParent(bresframe)
+	spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
+	spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	spellcd:SetTextColor(1, 1, 1)
+	spellcd:SetText(_G.READY)
+	bresframe:SetPoint("TOPLEFT", E.UIParent, "TOPLEFT", 342, -28)
+	if E.Modern then
+		E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
+	end
+	bresframe:SetParent(E.UIParent)
+	bresframe:SetAlpha(0)
+	--bresframe:RegisterEvent("PLAYER_REGEN_DISABLED")
+	bresframe:SetSize(97, 30)
+	S:HandleFrame(bresframe)
 end
-bresframe:SetParent(E.UIParent)
-bresframe:SetAlpha(0)
---bresframe:RegisterEvent("PLAYER_REGEN_DISABLED")
-bresframe:SetSize(97, 30)
-S:HandleFrame(bresframe)
 
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
@@ -182,6 +185,7 @@ end
 
 function ElvUI_EltreumUI:BattleRes()
 	if E.Modern and E.db.ElvUI_EltreumUI.otherstuff.bres then
+		if not bresframe then CreateBattleResFrame() end
 		local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
 		local DifficultyID = select(3, GetInstanceInfo())
 
