@@ -162,9 +162,10 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 		frame.isRare = false
 	end
 
-	local targetUnit = ElvUI_EltreumUI:GetTargetUnit(frame.__unit)
-	local isTank = E.myrole == 'TANK' or E.GroupRoles.player == 'TANK'
-	local offTank = isTank and (E:UnitExists(targetUnit) and E:UnitNotUnit(targetUnit, 'player')) and ((db.beingTankedByPet and E.ThreatPets[NP:UnitNPCID(targetUnit)]) or (db.beingTankedByTank and E:UnitTankedByGroup(frame.__unit)))
+	local indicator = frame.ThreatIndicator
+	local isTank = indicator.isTank
+	local offTank = indicator.offTank
+
 
 	local tex = frame.Health:GetStatusBarTexture()
 	if not tex then
@@ -181,7 +182,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(nameplate, status)
 
 		local threatType
 		if status == 3 then -- securely tanking
-			threatType = offTank and "OFFTANK" or (isTank and "GOODTHREAT" or "BADTHREAT")
+			threatType = (indicator.useSolo or isTank) and "GOODTHREAT" or "BADTHREAT"
 		elseif status == 2 then -- insecurely tanking
 			threatType = offTank and "OFFTANKBADTHREATTRANSITION" or (isTank and "BADTHREATTRANSITION" or "GOODTHREATTRANSITION")
 		elseif status == 1 then -- not tanking but threat higher than tank
