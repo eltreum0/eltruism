@@ -1994,6 +1994,15 @@ function ElvUI_EltreumUI:Borders()
 		ElvUI_EltreumUI:PartyBorders()
 		ElvUI_EltreumUI:PetBorders()
 		BordersPart2()
+		local bordersDB = E.db.ElvUI_EltreumUI.borders
+		if bordersDB.auraborder or bordersDB.auraborderuf or bordersDB.aurabordernp then
+			if not self:IsHooked(A, 'UpdateAura') then
+				self:SecureHook(A, 'UpdateAura', 'AuraBordersColorDebuff') --debuff colors update
+			end
+			if not E.Modern and not self:IsHooked(UF, 'PostUpdateAura') and (bordersDB.auraborderuf or bordersDB.aurabordernp) then
+				self:SecureHook(UF, 'PostUpdateAura', 'PostUpdateAura')
+			end
+		end
 	end
 end
 
@@ -2236,7 +2245,6 @@ function ElvUI_EltreumUI:AuraBordersColorDebuff(_, button)
 	local container = button:GetParent()
 	ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 end
-ElvUI_EltreumUI:SecureHook(A, 'UpdateAura', 'AuraBordersColorDebuff') --debuff colors update
 
 if not E.Modern then
 	function ElvUI_EltreumUI:PostUpdateAura(_, _, button) --uf/np aura borders and debuff colors update
@@ -2244,7 +2252,6 @@ if not E.Modern then
 		local container = button:GetParent()
 		ElvUI_EltreumUI:UpdateAuraBorder(container, button)
 	end
-	ElvUI_EltreumUI:SecureHook(UF, 'PostUpdateAura', 'PostUpdateAura')
 end
 
 local ttx,tty,tthpy
