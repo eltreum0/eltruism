@@ -8,19 +8,17 @@ local type = _G.type
 
 --power gradient/combo/runes
 function ElvUI_EltreumUI:NPClassPower_SetBarColor(_, bar, r, g, b)
+	local gm = E.db.ElvUI_EltreumUI.unitframes.gradientmode
+	if not (gm.npenable and gm.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications) then return end
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not bar or type(bar) ~= "table" then return end
 	if not (bar.classPowerID or bar.token) then return end
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
-			local tex = bar:GetStatusBarTexture()
-			if tex then
-				local orientation = E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation or "VERTICAL"
-				npPowerMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), 1)
-				npPowerMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
-				tex:SetGradient(orientation, npPowerMin, npPowerMax)
-			end
-		end
+	local tex = bar:GetStatusBarTexture()
+	if tex then
+		local orientation = gm.nporientation or "VERTICAL"
+		npPowerMin:SetRGBA(E:Clamp(r - 0.3, 0, 1), E:Clamp(g - 0.3, 0, 1), E:Clamp(b - 0.3, 0, 1), 1)
+		npPowerMax:SetRGBA(E:Clamp(r, 0, 1), E:Clamp(g, 0, 1), E:Clamp(b, 0, 1), 1)
+		tex:SetGradient(orientation, npPowerMin, npPowerMax)
 	end
 end
 ElvUI_EltreumUI:SecureHook(NP, "SetStatusBarColor", "NPClassPower_SetBarColor")
