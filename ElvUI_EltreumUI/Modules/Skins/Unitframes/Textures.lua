@@ -347,6 +347,15 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 	ApplyHealthTextures(UFdb, elvDB, button.Health, healthTexture, isTransparent, nil)
 end
 
+local function ApplyGroupTextureChildren(unitType, ...)
+	for j = 1, select("#", ...) do
+		local frame = select(j, ...)
+		if frame.Health then
+			ElvUI_EltreumUI:ApplyGroupCustomTexture(frame, true, unitType)
+		end
+	end
+end
+
 local forced = false
 function ElvUI_EltreumUI:CustomTexture(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
@@ -422,12 +431,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then
 				local partyGroup = _G["ElvUF_PartyGroup1"]
 				if partyGroup then
-					for j = 1, partyGroup:GetNumChildren() do
-						local frame = select(j, partyGroup:GetChildren())
-						if frame and frame.Health then
-							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"party")
-						end
-					end
+					ApplyGroupTextureChildren("party", partyGroup:GetChildren())
 				end
 				if E.db.unitframe.units.party.petsGroup.enable then
 					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsVisible() then
@@ -445,12 +449,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				for i = 1, 8 do
 					local raidGroup = _G["ElvUF_Raid1Group"..i]
 					if raidGroup then
-						for j = 1, raidGroup:GetNumChildren() do
-							local frame = select(j, raidGroup:GetChildren())
-							if frame and frame.Health then
-								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
-							end
-						end
+						ApplyGroupTextureChildren("raid", raidGroup:GetChildren())
 					end
 				end
 			end
@@ -459,12 +458,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				for i = 1, 8 do
 					local raidGroup = _G["ElvUF_Raid2Group"..i]
 					if raidGroup then
-						for j = 1, raidGroup:GetNumChildren() do
-							local frame = select(j, raidGroup:GetChildren())
-							if frame and frame.Health then
-								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
-							end
-						end
+						ApplyGroupTextureChildren("raid", raidGroup:GetChildren())
 					end
 				end
 			end
@@ -473,12 +467,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				for i = 1, 8 do
 					local raidGroup = _G["ElvUF_Raid3Group"..i]
 					if raidGroup then
-						for j = 1, raidGroup:GetNumChildren() do
-							local frame = select(j, raidGroup:GetChildren())
-							if frame and frame.Health then
-								ElvUI_EltreumUI:ApplyGroupCustomTexture(frame,true,"raid")
-							end
-						end
+						ApplyGroupTextureChildren("raid", raidGroup:GetChildren())
 					end
 				end
 			end
