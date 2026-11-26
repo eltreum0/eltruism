@@ -7,7 +7,6 @@ local IsPlayerMoving = _G.IsPlayerMoving
 local gsub = _G.gsub
 local Enum = _G.Enum
 local InCombatLockdown = _G.InCombatLockdown
-local hooksecurefunc = _G.hooksecurefunc
 local MAP_PIN = _G.MAP_PIN
 local math = _G.math
 local mathabs = math.abs
@@ -45,164 +44,9 @@ local QUEST_WATCH_QUEST_READY = _G.QUEST_WATCH_QUEST_READY
 local QUEST_WATCH_QUEST_COMPLETE = _G.QUEST_WATCH_QUEST_COMPLETE
 local FAILED = _G.FAILED
 
-local useFallbackNavFrame = (E.Forever or (GetCVar and GetCVar("showInGameNavigation") == nil)) and _G.SuperTrackedFrameMixin ~= nil
-local EltruismSuperTrackedFrame
-if useFallbackNavFrame then --clone blizzard's SuperTrackedFrame
-	EltruismSuperTrackedFrame = CreateFrame("Frame", "EltruismSuperTrackedFrame", E.UIParent)
-	EltruismSuperTrackedFrame:SetFrameStrata("BACKGROUND")
-	EltruismSuperTrackedFrame:SetSize(100, 100)
-	EltruismSuperTrackedFrame:Hide()
-
-	EltruismSuperTrackedFrame.Icon = EltruismSuperTrackedFrame:CreateTexture(nil, "BACKGROUND")
-	EltruismSuperTrackedFrame.Icon:SetAtlas("Navigation-Tracked-Icon", true)
-	EltruismSuperTrackedFrame.Icon:SetPoint("CENTER")
-
-	EltruismSuperTrackedFrame.Arrow = EltruismSuperTrackedFrame:CreateTexture(nil, "BACKGROUND")
-	EltruismSuperTrackedFrame.Arrow:SetAtlas("Navigation-Tracked-Arrow", true)
-	EltruismSuperTrackedFrame.Arrow:SetPoint("CENTER", 0, 60)
-	EltruismSuperTrackedFrame.Arrow:Hide()
-
-	EltruismSuperTrackedFrame.DistanceText = EltruismSuperTrackedFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
-	EltruismSuperTrackedFrame.DistanceText:SetJustifyV("TOP")
-	EltruismSuperTrackedFrame.DistanceText:SetSize(0, 20)
-	EltruismSuperTrackedFrame.DistanceText:SetPoint("TOP", EltruismSuperTrackedFrame.Icon, "BOTTOM", 0, -8)
-
-	EltruismSuperTrackedFrame.IconBorder = EltruismSuperTrackedFrame:CreateTexture(nil, "OVERLAY")
-	EltruismSuperTrackedFrame.IconBorder:SetPoint("TOPLEFT", EltruismSuperTrackedFrame.Icon, "TOPLEFT", -12, 12)
-	EltruismSuperTrackedFrame.IconBorder:SetPoint("BOTTOMRIGHT", EltruismSuperTrackedFrame.Icon, "BOTTOMRIGHT", 12, -12)
-	EltruismSuperTrackedFrame.IconBorder:Hide()
-
-	Mixin(EltruismSuperTrackedFrame, _G.SuperTrackedFrameMixin)
-
-	function EltruismSuperTrackedFrame:UpdateClampedState()
-		local clamped = false
-		if self.navFrame then
-			local frameX, frameY = self.navFrame:GetCenter()
-			if frameX and frameY then
-				local screenWidth, screenHeight = GetScreenWidth(), GetScreenHeight()
-				clamped = mathmin(frameX / screenWidth, (screenWidth - frameX) / screenWidth, (screenHeight - frameY) / screenHeight, frameY / screenHeight) < 0.05
-			end
-		end
-		self.clampedChanged = clamped ~= self.isClamped
-		self.isClamped = clamped
-	end
-
-	function EltruismSuperTrackedFrame:GetTargetAlphaBaseValue()
-		if not C_SuperTrack.IsSuperTrackingAnything() then return 0 end
-
-		local instanceType = ElvUI_EltreumUI:IsInInstance(nil, nil, nil, true)
-		if instanceType ~= "none" and instanceType ~= "neighborhood" then return 0 end
-
-		local d = C_Navigation.GetDistance()
-		if not d or d <= 0 then return 0 end
-
-		if d < 10 then
-			if C_SuperTrack.IsSuperTrackingUserWaypoint() and not InCombatLockdown() then
-				C_Map.ClearUserWaypoint()
-			end
-			return 0
-		end
-
-		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance and d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
-			return 0
-		end
-
-		if C_Navigation.GetTargetState() == Enum.NavigationState.Occluded and not self.isClamped then
-			return 0.6
-		end
-
-		return 1.0
-	end
-
-	function EltruismSuperTrackedFrame:GetTargetAlpha()
-		if not self.navFrame or not self.navFrame:GetCenter() then return 0 end
-
-		if self.transparentUntil and self.transparentUntil > GetTime() then
-			return 0
-		end
-		self.transparentUntil = nil
-
-		local additionalFade = 1.0
-		if self:IsMouseOver() then
-			local mouseX, mouseY = GetCursorPosition()
-			local scale = UIParent:GetEffectiveScale()
-			mouseX = mouseX / scale
-			mouseY = mouseY / scale
-			local centerX, centerY = self:GetCenter()
-			self.mouseToNavVec:SetXY(mouseX - centerX, mouseY - centerY)
-			local mouseToNavDistanceSq = self.mouseToNavVec:GetLengthSquared()
-			additionalFade = ClampedPercentageBetween(mouseToNavDistanceSq, 0, self.navFrameRadiusSq * 2)
-		end
-
-		return FrameDeltaLerp(self:GetAlpha(), self:GetTargetAlphaBaseValue() * additionalFade, 0.1)
-	end
-
-	function EltruismSuperTrackedFrame:UpdateOnUpdateState()
-		local instanceType = ElvUI_EltreumUI:IsInInstance(nil, nil, nil, true)
-		if self.navFrame and (instanceType == "none" or instanceType == "neighborhood") then
-			self:SetScript("OnUpdate", self.OnUpdate)
-		else
-			self:SetScript("OnUpdate", nil)
-			self:SetAlpha(0)
-		end
-	end
-
-	function EltruismSuperTrackedFrame:InitializeNavigationFrame()
-		self.navFrame = C_Navigation.GetFrame()
-		self.isClamped = false
-		self.clampedChanged = false
-
-		if self.navFrame then
-			self:ClearAllPoints()
-			self:SetPoint("CENTER", self.navFrame)
-			self:UpdateIcon()
-			self:SetEllipticalRadii(500, 200)
-		end
-
-		self:UpdateOnUpdateState()
-	end
-
-	function EltruismSuperTrackedFrame:ShutdownNavigationFrame()
-		self:ClearAllPoints()
-		self.navFrame = nil
-		self:SetScript("OnUpdate", nil)
-		self:SetAlpha(0)
-	end
-
-	function EltruismSuperTrackedFrame:OnEvent(event)
-		if event == "NAVIGATION_FRAME_CREATED" then
-			self:InitializeNavigationFrame()
-		elseif event == "NAVIGATION_FRAME_DESTROYED" then
-			self:ShutdownNavigationFrame()
-		elseif event == "SUPER_TRACKING_CHANGED" then
-			self:CheckInitializeNavigationFrame()
-			self:UpdateIcon()
-			self:ForceTransparentUntil(GetTime() + 0.2)
-			self:UpdateOnUpdateState()
-		elseif event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
-			self:CheckInitializeNavigationFrame()
-			self:UpdateOnUpdateState()
-		end
-	end
-
-	function EltruismSuperTrackedFrame:EnableFallback()
-		if self.fallbackEnabled then return end
-		self.fallbackEnabled = true
-
-		self:OnLoad()
-		self:UnregisterEvent("NAVIGATION_DESTINATION_REACHED")
-		self:RegisterEvent("PLAYER_ENTERING_WORLD")
-		self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-		self:SetScript("OnEvent", self.OnEvent)
-		self:SetAlpha(0)
-		self:Show()
-		self:CheckInitializeNavigationFrame()
-		self:UpdateOnUpdateState()
-	end
-end
-
-local SuperTrackedFrame = useFallbackNavFrame and EltruismSuperTrackedFrame or _G.SuperTrackedFrame
-if SuperTrackedFrame then --if not the main one and not the fallback dont do anything
+local useCustomClamp = E.Forever or (GetCVar and GetCVar("showInGameNavigation") == nil)
+local SuperTrackedFrame
+if _G.SuperTrackedFrameMixin then
 	local EltruismAutopin
 	local EltruismTimeToArriveParent
 	local EltruismTimeToArrive
@@ -243,8 +87,183 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 		ElvUI_EltreumUI:UpdateSuperTrackedColor()
 	end
 
-	SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
-	SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+	local UpdateTimeToArriveState
+
+	local EltruismNavMixin = {
+		GetTargetAlphaBaseValue = function(self)
+			if not C_SuperTrack.IsSuperTrackingAnything() then return 0 end
+
+			local instanceType = ElvUI_EltreumUI:IsInInstance(nil, nil, nil, true)
+			if instanceType ~= "none" and instanceType ~= "neighborhood" then return 0 end
+
+			local d = C_Navigation.GetDistance()
+			if not d or d <= 0 then return 0 end
+
+			if d < 10 then
+				if C_SuperTrack.IsSuperTrackingUserWaypoint() and not InCombatLockdown() then
+					C_Map.ClearUserWaypoint()
+				end
+				return 0
+			end
+
+			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance and d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
+				return 0
+			end
+
+			if C_Navigation.GetTargetState() == Enum.NavigationState.Occluded and not self.isClamped then
+				return 0.6
+			end
+
+			return 1.0
+		end,
+
+		GetTargetAlpha = function(self)
+			if not self.navFrame or not self.navFrame:GetCenter() then return 0 end
+
+			if self.transparentUntil and self.transparentUntil > GetTime() then
+				return 0
+			end
+			self.transparentUntil = nil
+
+			local additionalFade = 1.0
+			if self:IsMouseOver() then
+				local mouseX, mouseY = GetCursorPosition()
+				local scale = UIParent:GetEffectiveScale()
+				mouseX = mouseX / scale
+				mouseY = mouseY / scale
+				local centerX, centerY = self:GetCenter()
+				self.mouseToNavVec:SetXY(mouseX - centerX, mouseY - centerY)
+				local mouseToNavDistanceSq = self.mouseToNavVec:GetLengthSquared()
+				additionalFade = ClampedPercentageBetween(mouseToNavDistanceSq, 0, self.navFrameRadiusSq * 2)
+			end
+
+			return FrameDeltaLerp(self:GetAlpha(), self:GetTargetAlphaBaseValue() * additionalFade, 0.1)
+		end,
+
+		UpdateOnUpdateState = function(self)
+			local instanceType = ElvUI_EltreumUI:IsInInstance(nil, nil, nil, true)
+			if self.navFrame and C_SuperTrack.IsSuperTrackingAnything() and (instanceType == "none" or instanceType == "neighborhood") then
+				self:SetScript("OnUpdate", self.OnUpdate)
+			else
+				self:SetScript("OnUpdate", nil)
+				self:SetAlpha(0)
+			end
+			UpdateTimeToArriveState()
+		end,
+
+		UpdateIcon = function(self)
+			_G.SuperTrackedFrameMixin.UpdateIcon(self)
+			ApplySuperTrackedIcon()
+		end,
+
+		InitializeNavigationFrame = function(self)
+			self.navFrame = C_Navigation.GetFrame()
+			self.isClamped = false
+			self.clampedChanged = false
+
+			if self.navFrame then
+				self:ClearAllPoints()
+				self:SetPoint("CENTER", self.navFrame)
+				self:UpdateIcon()
+				self:SetEllipticalRadii(500, 200)
+			end
+
+			self:UpdateOnUpdateState()
+		end,
+
+		ShutdownNavigationFrame = function(self)
+			self:ClearAllPoints()
+			self.navFrame = nil
+			self:SetScript("OnUpdate", nil)
+			self:SetAlpha(0)
+		end,
+
+		OnEvent = function(self, event, ...)
+			if event == "NAVIGATION_FRAME_CREATED" then
+				self:InitializeNavigationFrame()
+			elseif event == "NAVIGATION_FRAME_DESTROYED" then
+				self:ShutdownNavigationFrame()
+			elseif event == "SUPER_TRACKING_CHANGED" then
+				self:CheckInitializeNavigationFrame()
+				self:UpdateIcon()
+				self:ForceTransparentUntil(GetTime() + 0.2)
+				self:UpdateOnUpdateState()
+			elseif event == "NAVIGATION_DESTINATION_REACHED" then
+				local isWaypoint = ...
+				self:OnDestinationReached(isWaypoint)
+			elseif event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
+				self:CheckInitializeNavigationFrame()
+				self:UpdateOnUpdateState()
+			end
+		end,
+
+		EnableNavFrame = function(self)
+			if self.navEnabled then return end
+			self.navEnabled = true
+
+			if _G.SuperTrackedFrame then
+				_G.SuperTrackedFrame:UnregisterAllEvents()
+				_G.SuperTrackedFrame:SetScript("OnUpdate", nil)
+				_G.SuperTrackedFrame:Hide()
+			end
+
+			self:OnLoad()
+			if useCustomClamp then
+				self:UnregisterEvent("NAVIGATION_DESTINATION_REACHED")
+			end
+			self:RegisterEvent("PLAYER_ENTERING_WORLD")
+			self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+			self:SetScript("OnEvent", self.OnEvent)
+			self:SetAlpha(0)
+			self:Show()
+			self:CheckInitializeNavigationFrame()
+			self:UpdateOnUpdateState()
+		end,
+	}
+
+	if useCustomClamp then
+		EltruismNavMixin.UpdateClampedState = function(self)
+			local clamped = false
+			if self.navFrame then
+				local frameX, frameY = self.navFrame:GetCenter()
+				if frameX and frameY then
+					local screenWidth, screenHeight = GetScreenWidth(), GetScreenHeight()
+					clamped = mathmin(frameX / screenWidth, (screenWidth - frameX) / screenWidth, (screenHeight - frameY) / screenHeight, frameY / screenHeight) < 0.05
+				end
+			end
+			self.clampedChanged = clamped ~= self.isClamped
+			self.isClamped = clamped
+		end
+	end
+
+	local function CreateSuperTrackedFrame()
+		local frame = CreateFrame("Frame", "EltruismSuperTrackedFrame", E.UIParent)
+		frame:SetFrameStrata("BACKGROUND")
+		frame:SetSize(100, 100)
+		frame:Hide()
+
+		frame.Icon = frame:CreateTexture(nil, "BACKGROUND")
+		frame.Icon:SetAtlas("Navigation-Tracked-Icon", true)
+		frame.Icon:SetPoint("CENTER")
+
+		frame.Arrow = frame:CreateTexture(nil, "BACKGROUND")
+		frame.Arrow:SetAtlas("Navigation-Tracked-Arrow", true)
+		frame.Arrow:SetPoint("CENTER", 0, 60)
+		frame.Arrow:Hide()
+
+		frame.DistanceText = frame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+		frame.DistanceText:SetJustifyV("TOP")
+		frame.DistanceText:SetSize(0, 20)
+		frame.DistanceText:SetPoint("TOP", frame.Icon, "BOTTOM", 0, -8)
+
+		frame.IconBorder = frame:CreateTexture(nil, "OVERLAY")
+		frame.IconBorder:SetPoint("TOPLEFT", frame.Icon, "TOPLEFT", -12, 12)
+		frame.IconBorder:SetPoint("BOTTOMRIGHT", frame.Icon, "BOTTOMRIGHT", 12, -12)
+		frame.IconBorder:Hide()
+
+		Mixin(frame, _G.SuperTrackedFrameMixin, EltruismNavMixin)
+		SuperTrackedFrame = frame
+	end
 
 	local function CreateWaypointFrames()
 		EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
@@ -388,6 +407,21 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 		end
 	end
 
+	UpdateTimeToArriveState = function()
+		if not EltruismTimeToArrive then return end
+		local instanceType = ElvUI_EltreumUI:IsInInstance(nil, nil, nil, true)
+		if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
+			UpdateSuperTrackedText()
+			TimeSinceLastUpdate = ONUPDATE_INTERVAL
+			EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
+		else
+			EltruismTimeToArrive:SetScript("OnUpdate", nil)
+			EltruismTimeToArrive.TimeText:SetText("")
+			EltruismTimeToArrive.WaypointText:SetText("")
+			EltruismTimeToArrive.QuestText:SetText("")
+		end
+	end
+
 	--use throttled onupdate to udpate the text (once per second)
 	function ElvUI_EltreumUI:TimeToArriveOnUpdate(elapsed)
 		TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -454,6 +488,7 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
+			if not SuperTrackedFrame then CreateSuperTrackedFrame() end
 			if not EltruismTimeToArrive then CreateWaypointFrames() end
 			if not EltruismAutopin.AutopinRegistered and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
 				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
@@ -505,42 +540,7 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 			_G.WaypointLocationPinMixin.CheckMouseButtonPassthrough = E.noop
 			_G.WaypointLocationPinMixin.ShouldMouseButtonBePassthrough = E.noop
 
-			if not SuperTrackedFrame.EltruismIconHook then
-				hooksecurefunc(SuperTrackedFrame, "UpdateIcon", ApplySuperTrackedIcon)
-				SuperTrackedFrame.EltruismIconHook = true
-			end
-
-			--remove max distance
-			if useFallbackNavFrame then
-				SuperTrackedFrame:EnableFallback()
-			elseif not SuperTrackedFrame.EltruismHook then
-
-				--blizzard restricts waypoints, unrestrict them again
-				hooksecurefunc(_G.C_Navigation, "HasValidScreenPosition", function()
-					return true
-				end)
-
-				--swap to hook instead of global replace
-				hooksecurefunc(SuperTrackedFrame, "GetTargetAlphaBaseValue", function()
-					local d = C_Navigation.GetDistance()
-					if (d >= 10 ) then
-						if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then
-							if d <= E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
-								return 1
-							elseif d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
-								return 0
-							end
-						else
-							return 1
-						end
-					else
-						C_Map.ClearUserWaypoint()
-						return 0
-					end
-				end)
-
-				SuperTrackedFrame.EltruismHook = true
-			end
+			SuperTrackedFrame:EnableNavFrame()
 
 			SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -566,21 +566,10 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 				EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
 				EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
 				EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
-				--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
-				EltruismTimeToArriveParent:SetScript("OnEvent", function()
-					local instanceType = ElvUI_EltreumUI:IsInInstance(nil,nil,nil,true)
-					--print(instanceType,event,"waypoint")
-					if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none" or instanceType == "neighborhood") then
-						UpdateSuperTrackedText()
-						EltruismTimeToArrive:SetScript("OnUpdate", ElvUI_EltreumUI.TimeToArriveOnUpdate)
-					else
-						EltruismTimeToArrive:SetScript("OnUpdate", nil)
-						EltruismTimeToArrive.WaypointText:SetText("")
-						EltruismTimeToArrive.QuestText:SetText("")
-					end
-				end)
+				EltruismTimeToArriveParent:SetScript("OnEvent", UpdateTimeToArriveState)
 				self.TimeToArriveRegistered = true
 			end
+			UpdateTimeToArriveState()
 		end
 	end
 
@@ -766,6 +755,7 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 
 	--update custom icon or restore blizzard atlas
 	function ElvUI_EltreumUI:UpdateSuperTrackedIcon()
+		if not SuperTrackedFrame then return end
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.customicons then
 			ApplySuperTrackedIcon()
 		else
@@ -777,6 +767,7 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 
 	--update color for options
 	function ElvUI_EltreumUI:UpdateSuperTrackedColor()
+		if not SuperTrackedFrame then return end
 		local customIcons = E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.customicons
 		local isPortrait = customIcons and IsPartyMemberPortrait()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable then
