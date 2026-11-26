@@ -596,7 +596,7 @@ function ElvUI_EltreumUI:GradientEclipse()
 				end)
 				_G["ElvUF_Player_EclipsePowerBar"].isHooked = true
 			end
-			_G["ElvUF_Player_EclipsePowerBar"].Arrow:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ArrowEltruismEclipse.tga")
+			_G["ElvUF_Player_EclipsePowerBar"].Arrow:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ArrowEltruism.tga")
 		end
 	end
 end

@@ -254,10 +254,6 @@ E.Media.RestIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures
 
 --target
 E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism.tga]]
-local width = _G.GetPhysicalScreenSize()
-if width < 2000 then
-	E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism1080.tga]]
-end
 
 --add details icons to the details icon list
 if IsAddOnLoaded("Details") then
