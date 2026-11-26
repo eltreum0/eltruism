@@ -749,6 +749,7 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			autopin = false,
 			waypointname = false,
+			customicons = true,
 			limitmaxdistance = false,
 			distance = 700,
 			classcolortext = false,

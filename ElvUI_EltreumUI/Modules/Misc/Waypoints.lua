@@ -2,6 +2,7 @@ local E, L = unpack(ElvUI)
 local valuecolors = E.myClassColor
 local _G = _G
 local CreateFrame = _G.CreateFrame
+local CreateColor = _G.CreateColor
 local IsPlayerMoving = _G.IsPlayerMoving
 local gsub = _G.gsub
 local Enum = _G.Enum
@@ -205,6 +206,43 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 	local EltruismAutopin
 	local EltruismTimeToArriveParent
 	local EltruismTimeToArrive
+	local waypointArrow = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\ArrowEltruism.tga"
+	local waypointIcons = {
+		[Enum.SuperTrackingType.Quest] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\Quest.tga",
+		[Enum.SuperTrackingType.UserWaypoint] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\UserWaypoint.tga",
+		[Enum.SuperTrackingType.Corpse] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\Corpse.tga",
+		[Enum.SuperTrackingType.Scenario] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\Scenario.tga",
+		[Enum.SuperTrackingType.Content] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\Content.tga",
+		[Enum.SuperTrackingType.MapPin] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\MapPin.tga",
+		[Enum.SuperTrackingType.Vignette] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Waypoints\\Vignette.tga",
+	}
+	local eltruismGradBottom = CreateColor(0.219, 0.594, 0.991, 1)
+	local eltruismGradTop = CreateColor(0.784, 0.965, 1, 1)
+
+	local function IsPartyMemberPortrait()
+		return C_SuperTrack.GetHighestPrioritySuperTrackingType() == Enum.SuperTrackingType.PartyMember and C_Navigation.GetNearestPartyMemberToken() ~= nil
+	end
+
+	local function ApplySuperTrackedIcon()
+		if not (E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.customicons) then
+			return
+		end
+
+		SuperTrackedFrame.Arrow:SetTexture(waypointArrow)
+		SuperTrackedFrame.Arrow:SetTexCoord(0, 1, 0, 1)
+		SuperTrackedFrame.Arrow:SetSize(24, 24)
+
+		if not IsPartyMemberPortrait() then
+			local superTrackingType = C_SuperTrack.GetHighestPrioritySuperTrackingType() or Enum.SuperTrackingType.Quest
+			SuperTrackedFrame.Icon:SetTexture(waypointIcons[superTrackingType] or waypointIcons[Enum.SuperTrackingType.Quest])
+			SuperTrackedFrame.Icon:SetTexCoord(0, 1, 0, 1)
+			SuperTrackedFrame.Icon:SetSize(32, 32)
+			SuperTrackedFrame:UpdateIconSize()
+		end
+
+		ElvUI_EltreumUI:UpdateSuperTrackedColor()
+	end
+
 	SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
 	SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
@@ -467,6 +505,11 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 			_G.WaypointLocationPinMixin.CheckMouseButtonPassthrough = E.noop
 			_G.WaypointLocationPinMixin.ShouldMouseButtonBePassthrough = E.noop
 
+			if not SuperTrackedFrame.EltruismIconHook then
+				hooksecurefunc(SuperTrackedFrame, "UpdateIcon", ApplySuperTrackedIcon)
+				SuperTrackedFrame.EltruismIconHook = true
+			end
+
 			--remove max distance
 			if useFallbackNavFrame then
 				SuperTrackedFrame:EnableFallback()
@@ -516,18 +559,8 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 				EltruismTimeToArrive.WaypointText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 			end
 
-			--color icon
-			if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable then
-				SuperTrackedFrame.Icon:SetDesaturated(true)
-				SuperTrackedFrame.Arrow:SetDesaturated(true)
-				if not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.classcolor then
-					SuperTrackedFrame.Icon:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
-					SuperTrackedFrame.Arrow:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
-				else
-					SuperTrackedFrame.Arrow:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
-					SuperTrackedFrame.Icon:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
-				end
-			end
+			--update icon and color
+			ElvUI_EltreumUI:UpdateSuperTrackedIcon()
 
 			if not self.TimeToArriveRegistered then
 				EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
@@ -731,26 +764,54 @@ if SuperTrackedFrame then --if not the main one and not the fallback dont do any
 		end
 	end
 
+	--update custom icon or restore blizzard atlas
+	function ElvUI_EltreumUI:UpdateSuperTrackedIcon()
+		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.customicons then
+			ApplySuperTrackedIcon()
+		else
+			SuperTrackedFrame:UpdateIcon()
+			SuperTrackedFrame.Arrow:SetAtlas("Navigation-Tracked-Arrow", true)
+			ElvUI_EltreumUI:UpdateSuperTrackedColor()
+		end
+	end
+
 	--update color for options
 	function ElvUI_EltreumUI:UpdateSuperTrackedColor()
+		local customIcons = E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.customicons
+		local isPortrait = customIcons and IsPartyMemberPortrait()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable then
-			SuperTrackedFrame.Icon:SetDesaturated(true)
-			SuperTrackedFrame.Arrow:SetDesaturated(true)
+			SuperTrackedFrame.Icon:SetDesaturated(not customIcons and not isPortrait)
+			SuperTrackedFrame.Arrow:SetDesaturated(not customIcons)
+			local r, g, b
 			if not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.classcolor then
-				SuperTrackedFrame.Icon:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
-				SuperTrackedFrame.Arrow:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
+				r, g, b = E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b
 			else
-				SuperTrackedFrame.Arrow:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
-				SuperTrackedFrame.Icon:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
+				r, g, b = valuecolors.r, valuecolors.g, valuecolors.b
+			end
+			SuperTrackedFrame.Arrow:SetVertexColor(r, g, b)
+			if isPortrait then
+				SuperTrackedFrame.Icon:SetVertexColor(1, 1, 1)
+			else
+				SuperTrackedFrame.Icon:SetVertexColor(r, g, b)
 			end
 		else
 			SuperTrackedFrame.Icon:SetDesaturated(false)
 			SuperTrackedFrame.Arrow:SetDesaturated(false)
-			SuperTrackedFrame.Arrow:SetVertexColor(1,1,1)
-			SuperTrackedFrame.Icon:SetVertexColor(1,1,1)
+			if customIcons then
+				SuperTrackedFrame.Arrow:SetGradient("VERTICAL", eltruismGradBottom, eltruismGradTop)
+				if isPortrait then
+					SuperTrackedFrame.Icon:SetVertexColor(1, 1, 1)
+				else
+					SuperTrackedFrame.Icon:SetGradient("VERTICAL", eltruismGradBottom, eltruismGradTop)
+				end
+			else
+				SuperTrackedFrame.Arrow:SetVertexColor(1, 1, 1)
+				SuperTrackedFrame.Icon:SetVertexColor(1, 1, 1)
+			end
 		end
 	end
 else --avoid errors when SuperTrackedFrame is nil bc it will error since these functions are not declared
 	ElvUI_EltreumUI.WaypointTimeToArrive = E.noop
+	ElvUI_EltreumUI.UpdateSuperTrackedIcon = E.noop
 	ElvUI_EltreumUI.UpdateSuperTrackedColor = E.noop
 end
