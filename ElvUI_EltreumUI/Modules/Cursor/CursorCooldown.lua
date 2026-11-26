@@ -36,6 +36,7 @@ local isActive = false
 local isAlmostReady = false
 local isReady = false
 local isHidden = false
+local isFading = false
 local isWaitingAlmostReady = false
 local isRedText = false
 local isSecretMode = false
@@ -114,7 +115,18 @@ local function clearNativeCooldown()
 	EltruismNativeCooldown:Hide()
 end
 
+local function onCooldownFadeFinished()
+	isFading = false
+end
+
+local function fadeOutCooldownFrame()
+	isFading = true
+	E:UIFrameFadeOut(EltruismCooldownFrame, db.fadeTime, 1, 0)
+	EltruismCooldownFrame.FadeObject.finishedFunc = onCooldownFadeFinished
+end
+
 local function resetCooldownFrameFade(alpha)
+	isFading = false
 	E:UIFrameFadeRemoveFrame(EltruismCooldownFrame)
 	EltruismCooldownFrame:SetAlpha(alpha)
 end
@@ -269,8 +281,8 @@ function ElvUI_EltreumUI:CooldownEnable()
 end
 
 EltruismCursorCooldownOnUpdate = function(_, elapsed)
-	--skip cursor repositioning when completely invisible during exact-mode hidden wait
-	if not isHidden or isWaitingAlmostReady or isReady then
+	--skip cursor repositioning when completely invisible during hidden wait
+	if not isHidden or isFading or isWaitingAlmostReady or isReady then
 		ElvUI_EltreumUI:UpdateCursorPosition(EltruismCooldownFrame, elapsed)
 	end
 	lastUpdate = lastUpdate + elapsed
@@ -307,6 +319,7 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 				isActive = false
 				isSecretMode = false
 				isWaitingAlmostReady = false
+				isFading = false
 				clearNativeCooldown()
 				EltruismCooldownDisplay:SetAlpha(1)
 				EltruismCooldownText:SetText(nil)
@@ -347,7 +360,7 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 			return
 		elseif now > fadeStamp then
 			isHidden = true
-			E:UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
+			fadeOutCooldownFrame()
 			if not isReady then
 				endStamp = now + db.fadeTime
 			end
@@ -375,6 +388,7 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 			EltruismCooldownFrame:SetScript("OnUpdate", nil)
 			isActive = false
 			isWaitingAlmostReady = false
+			isFading = false
 			clearNativeCooldown()
 			EltruismCooldownDisplay:SetAlpha(1)
 			if isRedText then
@@ -421,7 +435,7 @@ EltruismCursorCooldownOnUpdate = function(_, elapsed)
 			return
 		elseif now > fadeStamp then
 			isHidden = true
-			E:UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
+			fadeOutCooldownFrame()
 		end
 	end
 end
