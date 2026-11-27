@@ -38,7 +38,7 @@ local GetCVar = C_CVar.GetCVar
 local SetCVar = C_CVar.SetCVar
 
 local pairs, ipairs, next, select = _G.pairs, _G.ipairs, _G.next, _G.select
-local tonumber, tostring, print, pcall, wipe = _G.tonumber, _G.tostring, _G.print, _G.pcall, _G.wipe
+local tonumber, tostring, print, wipe = _G.tonumber, _G.tostring, _G.print, _G.wipe
 local bor, mathabs, format, tconcat = _G.bit.bor, _G.math.abs, _G.format, _G.table.concat
 local strtrim = _G.strtrim
 
@@ -655,7 +655,20 @@ local function RunSpellbookRetry()
 	end
 end
 
-local function SyncMacrosAndRanksInner(db, macroSlots)
+SyncMacrosAndRanks = function()
+	if InCombatLockdown() or GetCursorInfo() then return 0, 0 end
+	local db = GetDB()
+	if not db or not db.enable then return 0, 0 end
+
+	local macroSlots = GetMacroSlotTable()
+	if not db.convertMacros and not next(macroSlots) then
+		UpdateMacroEvents(db)
+		return 0, 0
+	end
+
+	spellbookDeferred = false
+	isSyncing = true
+
 	local convertedCount, upgradedCount = 0, 0
 	local spellCacheBuilt, macroCacheBuilt = false, false
 
@@ -732,23 +745,6 @@ local function SyncMacrosAndRanksInner(db, macroSlots)
 		end
 	end
 
-	return convertedCount, upgradedCount
-end
-
-SyncMacrosAndRanks = function()
-	if InCombatLockdown() or GetCursorInfo() then return 0, 0 end
-	local db = GetDB()
-	if not db or not db.enable then return 0, 0 end
-
-	local macroSlots = GetMacroSlotTable()
-	if not db.convertMacros and not next(macroSlots) then
-		UpdateMacroEvents(db)
-		return 0, 0
-	end
-
-	spellbookDeferred = false
-	isSyncing = true
-	local ok, conv, upg = pcall(SyncMacrosAndRanksInner, db, macroSlots)
 	isSyncing = false
 	wipe(spellCache)
 	wipe(macroByName)
@@ -765,9 +761,7 @@ SyncMacrosAndRanks = function()
 		spellbookRetries = 0
 	end
 
-	if ok then return conv or 0, upg or 0 end
-	DebugPrint("SyncMacrosAndRanks error: " .. tostring(conv))
-	return 0, 0
+	return convertedCount, upgradedCount
 end
 
 local function EnableBlizzardBarEvents()
