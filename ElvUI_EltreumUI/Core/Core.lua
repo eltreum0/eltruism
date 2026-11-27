@@ -476,13 +476,11 @@ function ElvUI_EltreumUI:FixChatToggles()
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template and _G[datatextname].template ~= 'NoBackdrop' and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not _G[datatextname].shadow then
-					_G[datatextname]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G[datatextname].shadow)
+					ElvUI_EltreumUI:CreateFastShadow(_G[datatextname], E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 
 				if not _G.LeftChatToggleButton.shadow then
-					_G.LeftChatToggleButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G.LeftChatToggleButton.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(_G.LeftChatToggleButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G.LeftChatToggleButton.shadow.RightEdge:Hide()
 					_G.LeftChatToggleButton.shadow.RightEdge:Hide()
 					_G.LeftChatToggleButton.shadow.BottomRightCorner:Hide()
@@ -494,8 +492,7 @@ function ElvUI_EltreumUI:FixChatToggles()
 					end
 				end
 				if not _G.RightChatToggleButton.shadow then
-					_G.RightChatToggleButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G.RightChatToggleButton.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(_G.RightChatToggleButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G.RightChatToggleButton.shadow.LeftEdge:Hide()
 					_G.RightChatToggleButton.shadow.LeftEdge:Hide()
 					_G.RightChatToggleButton.shadow.BottomLeftCorner:Hide()
@@ -641,22 +638,7 @@ function ElvUI_EltreumUI:AddGameMenuButton()
 		end
 	end
 
-	--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
-	--in forever its 477, so minus my button at 36 = 451 (or 450), which has the elvui button
-	--turns out that despite having 11 buttons (so 9 defaults + elvui and eltruism buttons), it says 9, wether i count it myself or use the one they have
-	if E.Modern then
-		GameMenuFrame:Height((_G.GameMenuFrame.buttonCount*offset) + 218) --dynamically adjust based on button count
-	else
-		GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-	end
-
-	--[[if E.Retail then
-		GameMenuFrame:Height(538 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-	elseif E.Forever then
-		GameMenuFrame:Height(456 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-	else
-		GameMenuFrame:Height(320 + offset) --yes i can set the actual math but this lets me recall its + menubutton height
-	end]]
+	GameMenuFrame:Height(GameMenuFrame:GetHeight() + offset)
 
 	--use elvui moveui instead of blizzard edit mode
 	--local EditModeButton = _G.GameMenuFrame.MenuButtons and _G.GameMenuFrame.MenuButtons[_G.HUD_EDIT_MODE_MENU]
@@ -788,8 +770,7 @@ function ElvUI_EltreumUI:ClickCastingShortcut()
 					if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
 						LoadAddOn("Blizzard_ClickBindingUI")
 						if not _G["ClickBindingFrame"].shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-							_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
+							ElvUI_EltreumUI:CreateFastShadow(_G["ClickBindingFrame"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					if not _G["ClickBindingFrame"]:IsShown() then
