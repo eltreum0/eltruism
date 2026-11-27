@@ -19,7 +19,7 @@ local mathfloor = math.floor
 local mathmax = math.max
 local utf8sub = _G.string.utf8sub
 local strfind = _G.string.find
-local select = _G.select
+local EnumerateFrames = _G.EnumerateFrames
 local type = _G.type
 local setmetatable = _G.setmetatable
 
@@ -351,10 +351,12 @@ local lastMinimapChildCount = 0
 local pinClipElapsed = 0
 local pinClipActive = false
 local PIN_SCAN_INTERVAL = 0.25
+local MAX_DIRECT_CHILDREN = 1000
 local hookedPins = setmetatable({}, { __mode = "k" })
 local hiddenPins = setmetatable({}, { __mode = "k" })
 local overlayClipFrame
 local clippedOverlays = setmetatable({}, { __mode = "k" })
+local lastEnumeratedFrame
 
 local skippedPinFrames = {
 	["MinimapBackdrop"] = true,
@@ -559,16 +561,30 @@ local function HookMinimapPin(pin)
 	ApplyPinClip(pin)
 end
 
-local function ScanMinimapPinChildren(...)
-	for i = 1, select("#", ...) do
-		local child = select(i, ...)
-		if not IsSkippedMinimapChild(child) then
-			if overlayClipFrame and IsFullMinimapOverlay(child) then
-				ClipMinimapOverlay(child)
-			elseif not hookedPins[child] and child:GetNumPoints() <= 1 then
-				HookMinimapPin(child)
-			end
+local function ProcessMinimapChild(child)
+	if not IsSkippedMinimapChild(child) then
+		if overlayClipFrame and IsFullMinimapOverlay(child) then
+			ClipMinimapOverlay(child)
+		elseif not hookedPins[child] and child:GetNumPoints() <= 1 then
+			HookMinimapPin(child)
 		end
+	end
+end
+
+local function ScanMinimapViaEnumerate(full, grew)
+	local startFrame = (not full) and lastEnumeratedFrame or nil
+	local found = 0
+	local frame = EnumerateFrames(startFrame)
+	while frame do
+		lastEnumeratedFrame = frame
+		if not frame:IsForbidden() and frame:GetParent() == Minimap then
+			ProcessMinimapChild(frame)
+			found = found + 1
+		end
+		frame = EnumerateFrames(frame)
+	end
+	if not full and startFrame and grew and found == 0 then
+		ScanMinimapViaEnumerate(true, false)
 	end
 end
 
@@ -577,7 +593,15 @@ local function ScanMinimapPins(force)
 	if not force and numChildren == lastMinimapChildCount then
 		return
 	end
-	ScanMinimapPinChildren(Minimap:GetChildren())
+	local grew = numChildren > lastMinimapChildCount
+	if numChildren <= MAX_DIRECT_CHILDREN then
+		local children = { Minimap:GetChildren() }
+		for i = 1, #children do
+			ProcessMinimapChild(children[i])
+		end
+	else
+		ScanMinimapViaEnumerate(force, grew)
+	end
 	lastMinimapChildCount = Minimap:GetNumChildren()
 end
 
@@ -593,7 +617,7 @@ local function OnPinClipUpdate(_, elapsed)
 end
 
 local function OnPinClipEvent(_, event)
-	if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" or event == "MINIMAP_UPDATE_ZOOM" then
+	if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
 		ScanMinimapPins(true)
 	else
 		ScanMinimapPins()
@@ -606,6 +630,7 @@ function ElvUI_EltreumUI:UpdateMinimapPinClip()
 	if crop <= 0 then
 		clipHalfHeight = 0
 		lastMinimapChildCount = 0
+		lastEnumeratedFrame = nil
 		if pinClipActive then
 			pinClipFrame:UnregisterAllEvents()
 			pinClipFrame:SetScript("OnUpdate", nil)
