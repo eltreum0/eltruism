@@ -57,18 +57,15 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 --check on PEW, should run on all scenarios needed (but not like garrisons)
-local outside = false
+local outside = true
 local isPvP = false
 local instanceType = "none"
-local EltruismInstanceCheck = CreateFrame("Frame")
 local cached_isInInstance = false
-EltruismInstanceCheck:RegisterEvent("PLAYER_ENTERING_WORLD")
-EltruismInstanceCheck:RegisterEvent("ZONE_CHANGED")
-EltruismInstanceCheck:SetScript("OnEvent", function()
+function ElvUI_EltreumUI:UpdateInstanceType()
 	cached_isInInstance, instanceType = IsInInstance()
 	isPvP = (instanceType == "pvp") or (instanceType == "arena")
 	outside = (instanceType == "none")
-end)
+end
 function ElvUI_EltreumUI:IsInInstance(needsisPvP,needsoutside,needsBoth,needsType,blizzard)
 	if needsType then
 		return instanceType

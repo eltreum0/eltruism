@@ -72,6 +72,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
+	ElvUI_EltreumUI:UpdateInstanceType()
 	ElvUI_EltreumUI:CombatMusic('PLAYER_ENTERING_WORLD')
 	ElvUI_EltreumUI:UpdateSpec()
 
@@ -382,6 +383,7 @@ function ElvUI_EltreumUI:UPDATE_STEALTH()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
+	ElvUI_EltreumUI:UpdateInstanceType()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
@@ -391,6 +393,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
+	ElvUI_EltreumUI:UpdateInstanceType()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:BattleRes()
 	ElvUI_EltreumUI:ArenaQuest()
@@ -405,6 +408,7 @@ local function DelayedFriendlyNameplates()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
+	ElvUI_EltreumUI:UpdateInstanceType()
 	E:Delay(5, DelayedFriendlyNameplates)
 	ElvUI_EltreumUI:QuestItem()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
