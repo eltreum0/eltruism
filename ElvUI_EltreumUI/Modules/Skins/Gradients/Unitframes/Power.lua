@@ -29,18 +29,19 @@ local powerTypeNumToToken = {
 }
 
 --powers there are gradients for since retail has like 100+ power types
-local powertypes ={
-	["MANA"] = true,
-	["RAGE"] = true,
-	["FOCUS"] = true,
-	["ENERGY"] = true,
-	["RUNIC_POWER"] = true,
-	["LUNAR_POWER"] = true,
-	["ALT_POWER"] = true,
-	["MAELSTROM"] = true,
-	["INSANITY"] = true,
-	["FURY"] = true,
-	["PAIN"] = true,
+local powertypes = {
+	["MANA"] = "MANA",
+	["RAGE"] = "RAGE",
+	["FOCUS"] = "FOCUS",
+	["POWER_TYPE_FOCUS"] = "FOCUS",
+	["ENERGY"] = "ENERGY",
+	["RUNIC_POWER"] = "RUNIC_POWER",
+	["LUNAR_POWER"] = "LUNAR_POWER",
+	["ALT_POWER"] = "ALT_POWER",
+	["MAELSTROM"] = "MAELSTROM",
+	["INSANITY"] = "INSANITY",
+	["FURY"] = "FURY",
+	["PAIN"] = "PAIN",
 }
 
 local function GetGradient(pType, inv, isTransparent, isBG, isCustom)
@@ -111,14 +112,15 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit, name)
 			end
 
 			--gradients
-			if powertypes[powertype] then
-				local minC, maxC = GetGradient(powertype, invert, transparent, false, isCustom)
+			local powerKey = powertypes[powertype]
+			if powerKey then
+				local minC, maxC = GetGradient(powerKey, invert, transparent, false, isCustom)
 				local tex = unitframe.Power:GetStatusBarTexture()
 				if tex and minC and maxC then
 					tex:SetGradient(orientation, minC, maxC)
 				end
 				if not isHidden and not colorDB.custompowerbackdrop and gm.enablebackdrop then
-					local bgMin, bgMax = GetGradient(powertype, invert, true, true, isCustom)
+					local bgMin, bgMax = GetGradient(powerKey, invert, true, true, isCustom)
 					if bgMin and bgMax and unitframe.Power.bg then
 						unitframe.Power.bg:SetGradient(orientation, bgMin, bgMax)
 					end
@@ -198,14 +200,15 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 		end
 
 		--gradients
-		if powertypes[powertype] then
-			local minC, maxC = GetGradient(powertype, false, transparent, false, isCustom)
+		local powerKey = powertypes[powertype]
+		if powerKey then
+			local minC, maxC = GetGradient(powerKey, false, transparent, false, isCustom)
 			local tex = groupunitframe.Power:GetStatusBarTexture()
 			if tex and minC and maxC then
 				tex:SetGradient(orientation, minC, maxC)
 			end
 			if not isHidden and not colorDB.custompowerbackdrop and gm.enablebackdrop then
-				local bgMin, bgMax = GetGradient(powertype, false, true, true, isCustom)
+				local bgMin, bgMax = GetGradient(powerKey, false, true, true, isCustom)
 				if bgMin and bgMax and groupunitframe.Power.bg then
 					groupunitframe.Power.bg:SetGradient(orientation, bgMin, bgMax)
 				end
