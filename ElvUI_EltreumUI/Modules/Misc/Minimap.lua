@@ -353,6 +353,8 @@ local pinClipActive = false
 local PIN_SCAN_INTERVAL = 0.25
 local hookedPins = setmetatable({}, { __mode = "k" })
 local hiddenPins = setmetatable({}, { __mode = "k" })
+local overlayClipFrame
+local clippedOverlays = setmetatable({}, { __mode = "k" })
 
 local skippedPinFrames = {
 	["MinimapBackdrop"] = true,
@@ -440,6 +442,10 @@ end
 local function OnPinShow(self)
 	if self.EltruismHidden then
 		self:SetAlpha(0, true)
+		if self:IsMouseEnabled() then
+			self.EltruismMouseEnabled = true
+			self:EnableMouse(false)
+		end
 	end
 end
 
@@ -490,18 +496,15 @@ local function OnPinSetPoint(self, point, arg2, arg3, arg4, arg5)
 	end
 end
 
-local function IsCandidateMinimapPin(frame)
-	if hookedPins[frame] or frame:IsForbidden() then
-		return false
+local function IsSkippedMinimapChild(frame)
+	if frame:IsForbidden() or frame == overlayClipFrame then
+		return true
 	end
 	if frame == Minimap.backdrop or frame == Minimap.location or frame == Minimap.ZoomIn or frame == Minimap.ZoomOut or frame == Minimap.ZoomHitArea or frame == Minimap.EltruismRotateShadow then
-		return false
+		return true
 	end
-	if frame.dataObject or frame.EltruismInBar or frame.EltruismSkinned then
-		return false
-	end
-	if frame:GetScript("OnDragStart") or frame:GetNumPoints() > 1 then
-		return false
+	if frame.dataObject or frame.EltruismInBar or frame.EltruismSkinned or frame:GetScript("OnDragStart") then
+		return true
 	end
 	local name = frame:GetName()
 	if name then
@@ -512,10 +515,40 @@ local function IsCandidateMinimapPin(frame)
 			or strfind(name, "^Minimap")
 			or strfind(name, "^MiniMap")
 			or strfind(name, "^SexyMap") then
-			return false
+			return true
 		end
 	end
-	return true
+	return false
+end
+
+local function IsFullMinimapOverlay(frame)
+	if frame:IsProtected() or frame:IsMouseEnabled() or frame:GetFrameStrata() ~= Minimap:GetFrameStrata() or frame:GetNumPoints() ~= 2 then
+		return false
+	end
+	local p1, rel1, rp1, x1, y1 = frame:GetPoint(1)
+	local p2, rel2, rp2, x2, y2 = frame:GetPoint(2)
+	if rel1 ~= Minimap or rel2 ~= Minimap then
+		return false
+	end
+	local isTopBottom = (p1 == "TOPLEFT" and rp1 == "TOPLEFT" and p2 == "BOTTOMRIGHT" and rp2 == "BOTTOMRIGHT")
+		or (p1 == "BOTTOMRIGHT" and rp1 == "BOTTOMRIGHT" and p2 == "TOPLEFT" and rp2 == "TOPLEFT")
+	if not isTopBottom then
+		return false
+	end
+	return mathabs(x1 or 0) <= 1 and mathabs(y1 or 0) <= 1 and mathabs(x2 or 0) <= 1 and mathabs(y2 or 0) <= 1
+end
+
+local function ClipMinimapOverlay(frame)
+	local level = frame:GetFrameLevel()
+	local origClips = frame:DoesClipChildren()
+	if clippedOverlays[frame] == nil then
+		clippedOverlays[frame] = origClips
+	end
+	frame:SetParent(overlayClipFrame)
+	frame:SetFrameLevel(mathmax(level, overlayClipFrame:GetFrameLevel() + 1))
+	if origClips then
+		frame:SetClipsChildren(false)
+	end
 end
 
 local function HookMinimapPin(pin)
@@ -529,8 +562,12 @@ end
 local function ScanMinimapPinChildren(...)
 	for i = 1, select("#", ...) do
 		local child = select(i, ...)
-		if IsCandidateMinimapPin(child) then
-			HookMinimapPin(child)
+		if not IsSkippedMinimapChild(child) then
+			if overlayClipFrame and IsFullMinimapOverlay(child) then
+				ClipMinimapOverlay(child)
+			elseif not hookedPins[child] and child:GetNumPoints() <= 1 then
+				HookMinimapPin(child)
+			end
 		end
 	end
 end
@@ -540,8 +577,8 @@ local function ScanMinimapPins(force)
 	if not force and numChildren == lastMinimapChildCount then
 		return
 	end
-	lastMinimapChildCount = numChildren
 	ScanMinimapPinChildren(Minimap:GetChildren())
+	lastMinimapChildCount = Minimap:GetNumChildren()
 end
 
 local pinClipFrame = CreateFrame("Frame")
@@ -568,6 +605,7 @@ function ElvUI_EltreumUI:UpdateMinimapPinClip()
 	local crop = GetMinimapVerticalCrop()
 	if crop <= 0 then
 		clipHalfHeight = 0
+		lastMinimapChildCount = 0
 		if pinClipActive then
 			pinClipFrame:UnregisterAllEvents()
 			pinClipFrame:SetScript("OnUpdate", nil)
@@ -576,11 +614,40 @@ function ElvUI_EltreumUI:UpdateMinimapPinClip()
 		for pin in pairs(hiddenPins) do
 			SetMinimapPinShown(pin, true)
 		end
+		if overlayClipFrame then
+			overlayClipFrame:SetClipsChildren(false)
+			for frame, origClips in pairs(clippedOverlays) do
+				if not frame:IsForbidden() and not frame:IsProtected() then
+					local level = frame:GetFrameLevel()
+					frame:SetParent(Minimap)
+					frame:SetFrameLevel(level)
+					if origClips then
+						frame:SetClipsChildren(true)
+					end
+				end
+				clippedOverlays[frame] = nil
+			end
+			overlayClipFrame:Hide()
+		end
 		return
 	end
 
 	local mapHeight = Minimap:GetHeight() or E.MinimapSize or 140
 	clipHalfHeight = ((mapHeight - (crop * 2)) * 0.5) - 2
+
+	local targetLevel = Minimap:GetFrameLevel() + 2
+	if not overlayClipFrame then
+		overlayClipFrame = CreateFrame("Frame", "EltruismMinimapOverlayClip", Minimap)
+		overlayClipFrame:EnableMouse(false)
+		overlayClipFrame:SetFrameLevel(targetLevel)
+	elseif overlayClipFrame:GetFrameLevel() ~= targetLevel then
+		overlayClipFrame:SetFrameLevel(targetLevel)
+	end
+	overlayClipFrame:ClearAllPoints()
+	overlayClipFrame:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, -crop)
+	overlayClipFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 0, crop)
+	overlayClipFrame:SetClipsChildren(true)
+	overlayClipFrame:Show()
 
 	if not pinClipActive then
 		pinClipActive = true
@@ -640,6 +707,7 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 		if self.rectangleMinimapInset then
 			self.rectangleMinimapInset = nil
 			Minimap:SetHitRectInsets(0, 0, 0, 0)
+			Minimap:SetClampRectInsets(0, 0, 0, 0)
 
 			local isCircle = E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle
 			if not isCircle then
@@ -680,10 +748,11 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 	local scale = E.db.general.minimap.scale or 1
 	local scaledCrop = crop * scale
 
+	local clampCrop = E:Scale(crop)
 	Minimap:SetMaskTexture(maskPath)
 	Minimap:SetHitRectInsets(0, 0, crop, crop)
 	Minimap:SetClampedToScreen(true)
-	Minimap:SetClampRectInsets(0, 0, 0, 0)
+	Minimap:SetClampRectInsets(0, 0, -clampCrop, clampCrop)
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", M.MapHolder, "TOPRIGHT", -borderOffset / scale, (-borderOffset / scale) + crop)
 
