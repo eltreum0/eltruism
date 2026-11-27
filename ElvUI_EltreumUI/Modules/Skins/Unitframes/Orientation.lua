@@ -272,9 +272,6 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 		else
 			local fetchedTex = GetBarTexture(isPowerBar, customTex, gm)
 			statusBar:SetStatusBarTexture(fetchedTex)
-			if isPowerBar then
-				statusBar.EltruismTextureVersion = nil
-			end
 			local bgTex = fetchedBackdropTex or fetchedTex
 			UF:Update_StatusBar(bg, bgTex)
 			if backdropTex then
@@ -286,9 +283,6 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 	else --not transparent but texture should be set
 		local fetchedTex = GetBarTexture(isPowerBar, customTex, gm)
 		statusBar:SetStatusBarTexture(fetchedTex)
-		if isPowerBar then
-			statusBar.EltruismTextureVersion = nil
-		end
 
 		local bgTex = fetchedBackdropTex or fetchedTex
 		UF:Update_StatusBar(bg, bgTex)
@@ -296,6 +290,10 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(_, isTransparent, statusBar,
 		if adjustBackdropPoints then
 			UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 		end
+	end
+
+	if isHealthBar or isPowerBar then
+		statusBar.EltruismTextureVersion = nil
 	end
 
 	ApplyBackdropAlphas(db, bg, statusBar.backdrop, backdropTex, isTransparent, barTexture, isHealthBar, statusBar)
