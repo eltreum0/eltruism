@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 			if not _G["WorldMapFrame"].EltruismScaleHooked then
 				_G["WorldMapFrame"]:HookScript("OnShow", function()
 					if not E.Modern then
-						if not InCombatLockdown then
+						if not InCombatLockdown() then
 							if not IsAddOnLoaded("Leatrix_Maps") then
 								_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 							end
@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 							end
 						end
 					else
-						if ElvUI_EltreumUI:IsThisASafeSecret(_G["WorldMapFrame"],true) then
+						if not InCombatLockdown() and ElvUI_EltreumUI:IsThisASafeSecret(_G["WorldMapFrame"],true) then
 							_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 						end
 					end
