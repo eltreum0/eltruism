@@ -1834,6 +1834,10 @@ L["Bars"] = "Barras"
 L["Paused"] = "En pausa"
 L["Paused (actionbar paged)"] = "En pausa (barra de acción paginada)"
 L["Inactive"] = "Inactivo"
+L["Gradient Location Text"] = "Texto de ubicación en degradado"
+L["Eltruism Minimap Location"] = "Ubicación del minimapa de Eltruism"
+L["Zone Color"] = "Color de zona"
+L["Class Colors"] = "Colores de clase"
 
 local L_esMX = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
 if L_esMX then
