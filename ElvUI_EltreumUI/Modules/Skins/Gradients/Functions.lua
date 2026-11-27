@@ -7,6 +7,7 @@ local CreateColor = _G.CreateColor
 local wipe = _G.wipe
 local pairs = _G.pairs
 local select = _G.select
+local canaccessvalue = _G.canaccessvalue
 
 local gradientColorCache = {}
 local gradientCustomColorCache = {}
@@ -505,7 +506,7 @@ end)
 
 --get the texture
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)
-	if unitclass and E:NotSecretValue(unitclass) and unitframeclass and unitframeclass[unitclass] then
+	if unitclass and canaccessvalue(unitclass) and unitframeclass[unitclass] then
 		return unitframeclass[unitclass]
 	else
 		return "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Elvui-Norm.tga"
@@ -514,7 +515,7 @@ end
 
 --get the custom texture
 function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
-	if unitclass and E:NotSecretValue(unitclass) and unitframeclasscustom and unitframeclasscustom[unitclass] then
+	if unitclass and canaccessvalue(unitclass) and unitframeclasscustom[unitclass] then
 		return unitframeclasscustom[unitclass]
 	else
 		return "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Elvui-Norm.tga"
@@ -539,7 +540,7 @@ function ElvUI_EltreumUI:GetCachedBackdropAlpha()
 end
 
 function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
-	if not key or not E:NotSecretValue(key) then
+	if not key or not canaccessvalue(key) then
 		key = "ELTRUISM"
 	end
 	local tbl = isCustom and customHealthGradients or defaultHealthGradients
@@ -556,7 +557,7 @@ function ElvUI_EltreumUI:GetHealthGradient(key, invert, isCustom)
 end
 
 function ElvUI_EltreumUI:GetBackdropGradient(key, invert, isCustom, ignoreClass)
-	if ignoreClass or not key or not E:NotSecretValue(key) or key == "ELTRUISM" then
+	if ignoreClass or not key or not canaccessvalue(key) or key == "ELTRUISM" then
 		key = "BACKDROP"
 	end
 	local tbl = isCustom and customBackdropGradients or defaultBackdropGradients
