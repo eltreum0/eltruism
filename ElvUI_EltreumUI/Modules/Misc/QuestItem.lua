@@ -75,7 +75,7 @@ local EXTRA_QUEST_ITEMS = {
 	[44065] = true, [44127] = true, [44186] = true, [44212] = true, [44222] = true, [44251] = true,
 	[44304] = true, [44307] = true, [44433] = true, [44450] = true, [44653] = true, [44704] = true,
 	[44890] = true, [44950] = true, [45072] = true, [46861] = true, [49132] = true, [49278] = true,
-	[49368] = true, [56909] = true, [60501] = true, [180008] = true, [185956] = true,
+	[49368] = true, [56909] = true, [60501] = true, [180008] = true, [185956] = true, [271629] = true,
 }
 
 local barFrame = CreateFrame("Frame", "EltruismQuestItem", E.UIParent)
