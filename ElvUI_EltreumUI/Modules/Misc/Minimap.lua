@@ -736,6 +736,9 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 			self.rectangleMinimapInset = nil
 			Minimap:SetHitRectInsets(0, 0, 0, 0)
 			Minimap:SetClampRectInsets(0, 0, 0, 0)
+			if _G.MinimapMover then
+				_G.MinimapMover:SetClampRectInsets(0, 0, 0, 0)
+			end
 
 			local isCircle = E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle
 			if not isCircle then
@@ -776,11 +779,10 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 	local scale = E.db.general.minimap.scale or 1
 	local scaledCrop = crop * scale
 
-	local clampCrop = E:Scale(crop)
 	Minimap:SetMaskTexture(maskPath)
 	Minimap:SetHitRectInsets(0, 0, crop, crop)
 	Minimap:SetClampedToScreen(true)
-	Minimap:SetClampRectInsets(0, 0, -clampCrop, clampCrop)
+	Minimap:SetClampRectInsets(0, 0, 0, 0)
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", M.MapHolder, "TOPRIGHT", -borderOffset / scale, (-borderOffset / scale) + crop)
 
@@ -804,6 +806,9 @@ function ElvUI_EltreumUI:UpdateRectangleMinimap()
 	M.MapHolder:SetHeight(croppedHeight)
 	if _G.MinimapMover then
 		_G.MinimapMover:SetHeight(croppedHeight)
+		local topClamp = mathmax(0, E:Scale(scaledCrop) - E:Scale(borderOffset))
+		local bottomClamp = mathmax(0, E:Scale(scaledCrop) - panelHeight - E:Scale(borderOffset))
+		_G.MinimapMover:SetClampRectInsets(0, 0, topClamp, -bottomClamp)
 	end
 
 	local shadowFrame = _G["EltruismMiniMapShadowFrame"]
