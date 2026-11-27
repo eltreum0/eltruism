@@ -577,9 +577,12 @@ local function ScanMinimapViaEnumerate(full, grew)
 	local frame = EnumerateFrames(startFrame)
 	while frame do
 		lastEnumeratedFrame = frame
-		if not frame:IsForbidden() and frame:GetParent() == Minimap then
-			ProcessMinimapChild(frame)
-			found = found + 1
+		if (not E.Modern and not frame:IsForbidden()) or (E.Modern and frame:CanBeAccessedInContext()) then
+			local parent = frame:GetParent()
+			if E:NotSecretValue(parent) and parent == Minimap then
+				ProcessMinimapChild(frame)
+				found = found + 1
+			end
 		end
 		frame = EnumerateFrames(frame)
 	end
