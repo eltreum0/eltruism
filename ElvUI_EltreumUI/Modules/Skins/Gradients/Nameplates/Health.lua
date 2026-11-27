@@ -275,7 +275,7 @@ function ElvUI_EltreumUI.GradientNameplates(nameplate)
 		local tex = frame.Health:GetStatusBarTexture()
 
 		if tex then
-			if isRare then
+			if isRare and not tapdenied then
 				UpdateRareHealth(frame)
 			else
 				RestoreDefaultHealthTexture(frame)
