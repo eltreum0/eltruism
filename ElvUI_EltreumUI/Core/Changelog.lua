@@ -14,38 +14,31 @@ function ElvUI_EltreumUI:Changelog()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = E.Libs.ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
-Added a setting to fix the Press and Hold to Keep Casting introduced in Dragonflight, this setting works in Retail and Forever
-Added Reset Buttons to Aura Filters to reset to ElvUI Defaults
+Added quest objective steps below tracked quest Waypoints
+Added Gradient Text options to the Minimap Location text
+Added a mover for the Minimap Location text
+Added custom icons to Waypoints
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	--updated
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
-Updated Waypoints to use a fallback method in Forever since blizzard disabled it, this might not work in the future
-Updated Gradient Nameplates and Unitframes to better handle Secret Classes and Reactions
-Updated Character Panel in Forever to better handle the frame being expanded or not
-Updated Aura Filters to better display Enrage, Crowd Control and other Auras
-Updated Filters to better show Crowd Control and other debuffs
-Updated Loot Text to better display skill point gains
-Updated CVars to remove Brightness and Contrast
-Updated Class Symbols to have a better outline
-Updated Spell List for the Nameplate Power Bar
-Updated Nameplate Buff vertical positioning
-Updated Quest Item Bar
-Updated Cursor Casts
-Updated LootText
+Updated Nameplate Threat Gradients to better match ElvUI's threat and Solo Color settings
+Updated many functions to improve performance and reduce memory usage
+Updated Boss unitframe and Nameplate buff vertical positioning
+Updated Rectangle Minimap to properly clip minimap pins
+Updated Time to Arrive options to Waypoints
 ]], 5, "small", nil, nil, nil, nil, "full")
 
 	--fixed
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = E.Libs.ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = E.Libs.ACH:Description([[
-Added a setting to fix the Press and Hold to Keep Casting introduced in Dragonflight, this setting works in Retail and Forever
-Added Reset Buttons to Aura Filters to reset to ElvUI Defaults
-Fixed an issue where enemy nameplates in battlegrounds would have your own class color
-Fixed an issue where the Player unitframe power bar was not using the correct texture
-Fixed an issue where Details profiles wouldn't import due to a removed function
+Fixed Cursor Cooldown stopping in place instead of following your cursor while fading out
+Fixed the Game Menu window having the wrong height when the Eltruism button is added
+Fixed Rare Nameplates keeping their rare color when already tagged by another player
+Fixed tags not displaying correctly (thanks bosswick)
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--other
