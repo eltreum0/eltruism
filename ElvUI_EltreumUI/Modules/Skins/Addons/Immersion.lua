@@ -62,8 +62,7 @@ local function SkinTitleButton(v)
 
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not v.shadow then
-			v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(v.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(v, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 
@@ -224,8 +223,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			_G["ImmersionFrame"].TalkBox.ReputationBar:SetHeight(4)
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not _G["ImmersionFrame"].TalkBox.ReputationBar.shadow then
-					_G["ImmersionFrame"].TalkBox.ReputationBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["ImmersionFrame"].TalkBox.ReputationBar.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(_G["ImmersionFrame"].TalkBox.ReputationBar, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 		end
@@ -240,8 +238,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			for _, frame in pairs(frames) do
 				if frame and not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 			if E.Classic then
@@ -254,8 +251,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 				}
 				for _, frame in pairs(classicframes) do
 					if frame and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end

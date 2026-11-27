@@ -17,8 +17,7 @@ local function SkinImagePopup(popup)
 	popup:SetTemplate('Transparent')
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not popup.shadow then
-			popup:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(popup.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(popup, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 
@@ -57,8 +56,7 @@ local function SkinRows(scrollChild)
 		end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not scrollChild._embedThumb.shadow then
-				scrollChild._embedThumb:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(scrollChild._embedThumb.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(scrollChild._embedThumb, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 		scrollChild._embedThumb.IsSkinned = true
@@ -96,8 +94,7 @@ local function SkinRows(scrollChild)
 					S:HandleButton(row.btn)
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if not row.btn.shadow then
-							row.btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(row.btn.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(row.btn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					row.btn.IsSkinned = true
@@ -123,8 +120,7 @@ local function SkinRows(scrollChild)
 					end
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if not row.thumbBtn.shadow then
-							row.thumbBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(row.thumbBtn.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(row.thumbBtn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					row.thumbBtn:HookScript('OnClick', function()
@@ -151,8 +147,7 @@ local function SkinRows(scrollChild)
 								end
 								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									if not tile.thumbBtn.shadow then
-										tile.thumbBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(tile.thumbBtn.shadow)
+										ElvUI_EltreumUI:CreateFastShadow(tile.thumbBtn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 									end
 								end
 								tile.thumbBtn:HookScript('OnClick', function()
@@ -167,8 +162,7 @@ local function SkinRows(scrollChild)
 								S:HandleButton(tile.btn)
 								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									if not tile.btn.shadow then
-										tile.btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(tile.btn.shadow)
+										ElvUI_EltreumUI:CreateFastShadow(tile.btn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 									end
 								end
 							end
@@ -190,8 +184,7 @@ local function SkinRows(scrollChild)
 							end
 							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 								if not itemBtn.shadow then
-									itemBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(itemBtn.shadow)
+									ElvUI_EltreumUI:CreateFastShadow(itemBtn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 								end
 							end
 							itemBtn.IsSkinned = true
@@ -207,8 +200,7 @@ local function SkinRows(scrollChild)
 					end
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if not row.craftButton.shadow then
-							row.craftButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(row.craftButton.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(row.craftButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					row.craftButton.IsSkinned = true
@@ -225,8 +217,7 @@ local function SkinRows(scrollChild)
 					end
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if not row.spellButton.shadow then
-							row.spellButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(row.spellButton.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(row.spellButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					row.spellButton.IsSkinned = true
@@ -275,8 +266,7 @@ local function UpdateMainWindowTextOnly(main)
 		end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not main.shadow then
-				main:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(main.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(main, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			else
 				main.shadow:Show()
 			end
@@ -383,8 +373,7 @@ local function SkinFollowTheArrowMainFrame(main)
 	--shadows
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not main.shadow then
-			main:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(main.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(main, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 
@@ -419,8 +408,7 @@ local function SkinFollowTheArrowMainFrame(main)
 				S:HandleButton(child)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not child.shadow then
-						child:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(child.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(child, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 
@@ -430,8 +418,7 @@ local function SkinFollowTheArrowMainFrame(main)
 				S:HandleButton(child)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not child.shadow then
-						child:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(child.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(child, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 
@@ -520,8 +507,7 @@ local function SkinFollowTheArrowMainFrame(main)
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not syncBtn.shadow then
-				syncBtn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(syncBtn.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(syncBtn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
@@ -543,8 +529,7 @@ local function SkinFollowTheArrowMainFrame(main)
 		S:HandleDropDownBox(routeDD)
 		if routeDD.backdrop and E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not routeDD.backdrop.shadow then
-				routeDD.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(routeDD.backdrop.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(routeDD.backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 

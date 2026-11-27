@@ -75,8 +75,7 @@ function ElvUI_EltreumUI:EltruismClique()
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					for _, frame in pairs(frames) do
 						if frame and not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -91,8 +90,7 @@ function ElvUI_EltreumUI:EltruismClique()
 				_G["CliqueSpellbookTabButton"].EltruismSkin = true
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if _G["CliqueSpellbookTabButton"] and not _G["CliqueSpellbookTabButton"].shadow then
-						_G["CliqueSpellbookTabButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["CliqueSpellbookTabButton"].shadow)
+						ElvUI_EltreumUI:CreateFastShadow(_G["CliqueSpellbookTabButton"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end

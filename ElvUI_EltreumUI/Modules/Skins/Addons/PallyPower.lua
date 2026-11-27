@@ -63,7 +63,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		PallyPowerAura:SetTemplate("Transparent", E.media.normTex, true)
 		PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerAura.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			PallyPowerAura:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:CreateFastShadow(PallyPowerAura, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if PallyPowerAura.shadow then
 				PallyPowerAura.shadow:ClearAllPoints()
 				PallyPowerAura.shadow:SetPoint("BOTTOMLEFT", PallyPowerAuraIcon,"BOTTOMLEFT", -3, -3)
@@ -79,13 +79,12 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					PallyPowerAura.shadow:Hide()
 				end
 			end)
-			ElvUI_EltreumUI:ShadowColor(PallyPowerAura.shadow)
 		end
 
 		--PallyPowerAuto:SetTemplate("Transparent", nil, true)
 		PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerAuto.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			PallyPowerAuto:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:CreateFastShadow(PallyPowerAuto, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if PallyPowerAuto.shadow then
 				PallyPowerAuto.shadow:ClearAllPoints()
 				PallyPowerAuto.shadow:SetPoint("BOTTOMLEFT", PallyPowerAutoIcon,"BOTTOMLEFT", -3, -3)
@@ -93,7 +92,6 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				PallyPowerAuto.shadow:SetPoint("BOTTOMRIGHT", PallyPowerAutoIcon,"BOTTOMRIGHT", 3, -3)
 				PallyPowerAuto.shadow:SetPoint("TOPRIGHT", PallyPowerAutoIcon,"TOPRIGHT", 3, 3)
 				PallyPowerAuto.shadow:SetParent(PallyPowerAuto)
-				ElvUI_EltreumUI:ShadowColor(PallyPowerAuto.shadow)
 			end
 		end
 
@@ -103,7 +101,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerRF.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			PallyPowerRF:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:CreateFastShadow(PallyPowerRF, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if PallyPowerRF.shadow then
 				PallyPowerRF.shadow:ClearAllPoints()
 				PallyPowerRF.shadow:SetPoint("BOTTOMLEFT", PallyPowerRFIconSeal,"BOTTOMLEFT", -3, -3)
@@ -111,12 +109,11 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				PallyPowerRF.shadow:SetPoint("BOTTOMRIGHT", PallyPowerRFIconSeal,"BOTTOMRIGHT", 3, -3)
 				PallyPowerRF.shadow:SetPoint("TOPRIGHT", PallyPowerRFIconSeal,"TOPRIGHT", 3, 3)
 				PallyPowerRF.shadow:SetParent(PallyPowerRF)
-				ElvUI_EltreumUI:ShadowColor(PallyPowerRF.shadow)
 			end
 		end
 		--because we need 2 shadows
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerAnchor.shadow and PallyPowerRFIcon:GetTexture() ~= nil and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			PallyPowerAnchor:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:CreateFastShadow(PallyPowerAnchor, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if PallyPowerAnchor.shadow then
 				PallyPowerAnchor.shadow:ClearAllPoints()
 				PallyPowerAnchor.shadow:SetPoint("BOTTOMLEFT", PallyPowerRFIcon,"BOTTOMLEFT", -3, -3)
@@ -124,7 +121,6 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				PallyPowerAnchor.shadow:SetPoint("BOTTOMRIGHT", PallyPowerRFIcon,"BOTTOMRIGHT", 3, -3)
 				PallyPowerAnchor.shadow:SetPoint("TOPRIGHT", PallyPowerRFIcon,"TOPRIGHT", 3, 3)
 				PallyPowerAnchor.shadow:SetParent(PallyPowerRF)
-				ElvUI_EltreumUI:ShadowColor(PallyPowerAnchor.shadow)
 			end
 		end
 
@@ -143,14 +139,13 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			--_G[button:GetName().."ClassIcon"]:SetTexCoord(unpack(E.TexCoords))
 			_G[button:GetName().."BuffIcon"]:SetTexCoord(unpack(E.TexCoords))
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not button.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-				button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:CreateFastShadow(button, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				button.shadow:ClearAllPoints()
 				button.shadow:SetPoint("BOTTOMLEFT", _G[button:GetName().."BuffIcon"],"BOTTOMLEFT", -3, -3)
 				button.shadow:SetPoint("TOPLEFT", _G[button:GetName().."BuffIcon"],"TOPLEFT", -3, 3)
 				button.shadow:SetPoint("BOTTOMRIGHT", _G[button:GetName().."BuffIcon"],"BOTTOMRIGHT", 3, -3)
 				button.shadow:SetPoint("TOPRIGHT", _G[button:GetName().."BuffIcon"],"TOPRIGHT", 3, 3)
 				button.shadow:SetParent(button)
-				ElvUI_EltreumUI:ShadowColor(button.shadow)
 			end
 
 			for j = 1, PALLYPOWER_MAXPERCLASS do
@@ -165,7 +160,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
 					if not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
-							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:CreateFastShadow(_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i], E.db.ElvUI_EltreumUI.skins.shadow.length)
 							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:ClearAllPoints()
 							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"BOTTOMLEFT", -3, -3)
 							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
@@ -176,7 +171,6 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 							else
 								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
 							end
-							ElvUI_EltreumUI:ShadowColor(_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow)
 						end
 						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:HookScript("OnClick", function()
 							E:Delay(0, function()
@@ -207,14 +201,13 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			if _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"] then
 				_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"]:SetTexCoord(unpack(E.TexCoords))
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:CreateFastShadow(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:ClearAllPoints()
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"BOTTOMLEFT", -3, -3)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"TOPLEFT", -3, 3)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"BOTTOMRIGHT", 3, -3)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"TOPRIGHT", 3, 3)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetParent(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"])
-					ElvUI_EltreumUI:ShadowColor(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow)
 				end
 			end
 
@@ -224,14 +217,13 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					if not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
 							if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
-								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:CreateFastShadow(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i], E.db.ElvUI_EltreumUI.skins.shadow.length)
 								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:ClearAllPoints()
 								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMLEFT", -3, -3)
 								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPLEFT", -3, 3)
 								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
 								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPRIGHT", 3, 3)
 								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetParent(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i])
-								ElvUI_EltreumUI:ShadowColor(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow)
 							end
 						end
 						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:HookScript("OnClick", function()
@@ -258,8 +250,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 
 		--add shadow
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerBlessingsFrame.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			PallyPowerBlessingsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(PallyPowerBlessingsFrame.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(PallyPowerBlessingsFrame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 
 		--better point
@@ -277,7 +268,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		local function UpdateShadows()
 			if InCombatLockdown() then return end
 			if not PallyPowerFrame.shadow then
-				PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:CreateFastShadow(PallyPowerFrame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				PallyPowerFrame.shadow:SetParent(PallyPowerRF)
 			end
 			if PallyPowerFrame.shadow then

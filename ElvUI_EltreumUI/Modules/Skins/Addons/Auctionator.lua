@@ -50,8 +50,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 									if _G["AuctionatorDialog"..tostring(i)] and not _G["AuctionatorDialog"..tostring(i)].EltruismSkin then
 										S:HandleFrame(_G["AuctionatorDialog"..i])
 										if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["AuctionatorDialog"..i].shadow then
-											_G["AuctionatorDialog"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(_G["AuctionatorDialog"..i].shadow)
+											ElvUI_EltreumUI:CreateFastShadow(_G["AuctionatorDialog"..i], E.db.ElvUI_EltreumUI.skins.shadow.length)
 										end
 										if _G["AuctionatorDialog"..tostring(i)].acceptButton then
 											S:HandleButton(_G["AuctionatorDialog"..tostring(i)].acceptButton)
@@ -318,8 +317,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 						end
 
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["AuctionatorGroupsCustomiseFrame"].shadow then
-							_G["AuctionatorGroupsCustomiseFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["AuctionatorGroupsCustomiseFrame"].shadow)
+							ElvUI_EltreumUI:CreateFastShadow(_G["AuctionatorGroupsCustomiseFrame"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 
 						_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
@@ -638,8 +636,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 											if v.tabHeader then
 												S:HandleTab(v)
 												if E.db.ElvUI_EltreumUI.skins.shadow.enable and v.backdrop and not v.backdrop.shadow then
-													v.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-													ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
+													ElvUI_EltreumUI:CreateFastShadow(v.backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 												end
 												_G["AuctionHouseFrame"].EltruismTabSkinned = true
 											end
@@ -676,8 +673,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 								if _G["AuctionFrameTab"..i] then
 									S:HandleTab(_G["AuctionFrameTab"..i])
 									if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["AuctionFrameTab"..i].backdrop and not _G["AuctionFrameTab"..i].backdrop.shadow then
-										_G["AuctionFrameTab"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(_G["AuctionFrameTab"..i].backdrop.shadow)
+										ElvUI_EltreumUI:CreateFastShadow(_G["AuctionFrameTab"..i].backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 									end
 									_G["AuctionFrame"].EltruismTabSkinned = true
 								end

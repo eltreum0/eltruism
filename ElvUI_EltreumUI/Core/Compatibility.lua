@@ -37,8 +37,7 @@ local function ConstructCompatibilityFrame()
 		end
 	end)
 	if not frame.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-		frame:CreateShadow()
-		ElvUI_EltreumUI:ShadowColor(frame.shadow)
+		ElvUI_EltreumUI:CreateFastShadow(frame)
 	end
 
 	frame:SetFrameStrata("TOOLTIP")

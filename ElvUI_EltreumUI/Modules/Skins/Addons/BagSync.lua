@@ -139,64 +139,49 @@ function ElvUI_EltreumUI:EltruismBagSync()
 			--shadows
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not Search.frame.shadow then
-					Search.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Search.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Search.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Search.helpFrame.shadow then
-					Search.helpFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Search.helpFrame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Search.helpFrame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Search.savedSearch.shadow then
-					Search.savedSearch:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Search.savedSearch.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Search.savedSearch, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not adv.frame.shadow then
-					adv.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(adv.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(adv.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Currency.frame.shadow then
-					Currency.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Currency.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Currency.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Professions.frame.shadow then
-					Professions.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Professions.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Professions.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Recipes.frame.shadow then
-					Recipes.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Recipes.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Recipes.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Blacklist.frame.shadow then
-					Blacklist.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Blacklist.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Blacklist.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Whitelist.frame.shadow then
-					Whitelist.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Whitelist.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Whitelist.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Whitelist.warningFrame.shadow then
-					Whitelist.warningFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Whitelist.warningFrame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Whitelist.warningFrame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Gold.frame.shadow then
-					Gold.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Gold.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Gold.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Profiles.frame.shadow then
-					Profiles.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Profiles.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Profiles.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not SortOrder.frame.shadow then
-					SortOrder.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(SortOrder.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(SortOrder.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not SortOrder.warningFrame.shadow then
-					SortOrder.warningFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(SortOrder.warningFrame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(SortOrder.warningFrame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not Details.frame.shadow then
-					Details.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(Details.frame.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(Details.frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 		end)

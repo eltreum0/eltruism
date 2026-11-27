@@ -182,8 +182,7 @@ local function StyleButtonElements(btn, db)
 
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not btn.shadow then
-			btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(btn.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(btn, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 

@@ -633,12 +633,7 @@ do
 				bar:SetClipsChildren(false)
 			end
 			if not bar.StatusBar.shadow then
-				if ElvUI_EltreumUI.CreateFastShadow then
-					ElvUI_EltreumUI:CreateFastShadow(bar.StatusBar, E:Scale(2))
-				else
-					bar.StatusBar:CreateShadow(2)
-					ElvUI_EltreumUI:ShadowColor(bar.StatusBar.shadow)
-				end
+				ElvUI_EltreumUI:CreateFastShadow(bar.StatusBar, E:Scale(2))
 			end
 		end
 
@@ -786,8 +781,7 @@ do
 		if not embedpanel.EltruismSkinned and (E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH") then
 			S:HandleFrame(embedpanel, true, "Transparent")
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not embedpanel.shadow then
-				embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(embedpanel.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(embedpanel, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			embedpanel.EltruismSkinned = true
 		end

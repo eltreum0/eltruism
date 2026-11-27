@@ -99,16 +99,14 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 		local fadeAlpha = E.db.general.backdropfadecolor.a
 
 		if shadowDB.enable and shadowDB.aura and not bar.shadow and not borderDB.universalborders then
-			bar:CreateShadow(shadowDB.length)
-			ElvUI_EltreumUI:ShadowColor(bar.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(bar, shadowDB.length, shadowDB)
 			if db.thinmodeaurabars then
 				if bar.shadow then
 					bar.shadow:ClearAllPoints()
 					bar.shadow:SetPoint("TOPRIGHT", bar.backdrop, "TOPRIGHT", shadowDB.length, shadowDB.length)
 					bar.shadow:SetPoint("BOTTOMLEFT", bar.backdrop, "BOTTOMLEFT", -shadowDB.length, -shadowDB.length)
 					if bar.backdrop and not bar.backdrop.shadow then
-						bar.backdrop:CreateShadow(shadowDB.length)
-						ElvUI_EltreumUI:ShadowColor(bar.backdrop.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(bar.backdrop, shadowDB.length, shadowDB)
 						if ElvUI_EltreumUI:IsThisASafeSecret(bar, true) and bar.icon and bar.icon.backdrop then
 							bar.backdrop.shadow:ClearAllPoints()
 							bar.backdrop.shadow:SetPoint("TOPRIGHT", bar.icon.backdrop, "TOPRIGHT", shadowDB.length, shadowDB.length)
@@ -404,8 +402,7 @@ function ElvUI_EltreumUI:ApplyThinModeRetail(container, button)
 	if shadowDB.enable and shadowDB.aura and not (borderDB.borders and borderDB.auraborder) and not (IsAddOnLoaded and IsAddOnLoaded("Masque")) and not borderDB.universalborders and not shadowDB.universalshadows then
 		if button.backdrop then
 			if not button.iconShadow then
-				button.iconShadow = button:CreateShadow(shadowDB.length, true)
-				ElvUI_EltreumUI:ShadowColor(button.iconShadow)
+				button.iconShadow = ElvUI_EltreumUI:CreateFastShadow(button, shadowDB.length, shadowDB, nil, true)
 			end
 			if button.iconShadow then
 				local level = button:GetFrameLevel()

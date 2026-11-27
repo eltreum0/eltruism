@@ -100,11 +100,9 @@ local function SkinOptions(parent)
 
 				if dbShadow.enable and not dbBorders.universalborders then
 					if dropdown.backdrop and not dropdown.backdrop.shadow then
-						dropdown.backdrop:CreateShadow(dbShadow.length)
-						ElvUI_EltreumUI:ShadowColor(dropdown.backdrop.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(dropdown.backdrop, dbShadow.length, dbShadow)
 					elseif not dropdown.shadow then
-						dropdown:CreateShadow(dbShadow.length)
-						ElvUI_EltreumUI:ShadowColor(dropdown.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(dropdown, dbShadow.length, dbShadow)
 					end
 				end
 			end
@@ -124,8 +122,7 @@ local function SkinOptions(parent)
 				end
 				if dbShadow.enable and not dbBorders.universalborders then
 					if previewBtn.backdrop and not previewBtn.backdrop.shadow then
-						previewBtn.backdrop:CreateShadow(dbShadow.length)
-						ElvUI_EltreumUI:ShadowColor(previewBtn.backdrop.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(previewBtn.backdrop, dbShadow.length, dbShadow)
 					end
 				end
 			end
@@ -269,8 +266,7 @@ local function SkinBugSack()
 		}
 		for _, frame in pairs(frames) do
 			if frame and not frame.shadow then
-				frame:CreateShadow(dbShadow.length)
-				ElvUI_EltreumUI:ShadowColor(frame.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(frame, dbShadow.length, dbShadow)
 			end
 		end
 	end

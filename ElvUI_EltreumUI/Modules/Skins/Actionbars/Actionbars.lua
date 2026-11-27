@@ -876,8 +876,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 	EltruismGlowPreview:SetScript("OnDragStop",EltruismGlowPreview.StopMovingOrSizing)
 
 	if not EltruismGlowPreview.shadow then
-		EltruismGlowPreview:CreateShadow()
-		ElvUI_EltreumUI:ShadowColor(EltruismGlowPreview.shadow)
+		ElvUI_EltreumUI:CreateFastShadow(EltruismGlowPreview)
 	end
 
 	if EltruismGlowPreview:IsShown() then

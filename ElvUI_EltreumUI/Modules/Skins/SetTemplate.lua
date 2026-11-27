@@ -666,13 +666,11 @@ local function EltruismShadow(frame,template,isNamePlateElement,eltruismDB,paren
 		if frame then
 			if frame.backdrop then
 				if not frame.backdrop.shadow then
-					frame.backdrop:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow,shadowDB,isNamePlateElement)
+					ElvUI_EltreumUI:CreateFastShadow(frame.backdrop, shadowLen, shadowDB, isNamePlateElement)
 				end
 			else
 				if not frame.shadow then
-					frame:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow,shadowDB,isNamePlateElement)
+					ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB, isNamePlateElement)
 				end
 			end
 		end
@@ -688,47 +686,41 @@ local function EltruismShadow(frame,template,isNamePlateElement,eltruismDB,paren
 			--saved instances shadow
 			if parent and parent.key and parent.key == "SavedInstancesTooltip" then
 				if not frame.shadow then
-					frame:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow, shadowDB)
+					ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB)
 				end
 			end
 
 			--possible widget shadows
 			if grandParent and grandParent.widgetContainer then
 				if not frame.shadow then
-					frame:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow, shadowDB)
+					ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB)
 				end
 			end
 
 			--new dropdowns?
 			if parent and parent.InitScrollLayout then
 				if not frame.shadow then
-					frame:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow, shadowDB)
+					ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB)
 				end
 			end
 
 			--petbattle
 			if parent and parent.PetType then
 				if not frame.shadow then
-					frame:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow, shadowDB)
+					ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB)
 				end
 			end
 			--if ElvUI_EltreumUI:IsThisASafeSecret(frame,true) and ElvUI_EltreumUI:IsThisASafeSecret(nil,nil,true) and ElvUI_EltreumUI:IsThisASafeSecret(frame:GetDebugName(),true) then
 			if E.Mists then
 				if strfind(frame:GetDebugName(), "PetBattleFrame", 1, true) then
 					if not frame.shadow then
-						frame:CreateShadow(shadowLen)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow, shadowDB)
+						ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB)
 					end
 				end
 			end
 			if parent and parent == _G["ElvUIPetBattleActionBar"] then
 				if not frame.shadow then
-					frame:CreateShadow(shadowLen)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow, shadowDB)
+					ElvUI_EltreumUI:CreateFastShadow(frame, shadowLen, shadowDB)
 				end
 			end
 		end

@@ -50,13 +50,11 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not E.Classic then
 					if rarescannerbutton and not rarescannerbutton.shadow then
-						rarescannerbutton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(rarescannerbutton.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(rarescannerbutton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				else
 					if rarescannerbutton and rarescannerbutton.backdrop and not rarescannerbutton.backdrop.shadow then
-						rarescannerbutton.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(rarescannerbutton.backdrop.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(rarescannerbutton.backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -71,8 +69,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 
 				--add shadows too
 				if not v.backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					v.backdrop:CreateShadow()
-					ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(v.backdrop)
 				end
 
 				--elvui didnt get rid of the blizzard texture
@@ -110,8 +107,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 							--S:HandleFrame(v) --can end up erasing icon
 							v:CreateBackdrop()
 							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not v.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-								v:CreateShadow(2)
-								ElvUI_EltreumUI:ShadowColor(v.shadow)
+								ElvUI_EltreumUI:CreateFastShadow(v, 2)
 							end
 							v.IsSkinned = true
 						end

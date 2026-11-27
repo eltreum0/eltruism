@@ -19,8 +19,7 @@ local function AddShadow(frame)
 		and not E.db.ElvUI_EltreumUI.borders.universalborders
 		and not frame.shadow
 	then
-		frame:CreateShadow(shadowDB.length)
-		ElvUI_EltreumUI:ShadowColor(frame.shadow)
+		ElvUI_EltreumUI:CreateFastShadow(frame, shadowDB.length, shadowDB)
 	end
 end
 

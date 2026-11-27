@@ -571,8 +571,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									bar.BarFrame.backdrop:SetOutside(bar.Icon)
 									if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 										if not bar.BarFrame.backdrop.shadow then
-											bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
+											ElvUI_EltreumUI:CreateFastShadow(bar.BarFrame.backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 										end
 									end
 									bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
@@ -582,8 +581,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							if not bar.shadow then
-								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(bar.shadow)
+								ElvUI_EltreumUI:CreateFastShadow(bar, E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end
 					end
@@ -1007,9 +1005,8 @@ function ElvUI_EltreumUI:SkinQuests()
 								module.Header.EltruismStatusLine:SetFrameLevel(1)
 								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow and E.private.general.pixelPerfect then
 									--module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
-									module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:CreateFastShadow(module.Header.EltruismStatusLine, E.db.ElvUI_EltreumUI.skins.shadow.length)
 									module.Header.EltruismStatusLine.shadow:SetFrameStrata("LOW")
-									ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)
 								end
 							end
 						end
@@ -1045,8 +1042,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					local itemButton = block.itemButton or block.ItemButton
 					if itemButton then
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not itemButton.shadow then
-							itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(itemButton.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(itemButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if itemButton.HotKey then
 							itemButton.HotKey:Kill()
@@ -1068,8 +1064,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					end
 					if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.groupFinderButton.shadow then
-						block.groupFinderButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(block.groupFinderButton.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(block.groupFinderButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 					if block.usedLines then
 						if #block.usedLines == 0 then
@@ -1111,8 +1106,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						ScenarioObjectiveBlockBackground:SetPoint("CENTER", ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
 					end
 					if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
-						ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(ScenarioObjectiveBlockBackground, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 					ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 					ScenarioObjectiveBlockBackground:Show()
@@ -1234,9 +1228,8 @@ function ElvUI_EltreumUI:SkinQuests()
 										module.Header.EltruismStatusLine:SetFrameLevel(1)
 										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 											--module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
-											module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:CreateFastShadow(module.Header.EltruismStatusLine, E.db.ElvUI_EltreumUI.skins.shadow.length)
 											module.Header.EltruismStatusLine.shadow:SetFrameStrata("LOW")
-											ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)
 										end
 									end
 								end
@@ -1559,8 +1552,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				S:HandleMaxMinFrame(_G["EltruismMinimizeQuests"])
 				_G["EltruismMinimizeQuests"]:SetTemplate("Backdrop")
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not QuestWatchFrame.Minimize.shadow and E.private.general.pixelPerfect then
-					QuestWatchFrame.Minimize:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(QuestWatchFrame.Minimize.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(QuestWatchFrame.Minimize, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				QuestWatchFrame.Minimize.MaximizeButton:HookScript("OnClick",function()
 					QuestWatchFrame:Show()
@@ -1600,8 +1592,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 			if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow and E.private.general.pixelPerfect then
 				QuestWatchFrame.HeaderBar:CreateBackdrop('Transparent')
-				QuestWatchFrame.HeaderBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(QuestWatchFrame.HeaderBar.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(QuestWatchFrame.HeaderBar, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if not QuestWatchFrame.HeaderBar.InvisFrame then
 				QuestWatchFrame.HeaderBar.InvisFrame = CreateFrame("Frame", nil, QuestWatchFrame.HeaderBar)
@@ -1874,8 +1865,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow and E.private.general.pixelPerfect then
 					_G["EltruismQuestLine"]:CreateBackdrop('Transparent')
-					_G["EltruismQuestLine"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["EltruismQuestLine"].shadow)
+					ElvUI_EltreumUI:CreateFastShadow(_G["EltruismQuestLine"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 
 				if not WatchFrame.HeaderBar.InvisFrame then
@@ -1950,8 +1940,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						Button:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize, E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize)
 						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow and E.private.general.pixelPerfect then
-							Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(Button.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(Button, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if not Button.IsSkinned then
 							S:HandleButton(Button)
@@ -2004,13 +1993,12 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
 
 				if not _G["WatchFrameCollapseExpandButton"].shadow then
-					_G["WatchFrameCollapseExpandButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:CreateFastShadow(_G["WatchFrameCollapseExpandButton"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G["WatchFrameCollapseExpandButton"].shadow:ClearAllPoints()
 					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("TOPLEFT", _G["WatchFrameCollapseExpandButton"], "TOPLEFT", -1, 1)
 					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("TOPRIGHT", _G["WatchFrameCollapseExpandButton"], "TOPRIGHT", 1, 1)
 					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("BOTTOMLEFT", _G["WatchFrameCollapseExpandButton"], "BOTTOMLEFT", -1, -1)
 					_G["WatchFrameCollapseExpandButton"].shadow:SetPoint("BOTTOMLEFT", _G["WatchFrameCollapseExpandButton"], "BOTTOMLEFT", 1, -1)
-					ElvUI_EltreumUI:ShadowColor(_G["WatchFrameCollapseExpandButton"].shadow)
 				end
 
 				hooksecurefunc("WatchFrame_Collapse", function()

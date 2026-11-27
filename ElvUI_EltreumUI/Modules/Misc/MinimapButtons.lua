@@ -148,9 +148,10 @@ local function ApplyButtonStyle(button, isBlizzButton)
 	button:SetTemplate("Transparent")
 	if db.shadow then
 		if not button.shadow then
-			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:CreateFastShadow(button, E.db.ElvUI_EltreumUI.skins.shadow.length)
+		else
+			ElvUI_EltreumUI:ShadowColor(button.shadow)
 		end
-		ElvUI_EltreumUI:ShadowColor(button.shadow)
 		button.shadow:Show()
 	elseif button.shadow then
 		button.shadow:Hide()
@@ -511,9 +512,10 @@ local function UpdateToggleButton()
 
 	if db.shadow then
 		if not toggleButton.shadow then
-			toggleButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			ElvUI_EltreumUI:CreateFastShadow(toggleButton, E.db.ElvUI_EltreumUI.skins.shadow.length)
+		else
+			ElvUI_EltreumUI:ShadowColor(toggleButton.shadow)
 		end
-		ElvUI_EltreumUI:ShadowColor(toggleButton.shadow)
 		toggleButton.shadow:Show()
 	elseif toggleButton.shadow then
 		toggleButton.shadow:Hide()
@@ -587,9 +589,10 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 			btn:SetParent(buttonBar)
 			if db.shadow then
 				if not btn.shadow then
-					btn:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:CreateFastShadow(btn, E.db.ElvUI_EltreumUI.skins.shadow.length)
+				else
+					ElvUI_EltreumUI:ShadowColor(btn.shadow)
 				end
-				ElvUI_EltreumUI:ShadowColor(btn.shadow)
 				btn.shadow:Show()
 			elseif btn.shadow then
 				btn.shadow:Hide()
@@ -669,9 +672,10 @@ function ElvUI_EltreumUI:UpdateMinimapButtonBar()
 		buttonBar:SetTemplate(db.transparent and "Transparent" or "Default")
 		if db.shadow then
 			if not buttonBar.shadow then
-				buttonBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:CreateFastShadow(buttonBar, E.db.ElvUI_EltreumUI.skins.shadow.length)
+			else
+				ElvUI_EltreumUI:ShadowColor(buttonBar.shadow)
 			end
-			ElvUI_EltreumUI:ShadowColor(buttonBar.shadow)
 			buttonBar.shadow:Show()
 		elseif buttonBar.shadow then
 			buttonBar.shadow:Hide()

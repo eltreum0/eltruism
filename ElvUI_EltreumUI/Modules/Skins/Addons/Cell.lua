@@ -36,8 +36,7 @@ local function hookCell(frame,region,solo,isPet)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if E.db.ElvUI_EltreumUI.skins.shadow.raid then
 						if not region.shadow then
-							region:CreateShadow()
-							ElvUI_EltreumUI:ShadowColor(region.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(region)
 						end
 					end
 				end
@@ -73,8 +72,7 @@ local function hookCell(frame,region,solo,isPet)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if E.db.ElvUI_EltreumUI.skins.shadow.raid then
 						if not region.shadow then
-							region:CreateShadow()
-							ElvUI_EltreumUI:ShadowColor(region.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(region)
 						end
 					end
 				end
@@ -110,8 +108,7 @@ local function hookCell(frame,region,solo,isPet)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if E.db.ElvUI_EltreumUI.skins.shadow.raid then
 						if not frame:GetParent().shadow then
-							frame:GetParent():CreateShadow()
-							ElvUI_EltreumUI:ShadowColor(frame:GetParent().shadow)
+							ElvUI_EltreumUI:CreateFastShadow(frame:GetParent())
 						end
 					end
 				end
@@ -142,8 +139,7 @@ local function hookCell(frame,region,solo,isPet)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if E.db.ElvUI_EltreumUI.skins.shadow.raid then
 						if not frame:GetParent().shadow then
-							frame:GetParent():CreateShadow()
-							ElvUI_EltreumUI:ShadowColor(frame:GetParent().shadow)
+							ElvUI_EltreumUI:CreateFastShadow(frame:GetParent())
 						end
 					end
 				end

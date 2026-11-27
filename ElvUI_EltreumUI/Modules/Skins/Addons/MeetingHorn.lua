@@ -20,8 +20,7 @@ local function SkinMeetingHornTabs(...)
 			if group.HighlightTexture then
 				S:HandleTab(group)
 				if not group.backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-					group.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(group.backdrop.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(group.backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 		end
@@ -38,8 +37,7 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not f.MainPanel.shadow then
-				f.MainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(f.MainPanel.shadow)
+				ElvUI_EltreumUI:CreateFastShadow(f.MainPanel, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 

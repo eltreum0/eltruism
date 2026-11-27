@@ -65,8 +65,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						--shadows
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							if not bar.shadow then
-								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(bar.shadow)
+								ElvUI_EltreumUI:CreateFastShadow(bar, E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end
 
@@ -109,8 +108,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 			if frame then
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not frame.status.shadow then
-						frame.status:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.status.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(frame.status, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 				if not frame.GradientHook then
@@ -305,8 +303,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					E:Delay(0, function()
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							if CraftFrame.backdrop and not CraftFrame.backdrop.shadow then
-								CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(CraftFrame.backdrop.shadow)
+								ElvUI_EltreumUI:CreateFastShadow(CraftFrame.backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end
 						CraftFrame:SetWidth(765)
@@ -701,8 +698,7 @@ function ElvUI_EltreumUI:SkinVehicleButton()
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 				if _G["MainMenuBarVehicleLeaveButton"].backdrop then
 					if not _G["MainMenuBarVehicleLeaveButton"].backdrop.shadow then
-						_G["MainMenuBarVehicleLeaveButton"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["MainMenuBarVehicleLeaveButton"].backdrop.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(_G["MainMenuBarVehicleLeaveButton"].backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end

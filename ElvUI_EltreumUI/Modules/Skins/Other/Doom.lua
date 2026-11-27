@@ -377,8 +377,7 @@ function ElvUI_EltreumUI:Doom()
 
 		--create shadow
 		if not DCP.shadow then
-			DCP:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(DCP.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(DCP, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 
 		--load in the ignored/allowed spells

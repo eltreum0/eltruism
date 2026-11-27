@@ -49,8 +49,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 									if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 										if E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 											if not _G["CompactRaidGroup"..k.."Member"..l].healthBar.shadow then
-												_G["CompactRaidGroup"..k.."Member"..l].healthBar:CreateShadow()
-												ElvUI_EltreumUI:ShadowColor(_G["CompactRaidGroup"..k.."Member"..l].healthBar.shadow)
+												ElvUI_EltreumUI:CreateFastShadow(_G["CompactRaidGroup"..k.."Member"..l].healthBar)
 											end
 										end
 									end
@@ -111,8 +110,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 								if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 									if E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 										if not _G["CompactRaidFrame"..i].healthBar.shadow then
-											_G["CompactRaidFrame"..i].healthBar:CreateShadow()
-											ElvUI_EltreumUI:ShadowColor(_G["CompactRaidFrame"..i].healthBar.shadow)
+											ElvUI_EltreumUI:CreateFastShadow(_G["CompactRaidFrame"..i].healthBar)
 										end
 									end
 								end
@@ -178,8 +176,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 								if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 									if E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 										if not _G["CompactPartyFrameMember"..l].healthBar.shadow then
-											_G["CompactPartyFrameMember"..l].healthBar:CreateShadow()
-											ElvUI_EltreumUI:ShadowColor(_G["CompactPartyFrameMember"..l].healthBar.shadow)
+											ElvUI_EltreumUI:CreateFastShadow(_G["CompactPartyFrameMember"..l].healthBar)
 										end
 									end
 								end

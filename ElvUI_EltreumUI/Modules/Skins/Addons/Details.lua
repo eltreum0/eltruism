@@ -117,7 +117,7 @@ do
 												row.textura.EltruismMask = true
 											end
 											if not row.statusbar.shadow then
-												row.statusbar:CreateShadow()
+												ElvUI_EltreumUI:CreateFastShadow(row.statusbar)
 												row.statusbar.shadow:ClearAllPoints()
 												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -2.5)
 												row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 2.5, -14)
@@ -169,7 +169,7 @@ do
 											row.background:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMRIGHT", -1, 0)
 											row.background:SetPoint("TOPRIGHT", row,"TOPRIGHT", 0, 0)
 											if not row.statusbar.shadow then
-												row.statusbar:CreateShadow()
+												ElvUI_EltreumUI:CreateFastShadow(row.statusbar)
 												row.statusbar.shadow:ClearAllPoints()
 												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -2.5)
 												row.statusbar.shadow:SetPoint("TOPRIGHT", row.background,"TOPRIGHT", 2.5, -14)
@@ -239,8 +239,7 @@ do
 						S:HandleFrame(embedpanel)
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							if embedpanel and not embedpanel.shadow then
-								embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(embedpanel.shadow)
+								ElvUI_EltreumUI:CreateFastShadow(embedpanel, E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end
 					end

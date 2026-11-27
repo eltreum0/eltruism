@@ -19,13 +19,11 @@ function ElvUI_EltreumUI:EltruismSimulationCraft()
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not E.Classic then
 						if _G["SimcFrame"] and not _G["SimcFrame"].shadow then
-							_G["SimcFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["SimcFrame"].shadow)
+							ElvUI_EltreumUI:CreateFastShadow(_G["SimcFrame"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					else
 						if _G["SimcFrame"] and _G["SimcFrame"].backdrop and not _G["SimcFrame"].backdrop.shadow then
-							_G["SimcFrame"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["SimcFrame"].backdrop.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(_G["SimcFrame"].backdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end

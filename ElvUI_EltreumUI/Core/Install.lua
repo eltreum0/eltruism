@@ -488,7 +488,7 @@ ElvUI_EltreumUI.InstallerData = {
 
 			ElvUI_EltreumUI:HidePopups(0.1)
 			if not frame.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-				frame:CreateShadow()
+				ElvUI_EltreumUI:CreateFastShadow(frame)
 				frame.shadow:SetPoint("TOPLEFT", frame, "TOPLEFT", -3, 3)
 				frame.shadow:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", -3, -3)
 				frame.shadow:SetPoint("TOPRIGHT", _G.PluginInstallTitleFrame, "TOPRIGHT", 3, 3)

@@ -25,14 +25,12 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 		if E.db.ElvUI_EltreumUI.skins.omnicdshadows then
 			hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetBorder",function(icon)
 				if not icon.shadow then
-					icon:CreateShadow(2) --prevent shadow overlap
-					ElvUI_EltreumUI:ShadowColor(icon.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(icon, 2) --prevent shadow overlap
 				end
 			end)
 			hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetExIconName",function(icon)
 				if not icon.shadow then
-					icon:CreateShadow(2) --prevent shadow overlap
-					ElvUI_EltreumUI:ShadowColor(icon.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(icon, 2) --prevent shadow overlap
 				end
 			end)
 		end
@@ -42,8 +40,7 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 
 			if E.db.ElvUI_EltreumUI.skins.omnicdshadows then
 				if not icon.shadow then
-					icon:CreateShadow(3) --prevent shadow overlap
-					ElvUI_EltreumUI:ShadowColor(icon.shadow)
+					ElvUI_EltreumUI:CreateFastShadow(icon, 3) --prevent shadow overlap
 				end
 			end
 
@@ -52,12 +49,10 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 				if E.db.ElvUI_EltreumUI.skins.omnicdshadows then
 					--omnicd name bar mode disables the BG now instead, so we need a check for that instead of the profile now
 					if icon.statusBar and (not nameBar) and not icon.statusBar.shadow then
-						icon.statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(icon.statusBar.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(icon.statusBar, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 					if not icon.shadow then
-						icon:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(icon.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(icon, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 

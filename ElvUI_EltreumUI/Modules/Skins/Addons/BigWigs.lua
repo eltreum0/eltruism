@@ -116,12 +116,10 @@ do
 
 				if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not self.candyBarBar.shadow then
-						self.candyBarBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(self.candyBarBar.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(self.candyBarBar, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 					if not self.candyBarIconFrameBackdrop.shadow then
-						self.candyBarIconFrameBackdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(self.candyBarIconFrameBackdrop.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(self.candyBarIconFrameBackdrop, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -346,8 +344,7 @@ do
 					if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						frame:SetWidth(width-1)
 						if not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							ElvUI_EltreumUI:CreateFastShadow(frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -369,8 +366,7 @@ do
 								S:HandleFrame(frame)
 								if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									if not frame.shadow then
-										frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(frame.shadow)
+										ElvUI_EltreumUI:CreateFastShadow(frame, E.db.ElvUI_EltreumUI.skins.shadow.length)
 									end
 								end
 								frame.EltruismSkin = true
@@ -387,8 +383,7 @@ do
 										end
 										if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 											if not iconparent.shadow then
-												iconparent:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-												ElvUI_EltreumUI:ShadowColor(iconparent.shadow)
+												ElvUI_EltreumUI:CreateFastShadow(iconparent, E.db.ElvUI_EltreumUI.skins.shadow.length)
 											end
 										end
 									end

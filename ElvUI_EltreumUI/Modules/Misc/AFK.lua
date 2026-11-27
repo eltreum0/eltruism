@@ -136,8 +136,7 @@ function ElvUI_EltreumUI:AFKLogo()
 
 		--add shadows
 		if _G.ElvUIAFKFrame and _G.ElvUIAFKFrame.bottom and not _G.ElvUIAFKFrame.bottom.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-			_G.ElvUIAFKFrame.bottom:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			ElvUI_EltreumUI:ShadowColor(_G.ElvUIAFKFrame.bottom.shadow)
+			ElvUI_EltreumUI:CreateFastShadow(_G.ElvUIAFKFrame.bottom, E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 
 		--vignette/overlay

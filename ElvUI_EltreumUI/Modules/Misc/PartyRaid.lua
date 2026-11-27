@@ -213,13 +213,12 @@ function ElvUI_EltreumUI:BattleRes()
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			if not bresframe.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
-				bresframe:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:CreateFastShadow(bresframe, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:ClearAllPoints()
 				bresframe.shadow:SetPoint("BOTTOMLEFT", spellicon,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:SetPoint("BOTTOMRIGHT", bresframe,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:SetPoint("TOPLEFT", spellicon,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:SetPoint("TOPRIGHT", bresframe,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(bresframe.shadow)
 			end
 		end
 

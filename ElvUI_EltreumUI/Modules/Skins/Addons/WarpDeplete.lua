@@ -31,11 +31,10 @@ function ElvUI_EltreumUI:EltruismWarpDeplete()
 						--v:CreateBackdrop('Transparent')
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							if v and not v.shadow then
-								v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:CreateFastShadow(v, E.db.ElvUI_EltreumUI.skins.shadow.length)
 								v.shadow:ClearAllPoints()
 								v.shadow:SetPoint("TOPLEFT", v, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length-1)
 								v.shadow:SetPoint("BOTTOMRIGHT", v, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length+1)
-								ElvUI_EltreumUI:ShadowColor(v.shadow)
 							end
 						end
 					end

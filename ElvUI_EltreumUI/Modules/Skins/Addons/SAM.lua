@@ -11,8 +11,7 @@ function ElvUI_EltreumUI:EltruismSAM()
 		S:HandleFrame(_G["SimpleAddonManager"]) --although it exists since the start apparently it fires again in the hook
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not _G["SimpleAddonManager"].shadow then
-				_G["SimpleAddonManager"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["SimpleAddonManager"].shadow)
+				ElvUI_EltreumUI:CreateFastShadow(_G["SimpleAddonManager"], E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 		--S:HandleButton(_G["SimpleAddonManager"].SetsButton) --errors due to not existing
@@ -79,8 +78,7 @@ function ElvUI_EltreumUI:EltruismSAM()
 					S:HandleFrame(_G["ElioteDDM_DropDownList"..level.."Backdrop"]) --works too
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if not _G["ElioteDDM_DropDownList"..level].shadow then
-							_G["ElioteDDM_DropDownList"..level]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["ElioteDDM_DropDownList"..level].shadow)
+							ElvUI_EltreumUI:CreateFastShadow(_G["ElioteDDM_DropDownList"..level], E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 					_G["ElioteDDM_DropDownList"..level].IsSkinned = true

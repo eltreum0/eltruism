@@ -10,10 +10,9 @@ function ElvUI_EltreumUI:EltruismWeakAurasOptions()
 				S:HandleEditBox(_G.WeakAurasFilterInput)
 				S:HandleMaxMinFrame(_G.WeakAurasOptions.MaxMinButtonFrame)
 				S:HandleCloseButton(_G.WeakAurasOptionsCloseButton)
-				if E.db.ElvUI_EltreumUI.skins.shadow.blizzard and not E.db.ElvUI_EltreumUI.borders.universalborders then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not _G.WeakAurasOptions.shadow then
-						_G.WeakAurasOptions:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.WeakAurasOptions.shadow)
+						ElvUI_EltreumUI:CreateFastShadow(_G.WeakAurasOptions, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
