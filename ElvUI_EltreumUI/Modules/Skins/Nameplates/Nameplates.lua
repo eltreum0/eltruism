@@ -754,6 +754,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	local nameplateShowOnlyNames = (E.Modern and tostring(GetCVar('nameplateShowOnlyNameForFriendlyPlayerUnits'))) or tostring(GetCVar('nameplateShowOnlyNames'))
 	local showOnlyNamesString = (E.Modern and "nameplateShowOnlyNameForFriendlyPlayerUnits") or "nameplateShowOnlyNames"
 	local nameplateShowFriends = tostring(GetCVar('nameplateShowFriends'))
+	local nameplateShowFriendlyNpcs = tostring(GetCVar('nameplateShowFriendlyNpcs'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
 		if E.Modern then
@@ -775,6 +776,11 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 					if UnitNameNPC == "1" then
 						SetCVar('UnitNameNPC', 0)
 					end
+					if nameplateShowFriendlyNpcs == "0" then
+						SetCVar('nameplateShowFriendlyNpcs', 1)
+						nameplateShowFriendlyNpcs = "1"
+					end
+					E.db["nameplates"]["visibility"]["friendly"]["npcs"] = true
 				elseif instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or mapID == 1662 or mapID == 582 or mapID == 590 then
 					if UnitNameHostleNPC == "0" then
 						SetCVar('UnitNameHostleNPC', 1)
@@ -785,6 +791,11 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 					if UnitNameNPC == "0" then
 						SetCVar('UnitNameNPC', 1)
 					end
+					if nameplateShowFriendlyNpcs == "1" then
+						SetCVar('nameplateShowFriendlyNpcs', 0)
+						nameplateShowFriendlyNpcs = "0"
+					end
+					E.db["nameplates"]["visibility"]["friendly"]["npcs"] = false
 				end
 			end
 		end
@@ -799,16 +810,22 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
 				if nameplateShowFriends == "1" then
 					SetCVar("nameplateShowFriends", 0)
-					SetCVar('nameplateShowFriendlyNpcs',0)
-					E.db["nameplates"]["visibility"]["friendly"]["npcs"] = false
 				end
+				if nameplateShowFriendlyNpcs == "1" then
+					SetCVar('nameplateShowFriendlyNpcs', 0)
+					nameplateShowFriendlyNpcs = "0"
+				end
+				E.db["nameplates"]["visibility"]["friendly"]["npcs"] = false
 			end
 			if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
 				if nameplateShowFriends == "0" then
 					SetCVar("nameplateShowFriends", 1)
-					SetCVar('nameplateShowFriendlyNpcs',1)
-					E.db["nameplates"]["visibility"]["friendly"]["npcs"] = true
 				end
+				if nameplateShowFriendlyNpcs == "0" then
+					SetCVar('nameplateShowFriendlyNpcs', 1)
+					nameplateShowFriendlyNpcs = "1"
+				end
+				E.db["nameplates"]["visibility"]["friendly"]["npcs"] = true
 			end
 			--due to elvui overwriting it, run again:
 			NP:SetCVars()
@@ -816,9 +833,11 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly then
 			if nameplateShowFriends == "1" then
 				SetCVar("nameplateShowFriends", 0)
-				SetCVar('nameplateShowFriendlyNpcs',0)
-				E.db["nameplates"]["visibility"]["friendly"]["npcs"] = false
 			end
+			if nameplateShowFriendlyNpcs == "1" then
+				SetCVar('nameplateShowFriendlyNpcs', 0)
+			end
+			E.db["nameplates"]["visibility"]["friendly"]["npcs"] = false
 		end
 	end
 	ElvUI_EltreumUI:OriginalClassColors() --check for friendly
