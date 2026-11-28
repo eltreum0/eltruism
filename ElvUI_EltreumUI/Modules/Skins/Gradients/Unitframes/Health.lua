@@ -102,24 +102,19 @@ local function GetNPCReactionColorClass(unit, reaction, hasReaction)
 end
 
 --set the backdrop gradient
-function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,unitDB)
+function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame,unitDB,preIsPlayer,preDeadState)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	local db = UFdb.gradientmode
-	if not db then return end
 	if db.enablebackdrop then
 		local hasClass = canaccessvalue(englishClass) and englishClass
 		local hasReaction = canaccessvalue(reactionunit) and reactionunit
 
-		local transparentHealth = E.db.unitframe.colors.transparentHealth
-		local isHidden = UFdb.ufcustomtexture.backdrophidden
-		local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-		local backdropAlpha = isHidden and 0 or rawAlpha
-		local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-		if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
-			backdropAlpha = healthAlpha
+		local isPlayer
+		if preIsPlayer ~= nil then
+			isPlayer = preIsPlayer
+		else
+			isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		end
-
-		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		if not isGroupFrame and not hasClass and not hasReaction then
 			return
 		end
@@ -154,7 +149,9 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 
 		local deadState = 0
 		if db.usedeadbackdrop then
-			if UnitIsDeadOrGhost(unit) then
+			if preDeadState ~= nil then
+				deadState = preDeadState
+			elseif UnitIsDeadOrGhost(unit) then
 				deadState = 1
 			elseif isPlayer then
 				if not UnitIsConnected(unit) then
@@ -165,13 +162,23 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
+		local transparentHealth = E.db.unitframe.colors.transparentHealth
+		local isHidden = UFdb.ufcustomtexture.backdrophidden
+		local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
+		local backdropAlpha = isHidden and 0 or rawAlpha
+		local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
+		if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
+			backdropAlpha = healthAlpha
+		end
+
 		local orientation = db.orientation or "HORIZONTAL"
 		local mode = UFdb.lightmode and 1 or (UFdb.darkmode and 2 or 0)
 		local texVersion = ElvUI_EltreumUI.EltruismTextureVersion
 		local missingPlayerClass = isPlayer and not hasClass
 		local hasDebuff = frame.EltruismDebuffExists
 
-		if frame.EltruismBackdropClass == colorClass
+		if frame.EltruismBackdropVersion == texVersion
+			and frame.EltruismBackdropClass == colorClass
 			and frame.EltruismBackdropDead == deadState
 			and frame.EltruismBackdropInvert == invert
 			and frame.EltruismBackdropCustom == db.customcolor
@@ -182,7 +189,6 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			and frame.EltruismBackdropTransparent == transparentHealth
 			and frame.EltruismBackdropHidden == isHidden
 			and frame.EltruismBackdropMode == mode
-			and frame.EltruismBackdropVersion == texVersion
 			and frame.EltruismBackdropMissingClass == missingPlayerClass
 			and frame.EltruismBackdropDebuff == hasDebuff
 			and (not hasDebuff or (
@@ -215,7 +221,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			frame.EltruismBackdropDebuffA = frame.EltruismDebuffa
 		end
 
-		if E.db.unitframe.colors.transparentHealth then
+		if transparentHealth then
 			if frame.Health and frame.Health.backdrop then
 				frame.Health.backdrop.customBackdropAlpha = backdropAlpha
 				if UFdb.lightmode then
@@ -249,6 +255,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 
+		local barTex = UFdb.darkmode and frame.Health:GetStatusBarTexture() or nil
 		if not frame.EltruismDebuffExists then
 			local minColor, maxColor = ElvUI_EltreumUI:GetBackdropGradient(colorClass, invert, db.customcolor, missingPlayerClass)
 
@@ -256,8 +263,8 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				if frame.Health.bg then
 					frame.Health.bg:SetGradient(orientation, minColor, maxColor)
 				end
-			elseif UFdb.darkmode then
-				frame.Health:GetStatusBarTexture():SetGradient(orientation, minColor, maxColor)
+			elseif barTex then
+				barTex:SetGradient(orientation, minColor, maxColor)
 			end
 		else
 			local debuffColor = frame.EltruismDebuffColor
@@ -273,8 +280,8 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				if frame.Health.bg then
 					frame.Health.bg:SetGradient("HORIZONTAL", debuffColor, debuffColor)
 				end
-			elseif UFdb.darkmode then
-				frame.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", debuffColor, debuffColor)
+			elseif barTex then
+				barTex:SetGradient("HORIZONTAL", debuffColor, debuffColor)
 			end
 		end
 		if deadState > 0 then
@@ -291,264 +298,104 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 					if frame.Health.bg then
 						frame.Health.bg:SetGradient("HORIZONTAL", stateMin, stateMax)
 					end
-				elseif UFdb.darkmode then
-					frame.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", stateMin, stateMax)
+				elseif barTex then
+					barTex:SetGradient("HORIZONTAL", stateMin, stateMax)
 				end
 			end
 		end
 	end
 end
 --set the textures or gradients for single units
-function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame)
+function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation,frame,preColorClass,preIsPlayer,preClass,preReaction)
 	local UFdb = E.db.ElvUI_EltreumUI.unitframes
 	local db = UFdb.gradientmode
-	if not db then return end
-	if UnitExists(unit) then
-		local unitframe = frame or _G["ElvUF_"..name]
-		if unitframe and unitframe.Health then
-			local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
-			local isActualPlayer = false
-			local classunit, reaction
 
-			if unitframe.realUnit then
-				if name == "Player" and unitframe.__unit == "vehicle" then
-					isPlayer = false
-					isActualPlayer = false
-				elseif name == "Pet" and unitframe.__unit == "player" then
-					isPlayer = true
-					isActualPlayer = true
-					classunit = E.myclass
-				end
-			end
-
-			local hasReaction = false
-			if isPlayer then
-				if not classunit then
-					local _, unitClass = UnitClass(unit)
-					classunit = unitClass
-				end
-				if not canaccessvalue(classunit) or not classunit then
-					return
-				end
-			else
-				reaction = UnitReaction(unit, "player")
-				if not canaccessvalue(reaction) or not reaction then
-					return
-				end
-				hasReaction = true
-			end
-
-			local orientation = db.orientation or "HORIZONTAL"
-			local transparentHealth = E.db.unitframe.colors.transparentHealth
-			local isHidden = UFdb.ufcustomtexture.backdrophidden
-			local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
-			local backdropAlpha = isHidden and 0 or rawAlpha
-			local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
-			if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
-				backdropAlpha = healthAlpha
-			end
-
-			local isCharmed = UnitIsCharmed(unit)
-			isCharmed = canaccessvalue(isCharmed) and isCharmed or false
-			local targetUFOrientation = UFdb.UForientation
-			if not noOrientation and targetUFOrientation and unitframe.Health.EltruismOrientation ~= targetUFOrientation then
-				unitframe.Health:SetOrientation(targetUFOrientation)
-				unitframe.Health.EltruismOrientation = targetUFOrientation
-			end
-
-			if db.enablebackdrop then
-				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
-			end
-
-			local health = unitframe.Health
-			local textureVersion = ElvUI_EltreumUI.EltruismTextureVersion or 0
-			local isTextureCached = (health.EltruismTextureVersion == textureVersion)
-			if not UFdb.ufcustomtexture.backdrophidden then
-				local shouldFlip = (UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target') and true or false
-				if UFdb.lightmode and health.bg then
-					local bgTexture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture)
-					if bgTexture and (not isTextureCached or health.EltruismBgTexture ~= bgTexture) then
-						health.bg:SetTexture(bgTexture)
-						health.EltruismBgTexture = bgTexture
-					end
-					if UFdb.ufcustomtexture.backdroptexturestaticsize then
-						if not isTextureCached or health.EltruismBgStatic ~= true then
-							health.bg:SetAllPoints(health)
-							health.EltruismBgStatic = true
-						end
-						if shouldFlip and (not isTextureCached or health.EltruismBgFlip ~= true) then
-							health.bg:SetTexCoord(1, 0, 0, 1)
-							health.EltruismBgFlip = true
-						end
-					end
-				elseif UFdb.darkmode and health.backdrop and health.backdrop.Center then
-					local centerTexture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture)
-					if centerTexture and (not isTextureCached or health.EltruismCenterTexture ~= centerTexture) then
-						health.backdrop.Center:SetTexture(centerTexture)
-						health.EltruismCenterTexture = centerTexture
-					end
-					if not isTextureCached or health.EltruismCenterFlip ~= shouldFlip then
-						if shouldFlip then
-							health.backdrop.Center:SetTexCoord(1, 0, 0, 1)
-						else
-							health.backdrop.Center:SetTexCoord(0, 1, 0, 1)
-						end
-						health.EltruismCenterFlip = shouldFlip
-					end
-				end
-				health.EltruismTextureVersion = textureVersion
-			end
-
-			local colorClass
-			if (isPlayer and not isCharmed) or isActualPlayer then
-				colorClass = classunit
-			elseif UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-				colorClass = "TAPPED"
-			else
-				colorClass = GetNPCReactionColorClass(unit, reaction, hasReaction)
-			end
-
-			local invert = false
-			if invertframes[unitDB] then
-				invert = true
-			elseif name == 'Target' and db.reversetarget then
-				invert = true
-			elseif name == 'Focus' and db.reversefocus then
-				invert = true
-			end
-
-			local isCustom = db.customcolor
-			local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(colorClass, invert, isCustom)
-
-			local isDead = UnitIsDeadOrGhost(unit)
-			local isDisconnected = isPlayer and not UnitIsConnected(unit)
-
-			if UFdb.lightmode then
-				if unitframe.Health.EltruismGradientAlpha ~= backdropAlpha or unitframe.Health.EltruismGradientDebuff ~= unitframe.EltruismDebuffExists then
-					if unitframe.Health.bg and not unitframe.EltruismDebuffExists then
-						unitframe.Health.bg:SetAlpha(backdropAlpha)
-						if not isHidden then
-							unitframe.Health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
-						end
-					end
-					if unitframe.Health.backdrop then
-						unitframe.Health.backdrop.customBackdropAlpha = backdropAlpha
-						unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-						if isHidden and E.db.unitframe.thinBorders then
-							unitframe.Health.backdrop:Hide()
-						else
-							if not unitframe.Health.backdrop:IsShown() then
-								unitframe.Health.backdrop:Show()
-							end
-							if unitframe.Health.backdrop.Center and unitframe.Health.backdrop.Center:IsShown() then
-								unitframe.Health.backdrop.Center:Hide()
-							end
-						end
-					end
-					unitframe.Health.EltruismGradientAlpha = backdropAlpha
-					unitframe.Health.EltruismGradientDebuff = unitframe.EltruismDebuffExists
-				end
-
-				if db.enable and db[GetGradientEnableKey(unitDB)] then
-					local barTex = unitframe.Health:GetStatusBarTexture()
-					if barTex then
-						if not UFdb.ufcustomtexture.enable then
-							local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
-							if not isTextureCached or unitframe.Health.EltruismGradientBarTexture ~= targetTexture then
-								barTex:SetTexture(E.LSM:Fetch("statusbar", targetTexture))
-								unitframe.Health.EltruismGradientBarTexture = targetTexture
-							end
-						end
-						if db.usedeadbackdrop and isDead then
-							local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
-							barTex:SetGradient(orientation, deadMin, deadMax)
-						elseif db.usedeadbackdrop and isDisconnected then
-							local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
-							barTex:SetGradient(orientation, discMin, discMax)
-						else
-							barTex:SetGradient(orientation, minColor, maxColor)
-						end
-					end
-				end
-			elseif UFdb.darkmode then
-				local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
-				if unitframe.Health.EltruismGradientAlpha ~= backdropAlpha or unitframe.Health.EltruismGradientDebuff ~= unitframe.EltruismDebuffExists then
-					if unitframe.Health.backdrop then
-						unitframe.Health.backdrop.customBackdropAlpha = backdropAlpha
-						unitframe.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-						if isHidden then
-							if E.db.unitframe.thinBorders then
-								unitframe.Health.backdrop:Hide()
-							elseif unitframe.Health.backdrop.Center then
-								unitframe.Health.backdrop.Center:Hide()
-							end
-						else
-							if not unitframe.Health.backdrop:IsShown() then
-								unitframe.Health.backdrop:Show()
-							end
-							if unitframe.Health.backdrop.Center then
-								if not unitframe.Health.backdrop.Center:IsShown() then
-									unitframe.Health.backdrop.Center:Show()
-								end
-								unitframe.Health.backdrop.Center:SetAlpha(backdropAlpha)
-							end
-						end
-					end
-					if unitframe.Health.backdropTex and not unitframe.EltruismDebuffExists then
-						unitframe.Health.backdropTex:SetAlpha(missingHealthAlpha)
-					end
-					unitframe.Health.EltruismGradientAlpha = backdropAlpha
-					unitframe.Health.EltruismGradientDebuff = unitframe.EltruismDebuffExists
-				end
-				if unitframe.Health.backdropTex and db.enable and db[GetGradientEnableKey(unitDB)] then
-					if not UFdb.ufcustomtexture.enable then
-						local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
-						if not isTextureCached or unitframe.Health.EltruismGradientBgTexture ~= targetTexture then
-							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", targetTexture))
-							unitframe.Health.EltruismGradientBgTexture = targetTexture
-						end
-					end
-					if db.usedeadbackdrop and isDead then
-						local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
-						unitframe.Health.backdropTex:SetGradient(orientation, deadMin, deadMax)
-					elseif db.usedeadbackdrop and isDisconnected then
-						local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
-						unitframe.Health.backdropTex:SetGradient(orientation, discMin, discMax)
-					else
-						unitframe.Health.backdropTex:SetGradient(orientation, minColor, maxColor)
-					end
-				end
-			end
-			if not db.enable and not UFdb.ufcustomtexture.enable then
-				if UFdb.darkmode and unitframe.Health.backdropTex then
-					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar or UF.db.statusbar))
-					local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
-					unitframe.Health.backdropTex:SetAlpha(missingHealthAlpha)
-				end
-			end
+	local unitframe, isPlayer, classunit, reaction, hasReaction, colorClass
+	if preColorClass then
+		unitframe = frame
+		isPlayer = preIsPlayer
+		classunit = preClass
+		reaction = preReaction
+		hasReaction = preReaction ~= nil
+		if isPlayer then
+			if not classunit then return end
+		elseif not hasReaction then
+			return
 		end
-	end
-end
-
---set the textures or gradients for group units
-function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
-	local UFdb = E.db.ElvUI_EltreumUI.unitframes
-	local db = UFdb.gradientmode
-	if not db then return end
-	local unit = button.__unit or button.unit
-	if not unit then return end
-
-	local _, buttonclass
-	local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
-	--due to raid pet, check if is player
-	if isPlayer then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
-		_, buttonclass = UnitClass(unit)
-		if not canaccessvalue(buttonclass) or not buttonclass then
-			buttonclass = "NPCFRIENDLY"
-		end
+		colorClass = preColorClass
 	else
-		buttonclass = "NPCFRIENDLY"
+		if not UnitExists(unit) then return end
+		unitframe = frame or _G["ElvUF_"..name]
+		if not (unitframe and unitframe.Health) then return end
+
+		isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+		local isActualPlayer = false
+		if unitframe.realUnit then
+			if name == "Player" and unitframe.__unit == "vehicle" then
+				isPlayer = false
+				isActualPlayer = false
+			elseif name == "Pet" and unitframe.__unit == "player" then
+				isPlayer = true
+				isActualPlayer = true
+				classunit = E.myclass
+			end
+		end
+
+		hasReaction = false
+		if isPlayer then
+			if not classunit then
+				local _, unitClass = UnitClass(unit)
+				classunit = unitClass
+			end
+			if not canaccessvalue(classunit) or not classunit then
+				return
+			end
+		else
+			reaction = UnitReaction(unit, "player")
+			if not canaccessvalue(reaction) or not reaction then
+				return
+			end
+			hasReaction = true
+		end
+
+		local isCharmed = UnitIsCharmed(unit)
+		isCharmed = canaccessvalue(isCharmed) and isCharmed or false
+		if (isPlayer and not isCharmed) or isActualPlayer then
+			colorClass = classunit
+		elseif UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+			colorClass = "TAPPED"
+		else
+			colorClass = GetNPCReactionColorClass(unit, reaction, hasReaction)
+		end
 	end
+
+	local health = unitframe.Health
+	local targetUFOrientation = UFdb.UForientation
+	if not noOrientation and targetUFOrientation and health.EltruismOrientation ~= targetUFOrientation then
+		health:SetOrientation(targetUFOrientation)
+		health.EltruismOrientation = targetUFOrientation
+	end
+
+	local deadState, isDead, isDisconnected = 0, false, false
+	if db.usedeadbackdrop then
+		if UnitIsDeadOrGhost(unit) then
+			deadState = 1
+			isDead = true
+		elseif isPlayer then
+			if not UnitIsConnected(unit) then
+				deadState = 3
+				isDisconnected = true
+			end
+		elseif UnitIsTapDenied(unit) then
+			deadState = 2
+		end
+	end
+
+	if db.enablebackdrop then
+		ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB,isPlayer,deadState)
+	end
+
+	local orientation = db.orientation or "HORIZONTAL"
 	local transparentHealth = E.db.unitframe.colors.transparentHealth
 	local isHidden = UFdb.ufcustomtexture.backdrophidden
 	local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
@@ -558,136 +405,378 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 		backdropAlpha = healthAlpha
 	end
 
-	if buttonclass and button.Health then
-		local targetUFOrientation = UFdb.UForientation
-		if not noOrientation and targetUFOrientation and button.Health.EltruismOrientation ~= targetUFOrientation then
-			button.Health:SetOrientation(targetUFOrientation)
-			button.Health.EltruismOrientation = targetUFOrientation
+	local textureVersion = ElvUI_EltreumUI.EltruismTextureVersion
+	local isTextureCached = (health.EltruismTextureVersion == textureVersion)
+	if not isHidden and not isTextureCached then
+		local shouldFlip = UFdb.ufcustomtexture.fliptargetbackdrop and name == 'Target'
+		if UFdb.lightmode and health.bg then
+			local bgTexture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture)
+			if bgTexture and health.EltruismBgTexture ~= bgTexture then
+				health.bg:SetTexture(bgTexture)
+				health.EltruismBgTexture = bgTexture
+			end
+			if UFdb.ufcustomtexture.backdroptexturestaticsize then
+				if not health.EltruismBgStatic then
+					health.bg:SetAllPoints(health)
+					health.EltruismBgStatic = true
+				end
+				if shouldFlip and not health.EltruismBgFlip then
+					health.bg:SetTexCoord(1, 0, 0, 1)
+					health.EltruismBgFlip = true
+				end
+			end
+		elseif UFdb.darkmode and health.backdrop and health.backdrop.Center then
+			local centerTexture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture)
+			if centerTexture and health.EltruismCenterTexture ~= centerTexture then
+				health.backdrop.Center:SetTexture(centerTexture)
+				health.EltruismCenterTexture = centerTexture
+			end
+			if health.EltruismCenterFlip ~= shouldFlip then
+				if shouldFlip then
+					health.backdrop.Center:SetTexCoord(1, 0, 0, 1)
+				else
+					health.backdrop.Center:SetTexCoord(0, 1, 0, 1)
+				end
+				health.EltruismCenterFlip = shouldFlip
+			end
 		end
-		if db.enablebackdrop then
-			ElvUI_EltreumUI:ApplyGradientBackdrop(unit,button,buttonclass,nil,true)
+		health.EltruismTextureVersion = textureVersion
+	end
+
+	local invert = false
+	if invertframes[unitDB] then
+		invert = true
+	elseif name == 'Target' and db.reversetarget then
+		invert = true
+	elseif name == 'Focus' and db.reversefocus then
+		invert = true
+	end
+
+	local isCustom = db.customcolor
+	if UFdb.lightmode then
+		if health.EltruismGradientAlphaVer ~= textureVersion or health.EltruismGradientAlpha ~= backdropAlpha or health.EltruismGradientDebuff ~= unitframe.EltruismDebuffExists then
+			if health.bg and not unitframe.EltruismDebuffExists then
+				health.bg:SetAlpha(backdropAlpha)
+				if not isHidden and not db.enablebackdrop then
+					health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
+				end
+			end
+			if health.backdrop then
+				health.backdrop.customBackdropAlpha = backdropAlpha
+				health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+				if isHidden and E.db.unitframe.thinBorders then
+					health.backdrop:Hide()
+				else
+					if not health.backdrop:IsShown() then
+						health.backdrop:Show()
+					end
+					if health.backdrop.Center and health.backdrop.Center:IsShown() then
+						health.backdrop.Center:Hide()
+					end
+				end
+			end
+			health.EltruismGradientAlphaVer = textureVersion
+			health.EltruismGradientAlpha = backdropAlpha
+			health.EltruismGradientDebuff = unitframe.EltruismDebuffExists
 		end
-		local isCustom = db.customcolor
-		local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(buttonclass, false, isCustom)
 
-		local isDead = UnitIsDeadOrGhost(unit)
-		local isDisconnected = isPlayer and not UnitIsConnected(unit)
-
-		if UFdb.lightmode then
-			if button.Health.EltruismGradientAlpha ~= backdropAlpha or button.Health.EltruismGradientDebuff ~= button.EltruismDebuffExists then
-				if button.Health.bg and not button.EltruismDebuffExists then
-					button.Health.bg:SetAlpha(backdropAlpha)
-					if not isHidden then
-						button.Health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
+		if db.enable and db[GetGradientEnableKey(unitDB)] then
+			local barTex = health:GetStatusBarTexture()
+			if barTex then
+				if not UFdb.ufcustomtexture.enable then
+					local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
+					if not isTextureCached or health.EltruismGradientBarTexture ~= targetTexture then
+						local fetchedTex = E.LSM:Fetch("statusbar", targetTexture)
+						if fetchedTex and health.EltruismBarTexture ~= fetchedTex then
+							barTex:SetTexture(fetchedTex)
+							health.EltruismBarTexture = fetchedTex
+						end
+						health.EltruismGradientBarTexture = targetTexture
 					end
 				end
-				if button.Health.backdrop then
-					button.Health.backdrop.customBackdropAlpha = backdropAlpha
-					button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-					if isHidden and E.db.unitframe.thinBorders then
-						button.Health.backdrop:Hide()
-					else
-						if not button.Health.backdrop:IsShown() then
-							button.Health.backdrop:Show()
-						end
-						if button.Health.backdrop.Center and button.Health.backdrop.Center:IsShown() then
-							button.Health.backdrop.Center:Hide()
-						end
-					end
+				if db.usedeadbackdrop and isDead then
+					local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
+					barTex:SetGradient(orientation, deadMin, deadMax)
+				elseif db.usedeadbackdrop and isDisconnected then
+					local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
+					barTex:SetGradient(orientation, discMin, discMax)
+				else
+					local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(colorClass, invert, isCustom)
+					barTex:SetGradient(orientation, minColor, maxColor)
 				end
-				button.Health.EltruismGradientAlpha = backdropAlpha
-				button.Health.EltruismGradientDebuff = button.EltruismDebuffExists
 			end
-
-			if db.enable and db.enablegroupunits then
-				local barTex = button.Health:GetStatusBarTexture()
-				if barTex then
-					if not UFdb.ufcustomtexture.enable then
-						local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
-						if button.Health.EltruismGradientBarTexture ~= targetTexture then
-							barTex:SetTexture(E.LSM:Fetch("statusbar", targetTexture))
-							button.Health.EltruismGradientBarTexture = targetTexture
-						end
+		end
+	elseif UFdb.darkmode then
+		local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
+		if health.EltruismGradientAlphaVer ~= textureVersion or health.EltruismGradientAlpha ~= backdropAlpha or health.EltruismGradientDebuff ~= unitframe.EltruismDebuffExists then
+			if health.backdrop then
+				health.backdrop.customBackdropAlpha = backdropAlpha
+				health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+				if isHidden then
+					if E.db.unitframe.thinBorders then
+						health.backdrop:Hide()
+					elseif health.backdrop.Center then
+						health.backdrop.Center:Hide()
 					end
-					if db.usedeadbackdrop and isDead then
-						local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
-						barTex:SetGradient("HORIZONTAL", deadMin, deadMax)
-					elseif db.usedeadbackdrop and isDisconnected then
-						local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
-						barTex:SetGradient("HORIZONTAL", discMin, discMax)
-					else
-						barTex:SetGradient(db.orientation, minColor, maxColor)
+				else
+					if not health.backdrop:IsShown() then
+						health.backdrop:Show()
+					end
+					if health.backdrop.Center then
+						if not health.backdrop.Center:IsShown() then
+							health.backdrop.Center:Show()
+						end
+						health.backdrop.Center:SetAlpha(backdropAlpha)
 					end
 				end
 			end
-			if not UFdb.ufcustomtexture.backdrophidden then
-				if button.Health.bg then
-					button.Health.bg:SetTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture))
-					if UFdb.ufcustomtexture.backdroptexturestaticsize then
-						button.Health.bg:SetAllPoints(button.Health)
+			if health.backdropTex and not unitframe.EltruismDebuffExists then
+				health.backdropTex:SetAlpha(missingHealthAlpha)
+			end
+			health.EltruismGradientAlphaVer = textureVersion
+			health.EltruismGradientAlpha = backdropAlpha
+			health.EltruismGradientDebuff = unitframe.EltruismDebuffExists
+		end
+		if health.backdropTex and db.enable and db[GetGradientEnableKey(unitDB)] then
+			if not UFdb.ufcustomtexture.enable then
+				local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
+				if not isTextureCached or health.EltruismGradientBgTexture ~= targetTexture then
+					local fetchedTex = E.LSM:Fetch("statusbar", targetTexture)
+					if fetchedTex and health.EltruismBackdropTexture ~= fetchedTex then
+						health.backdropTex:SetTexture(fetchedTex)
+						health.EltruismBackdropTexture = fetchedTex
 					end
+					health.EltruismGradientBgTexture = targetTexture
 				end
 			end
-		elseif UFdb.darkmode then
+			if db.usedeadbackdrop and isDead then
+				local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
+				health.backdropTex:SetGradient(orientation, deadMin, deadMax)
+			elseif db.usedeadbackdrop and isDisconnected then
+				local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
+				health.backdropTex:SetGradient(orientation, discMin, discMax)
+			else
+				local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(colorClass, invert, isCustom)
+				health.backdropTex:SetGradient(orientation, minColor, maxColor)
+			end
+		end
+	end
+	if not db.enable and not UFdb.ufcustomtexture.enable then
+		if UFdb.darkmode and health.backdropTex then
+			local fetchedTex = E.LSM:Fetch("statusbar", E.db.unitframe.statusbar or UF.db.statusbar)
+			if fetchedTex and health.EltruismBackdropTexture ~= fetchedTex then
+				health.backdropTex:SetTexture(fetchedTex)
+				health.EltruismBackdropTexture = fetchedTex
+			end
 			local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
-			if button.Health.EltruismGradientAlpha ~= backdropAlpha or button.Health.EltruismGradientDebuff ~= button.EltruismDebuffExists then
-				if button.Health.backdrop then
-					button.Health.backdrop.customBackdropAlpha = backdropAlpha
-					button.Health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
-					if isHidden then
-						if E.db.unitframe.thinBorders then
-							button.Health.backdrop:Hide()
-						elseif button.Health.backdrop.Center then
-							button.Health.backdrop.Center:Hide()
-						end
-					else
-						if not button.Health.backdrop:IsShown() then
-							button.Health.backdrop:Show()
-						end
-						if button.Health.backdrop.Center then
-							if not button.Health.backdrop.Center:IsShown() then
-								button.Health.backdrop.Center:Show()
-							end
-							button.Health.backdrop.Center:SetAlpha(backdropAlpha)
-						end
+			health.backdropTex:SetAlpha(missingHealthAlpha)
+		end
+	end
+end
+
+--set the textures or gradients for group units
+function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation,preClass,preIsPlayer)
+	local UFdb = E.db.ElvUI_EltreumUI.unitframes
+	local db = UFdb.gradientmode
+	local health = button.Health
+	if not health then return end
+	local unit = button.__unit or button.unit
+	if not unit then return end
+
+	local buttonclass, isPlayer
+	if preClass then
+		buttonclass = preClass
+		isPlayer = preIsPlayer
+	else
+		isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
+		--due to raid pet, check if is player
+		if isPlayer then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
+			local _, class = UnitClass(unit)
+			if canaccessvalue(class) and class then
+				buttonclass = class
+			else
+				buttonclass = "NPCFRIENDLY"
+			end
+		else
+			buttonclass = "NPCFRIENDLY"
+		end
+	end
+
+	local targetUFOrientation = UFdb.UForientation
+	if not noOrientation and targetUFOrientation and health.EltruismOrientation ~= targetUFOrientation then
+		health:SetOrientation(targetUFOrientation)
+		health.EltruismOrientation = targetUFOrientation
+	end
+
+	local deadState, isDead, isDisconnected = 0, false, false
+	if db.usedeadbackdrop then
+		if UnitIsDeadOrGhost(unit) then
+			deadState = 1
+			isDead = true
+		elseif isPlayer then
+			if not UnitIsConnected(unit) then
+				deadState = 3
+				isDisconnected = true
+			end
+		elseif UnitIsTapDenied(unit) then
+			deadState = 2
+		end
+	end
+
+	if db.enablebackdrop then
+		ElvUI_EltreumUI:ApplyGradientBackdrop(unit,button,buttonclass,nil,true,nil,isPlayer,deadState)
+	end
+
+	local transparentHealth = E.db.unitframe.colors.transparentHealth
+	local isHidden = UFdb.ufcustomtexture.backdrophidden
+	local rawAlpha = UFdb.ufcustomtexture.backdropalpha or 1
+	local backdropAlpha = isHidden and 0 or rawAlpha
+	local healthAlpha = transparentHealth and (UFdb.ufcustomtexture.healthalpha or 1) or 1
+	if not isHidden and transparentHealth and backdropAlpha == 1 and healthAlpha < 1 then
+		backdropAlpha = healthAlpha
+	end
+
+	local textureVersion = ElvUI_EltreumUI.EltruismTextureVersion
+	local isTextureCached = (health.EltruismTextureVersion == textureVersion)
+	local isCustom = db.customcolor
+
+	if UFdb.lightmode then
+		if health.EltruismGradientAlphaVer ~= textureVersion or health.EltruismGradientAlpha ~= backdropAlpha or health.EltruismGradientDebuff ~= button.EltruismDebuffExists then
+			if health.bg and not button.EltruismDebuffExists then
+				health.bg:SetAlpha(backdropAlpha)
+				if not isHidden and not db.enablebackdrop then
+					health.bg:SetVertexColor(0, 0, 0, backdropAlpha)
+				end
+			end
+			if health.backdrop then
+				health.backdrop.customBackdropAlpha = backdropAlpha
+				health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+				if isHidden and E.db.unitframe.thinBorders then
+					health.backdrop:Hide()
+				else
+					if not health.backdrop:IsShown() then
+						health.backdrop:Show()
+					end
+					if health.backdrop.Center and health.backdrop.Center:IsShown() then
+						health.backdrop.Center:Hide()
 					end
 				end
-				if button.Health.backdropTex and not button.EltruismDebuffExists then
-					button.Health.backdropTex:SetAlpha(missingHealthAlpha)
-				end
-				button.Health.EltruismGradientAlpha = backdropAlpha
-				button.Health.EltruismGradientDebuff = button.EltruismDebuffExists
 			end
-			if not UFdb.ufcustomtexture.backdrophidden and button.Health.backdrop and button.Health.backdrop.Center then
-				button.Health.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture))
-			end
-			if button.Health.backdropTex then
-				if db.enable and db.enablegroupunits then
-					if not UFdb.ufcustomtexture.enable then
-						local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
-						if button.Health.EltruismGradientBgTexture ~= targetTexture then
-							button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", targetTexture))
-							button.Health.EltruismGradientBgTexture = targetTexture
+			health.EltruismGradientAlphaVer = textureVersion
+			health.EltruismGradientAlpha = backdropAlpha
+			health.EltruismGradientDebuff = button.EltruismDebuffExists
+		end
+
+		if db.enable and db.enablegroupunits then
+			local barTex = health:GetStatusBarTexture()
+			if barTex then
+				if not UFdb.ufcustomtexture.enable then
+					local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
+					if not isTextureCached or health.EltruismGradientBarTexture ~= targetTexture then
+						local fetchedTex = E.LSM:Fetch("statusbar", targetTexture)
+						if fetchedTex and health.EltruismBarTexture ~= fetchedTex then
+							barTex:SetTexture(fetchedTex)
+							health.EltruismBarTexture = fetchedTex
 						end
+						health.EltruismGradientBarTexture = targetTexture
 					end
-					if db.usedeadbackdrop and isDead then
-						local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
-						button.Health.backdropTex:SetGradient("HORIZONTAL", deadMin, deadMax)
-					elseif db.usedeadbackdrop and isDisconnected then
-						local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
-						button.Health.backdropTex:SetGradient("HORIZONTAL", discMin, discMax)
-					else
-						button.Health.backdropTex:SetGradient(db.orientation, minColor, maxColor)
-					end
+				end
+				if db.usedeadbackdrop and isDead then
+					local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
+					barTex:SetGradient("HORIZONTAL", deadMin, deadMax)
+				elseif db.usedeadbackdrop and isDisconnected then
+					local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
+					barTex:SetGradient("HORIZONTAL", discMin, discMax)
+				else
+					local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(buttonclass, false, isCustom)
+					barTex:SetGradient(db.orientation, minColor, maxColor)
 				end
 			end
 		end
-		if not db.enable and not UFdb.ufcustomtexture.enable then
-			if UFdb.darkmode and button.Health.backdropTex then
-				button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar or UF.db.statusbar))
-				local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
-				button.Health.backdropTex:SetAlpha(missingHealthAlpha)
+		if not isHidden and not isTextureCached and health.bg then
+			local bgTexture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture)
+			if bgTexture and health.EltruismBgTexture ~= bgTexture then
+				health.bg:SetTexture(bgTexture)
+				health.EltruismBgTexture = bgTexture
 			end
+			if UFdb.ufcustomtexture.backdroptexturestaticsize and not health.EltruismBgStatic then
+				health.bg:SetAllPoints(health)
+				health.EltruismBgStatic = true
+			end
+			health.EltruismTextureVersion = textureVersion
+		end
+	elseif UFdb.darkmode then
+		local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
+		if health.EltruismGradientAlphaVer ~= textureVersion or health.EltruismGradientAlpha ~= backdropAlpha or health.EltruismGradientDebuff ~= button.EltruismDebuffExists then
+			if health.backdrop then
+				health.backdrop.customBackdropAlpha = backdropAlpha
+				health.backdrop:SetBackdropColor(0, 0, 0, backdropAlpha)
+				if isHidden then
+					if E.db.unitframe.thinBorders then
+						health.backdrop:Hide()
+					elseif health.backdrop.Center then
+						health.backdrop.Center:Hide()
+					end
+				else
+					if not health.backdrop:IsShown() then
+						health.backdrop:Show()
+					end
+					if health.backdrop.Center then
+						if not health.backdrop.Center:IsShown() then
+							health.backdrop.Center:Show()
+						end
+						health.backdrop.Center:SetAlpha(backdropAlpha)
+					end
+				end
+			end
+			if health.backdropTex and not button.EltruismDebuffExists then
+				health.backdropTex:SetAlpha(missingHealthAlpha)
+			end
+			health.EltruismGradientAlphaVer = textureVersion
+			health.EltruismGradientAlpha = backdropAlpha
+			health.EltruismGradientDebuff = button.EltruismDebuffExists
+		end
+		if not isHidden and not isTextureCached and health.backdrop and health.backdrop.Center then
+			local centerTexture = E.LSM:Fetch("statusbar", UFdb.ufcustomtexture.backdroptexture)
+			if centerTexture and health.EltruismCenterTexture ~= centerTexture then
+				health.backdrop.Center:SetTexture(centerTexture)
+				health.EltruismCenterTexture = centerTexture
+			end
+			health.EltruismTextureVersion = textureVersion
+		end
+		if health.backdropTex and db.enable and db.enablegroupunits then
+			if not UFdb.ufcustomtexture.enable then
+				local targetTexture = db.useUFtexture and (E.db.unitframe.statusbar or UF.db.statusbar) or db.texture
+				if not isTextureCached or health.EltruismGradientBgTexture ~= targetTexture then
+					local fetchedTex = E.LSM:Fetch("statusbar", targetTexture)
+					if fetchedTex and health.EltruismBackdropTexture ~= fetchedTex then
+						health.backdropTex:SetTexture(fetchedTex)
+						health.EltruismBackdropTexture = fetchedTex
+					end
+					health.EltruismGradientBgTexture = targetTexture
+				end
+			end
+			if db.usedeadbackdrop and isDead then
+				local deadMin, deadMax = ElvUI_EltreumUI:GetDeadColors()
+				health.backdropTex:SetGradient("HORIZONTAL", deadMin, deadMax)
+			elseif db.usedeadbackdrop and isDisconnected then
+				local discMin, discMax = ElvUI_EltreumUI:GetDisconnectedColors()
+				health.backdropTex:SetGradient("HORIZONTAL", discMin, discMax)
+			else
+				local minColor, maxColor = ElvUI_EltreumUI:GetHealthGradient(buttonclass, false, isCustom)
+				health.backdropTex:SetGradient(db.orientation, minColor, maxColor)
+			end
+		end
+	end
+	if not db.enable and not UFdb.ufcustomtexture.enable then
+		if UFdb.darkmode and health.backdropTex then
+			local fetchedTex = E.LSM:Fetch("statusbar", E.db.unitframe.statusbar or UF.db.statusbar)
+			if fetchedTex and health.EltruismBackdropTexture ~= fetchedTex then
+				health.backdropTex:SetTexture(fetchedTex)
+				health.EltruismBackdropTexture = fetchedTex
+			end
+			local missingHealthAlpha = (transparentHealth and rawAlpha == 1 and healthAlpha < 1) and healthAlpha or rawAlpha
+			health.backdropTex:SetAlpha(missingHealthAlpha)
 		end
 	end
 end
@@ -728,16 +817,16 @@ local function HealthBar_PostUpdateHealthColor(healthBar, unit)
 
 	local info = individualUnits[frameType]
 	if info then
-		ElvUI_EltreumUI:ApplyUnitGradient(unit or frameType, info.name, info.db)
+		ElvUI_EltreumUI:ApplyUnitGradient(unit or frameType, info.name, info.db, nil, parent)
 	elseif frameType == "boss" then
 		local frameName = parent:GetName()
 		if frameName then
-			ElvUI_EltreumUI:ApplyUnitGradient(unit or parent.unit or parent.__unit, frameName:sub(7), "boss", true)
+			ElvUI_EltreumUI:ApplyUnitGradient(unit or parent.unit or parent.__unit, frameName:sub(7), "boss", true, parent)
 		end
 	elseif frameType == "arena" then
 		local frameName = parent:GetName()
 		if frameName then
-			ElvUI_EltreumUI:ApplyUnitGradient(unit or parent.unit or parent.__unit, frameName:sub(7), "arena", true)
+			ElvUI_EltreumUI:ApplyUnitGradient(unit or parent.unit or parent.__unit, frameName:sub(7), "arena", true, parent)
 		end
 	else
 		if not parent.__unit and (unit or parent.unit) then
@@ -896,9 +985,9 @@ if E.CoroutineCallback then
 			if frameType then
 				local info = individualUnits[frameType]
 				if info then
-					ElvUI_EltreumUI:ApplyUnitCustomTexture(frame.__unit or frameType, info.name, info.db)
+					ElvUI_EltreumUI:ApplyUnitCustomTexture(frame.__unit or frameType, info.name, info.db, nil, frame)
 					if UFdb.gradientmode.enable and UFdb.hasMode then
-						ElvUI_EltreumUI:ApplyUnitGradient(frame.__unit or frameType, info.name, info.db)
+						ElvUI_EltreumUI:ApplyUnitGradient(frame.__unit or frameType, info.name, info.db, nil, frame)
 					end
 				end
 			end
