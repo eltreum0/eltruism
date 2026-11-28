@@ -14,27 +14,40 @@ local function IsUnitDeadHelper(unit)
 	if not unit or not UnitExists(unit) then return false end
 	local isFeign = UnitIsFeignDeath(unit)
 	if canaccessvalue(isFeign) and isFeign then return false end
-	local isDead = UnitIsDead(unit)
-	if canaccessvalue(isDead) and isDead then return true end
-	local isGhost = UnitIsGhost(unit)
-	if canaccessvalue(isGhost) and isGhost then return true end
 	local isDeadOrGhost = UnitIsDeadOrGhost(unit)
-	if canaccessvalue(isDeadOrGhost) and isDeadOrGhost then return true end
+	if canaccessvalue(isDeadOrGhost) then
+		if isDeadOrGhost then return true end
+	else
+		local isDead = UnitIsDead(unit)
+		if canaccessvalue(isDead) and isDead then return true end
+		local isGhost = UnitIsGhost(unit)
+		if canaccessvalue(isGhost) and isGhost then return true end
+	end
 	local health = UnitHealth(unit)
-	if canaccessvalue(health) and health and health <= 0 then return true end
+	if canaccessvalue(health) and health <= 0 then return true end
 	return false
 end
 ElvUI_EltreumUI.IsUnitDeadHelper = IsUnitDeadHelper
 
-local function UpdateUnitPortraitDead(frame, unit)
+local function UpdateUnitPortraitDead(frame, unit, force)
 	if not frame or not E.db.ElvUI_EltreumUI.unitframes.portraitdead then return end
 	local u = unit or frame.__unit or frame.unit
 	if not u then return end
 
 	local isDead = IsUnitDeadHelper(u)
+	local portrait = frame.Portrait3D or (frame.Portrait and frame.Portrait.playerModel and frame.Portrait)
+	local targetPortrait = portrait or frame.Portrait
+	local eltruismPortrait = frame.EltruismPortrait and frame.EltruismPortrait.portrait
+	if not force and frame.EltruismPortraitDead == isDead and frame.EltruismPortraitDeadTarget == targetPortrait and frame.EltruismPortraitDeadCustom == eltruismPortrait then
+		return
+	end
+
 	local db = frame.db or (E.db.unitframe.units and (E.db.unitframe.units[u] or (frame.unitframeType and E.db.unitframe.units[frame.unitframeType])))
 	if not db then return end
-	local portrait = frame.Portrait3D or (frame.Portrait and frame.Portrait.playerModel and frame.Portrait)
+
+	frame.EltruismPortraitDead = isDead
+	frame.EltruismPortraitDeadTarget = targetPortrait
+	frame.EltruismPortraitDeadCustom = eltruismPortrait
 	if portrait and portrait.SetPaused and portrait.SetDesaturation then
 		if isDead then
 			portrait:SetPaused(true)
@@ -710,7 +723,7 @@ unitdeath:RegisterUnitEvent("UNIT_FLAGS","player")
 --unitdeath:RegisterEvent("UNIT_HEALTH")
 
 local function DelayedUpdatePlayerPortraitDead()
-	UpdateUnitPortraitDead(_G["ElvUF_Player"], "player")
+	UpdateUnitPortraitDead(_G["ElvUF_Player"], "player", true)
 end
 
 local function DeathEventDispatch(_, event, unit)
@@ -718,25 +731,25 @@ local function DeathEventDispatch(_, event, unit)
 
 	if event == "PLAYER_DEAD" or event == "PLAYER_UNGHOST" or event == "PLAYER_ALIVE" then
 		if _G["ElvUF_Player"] then
-			UpdateUnitPortraitDead(_G["ElvUF_Player"], "player")
+			UpdateUnitPortraitDead(_G["ElvUF_Player"], "player", true)
 			E:Delay(0, DelayedUpdatePlayerPortraitDead)
 		end
 		return
 	elseif event == "PLAYER_TARGET_CHANGED" then
 		if _G["ElvUF_Target"] then
-			UpdateUnitPortraitDead(_G["ElvUF_Target"], "target")
+			UpdateUnitPortraitDead(_G["ElvUF_Target"], "target", true)
 		end
 		return
 	elseif event == "PLAYER_FOCUS_CHANGED" then
 		if _G["ElvUF_Focus"] then
-			UpdateUnitPortraitDead(_G["ElvUF_Focus"], "focus")
+			UpdateUnitPortraitDead(_G["ElvUF_Focus"], "focus", true)
 		end
 		return
 	elseif event == "PARTY_MEMBER_DISABLE" or event == "PARTY_MEMBER_ENABLE" or event == "GROUP_ROSTER_UPDATE" then
 		for i = 1, 5 do
 			local btn = _G["ElvUF_PartyGroup1UnitButton"..i]
 			if btn and (btn.unit or btn.__unit) then
-				UpdateUnitPortraitDead(btn, btn.unit or btn.__unit)
+				UpdateUnitPortraitDead(btn, btn.unit or btn.__unit, true)
 			end
 		end
 		return
@@ -747,13 +760,13 @@ local function DeathEventDispatch(_, event, unit)
 	if singleFrames[unit] then
 		local frame = _G[singleFrames[unit]]
 		if frame then
-			UpdateUnitPortraitDead(frame, unit)
+			UpdateUnitPortraitDead(frame, unit, true)
 		end
 		if unit == "player" then
 			for i = 1, 5 do
 				local btn = _G["ElvUF_PartyGroup1UnitButton"..i]
 				if btn and (btn.unit == "player" or btn.__unit == "player") then
-					UpdateUnitPortraitDead(btn, "player")
+					UpdateUnitPortraitDead(btn, "player", true)
 					break
 				end
 			end
@@ -762,14 +775,14 @@ local function DeathEventDispatch(_, event, unit)
 		for i = 1, 5 do
 			local btn = _G["ElvUF_PartyGroup1UnitButton"..i]
 			if btn and (btn.unit == unit or btn.__unit == unit) then
-				UpdateUnitPortraitDead(btn, unit)
+				UpdateUnitPortraitDead(btn, unit, true)
 				break
 			end
 		end
 	elseif unit:sub(1, 4) == "boss" then
 		local bossFrame = _G["ElvUF_Boss" .. unit:sub(5)]
 		if bossFrame then
-			UpdateUnitPortraitDead(bossFrame, unit)
+			UpdateUnitPortraitDead(bossFrame, unit, true)
 		end
 	end
 end
